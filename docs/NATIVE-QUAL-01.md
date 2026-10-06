@@ -19,8 +19,9 @@ disposable `bd-qual2` database. Removed after observation.
   Native state never enforces prerequisites: blocked-work fencing must live
   in the adapter (R3 design confirmed, not contradicted).
 - Compatible branch create + merge: exit 0, heads advance. Conflicting
-  merge has no native CLI path (no checkout/switch): untested natively,
-  covered by R2/R3 fixture tests only.
+  merge is untested natively: `bd vc merge` with `--strategy ours|theirs`
+  exists upstream, but setting up divergent branches still needs a checkout
+  path this CLI surface does not expose; covered by R2/R3 fixture tests only.
 - Crash: SIGKILL-equivalent mid-batch (Stop-Process -Force at count 22 of
   200) → counts stable, vc clean, history intact, no lock errors; probe
   batch removed afterwards with `--force` delete.

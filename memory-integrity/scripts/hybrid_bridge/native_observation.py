@@ -389,8 +389,31 @@ def _object(raw,kind):
     return value
 
 
+def _long_path(path):
+    """Resolve 8.3 short-name segments (RUNNER~1 vs runneradmin) so the same
+    database is never mistaken for a foreign one. Non-Windows: abspath."""
+    text = os.path.abspath(str(path))
+    if os.name != "nt":
+        return os.path.normcase(text)
+    try:
+        from ctypes import WinDLL, wintypes, create_unicode_buffer
+        kernel32 = WinDLL("kernel32", use_last_error=True)
+        kernel32.GetLongPathNameW.argtypes = [wintypes.LPCWSTR, wintypes.LPWSTR,
+                                              wintypes.DWORD]
+        kernel32.GetLongPathNameW.restype = wintypes.DWORD
+        needed = kernel32.GetLongPathNameW(text, None, 0)
+        if not needed:
+            return os.path.normcase(text)
+        buffer = create_unicode_buffer(needed)
+        if not kernel32.GetLongPathNameW(text, buffer, needed):
+            return os.path.normcase(text)
+        return os.path.normcase(buffer.value)
+    except OSError:
+        return os.path.normcase(text)
+
+
 def _info(value,database_path,prefix):
-    if not isinstance(value.get("database_path"),str) or os.path.normcase(os.path.abspath(value["database_path"]))!=os.path.normcase(str(database_path)):
+    if not isinstance(value.get("database_path"),str) or _long_path(value["database_path"])!=_long_path(database_path):
         _fail("E_NATIVE_DATABASE_PATH", "readback selected another database")
     if value.get("mode")!="direct" or type(value.get("issue_count")) is not int or value["issue_count"]<0:
         _fail("E_NATIVE_INFO_SCHEMA", "direct mode and nonnegative integer issue count required")

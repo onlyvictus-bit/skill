@@ -71,7 +71,7 @@ jobs:
         shell: python
         run: |
           import pathlib, re, zipfile
-          secret_re = re.compile(r"(?i)(?<![A-Za-z0-9_.])(api[_-]?key|secret|token|password)['\"]?\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{12,}")
+          secret_re = re.compile(r"(?i)(?<![A-Za-z0-9_.])(?:[A-Za-z]+_)?(api[_-]?key|secret|token|password)['\"]?\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{12,}")
           bad = []
           for p in pathlib.Path(".").rglob("*"):
               if not p.is_file() or ".git/" in p.as_posix():
@@ -81,7 +81,8 @@ jobs:
                   bad.append(rel)
               elif p.suffix in (".db", ".sqlite", ".sqlite3"):
                   bad.append(rel)
-              elif p.suffix in (".py", ".md", ".json", ".yaml", ".yml", ".toml"):
+              elif p.suffix in (".py", ".md", ".json", ".yaml", ".yml", ".toml") \
+                      or p.name == ".env" or p.name.startswith(".env."):
                   try:
                       text = p.read_text(encoding="utf-8")
                   except (OSError, ValueError):

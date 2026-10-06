@@ -203,12 +203,12 @@ class ClaudeMonCoreTests(unittest.TestCase):
         self.assertEqual(before, receipt_file.read_bytes())
 
     def test_status_does_not_emit_source_content(self):
-        secret = "SUPER_SECRET_CONTENT_42"
-        src = self.write_text("secret.txt", secret)
+        fixture_content = "SUPER_SECRET_CONTENT_42"
+        src = self.write_text("secret.txt", fixture_content)
         rec = register_source(self.root, src)
         registry = load_registry(self.root)
         rendered = json.dumps(registry)
-        self.assertNotIn(secret, rendered)
+        self.assertNotIn(fixture_content, rendered)
 
 
 if __name__ == "__main__":
