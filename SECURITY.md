@@ -1,7 +1,9 @@
 # Security policy
 
-Report vulnerabilities privately to the repository owner via a GitHub private
-vulnerability report. Do not open public issues for unpatched security defects.
+Report vulnerabilities privately to the repository owner. Enable GitHub
+private vulnerability reporting in the repository settings (required setup;
+not verified from this tree), and do not open public issues for unpatched
+security defects.
 
 ## Scope and boundaries (always true for this project)
 

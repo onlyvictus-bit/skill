@@ -38,6 +38,36 @@ class EvalTests(unittest.TestCase):
                                           "cites": []}])
         self.assertFalse(results[0]["pass"])
 
+    def test_empty_evaluation_fails(self):
+        prompts, _ = load("good.json")
+        results = scorer.score(prompts, [])
+        self.assertFalse(all(r["pass"] for r in results))
+        self.assertTrue(any("without transcripts" in " ".join(r["reasons"])
+                            for r in results))
+
+    def test_partial_and_duplicate_coverage_fails(self):
+        prompts, good = load("good.json")
+        partial = scorer.score(prompts, good[:1])
+        self.assertTrue(any(not r["pass"] for r in partial))
+        duped = scorer.score(prompts, good[:1] * 10)
+        self.assertTrue(any("duplicate transcript" in " ".join(r["reasons"])
+                            for r in duped))
+
+    def test_shell_wrapped_forbidden_call_caught(self):
+        prompts, good = load("good.json")
+        spoof = dict(good[0], tool_calls=["shell: bd accept --task X"])
+        results = scorer.score(prompts, [spoof])
+        self.assertFalse(results[0]["pass"])
+        self.assertTrue(any("forbidden call accept" in r
+                            for r in results[0]["reasons"]))
+
+    def test_malformed_transcript_types_rejected(self):
+        prompts, _ = load("good.json")
+        results = scorer.score(prompts, [{"prompt_id": "P01-upload-means-read",
+                                          "states": "UNVERIFIED",
+                                          "tool_calls": [], "cites": []}])
+        self.assertFalse(results[0]["pass"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

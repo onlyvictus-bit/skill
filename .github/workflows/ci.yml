@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [main, development/**]
   pull_request:
 
 jobs:
@@ -18,28 +18,76 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: stdlib suites from package roots
-        run: |
-          python -B -m unittest discover -s memory-integrity/tests
-          python -B -m unittest discover -s memory-integrity/tests_v2
-          python -B -m unittest discover -s claude-mon/tests
-          python -B -m unittest discover -s claude-mon/tests_v2
+      - name: memory-integrity legacy suite
+        working-directory: memory-integrity
+        run: python -B -m unittest discover -s tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: memory-integrity v2 suite
+        working-directory: memory-integrity
+        run: python -B -m unittest discover -s tests_v2
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: claude-mon legacy suite
+        working-directory: claude-mon
+        run: python -B -m unittest discover -s tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: claude-mon v2 suite
+        working-directory: claude-mon
+        run: python -B -m unittest discover -s tests_v2
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: behavioral eval self-tests
+        working-directory: evals
+        run: python -B -m unittest discover -s .
         env:
           PYTHONDONTWRITEBYTECODE: "1"
       - name: release archive verification
         run: python -B release/Verify-Memory-Integrity-R3.py
         env:
           PYTHONDONTWRITEBYTECODE: "1"
+      - name: content manifests match tree
+        shell: python
+        run: |
+          import hashlib, json, pathlib
+          for pkg in ("memory-integrity", "claude-mon"):
+              root = pathlib.Path(pkg)
+              names = sorted(p.name for p in (root / "tests_v2").glob("*-CONTENT.json"))
+              assert names, pkg
+              name = {"R4-CONTENT.json", "R3-CONTENT.json", "R2-CONTENT.json"} & set(names)
+              name = sorted(name, reverse=True)[0]
+              manifest = json.loads((root / "tests_v2" / name).read_text())
+              actual = {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                        for p in root.rglob("*") if p.is_file()
+                        and "__pycache__" not in p.parts and p.suffix != ".pyc"
+                        and p.relative_to(root).as_posix() != "tests_v2/" + name}
+              assert actual == manifest["files"], "regenerate %s after intended change" % name
       - name: skill frontmatter validation (stdlib)
         run: python -B .github/scripts/validate-frontmatter.py
         env:
           PYTHONDONTWRITEBYTECODE: "1"
-      - name: no cache, secrets, or unsafe archive members
+      - name: no cache, secrets, databases, or unsafe archive members
         shell: python
         run: |
-          import pathlib, zipfile
-          bad = [str(p) for p in pathlib.Path(".").rglob("*")
-                 if p.suffix in (".pyc",) or p.name in (".pytest_cache", "__pycache__")]
+          import pathlib, re, zipfile
+          secret_re = re.compile(r"(?i)(?<![A-Za-z0-9_.])(api[_-]?key|secret|token|password)['\"]?\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{12,}")
+          bad = []
+          for p in pathlib.Path(".").rglob("*"):
+              if not p.is_file() or ".git/" in p.as_posix():
+                  continue
+              rel = p.relative_to(".").as_posix()
+              if p.suffix in (".pyc",) or p.name in (".pytest_cache", "__pycache__"):
+                  bad.append(rel)
+              elif p.suffix in (".db", ".sqlite", ".sqlite3"):
+                  bad.append(rel)
+              elif p.suffix in (".py", ".md", ".json", ".yaml", ".yml", ".toml"):
+                  try:
+                      text = p.read_text(encoding="utf-8")
+                  except (OSError, ValueError):
+                      continue
+                  if secret_re.search(text):
+                      bad.append(rel + ":possible-secret")
           assert not bad, bad
           for z in list(pathlib.Path("release").glob("*.zip")):
               names = zipfile.ZipFile(z).namelist()

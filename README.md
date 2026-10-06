@@ -79,6 +79,6 @@ Do not enable native execution merely because a version check or read succeeds.
 
 ## Licensing
 
-No new repository-wide license has been selected during publication. Beads is a
-separate upstream project; its runtime and source are not bundled here. Existing
-source files and notices are preserved rather than reassigned a license.
+MIT — see `LICENSE`. Beads is a separate upstream project; its runtime and
+source are not bundled here. Existing source files and notices are preserved
+rather than reassigned a license.

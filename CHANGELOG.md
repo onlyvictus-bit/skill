@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased (development/m0-ux-eval, review fixes)
+- Containment: extended-limit Job Object (class 9) with explicit signatures;
+  always-close semantics; taskkill TimeoutExpired caught; containment fields
+  retained in observation receipts; clean-exit descendant probe.
+- CI runs each suite from its package root; eval self-tests; secret/database
+  checks; dev-branch triggers; manifest-freshness check.
+- Scorer: full prompt coverage, duplicate/unknown rejection, strict types,
+  normalized tool verbs (shell-wrapped calls counted), P05/P09 corrected.
+- Validator: duplicate-key and bracket-balance rejection (still a YAML subset,
+  not a full parser).
+- R4-CONTENT.json manifests committed per package; preservation suites green
+  (mi 173 + cm 190 v2); branch totals 405 suite + 7 eval tests, zero failures.
+- Native-observation reference documents the containment mechanism and limits.
+
 ## Unreleased (development/m0-ux-eval)
 - MIT license selected (`LICENSE`); packaging metadata (`pyproject.toml`).
 - CI: Windows+Ubuntu × Python 3.11–3.14, four unittest suites, R3 archive

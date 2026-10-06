@@ -1,7 +1,10 @@
 # Contributing
 
 Isolated, evidence-first contributions only. Read `README.md`,
-`docs/STATUS.md`, and the Four-Feature plan before changing behavior.
+`docs/STATUS.md`, and the Four-Feature plan before changing behavior. The
+plan (`Memory-Integrity-Beads-Four-Feature-Plan.md`) lives with the project
+workspace outputs, not in this tree; its milestones and acceptance gates
+govern native/Beads work.
 
 1. Preserve byte-identity: staged originals, SKILL.md prefixes (append-only),
    and release manifests. Never weaken a test or fixture to get green.

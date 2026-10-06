@@ -123,21 +123,35 @@ def _retain_pipe(record,name,raw):
 def _tree_guard(process):
     """Confine the child process tree for the kill path.
 
-    Windows: Job Object with KILL_ON_JOB_CLOSE assigned before any kill, so
-    closing the job terminates grandchildren too. Where job limits are
-    refused by the host, the fallback is a taskkill /PID /T /F tree sweep at
-    kill time (best effort: a descendant spawned after enumeration could
-    escape; that residual race is recorded, never hidden). POSIX: the child
-    starts as a process-group leader (see Popen start_new_session) so killpg
-    reaches the whole tree. Returns (release_callable, method_string). A
-    method starting with "unavailable" means tree kill cannot be proved: any
-    kill path taken under it leaves tree_contained False.
+    Windows: Job Object with KILL_ON_JOB_CLOSE under
+    JOBOBJECT_EXTENDED_LIMIT_INFORMATION (information class 9; the flag is
+    not accepted through the basic-limit structure), assigned before any
+    kill, so closing the job terminates grandchildren too. The job is closed
+    on every return path, so even a clean parent exit cannot leave
+    descendants behind. Where job setup is refused by the host, the fallback
+    is a taskkill /PID /T /F tree sweep at kill time (best effort: a
+    descendant spawned after enumeration could escape; that residual race is
+    recorded, never hidden). POSIX: the child starts as a process-group
+    leader (see Popen start_new_session) so killpg reaches the whole tree.
+    Returns (release_callable, method_string). A method starting with
+    "unavailable" means tree kill cannot be proved: any kill path taken
+    under it leaves tree_contained False.
     """
     if os.name == "nt":
+        from ctypes import wintypes
         try:
             kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+            kernel32.CreateJobObjectW.argtypes = [ctypes.c_void_p, wintypes.LPCWSTR]
+            kernel32.CreateJobObjectW.restype = wintypes.HANDLE
+            kernel32.SetInformationJobObject.argtypes = [
+                wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p, wintypes.DWORD]
+            kernel32.SetInformationJobObject.restype = wintypes.BOOL
+            kernel32.AssignProcessToJobObject.argtypes = [wintypes.HANDLE, wintypes.HANDLE]
+            kernel32.AssignProcessToJobObject.restype = wintypes.BOOL
+            kernel32.CloseHandle.argtypes = [wintypes.HANDLE]
+            kernel32.CloseHandle.restype = wintypes.BOOL
 
-            class _BasicLimit(ctypes.Structure):
+            class _ExtendedLimit(ctypes.Structure):
                 _fields_ = [("PerProcessUserTimeLimit", ctypes.c_int64),
                             ("PerJobUserTimeLimit", ctypes.c_int64),
                             ("LimitFlags", ctypes.c_uint32),
@@ -146,22 +160,35 @@ def _tree_guard(process):
                             ("ActiveProcessCount", ctypes.c_uint32),
                             ("Affinity", ctypes.c_size_t),
                             ("PriorityClass", ctypes.c_uint32),
-                            ("SchedulingClass", ctypes.c_uint32)]
+                            ("SchedulingClass", ctypes.c_uint32),
+                            ("ReadOperationCount", ctypes.c_uint64),
+                            ("WriteOperationCount", ctypes.c_uint64),
+                            ("OtherOperationCount", ctypes.c_uint64),
+                            ("ReadTransferCount", ctypes.c_uint64),
+                            ("WriteTransferCount", ctypes.c_uint64),
+                            ("OtherTransferCount", ctypes.c_uint64),
+                            ("ProcessMemoryLimit", ctypes.c_size_t),
+                            ("JobMemoryLimit", ctypes.c_size_t),
+                            ("PeakProcessMemoryUsed", ctypes.c_size_t),
+                            ("PeakJobMemoryUsed", ctypes.c_size_t)]
 
+            assert ctypes.sizeof(_ExtendedLimit) == 144, "extended-limit layout"
             job = kernel32.CreateJobObjectW(None, None)
             if not job:
-                raise OSError("CreateJobObjectW failed")
-            info = _BasicLimit()
+                raise OSError("CreateJobObjectW failed: %d" % (ctypes.get_last_error(),))
+            info = _ExtendedLimit()
             info.LimitFlags = 0x2000  # JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
-            if not kernel32.SetInformationJobObject(job, 2, ctypes.byref(info),
+            if not kernel32.SetInformationJobObject(job, 9, ctypes.byref(info),
                                                     ctypes.sizeof(info)):
+                error = ctypes.get_last_error()
                 kernel32.CloseHandle(job)
-                raise OSError("SetInformationJobObject failed")
+                raise OSError("SetInformationJobObject failed: %d" % (error,))
             if not kernel32.AssignProcessToJobObject(job, process._handle):
+                error = ctypes.get_last_error()
                 kernel32.CloseHandle(job)
                 if process.poll() is not None:
                     return (lambda: None, "exited-before-assign")
-                raise OSError("AssignProcessToJobObject failed")
+                raise OSError("AssignProcessToJobObject failed: %d" % (error,))
 
             def release():
                 try:
@@ -170,17 +197,18 @@ def _tree_guard(process):
                     pass
 
             return (release, "windows-job-kill-on-close")
-        except Exception:
-            pass
-        return (lambda: None, "windows-taskkill-sweep")
+        except Exception as exc:
+            return (lambda: None, "windows-taskkill-sweep: job unavailable: %s" % (exc,))
     return (lambda: None, "posix-setsid-group")
 
 
 def _capture_process(args, *, cwd, env, timeout, shell=False):
     """Capture both pipes with a byte limit while the child is running.
 
-    Killing here targets only the process we created. Reader completion and
-    process exit are checked separately; a surviving pipe/child refuses proof.
+    Killing sweeps the live tree first (catching descendants born before job
+    assignment), then the leader, then closes the job as a net. Reader
+    completion and process exit are checked separately; a surviving
+    pipe/child refuses proof.
     """
     if shell is not False:
         _fail("E_NATIVE_SHELL", "native commands must use an argument array")
@@ -206,7 +234,12 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
                         errors.append("group-kill: " + str(exc))
                         tree_contained["value"] = False
                         tree_contained["note"] = "process-group kill failed"
-                elif containment_method == "windows-taskkill-sweep":
+                else:
+                    # Sweep the live tree first: descendants born before job
+                    # assignment are outside the job and only die here. On the
+                    # job path a sweep failure is recorded, not decisive: the
+                    # job close below remains the guarantee.
+                    sweep_ok = True
                     try:
                         sweep = subprocess.run(
                             ["taskkill", "/PID", str(process.pid), "/T", "/F"],
@@ -215,13 +248,17 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
                         if sweep.returncode != 0:
                             errors.append("tree-sweep: taskkill exit %d"
                                           % (sweep.returncode,))
-                            tree_contained["value"] = False
-                            tree_contained["note"] = ("taskkill tree sweep failed; "
-                                                      "descendants unproven")
+                            sweep_ok = False
+                    except subprocess.TimeoutExpired as exc:
+                        errors.append("tree-sweep: taskkill timed out: %s" % (exc,))
+                        sweep_ok = False
                     except OSError as exc:
                         errors.append("tree-sweep: " + str(exc))
+                        sweep_ok = False
+                    if not sweep_ok and not containment_method.startswith("windows-job-"):
                         tree_contained["value"] = False
-                        tree_contained["note"] = "tree sweep unavailable"
+                        tree_contained["note"] = ("taskkill tree sweep failed; "
+                                                  "descendants unproven")
                 process.kill()
         except OSError as exc:
             errors.append("termination: " + str(exc))
@@ -269,14 +306,20 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
         elif containment_method == "windows-job-kill-on-close":
             release_tree()
             tree_contained["value"] = True
-            tree_contained["note"] = "job closed after kill; OS terminates the tree"
-        elif containment_method == "windows-taskkill-sweep":
+            tree_contained["note"] = ("live tree swept, then job closed; OS terminates "
+                                      "any remainder including pre-assignment descendants")
+        elif containment_method.startswith("windows-taskkill-sweep"):
             if tree_contained["value"] is not False:
                 tree_contained["value"] = True
                 tree_contained["note"] = ("taskkill tree sweep succeeded; residual "
                                           "post-enumeration-spawn race remains possible")
     else:
         release_tree()
+        if containment_method == "windows-job-kill-on-close":
+            tree_contained["note"] = "job closed on return; OS terminates any stragglers"
+        else:
+            tree_contained["note"] = ("clean exit, no termination performed; "
+                                      "out-of-scope descendants were not swept")
     return {"exit_code":process.poll(),"stdout":bytes(data["stdout"]),"stderr":bytes(data["stderr"]),
             "capture_complete":pipes_done,
             "timed_out":timed_out,"output_limit_exceeded":overflow.is_set(),
@@ -315,7 +358,11 @@ def _command(exe,root,beads,kind,observations,expected_digest):
     record.update(exit_code=completed["exit_code"],
                   capture_complete=completed["capture_complete"],timed_out=completed["timed_out"],
                   output_limit_exceeded=completed["output_limit_exceeded"],
-                  capture_errors=completed["capture_errors"],process_id=completed["process_id"])
+                  capture_errors=completed["capture_errors"],process_id=completed["process_id"],
+                  kill_path_used=completed.get("kill_path_used", False),
+                  tree_contained=completed.get("tree_contained"),
+                  containment_method=completed.get("containment_method"),
+                  containment_note=completed.get("containment_note"))
     _retain_pipe(record,"stdout",completed["stdout"])
     _retain_pipe(record,"stderr",completed["stderr"])
     if completed["output_limit_exceeded"]:

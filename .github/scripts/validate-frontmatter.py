@@ -26,10 +26,28 @@ def check(skill_md):
     except ValueError:
         return ["missing closing frontmatter fence"]
     fields = {}
-    for line in lines[1:end]:
+    for number, line in enumerate(lines[1:end], start=2):
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
         key, sep, value = line.partition(":")
-        if sep:
-            fields[key.strip()] = value.strip()
+        if not sep:
+            errors.append("line %d not a key/value mapping" % (number,))
+            continue
+        key = key.strip()
+        if key in fields:
+            errors.append("duplicate key %r (line %d)" % (key, number))
+            continue
+        fields[key] = value.strip()
+    for opener, closer in (("[", "]"), ("{", "}")):
+        depth = 0
+        for line in lines[1:end]:
+            stripped = line.split("#", 1)[0]
+            depth += stripped.count(opener) - stripped.count(closer)
+            if depth < 0:
+                break
+        if depth != 0:
+            errors.append("unbalanced %s%s in frontmatter" % (opener, closer))
+            break
     name = fields.get("name", "")
     desc = fields.get("description", "")
     if pathlib.Path(skill_md).parent.name != name:

@@ -30,9 +30,16 @@ and new. The command preserves command stdout/stderr/exit data in its receipt
 even on a warning refusal. A preflight failure reports BLOCKED on stdout.
 Captured bytes are retained as base64, byte count and SHA-256 for each pipe.
 Decoded display text is not the lossless evidence. Output beyond the per-pipe
-limit is marked truncated and refused. Timeout/limit termination targets only
-the created process; descendant cleanup is not yet qualified, so this candidate
-must not be used as a generic native process launcher.
+limit is marked truncated and refused. Termination confines the tree: a Job
+Object with KILL_ON_JOB_CLOSE under the extended-limit structure (class 9,
+explicit signatures), closed on every return path so even clean exits cannot
+strand descendants; where job setup is refused, a taskkill tree sweep runs at
+kill time. Pipes must reach EOF or containment is refused (E_NATIVE_CONTAINMENT,
+UNKNOWN). Residual limit: descendants spawned after sweep enumeration on
+non-job hosts remain possible and are recorded, never labeled proven. The
+containment fields (kill_path_used, tree_contained, method, note) are retained
+in every observation receipt. Grandchild pipe-holder and clean-exit probes
+cover both paths.
 
 Actual native qualification, native mutations, CM guard integration, branch
 merges, recovery and the four-trap comparison remain M7 acceptance work.
