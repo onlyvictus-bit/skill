@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  suites:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: stdlib suites from package roots
+        run: |
+          python -B -m unittest discover -s memory-integrity/tests
+          python -B -m unittest discover -s memory-integrity/tests_v2
+          python -B -m unittest discover -s claude-mon/tests
+          python -B -m unittest discover -s claude-mon/tests_v2
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: release archive verification
+        run: python -B release/Verify-Memory-Integrity-R3.py
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: skill frontmatter validation (stdlib)
+        run: python -B .github/scripts/validate-frontmatter.py
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: no cache, secrets, or unsafe archive members
+        shell: python
+        run: |
+          import pathlib, zipfile
+          bad = [str(p) for p in pathlib.Path(".").rglob("*")
+                 if p.suffix in (".pyc",) or p.name in (".pytest_cache", "__pycache__")]
+          assert not bad, bad
+          for z in list(pathlib.Path("release").glob("*.zip")):
+              names = zipfile.ZipFile(z).namelist()
+              assert len(names) == len(set(names)), z
+              assert sum(n.endswith("/SKILL.md") for n in names) == 1, z
+              assert not any("__pycache__" in n or n.endswith(".pyc") or ".." in pathlib.Path(n).parts for n in names), z

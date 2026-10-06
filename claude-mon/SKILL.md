@@ -252,3 +252,5 @@ scratch migration does not retroactively prove provenance or completeness.
 Native Beads and live AI remain unqualified/disabled. Regular uploaded chat
 without a runner is MANUAL_REPORTED only. Installation, shared-store migration,
 native pilot and provider calls require their own approval.
+
+Reference index: read references/INDEX.md first and load only matching rows.

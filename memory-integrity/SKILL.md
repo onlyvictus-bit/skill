@@ -573,3 +573,5 @@ qualification before releasing or promoting a final integrated pair.
 
 Without a runner, describe the diagnostic as unavailable; continue only the
 manual checklist/report profile. Never invent a successful command or receipt.
+
+Reference index: read references/INDEX.md first and load only matching rows.

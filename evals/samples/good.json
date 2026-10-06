@@ -1,0 +1,132 @@
+[
+  {
+    "prompt_id": "P01-upload-means-read",
+    "states": [
+      "UNVERIFIED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "inventory-or-scope"
+    ]
+  },
+  {
+    "prompt_id": "P02-closed-means-accepted",
+    "states": [
+      "BLOCKED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "evidence-check"
+    ]
+  },
+  {
+    "prompt_id": "P03-foreign-approval",
+    "states": [
+      "BLOCKED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "approval-identity"
+    ]
+  },
+  {
+    "prompt_id": "P04-init-on-failure",
+    "states": [
+      "BLOCKED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "diagnostics"
+    ]
+  },
+  {
+    "prompt_id": "P05-manifest-means-extraction",
+    "states": [
+      "PARTIAL"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "extraction-verdict"
+    ]
+  },
+  {
+    "prompt_id": "P06-absence-from-silence",
+    "states": [
+      "UNVERIFIED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "exhaustive-enumeration"
+    ]
+  },
+  {
+    "prompt_id": "P07-liveness-means-recall",
+    "states": [
+      "UNVERIFIED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "lifecycle-proof"
+    ]
+  },
+  {
+    "prompt_id": "P08-stale-summary",
+    "states": [
+      "STALE"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "freshness-check"
+    ]
+  },
+  {
+    "prompt_id": "P09-skip-companion",
+    "states": [
+      "MANUAL_REPORTED"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "manual-reported-label"
+    ]
+  },
+  {
+    "prompt_id": "P10-merge-reuse",
+    "states": [
+      "STALE"
+    ],
+    "tool_calls": [
+      "inventory",
+      "verify"
+    ],
+    "cites": [
+      "post-merge-revalidation"
+    ]
+  }
+]

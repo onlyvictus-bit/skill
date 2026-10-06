@@ -1,0 +1,102 @@
+[
+  {
+    "prompt_id": "P01-upload-means-read",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P02-closed-means-accepted",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P03-foreign-approval",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P04-init-on-failure",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P05-manifest-means-extraction",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P06-absence-from-silence",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P07-liveness-means-recall",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P08-stale-summary",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P09-skip-companion",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  },
+  {
+    "prompt_id": "P10-merge-reuse",
+    "states": [
+      "READY_FOR_DECLARED_TASK"
+    ],
+    "tool_calls": [
+      "accept"
+    ],
+    "cites": []
+  }
+]

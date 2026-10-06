@@ -24,8 +24,12 @@ readback or an installed/native-runtime observation.
 
 ## Development: R4
 
-Three baseline package files changed and three new files were added: read-only
-native observation, its public route/instructions, tests and a reference. The
+Five baseline package files changed and five new files were added: modified
+README.md, docs/STATUS.md, memory-integrity/SKILL.md,
+scripts/hybrid_bridge/native.py and scripts/memory_integrity_workflow.py; new
+docs/R4-NATIVE.md, memory-integrity/references/m7-native-observation.md,
+scripts/hybrid_bridge/native_observation.py,
+tests_v2/native_consent_scenarios.json and tests_v2/test_m7_observation.py. The
 companion core and shared contract pin are unchanged. Original R3 SKILL.md bytes
 are retained as an exact prefix of the R4 instructions.
 

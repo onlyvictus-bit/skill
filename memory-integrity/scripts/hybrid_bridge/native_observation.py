@@ -8,11 +8,13 @@ quietly yield a complete graph. CM acceptance is never inferred from a status.
 """
 from datetime import datetime, timezone
 import base64
+import ctypes
 import hashlib
 import json
 import os
 from pathlib import Path
 import re
+import signal
 import stat
 import subprocess
 import threading
@@ -118,6 +120,62 @@ def _retain_pipe(record,name,raw):
     record[name+"_captured_bytes"] = len(raw)
 
 
+def _tree_guard(process):
+    """Confine the child process tree for the kill path.
+
+    Windows: Job Object with KILL_ON_JOB_CLOSE assigned before any kill, so
+    closing the job terminates grandchildren too. Where job limits are
+    refused by the host, the fallback is a taskkill /PID /T /F tree sweep at
+    kill time (best effort: a descendant spawned after enumeration could
+    escape; that residual race is recorded, never hidden). POSIX: the child
+    starts as a process-group leader (see Popen start_new_session) so killpg
+    reaches the whole tree. Returns (release_callable, method_string). A
+    method starting with "unavailable" means tree kill cannot be proved: any
+    kill path taken under it leaves tree_contained False.
+    """
+    if os.name == "nt":
+        try:
+            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+
+            class _BasicLimit(ctypes.Structure):
+                _fields_ = [("PerProcessUserTimeLimit", ctypes.c_int64),
+                            ("PerJobUserTimeLimit", ctypes.c_int64),
+                            ("LimitFlags", ctypes.c_uint32),
+                            ("MinimumWorkingSetSize", ctypes.c_size_t),
+                            ("MaximumWorkingSetSize", ctypes.c_size_t),
+                            ("ActiveProcessCount", ctypes.c_uint32),
+                            ("Affinity", ctypes.c_size_t),
+                            ("PriorityClass", ctypes.c_uint32),
+                            ("SchedulingClass", ctypes.c_uint32)]
+
+            job = kernel32.CreateJobObjectW(None, None)
+            if not job:
+                raise OSError("CreateJobObjectW failed")
+            info = _BasicLimit()
+            info.LimitFlags = 0x2000  # JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+            if not kernel32.SetInformationJobObject(job, 2, ctypes.byref(info),
+                                                    ctypes.sizeof(info)):
+                kernel32.CloseHandle(job)
+                raise OSError("SetInformationJobObject failed")
+            if not kernel32.AssignProcessToJobObject(job, process._handle):
+                kernel32.CloseHandle(job)
+                if process.poll() is not None:
+                    return (lambda: None, "exited-before-assign")
+                raise OSError("AssignProcessToJobObject failed")
+
+            def release():
+                try:
+                    kernel32.CloseHandle(job)
+                except OSError:
+                    pass
+
+            return (release, "windows-job-kill-on-close")
+        except Exception:
+            pass
+        return (lambda: None, "windows-taskkill-sweep")
+    return (lambda: None, "posix-setsid-group")
+
+
 def _capture_process(args, *, cwd, env, timeout, shell=False):
     """Capture both pipes with a byte limit while the child is running.
 
@@ -128,14 +186,42 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
         _fail("E_NATIVE_SHELL", "native commands must use an argument array")
     process = subprocess.Popen(args,cwd=cwd,env=env,shell=False,stdin=subprocess.DEVNULL,
         stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+        start_new_session=(os.name != "nt"),
         creationflags=getattr(subprocess,"CREATE_NO_WINDOW",0))
+    release_tree, containment_method = _tree_guard(process)
+    kill_path_used = {"used": False}
+    tree_contained = {"value": True, "note": "clean-exit-nothing-killed"}
     data = {"stdout":bytearray(),"stderr":bytearray()}
     complete = {"stdout":False,"stderr":False}
     errors = []
     overflow = threading.Event()
     def stop():
+        kill_path_used["used"] = True
         try:
             if process.poll() is None:
+                if os.name != "nt":
+                    try:
+                        os.killpg(os.getpgid(process.pid), signal.SIGKILL)
+                    except (OSError, ProcessLookupError) as exc:
+                        errors.append("group-kill: " + str(exc))
+                        tree_contained["value"] = False
+                        tree_contained["note"] = "process-group kill failed"
+                elif containment_method == "windows-taskkill-sweep":
+                    try:
+                        sweep = subprocess.run(
+                            ["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                            timeout=30)
+                        if sweep.returncode != 0:
+                            errors.append("tree-sweep: taskkill exit %d"
+                                          % (sweep.returncode,))
+                            tree_contained["value"] = False
+                            tree_contained["note"] = ("taskkill tree sweep failed; "
+                                                      "descendants unproven")
+                    except OSError as exc:
+                        errors.append("tree-sweep: " + str(exc))
+                        tree_contained["value"] = False
+                        tree_contained["note"] = "tree sweep unavailable"
                 process.kill()
         except OSError as exc:
             errors.append("termination: " + str(exc))
@@ -172,10 +258,33 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
             errors.append("termination: child did not exit after kill")
     for reader in readers:
         reader.join(timeout=5)
+    pipes_done = all(complete.values()) and not any(r.is_alive() for r in readers)
+    if kill_path_used["used"] and not pipes_done:
+        tree_contained["value"] = False
+        tree_contained["note"] = "pipes/readers incomplete after kill; a holder may survive"
+    if kill_path_used["used"]:
+        if containment_method.startswith("unavailable"):
+            tree_contained["value"] = False
+            tree_contained["note"] = containment_method
+        elif containment_method == "windows-job-kill-on-close":
+            release_tree()
+            tree_contained["value"] = True
+            tree_contained["note"] = "job closed after kill; OS terminates the tree"
+        elif containment_method == "windows-taskkill-sweep":
+            if tree_contained["value"] is not False:
+                tree_contained["value"] = True
+                tree_contained["note"] = ("taskkill tree sweep succeeded; residual "
+                                          "post-enumeration-spawn race remains possible")
+    else:
+        release_tree()
     return {"exit_code":process.poll(),"stdout":bytes(data["stdout"]),"stderr":bytes(data["stderr"]),
-            "capture_complete":all(complete.values()) and not any(r.is_alive() for r in readers),
+            "capture_complete":pipes_done,
             "timed_out":timed_out,"output_limit_exceeded":overflow.is_set(),
-            "capture_errors":errors,"process_id":process.pid}
+            "capture_errors":errors,"process_id":process.pid,
+            "kill_path_used":kill_path_used["used"],
+            "tree_contained":tree_contained["value"],
+            "containment_method":containment_method,
+            "containment_note":tree_contained["note"]}
 
 
 def _command(exe,root,beads,kind,observations,expected_digest):
@@ -213,6 +322,8 @@ def _command(exe,root,beads,kind,observations,expected_digest):
         _fail("E_NATIVE_OUTPUT_LIMIT", kind)
     if completed["timed_out"]:
         _fail("E_NATIVE_TIMEOUT", kind)
+    if completed.get("kill_path_used") and completed.get("tree_contained") is not True:
+        _fail("E_NATIVE_CONTAINMENT", "%s: %s" % (kind, completed.get("containment_note", "")))
     if completed["capture_complete"] is not True or completed["capture_errors"]:
         _fail("E_NATIVE_CAPTURE", "incomplete pipe capture or process termination")
     stdout,stderr = _decode(completed["stdout"]),_decode(completed["stderr"])
