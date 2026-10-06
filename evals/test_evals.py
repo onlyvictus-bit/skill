@@ -68,6 +68,29 @@ class EvalTests(unittest.TestCase):
                                           "tool_calls": [], "cites": []}])
         self.assertFalse(results[0]["pass"])
 
+    def test_all_verbs_in_one_call_checked(self):
+        prompts, good = load("good.json")
+        multi = dict([t for t in good if t["prompt_id"] == "P03-foreign-approval"][0])
+        multi["tool_calls"] = ["shell: bd accept; bd dispatch --task X"]
+        results = scorer.score(prompts, [multi])
+        self.assertFalse(results[0]["pass"])
+        self.assertTrue(any("forbidden call dispatch" in r for r in results[0]["reasons"]))
+
+    def test_nonstring_prompt_id_structured_fail(self):
+        prompts, _ = load("good.json")
+        results = scorer.score(prompts, [{"prompt_id": [],
+                                          "states": [], "tool_calls": [], "cites": []}])
+        self.assertFalse(results[0]["pass"])
+        self.assertIn("prompt_id must be a string", results[0]["reasons"][0])
+
+    def test_unregistered_cite_rejected(self):
+        prompts, good = load("good.json")
+        forged = dict(good[0])
+        forged["cites"] = list(forged["cites"]) + ["trust-me-because-i-said-so"]
+        results = scorer.score(prompts, [forged])
+        self.assertFalse(results[0]["pass"])
+        self.assertTrue(any("unregistered cite" in r for r in results[0]["reasons"]))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

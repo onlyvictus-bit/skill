@@ -85,7 +85,9 @@ class NativeObservationTests(unittest.TestCase):
             argv = call.args[0]
             self.assertIn("--readonly", argv)
             self.assertFalse(call.kwargs["shell"])
-            self.assertEqual(call.kwargs["env"]["BEADS_DIR"], str(self.pilot / ".beads"))
+            from hybrid_bridge import native_observation as observation
+            self.assertEqual(observation._long_path(call.kwargs["env"]["BEADS_DIR"]),
+                             observation._long_path(str(self.pilot / ".beads")))
             self.assertEqual(call.kwargs["env"]["BD_JSON_ENVELOPE"], "0")
         self.assertEqual(calls.call_count, 7)
 
@@ -149,7 +151,9 @@ class NativeObservationTests(unittest.TestCase):
         self.assertTrue(out["ok"],out)
         for call in calls.call_args_list:
             env = call.kwargs["env"]
-            self.assertEqual(env["BEADS_DIR"],str(self.pilot / ".beads"))
+            from hybrid_bridge import native_observation as observation
+            self.assertEqual(observation._long_path(env["BEADS_DIR"]),
+                             observation._long_path(str(self.pilot / ".beads")))
             self.assertEqual(env["BD_JSON_ENVELOPE"],"0")
             self.assertNotIn("BEADS_DB",env)
             self.assertNotIn("BD_OTHER",env)

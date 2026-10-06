@@ -38,16 +38,38 @@ def check(skill_md):
             errors.append("duplicate key %r (line %d)" % (key, number))
             continue
         fields[key] = value.strip()
-    for opener, closer in (("[", "]"), ("{", "}")):
-        depth = 0
-        for line in lines[1:end]:
-            stripped = line.split("#", 1)[0]
-            depth += stripped.count(opener) - stripped.count(closer)
-            if depth < 0:
+    # Bracket balance is checked per physical line. For a quoted flow value
+    # (value begins with ' or ") the quoted span is excluded from counting;
+    # a value that opens a quote without closing it on the same line is an
+    # error. Plain scalars may contain quotes freely. Multi-line quoted
+    # strings are outside this YAML subset and are rejected as unterminated.
+    unbalanced = None
+    depth = {"[": 0, "{": 0}
+    for line in lines[1:end]:
+        body = line.split("#", 1)[0]
+        _, _, value = body.partition(":")
+        value = value.lstrip()
+        if value[:1] in ("'", '"'):
+            if len(value) < 2 or not value.endswith(value[0]):
+                errors.append("unterminated quoted string: %s" % (line.strip(),))
+                continue
+            track = body.split(":", 1)[0]
+        else:
+            track = body
+        for opener, closer in (("[", "]"), ("{", "}")):
+            depth[opener] += track.count(opener) - track.count(closer)
+            if depth[opener] < 0:
+                unbalanced = opener + closer
                 break
-        if depth != 0:
-            errors.append("unbalanced %s%s in frontmatter" % (opener, closer))
+        if unbalanced is not None:
             break
+    if unbalanced is None:
+        if depth["["] != 0:
+            unbalanced = "[]"
+        elif depth["{"] != 0:
+            unbalanced = "{}"
+    if unbalanced is not None:
+        errors.append("unbalanced %s in frontmatter" % (unbalanced,))
     name = fields.get("name", "")
     desc = fields.get("description", "")
     if pathlib.Path(skill_md).parent.name != name:

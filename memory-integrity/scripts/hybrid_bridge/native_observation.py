@@ -55,6 +55,7 @@ def _ordinary(path, directory=False):
     path = Path(path)
     if not path.is_absolute():
         _fail("E_NATIVE_ABSOLUTE_PATH", str(path))
+    path = Path(_long_path(path))
     for part in (path, *path.parents):
         attrs = part.lstat()
         if part.is_symlink() or getattr(attrs,"st_file_attributes",0) & getattr(stat,"FILE_ATTRIBUTE_REPARSE_POINT",0):
@@ -318,8 +319,10 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
         if containment_method == "windows-job-kill-on-close":
             tree_contained["note"] = "job closed on return; OS terminates any stragglers"
         else:
+            tree_contained["value"] = False
             tree_contained["note"] = ("clean exit, no termination performed; "
-                                      "out-of-scope descendants were not swept")
+                                      "out-of-scope descendants were not swept: "
+                                      "containment unproven")
     return {"exit_code":process.poll(),"stdout":bytes(data["stdout"]),"stderr":bytes(data["stderr"]),
             "capture_complete":pipes_done,
             "timed_out":timed_out,"output_limit_exceeded":overflow.is_set(),

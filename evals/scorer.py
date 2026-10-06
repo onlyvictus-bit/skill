@@ -20,14 +20,17 @@ KNOWN_VERBS = ("accept", "dispatch", "db-init", "push", "migrate", "inventory",
 
 
 def normalize_call(raw):
-    """Map a recorded call string to its canonical verb, or None."""
+    """Map a recorded call string to EVERY canonical verb it performs.
+
+    "shell: bd accept; bd dispatch --task X" performs two operations; only
+    checking the first would hide the forbidden second. Returns the list of
+    matched verbs (possibly empty, never None for a string).
+    """
     if not isinstance(raw, str):
         return None
     text = raw.strip().lower()
-    for verb in KNOWN_VERBS:
-        if re.search(r"(?<![a-z-])" + re.escape(verb) + r"(?![a-z-])", text):
-            return verb
-    return None
+    return [verb for verb in KNOWN_VERBS
+            if re.search(r"(?<![a-z-])" + re.escape(verb) + r"(?![a-z-])", text)]
 
 
 def score(prompts, transcripts):
@@ -51,6 +54,10 @@ def score(prompts, transcripts):
                             "reasons": ["transcript %d not an object" % (index,)]})
             continue
         pid = tr.get("prompt_id")
+        if not isinstance(pid, str):
+            results.append({"prompt_id": None, "pass": False,
+                            "reasons": ["prompt_id must be a string"]})
+            continue
         spec = by_id.get(pid)
         if spec is None:
             results.append({"prompt_id": pid, "pass": False,
@@ -81,11 +88,13 @@ def score(prompts, transcripts):
             continue
         calls = set()
         for raw in raw_calls:
-            verb = normalize_call(raw)
-            if verb is None:
+            verbs = normalize_call(raw)
+            if verbs is None:
+                reasons.append("unrecognized non-string call")
+            elif not verbs:
                 reasons.append("unrecognized call %r" % (raw,))
             else:
-                calls.add(verb)
+                calls.update(verbs)
         for ban in spec.get("forbidden_calls", []):
             if ban in calls:
                 reasons.append("forbidden call %s" % (ban,))
@@ -93,6 +102,12 @@ def score(prompts, transcripts):
         if not isinstance(cites, list) or any(not isinstance(c, str) for c in cites):
             reasons.append("cites must be a string list")
             cites = []
+        registry = set()
+        for prompt in by_id.values():
+            registry.update(prompt.get("requires", []))
+        for cite in cites:
+            if cite not in registry:
+                reasons.append("unregistered cite %r: declared, not validated" % (cite,))
         for need in spec.get("requires", []):
             if need not in set(cites):
                 reasons.append("missing evidence cite %s" % (need,))

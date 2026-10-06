@@ -36,9 +36,9 @@ are retained as an exact prefix of the R4 instructions.
 The retained branch test run, observed 2026-10-06 from each package root,
 is fully green: Memory Integrity v1 21/21 and v2 175/175, claude-mon v1
 21/21 and v2 190/190, plus eval harness self-tests 7/7 with the good sample
-scoring 10/10 and the bad sample 0/10. Total 407 suite tests + 7 eval tests,
+scoring 10/10 and the bad sample 0/10. Total 407 suite tests + 10 eval tests,
 zero failures. Re-verified 2026-10-06 on the post-review tree (same totals:
-21+175+21+190+7). The two former R3-manifest mismatches are resolved by
+21+175+21+190+10). The two former R3-manifest mismatches are resolved by
 committed R4-CONTENT.json manifests (regeneration is an explicit release
 action: change files, regenerate, review the diff, commit). The single
 deliberate-failure statement below described the pre-manifest state and no
