@@ -543,3 +543,33 @@ until the separately approved M7 runtime/database pilot; installed promotion
 and live calls remain separate. In uploaded/no-runner ChatGPT mode, use only the
 dependency/branch/history checklist and section-12 report as MANUAL_REPORTED,
 never claim enforced dependencies, computed hashes or strict READY.
+
+## M7 native observation candidate (not yet released)
+
+For an explicitly selected Beads workspace, read
+[M7 native observation](references/m7-native-observation.md). The public route
+is `scripts/memory_integrity_workflow.py native-observe --claude-mon-root PATH
+--selection-file PATH --receipt ABSOLUTE_NEW_PATH`. It requires the explicit
+matching companion and checks the selected executable/build/project/database,
+the complete issue/dependency export and repeated current head/data reads.
+
+Use only a runtime/disposable workspace explicitly selected and authorized for
+the current environment. This public skill, another project's approval or a
+pasted historical receipt grants no authority. Retain verifiable current-scope
+approval without repeating the question only while the exact selection and
+readonly scope remain unchanged; otherwise obtain applicable authorization.
+Qualification is a separate evidence question.
+The command preserves stdout/stderr bytes, exit and capture diagnostics in a
+new receipt, refuses warnings or incomplete/currently changed observations,
+and never overwrites prior evidence. A failed read is BLOCKED and must not be
+treated as a missing database that needs blind initialization.
+
+All observed outcomes remain `NATIVE_OBSERVED_UNQUALIFIED`, `active=false` and
+`native_beads_qualified=false`. Observed task closure, assignment and lease
+dates cannot create accepted evidence or an effective execution fence. This
+candidate does not enable native writes or claim full M7 readiness. Complete
+native prerequisite/claim, branch merge, central history/recovery and comparison
+qualification before releasing or promoting a final integrated pair.
+
+Without a runner, describe the diagnostic as unavailable; continue only the
+manual checklist/report profile. Never invent a successful command or receipt.

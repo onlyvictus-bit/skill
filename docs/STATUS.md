@@ -53,3 +53,13 @@ not represent parent-verified repairs as an independent final approval.
 
 No live AI call, native-runtime installation, database mutation or global skill
 promotion is performed merely by cloning or publishing this repository.
+
+## Public-consent clarification
+
+Before publication, the R4-only SKILL appendix was clarified: an approval from
+another project or a pasted historical receipt grants no current-environment
+authority. A verified approval for the unchanged exact read-only selection may
+be retained without another question. No native code or R3 prefix/ZIP changed.
+Three synthetic consumer decision scenarios are retained in
+`memory-integrity/tests_v2/native_consent_scenarios.json`. Baseline and corrected
+decision checks are not live runtime or general model-compliance qualification.

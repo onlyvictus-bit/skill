@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""R2 single public offline workflow. No AI/network/credentials/native Beads.
+"""Single public skill workflow: offline audits and explicit native observation.
 
 Supplied reviews are TEST_ONLY observations. They do not prove understanding.
 The explicit companion owns the ledger; this facade never copies its engine.
+Native observation reads the selected Beads project and never grants execution
+qualification, native mutation, or evidence acceptance.
 """
 import argparse
 import hashlib
@@ -207,6 +209,30 @@ def verify(args):
     return presentation(out,rm_path) if out["ok"] else out
 
 
+def native_observe(args):
+    from dataclasses import fields
+    from hybrid_bridge import native, native_observation
+    receipt = Path(args.receipt)
+    if not receipt.is_absolute():
+        raise ValueError("E_NATIVE_RECEIPT_PATH: absolute receipt path required")
+    native_observation._ordinary(receipt.parent,directory=True)
+    if receipt.exists() or receipt.is_symlink():
+        raise ValueError("E_NATIVE_RECEIPT_EXISTS: preserve prior observation; choose a new receipt")
+    # Keep the single-skill explicit companion contract even for diagnostics.
+    companion(args.claude_mon_root)
+    config = native_observation._strict_json(Path(args.selection_file).read_bytes())
+    required = {field.name for field in fields(native.NativeSelection)}
+    if not isinstance(config,dict) or set(config)!=required:
+        raise ValueError("E_NATIVE_SELECTION_SCHEMA: exact explicit selection fields required")
+    selection = native.NativeSelection(**config)
+    out = native.NativeBeadsAdapter(selection).observe()
+    out["receipt_path"] = str(receipt)
+    # Exclusive creation prevents a second invocation from destroying evidence.
+    with receipt.open("x",encoding="utf-8",newline="\n") as handle:
+        handle.write(json.dumps(out,sort_keys=True,ensure_ascii=False,indent=2)+"\n")
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command",required=True)
@@ -217,6 +243,9 @@ def main():
     for key in ("claude-mon-root","run-map","source"):
         check.add_argument("--"+key,required=True)
     check.add_argument("--query")
+    observe = sub.add_parser("native-observe")
+    for key in ("claude-mon-root","selection-file","receipt"):
+        observe.add_argument("--"+key,required=True)
     for name in ("coordinate-init","coordinate-run","coordinate-resume","coordinate-ready","coordinate-verify","coordinate-revoke","history-seal","branch-preview","branch-merge-fixture","branch-reconcile-fixture"):
         command = sub.add_parser(name)
         command.add_argument("--claude-mon-root",required=True)
@@ -239,15 +268,19 @@ def main():
             command.add_argument("--operation-id",required=True)
     args = parser.parse_args()
     try:
-        if args.command.startswith(("coordinate-","branch-")) or args.command == "history-seal":
+        if args.command == "native-observe":
+            out = native_observe(args)
+        elif args.command.startswith(("coordinate-","branch-")) or args.command == "history-seal":
             import coordination_workflow
             out = coordination_workflow.dispatch(args)
         else:
             out = offline_run(args) if args.command == "offline-run" else verify(args)
     except Exception as exc:
-        out = {"ok":False,"overall":"BLOCKED","evidence_class":"TEST_ONLY",
+        out = {"ok":False,"overall":"BLOCKED","evidence_class":"NATIVE_OBSERVED_UNQUALIFIED" if args.command=="native-observe" else "TEST_ONLY",
                "blockers":[type(exc).__name__ + ": " + str(exc)],
                "adapter_calls":0,"approvals_consumed":0}
+        if args.command=="native-observe":
+            out.update(active=False,native_beads_qualified=False,database_write_performed=False,inference_sent=False)
     print(json.dumps(out,sort_keys=True,ensure_ascii=False))
     return 0 if out.get("ok") is True else 2
 

@@ -4,6 +4,10 @@ An evidence-focused skill for source-reading, audit, recall and recovery workflo
 **This project is not fully built or native-qualified.** Publishing the source
 does not establish semantic completeness, production readiness or live AI support.
 
+**This checkout is the R4 development branch.** The R3 archives under `release/`
+remain the offline baseline, not a release of this working tree. See
+[R4 native-read usage](docs/R4-NATIVE.md); native writes are still disabled.
+
 Memory Integrity is the user-facing skill. **claude-mon is its required companion
 engine**, not an optional second skill. Keep the matching pair together and pass
 the companion path explicitly; the workflow verifies its contract digest.

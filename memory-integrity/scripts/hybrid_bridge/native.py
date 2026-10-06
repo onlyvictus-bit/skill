@@ -1,6 +1,6 @@
-"""Strict, inactive Beads adapter seam for the M3--M6 isolated candidate.
+"""Beads observation adapter and inactive native mutation seam.
 
-There is no native executor in this module.  A configured executable, archive
+There is no native write executor in this module. A configured executable, archive
 checksum, or approval never activates it.  M7 must verify the extracted binary
 version/hash and perform the disposable database pilot before activation can be
 considered.  ``FixtureBeadsAdapter`` is explicitly in-memory TEST_ONLY policy
@@ -29,6 +29,9 @@ class NativeSelection:
     executable_sha256: str
     release_ref: str = "beads-v1.3.1:c1c4b642ac1c08d8c828007a1c2f96e47e43ef7c"
     archive_sha256: str | None = None
+    expected_project_id: str | None = None
+    expected_database_name: str | None = None
+    expected_prefix: str | None = None
 
     def validate(self):
         for key, value in (("executable", self.executable), ("database", self.database),
@@ -67,7 +70,12 @@ def native_status(selection):
 
 
 class NativeBeadsAdapter:
-    """Production seam. Any operation refuses until a separately built adapter exists."""
+    """Real readonly observations; native mutation still requires M7 qualification.
+
+    A clean read never sets active/qualified, grants a claim, or accepts evidence.
+    Failures retain command outputs through observe(); read_snapshot refuses
+    incomplete or unsafe observations rather than returning a fixture graph.
+    """
 
     def __init__(self, selection):
         selection.validate()
@@ -76,8 +84,17 @@ class NativeBeadsAdapter:
     def status(self):
         return native_status(self.selection)
 
+    def observe(self):
+        from .native_observation import observe
+        return observe(self.selection)
+
     def read_snapshot(self):
-        raise NativeQualificationError("E_NATIVE_UNQUALIFIED: M7 read/schema pilot not complete")
+        result = self.observe()
+        if not result["ok"]:
+            error = NativeQualificationError("; ".join(result["blockers"]))
+            error.observation = result
+            raise error
+        return result["snapshot"]
 
     def execute(self, operation_id, command):
         del operation_id, command
