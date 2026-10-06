@@ -1,0 +1,19 @@
+{
+  "engine": "claude-mon",
+  "engine_version": "2.0.0-m11",
+  "schema_version": 2,
+  "entrypoint": "scripts/claude_mon_v2.py",
+  "commands": ["capabilities", "freeze", "prepare", "preflight", "run", "accept",
+    "resume", "status", "verify", "export", "open-unit", "query"],
+  "live_dispatch": false,
+  "live_counting": false,
+  "coordination_offline_policy": true,
+  "native_beads_qualified": false,
+  "history_schema": 4,
+  "checkpoint_required_for_anchored_completeness": true,
+  "supported_inputs": ["utf-8-text", "utf-8-code"],
+  "unsupported_inputs": ["pdf", "office", "scans", "ocr"],
+  "limits": {
+    "note": "no fixed corpus size; operating limits are frozen per run from pilot measurement"
+  }
+}

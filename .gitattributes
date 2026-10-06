@@ -1,0 +1,2 @@
+# Preserve trusted package and ZIP bytes across Windows/Linux clones.
+* -text

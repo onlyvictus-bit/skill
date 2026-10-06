@@ -1,0 +1,10 @@
+interface:
+  display_name: Memory Integrity
+  short_description: Prove source coverage, persistent recall, and no-silent-omission workflows.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

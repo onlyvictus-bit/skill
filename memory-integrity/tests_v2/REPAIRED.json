@@ -1,0 +1,18 @@
+{
+  "memory-integrity": [
+    "capabilities-v2.json",
+    "scripts\\integrity_v2\\__init__.py",
+    "scripts\\integrity_v2\\adapters\\ooxml_inventory.py",
+    "scripts\\integrity_v2\\adapters\\pdf_inventory.py",
+    "scripts\\integrity_v2\\extraction.py",
+    "scripts\\integrity_v2\\recall.py",
+    "scripts\\integrity_v2\\report.py",
+    "scripts\\integrity_v2\\semantic.py",
+    "scripts\\integrity_v2\\source_audit.py",
+    "scripts\\integrity_v2\\watchdog.py",
+    "scripts\\memory_integrity_v2.py",
+    "tests_v2\\test_extraction_provenance.py",
+    "tests_v2\\test_mi_cli.py",
+    "tests_v2\\test_preservation.py"
+  ]
+}

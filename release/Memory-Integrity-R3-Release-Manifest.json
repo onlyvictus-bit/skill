@@ -1,0 +1,66 @@
+{
+  "evidence_class": "TEST_ONLY",
+  "installed_promoted": false,
+  "milestones": "M3-M6 isolated",
+  "native_beads_qualified": false,
+  "packages": {
+    "claude-mon": {
+      "added_r2_files": [
+        "references/r3-history-coordination.md",
+        "scripts/complete_read_v2/coordination.py",
+        "tests_v2/baseline-r2.json",
+        "tests_v2/test_r3_coordination.py",
+        "tests_v2/test_r3_history.py"
+      ],
+      "bytes": 149321,
+      "changed_r2_files": [
+        "SKILL.md",
+        "capabilities-v2.json",
+        "scripts/claude_mon_v2.py",
+        "scripts/complete_read_v2/__init__.py",
+        "scripts/complete_read_v2/contracts.py",
+        "scripts/complete_read_v2/ledger.py",
+        "scripts/complete_read_v2/proof.py",
+        "scripts/complete_read_v2/runner.py",
+        "tests_v2/test_ledger.py",
+        "tests_v2/test_m4r_regressions.py",
+        "tests_v2/test_preservation.py"
+      ],
+      "entries": 66,
+      "sha256": "747fa62d6c074f71a7b79ba64b37f20e3cb2015e5e40183c158f58b5ac4b9cec",
+      "zip": "claude-mon-r3.zip"
+    },
+    "memory-integrity": {
+      "added_r2_files": [
+        "references/r3-coordination.md",
+        "scripts/coordination_workflow.py",
+        "scripts/hybrid_bridge/branch.py",
+        "scripts/hybrid_bridge/graph.py",
+        "scripts/hybrid_bridge/native.py",
+        "tests_v2/baseline-r2.json",
+        "tests_v2/test_r3_branch.py",
+        "tests_v2/test_r3_central_merge.py",
+        "tests_v2/test_r3_native.py",
+        "tests_v2/test_r3_public.py"
+      ],
+      "bytes": 180713,
+      "changed_r2_files": [
+        "SKILL.md",
+        "capabilities-v2.json",
+        "scripts/hybrid_bridge/__init__.py",
+        "scripts/integrity_v2/__init__.py",
+        "scripts/integrity_v2/recall.py",
+        "scripts/integrity_v2/report.py",
+        "scripts/integrity_v2/source_audit.py",
+        "scripts/memory_integrity_v2.py",
+        "scripts/memory_integrity_workflow.py",
+        "tests_v2/test_preservation.py",
+        "tests_v2/test_r2_workflow.py"
+      ],
+      "entries": 80,
+      "sha256": "c6fdda3425b1d13bb6ba600207efa3e79ca7267da079750124852fe4e39f875a",
+      "zip": "memory-integrity-r3.zip"
+    }
+  },
+  "release": "2.0.0-m11-r3"
+}

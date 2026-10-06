@@ -1,0 +1,55 @@
+# Qualification status
+
+The full requested native skill is unfinished. This repository separates a
+verified offline baseline from the read-only native development candidate.
+
+## Offline baseline: R3 / m11
+
+The matching release pair has retained offline verification of 383 packaged
+tests. Its 79 Memory Integrity and 65 claude-mon content-manifest entries were
+hash-checked again for this publication copy; each package also contains its
+content manifest. Release ZIP bytes are unchanged.
+
+During publication preparation on 2026-10-06, the portable verifier was rerun
+on these exact copied archives: all 383 tests passed, with `TEST_ONLY` evidence
+and native qualification false. This is local-copy verification, not a GitHub
+readback or an installed/native-runtime observation.
+
+| Feature | Built/tested boundary | Remaining native boundary |
+|---|---|---|
+| Task dependencies | Complete fixture graph validation, cycle/missing-node refusal and prerequisite evidence checks | Full current native graph/identity observation connected to execution |
+| Blocked work | Companion guards preparation, dispatch, approval use, acceptance and later consumption | Effective native ownership/fence and native-to-companion connection |
+| Branch merging | Compatible/conflicting fixture policy and retained origin evidence | Observed native ancestry, real compatible/conflicting Dolt merges, fresh post-merge evidence |
+| Append-only history | Normal SQL mutation guards, typed replay, hash chain and supplied checkpoints | Integrated native intent/outcome/UNKNOWN and crash/recovery qualification |
+
+## Development: R4
+
+Three baseline package files changed and three new files were added: read-only
+native observation, its public route/instructions, tests and a reference. The
+companion core and shared contract pin are unchanged. Original R3 SKILL.md bytes
+are retained as an exact prefix of the R4 instructions.
+
+The retained R4 parent test run was 401/402: Memory Integrity v2 169/170,
+claude-mon v2 190/190, and v1 21/21 in each package. The single failure is the
+unchanged exact-release-content check against the inherited R3 manifest. It
+correctly detects an unfinished successor; it has not been weakened or skipped.
+
+The observer refuses unknown diagnostics, incomplete or unsupported dependency
+data, selected-identity drift and unsafe reads. Reads never activate writes or
+turn an observed lease into an effective qualified fence. Actual native reads in
+the development host were refused on workspace-gate/database diagnostics.
+Direct-child timeout/output-bound handling is tested; descendant process-tree
+containment is not qualified. Independent final rereview was unavailable; do
+not represent parent-verified repairs as an independent final approval.
+
+## Still required for full completion
+
+1. Clean native observations through the adapter, then protected native
+   operations connected to companion evidence/prerequisite guards.
+2. Actual native ownership, branch conflict, interrupted recovery and
+   OFF/cards/native comparison with retained command/result evidence.
+3. Matching successor metadata/contracts/manifests/ZIPs, full checks and review,
+   then separately authorized installation and installed public verification.
+
+No live AI call, native-runtime installation, database mutation or global skill
+promotion is performed merely by cloning or publishing this repository.

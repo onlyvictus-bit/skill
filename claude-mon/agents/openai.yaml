@@ -1,0 +1,3 @@
+interface:
+  display_name: "Claude Mon"
+  short_description: "Prove complete source coverage with hashes, manifests, and read receipts."

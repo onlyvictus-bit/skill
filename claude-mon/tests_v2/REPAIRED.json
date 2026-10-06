@@ -1,0 +1,19 @@
+{
+  "claude-mon": [
+    "capabilities-v2.json",
+    "scripts\\claude_mon_v2.py",
+    "scripts\\complete_read_v2\\__init__.py",
+    "scripts\\complete_read_v2\\inventory.py",
+    "scripts\\complete_read_v2\\ledger.py",
+    "scripts\\complete_read_v2\\partition.py",
+    "scripts\\complete_read_v2\\providers.py",
+    "scripts\\complete_read_v2\\results.py",
+    "scripts\\complete_read_v2\\runner.py",
+    "tests_v2\\run_acceptance.py",
+    "tests_v2\\test_cli_v2.py",
+    "tests_v2\\test_invalidation.py",
+    "tests_v2\\test_m4r_regressions.py",
+    "tests_v2\\test_preservation.py",
+    "tests_v2\\test_resume.py"
+  ]
+}
