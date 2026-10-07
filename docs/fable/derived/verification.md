@@ -420,3 +420,9 @@ Real runtime selected: the successor portable verifier ran 484 tests from extrac
 Historical release hash verification passed; original R3/R4 ZIPs are untouched. Archived R3/R4 full verifiers are also run separately. No provider/model calls, installed-copy promotion or native writes were introduced by this release.
 
 The final Fable evidence runner reruns the bridge and portable release commands against the frozen current artifact basis. Publication identity and lease/readback evidence are recorded separately in docs/fable/evidence/runs/, after publishing; completion is not asserted before that readback. Windows/Python matrix Actions results are assessed after push, not inferred from the local run.
+
+## Hosted Windows fixture correction
+
+Final metadata commit 8bfa772 triggered both workflows. Ubuntu host suites and isolated runtimes on Python3.12/3.13 passed. Windows host3.11–3.14 and runtime3.12/3.13 showed one identical failure: the test fixture used write_text (native CRLF translation) while its oracle required LF. The retrieved unit correctly preserved CRLF bytes. Logs: ci run37643020473 job112866407066 and runtime run37643020302 job112866403707. No runtime or source-normalization bug was observed.
+
+Fixed the fixture to write explicit UTF-8 bytes, retaining the strict LF assertion. Added an explicit CRLF roundtrip and source-hash assertion in the same test; the implementation still preserves source bytes. Searched for identical fixture generation: the synthetic benchmark also now writes explicit bytes so its fixtures match across platforms. Linux benchmark source bytes are unchanged. Rebuilt the paired packages and reran actual knowledge/portable checks before publication. New hosted run results are recorded separately after observing them.

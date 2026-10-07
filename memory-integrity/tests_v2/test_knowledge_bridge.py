@@ -21,7 +21,7 @@ class Fixture(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name); self.store=self.root/'index'
         for name,text in [('policy','Retry only if read-only; never retry writes.\n'),('client','Client depends on worker.\n'),('worker','Worker retry tests.\n'),('secret','Confidential constraint.\n')]:
-            (self.root/(name+'.txt')).write_text(text,encoding='utf-8')
+            (self.root/(name+'.txt')).write_bytes(text.encode('utf-8'))
         self.sources={'schema_version':1,'workspace_id':'demo','repository':'fixture','sources':[{'id':n,'path':n+'.txt','authority':'AUTHORITATIVE'} for n in ('policy','client','worker','secret')]}
         def ref(n): return {'source_id':n,'unit_id':'U000001'}
         self.projection={'schema_version':1,'ontology':'project-1','embedding':{'model':'curated-test-vectors','dimension':2,'evidence_class':'TEST_ONLY'},'nodes':[{'id':n,'type':'Assertion' if n=='policy' else 'Component','text':n,'source_units':[ref(n)],'polarity':'positive','conditions':['read-only'] if n=='policy' else [],'derivation':None,'valid_from':None,'valid_until':None,'review_status':'unreviewed','vector':[1.0,0.0] if n=='policy' else [0.0,1.0]} for n in ('policy','client','worker','secret')],'edges':[{'id':'E1','subject':'policy','predicate':'IMPLEMENTS','object':'client','source_units':[ref('policy')],'conditions':[],'valid_from':None,'valid_until':None},{'id':'E2','subject':'client','predicate':'DEPENDS_ON','object':'worker','source_units':[ref('client')],'conditions':[],'valid_from':None,'valid_until':None},{'id':'ES','subject':'policy','predicate':'REFERENCES','object':'secret','source_units':[ref('secret')],'conditions':[],'valid_from':None,'valid_until':None}]}
@@ -80,6 +80,13 @@ class Bridge(Fixture):
         self.assertNotIn('secret',json.dumps(pack))
         self.assertEqual(pack['units'][0]['text'],'Retry only if read-only; never retry writes.\n')
         self.assertEqual(pack['coverage'],'UNVERIFIED')
+        # Check native CRLF bytes too; production must never normalize a source.
+        raw=b'Retry only if read-only; never retry writes.\r\n'
+        (self.root/'policy.txt').write_bytes(raw)
+        self.build();g=self.i.load(self.store,self.root,CM)
+        crlf=self.r.retrieve(g,self.root,self.policy,self.task,[1,0],worker,max_hops=2)
+        self.assertEqual(crlf['units'][0]['text'].encode('utf-8'),raw)
+        self.assertEqual(crlf['units'][0]['source_sha256'],self.c.digest(raw))
     def test_revoked_required_scope_budget_unknown_worker_result_blocks(self):
         self.build(); g=self.i.load(self.store,self.root,CM)
         for mode in ('revoked','budget','foreign'):

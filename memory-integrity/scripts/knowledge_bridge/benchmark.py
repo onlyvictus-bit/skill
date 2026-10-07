@@ -14,7 +14,7 @@ def run(companion,python,repeats=3):
     for case in ('read-only-retry','schema-migration','cache-invalidation'):
         with tempfile.TemporaryDirectory(prefix='knowledge-bench-') as temp:
             root=Path(temp);store=root/'index';names=('requirement','component','test')
-            for n in names: (root/(n+'.txt')).write_text(case+': '+n+'\n',encoding='utf-8')
+            for n in names: (root/(n+'.txt')).write_bytes((case+': '+n+'\n').encode('utf-8'))
             ref=lambda n:{'source_id':n,'unit_id':'U000001'}
             sources={'schema_version':1,'workspace_id':case,'repository':'synthetic-held-out','sources':[{'id':n,'path':n+'.txt','authority':'AUTHORITATIVE'} for n in names]}
             nodes=[{'id':n,'type':typ,'text':case+': '+n,'source_units':[ref(n)],'polarity':'positive','conditions':[],'derivation':None,'valid_from':None,'valid_until':None,'review_status':'unreviewed','vector':[1,0] if i==0 else [0,1]} for i,(n,typ) in enumerate(zip(names,('Requirement','Component','TestCase')))]

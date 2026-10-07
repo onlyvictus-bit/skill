@@ -16,12 +16,11 @@
     "REQ-08",
     "REQ-09",
     "REQ-10",
-    "REQ-11",
-    "REQ-12"
+    "REQ-11"
   ],
-  "current_task": null,
+  "current_task": "TASK-BRIDGE",
   "milestone": "M0-M7-OFFLINE",
-  "next_action": "Offline bridge committed on main. Representative semantic/coding evaluation and hosted CI remain unverified; graph stays optional.",
-  "phase": "complete",
+  "next_action": "Publish byte-stable fixture correction, observe corrected Windows/Linux CI and record final closure",
+  "phase": "release",
   "schema": 2
 }
