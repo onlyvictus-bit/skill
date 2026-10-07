@@ -47,8 +47,18 @@ jobs:
         run: python -B -m unittest discover -s .
         env:
           PYTHONDONTWRITEBYTECODE: "1"
-      - name: release archive verification
+      - name: R3 release archive verification
         run: python -B release/Verify-Memory-Integrity-R3.py
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+      - name: R4 release archive verification
+        shell: bash
+        run: |
+          if [ -f release/Memory-Integrity-R4-Release-Manifest.json ]; then
+            python -B release/Verify-Memory-Integrity-R4.py
+          else
+            echo "R4 formal artifacts not generated yet"
+          fi
         env:
           PYTHONDONTWRITEBYTECODE: "1"
       - name: content manifests match tree
