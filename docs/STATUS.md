@@ -28,7 +28,7 @@ The development branch now contains these additional M7 layers:
 | Blocked work / prerequisites | Existing CM dependency guards plus a native wrapper that derives `guard(..., "dispatch")` internally before intent | Shared/project execution remains disabled until separately qualified |
 | Durable native journal | CM `NATIVE_INTENT`, `NATIVE_OUTCOME`, `NATIVE_UNKNOWN`, `NATIVE_RECONCILED`; immutable operation/work-item/command/selection binding | Real host pilot must supply native readback evidence |
 | Interruption recovery | Tests inject interruption after effect, reopen CM, reconcile by readback only, require no second write, and require idempotent repeat recovery | Native host observation still required; ambiguous readback remains UNKNOWN |
-| Disposable pilot | One-command helper verifies SHA + pinned build before init, uses explicit `BEADS_DIR` and git-free stealth init, creates one disposable task and exercises exactly-one claim recovery | Scope is `DISPOSABLE_PILOT`; it does not qualify shared databases |
+| Disposable pilot | **REAL NATIVE GREEN** in Actions run `37597856215`: verified pinned v1.3.1 asset, one native claim, injected interruption, CM reopen, readback-only recovery, idempotent second recovery, retained receipt artifact `11471297205` | Scope is `DISPOSABLE_PILOT`; it does not qualify shared databases |
 | Branch merging | Compatible/conflicting deterministic fixture policy, retained origins/CAS and stale-head refusal; prior disposable compatible native merge observation exists | Conflicting native merge and post-merge native evidence revalidation still require direct observation |
 | Release | R4 content manifests track development files and existing R3 archives remain unchanged | Successor ZIPs/promotion/install require separate release approval |
 
@@ -83,19 +83,28 @@ A successful receipt reports
 `native_beads_qualified=false`, `shared_database_authorized=false` and
 `installed_promoted=false`.
 
+
+### Real native M7 receipt
+
+Run `37597856215` / job `112714739126` completed successfully on
+`windows-latest` at commit
+`9fa76107f3a974bd6255ac151bd39ad97bdcaa25`.
+Artifact `11471297205` (`m7-native-pilot-receipt`) records exactly one
+native claim invocation, `UNKNOWN` after the injected interruption,
+`RECONCILED_NATIVE_APPLIED` after readonly recovery, and
+`IDEMPOTENT_RECONCILED` on the second recovery. The CM journal sequence is
+exactly `NATIVE_INTENT -> NATIVE_UNKNOWN -> NATIVE_RECONCILED`; internal
+chain and projection replay are both `VERIFIED`.
+
 ## Still required before a final native successor
 
-1. Run the current one-command pilot against the exact selected Windows
-   `bd.exe`/disposable workspace and retain its receipt. If the agent sandbox
-   cannot launch the binary, this is the one host-only action the user may
-   need to execute.
-2. Observe the remaining native branch-conflict/merge boundary if full native
+1. Observe the remaining native branch-conflict/merge boundary if full native
    merge qualification is required; never substitute fixture success for that
    observation.
-3. Perform an independent/adversarial final review of the current head and
+2. Perform an independent/adversarial final review of the current head and a
    fresh full regression matrix.
-4. Build matching successor metadata/manifests/ZIPs only after those gates.
-5. Merge/promote/install/replace the released or installed pair only with
+3. Build matching successor metadata/manifests/ZIPs only after those gates.
+4. Merge/promote/install/replace the released or installed pair only with
    separate authorization.
 
 No live AI call, shared database mutation, installation, global skill
