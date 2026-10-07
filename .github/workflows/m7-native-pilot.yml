@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - development/m7-completion
+      - release/r4-successor
     paths:
       - .github/workflows/m7-native-pilot.yml
       - memory-integrity/scripts/m7_native_pilot.py
