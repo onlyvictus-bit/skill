@@ -112,7 +112,7 @@
       "outputs": [
         {
           "path": "docs/fable/derived/release-helper.md",
-          "sha256": "13afe44e8412c593d339ac9d67b64853de689536d441e2faa4f13781256b0c8f"
+          "sha256": "571cabd26c6f8d8d34c6a9d678fa2a2f60b127936e2beade4a4dccd2144f80ce"
         }
       ],
       "reason": "Required routing/design/independence/release procedure",

@@ -43,7 +43,8 @@
         "docs/fable/derived/triangulate.md",
         "docs/fable/derived/release-helper.md",
         "docs/fable/derived/plan-review.md",
-        "docs/fable/derived/verification.md"
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt"
       ],
       "criterion_ids": [
         "REQ-01-1",

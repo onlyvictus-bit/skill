@@ -1,12 +1,17 @@
 {
-  "schema": 2,
   "approvals": [
     {
-      "id": "APP-SEMANTICA-001",
-      "scope": "M0-M7-OFFLINE",
+      "actor": "user",
       "approved": true,
+      "approved_at": "2026-10-07T14:19:56.023596+00:00",
+      "authorization": {
+        "quote": "@Autonomous Operator skill to do all merging and upgrading process as  required, verify if this is best plan or you can find issue or failure in this plan and find the root cause and solve the plan and implement it in github and commit it in git skill",
+        "source": "conversation"
+      },
+      "id": "APP-SEMANTICA-001",
       "plan_digest": "c98273ad6f8087ba1bb3515f06f52ec73d38dceb90911aaaf0a3900f6e846f78",
       "requirements_digest": "d8fc8c4335ada551c0a94435f2c0bde0b9b2a5dd375231e8e40984e2ae49ae78",
+      "scope": "M0-M7-OFFLINE",
       "tests_digest": "4c251f114078cc60ca886fee655f2a7a14746b490d87e13de24892119b5404b3",
       "write_set_baseline": {
         "docs/fable/approvals.json": "5699f840ab1626c7315f345e7ddf9238f4cd090938a6758f504219cab50acfa8",
@@ -15,13 +20,28 @@
         "docs/fable/requirements.json": "64a9d682f18fc1067d78c8eff121f10198f9f22ecedc39c60cf3d7944ab40e09",
         "docs/fable/specialists.json": "2a74114243fca2aaeb766a0881298b5db8812538f5e50a91fbff4826ae973fe4",
         "docs/fable/tests.json": "70c4cbfc2ce5b0641b9d70d2a37521023447324e92c72610b3910251fdff4b48"
-      },
-      "approved_at": "2026-10-07T14:19:56.023596+00:00",
+      }
+    },
+    {
       "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-07T15:15:18.722188+00:00",
       "authorization": {
-        "source": "conversation",
-        "quote": "@Autonomous Operator skill to do all merging and upgrading process as  required, verify if this is best plan or you can find issue or failure in this plan and find the root cause and solve the plan and implement it in github and commit it in git skill"
+        "quote": "@Autonomous Operator skill to do all merging and upgrading process as  required, verify if this is best plan or you can find issue or failure in this plan and find the root cause and solve the plan and implement it in github and commit it in git skill",
+        "source": "conversation"
+      },
+      "id": "APP-SEMANTICA-002",
+      "plan_digest": "2fcd39a8f03fb246fe36ae794fea8b9efb6e387a40d63bc21b86e90637243530",
+      "requirements_digest": "d8fc8c4335ada551c0a94435f2c0bde0b9b2a5dd375231e8e40984e2ae49ae78",
+      "scope": "M0-M7-OFFLINE",
+      "tests_digest": "4c251f114078cc60ca886fee655f2a7a14746b490d87e13de24892119b5404b3",
+      "write_set_baseline": {
+        "docs/fable/derived/release-helper.md": "571cabd26c6f8d8d34c6a9d678fa2a2f60b127936e2beade4a4dccd2144f80ce",
+        "docs/fable/evidence/runs/publication-a41dac.json": "a2e4f0b0e4601477028c0f64e33df3893eac8dd6867fc8f54be13772c1f96c82",
+        "docs/fable/plan.json": "ff3b728b0c4e7492e727020db3c4d48765cc6722f25c5270c222b1bbde60bb6d",
+        "docs/fable/specialists.json": "fd89242a8ba3cfffc16f2bd117d4d2e3dd99d36924364928bbb0b7ebeeaffdad"
       }
     }
-  ]
+  ],
+  "schema": 2
 }

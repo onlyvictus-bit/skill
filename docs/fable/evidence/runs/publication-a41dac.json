@@ -1,0 +1,20 @@
+{
+  "actions_state": "No integration workflow run observed in three distinct filtered API reads after main publication. Existing baseline CI success is not counted. Hosted CI remains UNVERIFIED; local portable checks observed.",
+  "authorization_quote": "implement it in github and commit it in git skill",
+  "evidence_class": "REMOTE_OBSERVED",
+  "governance_correction": "Explicitly added immutable intake-plan.txt to the artifact list after commit revealed diff-based baseline bookkeeping no longer listed the formerly untracked intake. Same user authorization retained, new plan snapshot/approval and actual checks rerun; source/release archives unchanged.",
+  "implementation_commit": "a41dac138d113e2f4de22cb365b7367be8ebcd34",
+  "intent": "User requested full-plan review, correction, GitHub implementation and commit. Published optional source-bound knowledge bridge; active skill/live providers/native writes outside scope.",
+  "limits": [
+    "source identity and structured oracle agreement do not prove general semantic truth",
+    "synthetic comparison does not prove coding benefit",
+    "optional graph default remains off"
+  ],
+  "local_verified_tree": "39a07f9d3b3bed322001f8d97650b26f05b07c7d",
+  "parent_commit": "81a25fa8de16391c05dc4236a5c1b6681d6a5048",
+  "publication_path": "GitHub plugin: exact blobs/tree/commit; expected-sha update failed with server error; rechecked unchanged main, normal force:false fast-forward succeeded. No force overwrite. Development branch retains same commit. PR API failed; no PR created.",
+  "remote_main_observed": "a41dac138d113e2f4de22cb365b7367be8ebcd34",
+  "remote_tree_observed": "39a07f9d3b3bed322001f8d97650b26f05b07c7d",
+  "repository": "onlyvictus-bit/skill",
+  "schema_version": 1
+}
