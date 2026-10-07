@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - development/m7-completion
+      - release/r4-successor
     paths:
       - .github/workflows/m7-package-candidate.yml
       - memory-integrity/**
