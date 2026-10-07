@@ -12,6 +12,7 @@
     "scripts/hybrid_bridge/graph.py",
     "scripts/hybrid_bridge/native.py",
     "scripts/hybrid_bridge/native_observation.py",
+    "scripts/hybrid_bridge/native_pilot.py",
     "scripts/integrity_v2/HANDOFF-MI.md",
     "scripts/memory_integrity_workflow.py",
     "tests_v2/R2-CONTENT.json",
@@ -20,6 +21,7 @@
     "tests_v2/baseline-r2.json",
     "tests_v2/native_consent_scenarios.json",
     "tests_v2/test_m7_native_journal.py",
+    "tests_v2/test_m7_native_pilot.py",
     "tests_v2/test_m7_observation.py",
     "tests_v2/test_native_containment.py",
     "tests_v2/test_native_paths.py",
@@ -162,7 +164,9 @@
     "tests_v2/test_source_binding.py": "3363372727b280bbdd78adf8c4160bc80a46b0aa00c57eed1dedb027b6c96493",
     "tests_v2/test_source_recall.py": "7c5c3bff3cbd6964504053e2b7c22aac6e9ec942bab7106dc5a26654d40c224c",
     "tests_v2/test_watchdog_contract.py": "29868763858147b5c65f3fd2cd4630fcd0a790854110f3efee119f7a38a2c014",
-    "tests_v2/test_m7_native_journal.py": "aa4643ff5c02b8a6028579ccc8f312c31dc36879b56d0b81f4c50714caf3cabe"
+    "tests_v2/test_m7_native_journal.py": "aa4643ff5c02b8a6028579ccc8f312c31dc36879b56d0b81f4c50714caf3cabe",
+    "scripts/hybrid_bridge/native_pilot.py": "828a61b0ff95607fb7780169dc427da4116264164ac15c3225c34775f1813e38",
+    "tests_v2/test_m7_native_pilot.py": "e760af2659ec8bc685c8f7560611226f552d3e3971f973f8f48f03977d2339e0"
   },
   "release": "2.0.0-m11-r4dev",
   "schema_version": 1
