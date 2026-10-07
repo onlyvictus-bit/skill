@@ -1,0 +1,67 @@
+name: m7-package-candidate
+
+on:
+  push:
+    branches:
+      - development/m7-completion
+    paths:
+      - .github/workflows/m7-package-candidate.yml
+      - memory-integrity/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Verify current content manifest
+        shell: python
+        run: |
+          import hashlib, json, pathlib
+          root = pathlib.Path("memory-integrity")
+          manifest_path = root / "tests_v2" / "R4-CONTENT.json"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          actual = {
+              p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+              for p in root.rglob("*")
+              if p.is_file()
+              and "__pycache__" not in p.parts
+              and p.suffix != ".pyc"
+              and p != manifest_path
+          }
+          assert actual == manifest["files"], "R4-CONTENT.json is stale"
+
+      - name: Validate skill frontmatter
+        run: python -B .github/scripts/validate-frontmatter.py
+
+      - name: Build complete candidate skill.zip
+        shell: python
+        run: |
+          import pathlib, zipfile
+          root = pathlib.Path("memory-integrity")
+          out = pathlib.Path("skill.zip")
+          with zipfile.ZipFile(out, "w", compression=zipfile.ZIP_DEFLATED) as z:
+              for p in sorted(root.rglob("*")):
+                  if not p.is_file() or "__pycache__" in p.parts or p.suffix == ".pyc":
+                      continue
+                  z.write(p, p.as_posix())
+          names = zipfile.ZipFile(out).namelist()
+          assert sum(name.endswith("/SKILL.md") for name in names) == 1
+          assert not any(".." in pathlib.PurePosixPath(name).parts for name in names)
+          assert "memory-integrity/SKILL.md" in names
+
+      - name: Retain candidate skill.zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: m7-memory-integrity-skill
+          path: skill.zip
+          if-no-files-found: error
+          retention-days: 14
