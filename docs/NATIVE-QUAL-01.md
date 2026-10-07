@@ -35,3 +35,52 @@ disposable `bd-qual2` database. Removed after observation.
 ## Still not observed
 Conflicting native merge, kill-during-claim recovery, reclaim/expiry
 timing, server-mode behavior, live provider calls.
+
+
+## 2026-10-07 M7 exactly-once claim recovery — REAL NATIVE GREEN
+
+GitHub Actions run `37597856215`, job `112714739126`, on
+`development/m7-completion@9fa76107f3a974bd6255ac151bd39ad97bdcaa25`
+completed successfully on `windows-latest` with the official Beads v1.3.1
+Windows AMD64 release asset. The workflow verified the published release ZIP
+SHA-256 before extraction and then verified the extracted `bd.exe` as
+`ac5b60114e5e7ef9de8878b45fc35941937341d3447366c99bc91c81557be7a4`.
+
+The retained artifact is `m7-native-pilot-receipt`, artifact
+`11471297205`, artifact digest
+`sha256:5f999ea603db1495cda26c224b65cc63a5c853ca180ef3843d07e1885520470e`.
+
+Observed real command sequence included:
+- pinned readonly `version`;
+- isolated launcher `git init --quiet` and local
+  `git config beads.role maintainer`;
+- external disposable `BEADS_DIR` initialization with
+  `init --quiet --stealth`;
+- readonly `info`;
+- one disposable task `create`;
+- exactly one native `update <id> --claim`;
+- readonly `show <id>` for recovery.
+
+The receipt proves:
+- `claim_invocations=1`;
+- interruption result `UNKNOWN`;
+- journal sequence exactly
+  `NATIVE_INTENT -> NATIVE_UNKNOWN -> NATIVE_RECONCILED`;
+- recovery `RECONCILED_NATIVE_APPLIED`;
+- second recovery `IDEMPOTENT_RECONCILED`;
+- recovered task remained `in_progress`, assigned to
+  `memory-integrity-pilot`;
+- CM internal hash chain `VERIFIED`;
+- CM projection replay `VERIFIED`;
+- `pilot_native_write_observed=true`.
+
+The receipt deliberately retains:
+`native_beads_qualified=false`,
+`shared_database_authorized=false`, and
+`installed_promoted=false`.
+This is disposable-environment native qualification only, not authority to
+mutate a shared/project database.
+
+This closes the previously unobserved kill/interruption-during-claim recovery
+boundary for the disposable pilot. Conflicting native branch merge remains a
+separate unobserved boundary.
