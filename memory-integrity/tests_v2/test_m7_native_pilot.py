@@ -10,6 +10,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT.parent / "claude-mon" / "scripts"))
+from complete_read_v2 import ledger
 from hybrid_bridge import native
 from hybrid_bridge import native_pilot
 
@@ -103,6 +105,112 @@ class PilotAdapter(unittest.TestCase):
         self.assertEqual(self.adapter.evidence_class, "NATIVE_VERIFIED")
         self.assertEqual(self.adapter.qualification_scope, "DISPOSABLE_PILOT")
         self.assertEqual(len(self.adapter.selection_digest), 64)
+
+
+class DisposablePilotWorkflow(unittest.TestCase):
+    def test_end_to_end_interruption_recovery_issues_claim_once(self):
+        tmp = tempfile.TemporaryDirectory(prefix="mi-native-pilot-flow-")
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        exe = root / "bd.exe"
+        exe.write_bytes(b"pilot-binary")
+        workspace = root / "pilot"
+        receipt = root / "pilot-receipt.json"
+        state = {"issue": None}
+        calls = []
+
+        def result(stdout=b"", stderr=b""):
+            return {
+                "exit_code": 0, "stdout": stdout, "stderr": stderr,
+                "capture_complete": True, "timed_out": False,
+                "output_limit_exceeded": False, "capture_errors": [],
+                "process_id": len(calls) + 1, "kill_path_used": False,
+                "tree_contained": False, "containment_method": "test",
+                "containment_note": "test",
+            }
+
+        def runner(argv, cwd, env):
+            calls.append(list(argv))
+            if "init" in argv:
+                beads = workspace / ".beads"
+                (beads / "embeddeddolt" / "mip" / ".dolt").mkdir(parents=True)
+                (beads / "metadata.json").write_text(json.dumps({
+                    "database": "dolt", "backend": "dolt", "dolt_mode": "embedded",
+                    "dolt_database": "mip", "project_id": "pilot-project",
+                }), encoding="utf-8")
+                return result(b'{"ok":true}')
+            if "info" in argv:
+                return result(json.dumps({
+                    "database_path": str(workspace / ".beads" / "embeddeddolt"),
+                    "mode": "direct", "issue_count": 0 if state["issue"] is None else 1,
+                    "schema_version": 1, "config": {"issue_prefix": "mip"},
+                }).encode())
+            if "create" in argv:
+                state["issue"] = {"id": "mip-a", "status": "open", "assignee": None}
+                return result(b'{"id":"mip-a"}')
+            if "update" in argv and "--claim" in argv:
+                state["issue"] = {
+                    "id": "mip-a", "status": "in_progress",
+                    "assignee": native_pilot.ACTOR,
+                }
+                return result(b'{"id":"mip-a"}')
+            if "show" in argv:
+                return result(json.dumps([state["issue"]]).encode())
+            raise AssertionError(argv)
+
+        observed = {
+            "ok": True,
+            "evidence_class": "NATIVE_OBSERVED_UNQUALIFIED",
+            "snapshot": {
+                "snapshot_digest": "6" * 64,
+                "head": "h1",
+                "branch": "main",
+            },
+        }
+        out = native_pilot.run_disposable_pilot(
+            bd_path=exe,
+            expected_executable_sha256=hashlib.sha256(exe.read_bytes()).hexdigest(),
+            workspace=workspace,
+            receipt=receipt,
+            ledger_module=ledger,
+            runner=runner,
+            observer=lambda selection: observed,
+        )
+        self.assertTrue(out["ok"], out)
+        self.assertEqual(out["overall"], "M7_DISPOSABLE_PILOT_VERIFIED")
+        self.assertTrue(out["pilot_native_write_observed"])
+        self.assertFalse(out["native_beads_qualified"])
+        self.assertEqual(out["interrupted"]["status"], "UNKNOWN")
+        self.assertEqual(out["recovered"]["status"], "RECONCILED_NATIVE_APPLIED")
+        self.assertEqual(out["recovered_again"]["status"], "IDEMPOTENT_RECONCILED")
+        claims = [argv for argv in calls if "update" in argv and "--claim" in argv]
+        self.assertEqual(len(claims), 1)
+        self.assertTrue(receipt.is_file())
+        self.assertEqual(json.loads(receipt.read_text(encoding="utf-8")), out)
+        self.assertEqual(out["journal_events"],
+                         ["NATIVE_INTENT", "NATIVE_UNKNOWN", "NATIVE_RECONCILED"])
+        self.assertEqual(out["history_internal_chain"], "VERIFIED")
+
+    def test_existing_workspace_or_receipt_refuses_before_running_bd(self):
+        tmp = tempfile.TemporaryDirectory(prefix="mi-native-pilot-refuse-")
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        exe = root / "bd.exe"
+        exe.write_bytes(b"x")
+        workspace = root / "pilot"
+        workspace.mkdir()
+        called = []
+        with self.assertRaisesRegex(native.NativeContractError, "E_PILOT_WORKSPACE_EXISTS"):
+            native_pilot.run_disposable_pilot(
+                bd_path=exe,
+                expected_executable_sha256=hashlib.sha256(exe.read_bytes()).hexdigest(),
+                workspace=workspace,
+                receipt=root / "receipt.json",
+                ledger_module=ledger,
+                runner=lambda *a, **k: called.append(a),
+                observer=lambda selection: {},
+            )
+        self.assertEqual(called, [])
 
 
 if __name__ == "__main__":
