@@ -118,7 +118,7 @@ class DisposablePilotWorkflow(unittest.TestCase):
         exe.write_bytes(b"pilot-binary")
         workspace = root / "pilot"
         receipt = root / "pilot-receipt.json"
-        state = {"issue": None, "role": False}
+        state = {"issue": None, "role": False, "git": False}
         calls = []
 
         def result(stdout=b"", stderr=b""):
@@ -133,6 +133,14 @@ class DisposablePilotWorkflow(unittest.TestCase):
 
         def runner(argv, cwd, env):
             calls.append(list(argv))
+            if argv and Path(argv[0]).name.lower() in ("git", "git.exe") and "init" in argv:
+                state["git"] = True
+                return result(b"")
+            if argv and Path(argv[0]).name.lower() in ("git", "git.exe") and "config" in argv and "beads.role" in argv:
+                if not state["git"]:
+                    return result(b"", b"fatal: not a git repository\n")
+                state["role"] = True
+                return result(b"")
             if "version" in argv:
                 return result(json.dumps({
                     "version": "1.3.1",
@@ -154,9 +162,6 @@ class DisposablePilotWorkflow(unittest.TestCase):
                     "database": "dolt", "backend": "dolt", "dolt_mode": "embedded",
                     "dolt_database": "mip", "project_id": "pilot-project",
                 }), encoding="utf-8")
-                return result(b'{"ok":true}')
-            if "config" in argv and "set" in argv and "beads.role" in argv:
-                state["role"] = True
                 return result(b'{"ok":true}')
             if "info" in argv:
                 if not state["role"]:
@@ -216,10 +221,19 @@ class DisposablePilotWorkflow(unittest.TestCase):
         self.assertLess(
             next(i for i, argv in enumerate(calls) if "version" in argv),
             next(i for i, argv in enumerate(calls) if "init" in argv))
+        git_init_i = next(i for i, argv in enumerate(calls)
+                          if Path(argv[0]).name.lower() in ("git", "git.exe")
+                          and "init" in argv)
         config_i = next(i for i, argv in enumerate(calls)
-                        if "config" in argv and "set" in argv and "beads.role" in argv)
+                        if Path(argv[0]).name.lower() in ("git", "git.exe")
+                        and "config" in argv and "beads.role" in argv)
+        bd_init_i = next(i for i, argv in enumerate(calls)
+                         if Path(argv[0]).name.lower() not in ("git", "git.exe")
+                         and "init" in argv)
         info_i = next(i for i, argv in enumerate(calls) if "info" in argv)
-        self.assertLess(config_i, info_i)
+        self.assertLess(git_init_i, config_i)
+        self.assertLess(config_i, bd_init_i)
+        self.assertLess(bd_init_i, info_i)
         self.assertTrue(receipt.is_file())
         self.assertEqual(json.loads(receipt.read_text(encoding="utf-8")), out)
         self.assertEqual(out["journal_events"],
