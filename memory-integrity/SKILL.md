@@ -582,8 +582,9 @@ python scripts/m7_native_pilot.py \
 ```
 
 The pilot verifies the executable SHA and pinned Beads v1.3.1/commit before
-initialization, uses explicit `BEADS_DIR` plus git-free
-`init --quiet --stealth`, creates one disposable task, and performs one claim
+initialization, keeps the disposable Beads database external via explicit `BEADS_DIR`, creates a tiny
+sibling launcher Git repository only to provide the pinned v1.3.1 `beads.role`
+configuration, then runs `init --quiet --stealth`, creates one disposable task, and performs one claim
 through the durable CM native journal. It intentionally interrupts after the
 claim effect but before the terminal outcome, reopens CM, and reconciles by
 readonly backend state. Success requires exactly one claim invocation and the
