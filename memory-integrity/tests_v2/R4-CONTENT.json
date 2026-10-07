@@ -79,7 +79,7 @@
     "tests_v2/test_r2_workflow.py"
   ],
   "files": {
-    "SKILL.md": "b96b9dc2d1eaa5bba430c2797e560598976f206c91610fd7844fe01c5c5e831a",
+    "SKILL.md": "01476c37a8d86de1325a8871b27e4328443968ca6d6b8fc0f7d838543d5f121a",
     "agents/openai.yaml": "08cf71e518ebcfb0b6afaf81cbbd71c19024c92d52df8a7fa4736803ec940edf",
     "capabilities-v2.json": "f0912d539d0c56c45516fffc9bca71dbf0ff2cda7eb7b61584501c2dbcd9ce99",
     "references/INDEX.md": "3546a95fccefbe301600a2db8e2e896a50d989bc218726db61ef2c444c40bd05",
@@ -91,7 +91,7 @@
     "references/document-ingestion.md": "ead50dca20103b64e124ad422d450c9b64f4dfcec8be8213f53c1ec65a87d5cf",
     "references/fable-source-basis.md": "8e32f67cfd01d949052d7380d9c0ec636c553fdc2b07dcebd794515a0b6445a4",
     "references/integration-architecture.md": "667477eedc325b3dd927947eab27f25e63a6d6402e8583db93cf9762361bfb4a",
-    "references/m7-native-observation.md": "bd2557a3fbe3fb3cc507cbfa6ef8a7ae2b76336cf4b3255ae714cf17a15b7b9d",
+    "references/m7-native-observation.md": "af48da701e058f7693cfa1ecf6eb1cb51877e39b76594bebdf4be8a233e7263b",
     "references/memory-integrity-model.md": "5c89c9d9b93ec9ce8139fc5f431b740e46ecd81e7a12597c458981e2c7ac44bc",
     "references/problem-model.md": "ed37e753cebcc8bda7c1b40ff70c5c89d0432c30bae196394c4ce562e72770ca",
     "references/r2-workflow.md": "baaee372997782febf994f3c02a17c1ff1fd82d0b00c87f889ed5e2f2037a60f",
