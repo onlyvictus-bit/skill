@@ -133,6 +133,12 @@ class DisposablePilotWorkflow(unittest.TestCase):
 
         def runner(argv, cwd, env):
             calls.append(list(argv))
+            if "version" in argv:
+                return result(json.dumps({
+                    "version": "1.3.1",
+                    "commit": "c1c4b642ac1c08d8c828007a1c2f96e47e43ef7c",
+                    "schema_version": 1,
+                }).encode())
             if "init" in argv:
                 beads = workspace / ".beads"
                 (beads / "embeddeddolt" / "mip" / ".dolt").mkdir(parents=True)
@@ -187,11 +193,51 @@ class DisposablePilotWorkflow(unittest.TestCase):
         self.assertEqual(out["recovered_again"]["status"], "IDEMPOTENT_RECONCILED")
         claims = [argv for argv in calls if "update" in argv and "--claim" in argv]
         self.assertEqual(len(claims), 1)
+        self.assertIn("version", calls[0])
+        self.assertLess(
+            next(i for i, argv in enumerate(calls) if "version" in argv),
+            next(i for i, argv in enumerate(calls) if "init" in argv))
         self.assertTrue(receipt.is_file())
         self.assertEqual(json.loads(receipt.read_text(encoding="utf-8")), out)
         self.assertEqual(out["journal_events"],
                          ["NATIVE_INTENT", "NATIVE_UNKNOWN", "NATIVE_RECONCILED"])
         self.assertEqual(out["history_internal_chain"], "VERIFIED")
+
+    def test_wrong_version_refuses_before_init_or_create(self):
+        tmp = tempfile.TemporaryDirectory(prefix="mi-native-pilot-version-")
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        exe = root / "bd.exe"
+        exe.write_bytes(b"pilot-binary")
+        calls = []
+
+        def runner(argv, cwd, env):
+            calls.append(list(argv))
+            return {
+                "exit_code": 0,
+                "stdout": json.dumps({
+                    "version": "9.9.9", "commit": "wrong", "schema_version": 1
+                }).encode(),
+                "stderr": b"", "capture_complete": True, "timed_out": False,
+                "output_limit_exceeded": False, "capture_errors": [],
+                "process_id": 1, "kill_path_used": False,
+                "tree_contained": False, "containment_method": "test",
+                "containment_note": "test",
+            }
+
+        with self.assertRaisesRegex(native.NativeQualificationError, "E_PILOT_VERSION"):
+            native_pilot.run_disposable_pilot(
+                bd_path=exe,
+                expected_executable_sha256=hashlib.sha256(exe.read_bytes()).hexdigest(),
+                workspace=root / "pilot",
+                receipt=root / "receipt.json",
+                ledger_module=ledger,
+                runner=runner,
+                observer=lambda selection: {},
+            )
+        self.assertEqual(len(calls), 1)
+        self.assertIn("version", calls[0])
+        self.assertFalse(any("init" in argv or "create" in argv for argv in calls))
 
     def test_existing_workspace_or_receipt_refuses_before_running_bd(self):
         tmp = tempfile.TemporaryDirectory(prefix="mi-native-pilot-refuse-")
