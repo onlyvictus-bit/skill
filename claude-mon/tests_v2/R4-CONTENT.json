@@ -14,8 +14,10 @@
     "tests_v2/test_r3_history.py"
   ],
   "added_r2_files": [
+    "references/INDEX.md",
     "references/r3-history-coordination.md",
     "scripts/complete_read_v2/coordination.py",
+    "tests_v2/R3-CONTENT.json",
     "tests_v2/baseline-r2.json",
     "tests_v2/test_r3_coordination.py",
     "tests_v2/test_r3_history.py"
@@ -46,6 +48,7 @@
   ],
   "changed_r2_files": [
     "SKILL.md",
+    "agents/openai.yaml",
     "capabilities-v2.json",
     "scripts/claude_mon_v2.py",
     "scripts/complete_read_v2/__init__.py",
@@ -53,14 +56,16 @@
     "scripts/complete_read_v2/ledger.py",
     "scripts/complete_read_v2/proof.py",
     "scripts/complete_read_v2/runner.py",
+    "tests/test_cli.py",
+    "tests/test_core.py",
     "tests_v2/test_ledger.py",
     "tests_v2/test_m4r_regressions.py",
     "tests_v2/test_preservation.py"
   ],
   "files": {
-    "SKILL.md": "739a30912d6534d5493051be56e6e00ec39bf06d061ddc6be768c6bb9ea702f4",
+    "SKILL.md": "1abb535cbe96715da076bca8432851f0993cc2b2228ebc1fdbdb23768744885a",
     "agents/openai.yaml": "bd1c56264bbdedd95a2fbbd18783df22f22997d9b425380bf7fe1f21dd07590a",
-    "capabilities-v2.json": "d2fb6f34e1d707c15c9630f96d62e24208c5839d80552289805f653b3bd56197",
+    "capabilities-v2.json": "60aec0d3b484edd64c9aebbd95b232e9fda0467dbb943fee46a9cf3582a2f950",
     "references/INDEX.md": "526bdaad4e82cfdd84ec34c35e18be8c3a83a77e10042b85a5a826217f0dd6c8",
     "references/adapters.md": "b145da9dee90e34604d73192e2365b41f7cc7d3229378863ba048f183beb32c3",
     "references/architecture.md": "9e00ed1f37a0b920d92ec87ebc9449c00eb9a7d0943ecb36a9457eded4a367dd",
@@ -73,7 +78,7 @@
     "scripts/claude_mon.py": "1433eedff551fb2acce3f69e9f18649ca782b741d917065dff86c2de10ffaf5a",
     "scripts/claude_mon_core.py": "d04cd2bde01d10f6f528eb21977a7659bf66db84d83f5fd63962670681c5ffa1",
     "scripts/claude_mon_v2.py": "bcb1351148f8670da544c73c525de31fcdb584ba0e6098e1a6da298468536e4c",
-    "scripts/complete_read_v2/__init__.py": "286cf9325175a3ed2ca749dd984f08224fc31e90835c06990214862e50a66538",
+    "scripts/complete_read_v2/__init__.py": "fa87dbf6a436e65c2f03b80493bba39eaffab76e014f6fc2807eb17988158519",
     "scripts/complete_read_v2/artifacts.py": "c6a5f38bda72849f6c5eb30f813645f9cb0640d7c118104ff9a21f51e13be4b1",
     "scripts/complete_read_v2/budget.py": "7217ddb4fc29330ff722157a142d8101189a86df0f135c5aa1a1d17369cfdccb",
     "scripts/complete_read_v2/contracts.py": "502a91af2ce64a6f3cae05da7454c079dfb8531ba965693ef64e5fbf43605dba",
@@ -126,6 +131,6 @@
     "tests_v2/test_runner.py": "1702acc0dd34f87b210c9cdc23baa2ed78efdac67dafecc1a4deecd3ecbaf520",
     "tests_v2/test_unit_results.py": "cda8a2193b1fb611e913ba66e062bcc8fc17070ed9f9f0a588b9de63820c7c01"
   },
-  "release": "2.0.0-m11-r4dev",
+  "release": "2.0.0-m12-r4",
   "schema_version": 1
 }

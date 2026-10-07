@@ -1,0 +1,26 @@
+{
+  "evidence_class": "NATIVE_VERIFIED",
+  "generic_native_write_qualified": false,
+  "installed_promoted": false,
+  "native_beads_qualified": false,
+  "native_merge_qualified": false,
+  "native_shared_claim_qualified": true,
+  "packages": {
+    "claude-mon": {
+      "bytes": 154816,
+      "entries": 68,
+      "sha256": "5cf842c5e02c05e3e34069090a7d00e05d8eee250701fb786eaa638b3e6bba57",
+      "zip": "claude-mon-r4.zip"
+    },
+    "memory-integrity": {
+      "bytes": 232434,
+      "entries": 96,
+      "sha256": "888d435b4fb5a2eac3d8e14ac783c40399b0d473aee676ff164189b08d87bc6a",
+      "zip": "memory-integrity-r4.zip"
+    }
+  },
+  "release": "2.0.0-m12-r4",
+  "schema_version": 1,
+  "shared_database_standing_authority": false,
+  "source_trigger_sha": "43a6c811fb28f329c8e909f820a2a3cccac0f151"
+}
