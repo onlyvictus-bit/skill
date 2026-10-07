@@ -1,4 +1,5 @@
 name: r4-shared-claim-pilot
+# Formal R4 shared-claim qualification gate.
 
 on:
   push:
