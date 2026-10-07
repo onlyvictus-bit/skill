@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "skills": [
+    {
+      "disposition": "selected",
+      "name": "cortex",
+      "outputs": [
+        {
+          "path": "docs/fable/derived/cortex.md",
+          "sha256": "4df1a323beb3859143cf0a8c6d0462b4cfefd041f3049d750902da8ac6ab9e21"
+        }
+      ],
+      "reason": "Required routing/design/independence/release procedure",
+      "requirement_ids": [
+        "REQ-01",
+        "REQ-02",
+        "REQ-03",
+        "REQ-04",
+        "REQ-05",
+        "REQ-06",
+        "REQ-07",
+        "REQ-08",
+        "REQ-09",
+        "REQ-10",
+        "REQ-11",
+        "REQ-12"
+      ],
+      "status": "observed",
+      "test_ids": [
+        "TEST-REVIEW"
+      ]
+    },
+    {
+      "disposition": "selected",
+      "name": "blueprint",
+      "outputs": [
+        {
+          "path": "docs/fable/derived/blueprint.md",
+          "sha256": "74b1836668cadc485b1a742a9ee6b9839e4768558c545280380cc892076a1ce1"
+        }
+      ],
+      "reason": "Required routing/design/independence/release procedure",
+      "requirement_ids": [
+        "REQ-01",
+        "REQ-02",
+        "REQ-03",
+        "REQ-04",
+        "REQ-05",
+        "REQ-06",
+        "REQ-07",
+        "REQ-08",
+        "REQ-09",
+        "REQ-10",
+        "REQ-11",
+        "REQ-12"
+      ],
+      "status": "observed",
+      "test_ids": [
+        "TEST-REVIEW"
+      ]
+    },
+    {
+      "disposition": "selected",
+      "name": "triangulate",
+      "outputs": [
+        {
+          "path": "docs/fable/derived/triangulate.md",
+          "sha256": "0a7c196466277fc1dc879a7d694bafc7ac2afe2bae6b4669c3f4b8d8d28d3333"
+        }
+      ],
+      "reason": "Required routing/design/independence/release procedure",
+      "requirement_ids": [
+        "REQ-01",
+        "REQ-02",
+        "REQ-03",
+        "REQ-04",
+        "REQ-05",
+        "REQ-06",
+        "REQ-07",
+        "REQ-08",
+        "REQ-09",
+        "REQ-10",
+        "REQ-11",
+        "REQ-12"
+      ],
+      "status": "observed",
+      "test_ids": [
+        "TEST-REVIEW"
+      ]
+    },
+    {
+      "disposition": "not_applicable",
+      "name": "unlazy",
+      "outputs": [],
+      "reason": "Finite bridge proof units covered directly with TDD and Fable Loop; native Unlazy ledger would duplicate this bounded execution",
+      "requirement_ids": [],
+      "status": "observed",
+      "test_ids": []
+    },
+    {
+      "disposition": "not_applicable",
+      "name": "graphify",
+      "outputs": [],
+      "reason": "Direct source/hash/history and lexical discovery used; Graphify runtime unavailable and not a requested requirement",
+      "requirement_ids": [],
+      "status": "unavailable",
+      "test_ids": []
+    },
+    {
+      "disposition": "selected",
+      "name": "release-helper",
+      "outputs": [
+        {
+          "path": "docs/fable/derived/release-helper.md",
+          "sha256": "13afe44e8412c593d339ac9d67b64853de689536d441e2faa4f13781256b0c8f"
+        }
+      ],
+      "reason": "Required routing/design/independence/release procedure",
+      "requirement_ids": [
+        "REQ-01",
+        "REQ-02",
+        "REQ-03",
+        "REQ-04",
+        "REQ-05",
+        "REQ-06",
+        "REQ-07",
+        "REQ-08",
+        "REQ-09",
+        "REQ-10",
+        "REQ-11",
+        "REQ-12"
+      ],
+      "status": "observed",
+      "test_ids": [
+        "TEST-REVIEW"
+      ]
+    }
+  ]
+}

@@ -61,6 +61,10 @@ jobs:
           fi
         env:
           PYTHONDONTWRITEBYTECODE: "1"
+      - name: Knowledge bridge archive verification
+        run: python -B release/Verify-Knowledge-Bridge.py
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
       - name: content manifests match tree
         shell: python
         run: |

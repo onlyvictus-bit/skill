@@ -654,3 +654,12 @@ separately approved and verified.
 The matching claude-mon m12 companion remains the CM ledger/history and
 coordination authority. Keep the explicit companion path and pinned schema
 digest; do not mix m11/m12 packages when using the formal R4 pair.
+
+
+## Optional Semantica knowledge bridge v1
+
+Use this when a task needs source-linked semantic/vector search, bounded relationship discovery, or structured pipeline-gap diagnosis. Fable remains the approval and completion authority. Memory Integrity is the front door; an explicit matching claude-mon companion remains required. Graph behavior is opt-in and never implies source coverage or semantic truth.
+
+Read [Semantica integration](references/semantica-integration.md), then [contracts](references/knowledge-contract.md) and [operations](references/knowledge-operations.md) before using `knowledge-status`, `knowledge-index`, `knowledge-retrieve`, or `knowledge-audit` through `scripts/memory_integrity_workflow.py`. Keep the worker interpreter isolated and pinned; do not replace canonical histories, auto-install the runtime, create a second manager, or generate answers through Semantica. Mandatory units and current access come from independent task contracts. Unavailable runtime, stale bytes, changed task, missing request binding, or unknown required audit stages block graph-required qualification.
+
+This initial release observes real graph/vector/provenance/SHACL operations and exact protected offline requests. Meaning-bearing embeddings, general semantic entailment, live model outcomes, incremental invalidation and representative coding benefit remain separately unverified. See `knowledge-capabilities-v1.json` for granular truth.

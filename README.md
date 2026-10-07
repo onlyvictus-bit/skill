@@ -39,3 +39,9 @@ R3 artifacts are retained unchanged for rollback/history.
 - docs/: status, qualification evidence and operating boundaries
 
 MIT - see LICENSE.
+
+## Optional Semantica bridge v1
+
+Memory Integrity now includes an opt-in isolated Semantica layer for explicit vector search, bounded local GraphRAG, source-linked relationships, recursive provenance, structural SHACL and protected offline request/audit receipts. It preserves the existing companion and Fable authority. See [integration](memory-integrity/references/semantica-integration.md), [operations](memory-integrity/references/knowledge-operations.md) and the [plan review](docs/fable/derived/plan-review.md).
+
+Run `python -B release/Verify-Knowledge-Bridge.py` for the matching knowledge-v1 pair. The pinned optional runtime is installed separately using `semantica-runtime/requirements-lock.txt`. Set `KNOWLEDGE_WORKER_PYTHON` to its absolute interpreter to run the real runtime checks. R3/R4 release artifacts remain unchanged for rollback. Graph stays off by default; general semantic accuracy and coding benefit remain unverified.

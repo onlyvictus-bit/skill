@@ -1,0 +1,26 @@
+{
+  "basis": {
+    "plan_digest": "c98273ad6f8087ba1bb3515f06f52ec73d38dceb90911aaaf0a3900f6e846f78",
+    "requirements_digest": "d8fc8c4335ada551c0a94435f2c0bde0b9b2a5dd375231e8e40984e2ae49ae78",
+    "tests_digest": "4c251f114078cc60ca886fee655f2a7a14746b490d87e13de24892119b5404b3"
+  },
+  "campaign_id": "semantica-bridge",
+  "completed_requirement_ids": [
+    "REQ-01",
+    "REQ-02",
+    "REQ-03",
+    "REQ-04",
+    "REQ-05",
+    "REQ-06",
+    "REQ-07",
+    "REQ-08",
+    "REQ-09",
+    "REQ-10",
+    "REQ-11"
+  ],
+  "current_task": "TASK-BRIDGE",
+  "milestone": "M0-M7-OFFLINE",
+  "next_action": "Publish verified implementation with expected-head lease; reopen remote identity before completing REQ-12",
+  "phase": "release",
+  "schema": 2
+}

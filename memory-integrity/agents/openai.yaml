@@ -1,6 +1,6 @@
 interface:
   display_name: Memory Integrity
-  short_description: Prove source coverage, persistent recall, and no-silent-omission workflows.
+  short_description: Source coverage, durable recall, and optional governed knowledge discovery.
 policy:
   products:
   - chatgpt

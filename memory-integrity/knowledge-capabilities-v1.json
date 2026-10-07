@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "bridge_version": "1.0.0",
+  "semantica_version": "0.7.0",
+  "semantica_revision": "320761de5d040a54a3220acc563223b4a7ffdc51",
+  "default_graph": false,
+  "host_dependencies": [],
+  "runtime_python": ">=3.10,<3.14",
+  "observed_offline": [
+    "context_graph",
+    "explicit_vector_search",
+    "bounded_multi_hop",
+    "recursive_provenance",
+    "shacl_structure",
+    "immutable_generation",
+    "protected_request_binding",
+    "structured_oracle_audit"
+  ],
+  "unverified": [
+    "embedding_semantic_quality",
+    "source_proposition_truth",
+    "full_corpus_understanding",
+    "live_provider_dispatch",
+    "coding_outcome_benefit",
+    "incremental_invalidation",
+    "installed_copy_replacement"
+  ],
+  "evidence_class": "TEST_ONLY",
+  "native_qualification": "unchanged; see capabilities-v2.json",
+  "network_isolation": "best-effort Python sockets/offline flags; not OS sandbox"
+}

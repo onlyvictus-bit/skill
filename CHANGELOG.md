@@ -1,5 +1,14 @@
 # Changelog
 
+## Knowledge bridge v1 / 1.0.0 - 2026-10-07
+
+- Adds an optional isolated pinned Semantica worker; real graph/vector/provenance and structural SHACL operations.
+- Uses companion source units, immutable generations, current ACL filtering, finite exact-dimension explicit vectors and bounded directed hops.
+- Preserves independently required units; binds packs to exact execution tasks, actual request/response CAS bytes and resume.
+- Blocks caller-label forgery, stale/denied paths, unrecorded premises, protected-run bypass and empty audit success.
+- Adds a narrow independent structured oracle audit, synthetic four-way comparison, paired packages and runtime CI.
+- Preserves historical R3/R4 archives and native flags; graph default remains off pending representative benefit.
+
 ## R4 / 2.0.0-m12 - 2026-10-07
 
 - Promotes the verified M7 durable native journal/recovery work.

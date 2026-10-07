@@ -1,0 +1,418 @@
+{
+  "requirements": [
+    {
+      "criteria": [
+        {
+          "id": "REQ-01-1",
+          "test_ids": [
+            "TEST-REVIEW"
+          ],
+          "text": "Plan review maps all sections and names the missing audit patch"
+        },
+        {
+          "id": "REQ-01-2",
+          "test_ids": [
+            "TEST-REVIEW"
+          ],
+          "text": "Choose the isolated adapter using source-backed API and failure evidence"
+        }
+      ],
+      "id": "REQ-01",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Preserve all 575 supplied plan lines, review all 14 sections, pin current repositories, document source gaps and architecture alternatives"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-02-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Append routing; never replace canonical extraction, approval or result paths"
+        },
+        {
+          "id": "REQ-02-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "No Semantica answer generation, service calls, live dispatch or automatic installs"
+        }
+      ],
+      "id": "REQ-02",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Keep Fable as sole authority, Memory Integrity front door, explicit matching companion, existing histories and offline qualification"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-03-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Real ContextGraph and vector operation in supported Python runtime"
+        },
+        {
+          "id": "REQ-03-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Wrong revision, versions, dimensions, NaN, duplicate keys and oversized worker messages fail closed"
+        }
+      ],
+      "id": "REQ-03",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Isolated bounded worker with pinned Semantica and bridge capability handshake"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-04-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Use companion partition manifests; validate exact source and unit hashes"
+        },
+        {
+          "id": "REQ-04-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Preserve assertion polarity, conditions, derivation and separate observed/valid/build times"
+        },
+        {
+          "id": "REQ-04-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Reject undefined endpoints, invalid predicates, missing sources and malformed temporal bounds"
+        }
+      ],
+      "id": "REQ-04",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Canonical source-linked reviewed projection and task-relative discovery/evidence views"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-05-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Crash before publication retains previous generation; no mixing artifacts"
+        },
+        {
+          "id": "REQ-05-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Source-byte changes, branch/commit changes and corrupt artifacts block current retrieval"
+        },
+        {
+          "id": "REQ-05-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Resume reopens artifacts; concurrent writer and cancelled worker cannot publish"
+        }
+      ],
+      "id": "REQ-05",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Immutable persistent generations with safe single-writer publication and current-source verification"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-06-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Permission filter before vectors, graph hops, reopening and exported packs"
+        },
+        {
+          "id": "REQ-06-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Bound depth, visits, seeds, result count and bytes; expose reached limits"
+        },
+        {
+          "id": "REQ-06-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Record retained references, traversal paths, provenance and optional exclusions without leaking denied IDs"
+        }
+      ],
+      "id": "REQ-06",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Governed local vector plus bounded multi-hop retrieval and permission enforcement"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-07-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Mandatory constraints cannot be silently removed by ranking/budget"
+        },
+        {
+          "id": "REQ-07-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Reopen current source units; distinguish identity from processing/semantic qualification"
+        },
+        {
+          "id": "REQ-07-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Graph-required requests block on unavailable worker; direct-inspection fallback reports degradation"
+        }
+      ],
+      "id": "REQ-07",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Evidence packs preserve independently declared mandatory source units"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-08-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Inject through existing context material before measurement and approval"
+        },
+        {
+          "id": "REQ-08-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Sidecar binds actual ledger/CAS request and response bytes, task and graph"
+        },
+        {
+          "id": "REQ-08-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Changed or omitted pack, absent sidecar and required-knowledge downgrade are refused"
+        }
+      ],
+      "id": "REQ-08",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Bind knowledge pack to exact protected request/response and resume"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-09-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Independent expected claims; distinguish prompt inclusion, answer coverage, source support, contradiction and staleness"
+        },
+        {
+          "id": "REQ-09-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Unobserved/partial/failed/empty stages preserve unknowns and audit limitations"
+        },
+        {
+          "id": "REQ-09-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Adversarial reversed conditions, unsupported answer, ID-overlap misuse and omitted prompt units are detected; no universal truth claim"
+        }
+      ],
+      "id": "REQ-09",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Observed gap and source-linked structured semantic audit"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-10-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Small explicit typed ontology with actual structural checks and optional SHACL with honest skipped state"
+        },
+        {
+          "id": "REQ-10-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Source lineage connects existing unit identities to derived assertion graph; traversal never implies inference"
+        }
+      ],
+      "id": "REQ-10",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Ontology enforcement and lineage without unsupported truth claims"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-11-1",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Source drift, revoked access, omitted constraint, interrupted build, bounded worker and unknown delivery remain observable"
+        },
+        {
+          "id": "REQ-11-2",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Four equal-fixture retrieval configurations, timings, resource scope and measured denominators; no coding superiority claim"
+        },
+        {
+          "id": "REQ-11-3",
+          "test_ids": [
+            "TEST-BRIDGE"
+          ],
+          "text": "Graph default remains off without demonstrated representative benefit"
+        }
+      ],
+      "id": "REQ-11",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Offline lifecycle fault tests and comparative evaluation"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-12-1",
+          "test_ids": [
+            "TEST-REVIEW"
+          ],
+          "text": "Run legacy/v2/eval/repository suites, manifest checks and isolated-copy tests"
+        },
+        {
+          "id": "REQ-12-2",
+          "test_ids": [
+            "TEST-REVIEW"
+          ],
+          "text": "Preserve old R3/R4 packages; add separate bridge release identity and rollback instructions"
+        },
+        {
+          "id": "REQ-12-3",
+          "test_ids": [
+            "TEST-REVIEW"
+          ],
+          "text": "Commit/publish with concurrent-head protection and reopen remote identity; no installed-copy replacement implied"
+        }
+      ],
+      "id": "REQ-12",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Release, verify portable copy, commit and publish exact GitHub changes"
+    },
+    {
+      "criteria": [],
+      "id": "FUTURE-1",
+      "priority": "future",
+      "test_ids": [
+        "TEST-REVIEW"
+      ],
+      "text": "Live embedding/extraction/reranking/evaluation services require separate qualified consent route"
+    },
+    {
+      "criteria": [],
+      "id": "FUTURE-2",
+      "priority": "future",
+      "test_ids": [
+        "TEST-REVIEW"
+      ],
+      "text": "Global, DRIFT and distributed graph services are deferred until local evidence warrants them"
+    },
+    {
+      "criteria": [],
+      "id": "FUTURE-3",
+      "priority": "future",
+      "test_ids": [
+        "TEST-REVIEW"
+      ],
+      "text": "Complete-corpus semantic understanding is not proven by this offline integration"
+    },
+    {
+      "criteria": [],
+      "id": "FUTURE-4",
+      "priority": "future",
+      "test_ids": [
+        "TEST-REVIEW"
+      ],
+      "text": "Installed ChatGPT skill replacement is outside GitHub publication scope"
+    },
+    {
+      "criteria": [],
+      "id": "FUTURE-5",
+      "priority": "future",
+      "test_ids": [
+        "TEST-REVIEW"
+      ],
+      "text": "Real coding/model outcome benchmarks require representative tasks and separately authorized provider runs"
+    }
+  ],
+  "schema": 2
+}

@@ -1,0 +1,3 @@
+# Install only in an isolated supported interpreter. No answer/embedding provider extras.
+semantica @ git+https://github.com/semantica-agi/semantica.git@320761de5d040a54a3220acc563223b4a7ffdc51
+pyshacl==0.31.0

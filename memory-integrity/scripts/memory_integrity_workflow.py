@@ -107,6 +107,8 @@ def presentation(out, rm_path):
 
 
 def offline_run(args):
+    from knowledge_bridge import workflow as knowledge, contracts as kc, trace_adapter
+    knowledge_pack = knowledge.preflight(args)
     artifacts, ledger, partition, providers, results, runner = companion(args.claude_mon_root)
     raw, source_id, manifest = source_basis(args.source, partition)
     ids = [u["id"] for u in manifest["units"]]
@@ -125,12 +127,21 @@ def offline_run(args):
         if rm.get("task_digest") != task_digest or rm.get("profile_digest") != profile_digest \
                 or rm.get("fixture_digest") != digest(fixture_raw):
             raise ValueError("E_RESUME_BASIS: task/profile/reviews changed; historical run preserved")
+        expected_pack = None if knowledge_pack is None else digest(kc.canonical(knowledge_pack))
+        if rm.get("knowledge_pack_sha256") != expected_pack:
+            raise ValueError("E_KNOWLEDGE_RESUME_BASIS: pack changed or omitted")
         out = report.verify_run(rm_path, {source_id:digest(raw)}, args.claude_mon_root)
+        if out["ok"]:
+            observed = knowledge.verify_run(args,run)
+            if observed is not None:
+                out["knowledge"] = observed
         out["resumed"] = True
         return presentation(out, rm_path) if out["ok"] else out
     run.mkdir(parents=True, exist_ok=False)
     (run / "source.bin").write_bytes(raw)
     (run / "fixture.json").write_bytes(fixture_raw)
+    if knowledge_pack is not None:
+        (run / "knowledge-evidence.json").write_bytes(kc.canonical(knowledge_pack))
     write_json(run / "manifest.json", manifest)
     write_json(run / "task.json", task)
     write_json(run / "profile.json", PROFILE)
@@ -156,6 +167,8 @@ def offline_run(args):
             ledger.create_work_item(db,wid,task_digest,source_id)
             primary = {i:text(i) for i in chunk["primary"]}
             context = {i:text(i) for i in chunk["context_before"] + chunk["context_after"]}
+            if knowledge_pack is not None:
+                context["knowledge_evidence_pack"] = kc.canonical(knowledge_pack).decode("utf-8")
             attempt, req_digest = runner.prepare(db,cas,wid,task_digest,primary,args.task,
                 {"type":"rich-unit-results","schema_version":2},context,task_digest,PROFILE,
                 counter=lambda value: value, manifest=manifest, source_bytes=raw)
@@ -171,12 +184,18 @@ def offline_run(args):
                  "purpose":PROFILE["purpose"],"max_output_tokens":PROFILE["output_limit"]})
     finally:
         db.close()
+    if knowledge_pack is not None:
+        trace_adapter.write(run,knowledge_pack)
     files = {p.relative_to(run).as_posix():digest(p.read_bytes()) for p in sorted(run.rglob("*")) if p.is_file()}
     rm = {"schema_version":3,"run_dir":str(run),"generation":generation,
           "source_id":source_id,"source_digests":{source_id:digest(raw)},"task_digest":task_digest,
           "profile_digest":profile_digest,"fixture_digest":digest(fixture_raw),"artifact_digests":files}
+    if knowledge_pack is not None:
+        rm["knowledge_pack_sha256"] = digest(kc.canonical(knowledge_pack))
     write_json(rm_path,rm)
     out = report.verify_run(rm_path,{source_id:digest(raw)},args.claude_mon_root)
+    if out["ok"] and knowledge_pack is not None:
+        out["knowledge"] = knowledge.verify_run(args,run)
     out["resumed"] = False
     return presentation(out,rm_path) if out["ok"] else out
 
@@ -186,6 +205,11 @@ def verify(args):
     rm = json.loads(rm_path.read_text(encoding="utf-8"))
     now = {rm["source_id"]:digest(Path(args.source).read_bytes())}
     out = report.verify_run(rm_path,now,args.claude_mon_root)
+    if out["ok"]:
+        from knowledge_bridge import workflow as knowledge
+        observed = knowledge.verify_run(args,Path(rm['run_dir']).resolve())
+        if observed is not None:
+            out["knowledge"] = observed
     if out["ok"] and args.query:
         run = Path(rm["run_dir"])
         manifest = json.loads((run / "manifest.json").read_text(encoding="utf-8"))
@@ -243,6 +267,15 @@ def main():
     for key in ("claude-mon-root","run-map","source"):
         check.add_argument("--"+key,required=True)
     check.add_argument("--query")
+    for command in (run,check):
+        for key in ("knowledge-index","knowledge-root","knowledge-policy","knowledge-task"):
+            command.add_argument("--"+key)
+        command.add_argument("--knowledge-worker-python")
+        command.add_argument("--knowledge-worker-timeout",type=float,default=30)
+    run.add_argument("--knowledge-pack")
+    check.add_argument("--require-knowledge",action="store_true")
+    from knowledge_bridge import workflow as knowledge
+    knowledge.register(sub)
     observe = sub.add_parser("native-observe")
     for key in ("claude-mon-root","selection-file","receipt"):
         observe.add_argument("--"+key,required=True)
@@ -268,7 +301,9 @@ def main():
             command.add_argument("--operation-id",required=True)
     args = parser.parse_args()
     try:
-        if args.command == "native-observe":
+        if args.command.startswith("knowledge-"):
+            out = knowledge.dispatch(args)
+        elif args.command == "native-observe":
             out = native_observe(args)
         elif args.command.startswith(("coordinate-","branch-")) or args.command == "history-seal":
             import coordination_workflow
