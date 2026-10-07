@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "evidence_class": "HOSTED_CI_OBSERVED",
+  "repository": "onlyvictus-bit/skill",
+  "verified_code_commit": "aef00d23ba497510cd41dca0495f1ec652853f5f",
+  "verified_tree": "873427645947a03904907ed50dafefd4a8e7187b",
+  "local_checks": {
+    "tests": 484,
+    "failures": 0,
+    "platform_skips": 2,
+    "new_knowledge_checks": 39,
+    "pinned_semantica_revision": "320761de5d040a54a3220acc563223b4a7ffdc51"
+  },
+  "workflows": [
+    {
+      "id": 37644463273,
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37644463273",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 112871502825,
+          "name": "suites (windows-latest, 3.13)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503205,
+          "name": "suites (ubuntu-latest, 3.11)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503285,
+          "name": "suites (ubuntu-latest, 3.12)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503294,
+          "name": "suites (windows-latest, 3.12)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503354,
+          "name": "suites (windows-latest, 3.11)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503403,
+          "name": "suites (windows-latest, 3.14)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503448,
+          "name": "suites (ubuntu-latest, 3.14)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871503487,
+          "name": "suites (ubuntu-latest, 3.13)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 37644463605,
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37644463605",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 112871504934,
+          "name": "isolated-runtime (windows-latest, 3.13)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871505194,
+          "name": "isolated-runtime (ubuntu-latest, 3.12)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871505320,
+          "name": "isolated-runtime (ubuntu-latest, 3.13)",
+          "conclusion": "success"
+        },
+        {
+          "id": 112871505334,
+          "name": "isolated-runtime (windows-latest, 3.12)",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "intent": "Add an optional governed Semantica layer while preserving Fable, Memory Integrity and claude-mon authority.",
+  "authorization": {
+    "source": "conversation",
+    "quote": "implement it in github and commit it in git skill"
+  },
+  "twins": "Shared retrieval/verify/audit task and path checks reviewed; semantic audit empty-stage routes checked; fixture and benchmark newline sources corrected; production byte handling preserved.",
+  "scope": "Offline source/structure/transport mechanisms qualified; no live providers or active installed-copy replacement.",
+  "unverified": [
+    "semantic embedding quality",
+    "general source entailment",
+    "representative coding/model benefit",
+    "incremental invalidation",
+    "OS sandbox guarantees"
+  ],
+  "final_receipt_commit_policy": "Metadata-only follow-up uses [skip ci]; validated code, package, tests and workflow files stay byte-identical to passing code commit."
+}

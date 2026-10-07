@@ -16,11 +16,12 @@
     "REQ-08",
     "REQ-09",
     "REQ-10",
-    "REQ-11"
+    "REQ-11",
+    "REQ-12"
   ],
-  "current_task": "TASK-BRIDGE",
+  "current_task": null,
   "milestone": "M0-M7-OFFLINE",
-  "next_action": "Publish byte-stable fixture correction, observe corrected Windows/Linux CI and record final closure",
-  "phase": "release",
+  "next_action": "Offline Semantica bridge released and hosted CI green. Qualify representative semantic/model workloads before changing graph default.",
+  "phase": "complete",
   "schema": 2
 }
