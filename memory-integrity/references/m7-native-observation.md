@@ -57,8 +57,7 @@ guard object.
 
 For the separately authorized disposable runtime/database pilot, use
 `scripts/m7_native_pilot.py`. It verifies SHA-256 and the pinned
-v1.3.1/commit before initialization, uses an explicit `BEADS_DIR` with
-git-free `init --quiet --stealth`, creates a disposable task, claims it once,
+v1.3.1/commit before initialization, keeps the database external through explicit `BEADS_DIR`, uses a tiny sibling launcher Git repository only for the pinned v1.3.1 `beads.role`, and then runs `init --quiet --stealth`, creates a disposable task, claims it once,
 injects an interruption after the native effect, reopens CM, reconciles by
 readonly `show`, and verifies an idempotent second recovery. The receipt must
 retain exactly one claim invocation and the journal sequence
