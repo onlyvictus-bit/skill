@@ -322,7 +322,7 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
             tree_contained["value"] = False
             tree_contained["note"] = ("clean exit, no termination performed; "
                                       "out-of-scope descendants were not swept: "
-                                      "containment unproven")
+                                      "containment unverified/unproven")
     return {"exit_code":process.poll(),"stdout":bytes(data["stdout"]),"stderr":bytes(data["stderr"]),
             "capture_complete":pipes_done,
             "timed_out":timed_out,"output_limit_exceeded":overflow.is_set(),
