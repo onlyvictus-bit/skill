@@ -46,3 +46,12 @@ the extracted pair, and then the normal Windows/Ubuntu Python 3.11-3.14 matrix
 must pass on the generated commit before promotion to main.
 
 Installed-copy replacement is separate from repository release promotion.
+
+## Generated formal pair
+
+Release builder run 37606792629 generated and verified the formal pair and
+committed it as 71a90d2e02cee5baca3e6716fed03df2f8408edd.
+The release manifest records memory-integrity-r4.zip SHA-256
+888d435b4fb5a2eac3d8e14ac783c40399b0d473aee676ff164189b08d87bc6a
+and claude-mon-r4.zip SHA-256
+5cf842c5e02c05e3e34069090a7d00e05d8eee250701fb786eaa638b3e6bba57.
