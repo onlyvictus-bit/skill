@@ -1,75 +1,111 @@
 # Qualification status
 
-The full requested native skill is unfinished. This repository separates a
-verified offline baseline from the read-only native development candidate.
+The released R3/m11 pair remains the verified offline baseline. The
+`development/m7-completion` branch adds guarded M7 native-observation,
+durable native-operation recovery and a disposable exactly-once pilot, but it
+is not a promoted successor release and does not authorize shared/project
+native writes.
 
 ## Offline baseline: R3 / m11
 
 The matching release pair has retained offline verification of 383 packaged
 tests. Its 79 Memory Integrity and 65 claude-mon content-manifest entries were
-hash-checked again for this publication copy; each package also contains its
-content manifest. Release ZIP bytes are unchanged.
+hash-checked again for the publication copy; each package also contains its
+content manifest. Release ZIP bytes remain unchanged.
 
 During publication preparation on 2026-10-06, the portable verifier was rerun
-on these exact copied archives: all 383 tests passed, with `TEST_ONLY` evidence
-and native qualification false. This is local-copy verification, not a GitHub
-readback or an installed/native-runtime observation.
+on those exact copied archives: all 383 tests passed, with `TEST_ONLY`
+evidence and native qualification false. That baseline remains intact.
 
-| Feature | Built/tested boundary | Remaining native boundary |
+## Development: M7 completion branch
+
+The development branch now contains these additional M7 layers:
+
+| Feature | Implemented / verified repository boundary | Remaining boundary |
 |---|---|---|
-| Task dependencies | Complete fixture graph validation, cycle/missing-node refusal and prerequisite evidence checks | Full current native graph/identity observation connected to execution |
-| Blocked work | Companion guards preparation, dispatch, approval use, acceptance and later consumption | Effective native ownership/fence and native-to-companion connection |
-| Branch merging | Compatible/conflicting fixture policy and retained origin evidence | Observed native ancestry, real compatible/conflicting Dolt merges, fresh post-merge evidence |
-| Append-only history | Normal SQL mutation guards, typed replay, hash chain and supplied checkpoints | Integrated native intent/outcome/UNKNOWN and crash/recovery qualification |
+| Native read observation | Pinned v1.3.1 executable/project/database checks; full issue/dependency enumeration; repeated head/info/export reads; strict diagnostics and capture evidence | Fresh host receipt for the exact current disposable selection |
+| Process containment | Windows Job Object / taskkill fallback and POSIX process-group timeout containment; clean non-job exits explicitly unverified/unproven | Host-specific residual behavior remains receipt-scoped |
+| Blocked work / prerequisites | Existing CM dependency guards plus a native wrapper that derives `guard(..., "dispatch")` internally before intent | Shared/project execution remains disabled until separately qualified |
+| Durable native journal | CM `NATIVE_INTENT`, `NATIVE_OUTCOME`, `NATIVE_UNKNOWN`, `NATIVE_RECONCILED`; immutable operation/work-item/command/selection binding | Real host pilot must supply native readback evidence |
+| Interruption recovery | Tests inject interruption after effect, reopen CM, reconcile by readback only, require no second write, and require idempotent repeat recovery | Native host observation still required; ambiguous readback remains UNKNOWN |
+| Disposable pilot | One-command helper verifies SHA + pinned build before init, uses explicit `BEADS_DIR` and git-free stealth init, creates one disposable task and exercises exactly-one claim recovery | Scope is `DISPOSABLE_PILOT`; it does not qualify shared databases |
+| Branch merging | Compatible/conflicting deterministic fixture policy, retained origins/CAS and stale-head refusal; prior disposable compatible native merge observation exists | Conflicting native merge and post-merge native evidence revalidation still require direct observation |
+| Release | R4 content manifests track development files and existing R3 archives remain unchanged | Successor ZIPs/promotion/install require separate release approval |
 
-## Development: R4
+### Repository verification
 
-Five baseline package files changed and five new files were added: modified
-README.md, docs/STATUS.md, memory-integrity/SKILL.md,
-scripts/hybrid_bridge/native.py and scripts/memory_integrity_workflow.py; new
-docs/R4-NATIVE.md, memory-integrity/references/m7-native-observation.md,
-scripts/hybrid_bridge/native_observation.py,
-tests_v2/native_consent_scenarios.json and tests_v2/test_m7_observation.py. The
-companion core and shared contract pin are unchanged. Original R3 SKILL.md bytes
-are retained as an exact prefix of the R4 instructions.
+A full GitHub Actions matrix for commit
+`0d73d82d0a603be295bce4266998ba6b706763c7` completed successfully across
+Ubuntu and Windows, Python 3.11–3.14, after the durable M7 journal and
+cross-platform containment fix. A later full matrix at
+`cb5c48b46b44ab8bdc8aff613aba7894649983b7` also completed successfully
+after adding the disposable pilot adapter/helpers and refreshing the R4
+manifest. Later guard/CLI/version-pin changes remain subject to the final
+current-head matrix before release claims are made.
 
-The retained branch test run, observed 2026-10-06 from each package root,
-is fully green: Memory Integrity v1 21/21 and v2 175/175, claude-mon v1
-21/21 and v2 190/190, plus eval harness self-tests 7/7 with the good sample
-scoring 10/10 and the bad sample 0/10. Total 407 suite tests + 10 eval tests,
-zero failures. Re-verified 2026-10-06 on the post-review tree (same totals:
-21+175+21+190+10). The two former R3-manifest mismatches are resolved by
-committed R4-CONTENT.json manifests (regeneration is an explicit release
-action: change files, regenerate, review the diff, commit). The single
-deliberate-failure statement below described the pre-manifest state and no
-longer applies to this branch.
+The prior Ubuntu failure was a contract wording mismatch: tests required the
+receipt to include `unverified` while the non-Windows clean-exit path emitted
+only `containment unproven`. It now reports
+`containment unverified/unproven` without upgrading the proof claim.
 
-The observer refuses unknown diagnostics, incomplete or unsupported dependency
-data, selected-identity drift and unsafe reads. Reads never activate writes or
-turn an observed lease into an effective qualified fence. Actual native reads in
-the development host were refused on workspace-gate/database diagnostics.
-Direct-child timeout/output-bound handling is tested; descendant process-tree
-containment is not qualified. Independent final rereview was unavailable; do
-not represent parent-verified repairs as an independent final approval.
+The durable native-operation tests prove the core exactly-once orchestration
+invariant:
 
-## Still required for full completion
+> after a durable intent, recovery either proves one native effect by readback
+> or stays UNKNOWN; it never blindly repeats the native write.
 
-1. Clean native observations through the adapter, then protected native
-   operations connected to companion evidence/prerequisite guards.
-2. Actual native ownership, branch conflict, interrupted recovery and
-   OFF/cards/native comparison with retained command/result evidence.
-3. Matching successor metadata/contracts/manifests/ZIPs, full checks and review,
-   then separately authorized installation and installed public verification.
+The public/native wrapper does not trust a caller-provided guard result. It
+calls the matching companion coordination guard itself; a blocked guard
+produces no native intent and no native adapter call.
 
-No live AI call, native-runtime installation, database mutation or global skill
-promotion is performed merely by cloning or publishing this repository.
+## Disposable host pilot
+
+The development skill exposes:
+
+```text
+python scripts/m7_native_pilot.py \
+  --bd <absolute-bd.exe> \
+  --expected-executable-sha256 <64-hex-sha256> \
+  --workspace <absolute-new-disposable-workspace> \
+  --receipt <absolute-new-receipt.json> \
+  --claude-mon-root <matching-companion>
+```
+
+The command refuses an existing workspace/receipt, verifies the selected
+binary SHA and pinned Beads v1.3.1/commit before initialization, then uses
+explicit `BEADS_DIR` with `init --quiet --stealth`. It creates only a
+disposable pilot task, issues exactly one claim, injects an interruption after
+the claim effect, reopens CM, and reconciles by readonly native state.
+
+A successful receipt reports
+`overall=M7_DISPOSABLE_PILOT_VERIFIED` and
+`pilot_native_write_observed=true` while deliberately retaining
+`native_beads_qualified=false`, `shared_database_authorized=false` and
+`installed_promoted=false`.
+
+## Still required before a final native successor
+
+1. Run the current one-command pilot against the exact selected Windows
+   `bd.exe`/disposable workspace and retain its receipt. If the agent sandbox
+   cannot launch the binary, this is the one host-only action the user may
+   need to execute.
+2. Observe the remaining native branch-conflict/merge boundary if full native
+   merge qualification is required; never substitute fixture success for that
+   observation.
+3. Perform an independent/adversarial final review of the current head and
+   fresh full regression matrix.
+4. Build matching successor metadata/manifests/ZIPs only after those gates.
+5. Merge/promote/install/replace the released or installed pair only with
+   separate authorization.
+
+No live AI call, shared database mutation, installation, global skill
+promotion, or released R3 archive replacement is performed merely by this
+development work.
 
 ## Public-consent clarification
 
-Before publication, the R4-only SKILL appendix was clarified: an approval from
-another project or a pasted historical receipt grants no current-environment
-authority. A verified approval for the unchanged exact read-only selection may
-be retained without another question. No native code or R3 prefix/ZIP changed.
-Three synthetic consumer decision scenarios are retained in
-`memory-integrity/tests_v2/native_consent_scenarios.json`. Baseline and corrected
-decision checks are not live runtime or general model-compliance qualification.
+Approval from another project or a pasted historical receipt grants no
+current-environment authority. A verified approval for an unchanged exact
+readonly selection may be retained without duplicate questioning. A
+disposable-pilot approval is limited to that selected disposable environment;
+failure never authorizes initialization or mutation elsewhere.
