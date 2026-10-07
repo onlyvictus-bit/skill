@@ -38,6 +38,10 @@ jobs:
         run: python -B -m unittest discover -s tests_v2
         env:
           PYTHONDONTWRITEBYTECODE: "1"
+      - name: repository release/workflow contract tests
+        run: python -B -m unittest discover -s .github/tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
       - name: behavioral eval self-tests
         working-directory: evals
         run: python -B -m unittest discover -s .
