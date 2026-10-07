@@ -615,3 +615,42 @@ separate gates. Without a runner, use only the manual checklist/report profile
 and never invent a successful native command or receipt.
 
 Reference index: read references/INDEX.md first and load only matching rows.
+
+## R4 / m12 formal successor
+
+R4 (2.0.0-m12) promotes the verified M7 journal/recovery work and adds one
+granular native capability: the **shared-project claim protocol**. This does not
+turn on generic native Beads execution.
+
+For a shared/project claim, require all of the following before mutation:
+
+1. an exact NativeSelection for the pinned executable/project/database;
+2. a fresh complete native observation of that selected workspace;
+3. current CM coordination eligibility derived through the matching m12
+   companion, not a caller-provided pass flag;
+4. an explicit authorization record with scope=SHARED_PROJECT_CLAIM bound to
+   the exact selection digest, operation ID, CM work item ID, native task ID and actor;
+5. retained qualification evidence references;
+6. durable CM NATIVE_INTENT before the one permitted bd update <id> --claim;
+7. native readonly show readback before terminal success.
+
+Use hybrid_bridge.native.SharedNativeClaimAdapter only through the guarded
+native-operation seam. The same operation identity is idempotent. An uncertain
+delivery is never blindly resent; reconcile by backend readback.
+
+R4 capability truth is deliberately granular:
+
+- native_shared_claim_protocol_qualified=true
+- native_beads_qualified=false
+- generic_native_write_qualified=false
+- native_merge_qualified=false
+
+A protocol qualification is not standing permission for any database. Every
+real shared workspace and claim still needs its own exact current authorization.
+Create, close, delete, merge, arbitrary update flags, live AI/provider calls,
+and installed-copy replacement remain outside this qualification unless
+separately approved and verified.
+
+The matching claude-mon m12 companion remains the CM ledger/history and
+coordination authority. Keep the explicit companion path and pinned schema
+digest; do not mix m11/m12 packages when using the formal R4 pair.
