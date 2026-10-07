@@ -247,6 +247,158 @@ def _command_digest(command):
     return hashlib.sha256(json.dumps(command, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+
+def _hex_digest(value, code):
+    if not isinstance(value, str) or len(value) != 64:
+        raise NativeContractError(code)
+    try:
+        int(value, 16)
+    except ValueError as exc:
+        raise NativeContractError(code) from exc
+    return value.lower()
+
+
+def _qualified_native_adapter(adapter):
+    """Validate immutable qualification identity for real native writes."""
+    if getattr(adapter, "native_write_qualified", False) is not True:
+        raise NativeQualificationError("E_NATIVE_UNQUALIFIED: native writes are disabled")
+    if getattr(adapter, "evidence_class", None) != "NATIVE_VERIFIED":
+        raise NativeQualificationError("E_NATIVE_QUALIFICATION_EVIDENCE")
+    selection_digest = _hex_digest(
+        getattr(adapter, "selection_digest", None), "E_NATIVE_SELECTION_DIGEST")
+    qualification_id = getattr(adapter, "qualification_id", None)
+    if not isinstance(qualification_id, str) or not qualification_id.strip():
+        raise NativeQualificationError("E_NATIVE_QUALIFICATION_ID")
+    refs = getattr(adapter, "qualification_evidence_refs", ())
+    if not isinstance(refs, (tuple, list)) or not refs:
+        raise NativeQualificationError("E_NATIVE_QUALIFICATION_REFS")
+    refs = [_hex_digest(value, "E_NATIVE_QUALIFICATION_REF") for value in refs]
+    if not callable(getattr(adapter, "execute", None)) or not callable(getattr(adapter, "readback", None)):
+        raise NativeQualificationError("E_NATIVE_QUALIFICATION_ADAPTER")
+    return {
+        "selection_digest": selection_digest,
+        "qualification_id": qualification_id,
+        "evidence_refs": refs,
+        "evidence_class": "NATIVE_VERIFIED",
+    }
+
+
+def _native_guard(guard):
+    """Require a current companion dispatch guard before native mutation."""
+    if not isinstance(guard, dict) or guard.get("ok") is not True or \
+            guard.get("coordinated") is not True or guard.get("phase") != "dispatch" or \
+            guard.get("blocked"):
+        raise NativeContractError("E_NATIVE_GUARD: current coordinated dispatch guard required")
+    snapshot = _hex_digest(guard.get("snapshot_digest"), "E_NATIVE_GUARD_SNAPSHOT")
+    revision = guard.get("revision")
+    basis = guard.get("basis")
+    if not isinstance(revision, str) or not revision.strip() or not isinstance(basis, dict):
+        raise NativeContractError("E_NATIVE_GUARD: revision and basis required")
+    canonical = json.dumps(guard, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return {
+        "snapshot_digest": snapshot,
+        "revision": revision,
+        "guard_digest": hashlib.sha256(canonical.encode("utf-8")).hexdigest(),
+    }
+
+
+def _operation_binding(payload, operation_id, work_item_id, command_digest, qualification):
+    if not isinstance(payload, dict) or payload.get("operation_id") != operation_id or \
+            payload.get("work_item_id") != work_item_id or \
+            payload.get("command_digest") != command_digest or \
+            payload.get("selection_digest") != qualification["selection_digest"] or \
+            payload.get("qualification_id") != qualification["qualification_id"]:
+        raise NativeContractError("E_NATIVE_OPERATION_REBIND")
+
+
+def coordinate_native_operation(journal, adapter, operation_id, work_item_id, command, guard):
+    """Durable INTENT -> one native mutation -> readback -> terminal record.
+
+    Once an INTENT exists without a proven terminal outcome, never issue the
+    mutation again. Recovery must use reconcile_native_operation and backend
+    readback only.
+    """
+    if not isinstance(journal, CMCoordinationJournal):
+        raise NativeContractError("E_NATIVE_CM_JOURNAL_REQUIRED")
+    if not isinstance(operation_id, str) or not operation_id.strip() or \
+            not isinstance(work_item_id, str) or not work_item_id.strip():
+        raise NativeContractError("E_NATIVE_OPERATION_ID")
+    qualification = _qualified_native_adapter(adapter)
+    guarded = _native_guard(guard)
+    digest = _command_digest(command)
+    previous = journal.last(operation_id)
+    if previous is not None:
+        _operation_binding(previous["payload"], operation_id, work_item_id, digest, qualification)
+        if previous["kind"] == "NATIVE_OUTCOME":
+            return {"operation_id": operation_id, "status": "IDEMPOTENT_NATIVE_APPLIED",
+                    "result": previous["payload"].get("readback")}
+        if previous["kind"] == "NATIVE_RECONCILED":
+            return {"operation_id": operation_id, "status": "IDEMPOTENT_RECONCILED",
+                    "result": previous["payload"].get("readback")}
+        return {"operation_id": operation_id, "status": "UNKNOWN",
+                "action": "reconcile backend readback; do not repeat native write"}
+
+    intent = {
+        "work_item_id": work_item_id,
+        "command_digest": digest,
+        "selection_digest": qualification["selection_digest"],
+        "qualification_id": qualification["qualification_id"],
+        "guard_digest": guarded["guard_digest"],
+        "snapshot_digest": guarded["snapshot_digest"],
+        "revision": guarded["revision"],
+        "evidence_class": "NATIVE_VERIFIED",
+        "evidence_refs": list(qualification["evidence_refs"]),
+    }
+    journal.append("NATIVE_INTENT", operation_id, intent)
+    try:
+        execution = adapter.execute(operation_id, command)
+        readback = adapter.readback(command)
+        if not isinstance(readback, dict) or readback.get("applied") is not True:
+            raise NativeContractError("E_NATIVE_READBACK: applied effect not proven")
+        if readback.get("native_task_id") != command.get("native_task_id"):
+            raise NativeContractError("E_NATIVE_READBACK: task identity mismatch")
+    except Exception as exc:
+        journal.append("NATIVE_UNKNOWN", operation_id, dict(
+            intent, reason=type(exc).__name__, error=str(exc)))
+        return {"operation_id": operation_id, "status": "UNKNOWN",
+                "action": "reconcile backend readback; do not repeat native write"}
+
+    outcome = dict(intent, execute_evidence=execution, readback=readback)
+    journal.append("NATIVE_OUTCOME", operation_id, outcome)
+    return {"operation_id": operation_id, "status": "NATIVE_APPLIED", "result": readback}
+
+
+def reconcile_native_operation(journal, adapter, operation_id, work_item_id, command):
+    """Resolve uncertain native delivery by readback only, never by retrying."""
+    if not isinstance(journal, CMCoordinationJournal):
+        raise NativeContractError("E_NATIVE_CM_JOURNAL_REQUIRED")
+    qualification = _qualified_native_adapter(adapter)
+    digest = _command_digest(command)
+    previous = journal.last(operation_id)
+    if previous is None or previous["kind"] not in (
+            "NATIVE_INTENT", "NATIVE_UNKNOWN", "NATIVE_OUTCOME", "NATIVE_RECONCILED"):
+        raise NativeContractError("E_NATIVE_RECONCILE_STATE")
+    _operation_binding(previous["payload"], operation_id, work_item_id, digest, qualification)
+    if previous["kind"] == "NATIVE_RECONCILED":
+        return {"operation_id": operation_id, "status": "IDEMPOTENT_RECONCILED",
+                "result": previous["payload"].get("readback")}
+    if previous["kind"] == "NATIVE_OUTCOME":
+        return {"operation_id": operation_id, "status": "IDEMPOTENT_NATIVE_APPLIED",
+                "result": previous["payload"].get("readback")}
+
+    readback = adapter.readback(command)
+    if not isinstance(readback, dict) or readback.get("applied") is not True:
+        return {"operation_id": operation_id, "status": "UNKNOWN",
+                "action": "effect absent or unproven; do not retry without a new approved basis"}
+    if readback.get("native_task_id") != command.get("native_task_id"):
+        raise NativeContractError("E_NATIVE_RECONCILE_REBIND")
+    payload = dict(previous["payload"], readback=readback,
+                   recovery="authoritative backend readback; native write not reissued")
+    journal.append("NATIVE_RECONCILED", operation_id, payload)
+    return {"operation_id": operation_id, "status": "RECONCILED_NATIVE_APPLIED",
+            "result": readback}
+
+
 def _fixture_journal(journal):
     if not isinstance(journal, (MemoryCoordinationJournal, CMCoordinationJournal)):
         raise NativeContractError("E_NATIVE_FIXTURE_ONLY: a fixture-compatible journal is required")
