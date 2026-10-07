@@ -155,3 +155,229 @@ class PilotNativeAdapter:
             },
             "snapshot_digest": hashlib.sha256(_canonical(issue)).hexdigest(),
         }
+
+
+def _strict_setup_run(runner, argv, cwd, env, transcript):
+    result = runner(argv, cwd, env)
+    evidence = _capture_record(result)
+    transcript.append({
+        "arguments": list(argv),
+        "exit_code": evidence["exit_code"],
+        "stdout_sha256": evidence["stdout_sha256"],
+        "stderr_sha256": evidence["stderr_sha256"],
+        "stdout_bytes": evidence["stdout_bytes"],
+        "stderr_bytes": evidence["stderr_bytes"],
+    })
+    return result["stdout"].decode("utf-8", errors="strict")
+
+
+def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, receipt,
+                         ledger_module, runner=None, observer=None):
+    """Run the M7 claim/interruption/recovery proof in a new disposable DB.
+
+    This proves only the selected disposable pilot boundary. It never promotes
+    NativeBeadsAdapter, never authorizes shared/project writes, and never
+    retries an uncertain claim.
+    """
+    bd_path = Path(bd_path).resolve()
+    workspace = Path(workspace).resolve()
+    receipt = Path(receipt).resolve()
+    if workspace.exists():
+        raise native.NativeContractError("E_PILOT_WORKSPACE_EXISTS")
+    if receipt.exists() or receipt.is_symlink():
+        raise native.NativeContractError("E_PILOT_RECEIPT_EXISTS")
+    if not receipt.parent.is_dir():
+        raise native.NativeContractError("E_PILOT_RECEIPT_PARENT")
+    if not bd_path.is_file():
+        raise native.NativeContractError("E_PILOT_BD_PATH")
+    actual_sha = hashlib.sha256(bd_path.read_bytes()).hexdigest()
+    if actual_sha != str(expected_executable_sha256).lower():
+        raise native.NativeContractError("E_PILOT_BD_HASH")
+    if ledger_module is None or not callable(getattr(ledger_module, "connect", None)):
+        raise native.NativeContractError("E_PILOT_LEDGER")
+
+    if runner is None:
+        def runner(argv, cwd, env):
+            return observation._capture_process(
+                argv, cwd=str(cwd), env=env,
+                timeout=observation.TIMEOUT_SECONDS, shell=False)
+
+    workspace.mkdir(parents=True, exist_ok=False)
+    beads = workspace / ".beads"
+    env = build_env(beads)
+    transcript = []
+
+    _strict_setup_run(runner, init_argv(bd_path), workspace, env, transcript)
+
+    info_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
+                 "--readonly", "info"]
+    info_raw = _strict_setup_run(runner, info_argv, workspace, env, transcript)
+    info = observation._strict_json(info_raw)
+    config = info.get("config") if isinstance(info, dict) else None
+    prefix = config.get("issue_prefix") if isinstance(config, dict) else None
+    if not isinstance(prefix, str) or not prefix.strip():
+        raise native.NativeContractError("E_PILOT_PREFIX")
+
+    metadata_path = beads / "metadata.json"
+    try:
+        metadata = observation._strict_json(metadata_path.read_bytes())
+    except OSError as exc:
+        raise native.NativeContractError("E_PILOT_METADATA") from exc
+    if not isinstance(metadata, dict):
+        raise native.NativeContractError("E_PILOT_METADATA")
+    project_id = metadata.get("project_id")
+    database_name = metadata.get("dolt_database")
+    if not isinstance(project_id, str) or not project_id.strip() or \
+            not isinstance(database_name, str) or not database_name.strip():
+        raise native.NativeContractError("E_PILOT_METADATA_IDENTITY")
+
+    create_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
+                   "create", "M7 exactly-once recovery pilot", "-t", "task", "-p", "4"]
+    created_raw = _strict_setup_run(runner, create_argv, workspace, env, transcript)
+    task_id = issue_id(created_raw)
+
+    selection = native.NativeSelection(
+        str(bd_path), str(workspace), "1.3.1", actual_sha,
+        expected_project_id=project_id,
+        expected_database_name=database_name,
+        expected_prefix=prefix,
+    )
+    observe_fn = observer or (lambda selected: native.NativeBeadsAdapter(selected).observe())
+    observed = observe_fn(selection)
+    if not isinstance(observed, dict) or observed.get("ok") is not True or \
+            not isinstance(observed.get("snapshot"), dict):
+        raise native.NativeQualificationError("E_PILOT_OBSERVATION")
+    snapshot = observed["snapshot"]
+    snapshot_digest = snapshot.get("snapshot_digest")
+    if not isinstance(snapshot_digest, str) or len(snapshot_digest) != 64:
+        raise native.NativeQualificationError("E_PILOT_OBSERVATION_DIGEST")
+    qualification_ref = hashlib.sha256(_canonical(observed)).hexdigest()
+    qualification_id = "m7-disposable-" + qualification_ref[:16]
+
+    def captured_runner(argv, cwd, command_env):
+        result = runner(argv, cwd, command_env)
+        evidence = _capture_record(result)
+        transcript.append({
+            "arguments": list(argv),
+            "exit_code": evidence["exit_code"],
+            "stdout_sha256": evidence["stdout_sha256"],
+            "stderr_sha256": evidence["stderr_sha256"],
+            "stdout_bytes": evidence["stdout_bytes"],
+            "stderr_bytes": evidence["stderr_bytes"],
+        })
+        return result
+
+    adapter = PilotNativeAdapter(
+        selection, qualification_id, [qualification_ref], runner=captured_runner)
+    command = {"kind": "claim", "native_task_id": task_id, "actor": ACTOR}
+    operation_id = "m7-claim-" + hashlib.sha256(_canonical(command)).hexdigest()[:20]
+    work_item_id = "m7-pilot::" + task_id
+    task_digest = hashlib.sha256(_canonical(command)).hexdigest()
+    source_id = "NATIVE-PILOT-" + qualification_ref[:16]
+    journal_path = workspace / "m7-cm-ledger.sqlite"
+
+    db = ledger_module.connect(journal_path)
+    try:
+        ledger_module.create_work_item(db, work_item_id, task_digest, source_id)
+        journal = native.CMCoordinationJournal(db, ledger_module)
+
+        class InterruptAfterEffect:
+            native_write_qualified = adapter.native_write_qualified
+            evidence_class = adapter.evidence_class
+            selection_digest = adapter.selection_digest
+            qualification_id = adapter.qualification_id
+            qualification_evidence_refs = adapter.qualification_evidence_refs
+
+            def execute(self, op_id, payload):
+                adapter.execute(op_id, payload)
+                raise InterruptedError("M7 injected interruption after native effect")
+
+            def readback(self, payload):
+                return adapter.readback(payload)
+
+        guard = {
+            "ok": True, "coordinated": True, "phase": "dispatch",
+            "blocked": [], "ready": [],
+            "snapshot_digest": snapshot_digest,
+            "revision": str(snapshot.get("head") or snapshot.get("branch") or "pilot"),
+            "basis": {
+                "pilot_scope": "DISPOSABLE_PILOT",
+                "qualification_ref": qualification_ref,
+                "task_id": task_id,
+            },
+        }
+        interrupted = native.coordinate_native_operation(
+            journal, InterruptAfterEffect(), operation_id, work_item_id, command, guard)
+    finally:
+        db.close()
+
+    db = ledger_module.connect(journal_path)
+    try:
+        journal = native.CMCoordinationJournal(db, ledger_module)
+        recovered = native.reconcile_native_operation(
+            journal, adapter, operation_id, work_item_id, command)
+        recovered_again = native.reconcile_native_operation(
+            journal, adapter, operation_id, work_item_id, command)
+        rows = db.execute(
+            "SELECT kind, detail FROM events WHERE kind LIKE 'NATIVE_%' ORDER BY seq"
+        ).fetchall()
+        journal_events = []
+        for row in rows:
+            try:
+                payload = json.loads(row["detail"])
+            except (TypeError, ValueError):
+                continue
+            if payload.get("operation_id") == operation_id:
+                journal_events.append(row["kind"])
+        history = ledger_module.verify_history(db)
+    finally:
+        db.close()
+
+    claim_invocations = [
+        row for row in transcript
+        if "update" in row["arguments"] and "--claim" in row["arguments"]
+    ]
+    if len(claim_invocations) != 1:
+        raise native.NativeContractError("E_PILOT_DUPLICATE_CLAIM")
+    if interrupted.get("status") != "UNKNOWN" or \
+            recovered.get("status") != "RECONCILED_NATIVE_APPLIED" or \
+            recovered_again.get("status") != "IDEMPOTENT_RECONCILED":
+        raise native.NativeContractError("E_PILOT_RECOVERY")
+    if journal_events != ["NATIVE_INTENT", "NATIVE_UNKNOWN", "NATIVE_RECONCILED"]:
+        raise native.NativeContractError("E_PILOT_JOURNAL_SEQUENCE")
+    if history.get("internal_chain") != "VERIFIED" or history.get("projection_replay") != "VERIFIED":
+        raise native.NativeContractError("E_PILOT_HISTORY")
+
+    out = {
+        "schema_version": 1,
+        "ok": True,
+        "overall": "M7_DISPOSABLE_PILOT_VERIFIED",
+        "qualification_scope": "DISPOSABLE_PILOT",
+        "pilot_native_write_observed": True,
+        "native_beads_qualified": False,
+        "shared_database_authorized": False,
+        "installed_promoted": False,
+        "workspace": str(workspace),
+        "receipt_path": str(receipt),
+        "bd_sha256": actual_sha,
+        "selection_digest": adapter.selection_digest,
+        "qualification_id": qualification_id,
+        "qualification_evidence_ref": qualification_ref,
+        "native_task_id": task_id,
+        "operation_id": operation_id,
+        "interrupted": interrupted,
+        "recovered": recovered,
+        "recovered_again": recovered_again,
+        "journal_events": journal_events,
+        "history_internal_chain": history["internal_chain"],
+        "history_projection_replay": history["projection_replay"],
+        "claim_invocations": len(claim_invocations),
+        "commands": transcript,
+        "note": (
+            "Disposable pilot proof only. It does not authorize or qualify "
+            "native writes to a shared/project database."
+        ),
+    }
+    with receipt.open("x", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(out, sort_keys=True, ensure_ascii=False, indent=2) + "\n")
+    return out
