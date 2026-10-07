@@ -141,6 +141,14 @@ class DisposablePilotWorkflow(unittest.TestCase):
                 }).encode())
             if "init" in argv:
                 beads = workspace / ".beads"
+                try:
+                    local_to_cwd = beads.resolve().is_relative_to(Path(cwd).resolve())
+                except AttributeError:
+                    local_to_cwd = str(beads.resolve()).startswith(str(Path(cwd).resolve()) + os.sep)
+                if local_to_cwd:
+                    return result(
+                        b'{"ok":true}',
+                        b"Warning: failed to update git exclude: not a git repository\n")
                 (beads / "embeddeddolt" / "mip" / ".dolt").mkdir(parents=True)
                 (beads / "metadata.json").write_text(json.dumps({
                     "database": "dolt", "backend": "dolt", "dolt_mode": "embedded",
@@ -194,6 +202,10 @@ class DisposablePilotWorkflow(unittest.TestCase):
         claims = [argv for argv in calls if "update" in argv and "--claim" in argv]
         self.assertEqual(len(claims), 1)
         self.assertIn("version", calls[0])
+        self.assertTrue(Path(out["launcher_cwd"]).is_dir())
+        self.assertNotEqual(Path(out["launcher_cwd"]), workspace)
+        self.assertFalse((workspace / ".beads").resolve().is_relative_to(
+            Path(out["launcher_cwd"]).resolve()))
         self.assertLess(
             next(i for i, argv in enumerate(calls) if "version" in argv),
             next(i for i, argv in enumerate(calls) if "init" in argv))
