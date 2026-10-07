@@ -41,6 +41,34 @@ containment fields (kill_path_used, tree_contained, method, note) are retained
 in every observation receipt. Grandchild pipe-holder and clean-exit probes
 cover both paths.
 
-Actual native qualification, native mutations, CM guard integration, branch
-merges, recovery and the four-trap comparison remain M7 acceptance work.
-This candidate is not packaged/promoted; the m11 pair remains the release.
+## Durable native-operation development seam
+
+The R4 development branch now includes a CM-owned native-operation journal
+seam. It requires an explicitly qualified adapter identity, current dispatch
+guard, stable operation/work-item/command/selection binding and durable
+`NATIVE_INTENT` before mutation. An interrupted operation becomes
+`NATIVE_UNKNOWN`; the same operation ID can never issue the write again.
+Recovery is backend-readback-only and appends `NATIVE_RECONCILED` only when
+the selected effect is proven. Absent or ambiguous readback stays UNKNOWN.
+
+The public/native wrapper derives its dispatch guard from the matching
+companion's coordination module. Callers do not supply a trusted `ok=true`
+guard object.
+
+For the separately authorized disposable runtime/database pilot, use
+`scripts/m7_native_pilot.py`. It verifies SHA-256 and the pinned
+v1.3.1/commit before initialization, uses an explicit `BEADS_DIR` with
+git-free `init --quiet --stealth`, creates a disposable task, claims it once,
+injects an interruption after the native effect, reopens CM, reconciles by
+readonly `show`, and verifies an idempotent second recovery. The receipt must
+retain exactly one claim invocation and the journal sequence
+`NATIVE_INTENT -> NATIVE_UNKNOWN -> NATIVE_RECONCILED`.
+
+A successful disposable receipt is scoped evidence only:
+`pilot_native_write_observed=true` while
+`native_beads_qualified=false`. It is not authority for shared/project writes.
+
+Native compatible/conflicting merge qualification, shared-database execution
+qualification, successor packaging/promotion and installed replacement remain
+separate gates. The m11 pair remains the released baseline until those gates
+are separately approved and observed.
