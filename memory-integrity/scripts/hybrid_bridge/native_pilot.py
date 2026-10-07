@@ -98,7 +98,8 @@ class PilotNativeAdapter:
     evidence_class = "NATIVE_VERIFIED"
     qualification_scope = "DISPOSABLE_PILOT"
 
-    def __init__(self, selection, qualification_id, evidence_refs, runner=None):
+    def __init__(self, selection, qualification_id, evidence_refs, runner=None,
+                 command_cwd=None):
         selection.validate()
         if not isinstance(qualification_id, str) or not qualification_id.strip():
             raise native.NativeContractError("E_PILOT_QUALIFICATION_ID")
@@ -108,6 +109,7 @@ class PilotNativeAdapter:
         self.qualification_id = qualification_id
         self.qualification_evidence_refs = tuple(evidence_refs)
         self.selection_digest = hashlib.sha256(_canonical(asdict(selection))).hexdigest()
+        self.command_cwd = None if command_cwd is None else Path(command_cwd).resolve()
         self._runner = runner or self._default_runner
 
     def _default_runner(self, argv, cwd, env):
@@ -120,7 +122,9 @@ class PilotNativeAdapter:
         if readonly:
             argv.append("--readonly")
         argv.extend(args)
-        result = self._runner(argv, root, build_env(beads))
+        result = self._runner(
+            argv, self.command_cwd if self.command_cwd is not None else root,
+            build_env(beads))
         evidence = _capture_record(result)
         return result["stdout"].decode("utf-8", errors="strict"), evidence
 
@@ -215,12 +219,16 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
             version.get("commit") != observation.COMMIT:
         raise native.NativeQualificationError("E_PILOT_VERSION")
 
+    launcher = workspace.with_name(workspace.name + "-launcher")
+    if launcher.exists():
+        raise native.NativeContractError("E_PILOT_LAUNCHER_EXISTS")
     workspace.mkdir(parents=True, exist_ok=False)
-    _strict_setup_run(runner, init_argv(bd_path), workspace, env, transcript)
+    launcher.mkdir(parents=True, exist_ok=False)
+    _strict_setup_run(runner, init_argv(bd_path), launcher, env, transcript)
 
     info_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
                  "--readonly", "info"]
-    info_raw = _strict_setup_run(runner, info_argv, workspace, env, transcript)
+    info_raw = _strict_setup_run(runner, info_argv, launcher, env, transcript)
     info = observation._strict_json(info_raw)
     config = info.get("config") if isinstance(info, dict) else None
     prefix = config.get("issue_prefix") if isinstance(config, dict) else None
@@ -242,7 +250,7 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
 
     create_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
                    "create", "M7 exactly-once recovery pilot", "-t", "task", "-p", "4"]
-    created_raw = _strict_setup_run(runner, create_argv, workspace, env, transcript)
+    created_raw = _strict_setup_run(runner, create_argv, launcher, env, transcript)
     task_id = issue_id(created_raw)
 
     selection = native.NativeSelection(
@@ -277,7 +285,8 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
         return result
 
     adapter = PilotNativeAdapter(
-        selection, qualification_id, [qualification_ref], runner=captured_runner)
+        selection, qualification_id, [qualification_ref], runner=captured_runner,
+        command_cwd=launcher)
     command = {"kind": "claim", "native_task_id": task_id, "actor": ACTOR}
     operation_id = "m7-claim-" + hashlib.sha256(_canonical(command)).hexdigest()[:20]
     work_item_id = "m7-pilot::" + task_id
@@ -367,6 +376,7 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
         "shared_database_authorized": False,
         "installed_promoted": False,
         "workspace": str(workspace),
+        "launcher_cwd": str(launcher),
         "receipt_path": str(receipt),
         "bd_sha256": actual_sha,
         "selection_digest": adapter.selection_digest,
