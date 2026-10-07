@@ -167,8 +167,8 @@
     "tests_v2/test_source_recall.py": "7c5c3bff3cbd6964504053e2b7c22aac6e9ec942bab7106dc5a26654d40c224c",
     "tests_v2/test_watchdog_contract.py": "29868763858147b5c65f3fd2cd4630fcd0a790854110f3efee119f7a38a2c014",
     "tests_v2/test_m7_native_journal.py": "5946be7f325dd56f42cf42e5b20a89859f7d8173e67657811f409280b799711f",
-    "scripts/hybrid_bridge/native_pilot.py": "e5e9627ada6880c4e63925534276bb33da5e50d9bc56e27cad6794dae96f490f",
-    "tests_v2/test_m7_native_pilot.py": "8b58f0bd3703f038baa8e93adfadea9791f9a7b4fce358942bb8f54ea6f4a7f2",
+    "scripts/hybrid_bridge/native_pilot.py": "3b498422820f94a4469192122a81ead62d86f4eb28c9eccec1124fcbf8d88b4b",
+    "tests_v2/test_m7_native_pilot.py": "ce499531ac1ae92785ca596832efc2a18272481ea607086fd8ce4a1cd88d3ef9",
     "scripts/m7_native_pilot.py": "3a2adb0e23ae9e600ba5d2b631bc8919448102a663ab6c4ae6b89ab201892309",
     "tests_v2/test_m7_native_ci_workflow.py": "8321e82f516baf7512d8cf0317183598976adbecde4942c32543ef0d7f54342e"
   },
