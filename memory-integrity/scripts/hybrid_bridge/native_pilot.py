@@ -224,11 +224,14 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
         raise native.NativeContractError("E_PILOT_LAUNCHER_EXISTS")
     workspace.mkdir(parents=True, exist_ok=False)
     launcher.mkdir(parents=True, exist_ok=False)
-    _strict_setup_run(runner, init_argv(bd_path), launcher, env, transcript)
 
-    role_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
-                 "config", "set", "beads.role", "maintainer"]
-    _strict_setup_run(runner, role_argv, launcher, env, transcript)
+    _strict_setup_run(
+        runner, ["git", "init", "--quiet"], launcher, dict(os.environ), transcript)
+    _strict_setup_run(
+        runner, ["git", "config", "beads.role", "maintainer"],
+        launcher, dict(os.environ), transcript)
+
+    _strict_setup_run(runner, init_argv(bd_path), launcher, env, transcript)
 
     info_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
                  "--readonly", "info"]
