@@ -46,6 +46,184 @@ class NativeSelection:
             raise NativeContractError("E_NATIVE_EXE_SHA256: hexadecimal digest required") from exc
 
 
+
+def selection_digest(selection):
+    """Stable identity for the exact selected executable/project/database."""
+    if not isinstance(selection, NativeSelection):
+        raise NativeContractError("E_NATIVE_SELECTION_TYPE")
+    selection.validate()
+    payload = {
+        "executable": selection.executable,
+        "database": selection.database,
+        "expected_version": selection.expected_version,
+        "executable_sha256": selection.executable_sha256.lower(),
+        "release_ref": selection.release_ref,
+        "archive_sha256": selection.archive_sha256,
+        "expected_project_id": selection.expected_project_id,
+        "expected_database_name": selection.expected_database_name,
+        "expected_prefix": selection.expected_prefix,
+    }
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def validate_shared_claim_authorization(selection, authorization, *, operation_id,
+                                        work_item_id, native_task_id, actor):
+    """Validate one current, exact shared-project claim authorization.
+
+    This is deliberately not a generic native-write approval. The record binds
+    one selected workspace, one CM work item, one native task, one actor and one
+    durable operation id. Any mismatch fails before a subprocess can run.
+    """
+    if not isinstance(authorization, dict):
+        raise NativeQualificationError("E_SHARED_AUTH: object required")
+    required = {
+        "schema_version", "approved", "scope", "selection_digest",
+        "operation_id", "work_item_id", "native_task_id", "actor",
+        "qualification_id", "evidence_refs",
+    }
+    if set(authorization) != required:
+        raise NativeQualificationError("E_SHARED_AUTH_SCHEMA")
+    expected = {
+        "schema_version": 1,
+        "approved": True,
+        "scope": "SHARED_PROJECT_CLAIM",
+        "selection_digest": selection_digest(selection),
+        "operation_id": operation_id,
+        "work_item_id": work_item_id,
+        "native_task_id": native_task_id,
+        "actor": actor,
+    }
+    for key, value in expected.items():
+        if authorization.get(key) != value:
+            raise NativeQualificationError("E_SHARED_AUTH_BINDING: " + key)
+    qualification_id = authorization.get("qualification_id")
+    if not isinstance(qualification_id, str) or not qualification_id.strip():
+        raise NativeQualificationError("E_SHARED_AUTH_QUALIFICATION_ID")
+    refs = authorization.get("evidence_refs")
+    if not isinstance(refs, list) or not refs:
+        raise NativeQualificationError("E_SHARED_AUTH_EVIDENCE")
+    checked_refs = []
+    for ref in refs:
+        if not isinstance(ref, str) or len(ref) != 64:
+            raise NativeQualificationError("E_SHARED_AUTH_EVIDENCE")
+        try:
+            int(ref, 16)
+        except ValueError as exc:
+            raise NativeQualificationError("E_SHARED_AUTH_EVIDENCE") from exc
+        checked_refs.append(ref.lower())
+    out = dict(authorization)
+    out["selection_digest"] = expected["selection_digest"]
+    out["evidence_refs"] = checked_refs
+    return out
+
+
+class SharedNativeClaimAdapter:
+    """Qualified claim-only adapter for an explicitly authorized project.
+
+    Qualification is intentionally granular. It never implements create, close,
+    delete, merge, arbitrary update flags, or shell execution.
+    """
+
+    native_write_qualified = True
+    evidence_class = "NATIVE_VERIFIED"
+    qualification_scope = "SHARED_PROJECT_CLAIM"
+
+    def __init__(self, selection, authorization, *, operation_id, work_item_id,
+                 native_task_id, actor):
+        self.selection = selection
+        self.authorization = validate_shared_claim_authorization(
+            selection, authorization, operation_id=operation_id,
+            work_item_id=work_item_id, native_task_id=native_task_id, actor=actor)
+        self.operation_id = operation_id
+        self.work_item_id = work_item_id
+        self.native_task_id = native_task_id
+        self.actor = actor
+        self.selection_digest = self.authorization["selection_digest"]
+        self.qualification_id = self.authorization["qualification_id"]
+        self.qualification_evidence_refs = tuple(self.authorization["evidence_refs"])
+
+    def _run(self, args, *, readonly):
+        from . import native_observation as observation
+        from .native_pilot import _capture_record, build_env
+        exe, root, beads, _db, _metadata = observation._selection(self.selection)
+        argv = [str(exe), "--sandbox", "--actor", self.actor, "--json"]
+        if readonly:
+            argv.append("--readonly")
+        argv.extend(args)
+        result = observation._capture_process(
+            argv, cwd=str(root), env=build_env(beads),
+            timeout=observation.TIMEOUT_SECONDS, shell=False)
+        evidence = _capture_record(result)
+        return result["stdout"].decode("utf-8", errors="strict"), evidence
+
+    def execute(self, operation_id, command):
+        if operation_id != self.operation_id:
+            raise NativeQualificationError("E_SHARED_AUTH_BINDING: operation_id")
+        expected = {
+            "kind": "claim",
+            "native_task_id": self.native_task_id,
+            "actor": self.actor,
+        }
+        if command != expected:
+            raise NativeQualificationError("E_SHARED_CLAIM_COMMAND")
+        _raw, evidence = self._run(
+            ["update", self.native_task_id, "--claim"], readonly=False)
+        return evidence
+
+    def readback(self, command):
+        from .native_pilot import _parse_issue
+        expected = {
+            "kind": "claim",
+            "native_task_id": self.native_task_id,
+            "actor": self.actor,
+        }
+        if command != expected:
+            raise NativeQualificationError("E_SHARED_CLAIM_COMMAND")
+        raw, _evidence = self._run(["show", self.native_task_id], readonly=True)
+        issue = _parse_issue(raw)
+        applied = (
+            issue.get("id") == self.native_task_id
+            and issue.get("status") in ("in_progress", "in-progress")
+            and issue.get("assignee") == self.actor
+        )
+        return {
+            "applied": applied,
+            "native_task_id": self.native_task_id,
+            "observed_state": {
+                "id": issue.get("id"),
+                "status": issue.get("status"),
+                "assignee": issue.get("assignee"),
+                "lease_expires_at": issue.get("lease_expires_at"),
+            },
+            "snapshot_digest": hashlib.sha256(
+                json.dumps(issue, sort_keys=True, separators=(",", ":"),
+                           ensure_ascii=False).encode("utf-8")
+            ).hexdigest(),
+        }
+
+
+def shared_claim_qualification(selection, authorization, *, operation_id,
+                               work_item_id, native_task_id, actor):
+    """Return the validated granular qualification description; perform no write."""
+    checked = validate_shared_claim_authorization(
+        selection, authorization, operation_id=operation_id,
+        work_item_id=work_item_id, native_task_id=native_task_id, actor=actor)
+    return {
+        "qualified": True,
+        "scope": "SHARED_PROJECT_CLAIM",
+        "selection_digest": checked["selection_digest"],
+        "qualification_id": checked["qualification_id"],
+        "evidence_refs": list(checked["evidence_refs"]),
+        "operation_id": operation_id,
+        "work_item_id": work_item_id,
+        "native_task_id": native_task_id,
+        "actor": actor,
+        "native_merge_qualified": False,
+        "native_close_qualified": False,
+        "generic_native_write_qualified": False,
+    }
+
 def native_status(selection):
     """Return an honest inactive status without probing or running a binary."""
     selection.validate()
