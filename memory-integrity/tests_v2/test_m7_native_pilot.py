@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -14,6 +15,7 @@ sys.path.insert(0, str(ROOT.parent / "claude-mon" / "scripts"))
 from complete_read_v2 import ledger
 from hybrid_bridge import native
 from hybrid_bridge import native_pilot
+import m7_native_pilot as pilot_cli
 
 
 class PilotHelpers(unittest.TestCase):
@@ -211,6 +213,49 @@ class DisposablePilotWorkflow(unittest.TestCase):
                 observer=lambda selection: {},
             )
         self.assertEqual(called, [])
+
+
+class PilotCliTests(unittest.TestCase):
+    def test_cli_routes_explicit_paths_and_prints_receipt_summary(self):
+        tmp = tempfile.TemporaryDirectory(prefix="mi-pilot-cli-")
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        bd = root / "bd.exe"
+        bd.write_bytes(b"x")
+        workspace = root / "workspace"
+        receipt = root / "receipt.json"
+        cm = ROOT.parent / "claude-mon"
+        expected = hashlib.sha256(bd.read_bytes()).hexdigest()
+        captured = {}
+
+        def run_func(**kwargs):
+            captured.update(kwargs)
+            return {"ok": True, "overall": "M7_DISPOSABLE_PILOT_VERIFIED"}
+
+        with mock.patch.object(pilot_cli, "_ledger_module", return_value=ledger):
+            code = pilot_cli.main([
+                "--bd", str(bd),
+                "--expected-executable-sha256", expected,
+                "--workspace", str(workspace),
+                "--receipt", str(receipt),
+                "--claude-mon-root", str(cm),
+            ], run_func=run_func)
+        self.assertEqual(code, 0)
+        self.assertEqual(Path(captured["bd_path"]), bd)
+        self.assertEqual(Path(captured["workspace"]), workspace)
+        self.assertEqual(Path(captured["receipt"]), receipt)
+        self.assertIs(captured["ledger_module"], ledger)
+
+    def test_cli_failure_is_exit_two_not_false_success(self):
+        with mock.patch.object(pilot_cli, "_ledger_module", side_effect=ValueError("bad companion")):
+            code = pilot_cli.main([
+                "--bd", "missing",
+                "--expected-executable-sha256", "0" * 64,
+                "--workspace", "w",
+                "--receipt", "r",
+                "--claude-mon-root", "cm",
+            ])
+        self.assertEqual(code, 2)
 
 
 if __name__ == "__main__":
