@@ -155,7 +155,7 @@ class DisposablePilotWorkflow(unittest.TestCase):
                     "dolt_database": "mip", "project_id": "pilot-project",
                 }), encoding="utf-8")
                 return result(b'{"ok":true}')
-            if "config" in argv and "set" in argv and "role" in argv:
+            if "config" in argv and "set" in argv and "beads.role" in argv:
                 state["role"] = True
                 return result(b'{"ok":true}')
             if "info" in argv:
@@ -217,7 +217,7 @@ class DisposablePilotWorkflow(unittest.TestCase):
             next(i for i, argv in enumerate(calls) if "version" in argv),
             next(i for i, argv in enumerate(calls) if "init" in argv))
         config_i = next(i for i, argv in enumerate(calls)
-                        if "config" in argv and "set" in argv and "role" in argv)
+                        if "config" in argv and "set" in argv and "beads.role" in argv)
         info_i = next(i for i, argv in enumerate(calls) if "info" in argv)
         self.assertLess(config_i, info_i)
         self.assertTrue(receipt.is_file())
