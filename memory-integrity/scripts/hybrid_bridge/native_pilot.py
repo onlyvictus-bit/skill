@@ -227,7 +227,7 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
     _strict_setup_run(runner, init_argv(bd_path), launcher, env, transcript)
 
     role_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
-                 "config", "set", "role", "maintainer"]
+                 "config", "set", "beads.role", "maintainer"]
     _strict_setup_run(runner, role_argv, launcher, env, transcript)
 
     info_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
