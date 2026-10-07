@@ -78,7 +78,7 @@
     "tests_v2/test_r2_workflow.py"
   ],
   "files": {
-    "SKILL.md": "54b434658dfc4f39ef2e6f61c694e4ee61475f4ae9697bf9f70f0df4d5790ec8",
+    "SKILL.md": "b96b9dc2d1eaa5bba430c2797e560598976f206c91610fd7844fe01c5c5e831a",
     "agents/openai.yaml": "08cf71e518ebcfb0b6afaf81cbbd71c19024c92d52df8a7fa4736803ec940edf",
     "capabilities-v2.json": "f0912d539d0c56c45516fffc9bca71dbf0ff2cda7eb7b61584501c2dbcd9ce99",
     "references/INDEX.md": "3546a95fccefbe301600a2db8e2e896a50d989bc218726db61ef2c444c40bd05",
@@ -90,7 +90,7 @@
     "references/document-ingestion.md": "ead50dca20103b64e124ad422d450c9b64f4dfcec8be8213f53c1ec65a87d5cf",
     "references/fable-source-basis.md": "8e32f67cfd01d949052d7380d9c0ec636c553fdc2b07dcebd794515a0b6445a4",
     "references/integration-architecture.md": "667477eedc325b3dd927947eab27f25e63a6d6402e8583db93cf9762361bfb4a",
-    "references/m7-native-observation.md": "f798f5f4a51735809c4f22856e48b3bad666c0f2aec5ab6362cb7cce4a5f6fd5",
+    "references/m7-native-observation.md": "bd2557a3fbe3fb3cc507cbfa6ef8a7ae2b76336cf4b3255ae714cf17a15b7b9d",
     "references/memory-integrity-model.md": "5c89c9d9b93ec9ce8139fc5f431b740e46ecd81e7a12597c458981e2c7ac44bc",
     "references/problem-model.md": "ed37e753cebcc8bda7c1b40ff70c5c89d0432c30bae196394c4ce562e72770ca",
     "references/r2-workflow.md": "baaee372997782febf994f3c02a17c1ff1fd82d0b00c87f889ed5e2f2037a60f",
@@ -166,8 +166,8 @@
     "tests_v2/test_source_recall.py": "7c5c3bff3cbd6964504053e2b7c22aac6e9ec942bab7106dc5a26654d40c224c",
     "tests_v2/test_watchdog_contract.py": "29868763858147b5c65f3fd2cd4630fcd0a790854110f3efee119f7a38a2c014",
     "tests_v2/test_m7_native_journal.py": "5946be7f325dd56f42cf42e5b20a89859f7d8173e67657811f409280b799711f",
-    "scripts/hybrid_bridge/native_pilot.py": "f082d9846f16d9ac00407e2bd129e9b0f18cca5fdeb5956c46b4b5bb7f943ed3",
-    "tests_v2/test_m7_native_pilot.py": "be4f0cb4817073c3b2b80e24d757f4b451bdbe00375ebf8ceed1e46e706146bb",
+    "scripts/hybrid_bridge/native_pilot.py": "3bbe12af0535d94c4d345cb5d7d14569b6ca17fd138c27d17a3ae2549beee251",
+    "tests_v2/test_m7_native_pilot.py": "bd1d51088b58be3b49dc885fa8fe9632d4f7b8eee1c480eabde6bcfe344cc324",
     "scripts/m7_native_pilot.py": "3a2adb0e23ae9e600ba5d2b631bc8919448102a663ab6c4ae6b89ab201892309"
   },
   "release": "2.0.0-m11-r4dev",
