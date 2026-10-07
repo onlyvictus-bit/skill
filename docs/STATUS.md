@@ -1,120 +1,48 @@
 # Qualification status
 
-The released R3/m11 pair remains the verified offline baseline. The
-`development/m7-completion` branch adds guarded M7 native-observation,
-durable native-operation recovery and a disposable exactly-once pilot, but it
-is not a promoted successor release and does not authorize shared/project
-native writes.
+R4 / 2.0.0-m12 is the formal successor candidate to the R3/m11 offline pair.
+R3 release archives remain unchanged for rollback and audit history.
 
-## Offline baseline: R3 / m11
+## R4 native capability boundary
 
-The matching release pair has retained offline verification of 383 packaged
-tests. Its 79 Memory Integrity and 65 claude-mon content-manifest entries were
-hash-checked again for the publication copy; each package also contains its
-content manifest. Release ZIP bytes remain unchanged.
-
-During publication preparation on 2026-10-06, the portable verifier was rerun
-on those exact copied archives: all 383 tests passed, with `TEST_ONLY`
-evidence and native qualification false. That baseline remains intact.
-
-## Development: M7 completion branch
-
-The development branch now contains these additional M7 layers:
-
-| Feature | Implemented / verified repository boundary | Remaining boundary |
+| Capability | R4 status | Evidence / limit |
 |---|---|---|
-| Native read observation | Pinned v1.3.1 executable/project/database checks; full issue/dependency enumeration; repeated head/info/export reads; strict diagnostics and capture evidence | Fresh host receipt for the exact current disposable selection |
-| Process containment | Windows Job Object / taskkill fallback and POSIX process-group timeout containment; clean non-job exits explicitly unverified/unproven | Host-specific residual behavior remains receipt-scoped |
-| Blocked work / prerequisites | Existing CM dependency guards plus a native wrapper that derives `guard(..., "dispatch")` internally before intent | Shared/project execution remains disabled until separately qualified |
-| Durable native journal | CM `NATIVE_INTENT`, `NATIVE_OUTCOME`, `NATIVE_UNKNOWN`, `NATIVE_RECONCILED`; immutable operation/work-item/command/selection binding | Real host pilot must supply native readback evidence |
-| Interruption recovery | Tests inject interruption after effect, reopen CM, reconcile by readback only, require no second write, and require idempotent repeat recovery | Native host observation still required; ambiguous readback remains UNKNOWN |
-| Disposable pilot | **REAL NATIVE GREEN** in Actions run `37597856215`: verified pinned v1.3.1 asset, one native claim, injected interruption, CM reopen, readback-only recovery, idempotent second recovery, retained receipt artifact `11471297205` | Scope is `DISPOSABLE_PILOT`; it does not qualify shared databases |
-| Branch merging | Compatible/conflicting deterministic fixture policy, retained origins/CAS and stale-head refusal; prior disposable compatible native merge observation exists | Conflicting native merge and post-merge native evidence revalidation still require direct observation |
-| Release | R4 content manifests track development files and existing R3 archives remain unchanged | Successor ZIPs/promotion/install require separate release approval |
+| Read-only native observation | QUALIFIED for pinned v1.3.1 selection | Exact executable/project/database identity, complete issue/dependency observation, strict diagnostics |
+| Durable native journal/recovery | QUALIFIED | CM NATIVE_INTENT/OUTCOME/UNKNOWN/RECONCILED, exactly-once recovery |
+| Shared-project claim protocol | QUALIFIED | Run 37606183562: production adapter, one claim, readonly readback, idempotent repeat, CM chain/replay VERIFIED |
+| Generic native writes | NOT QUALIFIED | No create/close/delete/arbitrary update authority |
+| Native merge | NOT QUALIFIED | Fixture policy exists; real conflicting native merge is not a release claim |
+| Shared database standing authority | NONE | Every real claim requires an exact current per-operation authorization |
+| Live AI/provider execution | NOT QUALIFIED | Separate approval and evidence required |
 
-### Repository verification
+R4 deliberately keeps native_beads_qualified=false. The truthful release-level
+capability is native_shared_claim_protocol_qualified=true, with
+generic_native_write_qualified=false and native_merge_qualified=false.
 
-A full GitHub Actions matrix for commit
-`0d73d82d0a603be295bce4266998ba6b706763c7` completed successfully across
-Ubuntu and Windows, Python 3.11–3.14, after the durable M7 journal and
-cross-platform containment fix. A later full matrix at
-`cb5c48b46b44ab8bdc8aff613aba7894649983b7` also completed successfully
-after adding the disposable pilot adapter/helpers and refreshing the R4
-manifest. Later guard/CLI/version-pin changes remain subject to the final
-current-head matrix before release claims are made.
+## Shared-claim proof
 
-The prior Ubuntu failure was a contract wording mismatch: tests required the
-receipt to include `unverified` while the non-Windows clean-exit path emitted
-only `containment unproven`. It now reports
-`containment unverified/unproven` without upgrading the proof claim.
+GitHub Actions run 37606183562 executed the production SharedNativeClaimAdapter
+against pinned Beads v1.3.1 on windows-latest. The retained receipt observed:
 
-The durable native-operation tests prove the core exactly-once orchestration
-invariant:
+- exactly one bd update <id> --claim;
+- readonly bd show readback proving the selected actor/state;
+- CM NATIVE_INTENT -> NATIVE_OUTCOME;
+- second invocation returned IDEMPOTENT_NATIVE_APPLIED without another claim;
+- CM internal history chain VERIFIED;
+- CM projection replay VERIFIED;
+- generic native and native merge qualification remained false.
 
-> after a durable intent, recovery either proves one native effect by readback
-> or stays UNKNOWN; it never blindly repeats the native write.
+Protocol qualification does not authorize another project. An actual shared
+workspace needs a fresh NativeSelection, current observation, current companion
+dispatch guard and exact SHARED_PROJECT_CLAIM authorization bound to selection
+digest, operation ID, work-item ID, native task ID and actor.
 
-The public/native wrapper does not trust a caller-provided guard result. It
-calls the matching companion coordination guard itself; a blocked guard
-produces no native intent and no native adapter call.
+## Release packaging gate
 
-## Disposable host pilot
+The formal R4 release is a matching two-package pair: memory-integrity m12 and
+claude-mon m12. The release builder regenerates each R4-CONTENT manifest, creates
+both ZIPs, creates the R4 release manifest, runs the portable verifier against
+the extracted pair, and then the normal Windows/Ubuntu Python 3.11-3.14 matrix
+must pass on the generated commit before promotion to main.
 
-The development skill exposes:
-
-```text
-python scripts/m7_native_pilot.py \
-  --bd <absolute-bd.exe> \
-  --expected-executable-sha256 <64-hex-sha256> \
-  --workspace <absolute-new-disposable-workspace> \
-  --receipt <absolute-new-receipt.json> \
-  --claude-mon-root <matching-companion>
-```
-
-The command refuses an existing workspace/receipt, verifies the selected
-binary SHA and pinned Beads v1.3.1/commit before initialization, then uses
-explicit `BEADS_DIR` with `init --quiet --stealth`. It creates only a
-disposable pilot task, issues exactly one claim, injects an interruption after
-the claim effect, reopens CM, and reconciles by readonly native state.
-
-A successful receipt reports
-`overall=M7_DISPOSABLE_PILOT_VERIFIED` and
-`pilot_native_write_observed=true` while deliberately retaining
-`native_beads_qualified=false`, `shared_database_authorized=false` and
-`installed_promoted=false`.
-
-
-### Real native M7 receipt
-
-Run `37597856215` / job `112714739126` completed successfully on
-`windows-latest` at commit
-`9fa76107f3a974bd6255ac151bd39ad97bdcaa25`.
-Artifact `11471297205` (`m7-native-pilot-receipt`) records exactly one
-native claim invocation, `UNKNOWN` after the injected interruption,
-`RECONCILED_NATIVE_APPLIED` after readonly recovery, and
-`IDEMPOTENT_RECONCILED` on the second recovery. The CM journal sequence is
-exactly `NATIVE_INTENT -> NATIVE_UNKNOWN -> NATIVE_RECONCILED`; internal
-chain and projection replay are both `VERIFIED`.
-
-## Still required before a final native successor
-
-1. Observe the remaining native branch-conflict/merge boundary if full native
-   merge qualification is required; never substitute fixture success for that
-   observation.
-2. Perform an independent/adversarial final review of the current head and a
-   fresh full regression matrix.
-3. Build matching successor metadata/manifests/ZIPs only after those gates.
-4. Merge/promote/install/replace the released or installed pair only with
-   separate authorization.
-
-No live AI call, shared database mutation, installation, global skill
-promotion, or released R3 archive replacement is performed merely by this
-development work.
-
-## Public-consent clarification
-
-Approval from another project or a pasted historical receipt grants no
-current-environment authority. A verified approval for an unchanged exact
-readonly selection may be retained without duplicate questioning. A
-disposable-pilot approval is limited to that selected disposable environment;
-failure never authorizes initialization or mutation elsewhere.
+Installed-copy replacement is separate from repository release promotion.
