@@ -11,6 +11,10 @@ on:
       - release/Verify-Memory-Integrity-R4.py
   workflow_dispatch:
 
+concurrency:
+  group: r4-formal-release-builder
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
