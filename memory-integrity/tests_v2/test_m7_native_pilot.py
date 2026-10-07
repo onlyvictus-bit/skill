@@ -118,7 +118,7 @@ class DisposablePilotWorkflow(unittest.TestCase):
         exe.write_bytes(b"pilot-binary")
         workspace = root / "pilot"
         receipt = root / "pilot-receipt.json"
-        state = {"issue": None}
+        state = {"issue": None, "role": False}
         calls = []
 
         def result(stdout=b"", stderr=b""):
@@ -155,7 +155,14 @@ class DisposablePilotWorkflow(unittest.TestCase):
                     "dolt_database": "mip", "project_id": "pilot-project",
                 }), encoding="utf-8")
                 return result(b'{"ok":true}')
+            if "config" in argv and "set" in argv and "role" in argv:
+                state["role"] = True
+                return result(b'{"ok":true}')
             if "info" in argv:
+                if not state["role"]:
+                    return result(
+                        b'{}',
+                        b"warning: beads.role not configured (GH#2950).\n")
                 return result(json.dumps({
                     "database_path": str(workspace / ".beads" / "embeddeddolt"),
                     "mode": "direct", "issue_count": 0 if state["issue"] is None else 1,
@@ -209,6 +216,10 @@ class DisposablePilotWorkflow(unittest.TestCase):
         self.assertLess(
             next(i for i, argv in enumerate(calls) if "version" in argv),
             next(i for i, argv in enumerate(calls) if "init" in argv))
+        config_i = next(i for i, argv in enumerate(calls)
+                        if "config" in argv and "set" in argv and "role" in argv)
+        info_i = next(i for i, argv in enumerate(calls) if "info" in argv)
+        self.assertLess(config_i, info_i)
         self.assertTrue(receipt.is_file())
         self.assertEqual(json.loads(receipt.read_text(encoding="utf-8")), out)
         self.assertEqual(out["journal_events"],
