@@ -71,3 +71,20 @@ Native compatible/conflicting merge qualification, shared-database execution
 qualification, successor packaging/promotion and installed replacement remain
 separate gates. The m11 pair remains the released baseline until those gates
 are separately approved and observed.
+
+## R4 shared-project claim protocol qualification
+
+R4 adds a production SharedNativeClaimAdapter for the single qualified native
+mutation protocol: claim. Authorization is exact and per operation, binding the
+selected executable/project/database digest, CM work item, native task, actor
+and durable operation ID. The guarded coordinator derives current eligibility
+from the matching companion before appending NATIVE_INTENT.
+
+GitHub Actions run 37606183562 observed the production protocol with pinned
+Beads v1.3.1 on Windows: one update <id> --claim, readonly show readback,
+NATIVE_INTENT -> NATIVE_OUTCOME, idempotent repeat with no second claim, and
+VERIFIED CM internal chain/projection replay.
+
+This qualifies the protocol, not blanket database authority. Each real shared
+workspace still requires its own explicit current authorization. Generic native
+writes, native close/delete/create and native merge remain unqualified.
