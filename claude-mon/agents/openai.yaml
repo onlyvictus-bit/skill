@@ -1,3 +1,10 @@
 interface:
   display_name: "Claude Mon"
-  short_description: "Prove complete source coverage with hashes, manifests, and read receipts."
+  short_description: "Internal companion engine for memory-integrity: exact source coverage evidence. Invoke only via memory-integrity with an explicit companion path."
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: false

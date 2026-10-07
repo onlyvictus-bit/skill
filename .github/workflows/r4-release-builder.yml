@@ -1,0 +1,158 @@
+name: r4-release-builder
+
+on:
+  push:
+    branches:
+      - release/r4-successor
+    paths:
+      - .github/workflows/r4-release-builder.yml
+      - memory-integrity/**
+      - claude-mon/**
+      - release/Verify-Memory-Integrity-R4.py
+  workflow_dispatch:
+
+concurrency:
+  group: r4-formal-release-builder
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Regenerate R4 content manifests and deterministic pair
+        shell: python
+        run: |
+          import hashlib, json, os, pathlib, zipfile
+
+          RELEASE = '2.0.0-m12-r4'
+          roots = [pathlib.Path('memory-integrity'), pathlib.Path('claude-mon')]
+
+          def sha(raw):
+              return hashlib.sha256(raw).hexdigest()
+
+          def baseline_map(path):
+              doc = json.loads(path.read_text(encoding='utf-8'))
+              return {row['path']: row['sha256'] for row in doc['files']}
+
+          def refresh(root):
+              manifest_path = root / 'tests_v2' / 'R4-CONTENT.json'
+              actual = {
+                  p.relative_to(root).as_posix(): sha(p.read_bytes())
+                  for p in root.rglob('*')
+                  if p.is_file() and '__pycache__' not in p.parts
+                  and p.suffix != '.pyc' and p != manifest_path
+              }
+              r1 = baseline_map(root / 'tests_v2' / 'baseline-r1.json')
+              r2 = baseline_map(root / 'tests_v2' / 'baseline-r2.json')
+              missing_r1 = sorted(set(r1) - set(actual))
+              missing_r2 = sorted(set(r2) - set(actual))
+              if missing_r1 or missing_r2:
+                  raise AssertionError((root.name, 'baseline file deleted', missing_r1, missing_r2))
+              doc = json.loads(manifest_path.read_text(encoding='utf-8'))
+              doc['schema_version'] = 1
+              doc['release'] = RELEASE
+              doc['files'] = dict(sorted(actual.items()))
+              doc['changed_r1_files'] = sorted(p for p in r1 if r1[p] != actual[p])
+              doc['added_files'] = sorted(set(actual) - set(r1))
+              doc['changed_r2_files'] = sorted(p for p in r2 if r2[p] != actual[p])
+              doc['added_r2_files'] = sorted(set(actual) - set(r2))
+              doc.pop('release_zip_sha256', None)
+              manifest_path.write_text(json.dumps(doc, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+
+          for root in roots:
+              refresh(root)
+
+          release_dir = pathlib.Path('release')
+          release_dir.mkdir(exist_ok=True)
+
+          def deterministic_zip(root, out):
+              with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+                  for p in sorted(root.rglob('*')):
+                      if not p.is_file() or '__pycache__' in p.parts or p.suffix == '.pyc':
+                          continue
+                      name = p.as_posix()
+                      info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+                      info.compress_type = zipfile.ZIP_DEFLATED
+                      info.external_attr = 0o100644 << 16
+                      z.writestr(info, p.read_bytes())
+
+          packages = {}
+          for root in roots:
+              out = release_dir / (root.name + '-r4.zip')
+              deterministic_zip(root, out)
+              raw = out.read_bytes()
+              with zipfile.ZipFile(out) as z:
+                  names = z.namelist()
+              if len(names) != len(set(names)) or sum(n.endswith('/SKILL.md') for n in names) != 1:
+                  raise AssertionError('unsafe package ' + root.name)
+              packages[root.name] = {
+                  'zip': out.name,
+                  'sha256': sha(raw),
+                  'bytes': len(raw),
+                  'entries': len(names),
+              }
+
+          manifest = {
+              'schema_version': 1,
+              'release': RELEASE,
+              'source_trigger_sha': os.environ['GITHUB_SHA'],
+              'evidence_class': 'NATIVE_VERIFIED',
+              'native_shared_claim_qualified': True,
+              'native_beads_qualified': False,
+              'generic_native_write_qualified': False,
+              'native_merge_qualified': False,
+              'shared_database_standing_authority': False,
+              'installed_promoted': False,
+              'packages': packages,
+          }
+          (release_dir / 'Memory-Integrity-R4-Release-Manifest.json').write_text(
+              json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+
+      - name: Verify exact R4 pair
+        run: python -B release/Verify-Memory-Integrity-R4.py
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+
+      - name: Verify repository R4 contracts
+        run: python -B -m unittest discover -s .github/tests -v
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+
+      - name: Commit generated R4 release artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add memory-integrity/tests_v2/R4-CONTENT.json
+          git add claude-mon/tests_v2/R4-CONTENT.json
+          git add release/memory-integrity-r4.zip
+          git add release/claude-mon-r4.zip
+          git add release/Memory-Integrity-R4-Release-Manifest.json
+          git diff --cached --exit-code && { echo 'No release changes to commit'; exit 0; } || true
+          git commit -m 'release: build formal R4 m12 pair'
+          git push origin HEAD:release/r4-successor
+
+      - name: Retain formal R4 pair
+        uses: actions/upload-artifact@v4
+        with:
+          name: r4-formal-release-pair
+          path: |
+            release/memory-integrity-r4.zip
+            release/claude-mon-r4.zip
+            release/Memory-Integrity-R4-Release-Manifest.json
+            release/Verify-Memory-Integrity-R4.py
+          if-no-files-found: error
+          retention-days: 30

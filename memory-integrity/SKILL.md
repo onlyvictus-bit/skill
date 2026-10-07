@@ -543,3 +543,114 @@ until the separately approved M7 runtime/database pilot; installed promotion
 and live calls remain separate. In uploaded/no-runner ChatGPT mode, use only the
 dependency/branch/history checklist and section-12 report as MANUAL_REPORTED,
 never claim enforced dependencies, computed hashes or strict READY.
+
+## M7 native coordination candidate (development, not yet released)
+
+For an explicitly selected Beads workspace, read
+[M7 native observation](references/m7-native-observation.md). Keep readonly
+observation separate from native mutation qualification.
+
+### Read-only observation
+
+Use:
+
+```text
+python scripts/memory_integrity_workflow.py native-observe \
+  --claude-mon-root <matching-companion> \
+  --selection-file <exact-selection.json> \
+  --receipt <absolute-new-receipt.json>
+```
+
+This checks the selected executable/build/project/database, the complete
+issue/dependency export and repeated current head/data reads. All outcomes
+remain `NATIVE_OBSERVED_UNQUALIFIED`, `active=false` and
+`native_beads_qualified=false`. Observed task closure, assignment or lease
+dates never create accepted evidence or an effective execution fence.
+
+### Disposable M7 exactly-once pilot
+
+Only after the current user has explicitly authorized an isolated disposable
+pilot, run the dedicated command with a **new** workspace and receipt path:
+
+```text
+python scripts/m7_native_pilot.py \
+  --bd <absolute-bd.exe> \
+  --expected-executable-sha256 <64-hex-sha256> \
+  --workspace <absolute-new-disposable-workspace> \
+  --receipt <absolute-new-receipt.json> \
+  --claude-mon-root <matching-companion>
+```
+
+The pilot verifies the executable SHA and pinned Beads v1.3.1/commit before
+initialization, keeps the disposable Beads database external via explicit `BEADS_DIR`, creates a tiny
+sibling launcher Git repository only to provide the pinned v1.3.1 `beads.role`
+configuration, then runs `init --quiet --stealth`, creates one disposable task, and performs one claim
+through the durable CM native journal. It intentionally interrupts after the
+claim effect but before the terminal outcome, reopens CM, and reconciles by
+readonly backend state. Success requires exactly one claim invocation and the
+journal sequence `NATIVE_INTENT -> NATIVE_UNKNOWN -> NATIVE_RECONCILED`.
+A second reconciliation must be idempotent.
+
+The retained pilot receipt reports
+`overall=M7_DISPOSABLE_PILOT_VERIFIED`,
+`pilot_native_write_observed=true`, and still
+`native_beads_qualified=false`. That distinction is mandatory: disposable
+qualification does **not** authorize shared/project writes, installation,
+promotion, source-code merges, task closure, or live provider calls.
+
+The protected native-operation seam derives its dispatch decision from the
+matching companion's coordination guard; public callers do not supply a
+pre-approved guard result. Once a durable native intent exists without a proven
+terminal result, the coordinator never blindly repeats the write. Recovery is
+readback-only; absent or ambiguous readback stays UNKNOWN.
+
+A failed read or pilot is BLOCKED. Never treat it as permission to initialize a
+different database, retry an uncertain native write, relax stderr diagnostics,
+or broaden the selected environment. An approval from another project or a
+pasted historical receipt grants no authority in the current environment.
+
+Native compatible/conflicting merge qualification, shared-database execution
+qualification, successor packaging/promotion and installed replacement remain
+separate gates. Without a runner, use only the manual checklist/report profile
+and never invent a successful native command or receipt.
+
+Reference index: read references/INDEX.md first and load only matching rows.
+
+## R4 / m12 formal successor
+
+R4 (2.0.0-m12) promotes the verified M7 journal/recovery work and adds one
+granular native capability: the **shared-project claim protocol**. This does not
+turn on generic native Beads execution.
+
+For a shared/project claim, require all of the following before mutation:
+
+1. an exact NativeSelection for the pinned executable/project/database;
+2. a fresh complete native observation of that selected workspace;
+3. current CM coordination eligibility derived through the matching m12
+   companion, not a caller-provided pass flag;
+4. an explicit authorization record with scope=SHARED_PROJECT_CLAIM bound to
+   the exact selection digest, operation ID, CM work item ID, native task ID and actor;
+5. retained qualification evidence references;
+6. durable CM NATIVE_INTENT before the one permitted bd update <id> --claim;
+7. native readonly show readback before terminal success.
+
+Use hybrid_bridge.native.SharedNativeClaimAdapter only through the guarded
+native-operation seam. The same operation identity is idempotent. An uncertain
+delivery is never blindly resent; reconcile by backend readback.
+
+R4 capability truth is deliberately granular:
+
+- native_shared_claim_protocol_qualified=true
+- native_beads_qualified=false
+- generic_native_write_qualified=false
+- native_merge_qualified=false
+
+A protocol qualification is not standing permission for any database. Every
+real shared workspace and claim still needs its own exact current authorization.
+Create, close, delete, merge, arbitrary update flags, live AI/provider calls,
+and installed-copy replacement remain outside this qualification unless
+separately approved and verified.
+
+The matching claude-mon m12 companion remains the CM ledger/history and
+coordination authority. Keep the explicit companion path and pinned schema
+digest; do not mix m11/m12 packages when using the formal R4 pair.

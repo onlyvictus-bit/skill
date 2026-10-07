@@ -252,3 +252,19 @@ scratch migration does not retroactively prove provenance or completeness.
 Native Beads and live AI remain unqualified/disabled. Regular uploaded chat
 without a runner is MANUAL_REPORTED only. Installation, shared-store migration,
 native pilot and provider calls require their own approval.
+
+Reference index: read references/INDEX.md first and load only matching rows.
+
+## R4 / m12 matching companion
+
+R4 (2.0.0-m12) keeps Claude Mon as the companion evidence, ledger, history
+and coordination engine. It does not execute Beads itself. The matching Memory
+Integrity m12 skill may use CM's current dispatch guard to authorize one
+separately scoped SHARED_PROJECT_CLAIM; CM still treats native task state as
+operational observation rather than accepted semantic/source evidence.
+
+The companion semantic schema remains compatible with the pinned m11 contract
+digest because the CM coordination contract itself is unchanged. Engine version
+identity advances to m12 so release packages cannot be silently mixed.
+native_beads_qualified remains false: generic native execution and native
+merge are not companion capabilities.

@@ -1,0 +1,82 @@
+name: m7-native-pilot
+
+on:
+  push:
+    branches:
+      - development/m7-completion
+      - release/r4-successor
+    paths:
+      - .github/workflows/m7-native-pilot.yml
+      - memory-integrity/scripts/m7_native_pilot.py
+      - memory-integrity/scripts/hybrid_bridge/native.py
+      - memory-integrity/scripts/hybrid_bridge/native_observation.py
+      - memory-integrity/scripts/hybrid_bridge/native_pilot.py
+      - claude-mon/scripts/complete_read_v2/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  disposable-native-pilot:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Download and verify pinned Beads v1.3.1
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $asset = "beads_1.3.1_windows_amd64.zip"
+          $url = "https://github.com/gastownhall/beads/releases/download/v1.3.1/$asset"
+          $zip = Join-Path $env:RUNNER_TEMP $asset
+          Invoke-WebRequest -Uri $url -OutFile $zip
+          $expected = "48cd82e1d3e311c9bf9a5d6d67ad1a8542ae13d4e20c5bfb527656c5e666af76"
+          $actual = (Get-FileHash -Algorithm SHA256 $zip).Hash.ToLowerInvariant()
+          if ($actual -ne $expected) { throw "Pinned Beads release asset hash mismatch: $actual" }
+          $runtime = Join-Path $env:RUNNER_TEMP "m7-beads-v1.3.1"
+          New-Item -ItemType Directory -Path $runtime -Force | Out-Null
+          Expand-Archive -Path $zip -DestinationPath $runtime -Force
+          $bd = (Get-ChildItem -Path $runtime -Recurse -Filter bd.exe | Select-Object -First 1).FullName
+          if (-not $bd) { throw "bd.exe missing from pinned release asset" }
+          $bdHash = (Get-FileHash -Algorithm SHA256 $bd).Hash.ToLowerInvariant()
+          "BD_PATH=$bd" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BD_SHA=$bdHash" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PILOT_WORKSPACE=$(Join-Path $env:RUNNER_TEMP 'mi-m7-native-pilot')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PILOT_RECEIPT=$(Join-Path $env:RUNNER_TEMP 'mi-m7-native-pilot-receipt.json')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Run disposable M7 interruption recovery pilot
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          python -B memory-integrity/scripts/m7_native_pilot.py --bd "$env:BD_PATH" --expected-executable-sha256 "$env:BD_SHA" --workspace "$env:PILOT_WORKSPACE" --receipt "$env:PILOT_RECEIPT" --claude-mon-root "$PWD\claude-mon"
+          if ($LASTEXITCODE -ne 0) { throw "M7 pilot exited $LASTEXITCODE" }
+
+      - name: Verify retained M7 pilot receipt
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $receipt = Get-Content -Raw -Encoding UTF8 "$env:PILOT_RECEIPT" | ConvertFrom-Json
+          if (-not $receipt.ok) { throw "pilot receipt is not ok" }
+          if ($receipt.overall -ne "M7_DISPOSABLE_PILOT_VERIFIED") { throw "unexpected pilot verdict: $($receipt.overall)" }
+          if ($receipt.native_beads_qualified -ne $false) { throw "disposable pilot must not globally qualify native Beads" }
+          if ($receipt.shared_database_authorized -ne $false) { throw "disposable pilot must not authorize shared databases" }
+          if ($receipt.claim_invocations -ne 1) { throw "expected exactly one native claim invocation" }
+          $events = ($receipt.journal_events -join ",")
+          if ($events -ne "NATIVE_INTENT,NATIVE_UNKNOWN,NATIVE_RECONCILED") { throw "unexpected native journal sequence: $events" }
+          if ($receipt.history_internal_chain -ne "VERIFIED") { throw "CM history chain is not verified" }
+          if ($receipt.history_projection_replay -ne "VERIFIED") { throw "CM projection replay is not verified" }
+
+      - name: Retain native pilot receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m7-native-pilot-receipt
+          path: ${{ env.PILOT_RECEIPT }}
+          if-no-files-found: error
+          retention-days: 14

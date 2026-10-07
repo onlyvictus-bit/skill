@@ -1,80 +1,41 @@
-# Memory Integrity — work in progress
+# Memory Integrity R4 / m12
 
-An evidence-focused skill for source-reading, audit, recall and recovery workflows.
-**This project is not fully built or native-qualified.** Publishing the source
-does not establish semantic completeness, production readiness or live AI support.
+Memory Integrity is an evidence-focused skill for complete-read, source coverage,
+durable recall, recovery and guarded task coordination. R4 is the formal successor
+to the R3/m11 offline pair.
 
-Memory Integrity is the user-facing skill. **claude-mon is its required companion
-engine**, not an optional second skill. Keep the matching pair together and pass
-the companion path explicitly; the workflow verifies its contract digest.
+The release remains a **matching two-package system**:
 
-## Versions and branches
+- memory-integrity: user-facing workflow, evidence composition and native claim guard
+- claude-mon: required companion for CM ledger, history and coordination
 
-| Branch | Contents | Evidence boundary |
-|---|---|---|
-| `main` | R3 / `2.0.0-m11`, the verified offline pair | `TEST_ONLY`; native Beads execution remains disabled |
-| `development/r4-native` | R4 read-only native-observation candidate | Work in progress; not packaged or promoted as a new release |
+R4 adds verified durable native-operation recovery and a granular shared-project
+claim protocol. It does **not** enable generic native Beads writes. Current native
+capability truth is:
 
-`main` preserves the exact R3 package files and release ZIPs. The development
-branch preserves the new observer and its tests without pretending the inherited
-R3 manifest is a release manifest for R4. See [status](docs/STATUS.md).
+- native_shared_claim_protocol_qualified=true
+- native_beads_qualified=false
+- generic_native_write_qualified=false
+- native_merge_qualified=false
+
+Every real shared workspace/claim still requires an exact current authorization
+bound to its selection, work item, native task, actor and operation ID. Native
+create/close/delete/merge and live AI/provider calls remain separately gated.
+
+## Release verification
+
+The formal R4 pair is recorded under release/ as memory-integrity-r4.zip and
+claude-mon-r4.zip with Memory-Integrity-R4-Release-Manifest.json and the
+standard-library Verify-Memory-Integrity-R4.py verifier. Keep the two packages
+together; the Memory Integrity workflow requires an explicit matching companion.
+
+R3 artifacts are retained unchanged for rollback/history.
 
 ## Repository layout
 
-- `memory-integrity/`: main SKILL.md, workflow, audit modules and tests.
-- `claude-mon/`: companion SKILL.md, complete-read engine, ledger and tests.
-- `release/`: the matching R3 ZIPs, release manifest and portable verifier.
-- `docs/`: public status and usage limitations; no private execution receipts.
+- memory-integrity/: main skill and workflows
+- claude-mon/: required companion engine
+- release/: verified R3 and R4 packages/manifests/verifiers
+- docs/: status, qualification evidence and operating boundaries
 
-No API key, credential configuration, native runtime binary, database, chat
-attachment, private host log or generated Python cache is intentionally included.
-
-## Start here
-
-Read [Memory Integrity SKILL.md](memory-integrity/SKILL.md) first and keep its
-six evidence states separate. Never claim more than the retained evidence proves.
-Read [claude-mon SKILL.md](claude-mon/SKILL.md) for the companion contract.
-
-Python is needed for the executable workflow. From the repository root:
-
-```powershell
-python -B memory-integrity/scripts/memory_integrity_workflow.py --help
-python -B memory-integrity/scripts/memory_integrity_workflow.py offline-run --help
-```
-
-For actual commands, use `--claude-mon-root` to point at this checkout's
-`claude-mon` directory. Do not substitute another version without verifying its
-contract. See [offline workflow](memory-integrity/references/r2-workflow.md) and
-[coordination policy](memory-integrity/references/r3-coordination.md).
-
-To verify the trusted matching R3 archives using standard-library Python:
-
-```powershell
-python -B release/Verify-Memory-Integrity-R3.py
-```
-
-The verifier checks archive/content hashes, original instruction prefixes and
-packaged tests in temporary extraction. Its success is offline test evidence,
-not native Beads, live-provider or semantic-comprehension qualification.
-
-For upload-only ChatGPT use without a runner, follow the manual checklist and
-label results `MANUAL_REPORTED`. Do not claim strict `READY` or enforced native
-dependencies from a manually filled report.
-
-## Beads-inspired features and limits
-
-The offline pair implements dependency-policy checks, blocked-work guards,
-fixture branch/merge policy, and a protected companion history ledger. It is
-not yet the fully integrated native [Beads](https://github.com/gastownhall/beads)
-workflow. A closed task or CLI claim is not accepted audit evidence. A filesystem
-owner replacing both ledger and trusted checkpoint is outside the history guarantee.
-
-R4 adds a real read-only observation route, but native writes, effective ownership
-fencing, native merge/recovery and comparative qualification remain unfinished.
-Do not enable native execution merely because a version check or read succeeds.
-
-## Licensing
-
-No new repository-wide license has been selected during publication. Beads is a
-separate upstream project; its runtime and source are not bundled here. Existing
-source files and notices are preserved rather than reassigned a license.
+MIT - see LICENSE.

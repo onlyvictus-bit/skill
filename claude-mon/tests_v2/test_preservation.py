@@ -18,7 +18,8 @@ class Preservation(unittest.TestCase):
         self.assertEqual(sha(current[:row["bytes"]]), row["sha256"])
 
     def test_release_exact_content_and_declared_changes(self):
-        name = "R3-CONTENT.json" if (ROOT/"tests_v2/R3-CONTENT.json").is_file() else "R2-CONTENT.json"
+        name = next(n for n in ("R4-CONTENT.json", "R3-CONTENT.json", "R2-CONTENT.json")
+                    if (ROOT / ("tests_v2/" + n)).is_file())
         manifest = json.loads((ROOT / "tests_v2" / name).read_text(encoding="utf-8"))
         baseline = json.loads((ROOT / "tests_v2" / "baseline-r1.json").read_text(encoding="utf-8"))
         actual = {p.relative_to(ROOT).as_posix():sha(p.read_bytes()) for p in ROOT.rglob("*")

@@ -1,9 +1,14 @@
 {
   "engine": "memory-integrity",
-  "engine_version": "2.0.0-m11",
+  "engine_version": "2.0.0-m12",
   "schema_version": 2,
   "entrypoint": "scripts/memory_integrity_v2.py",
-  "commands": ["capabilities", "audit", "report", "watchdog"],
+  "commands": [
+    "capabilities",
+    "audit",
+    "report",
+    "watchdog"
+  ],
   "companion": {
     "engine": "claude-mon",
     "min_schema_version": 2,
@@ -11,11 +16,35 @@
   },
   "live_backend": false,
   "public_workflow": "scripts/memory_integrity_workflow.py",
-  "coordination_commands": ["coordinate-init", "coordinate-run", "coordinate-resume", "coordinate-ready", "coordinate-verify", "coordinate-revoke", "history-seal", "branch-preview", "branch-merge-fixture", "branch-reconcile-fixture"],
+  "coordination_commands": [
+    "coordinate-init",
+    "coordinate-run",
+    "coordinate-resume",
+    "coordinate-ready",
+    "coordinate-verify",
+    "coordinate-revoke",
+    "history-seal",
+    "branch-preview",
+    "branch-merge-fixture",
+    "branch-reconcile-fixture"
+  ],
   "coordination_offline_policy": true,
   "branch_merge_offline_policy": true,
   "native_beads_qualified": false,
   "manual_coordination_evidence": "MANUAL_REPORTED",
-  "supported_inputs": ["utf-8-text", "utf-8-code", "ooxml-inventory", "pdf-inventory"],
-  "unsupported_inputs": ["live-agentmemory-service", "ocr-transcription", "docling-conversion"]
+  "supported_inputs": [
+    "utf-8-text",
+    "utf-8-code",
+    "ooxml-inventory",
+    "pdf-inventory"
+  ],
+  "unsupported_inputs": [
+    "live-agentmemory-service",
+    "ocr-transcription",
+    "docling-conversion"
+  ],
+  "native_shared_claim_protocol_qualified": true,
+  "native_merge_qualified": false,
+  "generic_native_write_qualified": false,
+  "native_shared_claim_authorization": "exact per-operation selection/work-item/task/actor binding required"
 }

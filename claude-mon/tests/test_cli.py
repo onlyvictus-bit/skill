@@ -19,9 +19,9 @@ class CliTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             (root / "docs" / "fable").mkdir(parents=True)
-            secret = "PRIVATE_PAYLOAD_123\nsecond line\n"
+            fixture_content = "PRIVATE_PAYLOAD_123\nsecond line\n"
             src = root / "source.txt"
-            src.write_text(secret, encoding="utf-8")
+            src.write_text(fixture_content, encoding="utf-8")
             reg = json.loads(self.run_cli("register", "--project", td, "--source", str(src)).stdout)
             sid = reg["source_id"]
             self.run_cli("unitize", "--project", td, "--source-id", sid, "--max-unit-bytes", "12")
