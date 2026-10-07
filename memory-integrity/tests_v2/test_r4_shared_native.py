@@ -20,6 +20,49 @@ class SharedNativeSurfaceTests(unittest.TestCase):
         self.assertTrue(callable(getattr(native, "SharedNativeClaimAdapter", None)))
         self.assertTrue(callable(getattr(native, "shared_claim_qualification", None)))
 
+    def test_authorization_is_exact_scope_not_blanket_native_permission(self):
+        selection = native.NativeSelection(
+            executable="C:/runtime/bd.exe",
+            database="C:/project",
+            expected_version="1.3.1",
+            executable_sha256="a" * 64,
+            expected_project_id="project-1",
+            expected_database_name="project_db",
+            expected_prefix="proj",
+        )
+        digest = native.selection_digest(selection)
+        auth = {
+            "schema_version": 1,
+            "approved": True,
+            "scope": "SHARED_PROJECT_CLAIM",
+            "selection_digest": digest,
+            "operation_id": "op-1",
+            "work_item_id": "work-1",
+            "native_task_id": "proj-a",
+            "actor": "agent-1",
+            "qualification_id": "qual-1",
+            "evidence_refs": ["b" * 64],
+        }
+        out = native.validate_shared_claim_authorization(
+            selection, auth, operation_id="op-1", work_item_id="work-1",
+            native_task_id="proj-a", actor="agent-1")
+        self.assertEqual(out["scope"], "SHARED_PROJECT_CLAIM")
+
+        for key, bad in (
+            ("selection_digest", "c" * 64),
+            ("operation_id", "op-2"),
+            ("work_item_id", "work-2"),
+            ("native_task_id", "proj-b"),
+            ("actor", "agent-2"),
+            ("scope", "ALL_NATIVE_WRITES"),
+        ):
+            changed = dict(auth, **{key: bad})
+            with self.subTest(key=key):
+                with self.assertRaises(native.NativeQualificationError):
+                    native.validate_shared_claim_authorization(
+                        selection, changed, operation_id="op-1",
+                        work_item_id="work-1", native_task_id="proj-a", actor="agent-1")
+
     def test_native_selection_digest_is_public_and_deterministic(self):
         selection = native.NativeSelection(
             executable="C:/runtime/bd.exe",
