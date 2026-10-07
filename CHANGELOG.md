@@ -1,5 +1,17 @@
 # Changelog
 
+## R4 / 2.0.0-m12 - 2026-10-07
+
+- Promotes the verified M7 durable native journal/recovery work.
+- Adds exact-scope SHARED_PROJECT_CLAIM authorization and production claim adapter.
+- Real protocol qualification proves one native claim, readonly readback, CM guard,
+  journal INTENT->OUTCOME and idempotent repeat without a second write.
+- Retains native_beads_qualified=false and native_merge_qualified=false; no blanket
+  shared-database authority is created.
+- Moves repository-only workflow tests out of the installable Memory Integrity skill.
+- Releases a matching memory-integrity + claude-mon m12 pair with portable verifier.
+- Preserves R3 archives unchanged.
+
 ## Unreleased (development/m0-ux-eval, review fixes)
 - Containment: extended-limit Job Object (class 9) with explicit signatures;
   always-close semantics; taskkill TimeoutExpired caught; containment fields
