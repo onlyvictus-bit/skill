@@ -544,34 +544,73 @@ and live calls remain separate. In uploaded/no-runner ChatGPT mode, use only the
 dependency/branch/history checklist and section-12 report as MANUAL_REPORTED,
 never claim enforced dependencies, computed hashes or strict READY.
 
-## M7 native observation candidate (not yet released)
+## M7 native coordination candidate (development, not yet released)
 
 For an explicitly selected Beads workspace, read
-[M7 native observation](references/m7-native-observation.md). The public route
-is `scripts/memory_integrity_workflow.py native-observe --claude-mon-root PATH
---selection-file PATH --receipt ABSOLUTE_NEW_PATH`. It requires the explicit
-matching companion and checks the selected executable/build/project/database,
-the complete issue/dependency export and repeated current head/data reads.
+[M7 native observation](references/m7-native-observation.md). Keep readonly
+observation separate from native mutation qualification.
 
-Use only a runtime/disposable workspace explicitly selected and authorized for
-the current environment. This public skill, another project's approval or a
-pasted historical receipt grants no authority. Retain verifiable current-scope
-approval without repeating the question only while the exact selection and
-readonly scope remain unchanged; otherwise obtain applicable authorization.
-Qualification is a separate evidence question.
-The command preserves stdout/stderr bytes, exit and capture diagnostics in a
-new receipt, refuses warnings or incomplete/currently changed observations,
-and never overwrites prior evidence. A failed read is BLOCKED and must not be
-treated as a missing database that needs blind initialization.
+### Read-only observation
 
-All observed outcomes remain `NATIVE_OBSERVED_UNQUALIFIED`, `active=false` and
-`native_beads_qualified=false`. Observed task closure, assignment and lease
-dates cannot create accepted evidence or an effective execution fence. This
-candidate does not enable native writes or claim full M7 readiness. Complete
-native prerequisite/claim, branch merge, central history/recovery and comparison
-qualification before releasing or promoting a final integrated pair.
+Use:
 
-Without a runner, describe the diagnostic as unavailable; continue only the
-manual checklist/report profile. Never invent a successful command or receipt.
+```text
+python scripts/memory_integrity_workflow.py native-observe \
+  --claude-mon-root <matching-companion> \
+  --selection-file <exact-selection.json> \
+  --receipt <absolute-new-receipt.json>
+```
+
+This checks the selected executable/build/project/database, the complete
+issue/dependency export and repeated current head/data reads. All outcomes
+remain `NATIVE_OBSERVED_UNQUALIFIED`, `active=false` and
+`native_beads_qualified=false`. Observed task closure, assignment or lease
+dates never create accepted evidence or an effective execution fence.
+
+### Disposable M7 exactly-once pilot
+
+Only after the current user has explicitly authorized an isolated disposable
+pilot, run the dedicated command with a **new** workspace and receipt path:
+
+```text
+python scripts/m7_native_pilot.py \
+  --bd <absolute-bd.exe> \
+  --expected-executable-sha256 <64-hex-sha256> \
+  --workspace <absolute-new-disposable-workspace> \
+  --receipt <absolute-new-receipt.json> \
+  --claude-mon-root <matching-companion>
+```
+
+The pilot verifies the executable SHA and pinned Beads v1.3.1/commit before
+initialization, uses explicit `BEADS_DIR` plus git-free
+`init --quiet --stealth`, creates one disposable task, and performs one claim
+through the durable CM native journal. It intentionally interrupts after the
+claim effect but before the terminal outcome, reopens CM, and reconciles by
+readonly backend state. Success requires exactly one claim invocation and the
+journal sequence `NATIVE_INTENT -> NATIVE_UNKNOWN -> NATIVE_RECONCILED`.
+A second reconciliation must be idempotent.
+
+The retained pilot receipt reports
+`overall=M7_DISPOSABLE_PILOT_VERIFIED`,
+`pilot_native_write_observed=true`, and still
+`native_beads_qualified=false`. That distinction is mandatory: disposable
+qualification does **not** authorize shared/project writes, installation,
+promotion, source-code merges, task closure, or live provider calls.
+
+The protected native-operation seam derives its dispatch decision from the
+matching companion's coordination guard; public callers do not supply a
+pre-approved guard result. Once a durable native intent exists without a proven
+terminal result, the coordinator never blindly repeats the write. Recovery is
+readback-only; absent or ambiguous readback stays UNKNOWN.
+
+A failed read or pilot is BLOCKED. Never treat it as permission to initialize a
+different database, retry an uncertain native write, relax stderr diagnostics,
+or broaden the selected environment. An approval from another project or a
+pasted historical receipt grants no authority in the current environment.
+
+Native compatible/conflicting merge qualification, shared-database execution
+qualification, successor packaging/promotion and installed replacement remain
+separate gates. Without a runner, use only the manual checklist/report profile
+and never invent a successful native command or receipt.
 
 Reference index: read references/INDEX.md first and load only matching rows.
