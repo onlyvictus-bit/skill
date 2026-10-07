@@ -202,11 +202,20 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
                 argv, cwd=str(cwd), env=env,
                 timeout=observation.TIMEOUT_SECONDS, shell=False)
 
-    workspace.mkdir(parents=True, exist_ok=False)
     beads = workspace / ".beads"
     env = build_env(beads)
     transcript = []
 
+    version_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
+                    "--readonly", "version"]
+    version_raw = _strict_setup_run(
+        runner, version_argv, workspace.parent, env, transcript)
+    version = observation._strict_json(version_raw)
+    if not isinstance(version, dict) or version.get("version") != "1.3.1" or \
+            version.get("commit") != observation.COMMIT:
+        raise native.NativeQualificationError("E_PILOT_VERSION")
+
+    workspace.mkdir(parents=True, exist_ok=False)
     _strict_setup_run(runner, init_argv(bd_path), workspace, env, transcript)
 
     info_argv = [str(bd_path), "--sandbox", "--actor", ACTOR, "--json",
