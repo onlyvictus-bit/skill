@@ -368,6 +368,23 @@ def coordinate_native_operation(journal, adapter, operation_id, work_item_id, co
     return {"operation_id": operation_id, "status": "NATIVE_APPLIED", "result": readback}
 
 
+
+def coordinate_guarded_native_operation(coordination_module, db, journal, adapter,
+                                        operation_id, work_item_id, artifacts_dir,
+                                        current_context, command):
+    """Derive the dispatch guard from CM itself, then perform one native op.
+
+    Callers provide observed context, not a pre-approved guard result. A
+    blocked/invalid CM guard raises before the native intent is appended.
+    """
+    guard_fn = getattr(coordination_module, "guard", None)
+    if not callable(guard_fn):
+        raise NativeContractError("E_NATIVE_COORDINATION_MODULE")
+    guard = guard_fn(db, work_item_id, artifacts_dir, current_context, "dispatch")
+    return coordinate_native_operation(
+        journal, adapter, operation_id, work_item_id, command, guard)
+
+
 def reconcile_native_operation(journal, adapter, operation_id, work_item_id, command):
     """Resolve uncertain native delivery by readback only, never by retrying."""
     if not isinstance(journal, CMCoordinationJournal):
