@@ -209,5 +209,55 @@ class NativeJournalTests(unittest.TestCase):
         self.assertEqual(self.adapter.write_count, 1)
 
 
+class GuardDerivationTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix="mi-m7-guard-")
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.db = ledger.connect(self.root / "ledger.sqlite")
+        self.addCleanup(lambda: self.db.close())
+        self.journal = native.CMCoordinationJournal(self.db, ledger)
+        self.adapter = QualifiedAdapterFixture()
+        self.command = {
+            "kind": "claim",
+            "native_task_id": "mip-a",
+            "actor": "memory-integrity-pilot",
+        }
+
+    def test_wrapper_derives_guard_from_coordination_module(self):
+        calls = []
+        class Coordination:
+            @staticmethod
+            def guard(db, work_item_id, artifacts_dir, current_context, phase):
+                calls.append((db, work_item_id, artifacts_dir, current_context, phase))
+                return good_guard()
+
+        result = native.coordinate_guarded_native_operation(
+            Coordination, self.db, self.journal, self.adapter,
+            "op-guarded", "work-A", str(self.root / "artifacts"),
+            {"contexts": {"work-A": {"observed": True}}}, self.command)
+        self.assertEqual(result["status"], "NATIVE_APPLIED")
+        self.assertEqual(self.adapter.write_count, 1)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(calls[0][1], "work-A")
+        self.assertEqual(calls[0][-1], "dispatch")
+
+    def test_blocked_real_guard_prevents_intent_and_native_call(self):
+        class Coordination:
+            @staticmethod
+            def guard(*args, **kwargs):
+                raise RuntimeError("E_COORD_BLOCKED: prerequisite A incomplete")
+
+        with self.assertRaisesRegex(RuntimeError, "E_COORD_BLOCKED"):
+            native.coordinate_guarded_native_operation(
+                Coordination, self.db, self.journal, self.adapter,
+                "op-blocked-real", "work-A", str(self.root / "artifacts"),
+                {"contexts": {}}, self.command)
+        self.assertEqual(self.adapter.write_count, 0)
+        self.assertEqual(
+            self.db.execute("SELECT COUNT(*) FROM events WHERE kind LIKE 'NATIVE_%'").fetchone()[0],
+            0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
