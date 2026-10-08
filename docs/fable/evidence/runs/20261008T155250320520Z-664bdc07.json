@@ -1,0 +1,56 @@
+{
+  "basis": {
+    "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+    "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+    "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+  },
+  "created_at": "2026-10-08T15:52:50.320520+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "criterion_ids": [
+        "REQ-18-1"
+      ],
+      "evidence_type": "manual",
+      "id": "EV-6e75260323a24a53bd23f3e48ffa914f",
+      "note": "Source/dependency invalidation and reuse are observed. Unrelated commits remain usable, stale sources/branches block affected use, sealed fragments reuse only exact matching parser/source identities, and corrupt caches are reparsed. Requested syntax admission re-extracts independently.",
+      "observed_at": "2026-10-08T15:52:50.319923+00:00",
+      "observer": "root",
+      "requirement_ids": [
+        "REQ-18"
+      ],
+      "result": "pass",
+      "source": "Manual root review of docs/fable/derived/full-workflow-plan.md, full-workflow-verification.md, offline-benefit.json, native completion gates, independent specialist challenges, and current GitHub checks. PR https://github.com/onlyvictus-bit/skill/pull/3; tested head cce0c0ee98c42e65bf0f60db103eb6bee871b508; merge 2f8c685b6818c1bbb7436a0d2b10db0e9ef50782; tree de05011b10125be3bbc1bd63cebc9770cd48cfd4. Selected-runtime knowledge suite:123 pass,0skip. Portable suites:568,2 Windows-only skips on Linux. ",
+      "test_id": "TEST-REVIEW"
+    }
+  ],
+  "run_id": "20261008T155250320520Z-664bdc07",
+  "schema": 2
+}

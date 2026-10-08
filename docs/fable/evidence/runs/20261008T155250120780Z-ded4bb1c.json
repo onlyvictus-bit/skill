@@ -1,0 +1,45 @@
+{
+  "basis": {
+    "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+    "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+    "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+  },
+  "created_at": "2026-10-08T15:52:50.120780+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "criterion_ids": [
+        "REQ-13-1",
+        "REQ-13-3",
+        "REQ-13-4"
+      ],
+      "evidence_type": "manual",
+      "id": "EV-c7b74dcc6a7a4340a83a723a41947d4c",
+      "note": "Actual structured content, not matching IDs alone, is compared with the independent oracle. Source availability comes from reopened oracle references; partial stages do not invent absence or loss. Matching packages pass actual worker and regression checks.",
+      "observed_at": "2026-10-08T15:52:50.120561+00:00",
+      "observer": "root",
+      "requirement_ids": [
+        "REQ-13"
+      ],
+      "result": "pass",
+      "source": "Manual root review of docs/fable/derived/full-workflow-plan.md, full-workflow-verification.md, offline-benefit.json, native completion gates, independent specialist challenges, and current GitHub checks. PR https://github.com/onlyvictus-bit/skill/pull/3; tested head cce0c0ee98c42e65bf0f60db103eb6bee871b508; merge 2f8c685b6818c1bbb7436a0d2b10db0e9ef50782; tree de05011b10125be3bbc1bd63cebc9770cd48cfd4. Selected-runtime knowledge suite:123 pass,0skip. Portable suites:568,2 Windows-only skips on Linux. ",
+      "test_id": "TEST-REVIEW"
+    }
+  ],
+  "run_id": "20261008T155250120780Z-ded4bb1c",
+  "schema": 2
+}

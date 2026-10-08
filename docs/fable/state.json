@@ -19,11 +19,20 @@
     "REQ-11",
     "REQ-12",
     "REQ-13",
-    "REQ-14"
+    "REQ-14",
+    "REQ-15",
+    "REQ-16",
+    "REQ-17",
+    "REQ-18",
+    "REQ-19",
+    "REQ-20",
+    "REQ-21",
+    "REQ-22",
+    "REQ-23"
   ],
-  "current_task": "TASK-FULL-WORKFLOW",
+  "current_task": null,
   "milestone": "FULL-WORKFLOW",
-  "next_action": "TDD proof units then native completion gates, hostile review, portable runtime and GitHub publication",
-  "phase": "execute",
+  "next_action": "Offline workflow complete and published. Separate future qualification: live services, learned models, global/DRIFT/distributed operation, broad model coding outcomes and active installed-copy promotion.",
+  "phase": "complete",
   "schema": 2
 }

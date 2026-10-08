@@ -1,0 +1,3056 @@
+{
+  "basis": {
+    "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+    "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+    "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+  },
+  "created_at": "2026-10-08T15:44:54.625746+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-6a54ec235f01474a9a7b0a78d157e409",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-01"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-02-1",
+        "REQ-02-2"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-7950f268dca34ca7bae524ea0ab212d5",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-02"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-03-1",
+        "REQ-03-2"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-0f671a0cf0194a499d72fdb9e923e635",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-03"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-04-1",
+        "REQ-04-2",
+        "REQ-04-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-708f18b22b5745b2bd476ee09711ecd5",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-04"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-05-1",
+        "REQ-05-2",
+        "REQ-05-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-b6966dab5e4b45cbb104fd9dadecea6c",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-05"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-06-1",
+        "REQ-06-2",
+        "REQ-06-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-0b90eb66be8b4c2f9c9f0f8a2eff2bf9",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-06"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-07-1",
+        "REQ-07-2",
+        "REQ-07-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-8796bf4c921c4b8fa4e89cf9f30decb4",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-07"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-08-1",
+        "REQ-08-2",
+        "REQ-08-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-80d42f3571c84b05bce7f556a68cf62a",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-08"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-09-1",
+        "REQ-09-2",
+        "REQ-09-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-e898ec85abe24e2692bf8116f12b67c0",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-09"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-10-1",
+        "REQ-10-2"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-431ae32241fa423c8152923a5c36565d",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-10"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-11-1",
+        "REQ-11-2",
+        "REQ-11-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-e36fec61162d4925b0c95cebfc2a88a0",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-11"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-8d1d3c2dd3214fcf92a564b060a6e69e",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-12"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-13-4"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-902f82fec5ae446d84562d3d8f432eac",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-13"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-14-2"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-0dbf1152963a43f3adb77d1fdaed9b88",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-14"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-15-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-2cda2b7ae5f3495397d6eb6d901f3088",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-15"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-16-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-22f56310103046ccbec3e7b446d89db0",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-16"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-17-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-d1bfc96266d34446a6d35b5369491c95",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-17"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-18-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-3a0b39307216449bb8c3ae0344fed478",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-18"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-19-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-6ead6f3b3be843c4be09609a5103b27f",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-19"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-20-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-b767cea0921b478bb6fb2486510954d1",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-20"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-21-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-20325569973643b39031e385ec82a57f",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-21"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-22-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-a0750f7b7a334f4aadb2dec19df77a46",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-22"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge*.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-23-1"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-cd7a548b9755407e87a602dd71530209",
+      "observed_at": "2026-10-08T15:40:34.035706+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-23"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-BRIDGE; deduplicated requirement bindings",
+      "stderr_tail": "...........................................................................................................................\n----------------------------------------------------------------------\nRan 123 tests in 117.610s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-BRIDGE"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-d1cd9631fd6b4340accd7cde50e3cede",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-01"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-7831aafc09d04e6dbcfd10ada3558116",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-02"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-1af6c36293034a05bba5dffdc86072f6",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-03"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-da96439815ef417c8af4c2df249b6183",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-04"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-efb881721ee84380bd34cd72dac1b941",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-05"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-513e330ab2c24d259aa048faf694afec",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-06"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-0cc496f89b7c4e988fb3b64e987dcd08",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-07"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-78f4b692c38a4f0784eaefbf3bd4e831",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-08"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-0d4f637f35214a1599d82d5fa256bf40",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-09"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-9880879e6136478ba1b3ba44fbd1b812",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-10"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-41a5d663938d472ebd6cfc4b7f13056e",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-11"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "a0e5e464e06c1be82e182265c0d5214afb862c626f62b9ad4f7e54281c46f236",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-62f33c882b53471c821690d175cec5df",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-12"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-13-4"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-f56653e2ec4a47a88c262bdddeb4dae0",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-13"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-eac2c37e8dd34fc1baa10f5062f813e3",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-14"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-6c0be918cca34f5b87882b9ff12ceceb",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-15"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-6262052cb96c4d418d070373b9c19ef5",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-16"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-f4e00009c538468c85eb4e08b8469ac9",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-17"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-72bf29481a1e499d94550296afc9eda3",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-18"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-3f938581d6884d5ab489b0aee76d6cbe",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-19"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-9f9a3568a84e41f788060a368a9338ab",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-20"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-b75c88d4581c44b6acd366dc0ccc99ff",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-21"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-a99deb135a18444287ff66b982faee3e",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-22"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/completion-gates.md",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/offline-benefit.json",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py"
+      ],
+      "artifacts_digest": "b83f07e1410679680f6c42b396d620c84a8d8f583cca4f71133dcaa17bf7c612",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "release/Verify-Knowledge-Bridge.py"
+        ]
+      },
+      "criterion_ids": [],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-1beb5c1a06514993ab215f2da533d3f8",
+      "observed_at": "2026-10-08T15:42:31.762479+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-23"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-REGRESSION; deduplicated requirement bindings",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"release\": \"knowledge-bridge-v1\",\n  \"tests\": 568,\n  \"skipped\": 2,\n  \"suites\": [\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"memory-integrity\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 319,\n      \"skipped\": 2\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests\",\n      \"tests\": 21,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"claude-mon\",\n      \"suite\": \"tests_v2\",\n      \"tests\": 190,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"skill-final\",\n      \"suite\": \".github/tests\",\n      \"tests\": 7,\n      \"skipped\": 0\n    },\n    {\n      \"package\": \"evals\",\n      \"suite\": \".\",\n      \"tests\": 10,\n      \"skipped\": 0\n    }\n  ],\n  \"real_runtime_selected\": true,\n  \"evidence_class\": \"TEST_ONLY\",\n  \"default_graph\": false,\n  \"coding_benefit\": \"UNVERIFIED\",\n  \"installed_promoted\": false\n}\nKNOWLEDGE_BRIDGE_PORTABLE_VERIFIED\n",
+      "test_id": "TEST-REGRESSION"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge_audit_integrity.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-13-1",
+        "REQ-13-2",
+        "REQ-13-3"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-308e910226ea4abd9de6cdd4646df355",
+      "observed_at": "2026-10-08T15:44:53.471254+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-13"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-AUDIT-REPAIR; deduplicated requirement bindings",
+      "stderr_tail": ".............\n----------------------------------------------------------------------\nRan 13 tests in 1.089s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-AUDIT-REPAIR"
+    },
+    {
+      "artifacts": [
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py"
+      ],
+      "artifacts_digest": "20f178c7668e24e08419abb03f4c770ce16abcc31f1af8f1c3f788951569fb6e",
+      "basis": {
+        "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+        "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "command": {
+        "argv": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "memory-integrity/tests_v2",
+          "-p",
+          "test_knowledge_audit_integrity.py"
+        ]
+      },
+      "criterion_ids": [
+        "REQ-14-1",
+        "REQ-14-2"
+      ],
+      "evidence_type": "automated",
+      "exit_code": 0,
+      "id": "EV-a99ac831139f49e9905e90ba40e1f08e",
+      "observed_at": "2026-10-08T15:44:53.471254+00:00",
+      "observer": "fable_guard",
+      "requirement_ids": [
+        "REQ-14"
+      ],
+      "result": "pass",
+      "source": "one unchanged subprocess execution for TEST-AUDIT-REPAIR; deduplicated requirement bindings",
+      "stderr_tail": ".............\n----------------------------------------------------------------------\nRan 13 tests in 1.089s\n\nOK\n",
+      "stdout_tail": "",
+      "test_id": "TEST-AUDIT-REPAIR"
+    }
+  ],
+  "run_id": "20261008T154454625746Z-539c3675",
+  "schema": 2
+}

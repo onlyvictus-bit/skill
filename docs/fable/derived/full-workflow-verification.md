@@ -1,6 +1,6 @@
 # Offline workflow qualification / bridge1.1
 
-This report records the offline workflow qualification. GitHub publication/head/CI observations are available in PR #3 and its check runs. Final Fable evidence closure remains unobserved after local execution transport disconnected; no final governor completion verdict is claimed.
+This report records the offline workflow qualification. [PR #3](https://github.com/onlyvictus-bit/skill/pull/3) merged tested head cce0c0ee98c42e65bf0f60db103eb6bee871b508 into main as 2f8c685b6818c1bbb7436a0d2b10db0e9ef50782. The merge tree exactly matches tested tree de05011b10125be3bbc1bd63cebc9770cd48cfd4, and all 24 GitHub checks pass. [Canonical evidence](../evidence/index.json) retains the reopened identities and check results in the publication review observation. Local execution recovered after the transport interruption. Completion is decided by fresh canonical Fable evidence and the original governor; the interrupted run is not counted as a pass.
 
 ## Result
 
@@ -53,4 +53,3 @@ Static Python and the narrow relation DSL are built, not arbitrary-language extr
 Admission supports source identity, protected request, structured oracle, local tests, fresh Python syntax, resolved static dependencies and manually reviewed propositions. Unknown required assurance classes fail. Complete-read/semantic/model truth does not follow from discovery or an offline admission verdict.
 
 Live/provider services, learned model weights, global/community/DRIFT/distributed operation, complete-corpus understanding and replacement of the active ChatGPT installed copy remain the original separate qualification scope. No external model benefit was invented. The historical audit patch referenced by the original intake was unavailable and was not claimed as personally reproduced.
-\n
