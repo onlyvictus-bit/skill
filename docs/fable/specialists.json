@@ -12,9 +12,17 @@
         {
           "path": "docs/fable/derived/audit-upgrade.md",
           "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-plan.md",
+          "sha256": "de3525fdf4ec314e44b056b7da8dde7e61fd0822d666f6eb763c4cec7d156208"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-verification.md",
+          "sha256": "52ec76431e01f7b179bf5584a177e06e8e107467d253eb231c09e2b48cc9b6e0"
         }
       ],
-      "reason": "Required routing/design/independence/release procedure",
+      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -29,7 +37,16 @@
         "REQ-11",
         "REQ-12",
         "REQ-13",
-        "REQ-14"
+        "REQ-14",
+        "REQ-15",
+        "REQ-16",
+        "REQ-17",
+        "REQ-18",
+        "REQ-19",
+        "REQ-20",
+        "REQ-21",
+        "REQ-22",
+        "REQ-23"
       ],
       "status": "observed",
       "test_ids": [
@@ -47,9 +64,17 @@
         {
           "path": "docs/fable/derived/audit-upgrade.md",
           "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-plan.md",
+          "sha256": "de3525fdf4ec314e44b056b7da8dde7e61fd0822d666f6eb763c4cec7d156208"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-verification.md",
+          "sha256": "52ec76431e01f7b179bf5584a177e06e8e107467d253eb231c09e2b48cc9b6e0"
         }
       ],
-      "reason": "Required routing/design/independence/release procedure",
+      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -64,7 +89,16 @@
         "REQ-11",
         "REQ-12",
         "REQ-13",
-        "REQ-14"
+        "REQ-14",
+        "REQ-15",
+        "REQ-16",
+        "REQ-17",
+        "REQ-18",
+        "REQ-19",
+        "REQ-20",
+        "REQ-21",
+        "REQ-22",
+        "REQ-23"
       ],
       "status": "observed",
       "test_ids": [
@@ -82,9 +116,17 @@
         {
           "path": "docs/fable/derived/audit-upgrade.md",
           "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-plan.md",
+          "sha256": "de3525fdf4ec314e44b056b7da8dde7e61fd0822d666f6eb763c4cec7d156208"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-verification.md",
+          "sha256": "52ec76431e01f7b179bf5584a177e06e8e107467d253eb231c09e2b48cc9b6e0"
         }
       ],
-      "reason": "Required routing/design/independence/release procedure",
+      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -99,7 +141,16 @@
         "REQ-11",
         "REQ-12",
         "REQ-13",
-        "REQ-14"
+        "REQ-14",
+        "REQ-15",
+        "REQ-16",
+        "REQ-17",
+        "REQ-18",
+        "REQ-19",
+        "REQ-20",
+        "REQ-21",
+        "REQ-22",
+        "REQ-23"
       ],
       "status": "observed",
       "test_ids": [
@@ -107,13 +158,38 @@
       ]
     },
     {
-      "disposition": "not_applicable",
+      "disposition": "selected",
       "name": "unlazy",
-      "outputs": [],
-      "reason": "Finite bridge proof units covered directly with TDD and Fable Loop; native Unlazy ledger would duplicate this bounded execution",
-      "requirement_ids": [],
+      "outputs": [
+        {
+          "path": "docs/fable/derived/full-workflow-plan.md",
+          "sha256": "de3525fdf4ec314e44b056b7da8dde7e61fd0822d666f6eb763c4cec7d156208"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-verification.md",
+          "sha256": "52ec76431e01f7b179bf5584a177e06e8e107467d253eb231c09e2b48cc9b6e0"
+        },
+        {
+          "path": "docs/fable/derived/completion-gates.md",
+          "sha256": "1ad7998537f56c851d25d91bf7a688028b25c19c888609e1ea1b0a4510fd3be1"
+        }
+      ],
+      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
+      "requirement_ids": [
+        "REQ-15",
+        "REQ-16",
+        "REQ-17",
+        "REQ-18",
+        "REQ-19",
+        "REQ-20",
+        "REQ-21",
+        "REQ-22",
+        "REQ-23"
+      ],
       "status": "observed",
-      "test_ids": []
+      "test_ids": [
+        "TEST-REVIEW"
+      ]
     },
     {
       "disposition": "not_applicable",
@@ -135,9 +211,17 @@
         {
           "path": "docs/fable/derived/audit-upgrade.md",
           "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-plan.md",
+          "sha256": "de3525fdf4ec314e44b056b7da8dde7e61fd0822d666f6eb763c4cec7d156208"
+        },
+        {
+          "path": "docs/fable/derived/full-workflow-verification.md",
+          "sha256": "52ec76431e01f7b179bf5584a177e06e8e107467d253eb231c09e2b48cc9b6e0"
         }
       ],
-      "reason": "Required routing/design/independence/release procedure",
+      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -152,7 +236,16 @@
         "REQ-11",
         "REQ-12",
         "REQ-13",
-        "REQ-14"
+        "REQ-14",
+        "REQ-15",
+        "REQ-16",
+        "REQ-17",
+        "REQ-18",
+        "REQ-19",
+        "REQ-20",
+        "REQ-21",
+        "REQ-22",
+        "REQ-23"
       ],
       "status": "observed",
       "test_ids": [

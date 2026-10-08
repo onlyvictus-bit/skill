@@ -1,7 +1,7 @@
 {
   "basis": {
-    "plan_digest": "e80fc3e229c62625e7082b4a01378a6b11c04e4eeb937af6f42eeed27c41e987",
-    "requirements_digest": "bbacb2206ce94c710ac9a6c94ef114f9a9b3458edd47119404d6588a93128b6b",
+    "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+    "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
     "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
   },
   "campaign_id": "semantica-bridge",
@@ -21,9 +21,9 @@
     "REQ-13",
     "REQ-14"
   ],
-  "current_task": null,
-  "milestone": "AUDIT-REPAIR",
-  "next_action": "GitHub upgrade merged and verified; optional future model-quality evaluation, incremental invalidation and active skill promotion remain separate backlog",
-  "phase": "complete",
+  "current_task": "TASK-FULL-WORKFLOW",
+  "milestone": "FULL-WORKFLOW",
+  "next_action": "TDD proof units then native completion gates, hostile review, portable runtime and GitHub publication",
+  "phase": "execute",
   "schema": 2
 }

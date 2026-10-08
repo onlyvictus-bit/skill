@@ -1,6 +1,6 @@
 {
   "base_release": "2.0.0-m12-r4",
-  "bridge_version": "1.0.0",
+  "bridge_version": "1.1.0",
   "default_graph": false,
   "evidence_class": "TEST_ONLY",
   "installed_promoted": false,
@@ -8,13 +8,13 @@
     "claude-mon": {
       "bytes": 154348,
       "entries": 68,
-      "sha256": "d5397948439ccbc12b58e5830b5ad51af46fd03be9ada100cfb06edd23ba0e55",
+      "sha256": "c3b0fa2a0c4f51847d62542ce48e8f5d5dfcbb38ab8af6d6e91b8f28976d0fcf",
       "zip": "claude-mon-knowledge-v1.zip"
     },
     "memory-integrity": {
-      "bytes": 276234,
-      "entries": 113,
-      "sha256": "ab8b427bdff3bd2dc29d08de48a2a604f2b7aa79a012134d51d322f305d736d9",
+      "bytes": 334605,
+      "entries": 127,
+      "sha256": "0ee5d6b2a512c3966989030ac9494ecaa8111ddc82cead80652a688ced3ec7e2",
       "zip": "memory-integrity-knowledge-v1.zip"
     }
   },

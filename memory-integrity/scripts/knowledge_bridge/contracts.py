@@ -101,7 +101,7 @@ def refs(value,sources):
 
 def validate_projection(doc,sources):
     keys(doc,{'schema_version','ontology','embedding','nodes','edges'},'projection')
-    if doc['schema_version']!=1 or doc['ontology']!='project-1': raise ValueError('E_VERSION')
+    if (doc['schema_version'],doc['ontology']) not in ((1,'project-1'),(2,'project-2')): raise ValueError('E_VERSION')
     e=keys(doc['embedding'],{'model','dimension','evidence_class'},'embedding')
     string(e['model'],'embedding model'); integer(e['dimension'],1,4096,'dimension')
     if e['evidence_class'] not in ('TEST_ONLY','HOST_OBSERVED','MANUAL_REPORTED'): raise ValueError('E_EMBEDDING_EVIDENCE')
@@ -138,5 +138,8 @@ def validate_projection(doc,sources):
         identity(row['id'],'edge'); refs(row['source_units'],sources); strings(row['conditions'],'conditions'); active(row,datetime.now(timezone.utc))
         if row['id'] in edges or row['subject'] not in ids or row['object'] not in ids or row['predicate'] not in PREDICATES: raise ValueError('E_EDGE_ENDPOINT_OR_TYPE')
         edges.add(row['id'])
+    if doc['ontology']=='project-2':
+        from .offline_engine import validate_types
+        validate_types(doc['nodes'],doc['edges'])
     if len(canonical(doc))>MAX_MESSAGE: raise ValueError('E_MESSAGE_LIMIT')
     return doc
