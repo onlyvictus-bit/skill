@@ -92,7 +92,7 @@ class ProtectedAdmission(unittest.TestCase):
   code,out=self.cli('knowledge-check-admission',*self.admit_args());self.assertEqual(code,0,out)
   # Exercise the existing external governor's actual automated-test consumer.
   import importlib.util
-  guard_path=Path('/root/.codex/skills/remote-skills/skill-6ab2a17ee0888191a75c7b5a1171fbbc/scripts/fable_guard.py')
+  guard_path=Path.home()/'.codex/skills/remote-skills/skill-6ab2a17ee0888191a75c7b5a1171fbbc/scripts/fable_guard.py'
   if guard_path.is_file():
    spec=importlib.util.spec_from_file_location('completion_fable_guard',guard_path);guard=importlib.util.module_from_spec(spec);spec.loader.exec_module(guard)
    argv=[sys.executable,'-B',str(self.entry),'knowledge-check-admission','--claude-mon-root',str(CM),*map(str,self.admit_args())]
