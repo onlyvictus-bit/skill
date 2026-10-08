@@ -1,0 +1,26 @@
+name: Knowledge package recovery
+on:
+  push:
+    branches: [development/semantica-package-recovery]
+    paths: [.github/workflows/knowledge-package-recovery.yml]
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild deterministic bridge pair
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -B release/Build-Knowledge-Bridge.py
+      - name: Save packages on recovery branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add memory-integrity/tests_v2/R4-CONTENT.json release/Knowledge-Bridge-Manifest.json release/memory-integrity-knowledge-v1.zip release/claude-mon-knowledge-v1.zip
+          git commit -m 'Rebuild bridge with explicit UTF-8 test transport [skip ci]'
+          git push origin HEAD:development/semantica-package-recovery
