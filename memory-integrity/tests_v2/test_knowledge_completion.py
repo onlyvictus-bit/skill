@@ -68,7 +68,7 @@ class ProtectedAdmission(unittest.TestCase):
  def setUp(self):
   if not os.environ.get('KNOWLEDGE_WORKER_PYTHON'):self.skipTest('explicit pinned runtime not selected')
   self.fixture=Completion('test_admission_rejects_unknown_assurance_classes');self.fixture.setUp();self.addCleanup(self.fixture.doCleanups);self.root=self.fixture.root;self.entry=ROOT/'scripts/memory_integrity_workflow.py'
-  (self.root/'policy.md').write_text('Client depends on Worker.\n');self.fixture.map['sources'].append({'id':'policy','path':'policy.md','authority':'AUTHORITATIVE'})
+  (self.root/'policy.md').write_bytes(b'Client depends on Worker.\r\n');self.fixture.map['sources'].append({'id':'policy','path':'policy.md','authority':'AUTHORITATIVE'})
   self.instructions='Verify worker returns 2'
   self.task={'schema_version':1,'task_id':'coding','required_units':[{'source_id':'policy','unit_id':'U000001'}],'require_graph':True,'max_bytes':200000,'execution_task_digest':c.digest(c.canonical({'schema_version':3,'instructions':self.instructions}))}
   self.policy={'schema_version':1,'workspace_id':'w','task_id':'coding','allowed_source_ids':['client','worker','test','policy']}

@@ -225,7 +225,7 @@ _VERBS = {
 _IDENTIFIER = r'[A-Za-z][A-Za-z0-9_:-]*(?:\.[A-Za-z][A-Za-z0-9_:-]*)*'
 _AFFIRMED = re.compile(r'^[ \t]*(?P<subject>' + _IDENTIFIER + r')[ \t]+'
                        r'(?P<verb>' + '|'.join(re.escape(verb) for verb in _VERBS) + r')[ \t]+'
-                       r'(?P<object>' + _IDENTIFIER + r')\.?[ \t]*\r?$', re.MULTILINE | re.IGNORECASE)
+                       r'(?P<object>' + _IDENTIFIER + r')\.?[ \t]*(?=\r?$)', re.MULTILINE | re.IGNORECASE)
 
 _NEGATIVE_SUBJECTS = frozenset(('nothing', 'nobody', 'none', 'never', 'neither'))
 
@@ -239,7 +239,7 @@ def _relation_line_starts(text):
             # Never select a sentence from surrounding context. A header,
             # disclaimer, example, fence, clause or unsupported line rejects
             # the entire submitted document, even across blank boundaries.
-            match = _AFFIRMED.fullmatch(line.rstrip('\n'))
+            match = _AFFIRMED.fullmatch(line.rstrip('\r\n'))
             if line.startswith((' ', '\t')) or match is None or match.group('subject').lower() in _NEGATIVE_SUBJECTS:
                 return None
             eligible.add(offset)

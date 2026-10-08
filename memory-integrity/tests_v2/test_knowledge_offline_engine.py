@@ -153,6 +153,21 @@ print(json.dumps({'relations':relations,'text':text},ensure_ascii=False))
         self.assertEqual(first['confidence_source'], 'HEURISTIC_UNCALIBRATED')
         self.assertIn('semantica', first['method'])
 
+    def test_crlf_preserves_proposition_text_and_original_byte_spans(self):
+        result = self.observe(r"""
+lf='Client depends on Worker.\nClient references Policy.\n'
+crlf=lf.replace('\n','\r\n')
+print(json.dumps({'lf':engine.extract_prose(lf),'crlf':engine.extract_prose(crlf),'text':crlf}))
+""")
+        self.assertEqual(len(result['crlf']), 2)
+        self.assertEqual([r['text'] for r in result['lf']], [r['text'] for r in result['crlf']])
+        raw = result['text'].encode('utf-8')
+        for row in result['crlf']:
+            self.assertEqual(raw[slice(*row['span'])].decode('utf-8'), row['text'])
+            self.assertNotIn('\r', row['text'])
+            self.assertEqual(raw[slice(*row['subject_span'])].decode('utf-8'), row['subject'])
+        self.assertEqual(result['crlf'][1]['span'][0], result['lf'][1]['span'][0] + 1)
+
     def test_conditional_negative_and_unrelated_prose_stays_unasserted(self):
         result = self.observe(r"""
 text='If enabled, Client depends on Worker.\nClient does not depend on Worker.\nClient depends on Worker if enabled.\nClient appears near Worker.\n'
