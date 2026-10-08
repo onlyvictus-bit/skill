@@ -219,7 +219,7 @@
     "tests_v2/test_extraction_gate.py": "75372ed93184ec6ee020f4dc2af614634af8d44e4e626db9ac2e9cea5d5ad173",
     "tests_v2/test_extraction_provenance.py": "2583b411ed9f0c37f441eeed44c75ab1ee34ccf6f96c1c906a07ef96599f161f",
     "tests_v2/test_fresh_session.py": "beff7a24ea2d9468181a7cfbce70bbebe7df10beefa914e3e3096907aa6f66bf",
-    "tests_v2/test_knowledge_audit_integrity.py": "9a860235223fd890b627e9424294bce8b3c525ba5645e6c05aa2dcf7540bc0c1",
+    "tests_v2/test_knowledge_audit_integrity.py": "94dcee17533dbc82e2ae3d04fb197c94a5ad39b0a4c6e6e081610c2cb8348f3c",
     "tests_v2/test_knowledge_bridge.py": "2d3a8f0ab8f47d4ac2cc18e33f008ef5b4e430e396e1a341620b46830c853605",
     "tests_v2/test_knowledge_workflow.py": "dc242b2d13ccca00661d038e8f94a8d69015048cec902bd8db5a5646f5801ddb",
     "tests_v2/test_legacy_import.py": "93b5c6f80ec61837f93c965b91eff4e3cc51f8f65a92042fecb2974716c4c8c8",

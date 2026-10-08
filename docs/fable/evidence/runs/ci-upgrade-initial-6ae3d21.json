@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "evidence_type": "operational",
+  "commit": "6ae3d2137aa2738c11087f43b865ff5a08ab7c4f",
+  "observed_at": "2026-10-08T05:31:47.169Z",
+  "outcome": "failed_before_correction",
+  "checks": [
+    {
+      "id": 113163589757,
+      "name": "isolated-runtime (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185906/job/113163589757"
+    },
+    {
+      "id": 113163589719,
+      "name": "isolated-runtime (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185906/job/113163589719"
+    },
+    {
+      "id": 113163589653,
+      "name": "suites (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589653"
+    },
+    {
+      "id": 113163589570,
+      "name": "isolated-runtime (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185906/job/113163589570"
+    },
+    {
+      "id": 113163589542,
+      "name": "suites (windows-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589542"
+    },
+    {
+      "id": 113163589478,
+      "name": "suites (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589478"
+    },
+    {
+      "id": 113163589469,
+      "name": "suites (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589469"
+    },
+    {
+      "id": 113163589443,
+      "name": "suites (ubuntu-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589443"
+    },
+    {
+      "id": 113163589439,
+      "name": "suites (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589439"
+    },
+    {
+      "id": 113163589407,
+      "name": "isolated-runtime (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185906/job/113163589407"
+    },
+    {
+      "id": 113163589405,
+      "name": "suites (ubuntu-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589405"
+    },
+    {
+      "id": 113163589241,
+      "name": "suites (windows-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732185856/job/113163589241"
+    },
+    {
+      "id": 113163497201,
+      "name": "isolated-runtime (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155984/job/113163497201"
+    },
+    {
+      "id": 113163497163,
+      "name": "suites (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497163"
+    },
+    {
+      "id": 113163497135,
+      "name": "suites (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497135"
+    },
+    {
+      "id": 113163497134,
+      "name": "isolated-runtime (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155984/job/113163497134"
+    },
+    {
+      "id": 113163497115,
+      "name": "isolated-runtime (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155984/job/113163497115"
+    },
+    {
+      "id": 113163497079,
+      "name": "suites (ubuntu-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497079"
+    },
+    {
+      "id": 113163497053,
+      "name": "suites (windows-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497053"
+    },
+    {
+      "id": 113163497052,
+      "name": "suites (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497052"
+    },
+    {
+      "id": 113163497016,
+      "name": "suites (ubuntu-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497016"
+    },
+    {
+      "id": 113163497007,
+      "name": "suites (windows-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163497007"
+    },
+    {
+      "id": 113163496953,
+      "name": "isolated-runtime (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155984/job/113163496953"
+    },
+    {
+      "id": 113163496933,
+      "name": "suites (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37732155981/job/113163496933"
+    }
+  ],
+  "root_cause": "StageIntegrity.trace used sqlite3.Connection transaction context without closing. Five new fixture cleanup operations failed with WinError 32 on Windows; all Linux jobs succeeded.",
+  "reproduction": "After fixture return, a captured connection accepted SELECT 1. After contextlib.closing fix, the same probe raised sqlite3.ProgrammingError, proving closure before cleanup.",
+  "correction": "Explicit contextlib.closing around the existing transaction context; test assertions unchanged.",
+  "primary_documentation": "https://github.com/python/cpython/blob/3.12/Doc/library/sqlite3.rst",
+  "verification_boundary": "Historical failed head only; corrected-head hosted CI pending."
+}

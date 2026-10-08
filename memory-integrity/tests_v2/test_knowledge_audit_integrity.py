@@ -1,5 +1,6 @@
 """Independent-oracle integrity across real stage bytes and public preflight."""
 import copy
+from contextlib import closing
 import json
 from pathlib import Path
 import sqlite3
@@ -62,7 +63,7 @@ class StageIntegrity(unittest.TestCase):
             raw = c.canonical(value)
             hashes.append(c.digest(raw))
             (run / 'artifacts' / hashes[-1]).write_bytes(raw)
-        with sqlite3.connect(run / 'ledger.sqlite') as db:
+        with closing(sqlite3.connect(run / 'ledger.sqlite')) as db, db:
             db.execute('CREATE TABLE attempts (id INTEGER PRIMARY KEY, request_digest TEXT, response_digest TEXT)')
             db.execute('CREATE TABLE accepted (attempt_id INTEGER, revoked INTEGER)')
             db.execute('INSERT INTO attempts VALUES (1,?,?)', hashes)
