@@ -12,9 +12,9 @@
       "zip": "claude-mon-knowledge-v1.zip"
     },
     "memory-integrity": {
-      "bytes": 334605,
+      "bytes": 334608,
       "entries": 127,
-      "sha256": "0ee5d6b2a512c3966989030ac9494ecaa8111ddc82cead80652a688ced3ec7e2",
+      "sha256": "555bec3019d9017a49bc395753b7cc9b7727c676fc2f1e620c79b5f5160de319",
       "zip": "memory-integrity-knowledge-v1.zip"
     }
   },

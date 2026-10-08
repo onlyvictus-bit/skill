@@ -35,7 +35,7 @@ class RetrievalV2(unittest.TestCase):
         self.ref = lambda n: {'source_id': n, 'unit_id': 'U000001'}
         nodes = [{'id': n, 'type': 'Assertion' if n == 'policy' else 'Component',
                   'text': {'policy': 'read operation retry policy', 'client': 'client caller',
-                           'worker': 'worker receives requests', 'secret': 'Confidential constraint'}[n],
+                           'worker': 'worker receives requests', 'secret': 'Private premise'}[n],
                   'source_units': [self.ref(n)], 'polarity': 'positive', 'conditions': [],
                   'derivation': None, 'valid_from': None, 'valid_until': None,
                   'review_status': 'unreviewed', 'vector': [1, 0]}

@@ -28,7 +28,7 @@ Independent real-worker privacy probe fitted exactly the authorized corpus, excl
 
 The selected pinned Semantica0.7.0 revision is320761de5d040a54a3220acc563223b4a7ffdc51 under isolated Python3.12. Native Unlazy runs the actual runtime knowledge suite and matching portable pair checks, derived from canonical Fable requirements. Knowledge suite:122 tests passed,0skips. Portable verification covers both legacy/v2 packages, repository contracts, evals, frontmatter, archive/tree identities, safe members and historical package digests. The original Fable runner consumes fresh subprocess observations; repeated requirement bindings reuse a single unchanged execution per declared test rather than rerunning that suite for each requirement.
 
-One gate expectation was initially written in Python regex notation even though Unlazy requires /pattern/flags. The underlying122 tests passed; the expectation failed. It was corrected without changing tests or acceptance scope and rerun. This failure remains disclosed rather than being relabeled as a product failure or erased.
+One gate expectation was initially written in Python regex notation even though Unlazy requires /pattern/flags. The underlying122 tests passed; the expectation failed. It was corrected without changing tests or acceptance scope and rerun. This failure remains disclosed rather than being relabeled as a product failure or erased. Hosted CI also flagged a synthetic denied-node fixture label as a possible credential. The label was renamed without changing the scanner or privacy behavior; packages and current observations were regenerated.
 
 ## Measured experiment
 

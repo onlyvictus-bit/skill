@@ -262,7 +262,7 @@
     "tests_v2/test_knowledge_completion.py": "ffa35ba8c31bc43d148b0aa5340ef9a259739327460eccdd8635b68da1d23986",
     "tests_v2/test_knowledge_extraction.py": "bdefa204171c8b4ccf570a89f0c8f740296d7c09e752d14ccadb613db140f7e9",
     "tests_v2/test_knowledge_offline_engine.py": "9d950ea044e79d36989aec3f201d8178f2ecc77abb44d05cb083103318d5e1d1",
-    "tests_v2/test_knowledge_retrieval_v2.py": "ab75089498c5bb25d41f68fd301b93781bedb61df3c99bde538958abebc35c06",
+    "tests_v2/test_knowledge_retrieval_v2.py": "d284387184dd52513f3208c36cd11ead2d8bdee0a36f8bc35fda906c3efe44b8",
     "tests_v2/test_knowledge_workflow.py": "dc242b2d13ccca00661d038e8f94a8d69015048cec902bd8db5a5646f5801ddb",
     "tests_v2/test_legacy_import.py": "93b5c6f80ec61837f93c965b91eff4e3cc51f8f65a92042fecb2974716c4c8c8",
     "tests_v2/test_m7_native_journal.py": "5946be7f325dd56f42cf42e5b20a89859f7d8173e67657811f409280b799711f",
