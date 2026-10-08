@@ -1,6 +1,6 @@
 # Offline workflow qualification / bridge1.1
 
-This report freezes the local coding workflow qualification. GitHub publication/head/CI observations are retained separately in canonical Fable evidence, so their later metadata does not change the code artifacts tested here.
+This report records the offline workflow qualification. GitHub publication/head/CI observations are available in PR #3 and its check runs. Final Fable evidence closure remains unobserved after local execution transport disconnected; no final governor completion verdict is claimed.
 
 ## Result
 
@@ -29,7 +29,7 @@ Independent real-worker privacy probe fitted exactly the authorized corpus, excl
 
 The selected pinned Semantica0.7.0 revision is320761de5d040a54a3220acc563223b4a7ffdc51 under isolated Python3.12. Native Unlazy runs the actual runtime knowledge suite and matching portable pair checks, derived from canonical Fable requirements. Knowledge suite:123 tests passed,0skips. Portable verification covers568 tests across both legacy/v2 packages, repository contracts, evals, frontmatter, archive/tree identities, safe members and historical package digests, with2 Windows-only skips on Linux. The original Fable runner consumes fresh subprocess observations; repeated requirement bindings reuse a single unchanged execution per declared test rather than rerunning that suite for each requirement.
 
-One gate expectation was initially written in Python regex notation even though Unlazy requires /pattern/flags. The underlying122 tests passed; the expectation failed. It was corrected without changing tests or acceptance scope and rerun. This failure remains disclosed rather than being relabeled as a product failure or erased. Hosted CI also flagged a synthetic denied-node fixture label as a possible credential. The label was renamed without changing the scanner or privacy behavior. Linux hosted runtime tests then exposed an optional external-governor fixture tied to an inaccessible /root path. That fixture now locates the installed guard in the current user's home; all public admission checks still run on every selected runtime, and the actual external consumer is additionally observed where installed. Packages and current observations were regenerated after both fixes.
+One gate expectation was initially written in Python regex notation even though Unlazy requires /pattern/flags. The underlying122 tests passed; the expectation failed. It was corrected without changing tests or acceptance scope and rerun. This failure remains disclosed rather than being relabeled as a product failure or erased. Hosted CI also flagged a synthetic denied-node fixture label as a possible credential. The label was renamed without changing the scanner or privacy behavior. Linux hosted runtime tests then exposed an optional external-governor fixture tied to an inaccessible /root path. That fixture now locates the installed guard in the current user's home; all public admission checks still run on every selected runtime, and the actual external consumer is additionally observed where installed. Packages and current observations were regenerated after both fixes. Windows then passed all123 source-tree knowledge tests but exposed locale decoding of UTF-8 Unicode output inside one archived test helper. Its subprocess now explicitly sets UTF-8 output and decoding. The existing deterministic builder regenerated the pair on an isolated GitHub recovery branch; the temporary packaging workflow is not part of the feature branch.
 
 ## Measured experiment
 
@@ -53,3 +53,4 @@ Static Python and the narrow relation DSL are built, not arbitrary-language extr
 Admission supports source identity, protected request, structured oracle, local tests, fresh Python syntax, resolved static dependencies and manually reviewed propositions. Unknown required assurance classes fail. Complete-read/semantic/model truth does not follow from discovery or an offline admission verdict.
 
 Live/provider services, learned model weights, global/community/DRIFT/distributed operation, complete-corpus understanding and replacement of the active ChatGPT installed copy remain the original separate qualification scope. No external model benefit was invented. The historical audit patch referenced by the original intake was unavailable and was not claimed as personally reproduced.
+\n

@@ -69,7 +69,8 @@ class ActualOfflineRuntime(unittest.TestCase):
         prefix += "socket.socket.connect=deny;socket.socket.connect_ex=deny;socket.create_connection=deny\n"
         prefix += "from knowledge_bridge import offline_engine as engine\n"
         out = subprocess.run([os.environ['KNOWLEDGE_WORKER_PYTHON'], '-B', '-c', prefix + body],
-                             capture_output=True, text=True, timeout=45)
+                             capture_output=True, text=True, encoding='utf-8',
+                             env=dict(os.environ, PYTHONIOENCODING='utf-8'), timeout=45)
         self.assertEqual(out.returncode, 0, out.stderr + out.stdout)
         return json.loads(out.stdout)
 
