@@ -34,16 +34,18 @@ def audit(expected,stages):
             if row['state']!='OBSERVED': limitations.append(name)
         else: observed[name]=claims(row)
     for ident,e in oracle.items():
-        for name in ('source','prompt','answer'):
+        for name in ('source','retrieval','prompt','answer'):
             current=observed[name]
-            if current is not None and name not in limitations and ident not in current:
+            if name!='retrieval' and current is not None and name not in limitations and ident not in current:
                 findings.append({'kind':'REQUIRED_CLAIM_MISSING','claim_id':ident,'stage':name})
             elif current is not None and ident in current and not same(e,current[ident]):
                 findings.append({'kind':'SOURCE_MISMATCH' if name=='source' else 'PROPOSITION_MISMATCH','claim_id':ident,'stage':name})
         previous=None
         for name in ('source','retrieval','prompt','answer'):
             current=observed[name]
-            if current is None: previous=None;continue
+            # An incomplete observation cannot establish absence or a loss.
+            # Positive mismatches above remain evidence even in PARTIAL data.
+            if current is None or name in limitations: previous=None;continue
             if ident not in current and previous is not None and ident in previous:
                 findings.append({'kind':'CONTEXT_GAP' if name=='prompt' else 'OBSERVED_LOSS','claim_id':ident,'stage':name,'causation':'UNPROVEN; alternate tool/derivation paths may exist'})
             previous=current

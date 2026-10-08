@@ -4,6 +4,38 @@ import math
 from . import contracts as c
 from . import indexing
 
+def validate_receipt(receipt,execution=False):
+    common={'ok','backend','results','limits_reached','lineage','shacl','query_binding','exclusions'}
+    runtime={'score_scale','bridge_version','semantica_version','revision','network_policy','answer_generation'}
+    if not isinstance(receipt,dict) or not common<=set(receipt) or set(receipt)-common-runtime: raise ValueError('E_RETRIEVAL_RECEIPT_SCHEMA')
+    backend=receipt['backend']
+    if receipt['ok'] is not True or backend not in ('DIRECT_INSPECTION_DEGRADED','SEMANTICA_OBSERVED','TEST_ONLY'): raise ValueError('E_RETRIEVAL_BACKEND')
+    c.strings(receipt['limits_reached'],'retrieval limits')
+    if not set(receipt['limits_reached'])<={'max_visits','max_results'}: raise ValueError('E_RETRIEVAL_LIMIT_KIND')
+    if not isinstance(receipt['results'],list) or not isinstance(receipt['lineage'],dict): raise ValueError('E_RETRIEVAL_RECEIPT_TYPE')
+    excluded=c.keys(receipt['exclusions'],{'outside_current_access_or_validity','optional_budget'},'retrieval exclusions')
+    c.integer(excluded['outside_current_access_or_validity'],0,10000,'excluded nodes')
+    if excluded['optional_budget']!=[]: raise ValueError('E_RETRIEVAL_EXCLUSIONS')
+    if backend!='SEMANTICA_OBSERVED':
+        c.keys(receipt,common,'unqualified retrieval receipt')
+        if receipt['shacl']!='UNVERIFIED' or receipt['lineage']: raise ValueError('E_RETRIEVAL_FALSE_QUALIFICATION')
+        if backend=='DIRECT_INSPECTION_DEGRADED' and (receipt['results'] or receipt['limits_reached']): raise ValueError('E_DEGRADED_RETRIEVAL_RESULTS')
+        if execution and backend=='TEST_ONLY': raise ValueError('E_RETRIEVAL_UNQUALIFIED')
+    else:
+        if receipt['shacl'] not in ('CONFORMS','UNAVAILABLE','UNVERIFIED'): raise ValueError('E_RETRIEVAL_SHACL_STATE')
+        for ident,lineage in receipt['lineage'].items():
+            c.identity(ident,'lineage node')
+            c.keys(lineage,{'integrity_verified','source_units','derivation','lineage_entity_ids'},'lineage')
+            if lineage['integrity_verified'] is not True or not isinstance(lineage['source_units'],list): raise ValueError('E_RETRIEVAL_LINEAGE')
+            c.strings(lineage['lineage_entity_ids'],'lineage entities')
+        if execution:
+            from . import BRIDGE_VERSION,SEMANTICA_VERSION,SEMANTICA_REVISION
+            c.keys(receipt,common|runtime,'observed retrieval receipt')
+            if receipt['shacl']=='UNVERIFIED': raise ValueError('E_RETRIEVAL_SHACL_STATE')
+            if receipt['bridge_version']!=BRIDGE_VERSION or receipt['semantica_version']!=SEMANTICA_VERSION or receipt['revision']!=SEMANTICA_REVISION or receipt['answer_generation'] is not False: raise ValueError('E_RETRIEVAL_RUNTIME_IDENTITY')
+            c.string(receipt['network_policy'],'network policy');c.string(receipt['score_scale'],'score scale')
+    return receipt
+
 def validate_policy(policy,doc,task):
     c.keys(policy,{'schema_version','workspace_id','task_id','allowed_source_ids'},'current access policy')
     c.keys(task,{'schema_version','task_id','required_units','require_graph','max_bytes','execution_task_digest'},'task obligations')
@@ -73,6 +105,7 @@ def validate_pack(pack):
         if c.digest(u['text'].encode('utf-8'))!=u['unit_sha256']: raise ValueError('E_PACK_UNIT_HASH')
     if not {(r['source_id'],r['unit_id']) for r in pack['required_units']}<=units: raise ValueError('E_PACK_REQUIRED_OMITTED')
     if pack['coverage']!='UNVERIFIED' or pack['semantic_audit']!='UNVERIFIED': raise ValueError('E_PACK_FALSE_QUALIFICATION')
+    validate_receipt(pack['retrieval'])
     return pack
 
 def verify_pack(pack,doc,root,policy,task,worker=None):
@@ -87,6 +120,7 @@ def verify_pack(pack,doc,root,policy,task,worker=None):
     if binding!=actual: raise ValueError('E_QUERY_CURRENT_SCOPE')
     selected,premises,refs=_candidates(pack['retrieval'],table,edges,binding)
     if selected!=pack['assertions'] or premises!=pack['premises']: raise ValueError('E_PACK_ASSERTION_OR_DERIVATION')
+    validate_receipt(pack['retrieval'],execution=True)
     required_refs={(r['source_id'],r['unit_id']) for r in refs+task['required_units']}
     if required_refs!={(u['source_id'],u['unit_id']) for u in pack['units']}: raise ValueError('E_PACK_SOURCE_CLOSURE')
     for u in pack['units']:

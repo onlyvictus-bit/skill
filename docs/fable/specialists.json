@@ -8,6 +8,10 @@
         {
           "path": "docs/fable/derived/cortex.md",
           "sha256": "4df1a323beb3859143cf0a8c6d0462b4cfefd041f3049d750902da8ac6ab9e21"
+        },
+        {
+          "path": "docs/fable/derived/audit-upgrade.md",
+          "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
         }
       ],
       "reason": "Required routing/design/independence/release procedure",
@@ -23,7 +27,9 @@
         "REQ-09",
         "REQ-10",
         "REQ-11",
-        "REQ-12"
+        "REQ-12",
+        "REQ-13",
+        "REQ-14"
       ],
       "status": "observed",
       "test_ids": [
@@ -37,6 +43,10 @@
         {
           "path": "docs/fable/derived/blueprint.md",
           "sha256": "74b1836668cadc485b1a742a9ee6b9839e4768558c545280380cc892076a1ce1"
+        },
+        {
+          "path": "docs/fable/derived/audit-upgrade.md",
+          "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
         }
       ],
       "reason": "Required routing/design/independence/release procedure",
@@ -52,7 +62,9 @@
         "REQ-09",
         "REQ-10",
         "REQ-11",
-        "REQ-12"
+        "REQ-12",
+        "REQ-13",
+        "REQ-14"
       ],
       "status": "observed",
       "test_ids": [
@@ -66,6 +78,10 @@
         {
           "path": "docs/fable/derived/triangulate.md",
           "sha256": "0a7c196466277fc1dc879a7d694bafc7ac2afe2bae6b4669c3f4b8d8d28d3333"
+        },
+        {
+          "path": "docs/fable/derived/audit-upgrade.md",
+          "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
         }
       ],
       "reason": "Required routing/design/independence/release procedure",
@@ -81,7 +97,9 @@
         "REQ-09",
         "REQ-10",
         "REQ-11",
-        "REQ-12"
+        "REQ-12",
+        "REQ-13",
+        "REQ-14"
       ],
       "status": "observed",
       "test_ids": [
@@ -113,6 +131,10 @@
         {
           "path": "docs/fable/derived/release-helper.md",
           "sha256": "571cabd26c6f8d8d34c6a9d678fa2a2f60b127936e2beade4a4dccd2144f80ce"
+        },
+        {
+          "path": "docs/fable/derived/audit-upgrade.md",
+          "sha256": "35ebe77dbaedde43cd059e09bd3c6b5f5065633e21d3cacb6841852dcbc93c36"
         }
       ],
       "reason": "Required routing/design/independence/release procedure",
@@ -128,7 +150,9 @@
         "REQ-09",
         "REQ-10",
         "REQ-11",
-        "REQ-12"
+        "REQ-12",
+        "REQ-13",
+        "REQ-14"
       ],
       "status": "observed",
       "test_ids": [

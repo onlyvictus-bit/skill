@@ -38,17 +38,27 @@ def verify(run,pack):
     if receipt!=observe(run,pack): raise ValueError('E_KNOWLEDGE_EXECUTION_BINDING')
     return {'ok':True,'verdict':'BOUND_OFFLINE','generation':pack['generation'],'pack_digest':pack['pack_digest'],'attempts':len(receipt['attempts']),'evidence_class':'TEST_ONLY','coverage':pack['coverage'],'semantic_truth':'UNVERIFIED'}
 
-def observed_stages(run,pack,expected):
-    from .verification import claims
-    oracle=claims(expected);units={(u['source_id'],u['unit_id']) for u in pack['units']}
-    selected={n['id'] for n in pack['assertions']}
-    stage_source=[e for e in expected if {(r['source_id'],r['unit_id']) for r in e['source_units']}<=units]
-    stage_retrieval=[e for e in stage_source if e['id'] in selected]
-    prompted=set();answer=[];partial=False
+def observed_stages(run,pack,expected,source_units=None):
+    from .verification import claims,CLAIM_FIELDS
+    claims(expected)
+    # Current source availability is independently reopened by the caller.
+    # Retrieval omissions cannot shrink the source-stage denominator.
+    if source_units is None: stage_source=None
+    else:
+        units={(u['source_id'],u['unit_id']) for u in source_units}
+        stage_source=[e for e in expected if {(r['source_id'],r['unit_id']) for r in e['source_units']}<=units]
+    def propositions(nodes): return [{k:n[k] for k in CLAIM_FIELDS} for n in nodes]
+    stage_retrieval=propositions(pack['assertions']+pack.get('premises',[]))
+    claims(stage_retrieval)
+    prompted=set();prompt_claims={};answer=[];partial=False
     for row in _rows(run):
         req=c.read(Path(run)/'artifacts'/row['request_digest']);payload=req.get('materials',{}).get('context_knowledge_evidence_pack')
         if payload:
             actual=c.loads(payload);prompted.update((u['source_id'],u['unit_id']) for u in actual.get('units',[]))
+            for claim in propositions(actual.get('assertions',[])+actual.get('premises',[])):
+                claims([claim])
+                if claim['id'] in prompt_claims and prompt_claims[claim['id']]!=claim: raise ValueError('E_PROMPT_CLAIM_CONFLICT')
+                prompt_claims[claim['id']]=claim
         response=c.read(Path(run)/'artifacts'/row['response_digest'])
         for result in response.get('results',{}).values():
             try: value=c.loads(result['interpretation'])
@@ -60,4 +70,9 @@ def observed_stages(run,pack,expected):
     for claim in answer:
         if claim['id'] in dedup and dedup[claim['id']]!=claim: raise ValueError('E_ANSWER_CLAIM_CONFLICT')
         dedup[claim['id']]=claim
-    return {'source':stage_source,'retrieval':stage_retrieval,'prompt':[e for e in expected if {(r['source_id'],r['unit_id']) for r in e['source_units']}<=prompted],'answer':{'state':'PARTIAL' if partial else 'OBSERVED','claims':list(dedup.values())}}
+    # Source-byte inclusion is a transport observation against the curated
+    # oracle. Never overwrite an actually serialized conflicting assertion.
+    for e in expected:
+        if e['id'] not in prompt_claims and {(r['source_id'],r['unit_id']) for r in e['source_units']}<=prompted:
+            prompt_claims[e['id']]=e
+    return {'source':stage_source,'retrieval':stage_retrieval,'prompt':list(prompt_claims.values()),'answer':{'state':'PARTIAL' if partial else 'OBSERVED','claims':list(dedup.values())}}

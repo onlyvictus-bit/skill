@@ -412,6 +412,81 @@
         "TEST-REVIEW"
       ],
       "text": "Real coding/model outcome benchmarks require representative tasks and separately authorized provider runs"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-13-1",
+          "test_ids": [
+            "TEST-AUDIT-REPAIR",
+            "TEST-REVIEW"
+          ],
+          "text": "Compare actual retrieval and prompt assertion content to the independent oracle; matching IDs cannot hide reversed conditions"
+        },
+        {
+          "id": "REQ-13-2",
+          "test_ids": [
+            "TEST-AUDIT-REPAIR"
+          ],
+          "text": "Partial observations never imply absent claims or observed losses; unknown stages remain limitations"
+        },
+        {
+          "id": "REQ-13-3",
+          "test_ids": [
+            "TEST-AUDIT-REPAIR",
+            "TEST-REVIEW"
+          ],
+          "text": "Source availability comes from independently reopened current oracle references, not from the retrieval result; prompt units and structured assertions have distinct checks"
+        },
+        {
+          "id": "REQ-13-4",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REGRESSION",
+            "TEST-REVIEW"
+          ],
+          "text": "Rebuild matching portable packages, run real pinned runtime and regressions where available, publish with concurrent-head protection, and report exact verification limits"
+        }
+      ],
+      "id": "REQ-13",
+      "priority": "required",
+      "source_links": [],
+      "test_ids": [
+        "TEST-AUDIT-REPAIR",
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Repair observed-stage integrity in the existing Semantica bridge without duplicating the integration or weakening its qualification boundaries"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-14-1",
+          "test_ids": [
+            "TEST-AUDIT-REPAIR"
+          ],
+          "text": "Unknown backend/receipt keys and falsely conforming SHACL or invented lineage cannot qualify a degraded pack"
+        },
+        {
+          "id": "REQ-14-2",
+          "test_ids": [
+            "TEST-AUDIT-REPAIR",
+            "TEST-BRIDGE"
+          ],
+          "text": "Public offline-run refuses forged optional packs before run state; valid direct fallback and real Semantica replay still succeed"
+        }
+      ],
+      "id": "REQ-14",
+      "priority": "required",
+      "source_links": [],
+      "test_ids": [
+        "TEST-AUDIT-REPAIR",
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Reject unverified or forged nested retrieval receipts before protected execution, including graph-optional degraded packs"
     }
   ],
   "schema": 2
