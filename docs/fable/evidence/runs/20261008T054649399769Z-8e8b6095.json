@@ -1,0 +1,73 @@
+{
+  "basis": {
+    "plan_digest": "e80fc3e229c62625e7082b4a01378a6b11c04e4eeb937af6f42eeed27c41e987",
+    "requirements_digest": "bbacb2206ce94c710ac9a6c94ef114f9a9b3458edd47119404d6588a93128b6b",
+    "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+  },
+  "created_at": "2026-10-08T05:46:49.399769+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/knowledge-runtime.yml",
+        "CHANGELOG.md",
+        "README.md",
+        "docs/fable/derived/blueprint.md",
+        "docs/fable/derived/cortex.md",
+        "docs/fable/derived/plan-review.md",
+        "docs/fable/derived/release-helper.md",
+        "docs/fable/derived/triangulate.md",
+        "docs/fable/derived/verification.md",
+        "docs/fable/intake-plan.txt",
+        "docs/fable/specialists.json",
+        "memory-integrity/SKILL.md",
+        "memory-integrity/agents/openai.yaml",
+        "memory-integrity/knowledge-capabilities-v1.json",
+        "memory-integrity/references/knowledge-contract.md",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "memory-integrity/scripts/knowledge_bridge/__init__.py",
+        "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/contracts.py",
+        "memory-integrity/scripts/knowledge_bridge/indexing.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/worker.py",
+        "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/scripts/memory_integrity_workflow.py",
+        "memory-integrity/tests_v2/R4-CONTENT.json",
+        "memory-integrity/tests_v2/test_knowledge_bridge.py",
+        "memory-integrity/tests_v2/test_knowledge_workflow.py",
+        "release/Build-Knowledge-Bridge.py",
+        "release/Knowledge-Bridge-Manifest.json",
+        "release/Verify-Knowledge-Bridge.py",
+        "release/claude-mon-knowledge-v1.zip",
+        "release/memory-integrity-knowledge-v1.zip",
+        "semantica-runtime/requirements-lock.txt",
+        "semantica-runtime/requirements.in"
+      ],
+      "artifacts_digest": "c26d60bea7060d92c77ca2298f37f4a3692ce0e1447b145b8248a5fdc90ab056",
+      "basis": {
+        "plan_digest": "e80fc3e229c62625e7082b4a01378a6b11c04e4eeb937af6f42eeed27c41e987",
+        "requirements_digest": "bbacb2206ce94c710ac9a6c94ef114f9a9b3458edd47119404d6588a93128b6b",
+        "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+      },
+      "criterion_ids": [],
+      "evidence_type": "manual",
+      "id": "EV-100178e20efe456894bcef97718d461b",
+      "note": "Current source reopening, mandatory-unit, degraded fallback and graph-required worker behavior pass. Valid direct fallback remains protected; foreign optional receipt rejected before run state. Semantic truth, embedding/extraction quality and coding benefit remain UNVERIFIED; the missing cited patch was unavailable.",
+      "observed_at": "2026-10-08T05:46:49.398073+00:00",
+      "observer": "root review plus independent adversarial reviewers",
+      "requirement_ids": [
+        "REQ-07"
+      ],
+      "result": "pass",
+      "source": "docs/fable/derived/audit-upgrade.md; docs/fable/evidence/runs/publication-audit-ec8f132.json; automated run 20261008T053433153907Z-e0ae84eb",
+      "test_id": "TEST-REVIEW"
+    }
+  ],
+  "run_id": "20261008T054649399769Z-8e8b6095",
+  "schema": 2
+}

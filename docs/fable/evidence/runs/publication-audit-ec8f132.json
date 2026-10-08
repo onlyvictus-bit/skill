@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "evidence_type": "operational",
+  "observed_at": "2026-10-08T05:46:47.823Z",
+  "repository": "onlyvictus-bit/skill",
+  "pull_request": "https://github.com/onlyvictus-bit/skill/pull/2",
+  "checked_head": "ec8f132befe87443f699969b44e9fa1fe817c454",
+  "merged": true,
+  "merge_commit": "8a8c4a23900ae4368b917cb60f1ccb3b48e5b488",
+  "merged_tree": "42b16aa4c0d5bbb38b23ac10588f7ec4d9812a7d",
+  "pre_merge_base": "eb43c7d1e4b1b0b331c8f465c132e7534703473f",
+  "remote_files_verified": 27,
+  "remote_blob_identity": "All 27 published changed files matched their local Git blob identities; merged tree equals checked branch tree.",
+  "concurrency_protection": "Merge expected_head_sha checked; main/base and PR head reopened before merge; main and merge tree reopened afterward.",
+  "checks": [
+    {
+      "id": 113166905073,
+      "name": "suites (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166905073"
+    },
+    {
+      "id": 113166905055,
+      "name": "suites (ubuntu-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166905055"
+    },
+    {
+      "id": 113166905038,
+      "name": "suites (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166905038"
+    },
+    {
+      "id": 113166905007,
+      "name": "suites (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166905007"
+    },
+    {
+      "id": 113166904999,
+      "name": "isolated-runtime (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235448/job/113166904999"
+    },
+    {
+      "id": 113166904972,
+      "name": "suites (windows-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166904972"
+    },
+    {
+      "id": 113166904967,
+      "name": "suites (windows-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166904967"
+    },
+    {
+      "id": 113166904958,
+      "name": "isolated-runtime (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235448/job/113166904958"
+    },
+    {
+      "id": 113166904952,
+      "name": "suites (ubuntu-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166904952"
+    },
+    {
+      "id": 113166904904,
+      "name": "isolated-runtime (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235448/job/113166904904"
+    },
+    {
+      "id": 113166904791,
+      "name": "isolated-runtime (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235448/job/113166904791"
+    },
+    {
+      "id": 113166904700,
+      "name": "suites (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387/job/113166904700"
+    },
+    {
+      "id": 113166889625,
+      "name": "suites (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889625"
+    },
+    {
+      "id": 113166889602,
+      "name": "suites (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889602"
+    },
+    {
+      "id": 113166889600,
+      "name": "suites (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889600"
+    },
+    {
+      "id": 113166889587,
+      "name": "suites (ubuntu-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889587"
+    },
+    {
+      "id": 113166889576,
+      "name": "suites (ubuntu-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889576"
+    },
+    {
+      "id": 113166889565,
+      "name": "suites (windows-latest, 3.14)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889565"
+    },
+    {
+      "id": 113166889559,
+      "name": "suites (windows-latest, 3.11)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889559"
+    },
+    {
+      "id": 113166889478,
+      "name": "suites (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233/job/113166889478"
+    },
+    {
+      "id": 113166889136,
+      "name": "isolated-runtime (ubuntu-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230323/job/113166889136"
+    },
+    {
+      "id": 113166889123,
+      "name": "isolated-runtime (windows-latest, 3.13)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230323/job/113166889123"
+    },
+    {
+      "id": 113166889113,
+      "name": "isolated-runtime (windows-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230323/job/113166889113"
+    },
+    {
+      "id": 113166888932,
+      "name": "isolated-runtime (ubuntu-latest, 3.12)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230323/job/113166888932"
+    }
+  ],
+  "workflow_runs": [
+    {
+      "id": 37733235448,
+      "name": "optional knowledge runtime",
+      "event": "pull_request",
+      "head_sha": "ec8f132befe87443f699969b44e9fa1fe817c454",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235448"
+    },
+    {
+      "id": 37733235387,
+      "name": "ci",
+      "event": "pull_request",
+      "head_sha": "ec8f132befe87443f699969b44e9fa1fe817c454",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733235387"
+    },
+    {
+      "id": 37733230323,
+      "name": "optional knowledge runtime",
+      "event": "push",
+      "head_sha": "ec8f132befe87443f699969b44e9fa1fe817c454",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230323"
+    },
+    {
+      "id": 37733230233,
+      "name": "ci",
+      "event": "push",
+      "head_sha": "ec8f132befe87443f699969b44e9fa1fe817c454",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/onlyvictus-bit/skill/actions/runs/37733230233"
+    }
+  ],
+  "local_automated_evidence": "20261008T053433153907Z-e0ae84eb",
+  "portable_tests": {
+    "total": 500,
+    "passed": 498,
+    "skipped": 2,
+    "real_runtime_selected": true
+  },
+  "focused_tests": {
+    "total": 55,
+    "passed": 55,
+    "skipped": 0
+  },
+  "independent_review": {
+    "verdict": "VERIFIED WITH CAVEATS",
+    "last_correction": "Reviewer independently confirmed ledger commit persistence, closed connection and successful cleanup; production hashes unchanged and both rebuilt archives match source/manifests.",
+    "limits": "Curated oracle, embedding/extraction quality and representative coding benefit remain UNVERIFIED; the cited local audit patch was not supplied. Graph default remains off."
+  },
+  "final_metadata_publication": "A subsequent documentation-only commit records manual evidence and completion state; checked code and release artifacts remain unchanged."
+}

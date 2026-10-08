@@ -14,12 +14,16 @@
     "REQ-06",
     "REQ-07",
     "REQ-08",
+    "REQ-09",
     "REQ-10",
-    "REQ-11"
+    "REQ-11",
+    "REQ-12",
+    "REQ-13",
+    "REQ-14"
   ],
-  "current_task": "TASK-AUDIT-REPAIR",
+  "current_task": null,
   "milestone": "AUDIT-REPAIR",
-  "next_action": "Run final artifact-bound tests; publish development branch and merge only the checked head after hosted CI",
-  "phase": "verify",
+  "next_action": "GitHub upgrade merged and verified; optional future model-quality evaluation, incremental invalidation and active skill promotion remain separate backlog",
+  "phase": "complete",
   "schema": 2
 }
