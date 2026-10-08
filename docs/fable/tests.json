@@ -31,6 +31,22 @@
       "id": "TEST-REVIEW",
       "instructions": "Review all plan sections, actual worker + negative observations, scope and adversarial review; disclose unverified live and semantic layers",
       "kind": "manual"
+    },
+    {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "memory-integrity/tests_v2",
+        "-p",
+        "test_knowledge_audit_integrity.py"
+      ],
+      "expect": "exit=0",
+      "id": "TEST-AUDIT-REPAIR",
+      "kind": "automated"
     }
   ]
 }

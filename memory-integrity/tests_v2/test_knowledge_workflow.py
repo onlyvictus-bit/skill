@@ -91,5 +91,53 @@ class RuntimeWorkflow(unittest.TestCase):
     def test_copied_map_uses_verified_original_run_directory(self):
         self.run_ok();copied=self.base/'copied-map.json';copied.write_bytes((self.run/'run-map.json').read_bytes())
         code,out=self.verify('--run-map',copied);self.assertEqual(code,0,out)
+    def audit_with(self,expected):
+        self.responses.write_bytes(json.dumps({'U000001':{
+            'interpretation':json.dumps({'claims':expected}),'findings':[],
+            'disposition':'resolved','reviewer':'offline-fixture','unresolved':[]}}).encode('utf-8'))
+        self.run_ok()
+        oracle=self.base/'oracle.json';oracle.write_bytes(json.dumps(expected).encode('utf-8'))
+        return self.call('knowledge-audit','--project-root',self.base,'--index-dir',self.f.store,
+            '--policy-file',self.base/'policy.json','--task-file',self.base/'obligations.json',
+            '--worker-python',os.environ['KNOWLEDGE_WORKER_PYTHON'],'--source',self.base/'policy.txt',
+            '--run-map',self.run/'run-map.json','--expected-claims',oracle)
+    def replace_projection(self,hops=2):
+        from knowledge_bridge import indexing,retrieval
+        from knowledge_bridge.worker_client import WorkerClient
+        self.f.build();self.g=indexing.load(self.f.store,self.base,CM)
+        self.pack=retrieval.retrieve(self.g,self.base,self.f.policy,self.f.task,[1,0],
+            WorkerClient(os.environ['KNOWLEDGE_WORKER_PYTHON'],timeout=45),max_hops=hops)
+        self.pack_path.write_bytes(json.dumps(self.pack).encode('utf-8'))
+    def test_real_audit_detects_reversed_retrieved_proposition(self):
+        expected={'id':'policy','text':'Never retry writes','polarity':'negative',
+                  'conditions':['write operation'],
+                  'source_units':[{'source_id':'policy','unit_id':'U000001'}]}
+        self.f.projection['nodes'][0].update(text='Always retry writes',polarity='positive',
+                                            conditions=['write operation'])
+        self.replace_projection()
+        code,out=self.audit_with([expected]);self.assertNotEqual(code,0,out)
+        self.assertTrue(any(f['stage']=='retrieval' and f['kind']=='PROPOSITION_MISMATCH'
+                            for f in out['findings']))
+        self.assertTrue(any(f['stage']=='prompt' and f['kind']=='PROPOSITION_MISMATCH'
+                            for f in out['findings']))
+    def test_real_audit_matching_structured_proposition_passes(self):
+        expected={'id':'policy','text':'Never retry writes','polarity':'negative',
+                  'conditions':['write operation'],
+                  'source_units':[{'source_id':'policy','unit_id':'U000001'}]}
+        self.f.projection['nodes'][0].update(text='Never retry writes',polarity='negative',
+                                            conditions=['write operation'])
+        self.replace_projection()
+        code,out=self.audit_with([expected]);self.assertEqual(code,0,out)
+        self.assertEqual(out['verdict'],'PASSED_FOR_DECLARED_STRUCTURED_CHECKS')
+        self.assertEqual(out['semantic_truth'],'UNVERIFIED')
+    def test_real_audit_does_not_blame_source_for_unretrieved_unit(self):
+        expected={'id':'worker','text':'Worker retry tests.','polarity':'positive',
+                  'conditions':[],
+                  'source_units':[{'source_id':'worker','unit_id':'U000001'}]}
+        self.replace_projection(hops=0)
+        code,out=self.audit_with([expected]);self.assertNotEqual(code,0,out)
+        self.assertFalse(any(f['stage']=='source' for f in out['findings']))
+        self.assertTrue(any(f['stage']=='retrieval' and f['kind']=='OBSERVED_LOSS'
+                            for f in out['findings']))
 
 if __name__=='__main__': unittest.main()

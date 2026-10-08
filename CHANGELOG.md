@@ -1,5 +1,12 @@
 # Changelog
 
+## Knowledge bridge v1 integrity correction - 2026-10-08
+
+- Rejects unknown nested receipts and invented provenance/SHACL on graph-optional packs before protected request preparation.
+- Compares actual retrieved and prompt propositions with the independent oracle; matching IDs cannot hide reversed conditions or polarity.
+- Reopens expected source references independently of retrieval and keeps partial-stage omissions unknown.
+- Adds public-path and real pinned-runtime regressions; rebuilds the matching portable pair while preserving R3/R4 archives and existing capability boundaries.
+
 ## Knowledge bridge v1 / 1.0.0 - 2026-10-07
 
 - Adds an optional isolated pinned Semantica worker; real graph/vector/provenance and structural SHACL operations.

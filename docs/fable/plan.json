@@ -1,6 +1,6 @@
 {
-  "milestone": "M0-M7-OFFLINE",
-  "plan_id": "semantica-bridge-v1",
+  "milestone": "AUDIT-REPAIR",
+  "plan_id": "semantica-bridge-audit-v2",
   "schema": 2,
   "tasks": [
     {
@@ -96,6 +96,37 @@
         "REQ-12"
       ],
       "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ]
+    },
+    {
+      "action": "Reproduce and correct stage-observation defects, preserve independent source basis, then repackage and publish verified upgrade",
+      "artifacts": [
+        "memory-integrity/scripts/knowledge_bridge/verification.py",
+        "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+        "memory-integrity/scripts/knowledge_bridge/workflow.py",
+        "memory-integrity/tests_v2/test_knowledge_audit_integrity.py",
+        "docs/fable/derived/audit-upgrade.md",
+        "docs/fable/intake-current-plan.txt",
+        "memory-integrity/scripts/knowledge_bridge/retrieval.py"
+      ],
+      "criterion_ids": [
+        "REQ-13-1",
+        "REQ-13-2",
+        "REQ-13-3",
+        "REQ-13-4",
+        "REQ-14-1",
+        "REQ-14-2"
+      ],
+      "id": "TASK-AUDIT-REPAIR",
+      "requirement_ids": [
+        "REQ-13",
+        "REQ-14"
+      ],
+      "test_ids": [
+        "TEST-AUDIT-REPAIR",
         "TEST-BRIDGE",
         "TEST-REGRESSION",
         "TEST-REVIEW"

@@ -52,10 +52,14 @@ def dispatch(args):
     retrieval.verify_pack(pack,doc,args.project_root,policy,task,worker(args));trace_adapter.verify(run,pack)
     expected=c.read(args.expected_claims)
     if not isinstance(expected,list): raise ValueError('E_EXPECTED_CLAIMS')
+    verification.claims(expected)
+    source_units=[]
     for claim in expected:
         c.refs(claim['source_units'],doc['sources'])
         if any(r['source_id'] not in policy['allowed_source_ids'] for r in claim['source_units']): raise ValueError('E_EXPECTED_ACCESS')
-    result=verification.audit(expected,trace_adapter.observed_stages(run,pack,expected))
+        for ref in claim['source_units']:
+            source_units.append(indexing.reopen(doc,args.project_root,ref))
+    result=verification.audit(expected,trace_adapter.observed_stages(run,pack,expected,source_units=source_units))
     result['evidence_class']='TEST_ONLY';result['source_qualification']='source identity observed; proposition oracle supplied separately and requires review'
     return result
 

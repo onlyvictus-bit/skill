@@ -1,0 +1,33 @@
+# Current integration audit and upgrade
+
+Reviewed all fourteen sections and the final recommendation of the current attached plan. The original file is retained byte-for-byte in intake-current-plan.txt; it arrives as one escaped Markdown line. The cited local audit patch remains unavailable. Target main already contains the bridge at eb43c7d; upstream current and pinned revision is 320761de5d040a54a3220acc563223b4a7ffdc51. Do not reimplement the bridge.
+
+Cortex routing: plan/source review -> direct file/hash/history + GitHub; diagnosis -> systematic debugging; implementation -> TDD; semantic contracts -> structured oracle and real trace tests; release -> existing paired builder/verifier + protected Git publication. Graphify is unnecessary for the bounded opened source set and no native pipeline is claimed.
+
+Decision (Deep Plan): retain unchanged with limitations (minimal), correct stage adapters and comparison (selected simplest complete solution), or add natural-language/model semantic evaluation (stronger). The minimal option preserves a reproduced false pass. The stronger option adds unqualified evaluator/provider behavior without solving the deterministic defect. Select direct observation and exact proposition checks; retain semantic truth UNVERIFIED. Weakest assumption: the curated oracle accurately represents its original sources. Cheapest falsifier: reverse a condition while retaining its ID, and omit an oracle unit from retrieval while keeping its source current. Pivot: if representative free-text tasks require meaning judgments, separately qualify semantic evaluation rather than broadening exact string matching claims.
+
+Blueprint: architect keeps existing source/generation/pack/request identities; developer adds no companion schema migration; tester covers reversed conditions, partial/unknown observations, source-versus-retrieval omissions, real serialized request and response; operations rebuilds current portable pair and retains R3/R4 rollback; security keeps current ACL checks before reopening and no provider calls. CLI surface must emit BLOCKED with findings or limitations, never inferred completeness. No graphical UI or service-scale change applies.
+
+Evidence families (Triangulate): user plan defines required behavior; current repository and local reproduction reveal actual behavior; upstream source defines available APIs. Existing synthetic benchmark and its prior report share one fixture family and do not prove coding superiority. No confidence percentage or additional independent runtime claim is inferred from source review.
+
+Confirmed before repair: verification.audit returns ok=true when retrieval reverses conditions with the same ID; PARTIAL retrieval with no observed claim creates OBSERVED_LOSS. trace_adapter copies expected claims using IDs/source-unit inclusion rather than observed assertion content and derives source availability from retrieved pack units.
+
+Release Helper: build using release/Build-Knowledge-Bridge.py, verify current paired archive using release/Verify-Knowledge-Bridge.py, preserve historical digests, commit/publish only to the user-named GitHub repository. No active ChatGPT skill installation or provider call is part of this GitHub upgrade.
+
+Verification proceeds through artifact-bound Fable runs; GitHub publication and hosted CI are recorded separately in append-only evidence. Do not infer remote release completion from local tests.
+
+Independent review reproduced a second public-path defect: rehashing a graph-optional degraded pack with a foreign backend, CONFORMS SHACL, invented lineage and unknown receipt keys still passes offline-run and verify. A digest proves bytes, not receipt semantics. Extend the plan to validate nested receipt contracts before serialization/approval.
+
+## Observed repair and adversarial verification
+
+Before production edits, the new integrity suite reproduced the foreign backend, invented SHACL/lineage, ID-preserving retrieval mismatch, PARTIAL false-loss, and uninstrumented source problems. New source-basis parameters initially failed because the interface was absent. After the corrections, all twelve initial tests passed. A thirteenth test then reproduced omitted recursive-premise diagnostics and passed after that fix. No existing assertion was weakened or skipped.
+
+The original real-runtime baseline passed all 39 knowledge tests without runtime skips. The repaired bridge passed 54 focused tests before the recursive-premise addition; the next frozen artifact-bound run includes that addition. The paired portable verifier passed 499 tests with two pre-existing platform skips on its earlier snapshot, and both retained historical R3/R4 full verifiers passed. Final verification is rerun after the last package rebuild rather than treating that earlier snapshot as current evidence.
+
+Independent reviewer 1 reproduced both defects through public offline-run/verify and real pinned knowledge-audit, beyond the original passing suite. Reviewer 2 exercised a separate thermal/sensor project with explicitly supplied vectors, a recursively derived premise outside graph-hop seeds, and no repository test-fixture import: index -> real retrieval -> protected offline-run -> audit passed with semantic_truth UNVERIFIED. This validates the public observation path, not embedding quality or source truth.
+
+Root causes: outer digests were treated as sufficient for nested receipt semantics; stage adapters reconstructed oracle claims instead of recording observed proposition content; source availability was inferred from retrieved units; partial subsets and recursive premises were mishandled. The same-defect sweep covered all bridge consumers and the protected front door. Companion history/schema and the Semantica pin remain unchanged.
+
+Release identities are the matching current knowledge-v1 ZIPs and their rebuilt manifest, with historical R3/R4 bytes unchanged. The current user explicitly authorized GitHub implementation, merging/upgrading and commit. Publish to development/semantica-audit-integrity, inspect hosted host/runtime CI, and merge the exact checked head using GitHub's lease. Publication receipts and final governance status are recorded separately without altering the frozen code or these specialist results.
+
+Limits: the missing local audit patch was not reviewed; curated propositions still require human/source review; automatic embeddings/extraction, free-text entailment, representative coding outcomes, incremental invalidation and active ChatGPT skill replacement remain outside observed qualification. Semantic/model quality and coding benefit remain UNVERIFIED; graph default stays off.

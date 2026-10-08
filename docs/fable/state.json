@@ -1,8 +1,8 @@
 {
   "basis": {
-    "plan_digest": "2fcd39a8f03fb246fe36ae794fea8b9efb6e387a40d63bc21b86e90637243530",
-    "requirements_digest": "d8fc8c4335ada551c0a94435f2c0bde0b9b2a5dd375231e8e40984e2ae49ae78",
-    "tests_digest": "4c251f114078cc60ca886fee655f2a7a14746b490d87e13de24892119b5404b3"
+    "plan_digest": "e80fc3e229c62625e7082b4a01378a6b11c04e4eeb937af6f42eeed27c41e987",
+    "requirements_digest": "bbacb2206ce94c710ac9a6c94ef114f9a9b3458edd47119404d6588a93128b6b",
+    "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
   },
   "campaign_id": "semantica-bridge",
   "completed_requirement_ids": [
@@ -14,14 +14,12 @@
     "REQ-06",
     "REQ-07",
     "REQ-08",
-    "REQ-09",
     "REQ-10",
-    "REQ-11",
-    "REQ-12"
+    "REQ-11"
   ],
-  "current_task": null,
-  "milestone": "M0-M7-OFFLINE",
-  "next_action": "Offline Semantica bridge released and hosted CI green. Qualify representative semantic/model workloads before changing graph default.",
-  "phase": "complete",
+  "current_task": "TASK-AUDIT-REPAIR",
+  "milestone": "AUDIT-REPAIR",
+  "next_action": "Run final artifact-bound tests; publish development branch and merge only the checked head after hosted CI",
+  "phase": "verify",
   "schema": 2
 }
