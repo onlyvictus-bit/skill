@@ -9,24 +9,33 @@ def worker(args):
     return WorkerClient(args.worker_python,timeout=args.worker_timeout)
 
 def register(sub):
-    for name in ('knowledge-status','knowledge-index','knowledge-retrieve','knowledge-audit'):
+    for name in ('knowledge-status','knowledge-index','knowledge-project','knowledge-refresh','knowledge-impact','knowledge-retrieve','knowledge-test','knowledge-admit','knowledge-check-admission','knowledge-benchmark','knowledge-audit'):
         p=sub.add_parser(name)
         p.add_argument('--claude-mon-root',required=True)
         p.add_argument('--worker-python');p.add_argument('--worker-timeout',type=float,default=30)
         if name=='knowledge-status': continue
+        if name=='knowledge-benchmark':
+            p.add_argument('--output',required=True);continue
         for key in ('project-root','index-dir'): p.add_argument('--'+key,required=True)
         if name=='knowledge-index':
             p.add_argument('--source-map',required=True);p.add_argument('--projection-file',required=True)
+        elif name in ('knowledge-project','knowledge-refresh'):
+            p.add_argument('--source-map',required=True);p.add_argument('--test-receipt')
         else:
             for key in ('policy-file','task-file'): p.add_argument('--'+key,required=True)
             if name=='knowledge-retrieve':
-                p.add_argument('--query-vector',required=True);p.add_argument('--evidence-pack',required=True)
-                p.add_argument('--query-model',required=True)
+                p.add_argument('--query-vector');p.add_argument('--query-text');p.add_argument('--evidence-pack',required=True)
+                p.add_argument('--query-model');p.add_argument('--embedding-mode',choices=('lexical','lsa','hybrid'),default='lexical')
+                p.add_argument('--direction',choices=('outgoing','incoming','both'),default='outgoing')
                 p.add_argument('--max-hops',type=int,default=2);p.add_argument('--seeds',type=int,default=1)
                 p.add_argument('--max-visits',type=int,default=100);p.add_argument('--max-results',type=int,default=50)
-            else:
+            elif name=='knowledge-test':
+                p.add_argument('--test-path',action='append',required=True);p.add_argument('--test-timeout',type=int,default=60);p.add_argument('--output',required=True)
+            elif name!='knowledge-impact':
                 p.add_argument('--run-map',required=True);p.add_argument('--expected-claims',required=True)
                 p.add_argument('--source',required=True)
+                if name in ('knowledge-admit','knowledge-check-admission'):
+                    p.add_argument('--admission-spec',required=True);p.add_argument('--admission-file',required=True);p.add_argument('--test-receipt')
 
 def dispatch(args):
     indexing.partition_engine(args.claude_mon_root)
@@ -35,14 +44,48 @@ def dispatch(args):
         return w({'op':'handshake'}) if w else {'ok':True,'knowledge':'DEGRADED','graph_required_readiness':'BLOCKED','runtime':'UNAVAILABLE','answer_generation':False}
     if args.command=='knowledge-index':
         return indexing.build(args.project_root,c.read(args.source_map),c.read(args.projection_file),args.index_dir,args.claude_mon_root)
+    if args.command=='knowledge-benchmark':
+        from .benefit_benchmark import run
+        result=run(args.claude_mon_root,worker(args));save(args.output,result);return result
+    if args.command in ('knowledge-project','knowledge-refresh'):
+        from . import impact
+        return impact.build(args.project_root,c.read(args.source_map),args.index_dir,args.claude_mon_root,worker(args),c.read(args.test_receipt) if args.test_receipt else None)
     policy=c.read(args.policy_file);task=c.read(args.task_file)
     doc=indexing.load(args.index_dir,args.project_root,args.claude_mon_root,allowed_sources=policy['allowed_source_ids'])
+    retrieval.validate_policy(policy,doc,task)
+    if args.command=='knowledge-impact':
+        allowed=set(policy['allowed_source_ids'])
+        return {'ok':True,'generation':doc['generation'],'stale_sources':doc.get('stale_sources',[]),'invalidated_nodes':[n['id'] for n in doc['projection']['nodes'] if n['id'] in doc.get('invalidated_nodes',[]) and all(r['source_id'] in allowed for r in n['source_units'])],'scope':'declared source and dependency closure; incomplete static graph cannot prove no other dependency'}
+    if args.command=='knowledge-test':
+        from . import test_evidence
+        if set(policy['allowed_source_ids'])!=set(doc['sources']):raise ValueError('E_TEST_SCOPE_ACCESS: explicit local test execution requires entire declared source scope')
+        result=test_evidence.run(args.project_root,doc,args.test_path,args.test_timeout);save(args.output,result);return result
     if args.command=='knowledge-retrieve':
-        pack=retrieval.retrieve(doc,args.project_root,policy,task,c.loads(args.query_vector),worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,query_model=args.query_model)
+        if bool(args.query_vector)==bool(args.query_text):raise ValueError('E_QUERY_ONE_MODE_REQUIRED')
+        if args.query_text:
+            from . import retrieval_v2
+            pack=retrieval_v2.retrieve(doc,args.project_root,policy,task,args.query_text,worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,direction=args.direction,embedding_mode=args.embedding_mode)
+        else:
+            if args.direction!='outgoing':raise ValueError('E_QUERY_DIRECTION_REQUIRES_PROJECT_2')
+            pack=retrieval.retrieve(doc,args.project_root,policy,task,c.loads(args.query_vector),worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,query_model=args.query_model)
         if task['require_graph'] and pack['retrieval']['backend']!='SEMANTICA_OBSERVED': raise ValueError('E_GRAPH_REQUIRED')
-        target=c.ordinary(args.evidence_pack)
-        with target.open('xb') as handle: handle.write(c.canonical(pack))
+        target=save(args.evidence_pack,pack)
         return {'ok':True,'overall':'SOURCE_REOPENED','generation':doc['generation'],'pack_digest':pack['pack_digest'],'units':len(pack['units']),'coverage':'UNVERIFIED','semantic_truth':'UNVERIFIED','evidence_pack':str(target),'retrieval_backend':pack['retrieval']['backend'],'limits_reached':pack['retrieval']['limits_reached']}
+    checked,pack,expected,result=audit_run(args,doc,policy,task)
+    if args.command in ('knowledge-admit','knowledge-check-admission'):
+        from . import admission
+        fresh=admission.produce(c.read(args.admission_spec),task,policy,pack,result,checked,c.read(args.test_receipt) if args.test_receipt else None,args.project_root,doc,expected)
+        if args.command=='knowledge-admit':save(args.admission_file,fresh)
+        else:return admission.verify(c.read(args.admission_file),fresh)
+        return {'ok':True,'verdict':fresh['verdict'],'admission_digest':fresh['admission_digest'],'semantic_truth':'UNVERIFIED'}
+    return result
+
+def save(path,doc):
+    target=c.ordinary(path)
+    with target.open('xb') as handle:handle.write(c.canonical(doc))
+    return target
+
+def audit_run(args,doc,policy,task):
     from integrity_v2 import report
     rm=c.read(args.run_map)
     checked=report.verify_run(args.run_map,{rm['source_id']:c.digest(Path(args.source).read_bytes())},args.claude_mon_root)
@@ -61,7 +104,7 @@ def dispatch(args):
             source_units.append(indexing.reopen(doc,args.project_root,ref))
     result=verification.audit(expected,trace_adapter.observed_stages(run,pack,expected,source_units=source_units))
     result['evidence_class']='TEST_ONLY';result['source_qualification']='source identity observed; proposition oracle supplied separately and requires review'
-    return result
+    return checked,pack,expected,result
 
 def bind_execution_task(task,actual_task):
     if task['execution_task_digest']!=c.digest(c.canonical(actual_task)): raise ValueError('E_KNOWLEDGE_EXECUTION_TASK: exact task instructions must be bound')

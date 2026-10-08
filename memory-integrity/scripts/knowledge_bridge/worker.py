@@ -67,13 +67,25 @@ mi:EdgeShape a sh:NodeShape; sh:targetClass mi:KnowledgeEdge;
     return 'CONFORMS'
 
 def retrieve(payload):
-    c.keys(payload,{'op','nodes','edges','query_vector','dimension','seeds','max_hops','max_visits','max_results'},'worker query')
+    text_mode=payload.get('op')=='retrieve_text'
+    fields={'op','nodes','edges','seeds','max_hops','max_visits','max_results'}
+    c.keys(payload,fields|({'query_text','embedding_mode','direction','ontology'} if text_mode else {'query_vector','dimension'}),'worker query')
     from semantica.context.context_graph import ContextGraph
     from semantica.vector_store.vector_store import VectorRetriever
     from semantica.provenance import ProvenanceManager,InMemoryStorage
     nodes=payload['nodes'];edges=payload['edges']
     if not isinstance(nodes,list) or len(nodes)>10000 or not isinstance(edges,list) or len(edges)>40000: raise ValueError('E_GRAPH_SIZE')
-    dimension=c.integer(payload['dimension'],1,4096,'dimension');query=c.vector(payload['query_vector'],dimension)
+    direction=payload['direction'] if text_mode else 'outgoing'
+    if direction not in ('outgoing','incoming','both'):raise ValueError('E_QUERY_DIRECTION')
+    if text_mode:
+        from knowledge_bridge.offline_engine import search_vectors,validate_types
+        if payload['ontology']!='project-2':raise ValueError('E_ONTOLOGY_VERSION')
+        validate_types(nodes,edges)
+        vectors,query,metadata=search_vectors(nodes,payload['query_text'],payload['embedding_mode'])
+        dimension=metadata['dimension']
+    else:
+        dimension=c.integer(payload['dimension'],1,4096,'dimension');query=c.vector(payload['query_vector'],dimension)
+        vectors=[c.vector(n['vector'],dimension) for n in nodes]
     seeds=c.integer(payload['seeds'],1,100,'seeds');hops=c.integer(payload['max_hops'],0,8,'hops');visits=c.integer(payload['max_visits'],1,10000,'visits');count=c.integer(payload['max_results'],1,1000,'results')
     ids=[n['id'] for n in nodes]
     if len(ids)!=len(set(ids)): raise ValueError('E_DUPLICATE_NODE')
@@ -85,7 +97,6 @@ def retrieve(payload):
         if e['subject'] not in ids or e['object'] not in ids or e['predicate'] not in c.PREDICATES: raise ValueError('E_GRAPH_ENDPOINT')
         if not graph.add_edge(e['subject'],e['object'],e['predicate'],id=e['id'],source_units=e['source_units']): raise ValueError('E_GRAPH_EDGE')
         endpoints.setdefault((e['subject'],e['object'],e['predicate']),[]).append(e['id'])
-    vectors=[c.vector(n['vector'],dimension) for n in nodes]
     found=VectorRetriever(backend='inmemory').search_similar(query,vectors,ids,k=min(seeds,len(ids)))
     queue=deque();seen=set();results=[];limits=[]
     for item in sorted(found,key=lambda x:(-x['score'],x['id'])):
@@ -99,11 +110,13 @@ def retrieve(payload):
             limits.append('max_results');break
         seen.add(ident);results.append({'id':ident,'score':score,'path':path,'edge_ids':edge_ids})
         if len(path)-1>=hops: continue
-        neighbors=graph.get_neighbors(ident,hops=1)
-        for n in sorted(neighbors,key=lambda x:x['id']):
-            if n['id'] not in seen:
-                edge=endpoints[(ident,n['id'],n['relationship'])][0]
-                queue.append((n['id'],score*.9,path+[n['id']],edge_ids+[edge]))
+        neighbors=[]
+        if direction in ('outgoing','both'):
+            for n in graph.get_neighbors(ident,hops=1):neighbors.append((n['id'],endpoints[(ident,n['id'],n['relationship'])][0]))
+        if direction in ('incoming','both'):
+            neighbors.extend((e['subject'],e['id']) for e in edges if e['object']==ident)
+        for target,edge in sorted(set(neighbors)):
+            if target not in seen:queue.append((target,score*.9,path+[target],edge_ids+[edge]))
     prov=ProvenanceManager(storage=InMemoryStorage());lineage={};table={n['id']:n for n in nodes}
     closure=set();pending=[item['id'] for item in results]
     while pending:
@@ -143,7 +156,11 @@ def retrieve(payload):
         entity_ids={entry['entity_id'] for entry in actual['lineage_chain']}
         if not expected<=entity_ids: raise ValueError('E_PROVENANCE_PREMISE_LINEAGE')
         lineage[n['id']]={'integrity_verified':True,'source_units':n['source_units'],'derivation':n['derivation'],'lineage_entity_ids':sorted(entity_ids)}
-    return {'ok':True,'backend':'SEMANTICA_OBSERVED','results':results,'limits_reached':sorted(set(limits)),'lineage':lineage,'shacl':shacl(nodes,edges),'score_scale':'cosine [-1,1]; graph hop decay 0.9'}
+    conform=validate_types(nodes,edges,shacl=True)['shacl'] if text_mode else shacl(nodes,edges)
+    if text_mode and shacl(nodes,edges)!='CONFORMS':raise ValueError('E_SHACL_SOURCE_STRUCTURE')
+    result={'ok':True,'backend':'SEMANTICA_OBSERVED','results':results,'limits_reached':sorted(set(limits)),'lineage':lineage,'shacl':conform,'score_scale':'cosine [-1,1]; graph hop decay 0.9'}
+    if text_mode:result.update(schema_version=2,direction=direction,embedding_metadata=metadata)
+    return result
 
 def main():
     try:
@@ -154,7 +171,11 @@ def main():
             if payload=={'op':'handshake'}:
                 import importlib.util
                 result={'ok':True,'backend':'SEMANTICA_OBSERVED','shacl_available':importlib.util.find_spec('pyshacl') is not None}
-            elif payload.get('op')=='retrieve': result=retrieve(payload)
+            elif payload.get('op') in ('retrieve','retrieve_text'): result=retrieve(payload)
+            elif payload.get('op')=='extract_prose':
+                c.keys(payload,{'op','text'},'prose extraction')
+                from knowledge_bridge.offline_engine import extract_prose
+                result={'ok':True,'relationships':extract_prose(payload['text']),'extraction_status':'NARROW_RELATION_DSL','semantic_truth':'UNVERIFIED'}
             else: raise ValueError('E_WORKER_OPERATION')
         result.update(identity);response=c.canonical(result)
         if len(response)>c.MAX_MESSAGE: raise ValueError('E_MESSAGE_LIMIT')

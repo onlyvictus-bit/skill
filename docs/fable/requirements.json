@@ -125,7 +125,7 @@
           "test_ids": [
             "TEST-BRIDGE"
           ],
-          "text": "Source-byte changes, branch/commit changes and corrupt artifacts block current retrieval"
+          "text": "Changed source bytes and branches block affected current evidence; project-1 blocks commit drift, while project-2 permits same-branch unrelated commits only with current declared source/dependency scope"
         },
         {
           "id": "REQ-05-3",
@@ -487,6 +487,186 @@
         "TEST-REVIEW"
       ],
       "text": "Reject unverified or forged nested retrieval receipts before protected execution, including graph-optional degraded packs"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-15-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Automatic exact-byte source-linked static and conservative semantic extraction with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-15",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Automatic exact-byte source-linked static and conservative semantic extraction"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-16-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Automatic local text search with measured distributional mode and no fallback randomness with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-16",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Automatic local text search with measured distributional mode and no fallback randomness"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-17-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Versioned per-predicate domain/range ontology and real SHACL with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-17",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Versioned per-predicate domain/range ontology and real SHACL"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-18-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Selective source/dependency invalidation and incremental extraction reuse with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-18",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Selective source/dependency invalidation and incremental extraction reuse"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-19-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Bound reverse traversal and private per-candidate exclusions with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-19",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Bound reverse traversal and private per-candidate exclusions"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-20-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Observed source-linked local test execution and code snapshots with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-20",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Observed source-linked local test execution and code snapshots"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-21-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Task-relative evidence admission freshly consumed by Fable with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-21",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Task-relative evidence admission freshly consumed by Fable"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-22-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Held-out offline coding-outcome and failure-detection benchmark with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-22",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Held-out offline coding-outcome and failure-detection benchmark"
+    },
+    {
+      "criteria": [
+        {
+          "id": "REQ-23-1",
+          "test_ids": [
+            "TEST-BRIDGE",
+            "TEST-REVIEW"
+          ],
+          "text": "Verified compatible portable release and GitHub publication with positive and adversarial negative controls"
+        }
+      ],
+      "id": "REQ-23",
+      "priority": "required",
+      "test_ids": [
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ],
+      "text": "Verified compatible portable release and GitHub publication"
     }
   ],
   "schema": 2

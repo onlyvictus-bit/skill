@@ -16,14 +16,14 @@ def build():
         doc['changed_'+suffix+'_files']=sorted(p for p in original if original[p]!=actual[p])
         doc['added_files' if suffix=='r1' else 'added_r2_files']=sorted(set(actual)-set(original))
     path.write_text(json.dumps(doc,indent=2,sort_keys=True)+'\n',encoding='utf-8')
-    manifest={'schema_version':1,'release':'knowledge-bridge-v1','bridge_version':'1.0.0','base_release':'2.0.0-m12-r4','semantica_version':'0.7.0','semantica_revision':'320761de5d040a54a3220acc563223b4a7ffdc51','default_graph':False,'evidence_class':'TEST_ONLY','installed_promoted':False,'packages':{}}
+    manifest={'schema_version':1,'release':'knowledge-bridge-v1','bridge_version':'1.1.0','base_release':'2.0.0-m12-r4','semantica_version':'0.7.0','semantica_revision':'320761de5d040a54a3220acc563223b4a7ffdc51','default_graph':False,'evidence_class':'TEST_ONLY','installed_promoted':False,'packages':{}}
     for name in ('memory-integrity','claude-mon'):
         archive=ROOT/'release'/(name+'-knowledge-v1.zip');entries=[]
         with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
             for p in sorted((ROOT/name).rglob('*')):
                 if not p.is_file() or '__pycache__' in p.parts or p.suffix in ('.pyc','.pyo'): continue
                 if p.is_symlink(): raise ValueError('symlink not allowed')
-                rel=p.relative_to(ROOT).as_posix();info=zipfile.ZipInfo(rel,date_time=(2026,10,7,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o100644<<16
+                rel=p.relative_to(ROOT).as_posix();info=zipfile.ZipInfo(rel,date_time=(2026,10,8,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o100644<<16
                 z.writestr(info,p.read_bytes(),compress_type=zipfile.ZIP_DEFLATED,compresslevel=9);entries.append(rel)
         raw=archive.read_bytes();manifest['packages'][name]={'zip':archive.name,'sha256':sha(raw),'bytes':len(raw),'entries':len(entries)}
     (ROOT/'release/Knowledge-Bridge-Manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n',encoding='utf-8')

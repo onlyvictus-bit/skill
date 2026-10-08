@@ -47,3 +47,7 @@ Memory Integrity now includes an opt-in isolated Semantica layer for explicit ve
 Run `python -B release/Verify-Knowledge-Bridge.py` for the matching knowledge-v1 pair. The pinned optional runtime is installed separately using `semantica-runtime/requirements-lock.txt`. Set `KNOWLEDGE_WORKER_PYTHON` to its absolute interpreter to run the real runtime checks. R3/R4 release artifacts remain unchanged for rollback. Graph stays off by default; general semantic accuracy and coding benefit remain unverified.
 
 The current pair includes the [2026-10-08 audit integrity correction](docs/fable/derived/audit-upgrade.md): actual retrieval/prompt proposition checks, independent current-source observations, and rejection of forged nested retrieval receipts before protected execution.
+
+## Automatic coding knowledge workflow / bridge 1.1
+
+The [project-2 workflow](memory-integrity/references/knowledge-project-2.md) adds automatic Python extraction, conservative Semantica relation DSL extraction, offline text search, typed SHACL, reverse traversal, selective invalidation, observed local tests and freshly checked task-relative admission. The [completion plan](docs/fable/derived/full-workflow-plan.md) restores the gaps in the first prototype. Existing project-1 data and R3/R4 packages remain available. Graph stays optional; offline fixture outcomes do not prove general AI coding benefit.

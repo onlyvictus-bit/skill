@@ -5,6 +5,9 @@ from . import contracts as c
 from . import indexing
 
 def validate_receipt(receipt,execution=False):
+    if isinstance(receipt,dict) and receipt.get('schema_version')==2:
+        from .retrieval_v2 import validate_receipt as v2
+        return v2(receipt,execution)
     common={'ok','backend','results','limits_reached','lineage','shacl','query_binding','exclusions'}
     runtime={'score_scale','bridge_version','semantica_version','revision','network_policy','answer_generation'}
     if not isinstance(receipt,dict) or not common<=set(receipt) or set(receipt)-common-runtime: raise ValueError('E_RETRIEVAL_RECEIPT_SCHEMA')
@@ -109,6 +112,9 @@ def validate_pack(pack):
     return pack
 
 def verify_pack(pack,doc,root,policy,task,worker=None):
+    if isinstance(pack,dict) and isinstance(pack.get('retrieval'),dict) and pack['retrieval'].get('schema_version')==2:
+        from .retrieval_v2 import verify_pack as v2
+        return v2(pack,doc,root,policy,task,worker)
     validate_pack(pack);validate_policy(policy,doc,task)
     if pack['embedding']!=doc['projection']['embedding']: raise ValueError('E_PACK_EMBEDDING_PROVENANCE')
     if pack['generation']!=doc['generation'] or pack['task_id']!=task['task_id'] or pack['workspace_id']!=policy['workspace_id'] or pack['source_basis_digest']!=doc['source_basis_digest'] or pack['policy_digest']!=c.digest(c.canonical(policy)) or pack['task_obligations_digest']!=c.digest(c.canonical(task)): raise ValueError('E_PACK_CURRENT_BASIS')
@@ -135,6 +141,7 @@ def verify_pack(pack,doc,root,policy,task,worker=None):
     return pack
 
 def retrieve(doc,root,policy,task,query_vector,worker,max_hops=2,seeds=1,max_visits=100,max_results=50,query_model=None):
+    if doc['projection']['ontology']=='project-2':raise ValueError('E_TEXT_QUERY_REQUIRED_FOR_PROJECT_2')
     validate_policy(policy,doc,task)
     if query_model is None:
         if doc['projection']['embedding']['evidence_class']!='TEST_ONLY': raise ValueError('E_QUERY_EMBEDDING_MODEL_REQUIRED')

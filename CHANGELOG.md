@@ -1,5 +1,13 @@
 # Changelog
 
+## Knowledge bridge / 1.1.0 - 2026-10-08
+
+- Completes the offline coding workflow with exact-byte automatic AST extraction, narrowly scoped real Semantica relationship extraction, automatic lexical/LSA/hybrid retrieval and project-2 typed SHACL.
+- Adds authored reverse traversal, private candidate exclusions, dependency invalidation, sealed unchanged-source caches and atomic source-bound refresh.
+- Observes local unittest execution and snapshots; admits evidence only after fresh protected-run, independent structured oracle and applicable extraction/review/test checks; exposes an ordinary Fable automated-test consumer.
+- Adds held-out equal-budget deterministic coding fixtures, adversarial tests, paired portable packages and compatible project-1 import support.
+- Keeps graph default off and broad semantic/live-model benefit unverified; preserves R3/R4 packages and companion/native qualification boundaries.
+
 ## Knowledge bridge v1 integrity correction - 2026-10-08
 
 - Rejects unknown nested receipts and invented provenance/SHACL on graph-optional packs before protected request preparation.

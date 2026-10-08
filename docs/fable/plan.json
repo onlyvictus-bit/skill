@@ -1,6 +1,6 @@
 {
-  "milestone": "AUDIT-REPAIR",
-  "plan_id": "semantica-bridge-audit-v2",
+  "milestone": "FULL-WORKFLOW",
+  "plan_id": "semantica-full-workflow-v3",
   "schema": 2,
   "tasks": [
     {
@@ -127,6 +127,59 @@
       ],
       "test_ids": [
         "TEST-AUDIT-REPAIR",
+        "TEST-BRIDGE",
+        "TEST-REGRESSION",
+        "TEST-REVIEW"
+      ]
+    },
+    {
+      "action": "Complete source-linked offline coding workflow, verify negative paths, measure held-out outcomes, package and publish exact bytes",
+      "artifacts": [
+        "memory-integrity/scripts/knowledge_bridge/extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+        "memory-integrity/scripts/knowledge_bridge/impact.py",
+        "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+        "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+        "memory-integrity/scripts/knowledge_bridge/test_runner.py",
+        "memory-integrity/scripts/knowledge_bridge/admission.py",
+        "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+        "memory-integrity/tests_v2/test_knowledge_extraction.py",
+        "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+        "memory-integrity/tests_v2/test_knowledge_completion.py",
+        "docs/fable/derived/full-workflow-plan.md",
+        "docs/fable/derived/full-workflow-verification.md",
+        "docs/fable/derived/completion-gates.md",
+        "memory-integrity/references/knowledge-project-2.md",
+        "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py",
+        "memory-integrity/tests_v2/test_knowledge_benefit.py",
+        "memory-integrity/references/knowledge-operations.md",
+        "memory-integrity/references/semantica-integration.md",
+        "docs/fable/derived/offline-benefit.json"
+      ],
+      "criterion_ids": [
+        "REQ-15-1",
+        "REQ-16-1",
+        "REQ-17-1",
+        "REQ-18-1",
+        "REQ-19-1",
+        "REQ-20-1",
+        "REQ-21-1",
+        "REQ-22-1",
+        "REQ-23-1"
+      ],
+      "id": "TASK-FULL-WORKFLOW",
+      "requirement_ids": [
+        "REQ-15",
+        "REQ-16",
+        "REQ-17",
+        "REQ-18",
+        "REQ-19",
+        "REQ-20",
+        "REQ-21",
+        "REQ-22",
+        "REQ-23"
+      ],
+      "test_ids": [
         "TEST-BRIDGE",
         "TEST-REGRESSION",
         "TEST-REVIEW"
