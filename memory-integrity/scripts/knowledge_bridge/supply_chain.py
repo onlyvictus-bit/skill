@@ -102,4 +102,9 @@ def provenance_status(name):
         if mismatched:
             raise SupplyChainError("E_LOCK_RECORD_HASH: %d RECORD hashes differ"
                                    % (len(mismatched),))
+        # A selected-file pin proves only selected-file metadata, not the wheel.
+        # Refuse VERIFIED until every hashed RECORD entry has a committed pin.
+        hashed_files = {path for path, digest in actual.items() if digest}
+        if hashed_files != set(expected):
+            return 'UNVERIFIED'
     return "VERIFIED"

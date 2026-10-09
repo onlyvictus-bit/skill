@@ -1,1 +1,19 @@
-{"pins": [{"name": "semantica", "revision": "320761de5d040a54a3220acc563223b4a7ffdc51", "source": "https://github.com/semantica-agi/semantica", "version": "0.7.0"}, {"name": "bridge", "revision": "1.1.0", "source": "local:memory-integrity/scripts/knowledge_bridge", "version": "1.1.0"}]}
+{
+  "pins": [
+    {
+      "name": "semantica",
+      "revision": "320761de5d040a54a3220acc563223b4a7ffdc51",
+      "source": "https://github.com/semantica-agi/semantica",
+      "version": "0.7.0",
+      "record_sha256": {
+        "semantica/__init__.py": "OqNPLbod4yFG-5xWfKr4rKq4PYe7ZqYl9s1hkPne7PA"
+      }
+    },
+    {
+      "name": "bridge",
+      "revision": "1.1.0",
+      "source": "local:memory-integrity/scripts/knowledge_bridge",
+      "version": "1.1.0"
+    }
+  ]
+}

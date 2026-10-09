@@ -70,15 +70,16 @@ class WheelHashTests(unittest.TestCase):
                 with self.assertRaises(supply_chain.SupplyChainError):
                     supply_chain.provenance_status("example_pkg")
 
-    def test_missing_active_record_pins_are_not_verified(self):
+    def test_incomplete_active_wheel_pin_remains_unverified(self):
         from unittest import mock
         class Dist:
             def read_text(self, name):
-                return "example_pkg/__init__.py,sha256=" + "a" * 43 + ",10\n"
-        with mock.patch("importlib.util.find_spec", return_value=object()), \
-             mock.patch("importlib.metadata.version", return_value="0.7.0"), \
-             mock.patch("importlib.metadata.distribution", return_value=Dist()):
-            self.assertNotEqual(supply_chain.provenance_status("semantica"), "VERIFIED")
+                return ("semantica/__init__.py,sha256=OqNPLbod4yFG-5xWfKr4rKq4PYe7ZqYl9s1hkPne7PA,10\n"
+                        "semantica/extra.py,sha256=" + "b" * 43 + ",10\n")
+        with (mock.patch("importlib.util.find_spec", return_value=object()),
+              mock.patch("importlib.metadata.version", return_value="0.7.0"),
+              mock.patch("importlib.metadata.distribution", return_value=Dist())):
+            self.assertEqual(supply_chain.provenance_status("semantica"), "UNVERIFIED")
 
 
 class BitemporalTests(unittest.TestCase):
