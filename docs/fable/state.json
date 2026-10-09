@@ -1,8 +1,13 @@
 {
  "basis": {
-  "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
-  "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
-  "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+  "plan_digest": "db6cc6a8d3e957c3f0afc2cd68cf16baae1136dfdff07ba3faff7fd14cd79b35",
+  "requirements_digest": "fb7cc0ef8ba5e1882c8b6b948eb6c6505015723b751663a23ef338d556a25718",
+  "tests_digest": "a49a3cd27bf6cbc1bd4ab1c9e39b896da829588546be9ff919d4f89d7b861ad8",
+  "prior_locked": {
+   "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+   "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+   "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+  }
  },
  "campaign_id": "semantica-bridge",
  "completed_requirement_ids": [
@@ -28,19 +33,11 @@
   "REQ-20",
   "REQ-21",
   "REQ-22",
-  "REQ-23",
-  "REQ-24",
-  "REQ-25",
-  "REQ-26",
-  "REQ-27",
-  "REQ-28",
-  "REQ-29",
-  "REQ-30",
-  "REQ-31"
+  "REQ-23"
  ],
  "current_task": null,
  "milestone": "FULL-WORKFLOW",
- "next_action": "Offline workflow complete and published. Separate future qualification: live services, learned models, global/DRIFT/distributed operation, broad model coding outcomes and active installed-copy promotion.",
- "phase": "complete",
+ "next_action": "Remediation track REQ-24..31 open under successor basis; prior REQ-01..23 closure preserved with digests in basis.prior_locked. See evidence run 20261009T104043475152Z-remediation.",
+ "phase": "remediation-in-progress",
  "schema": 2
 }
