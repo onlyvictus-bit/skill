@@ -85,6 +85,10 @@ jobs:
         run: python -B .github/scripts/validate-frontmatter.py
         env:
           PYTHONDONTWRITEBYTECODE: "1"
+      - name: Fable canonical evidence chain integrity
+        run: python -B docs/fable/tools/check_chain.py
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
       - name: no cache, secrets, databases, or unsafe archive members
         shell: python
         run: |
