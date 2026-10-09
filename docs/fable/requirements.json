@@ -725,6 +725,54 @@
      "text": "Modified lock table refused; absent packages UNVERIFIED, never green"
     }
    ]
+  },
+  {
+   "id": "REQ-27",
+   "priority": "required",
+   "test_ids": [
+    "TEST-PHASE2-TRUTH"
+   ],
+   "text": "Retraction removes derived current claims while preserving history (CAP-04)",
+   "criteria": [
+    {
+     "id": "REQ-27-1",
+     "test_ids": [
+      "TEST-PHASE2-TRUTH"
+     ],
+     "text": "Correction cascades to derived descendants; re-retract idempotent"
+    },
+    {
+     "id": "REQ-27-2",
+     "test_ids": [
+      "TEST-PHASE2-TRUTH"
+     ],
+     "text": "Conflicts flag review; Fable projection read-only, never override"
+    }
+   ]
+  },
+  {
+   "id": "REQ-28",
+   "priority": "required",
+   "test_ids": [
+    "TEST-PHASE2-TRUTH"
+   ],
+   "text": "Bitemporal queries and reversible entity canonicalization (CAP-05/CAP-03)",
+   "criteria": [
+    {
+     "id": "REQ-28-1",
+     "test_ids": [
+      "TEST-PHASE2-TRUTH"
+     ],
+     "text": "as-of filters exclude future-known facts; out-of-order corrections apply without lookahead"
+    },
+    {
+     "id": "REQ-28-2",
+     "test_ids": [
+      "TEST-PHASE2-TRUTH"
+     ],
+     "text": "Possible matches never auto-merge; explicit merges roll back; replays deterministic"
+    }
+   ]
   }
  ],
  "schema": 2
