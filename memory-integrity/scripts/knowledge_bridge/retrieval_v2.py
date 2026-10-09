@@ -34,14 +34,14 @@ PACK_FIELDS = {'schema_version', 'kind', 'workspace_id', 'task_id', 'generation'
                'retrieval', 'coverage', 'semantic_audit', 'pack_digest'}
 
 
-def _query_binding(binding):
+def _query_binding(binding, allow_learned=False):
     c.keys(binding, BINDING_FIELDS, 'text query binding')
     if type(binding['schema_version']) is not int or binding['schema_version'] != 2:
         raise ValueError('E_TEXT_QUERY_VERSION')
     c.string(binding['query_text'], 'query text')
     if len(binding['query_text'].encode('utf-8')) > c.MAX_MESSAGE:
         raise ValueError('E_MESSAGE_LIMIT')
-    if binding['embedding_mode'] not in MODES:
+    if binding['embedding_mode'] not in MODES and not (allow_learned and binding['embedding_mode']=='learned'):
         raise ValueError('E_EMBEDDING_MODE')
     if binding['direction'] not in DIRECTIONS:
         raise ValueError('E_RETRIEVAL_DIRECTION')
@@ -54,6 +54,18 @@ def _query_binding(binding):
 
 
 def _metadata(metadata, backend, mode):
+    if mode == 'learned':
+        c.keys(metadata, {'model','dimension','evidence_class','mode','algorithm','semantic_quality',
+                          'fit_scope_digest','document_count','model_manifest_digest','model_revision',
+                          'input_token_count'}, 'learned embedding metadata')
+        for key in ('model','algorithm','model_revision'): c.string(metadata[key],key)
+        for key in ('fit_scope_digest','model_manifest_digest'): c.sha(metadata[key])
+        c.integer(metadata['dimension'],1,4096,'learned dimension')
+        c.integer(metadata['document_count'],1,10000,'learned documents')
+        c.integer(metadata['input_token_count'],1,1000000,'learned input tokens')
+        if metadata['mode'] != 'learned' or metadata['evidence_class'] != 'HOST_OBSERVED' or metadata['semantic_quality'] != 'UNVERIFIED':
+            raise ValueError('E_TEXT_EMBEDDING_QUALIFICATION')
+        return metadata
     c.keys(metadata, METADATA_FIELDS, 'text embedding metadata')
     for key in ('model', 'algorithm', 'sklearn_version'):
         c.string(metadata[key], key)
@@ -89,7 +101,9 @@ def _source_refs(refs):
         seen.add(pair)
 
 
-def validate_receipt(receipt, execution=False):
+def validate_receipt(receipt, execution=False, _allow_learned=False):
+    if isinstance(receipt,dict) and receipt.get('schema_version') == 3:
+        return validate_advanced_receipt(receipt,execution)
     if not isinstance(receipt, dict) or not COMMON_FIELDS <= set(receipt) or set(receipt) - COMMON_FIELDS - RUNTIME_FIELDS:
         raise ValueError('E_RETRIEVAL_RECEIPT_SCHEMA')
     if type(receipt['schema_version']) is not int or receipt['schema_version'] != 2:
@@ -97,7 +111,7 @@ def validate_receipt(receipt, execution=False):
     backend = receipt['backend']
     if receipt['ok'] is not True or backend not in {'DIRECT_INSPECTION_DEGRADED', 'SEMANTICA_OBSERVED', 'TEST_ONLY'}:
         raise ValueError('E_RETRIEVAL_BACKEND')
-    binding = _query_binding(receipt['query_binding'])
+    binding = _query_binding(receipt['query_binding'],_allow_learned)
     if receipt['direction'] != binding['direction']:
         raise ValueError('E_RETRIEVAL_DIRECTION')
     c.strings(receipt['limits_reached'], 'retrieval limits')
@@ -216,11 +230,11 @@ def _visible(doc, policy):
     return nodes, edges, table, outside, reasons
 
 
-def _binding(nodes, edges, text, mode, direction, seeds, hops, visits, results):
+def _binding(nodes, edges, text, mode, direction, seeds, hops, visits, results, allow_learned=False):
     return _query_binding({'schema_version': 2, 'query_text': text, 'embedding_mode': mode,
                            'direction': direction, 'seeds': seeds, 'max_hops': hops,
                            'max_visits': visits, 'max_results': results,
-                           'authorized_projection_digest': c.digest(c.canonical({'nodes': nodes, 'edges': edges}))})
+                           'authorized_projection_digest': c.digest(c.canonical({'nodes': nodes, 'edges': edges}))},allow_learned)
 
 
 def _step(edge, left, right, direction):
@@ -402,6 +416,8 @@ def retrieve(doc, root, policy, task, query_text, worker, max_hops=2, seeds=1,
 
 
 def verify_pack(pack, doc, root, policy, task, worker=None):
+    if isinstance(pack,dict) and isinstance(pack.get('retrieval'),dict) and pack['retrieval'].get('schema_version') == 3:
+        return verify_advanced_pack(pack,doc,root,policy,task,worker)
     _validate_pack(pack)
     legacy.validate_policy(policy, doc, task)
     _required_units(doc, root, task)
@@ -444,4 +460,117 @@ def verify_pack(pack, doc, root, policy, task, worker=None):
                          binding['direction'], binding['embedding_mode'])
         if fresh != pack:
             raise ValueError('E_GRAPH_REPLAY_MISMATCH')
+    return pack
+
+
+ENGINE_FIELDS = {'strategy','execution','generation_lease','learned','rerank','diagnostics'}
+
+def validate_advanced_receipt(receipt, execution=False):
+    c.keys(receipt, COMMON_FIELDS | RUNTIME_FIELDS | {'engine'}, 'advanced receipt')
+    if type(receipt['schema_version']) is not int or receipt['schema_version'] != 3: raise ValueError('E_ADVANCED_RECEIPT_VERSION')
+    base = {k:v for k,v in receipt.items() if k != 'engine'}; base['schema_version'] = 2
+    validate_receipt(base, execution,_allow_learned=True)
+    engine = c.keys(receipt['engine'], ENGINE_FIELDS, 'advanced engine')
+    if engine['strategy'] not in {'vector','community','global','drift'} or engine['execution'] not in {'single','distributed-local'}:
+        raise ValueError('E_ADVANCED_ENGINE')
+    if engine['execution'] == 'distributed-local' and engine['strategy'] != 'vector':
+        raise ValueError('E_DISTRIBUTED_STRATEGY')
+    c.sha(engine['generation_lease'])
+    if not isinstance(engine['diagnostics'],dict): raise ValueError('E_ADVANCED_DIAGNOSTICS')
+    learned = engine['learned']
+    if (learned is not None) != (receipt['query_binding']['embedding_mode'] == 'learned'):
+        raise ValueError('E_MODEL_BINDING')
+    for model in (learned, engine['rerank']):
+        if model is not None:
+            c.keys(model,{'manifest_digest','model_digest','runtime_digest','receipt_digest','model_id','model_revision','algorithm','input_tokens'},'advanced model')
+            for key in ('manifest_digest','model_digest','runtime_digest','receipt_digest'): c.sha(model[key])
+            for key in ('model_id','model_revision','algorithm'): c.string(model[key],key)
+            c.integer(model['input_tokens'],1,1000000,'model tokens')
+    if learned and learned['manifest_digest'] != receipt['embedding_metadata']['model_manifest_digest']:
+        raise ValueError('E_MODEL_BINDING')
+    return receipt
+
+
+def _model_binding(result,client):
+    model = result['model']
+    tokens = (sum(result['input_token_counts']) if result['operation'] == 'embedding'
+              else sum(row['evaluated_token_count'] for row in result['ranking']))
+    return {'manifest_digest':model['manifest_digest'],'model_digest':model['model_digest'],
+            'runtime_digest':client.executable_digest,'receipt_digest':c.digest(c.canonical(result)),
+            'model_id':model['model_id'],'model_revision':model['revision'],
+            'algorithm':result['algorithm'],'input_tokens':tokens}
+
+
+def retrieve_advanced(doc, root, policy, task, query_text, worker, max_hops=2, seeds=1,
+                      max_visits=100, max_results=50, direction='outgoing', embedding_mode='lexical',
+                      strategy='vector', execution='single', rerank=False):
+    from .worker_client import WorkerClient, ModelClient
+    legacy.validate_policy(policy,doc,task)
+    if doc['projection']['ontology'] != 'project-2': raise ValueError('E_TEXT_PROJECTION_VERSION')
+    if not isinstance(worker,WorkerClient): raise ValueError('E_GRAPH_REQUIRED_FRESH_WORKER')
+    units = _required_units(doc,root,task)
+    nodes,edges,table,outside,reasons = _visible(doc,policy)
+    binding = _binding(nodes,edges,query_text,embedding_mode,direction,seeds,max_hops,max_visits,max_results,allow_learned=True)
+    engine = {'strategy':strategy,'execution':execution,'generation_lease':doc['generation'],
+              'learned':None,'rerank':None,'diagnostics':{}}
+    if strategy not in {'vector','community','global','drift'} or execution not in {'single','distributed-local'}:
+        raise ValueError('E_ADVANCED_ENGINE')
+    if execution == 'distributed-local' and strategy != 'vector': raise ValueError('E_DISTRIBUTED_STRATEGY')
+    override = None
+    if embedding_mode == 'learned':
+        if not isinstance(worker.model_client,ModelClient): raise ValueError('E_LOCAL_MODEL_REQUIRED')
+        observed = worker.model_client({'op':'embed','texts':[n['text'] for n in nodes]+[query_text]})
+        vectors = observed['vectors']; dimension = len(vectors[-1])
+        if len(vectors) != len(nodes)+1: raise ValueError('E_MODEL_VECTOR_SCOPE')
+        vectors = [c.vector(v,dimension) for v in vectors]
+        corpus = sorted([{'id':n['id'],'text':n['text']} for n in nodes],key=lambda row:row['id'])
+        metadata = {'model':observed['model']['model_id'],'dimension':dimension,'evidence_class':'HOST_OBSERVED',
+                    'mode':'learned','algorithm':observed['algorithm'],'semantic_quality':'UNVERIFIED',
+                    'fit_scope_digest':c.digest(c.canonical(corpus)),'document_count':len(nodes),
+                    'model_manifest_digest':observed['model']['manifest_digest'],
+                    'model_revision':observed['model']['revision'],'input_token_count':sum(observed['input_token_counts'])}
+        override = {'vectors':vectors[:-1],'query':vectors[-1],'metadata':metadata}
+        engine['learned'] = _model_binding(observed,worker.model_client)
+    if rerank:
+        if not isinstance(worker.model_client,ModelClient): raise ValueError('E_LOCAL_MODEL_REQUIRED')
+        if strategy != 'vector' or execution != 'single': raise ValueError('E_RERANK_STRATEGY')
+        observed = worker.model_client({'op':'rerank','query':query_text,'candidates':[{'id':n['id'],'text':n['text']} for n in nodes]})
+        engine['rerank'] = _model_binding(observed,worker.model_client)
+        seed_scores = [{'id':row['id'],'score':float(row['score'])} for row in observed['ranking']]
+    else: seed_scores = None
+    receipt = worker({'op':'retrieve_advanced','ontology':'project-2','nodes':nodes,'edges':edges,
+                      'query_text':query_text,'embedding_mode':embedding_mode,'direction':direction,
+                      'seeds':seeds,'max_hops':max_hops,'max_visits':max_visits,'max_results':max_results,
+                      'strategy':strategy,'execution':execution,'generation_lease':doc['generation'],
+                      'vector_override':override,'seed_scores':seed_scores})
+    engine['diagnostics'] = receipt.pop('advanced_diagnostics')
+    selected,premises,refs = _candidates(receipt,table,edges,binding)
+    receipt.update(schema_version=3,query_binding=binding,
+                   exclusions=_exclusions(outside,reasons,table,edges,receipt,binding),engine=engine)
+    validate_advanced_receipt(receipt,execution=True);_check_embedding_scope(receipt,nodes)
+    seen = {(u['source_id'],u['unit_id']) for u in units}
+    for ref in refs:
+        pair = (ref['source_id'],ref['unit_id'])
+        if pair not in seen:
+            units.append(indexing.reopen(doc,root,ref));seen.add(pair)
+    pack = {'schema_version':1,'kind':'knowledge-evidence-v1','workspace_id':doc['workspace_id'],
+            'task_id':task['task_id'],'generation':doc['generation'],'source_basis_digest':doc['source_basis_digest'],
+            'policy_digest':c.digest(c.canonical(policy)),'task_obligations_digest':c.digest(c.canonical(task)),
+            'embedding':doc['projection']['embedding'],'required_units':task['required_units'],'units':units,
+            'assertions':selected,'premises':premises,'retrieval':receipt,'coverage':'UNVERIFIED','semantic_audit':'UNVERIFIED'}
+    pack['pack_digest'] = c.digest(c.canonical(pack))
+    if len(c.canonical(pack)) > task['max_bytes']: raise ValueError('E_PACK_BUDGET')
+    return _validate_pack(pack)
+
+
+def verify_advanced_pack(pack,doc,root,policy,task,worker=None):
+    from .worker_client import WorkerClient
+    _validate_pack(pack);legacy.validate_policy(policy,doc,task)
+    if not isinstance(worker,WorkerClient): raise ValueError('E_GRAPH_REQUIRED_FRESH_WORKER')
+    receipt = pack['retrieval'];binding = receipt['query_binding'];engine = receipt['engine']
+    if engine['generation_lease'] != doc['generation']: raise ValueError('E_ADVANCED_STALE_LEASE')
+    fresh = retrieve_advanced(doc,root,policy,task,binding['query_text'],worker,
+                             binding['max_hops'],binding['seeds'],binding['max_visits'],binding['max_results'],
+                             binding['direction'],binding['embedding_mode'],engine['strategy'],engine['execution'],engine['rerank'] is not None)
+    if fresh != pack: raise ValueError('E_GRAPH_REPLAY_MISMATCH')
     return pack

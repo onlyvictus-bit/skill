@@ -1,0 +1,11 @@
+# Advanced source-bound discovery / bridge 1.2
+
+`knowledge-retrieve --query-text ... --strategy community|global|drift` runs actual pinned Semantica community hierarchy/report/global/DRIFT APIs on the already authorized and current projection. The source-bound report findings copy original assertion text and references; upstream synthesized answer strings are discarded. DRIFT alignment pruning is a lexical heuristic, not truth verification. Current access/validity/staleness/premise filtering precedes every model, hierarchy and shard.
+
+`--execution distributed-local` with the vector strategy starts exactly two isolated worker processes. All shards share one globally generated vector basis; each owner searches its own node vectors and returns authored directional adjacency. A central bounded BFS traverses cross-shard edges with global limits. Both workers must satisfy the pinned runtime identity. Messages bind generation lease, lane, request/phase sequence, shard/fit digest and expected neighbor coverage. Worker death, delayed/stale/foreign replies, malformed/oversized output and timeout fail closed without automatic retry. Outer POSIX timeout kills the worker process group.
+
+Qualification is LOCAL_TWO_PROCESS_SHARDED. This does not demonstrate remote multi-host transport, authenticated endpoints, remote cancellation or service deployment. The local adapter has those limits explicitly rather than relabeling Semantica's stub distributed worker as a working service.
+
+Schema-1/2 receipts retain their old contracts. New modes use schema3, binding strategy, execution, generation lease, learned/rerank manifest/model/runtime/receipt hashes and deterministic diagnostics. Transient process IDs and timings stay outside the pack identity. Normal mandatory-source reopening, full authored path/derivation closure, hard pack budget, protected request binding and fresh exact replay still apply.
+
+Advanced options require query-text/project-2 and an explicit pinned worker. Unsupported combinations with query-vector are rejected. The distributed path supports the vector strategy; learned shared vectors are supported with explicit model runtime. Reranking is qualified only for single/vector execution. Global/community summaries, embeddings and graph traversal never grant evidence admission or semantic truth.

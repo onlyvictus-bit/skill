@@ -21,7 +21,7 @@ def suite(root,name):
     return {'package':root.name,'suite':name,'tests':int(count.group(1)),'skipped':int(skipped.group(1)) if skipped else 0}
 def verify(folder):
     manifest=json.loads((folder/'Knowledge-Bridge-Manifest.json').read_text(encoding='utf-8'))
-    assert manifest['release']=='knowledge-bridge-v1' and manifest['default_graph'] is False and manifest['installed_promoted'] is False
+    assert manifest['release'] in {'knowledge-bridge-v1','knowledge-bridge-v2'} and manifest['default_graph'] is False and manifest['installed_promoted'] is False
     assert set(manifest['packages'])==set(PACKAGES)
     spec=importlib.util.spec_from_file_location('historical_release_verifier',ROOT/'release/Verify-Memory-Integrity-R4.py');old=importlib.util.module_from_spec(spec);spec.loader.exec_module(old)
     # Historical package digests must still match their original manifests.

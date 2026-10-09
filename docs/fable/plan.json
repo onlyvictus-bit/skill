@@ -1,6 +1,6 @@
 {
-  "milestone": "FULL-WORKFLOW",
-  "plan_id": "semantica-full-workflow-v3",
+  "milestone": "REMAINING-WORK",
+  "plan_id": "semantica-completion-recovery-v5",
   "schema": 2,
   "tasks": [
     {
@@ -183,6 +183,66 @@
         "TEST-BRIDGE",
         "TEST-REGRESSION",
         "TEST-REVIEW"
+      ]
+    },
+    {
+      "action": "Recover the exact persisted and tested 1.2 code, restore runtime setup and current observed evidence, verify, publish and save the matching pair",
+      "artifacts": [
+        "claude-mon/agents/openai.yaml",
+        "claude-mon/tests_v2/R4-CONTENT.json",
+        "docs/fable/derived/advanced-runtime.json",
+        "docs/fable/derived/installed-skills.json",
+        "docs/fable/derived/model-benefit.json",
+        "docs/fable/derived/model-runtime.json",
+        "docs/fable/derived/remaining-plan.md",
+        "docs/fable/derived/remaining-verification.md",
+        "docs/fable/intake-remaining.txt",
+        "memory-integrity/references/INDEX.md",
+        "memory-integrity/references/knowledge-advanced.md",
+        "memory-integrity/references/knowledge-models.md",
+        "memory-integrity/scripts/knowledge_bridge/advanced_retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py",
+        "memory-integrity/scripts/knowledge_bridge/distributed_worker.py",
+        "memory-integrity/scripts/knowledge_bridge/language_extraction.py",
+        "memory-integrity/scripts/knowledge_bridge/model_benchmark.py",
+        "memory-integrity/scripts/knowledge_bridge/model_runtime.py",
+        "memory-integrity/scripts/knowledge_bridge/semantic_proposals.py",
+        "memory-integrity/tests_v2/test_knowledge_advanced.py",
+        "memory-integrity/tests_v2/test_knowledge_distributed.py",
+        "memory-integrity/tests_v2/test_knowledge_languages.py",
+        "memory-integrity/tests_v2/test_knowledge_model_benchmark.py",
+        "memory-integrity/tests_v2/test_knowledge_model_runtime.py",
+        "memory-integrity/tests_v2/test_knowledge_semantic_proposals.py",
+        "release/claude-mon-knowledge-v2.zip",
+        "release/memory-integrity-knowledge-v2.zip",
+        "semantica-runtime/Prepare-Models.py",
+        "semantica-runtime/Verify-Models.py",
+        "semantica-runtime/models-lock.json",
+        "semantica-runtime/requirements-models.in"
+      ],
+      "criterion_ids": [
+        "FUTURE-1-1",
+        "FUTURE-2-1",
+        "FUTURE-3-1",
+        "FUTURE-4-1",
+        "FUTURE-5-1"
+      ],
+      "id": "TASK-REMAINING",
+      "requirement_ids": [
+        "FUTURE-1",
+        "FUTURE-2",
+        "FUTURE-3",
+        "FUTURE-4",
+        "FUTURE-5"
+      ],
+      "test_ids": [
+        "TEST-ADVANCED",
+        "TEST-BRIDGE",
+        "TEST-EXTRACTION",
+        "TEST-INSTALL",
+        "TEST-MODEL",
+        "TEST-MODEL-BENEFIT",
+        "TEST-REGRESSION"
       ]
     }
   ]

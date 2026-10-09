@@ -3,6 +3,60 @@ import copy,json,os,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'));CM=ROOT.parent/'claude-mon'
 from knowledge_bridge import contracts as c,indexing
+class RemainingPublicContract(unittest.TestCase):
+ def test_explicit_local_model_client_exists(self):
+  from knowledge_bridge import worker_client
+  self.assertTrue(hasattr(worker_client,'ModelClient'),'bounded explicit local model client is missing')
+ def test_advanced_retrieval_receipt_has_separate_validator(self):
+  from knowledge_bridge import retrieval_v2
+  self.assertTrue(hasattr(retrieval_v2,'validate_advanced_receipt'),'versioned advanced retrieval binding is missing')
+ def test_model_client_rejects_wrong_input_hash_and_token_counts(self):
+  from knowledge_bridge.worker_client import ModelClient
+  from unittest.mock import patch
+  with tempfile.TemporaryDirectory() as d:
+   manifest=Path(d)/'models.json';manifest.write_text('{}');client=ModelClient(Path(sys.executable).absolute(),manifest)
+   bad={'ok':True,'operation':'embedding','model':{'manifest_digest':client.manifest_digest},
+        'vectors':[[1,0]],'input_sha256':['0'*64],'input_token_counts':[1],'input_token_ids':[[1]]}
+   with patch('knowledge_bridge.worker_client._process',return_value=bad):
+    with self.assertRaisesRegex(ValueError,'E_MODEL_INPUT_BINDING'):client({'op':'embed','texts':['correct source']})
+ @unittest.skipUnless(os.name=='posix' and Path('/proc').exists(),'POSIX process-group observation required')
+ def test_timeout_terminates_worker_descendants(self):
+  from knowledge_bridge.worker_client import _process
+  import time
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);pidfile=root/'child.pid';script=root/'worker.py';heartbeat=root/'heartbeat'
+   child='from pathlib import Path\nimport time\np=Path('+repr(str(heartbeat))+')\nfor n in range(3000):\n p.write_text(str(n))\n time.sleep(.02)\n'
+   script.write_text('import subprocess,sys,time\nfrom pathlib import Path\nchild=subprocess.Popen([sys.executable,"-c",'+repr(child)+'])\nPath('+repr(str(pidfile))+').write_text(str(child.pid))\ntime.sleep(60)\n')
+   with self.assertRaisesRegex(ValueError,'E_WORKER_TIMEOUT'):
+    _process(sys.executable,script,{},.5,c.digest(Path(sys.executable).read_bytes()))
+   pid=int(pidfile.read_text());before=heartbeat.read_text();time.sleep(.15)
+   alive=heartbeat.read_text()!=before
+   if alive:
+    try:os.kill(pid,9)
+    except ProcessLookupError:pass
+   self.assertFalse(alive,'worker child survived outer timeout')
+ @unittest.skipUnless(os.environ.get('KNOWLEDGE_WORKER_PYTHON'),'explicit pinned runtime required')
+ def test_public_advanced_modes_source_closure_and_replay(self):
+  from knowledge_bridge import impact,retrieval
+  from knowledge_bridge.worker_client import WorkerClient
+  fixture=Completion();fixture.setUp();self.addCleanup(fixture.doCleanups)
+  impact.build(fixture.root,fixture.map,fixture.store,CM)
+  policy={'schema_version':1,'workspace_id':'w','task_id':'t','allowed_source_ids':['client','worker','test']}
+  task={'schema_version':1,'task_id':'t','required_units':[{'source_id':'worker','unit_id':'U000001'}],'require_graph':True,'max_bytes':200000,'execution_task_digest':c.digest(c.canonical({'schema_version':3,'instructions':'inspect work'}))}
+  for name,value in [('policy',policy),('task',task)]: (fixture.root/(name+'.json')).write_bytes(c.canonical(value))
+  for strategy,execution in [('community','single'),('global','single'),('drift','single'),('vector','distributed-local')]:
+   with self.subTest(strategy=strategy,execution=execution):
+    path=fixture.root/(strategy+'-'+execution+'.json')
+    cmd=[sys.executable,'-B',str(ROOT/'scripts/memory_integrity_workflow.py'),'knowledge-retrieve','--claude-mon-root',str(CM),'--project-root',str(fixture.root),'--index-dir',str(fixture.store),'--policy-file',str(fixture.root/'policy.json'),'--task-file',str(fixture.root/'task.json'),'--query-text','work','--evidence-pack',str(path),'--worker-python',os.environ['KNOWLEDGE_WORKER_PYTHON'],'--strategy',strategy,'--execution',execution]
+    p=subprocess.run(cmd,capture_output=True,text=True,timeout=90);self.assertEqual(p.returncode,0,p.stdout+p.stderr)
+    pack=c.read(path);self.assertEqual(pack['retrieval']['schema_version'],3)
+    self.assertIn(('worker','U000001'),{(u['source_id'],u['unit_id']) for u in pack['units']})
+    doc=indexing.load(fixture.store,fixture.root,CM)
+    replay=WorkerClient(os.environ['KNOWLEDGE_WORKER_PYTHON'])
+    retrieval.verify_pack(pack,doc,fixture.root,policy,task,replay)
+    changed=copy.deepcopy(pack);changed['retrieval']['engine']['generation_lease']='0'*64
+    changed['pack_digest']=c.digest(c.canonical({k:v for k,v in changed.items() if k!='pack_digest'}))
+    with self.assertRaisesRegex(ValueError,'LEASE'):retrieval.verify_pack(changed,doc,fixture.root,policy,task,replay)
 class Completion(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name);self.store=self.root/'index'

@@ -51,3 +51,6 @@ The current pair includes the [2026-10-08 audit integrity correction](docs/fable
 ## Automatic coding knowledge workflow / bridge 1.1
 
 The [project-2 workflow](memory-integrity/references/knowledge-project-2.md) adds automatic Python extraction, conservative Semantica relation DSL extraction, offline text search, typed SHACL, reverse traversal, selective invalidation, observed local tests and freshly checked task-relative admission. The [completion plan](docs/fable/derived/full-workflow-plan.md) restores the gaps in the first prototype. Existing project-1 data and R3/R4 packages remain available. Graph stays optional; offline fixture outcomes do not prove general AI coding benefit.
+
+
+Semantica bridge1.2 adds optional file-pinned local MiniLM embeddings, Qwen relevance scoring and bounded per-unit processing, JavaScript/TypeScript syntax, source-bound community/global/DRIFT and local two-process sharding. Use the knowledge-v2 package pair and the explicitly prepared runtimes documented in memory-integrity/references/knowledge-models.md. Graph remains off by default. Real model coding outcomes, including failures and raw receipts, are recorded in docs/fable/derived/model-benefit.json; no production coding benefit or remote multi-host qualification is claimed.

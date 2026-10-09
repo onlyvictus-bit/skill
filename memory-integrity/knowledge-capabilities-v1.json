@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "bridge_version": "1.1.0",
+  "bridge_version": "1.2.0",
   "semantica_version": "0.7.0",
   "semantica_revision": "320761de5d040a54a3220acc563223b4a7ffdc51",
   "default_graph": false,
@@ -33,13 +33,35 @@
     "full_corpus_understanding",
     "live_provider_dispatch",
     "coding_outcome_benefit",
-    "installed_copy_replacement",
     "arbitrary_language_extraction",
     "free_text_relation_entailment",
-    "dynamic_call_execution_coverage"
+    "dynamic_call_execution_coverage",
+    "remote_multi_host_distributed_operation",
+    "all_source_free_text_entailment",
+    "production_model_coding_benefit"
   ],
   "evidence_class": "TEST_ONLY",
   "native_qualification": "unchanged; see capabilities-v2.json",
   "network_isolation": "best-effort Python sockets/offline flags; not OS sandbox",
-  "coding_outcome_scope": "held-out deterministic patcher fixtures; general model coding benefit remains UNVERIFIED"
+  "coding_outcome_scope": "Real pinned Qwen0.5B: 3 authored Python bugs x4 configurations; every arm0/3passes, no benefit shown; graph remains off.",
+  "observed_optional_local": [
+    "pinned_onnx_sentence_embeddings",
+    "source_bound_learned_relevance_scoring",
+    "source_quoted_model_proposals",
+    "declared_unit_local_model_processing",
+    "javascript_typescript_syntax_symbols",
+    "semantica_community_global_drift",
+    "two_process_sharded_retrieval",
+    "real_model_coding_experiment"
+  ],
+  "optional_local_limits": {
+    "learned_retrieval_nodes": 999,
+    "rerank_candidates": 100,
+    "embedding_input_tokens": 256,
+    "generation_input_plus_output_tokens": 4096,
+    "maximum_model_output_tokens": 2048,
+    "distributed_workers": 2,
+    "distributed_scope": "LOCAL_TWO_PROCESS_SHARDED",
+    "drift_alignment": "LEXICAL_HEURISTIC"
+  }
 }

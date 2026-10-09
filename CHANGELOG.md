@@ -68,3 +68,7 @@
 - Read-only native observation route, consent scenarios, observation tests.
 - Single deliberate failure: R3 content-manifest mismatch (unfinished
   successor correctly refuses release identity).
+
+
+## Semantica bridge1.2 — 2026-10-09
+Adds optional sealed local models, actual bounded advanced retrieval and two-process sharding, source-quoted semantic proposals, JS/TS syntax, raw model coding measurements and matching managed Skills promotion. Retains historic releases and protected source/CAS authority.

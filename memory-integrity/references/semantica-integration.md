@@ -1,4 +1,6 @@
-# Optional Semantica knowledge bridge v1
+# Optional Semantica knowledge bridge
+
+Current bridge1.2 uses the matching knowledge-v2 pair. The table below describes the initial project-1/v1 compatibility mechanism; its historical limitations do not describe the optional successor routes. Use [project-2](knowledge-project-2.md), [local models](knowledge-models.md) and [advanced retrieval](knowledge-advanced.md) for current capabilities and precise qualification boundaries.
 
 Use this layer to discover source-linked relationships or diagnose a structured evidence gap. Fable owns requirements, approvals, edits and completion. Memory Integrity remains the entrypoint. The explicit matching claude-mon companion owns partition units, execution ledger, request measurement and protected history. A knowledge generation is a disposable projection, never an authority or a replacement memory system.
 

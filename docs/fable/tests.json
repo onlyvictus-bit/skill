@@ -47,6 +47,64 @@
       "expect": "exit=0",
       "id": "TEST-AUDIT-REPAIR",
       "kind": "automated"
+    },
+    {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "memory-integrity/tests_v2",
+        "-p",
+        "test_knowledge_model_runtime.py"
+      ],
+      "expect": "exit=0",
+      "id": "TEST-MODEL",
+      "kind": "automated"
+    },
+    {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "memory-integrity/tests_v2",
+        "-p",
+        "test_knowledge_advanced.py"
+      ],
+      "expect": "exit=0",
+      "id": "TEST-ADVANCED",
+      "kind": "automated"
+    },
+    {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "memory-integrity/tests_v2",
+        "-p",
+        "test_knowledge_languages.py"
+      ],
+      "expect": "exit=0",
+      "id": "TEST-EXTRACTION",
+      "kind": "automated"
+    },
+    {
+      "id": "TEST-INSTALL",
+      "instructions": "Reopen actual saved pair, source/runtime file hashes, installed CLI and managed Git remote readback plus published GitHub identities",
+      "kind": "manual"
+    },
+    {
+      "id": "TEST-MODEL-BENEFIT",
+      "instructions": "Run pinned real model; retain raw prompts, outputs and fixed independent tests for all comparison arms; failure is a valid measured outcome",
+      "kind": "manual"
     }
   ]
 }

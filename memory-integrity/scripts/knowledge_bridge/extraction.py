@@ -235,7 +235,28 @@ class _Fragment(ast.NodeVisitor):
                 'calls': self.calls, 'mutations': self.mutations, 'scopes': self.scopes, 'diagnostics': self.diagnostics}
 
 
-def _fragment(source_id, source, raw, repository):
+def _fragment(source_id, source, raw, repository, language_parser=None):
+    if PurePosixPath(source['path']).suffix in {'.js','.jsx','.ts','.tsx'} and language_parser is not None:
+        report=language_parser.syntax(raw.decode('utf-8'),source['path'])
+        if report['source_sha256']!=c.digest(raw):raise ValueError('E_LANGUAGE_SOURCE_BINDING')
+        component=_id('component',repository,source['path']);module=_module(source['path'])
+        nodes=[];symbols=[];edges=[];diagnostics=[]
+        if report['status']=='OBSERVED':
+            nodes.append(_node(component,'Component',report['language']+' module '+module,_refs(source_id,source,[0,len(raw)])))
+            for item in report['symbols']:
+                ident=_id('symbol',repository,source['path'],item['name'],item['range'][0])
+                refs=_refs(source_id,source,item['range']);qualified=module+'.'+item['name']
+                symbols.append({'id':ident,'qualified_name':qualified,'name':item['name'],'kind':item['kind'],
+                                'scope':item['name'],'source_id':source_id,'range':item['range'],'span_sha256':item['span_sha256']})
+                nodes.append(_node(ident,'Symbol',report['language']+' '+item['kind']+' '+qualified,refs))
+                edges.append(_edge(ident,'DEFINED_IN',component,refs,[report['language']+'-syntax-declaration'],[source_id,*item['range']]))
+        for item in report['diagnostics']:
+            diagnostics.append({'kind':item['kind'],'source_id':source_id,'range':item['range'],
+                                'detail':'syntax observed; dynamic or lexical binding is not qualified'})
+        return {'status':report['status'],'module':module,'component':component if nodes else None,
+                'nodes':nodes,'symbols':symbols,'edges':edges,'imports':[],'calls':[],'mutations':[],
+                'scopes':{'':{'kind':'module','parent':None,'bindings':{},'star_import':False}},
+                'diagnostics':diagnostics,'language_syntax':report}
     if not source['path'].endswith('.py'):
         diagnostics = [{'kind': 'UNSUPPORTED_FORMAT', 'source_id': source_id,
                         'range': [0, len(raw)], 'detail': 'structural extraction supports Python only'}]
@@ -392,7 +413,7 @@ def _sealed_previous(previous, repository):
         return False
 
 
-def extract(sources, repository, previous=None, *, root):
+def extract(sources, repository, previous=None, *, root, language_parser=None):
     """Project frozen source records; root is explicit and sources never execute.
 
     ``previous`` is a prior manifest (or complete extract result). Cache reuse
@@ -417,11 +438,13 @@ def extract(sources, repository, previous=None, *, root):
             if not 0 <= start < end <= len(raw) or c.digest(raw[start:end]) != unit['sha256']: raise ValueError('E_MANIFEST_INVALID')
         unit_digest = c.digest(c.canonical(source['manifest']))
         prior = previous.get('sources', {}).get(source_id) if compatible else None
+        if language_parser is not None and PurePosixPath(source['path']).suffix in {'.js','.jsx','.ts','.tsx'}:
+            prior=None  # Re-observe the selected grammar/version; never reuse under an unknown parser change.
         cache_key = {'source_sha256': source['source_sha256'], 'path': source['path'], 'unit_manifest_digest': unit_digest}
         if isinstance(prior, dict) and all(prior.get(k) == v for k, v in cache_key.items()) and isinstance(prior.get('fragment'), dict) and prior.get('fragment_digest') == c.digest(c.canonical(prior['fragment'])):
             fragment = copy.deepcopy(prior['fragment']); reused.append(source_id)
         else:
-            fragment = _fragment(source_id, source, raw, repository); parsed.append(source_id)
+            fragment = _fragment(source_id, source, raw, repository,language_parser); parsed.append(source_id)
         fragments[source_id] = fragment
         records[source_id] = dict(cache_key, status=fragment['status'], fragment=fragment,
                                   unit_ranges=[{'id': unit['id'], 'range': list(unit['range'])}
@@ -433,7 +456,7 @@ def extract(sources, repository, previous=None, *, root):
     manifest = {'schema_version': 1, 'kind': 'knowledge-extraction-v1', 'repository': repository,
                 'extractor': copy.deepcopy(EXTRACTOR), 'sources': records, 'symbols': symbols,
                 'diagnostics': diagnostics, 'cache': {'reused_source_ids': reused, 'parsed_source_ids': parsed},
-                'coverage': 'OBSERVED_FOR_DECLARED_PYTHON_SYNTAX' if all(r['status'] == 'OBSERVED' for r in records.values()) else 'PARTIAL',
+                'coverage': ('OBSERVED_FOR_DECLARED_SUPPORTED_SYNTAX' if language_parser is not None else 'OBSERVED_FOR_DECLARED_PYTHON_SYNTAX') if all(r['status'] == 'OBSERVED' for r in records.values()) else 'PARTIAL',
                 'embedding_scope': 'deterministic lexical word/subword hashing; semantic quality UNVERIFIED',
                 'runtime_call_truth': 'UNVERIFIED', 'semantic_truth': 'UNVERIFIED',
                 'projection_digest': c.digest(c.canonical(projection))}

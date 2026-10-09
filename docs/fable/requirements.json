@@ -369,49 +369,99 @@
       "text": "Release, verify portable copy, commit and publish exact GitHub changes"
     },
     {
-      "criteria": [],
+      "criteria": [
+        {
+          "id": "FUTURE-1-1",
+          "test_ids": [
+            "TEST-MODEL",
+            "TEST-BRIDGE"
+          ],
+          "text": "Exact revisions/file hashes; actual offline model inference, token accounting and overbudget refusal; no hash/random fallback or provider disclosure"
+        }
+      ],
       "id": "FUTURE-1",
-      "priority": "future",
+      "priority": "required",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-MODEL",
+        "TEST-BRIDGE"
       ],
-      "text": "Live embedding/extraction/reranking/evaluation services require separate qualified consent route"
+      "text": "Pinned free local learned embedding, model relevance scoring and bounded real generation"
     },
     {
-      "criteria": [],
+      "criteria": [
+        {
+          "id": "FUTURE-2-1",
+          "test_ids": [
+            "TEST-ADVANCED",
+            "TEST-BRIDGE"
+          ],
+          "text": "Actual pinned APIs, access first, bounded source closure and replay; killed/stale/wrong-owner worker refusal; remote multi-host deployment remains unsupported"
+        }
+      ],
       "id": "FUTURE-2",
-      "priority": "future",
+      "priority": "required",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-ADVANCED",
+        "TEST-BRIDGE"
       ],
-      "text": "Global, DRIFT and distributed graph services are deferred until local evidence warrants them"
+      "text": "Source-bound community/global/DRIFT and two-process local sharded retrieval"
     },
     {
-      "criteria": [],
+      "criteria": [
+        {
+          "id": "FUTURE-3-1",
+          "test_ids": [
+            "TEST-EXTRACTION",
+            "TEST-BRIDGE"
+          ],
+          "text": "Python behavior retained; actual JS/TS parsing and byte ranges; every authorized unit processed or retained partial/error; unreviewed proposals and semantic truth never auto admitted"
+        }
+      ],
       "id": "FUTURE-3",
-      "priority": "future",
+      "priority": "required",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-EXTRACTION",
+        "TEST-BRIDGE"
       ],
-      "text": "Complete-corpus semantic understanding is not proven by this offline integration"
+      "text": "JS/TS syntax extraction and exact-source semantic proposals with per-unit processing"
     },
     {
-      "criteria": [],
+      "criteria": [
+        {
+          "id": "FUTURE-4-1",
+          "test_ids": [
+            "TEST-INSTALL",
+            "TEST-REGRESSION"
+          ],
+          "text": "Archive validation, legacy preservation, installed front-door observation, exact code file identity and documented service UI materialization; individual managed Git push and remote readback; GitHub publication"
+        }
+      ],
       "id": "FUTURE-4",
-      "priority": "future",
+      "priority": "required",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-INSTALL",
+        "TEST-REGRESSION"
       ],
-      "text": "Installed ChatGPT skill replacement is outside GitHub publication scope"
+      "text": "Publish verified successor and save matching managed Skills pair"
     },
     {
-      "criteria": [],
-      "id": "FUTURE-5",
-      "priority": "future",
-      "test_ids": [
-        "TEST-REVIEW"
+      "criteria": [
+        {
+          "id": "FUTURE-5-1",
+          "test_ids": [
+            "TEST-MODEL-BENEFIT",
+            "TEST-BRIDGE"
+          ],
+          "text": "Real generated patches, equal settings across direct/lexical/graph/audit; raw prompts/results retained, independent tests unchanged, failures retained, no guaranteed improvement"
+        }
       ],
-      "text": "Real coding/model outcome benchmarks require representative tasks and separately authorized provider runs"
+      "id": "FUTURE-5",
+      "priority": "required",
+      "test_ids": [
+        "TEST-MODEL-BENEFIT",
+        "TEST-BRIDGE"
+      ],
+      "text": "Measure actual pinned local coding-model outcomes on independent regression tasks"
     },
     {
       "criteria": [

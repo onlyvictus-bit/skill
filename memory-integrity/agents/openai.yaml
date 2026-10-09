@@ -1,10 +1,11 @@
 interface:
-  display_name: Memory Integrity
-  short_description: Source coverage, durable recall, and optional governed knowledge discovery.
+  display_name: "Memory Integrity"
+  short_description: "Verify source coverage and optional knowledge discovery."
+  default_prompt: "Use $memory-integrity to verify source evidence and the optional local Semantica workflow."
 policy:
   products:
-  - chatgpt
-  - codex
-  - api
-  - atlas
+  - "chatgpt"
+  - "codex"
+  - "api"
+  - "atlas"
   allow_implicit_invocation: true

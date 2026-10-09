@@ -1,24 +1,24 @@
 {
   "base_release": "2.0.0-m12-r4",
-  "bridge_version": "1.1.0",
+  "bridge_version": "1.2.0",
   "default_graph": false,
   "evidence_class": "TEST_ONLY",
   "installed_promoted": false,
   "packages": {
     "claude-mon": {
-      "bytes": 154348,
+      "bytes": 154391,
       "entries": 68,
-      "sha256": "c3b0fa2a0c4f51847d62542ce48e8f5d5dfcbb38ab8af6d6e91b8f28976d0fcf",
-      "zip": "claude-mon-knowledge-v1.zip"
+      "sha256": "898011cf9056883695bdf3fec7ffaebecbbe0b471acb8f843b4ca3dab967d979",
+      "zip": "claude-mon-knowledge-v2.zip"
     },
     "memory-integrity": {
-      "bytes": 334811,
-      "entries": 127,
-      "sha256": "12ce0f6cb3b5b8edb100f906a5c39f0e6567522e1ee2cb4baa247a0b5ee808be",
-      "zip": "memory-integrity-knowledge-v1.zip"
+      "bytes": 387921,
+      "entries": 142,
+      "sha256": "55f024478a1edcd976fc364fbd4ee91ec5a2029841d7fc23e7a131d300529eb3",
+      "zip": "memory-integrity-knowledge-v2.zip"
     }
   },
-  "release": "knowledge-bridge-v1",
+  "release": "knowledge-bridge-v2",
   "schema_version": 1,
   "semantica_revision": "320761de5d040a54a3220acc563223b4a7ffdc51",
   "semantica_version": "0.7.0"

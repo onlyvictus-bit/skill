@@ -1,0 +1,232 @@
+{
+  "default_graph": false,
+  "direct_graph_pass_delta": 0,
+  "experiment_checks": {
+    "actual_model_receipts": true,
+    "balanced_trials": true,
+    "failing_original_baselines": true,
+    "same_model_and_settings": true,
+    "same_test_oracles": true,
+    "unchanged_test_and_policy_files": true
+  },
+  "fairness": {
+    "direct": "all current authorized sources, no truncation",
+    "generation_output_limit": 256,
+    "same_model": true,
+    "same_original_sources": true,
+    "same_settings": true,
+    "same_tests": true,
+    "scripted_patch_substitution": false,
+    "search": "same lexical query; 1 seed; hops 0 or 2; mandatory policy and regression"
+  },
+  "general_coding_benefit": "UNVERIFIED",
+  "kind": "PUBLIC_MODEL_MEASUREMENT_SUMMARY",
+  "limitations": [
+    "Small authored fixtures and a 0.5B local model are not representative production coding workloads",
+    "A measured tie or loss is retained; no broad coding improvement is asserted",
+    "Syntax and pure-code restrictions may refuse otherwise useful model output",
+    "Output-limit responses are refused even if an apparent complete function exists",
+    "Structured source delivery audit is not free-text entailment or a protected CAS trace",
+    "One repeat does not establish repeatability or statistical significance",
+    "Pure-code AST checks and resource limits are defense in depth, not an OS sandbox"
+  ],
+  "manifest_digest": "8f4d6d914bd20aa255b7f65a59f1597cc9fefc32a0c514f6de8267a72c143460",
+  "model_usage": 12,
+  "ok": true,
+  "provider_usage": 0,
+  "raw_evidence": {
+    "filename": "Semantica-1.2-Verification.zip",
+    "original_report_sha256": "62f9cecd2edc2b91daccb37819a65731f8f29e6452e28bba4f06caa61701ee8d",
+    "public_payload": "Summary only; raw prompts, source text, model output/token IDs, command traces and installed file identities are withheld from public GitHub.",
+    "retention": "PRIVATE_VERIFICATION_ARTIFACT"
+  },
+  "repeats": 1,
+  "schema_version": 1,
+  "scope": "three independently authored small Python bugs; actual generated whole-file replacements; fixed regression oracles",
+  "semantic_truth": "UNVERIFIED",
+  "summaries": [
+    {
+      "input_tokens": 1229,
+      "median_elapsed_seconds": 6.413847684999951,
+      "output_tokens": 148,
+      "patches_applied": 0,
+      "regression_passes": 0,
+      "runs": 3,
+      "variant": "direct"
+    },
+    {
+      "input_tokens": 940,
+      "median_elapsed_seconds": 9.70943583199994,
+      "output_tokens": 146,
+      "patches_applied": 3,
+      "regression_passes": 0,
+      "runs": 3,
+      "variant": "lexical"
+    },
+    {
+      "input_tokens": 1160,
+      "median_elapsed_seconds": 8.83967346899999,
+      "output_tokens": 320,
+      "patches_applied": 2,
+      "regression_passes": 0,
+      "runs": 3,
+      "variant": "graph"
+    },
+    {
+      "input_tokens": 1337,
+      "median_elapsed_seconds": 8.666344399000081,
+      "output_tokens": 321,
+      "patches_applied": 2,
+      "regression_passes": 0,
+      "runs": 3,
+      "variant": "graph_audit"
+    }
+  ],
+  "trials": [
+    {
+      "case": "deadline-equality",
+      "elapsed_seconds": 20.61911609899994,
+      "generation_seconds": 20.568629166999926,
+      "input_token_count": 404,
+      "output_token_count": 86,
+      "patch_applied": false,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "direct"
+    },
+    {
+      "case": "deadline-equality",
+      "elapsed_seconds": 13.094990989999928,
+      "generation_seconds": 10.36032434699996,
+      "input_token_count": 292,
+      "output_token_count": 59,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "lexical"
+    },
+    {
+      "case": "deadline-equality",
+      "elapsed_seconds": 39.07259116700004,
+      "generation_seconds": 36.90044634800006,
+      "input_token_count": 381,
+      "output_token_count": 256,
+      "patch_applied": false,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "graph"
+    },
+    {
+      "case": "deadline-equality",
+      "elapsed_seconds": 38.6835705499999,
+      "generation_seconds": 36.32696347500007,
+      "input_token_count": 440,
+      "output_token_count": 256,
+      "patch_applied": false,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "graph_audit"
+    },
+    {
+      "case": "integer-pagination",
+      "elapsed_seconds": 5.811783418999994,
+      "generation_seconds": 5.7564134920000924,
+      "input_token_count": 431,
+      "output_token_count": 29,
+      "patch_applied": false,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "direct"
+    },
+    {
+      "case": "integer-pagination",
+      "elapsed_seconds": 9.70943583199994,
+      "generation_seconds": 7.53158806700003,
+      "input_token_count": 337,
+      "output_token_count": 49,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "lexical"
+    },
+    {
+      "case": "integer-pagination",
+      "elapsed_seconds": 8.83967346899999,
+      "generation_seconds": 6.76363131800008,
+      "input_token_count": 408,
+      "output_token_count": 37,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "graph"
+    },
+    {
+      "case": "integer-pagination",
+      "elapsed_seconds": 8.666344399000081,
+      "generation_seconds": 6.677287422000063,
+      "input_token_count": 467,
+      "output_token_count": 38,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "graph_audit"
+    },
+    {
+      "case": "stable-duplicates",
+      "elapsed_seconds": 6.413847684999951,
+      "generation_seconds": 6.36461465299999,
+      "input_token_count": 394,
+      "output_token_count": 33,
+      "patch_applied": false,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "direct"
+    },
+    {
+      "case": "stable-duplicates",
+      "elapsed_seconds": 8.677353806000042,
+      "generation_seconds": 6.5831943529999535,
+      "input_token_count": 311,
+      "output_token_count": 38,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "lexical"
+    },
+    {
+      "case": "stable-duplicates",
+      "elapsed_seconds": 8.726691524000103,
+      "generation_seconds": 5.101284885999917,
+      "input_token_count": 371,
+      "output_token_count": 27,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "graph"
+    },
+    {
+      "case": "stable-duplicates",
+      "elapsed_seconds": 7.3196664189999865,
+      "generation_seconds": 5.17693490399995,
+      "input_token_count": 430,
+      "output_token_count": 27,
+      "patch_applied": true,
+      "regression_passed": false,
+      "repeat": 0,
+      "unnecessary_changes": [],
+      "variant": "graph_audit"
+    }
+  ],
+  "verdict": "MEASURED_FOR_DECLARED_LOCAL_MODEL_EXPERIMENT"
+}

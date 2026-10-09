@@ -77,6 +77,25 @@ class RetrievalV2(unittest.TestCase):
         pack['pack_digest'] = self.c.digest(self.c.canonical(
             {k: v for k, v in pack.items() if k != 'pack_digest'}))
 
+    def test_schema_two_never_accepts_learned_binding(self):
+        receipt=self.r.retrieve(self.doc,self.root,self.policy,self.task,'worker',self.worker([]))['retrieval']
+        receipt['query_binding']['embedding_mode']='learned'
+        with self.assertRaisesRegex(ValueError,'E_EMBEDDING_MODE'):
+            self.r.validate_receipt(receipt)
+
+    def test_advanced_schema_version_is_exact_integer(self):
+        from knowledge_bridge import BRIDGE_VERSION,SEMANTICA_VERSION,SEMANTICA_REVISION
+        receipt=self.r.retrieve(self.doc,self.root,self.policy,self.task,'worker',self.worker([]))['retrieval']
+        receipt.update(schema_version=3,backend='SEMANTICA_OBSERVED',shacl='CONFORMS',score_scale='cosine',
+                       bridge_version=BRIDGE_VERSION,semantica_version=SEMANTICA_VERSION,revision=SEMANTICA_REVISION,
+                       network_policy='fixture-only schema check',answer_generation=False,
+                       engine={'strategy':'vector','execution':'single','generation_lease':'a'*64,'learned':None,'rerank':None,'diagnostics':{}})
+        receipt['embedding_metadata']['evidence_class']='HOST_OBSERVED'
+        self.r.validate_advanced_receipt(receipt)
+        receipt['schema_version']=3.0
+        with self.assertRaisesRegex(ValueError,'E_ADVANCED_RECEIPT_VERSION'):
+            self.r.validate_advanced_receipt(receipt)
+
     def test_incoming_path_retains_authored_edge_and_source_closure(self):
         results = [{'id': 'worker', 'score': 1, 'path': ['worker'], 'edge_ids': []},
                    {'id': 'client', 'score': 0.9, 'path': ['worker', 'client'], 'edge_ids': ['CALLS']}]

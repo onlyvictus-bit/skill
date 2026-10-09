@@ -272,6 +272,9 @@ def main():
             command.add_argument("--"+key)
         command.add_argument("--knowledge-worker-python")
         command.add_argument("--knowledge-worker-timeout",type=float,default=30)
+        command.add_argument("--knowledge-model-python")
+        command.add_argument("--knowledge-model-manifest")
+        command.add_argument("--knowledge-model-timeout",type=float,default=120)
     run.add_argument("--knowledge-pack")
     check.add_argument("--require-knowledge",action="store_true")
     from knowledge_bridge import workflow as knowledge

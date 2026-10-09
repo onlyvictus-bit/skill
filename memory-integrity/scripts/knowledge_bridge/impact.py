@@ -32,10 +32,10 @@ def validate_construction(doc):
         if observed['unit_ranges']!=[{'id':u['id'],'range':list(u['range'])} for u in source['manifest']['units']]:raise ValueError('E_CONSTRUCTION_UNIT_BINDING')
     return construction
 
-def build(root,source_map,store,companion,worker=None,test_receipt=None):
+def build(root,source_map,store,companion,worker=None,test_receipt=None,language_parser=None):
     from . import extraction
     old=previous(store);sources=indexing.freeze(root,source_map,companion)
-    result=extraction.extract(sources,source_map['repository'],previous=old.get('construction',{}).get('extraction') if old else None,root=root)
+    result=extraction.extract(sources,source_map['repository'],previous=old.get('construction',{}).get('extraction') if old else None,root=root,language_parser=language_parser)
     projection=result['projection'];manifest=result['manifest']
     prose=[]
     if worker:

@@ -67,8 +67,10 @@ mi:EdgeShape a sh:NodeShape; sh:targetClass mi:KnowledgeEdge;
     return 'CONFORMS'
 
 def retrieve(payload):
-    text_mode=payload.get('op')=='retrieve_text'
+    advanced_mode=payload.get('op')=='retrieve_advanced'
+    text_mode=payload.get('op') in ('retrieve_text','retrieve_advanced')
     fields={'op','nodes','edges','seeds','max_hops','max_visits','max_results'}
+    if advanced_mode:fields|={'strategy','execution','generation_lease','vector_override','seed_scores','worker_timeout'}
     c.keys(payload,fields|({'query_text','embedding_mode','direction','ontology'} if text_mode else {'query_vector','dimension'}),'worker query')
     from semantica.context.context_graph import ContextGraph
     from semantica.vector_store.vector_store import VectorRetriever
@@ -81,7 +83,17 @@ def retrieve(payload):
         from knowledge_bridge.offline_engine import search_vectors,validate_types
         if payload['ontology']!='project-2':raise ValueError('E_ONTOLOGY_VERSION')
         validate_types(nodes,edges)
-        vectors,query,metadata=search_vectors(nodes,payload['query_text'],payload['embedding_mode'])
+        override=payload.get('vector_override')
+        if advanced_mode and override is not None:
+            c.keys(override,{'vectors','query','metadata'},'advanced vectors')
+            metadata=override['metadata']
+            from knowledge_bridge.retrieval_v2 import _metadata
+            _metadata(metadata,'SEMANTICA_OBSERVED',payload['embedding_mode'])
+            dimension=metadata['dimension'];query=c.vector(override['query'],dimension)
+            if len(override['vectors'])!=len(nodes):raise ValueError('E_MODEL_VECTOR_SCOPE')
+            vectors=[c.vector(v,dimension) for v in override['vectors']]
+        else:
+            vectors,query,metadata=search_vectors(nodes,payload['query_text'],payload['embedding_mode'])
         dimension=metadata['dimension']
     else:
         dimension=c.integer(payload['dimension'],1,4096,'dimension');query=c.vector(payload['query_vector'],dimension)
@@ -97,7 +109,19 @@ def retrieve(payload):
         if e['subject'] not in ids or e['object'] not in ids or e['predicate'] not in c.PREDICATES: raise ValueError('E_GRAPH_ENDPOINT')
         if not graph.add_edge(e['subject'],e['object'],e['predicate'],id=e['id'],source_units=e['source_units']): raise ValueError('E_GRAPH_EDGE')
         endpoints.setdefault((e['subject'],e['object'],e['predicate']),[]).append(e['id'])
-    found=VectorRetriever(backend='inmemory').search_similar(query,vectors,ids,k=min(seeds,len(ids)))
+    dispatch_only=advanced_mode and (payload['execution']!='single' or payload['strategy']!='vector')
+    found=[] if dispatch_only else VectorRetriever(backend='inmemory').search_similar(query,vectors,ids,k=len(ids) if advanced_mode else min(seeds,len(ids)))
+    if advanced_mode:
+        found=sorted(found,key=lambda x:(-x['score'],x['id']))[:seeds]
+        if payload['seed_scores'] is not None:
+            if payload['strategy']!='vector' or payload['execution']!='single':raise ValueError('E_RERANK_STRATEGY')
+            found=payload['seed_scores']
+            if not isinstance(found,list) or len(found)!=len(ids) or {i['id'] for i in found}!=set(ids):raise ValueError('E_RERANK_SCOPE')
+            for item in found:
+                c.keys(item,{'id','score'},'reranked seed')
+                import math
+                if type(item['score']) not in (int,float) or not math.isfinite(item['score']) or not 0<=item['score']<=1:raise ValueError('E_SCORE')
+            found=sorted(found,key=lambda x:(-x['score'],x['id']))[:seeds]
     queue=deque();seen=set();results=[];limits=[]
     for item in sorted(found,key=lambda x:(-x['score'],x['id'])):
         queue.append((item['id'],float(item['score']),[item['id']],[]))
@@ -117,6 +141,24 @@ def retrieve(payload):
             neighbors.extend((e['subject'],e['id']) for e in edges if e['object']==ident)
         for target,edge in sorted(set(neighbors)):
             if target not in seen:queue.append((target,score*.9,path+[target],edge_ids+[edge]))
+    if advanced_mode:
+        c.sha(payload['generation_lease'])
+        if payload['execution']=='distributed-local':
+            if payload['strategy']!='vector' or payload['seed_scores'] is not None:raise ValueError('E_DISTRIBUTED_STRATEGY')
+            from knowledge_bridge.distributed_retrieval import DistributedClient
+            query_payload={k:payload[k] for k in ('nodes','edges','query_text','embedding_mode','direction','seeds','max_hops','max_visits','max_results','generation_lease')}
+            query_payload['vector_override']={'vectors':vectors,'query':query,'metadata':metadata}
+            budget=payload['worker_timeout']
+            if type(budget) not in (int,float) or not 0<budget<=120:raise ValueError('E_WORKER_TIMEOUT_LIMIT')
+            extra=DistributedClient(sys.executable,timeout=max(.01,budget-4))(query_payload)
+            results=extra['results'];limits=extra['limits_reached'];metadata=extra['embedding_metadata'];advanced_diagnostics=extra['diagnostics']
+        elif payload['execution']=='single' and payload['strategy'] in {'community','global','drift'}:
+            from knowledge_bridge.advanced_retrieval import retrieve as advanced_retrieve
+            extra=advanced_retrieve(nodes,edges,payload['query_text'],payload['strategy'],payload['embedding_mode'],direction,seeds,hops,visits,count,vectors,query,metadata)
+            results=extra['results'];limits=extra['limits_reached'];advanced_diagnostics=extra['diagnostics']
+        elif payload['execution']=='single' and payload['strategy']=='vector':
+            advanced_diagnostics={'strategy':'vector','seed_order':'score-desc-id-asc','source_truth':'UNVERIFIED'}
+        else:raise ValueError('E_ADVANCED_ENGINE')
     prov=ProvenanceManager(storage=InMemoryStorage());lineage={};table={n['id']:n for n in nodes}
     closure=set();pending=[item['id'] for item in results]
     while pending:
@@ -160,6 +202,7 @@ def retrieve(payload):
     if text_mode and shacl(nodes,edges)!='CONFORMS':raise ValueError('E_SHACL_SOURCE_STRUCTURE')
     result={'ok':True,'backend':'SEMANTICA_OBSERVED','results':results,'limits_reached':sorted(set(limits)),'lineage':lineage,'shacl':conform,'score_scale':'cosine [-1,1]; graph hop decay 0.9'}
     if text_mode:result.update(schema_version=2,direction=direction,embedding_metadata=metadata)
+    if advanced_mode:result['advanced_diagnostics']=advanced_diagnostics
     return result
 
 def main():
@@ -171,7 +214,7 @@ def main():
             if payload=={'op':'handshake'}:
                 import importlib.util
                 result={'ok':True,'backend':'SEMANTICA_OBSERVED','shacl_available':importlib.util.find_spec('pyshacl') is not None}
-            elif payload.get('op') in ('retrieve','retrieve_text'): result=retrieve(payload)
+            elif payload.get('op') in ('retrieve','retrieve_text','retrieve_advanced'): result=retrieve(payload)
             elif payload.get('op')=='extract_prose':
                 c.keys(payload,{'op','text'},'prose extraction')
                 from knowledge_bridge.offline_engine import extract_prose

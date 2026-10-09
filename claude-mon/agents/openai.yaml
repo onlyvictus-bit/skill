@@ -1,10 +1,11 @@
 interface:
   display_name: "Claude Mon"
-  short_description: "Internal companion engine for memory-integrity: exact source coverage evidence. Invoke only via memory-integrity with an explicit companion path."
+  short_description: "Matching source coverage and protected history companion."
+  default_prompt: "Use $claude-mon through Memory Integrity with an explicit matching companion path."
 policy:
   products:
-  - chatgpt
-  - codex
-  - api
-  - atlas
+  - "chatgpt"
+  - "codex"
+  - "api"
+  - "atlas"
   allow_implicit_invocation: false

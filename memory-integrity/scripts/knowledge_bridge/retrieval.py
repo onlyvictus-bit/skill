@@ -5,7 +5,7 @@ from . import contracts as c
 from . import indexing
 
 def validate_receipt(receipt,execution=False):
-    if isinstance(receipt,dict) and receipt.get('schema_version')==2:
+    if isinstance(receipt,dict) and receipt.get('schema_version') in (2,3):
         from .retrieval_v2 import validate_receipt as v2
         return v2(receipt,execution)
     common={'ok','backend','results','limits_reached','lineage','shacl','query_binding','exclusions'}
@@ -112,7 +112,7 @@ def validate_pack(pack):
     return pack
 
 def verify_pack(pack,doc,root,policy,task,worker=None):
-    if isinstance(pack,dict) and isinstance(pack.get('retrieval'),dict) and pack['retrieval'].get('schema_version')==2:
+    if isinstance(pack,dict) and isinstance(pack.get('retrieval'),dict) and pack['retrieval'].get('schema_version') in (2,3):
         from .retrieval_v2 import verify_pack as v2
         return v2(pack,doc,root,policy,task,worker)
     validate_pack(pack);validate_policy(policy,doc,task)

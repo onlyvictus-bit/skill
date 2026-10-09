@@ -20,9 +20,17 @@
         {
           "path": "docs/fable/derived/full-workflow-verification.md",
           "sha256": "99f5531c2c4ed0d98789488dcc92ffe7256e9c9e42d23c2e9b7bacc878c158cf"
+        },
+        {
+          "path": "docs/fable/derived/remaining-plan.md",
+          "sha256": "d7a7f91efb5f1627c4764f78e2ecde3bb85c15dbb9074021488daa693c87f78b"
+        },
+        {
+          "path": "docs/fable/derived/remaining-verification.md",
+          "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
         }
       ],
-      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -46,11 +54,21 @@
         "REQ-20",
         "REQ-21",
         "REQ-22",
-        "REQ-23"
+        "REQ-23",
+        "FUTURE-1",
+        "FUTURE-2",
+        "FUTURE-3",
+        "FUTURE-4",
+        "FUTURE-5"
       ],
       "status": "observed",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-REVIEW",
+        "TEST-MODEL",
+        "TEST-ADVANCED",
+        "TEST-EXTRACTION",
+        "TEST-INSTALL",
+        "TEST-MODEL-BENEFIT"
       ]
     },
     {
@@ -72,9 +90,17 @@
         {
           "path": "docs/fable/derived/full-workflow-verification.md",
           "sha256": "99f5531c2c4ed0d98789488dcc92ffe7256e9c9e42d23c2e9b7bacc878c158cf"
+        },
+        {
+          "path": "docs/fable/derived/remaining-plan.md",
+          "sha256": "d7a7f91efb5f1627c4764f78e2ecde3bb85c15dbb9074021488daa693c87f78b"
+        },
+        {
+          "path": "docs/fable/derived/remaining-verification.md",
+          "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
         }
       ],
-      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -98,11 +124,21 @@
         "REQ-20",
         "REQ-21",
         "REQ-22",
-        "REQ-23"
+        "REQ-23",
+        "FUTURE-1",
+        "FUTURE-2",
+        "FUTURE-3",
+        "FUTURE-4",
+        "FUTURE-5"
       ],
       "status": "observed",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-REVIEW",
+        "TEST-MODEL",
+        "TEST-ADVANCED",
+        "TEST-EXTRACTION",
+        "TEST-INSTALL",
+        "TEST-MODEL-BENEFIT"
       ]
     },
     {
@@ -124,9 +160,17 @@
         {
           "path": "docs/fable/derived/full-workflow-verification.md",
           "sha256": "99f5531c2c4ed0d98789488dcc92ffe7256e9c9e42d23c2e9b7bacc878c158cf"
+        },
+        {
+          "path": "docs/fable/derived/remaining-plan.md",
+          "sha256": "d7a7f91efb5f1627c4764f78e2ecde3bb85c15dbb9074021488daa693c87f78b"
+        },
+        {
+          "path": "docs/fable/derived/remaining-verification.md",
+          "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
         }
       ],
-      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -150,11 +194,21 @@
         "REQ-20",
         "REQ-21",
         "REQ-22",
-        "REQ-23"
+        "REQ-23",
+        "FUTURE-1",
+        "FUTURE-2",
+        "FUTURE-3",
+        "FUTURE-4",
+        "FUTURE-5"
       ],
       "status": "observed",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-REVIEW",
+        "TEST-MODEL",
+        "TEST-ADVANCED",
+        "TEST-EXTRACTION",
+        "TEST-INSTALL",
+        "TEST-MODEL-BENEFIT"
       ]
     },
     {
@@ -172,9 +226,17 @@
         {
           "path": "docs/fable/derived/completion-gates.md",
           "sha256": "d3bf3cabddad05c45aeec798aa3362ec4629492a5c216680033d8a830fc28571"
+        },
+        {
+          "path": "docs/fable/derived/remaining-plan.md",
+          "sha256": "d7a7f91efb5f1627c4764f78e2ecde3bb85c15dbb9074021488daa693c87f78b"
+        },
+        {
+          "path": "docs/fable/derived/remaining-verification.md",
+          "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
         }
       ],
-      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
       "requirement_ids": [
         "REQ-15",
         "REQ-16",
@@ -184,11 +246,21 @@
         "REQ-20",
         "REQ-21",
         "REQ-22",
-        "REQ-23"
+        "REQ-23",
+        "FUTURE-1",
+        "FUTURE-2",
+        "FUTURE-3",
+        "FUTURE-4",
+        "FUTURE-5"
       ],
       "status": "observed",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-REVIEW",
+        "TEST-MODEL",
+        "TEST-ADVANCED",
+        "TEST-EXTRACTION",
+        "TEST-INSTALL",
+        "TEST-MODEL-BENEFIT"
       ]
     },
     {
@@ -219,9 +291,17 @@
         {
           "path": "docs/fable/derived/full-workflow-verification.md",
           "sha256": "99f5531c2c4ed0d98789488dcc92ffe7256e9c9e42d23c2e9b7bacc878c158cf"
+        },
+        {
+          "path": "docs/fable/derived/remaining-plan.md",
+          "sha256": "d7a7f91efb5f1627c4764f78e2ecde3bb85c15dbb9074021488daa693c87f78b"
+        },
+        {
+          "path": "docs/fable/derived/remaining-verification.md",
+          "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
         }
       ],
-      "reason": "Full coding workflow: native specialist procedure and independent observable proof units",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -245,11 +325,21 @@
         "REQ-20",
         "REQ-21",
         "REQ-22",
-        "REQ-23"
+        "REQ-23",
+        "FUTURE-1",
+        "FUTURE-2",
+        "FUTURE-3",
+        "FUTURE-4",
+        "FUTURE-5"
       ],
       "status": "observed",
       "test_ids": [
-        "TEST-REVIEW"
+        "TEST-REVIEW",
+        "TEST-MODEL",
+        "TEST-ADVANCED",
+        "TEST-EXTRACTION",
+        "TEST-INSTALL",
+        "TEST-MODEL-BENEFIT"
       ]
     }
   ]

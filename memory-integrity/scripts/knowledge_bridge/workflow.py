@@ -6,15 +6,23 @@ from . import indexing,retrieval,trace_adapter,verification
 def worker(args):
     if not args.worker_python: return None
     from .worker_client import WorkerClient
-    return WorkerClient(args.worker_python,timeout=args.worker_timeout)
+    return WorkerClient(args.worker_python,timeout=args.worker_timeout,model_client=model_worker(args))
+
+def model_worker(args):
+    python=getattr(args,'model_python',None);manifest=getattr(args,'model_manifest',None)
+    if bool(python)!=bool(manifest):raise ValueError('E_LOCAL_MODEL_EXPLICIT_SELECTION')
+    if not python:return None
+    from .worker_client import ModelClient
+    return ModelClient(python,manifest,timeout=getattr(args,'model_timeout',120))
 
 def register(sub):
-    for name in ('knowledge-status','knowledge-index','knowledge-project','knowledge-refresh','knowledge-impact','knowledge-retrieve','knowledge-test','knowledge-admit','knowledge-check-admission','knowledge-benchmark','knowledge-audit'):
+    for name in ('knowledge-status','knowledge-index','knowledge-project','knowledge-refresh','knowledge-impact','knowledge-retrieve','knowledge-test','knowledge-admit','knowledge-check-admission','knowledge-benchmark','knowledge-audit','knowledge-syntax','knowledge-process','knowledge-model-benchmark'):
         p=sub.add_parser(name)
         p.add_argument('--claude-mon-root',required=True)
         p.add_argument('--worker-python');p.add_argument('--worker-timeout',type=float,default=30)
+        p.add_argument('--model-python');p.add_argument('--model-manifest');p.add_argument('--model-timeout',type=float,default=120)
         if name=='knowledge-status': continue
-        if name=='knowledge-benchmark':
+        if name in ('knowledge-benchmark','knowledge-model-benchmark'):
             p.add_argument('--output',required=True);continue
         for key in ('project-root','index-dir'): p.add_argument('--'+key,required=True)
         if name=='knowledge-index':
@@ -25,12 +33,18 @@ def register(sub):
             for key in ('policy-file','task-file'): p.add_argument('--'+key,required=True)
             if name=='knowledge-retrieve':
                 p.add_argument('--query-vector');p.add_argument('--query-text');p.add_argument('--evidence-pack',required=True)
-                p.add_argument('--query-model');p.add_argument('--embedding-mode',choices=('lexical','lsa','hybrid'),default='lexical')
+                p.add_argument('--query-model');p.add_argument('--embedding-mode',choices=('lexical','lsa','hybrid','learned'),default='lexical')
+                p.add_argument('--strategy',choices=('vector','community','global','drift'),default='vector')
+                p.add_argument('--execution',choices=('single','distributed-local'),default='single')
+                p.add_argument('--rerank',action='store_true')
                 p.add_argument('--direction',choices=('outgoing','incoming','both'),default='outgoing')
                 p.add_argument('--max-hops',type=int,default=2);p.add_argument('--seeds',type=int,default=1)
                 p.add_argument('--max-visits',type=int,default=100);p.add_argument('--max-results',type=int,default=50)
             elif name=='knowledge-test':
                 p.add_argument('--test-path',action='append',required=True);p.add_argument('--test-timeout',type=int,default=60);p.add_argument('--output',required=True)
+            elif name in ('knowledge-syntax','knowledge-process'):
+                p.add_argument('--output',required=True)
+                if name=='knowledge-process':p.add_argument('--max-new-tokens',type=int,default=256)
             elif name!='knowledge-impact':
                 p.add_argument('--run-map',required=True);p.add_argument('--expected-claims',required=True)
                 p.add_argument('--source',required=True)
@@ -47,9 +61,16 @@ def dispatch(args):
     if args.command=='knowledge-benchmark':
         from .benefit_benchmark import run
         result=run(args.claude_mon_root,worker(args));save(args.output,result);return result
+    if args.command=='knowledge-model-benchmark':
+        models=model_worker(args)
+        if models is None or not args.worker_python:raise ValueError('E_MODEL_BENCHMARK_EXPLICIT_RUNTIMES')
+        from .worker_client import _process
+        return _process(models.python,Path(__file__).with_name('model_benchmark.py'),{},1800,models.executable_digest,
+                        ('--manifest',models.manifest,'--claude-mon-root',args.claude_mon_root,'--worker-python',args.worker_python,
+                         '--output',args.output,'--model-timeout',models.timeout))
     if args.command in ('knowledge-project','knowledge-refresh'):
         from . import impact
-        return impact.build(args.project_root,c.read(args.source_map),args.index_dir,args.claude_mon_root,worker(args),c.read(args.test_receipt) if args.test_receipt else None)
+        return impact.build(args.project_root,c.read(args.source_map),args.index_dir,args.claude_mon_root,worker(args),c.read(args.test_receipt) if args.test_receipt else None,language_parser=model_worker(args))
     policy=c.read(args.policy_file);task=c.read(args.task_file)
     doc=indexing.load(args.index_dir,args.project_root,args.claude_mon_root,allowed_sources=policy['allowed_source_ids'])
     retrieval.validate_policy(policy,doc,task)
@@ -60,13 +81,37 @@ def dispatch(args):
         from . import test_evidence
         if set(policy['allowed_source_ids'])!=set(doc['sources']):raise ValueError('E_TEST_SCOPE_ACCESS: explicit local test execution requires entire declared source scope')
         result=test_evidence.run(args.project_root,doc,args.test_path,args.test_timeout);save(args.output,result);return result
+    if args.command=='knowledge-syntax':
+        model=model_worker(args)
+        if model is None:raise ValueError('E_LOCAL_PARSER_RUNTIME_REQUIRED')
+        rows=[]
+        for ident in sorted(policy['allowed_source_ids']):
+            source=doc['sources'][ident]
+            if Path(source['path']).suffix not in {'.js','.jsx','.ts','.tsx'}:continue
+            raw=c.within(args.project_root,source['path']).read_bytes()
+            if c.digest(raw)!=source['source_sha256']:raise ValueError('E_STALE_SOURCE')
+            parsed=model.syntax(raw.decode('utf-8'),source['path'])
+            for unit in source['manifest']['units']:indexing.reopen(doc,args.project_root,{'source_id':ident,'unit_id':unit['id']})
+            rows.append({'source_id':ident,'source_sha256':source['source_sha256'],'syntax':parsed})
+        result={'ok':bool(rows) and all(row['syntax']['status']=='OBSERVED' for row in rows),
+                'generation':doc['generation'],'syntax':rows,'runtime_call_truth':'UNVERIFIED'}
+        save(args.output,result);return result
+    if args.command=='knowledge-process':
+        from .semantic_proposals import process
+        result=process(doc,args.project_root,policy,task,model_worker(args),args.max_new_tokens)
+        save(args.output,result);return result
     if args.command=='knowledge-retrieve':
         if bool(args.query_vector)==bool(args.query_text):raise ValueError('E_QUERY_ONE_MODE_REQUIRED')
         if args.query_text:
             from . import retrieval_v2
-            pack=retrieval_v2.retrieve(doc,args.project_root,policy,task,args.query_text,worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,direction=args.direction,embedding_mode=args.embedding_mode)
+            if args.strategy!='vector' or args.execution!='single' or args.embedding_mode=='learned' or args.rerank:
+                pack=retrieval_v2.retrieve_advanced(doc,args.project_root,policy,task,args.query_text,worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,direction=args.direction,embedding_mode=args.embedding_mode,strategy=args.strategy,execution=args.execution,rerank=args.rerank)
+            else:
+                pack=retrieval_v2.retrieve(doc,args.project_root,policy,task,args.query_text,worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,direction=args.direction,embedding_mode=args.embedding_mode)
         else:
             if args.direction!='outgoing':raise ValueError('E_QUERY_DIRECTION_REQUIRES_PROJECT_2')
+            if args.strategy!='vector' or args.execution!='single' or args.rerank or args.embedding_mode!='lexical':
+                raise ValueError('E_VECTOR_QUERY_ADVANCED_FLAGS_UNSUPPORTED')
             pack=retrieval.retrieve(doc,args.project_root,policy,task,c.loads(args.query_vector),worker(args),args.max_hops,args.seeds,args.max_visits,args.max_results,query_model=args.query_model)
         if task['require_graph'] and pack['retrieval']['backend']!='SEMANTICA_OBSERVED': raise ValueError('E_GRAPH_REQUIRED')
         target=save(args.evidence_pack,pack)
@@ -124,7 +169,11 @@ def preflight(args,run=None):
     if path is None: raise ValueError('E_KNOWLEDGE_PACK_REQUIRED')
     from .worker_client import WorkerClient
     executable=getattr(args,'knowledge_worker_python',None)
-    replay=WorkerClient(executable,timeout=getattr(args,'knowledge_worker_timeout',30)) if executable else None
+    from .worker_client import ModelClient
+    model_python=getattr(args,'knowledge_model_python',None);manifest=getattr(args,'knowledge_model_manifest',None)
+    if bool(model_python)!=bool(manifest):raise ValueError('E_LOCAL_MODEL_EXPLICIT_SELECTION')
+    models=ModelClient(model_python,manifest,timeout=getattr(args,'knowledge_model_timeout',120)) if model_python else None
+    replay=WorkerClient(executable,timeout=getattr(args,'knowledge_worker_timeout',30),model_client=models) if executable else None
     pack=c.read(path);retrieval.verify_pack(pack,doc,args.knowledge_root,policy,task,replay)
     return pack
 

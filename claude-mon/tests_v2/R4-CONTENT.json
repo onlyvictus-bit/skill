@@ -62,9 +62,10 @@
     "tests_v2/test_m4r_regressions.py",
     "tests_v2/test_preservation.py"
   ],
+  "extension_release": "knowledge-bridge-v2",
   "files": {
     "SKILL.md": "1abb535cbe96715da076bca8432851f0993cc2b2228ebc1fdbdb23768744885a",
-    "agents/openai.yaml": "bd1c56264bbdedd95a2fbbd18783df22f22997d9b425380bf7fe1f21dd07590a",
+    "agents/openai.yaml": "af2fd6a75f7b55d1dd35197cdb51f66646df297fb17ccbac8589cec1cc5aa214",
     "capabilities-v2.json": "60aec0d3b484edd64c9aebbd95b232e9fda0467dbb943fee46a9cf3582a2f950",
     "references/INDEX.md": "526bdaad4e82cfdd84ec34c35e18be8c3a83a77e10042b85a5a826217f0dd6c8",
     "references/adapters.md": "b145da9dee90e34604d73192e2365b41f7cc7d3229378863ba048f183beb32c3",

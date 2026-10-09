@@ -1,0 +1,62 @@
+{
+  "bridge_version": "1.2.0",
+  "kind": "PUBLIC_LOCAL_MODEL_OPERATION_SUMMARY",
+  "manifest_digest": "8f4d6d914bd20aa255b7f65a59f1597cc9fefc32a0c514f6de8267a72c143460",
+  "observations": [
+    {
+      "algorithm": "learned ONNX token vectors; attention mean pooling; L2 normalization",
+      "dimension": 384,
+      "input_token_counts": [
+        7,
+        8,
+        11
+      ],
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "network_policy": "offline; Python sockets denied; not an OS sandbox",
+      "operation": "embedding",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "semantic_quality": "UNVERIFIED",
+      "vector_count": 3
+    },
+    {
+      "algorithm": "causal cross-attention Yes/No label log-likelihood",
+      "model_id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "network_policy": "offline; Python sockets denied; not an OS sandbox",
+      "operation": "reranking",
+      "revision": "ea3f2471cf1b1f0db85067f1ef93848e38e88c25",
+      "scores": [
+        {
+          "candidate": "retry",
+          "evaluated_token_count": 154,
+          "score": 0.6455005935139648
+        },
+        {
+          "candidate": "glyph",
+          "evaluated_token_count": 148,
+          "score": 0.35603198669574876
+        }
+      ],
+      "semantic_quality": "UNVERIFIED"
+    },
+    {
+      "finish_reason": "eos",
+      "input_token_count": 35,
+      "model_id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "network_policy": "offline; Python sockets denied; not an OS sandbox",
+      "operation": "generation",
+      "output_token_count": 2,
+      "revision": "ea3f2471cf1b1f0db85067f1ef93848e38e88c25",
+      "semantic_quality": "UNVERIFIED"
+    }
+  ],
+  "partial_file_refusal_observed": true,
+  "qualification": "ACTUAL_LOCAL_MODEL_OPERATIONS",
+  "raw_evidence": {
+    "filename": "Semantica-1.2-Verification.zip",
+    "original_report_sha256": "e20ded5a844854d4c94b8d1f33598da2d32fae8ce6004a876cf36c337f0250a9",
+    "public_payload": "Summary only; raw prompts, source text, model output/token IDs, command traces and installed file identities are withheld from public GitHub.",
+    "retention": "PRIVATE_VERIFICATION_ARTIFACT"
+  },
+  "schema_version": 1,
+  "semantic_truth": "UNVERIFIED"
+}

@@ -1,0 +1,170 @@
+{
+  "checks": [
+    {
+      "backend": "SEMANTICA_OBSERVED",
+      "denied_source_leaked": false,
+      "name": "lexical-pack",
+      "required_unit_retained": true,
+      "result_count": 2,
+      "schema": 2
+    },
+    {
+      "backend": "SEMANTICA_OBSERVED",
+      "denied_source_leaked": false,
+      "name": "learned-pack",
+      "required_unit_retained": true,
+      "result_count": 2,
+      "schema": 3
+    },
+    {
+      "backend": "SEMANTICA_OBSERVED",
+      "denied_source_leaked": false,
+      "name": "community-pack",
+      "required_unit_retained": true,
+      "result_count": 1,
+      "schema": 3
+    },
+    {
+      "backend": "SEMANTICA_OBSERVED",
+      "denied_source_leaked": false,
+      "name": "global-pack",
+      "required_unit_retained": true,
+      "result_count": 2,
+      "schema": 3
+    },
+    {
+      "backend": "SEMANTICA_OBSERVED",
+      "denied_source_leaked": false,
+      "name": "drift-pack",
+      "required_unit_retained": true,
+      "result_count": 2,
+      "schema": 3
+    },
+    {
+      "backend": "SEMANTICA_OBSERVED",
+      "denied_source_leaked": false,
+      "name": "distributed-local-pack",
+      "required_unit_retained": true,
+      "result_count": 2,
+      "schema": 3
+    },
+    {
+      "denied_source_leaked": false,
+      "name": "installed-pack-privacy",
+      "required_unit_retained": true
+    },
+    {
+      "name": "installed-ts-independent-reopen",
+      "ok": true
+    },
+    {
+      "name": "forged-state-not-created",
+      "ok": true
+    },
+    {
+      "admitted": false,
+      "complete_units": 1,
+      "denied_source_leaked": false,
+      "name": "per-unit-model-processing",
+      "processing_coverage": "PARTIAL",
+      "review_status": "unreviewed",
+      "semantic_truth": "UNVERIFIED",
+      "total_units": 2
+    }
+  ],
+  "kind": "PUBLIC_INDEPENDENT_CLI_VERIFICATION_SUMMARY",
+  "limits": [
+    "Declared tiny Python/TypeScript/plaintext fixture only",
+    "No benchmark repeated; no new coding-benefit result",
+    "No measured OS network isolation or remote multi-host operation",
+    "Semantic truth and corpus completeness remain UNVERIFIED",
+    "Managed Git push identity not independently contacted in this review"
+  ],
+  "model_manifest_sha256": "8f4d6d914bd20aa255b7f65a59f1597cc9fefc32a0c514f6de8267a72c143460",
+  "operations": [
+    {
+      "exit_code": 0,
+      "name": "current-status"
+    },
+    {
+      "exit_code": 0,
+      "name": "project-extraction"
+    },
+    {
+      "exit_code": 0,
+      "name": "lexical"
+    },
+    {
+      "exit_code": 0,
+      "name": "learned"
+    },
+    {
+      "exit_code": 0,
+      "name": "community"
+    },
+    {
+      "exit_code": 0,
+      "name": "global"
+    },
+    {
+      "exit_code": 0,
+      "name": "drift"
+    },
+    {
+      "exit_code": 0,
+      "name": "distributed-local"
+    },
+    {
+      "exit_code": 0,
+      "name": "installed-status"
+    },
+    {
+      "exit_code": 0,
+      "name": "installed-learned"
+    },
+    {
+      "exit_code": 0,
+      "name": "installed-typescript"
+    },
+    {
+      "exit_code": 0,
+      "name": "installed-protected-run"
+    },
+    {
+      "exit_code": 0,
+      "name": "installed-fresh-verify"
+    },
+    {
+      "exit_code": 2,
+      "name": "oov"
+    },
+    {
+      "exit_code": 2,
+      "name": "unsupported"
+    },
+    {
+      "exit_code": 2,
+      "name": "missing-model-replay"
+    },
+    {
+      "exit_code": 2,
+      "name": "changed-current-source-replay"
+    },
+    {
+      "exit_code": 2,
+      "name": "forged-schema3-diagnostics"
+    },
+    {
+      "exit_code": 2,
+      "name": "current-small-cap-per-unit-model-processing"
+    }
+  ],
+  "raw_evidence": {
+    "filename": "Semantica-1.2-Verification.zip",
+    "original_report_sha256": "fcedf17ca19fcc7bac216cb8852f61fc8771393febceed62ba5e3b45e462b4eb",
+    "public_payload": "Summary only; raw prompts, source text, model output/token IDs, command traces and installed file identities are withheld from public GitHub.",
+    "retention": "PRIVATE_VERIFICATION_ARTIFACT"
+  },
+  "result": "VERIFIED_FOR_DECLARED_LOCAL_RETRIEVAL_AND_INSTALLED_OFFLINE_REPLAY",
+  "schema_version": 1
+}

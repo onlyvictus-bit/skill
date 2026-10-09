@@ -1,8 +1,8 @@
 {
   "basis": {
-    "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
-    "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
-    "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+    "plan_digest": "505428c13d17ef4a49920a3c9fe7ac2a4863fb061b575e5980d2e6cee39f0853",
+    "requirements_digest": "ed0d6a2f9cb634fc67e11624d9e678ff0c469ed2f8cbe75ffddc2e51e5b545de",
+    "tests_digest": "8ede8fd3e71921146aefc087935d00cba7574d5174f14758f754fec73c5d85e7"
   },
   "campaign_id": "semantica-bridge",
   "completed_requirement_ids": [
@@ -30,9 +30,9 @@
     "REQ-22",
     "REQ-23"
   ],
-  "current_task": null,
-  "milestone": "FULL-WORKFLOW",
-  "next_action": "Offline workflow complete and published. Separate future qualification: live services, learned models, global/DRIFT/distributed operation, broad model coding outcomes and active installed-copy promotion.",
-  "phase": "complete",
+  "current_task": "TASK-REMAINING",
+  "milestone": "REMAINING-WORK",
+  "next_action": "Restore ephemeral runtime and raw measurement artifacts, verify persisted installed pair and publish source with protected remote-head identity.",
+  "phase": "in_progress",
   "schema": 2
 }

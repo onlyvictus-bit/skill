@@ -22,3 +22,9 @@ Read a reference when its row matches; otherwise do not load it.
 | watchdog-checks.md | memory store/recall/delete check details |
 | v2-migration.md | migrating v1 receipts or commands to v2 |
 | v2-operations.md | v2 command operations and exit codes |
+| semantica-integration.md | optional Semantica bridge scope and authority |
+| knowledge-contract.md | explicit source/projection/policy/task contracts |
+| knowledge-operations.md | compatible public CLI, runtime selection and recovery |
+| knowledge-project-2.md | automatic extraction, selective refresh, tests and admission |
+| knowledge-models.md | optional sealed local learned models and real coding benchmark |
+| knowledge-advanced.md | community/global/DRIFT, two-process sharding and replay |

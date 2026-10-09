@@ -294,6 +294,21 @@
         "release/claude-mon-knowledge-v1.zip": "c3b0fa2a0c4f51847d62542ce48e8f5d5dfcbb38ab8af6d6e91b8f28976d0fcf",
         "release/memory-integrity-knowledge-v1.zip": "0ee5d6b2a512c3966989030ac9494ecaa8111ddc82cead80652a688ced3ec7e2"
       }
+    },
+    {
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-09T10:40:08.105069+00:00",
+      "authorization": {
+        "quote": "i give approval to finish, what remaining need to finish it?; continue from where you stoped",
+        "source": "conversation"
+      },
+      "id": "APP-REMAINING-RECOVERY-20261009",
+      "plan_digest": "505428c13d17ef4a49920a3c9fe7ac2a4863fb061b575e5980d2e6cee39f0853",
+      "requirements_digest": "ed0d6a2f9cb634fc67e11624d9e678ff0c469ed2f8cbe75ffddc2e51e5b545de",
+      "scope": "REMAINING-WORK",
+      "tests_digest": "8ede8fd3e71921146aefc087935d00cba7574d5174f14758f754fec73c5d85e7",
+      "write_set_baseline": {}
     }
   ],
   "schema": 2

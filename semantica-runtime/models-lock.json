@@ -1,0 +1,61 @@
+{
+  "models": {
+    "embedding": {
+      "backend": "onnx",
+      "directory": "minilm",
+      "files": [
+        {
+          "path": "onnx/model_quint8_avx2.onnx",
+          "sha256": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21"
+        },
+        {
+          "path": "tokenizer.json",
+          "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037"
+        }
+      ],
+      "max_input_tokens": 256,
+      "model_file": "onnx/model_quint8_avx2.onnx",
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "tokenizer_file": "tokenizer.json"
+    },
+    "generator": {
+      "backend": "transformers",
+      "directory": "qwen",
+      "files": [
+        {
+          "path": "config.json",
+          "sha256": "b1e58593cd31852f7da5c2fc31ddf6135b9c066c0fd9177a4bbe95717083adff"
+        },
+        {
+          "path": "generation_config.json",
+          "sha256": "fdaccbcb02f3e1e7914ccb0f69ebe899071ffd27cf825166d823163e156870f2"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "sha256": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4"
+        },
+        {
+          "path": "vocab.json",
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        },
+        {
+          "path": "merges.txt",
+          "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+        },
+        {
+          "path": "tokenizer.json",
+          "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+        },
+        {
+          "path": "model.safetensors",
+          "sha256": "f9523886352217ded3aeeef552b381af79d568c6d49a4b9e423288cea56b0a44"
+        }
+      ],
+      "max_input_tokens": 4096,
+      "model_id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "revision": "ea3f2471cf1b1f0db85067f1ef93848e38e88c25"
+    }
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,54 @@
+{
+  "bridge_version": "1.2.0",
+  "documentation_clarification": "Updated evidence-retention reference; runtime source bytes unchanged.",
+  "documentation_save_commit": "d93c2614f7f2c913ccad4ce66af863f2583c69ef",
+  "kind": "PUBLIC_INSTALLED_PAIR_SUMMARY",
+  "managed_remote_head": "36ba8e0914bec74477b5c194d162f704b3b3b813",
+  "packages": {
+    "claude-mon": {
+      "archive": {
+        "bytes": 154391,
+        "entries": 68,
+        "sha256": "898011cf9056883695bdf3fec7ffaebecbbe0b471acb8f843b4ca3dab967d979",
+        "zip": "claude-mon-knowledge-v2.zip"
+      },
+      "runtime_source_exact": true,
+      "service_added_files": [
+        "assets/icon.svg"
+      ],
+      "source_differences": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ]
+    },
+    "memory-integrity": {
+      "archive": {
+        "bytes": 387921,
+        "entries": 142,
+        "sha256": "55f024478a1edcd976fc364fbd4ee91ec5a2029841d7fc23e7a131d300529eb3",
+        "zip": "memory-integrity-knowledge-v2.zip"
+      },
+      "runtime_source_exact": true,
+      "service_added_files": [
+        "assets/icon.svg"
+      ],
+      "source_differences": [
+        "agents/openai.yaml"
+      ]
+    }
+  },
+  "raw_evidence": {
+    "filename": "Semantica-1.2-Verification.zip",
+    "original_report_sha256": "0beb2133efacc5794cbdc5d8ce321b1d00d494fbf42f1cb1a629412cf0ca5289",
+    "public_payload": "Summary only; raw prompts, source text, model output/token IDs, command traces and installed file identities are withheld from public GitHub.",
+    "retention": "PRIVATE_VERIFICATION_ARTIFACT"
+  },
+  "runtime_source_exact": true,
+  "save_commits": {
+    "claude-mon": "db9d8be6c7a7f775d63cbd63a4cc16abbd680945",
+    "memory-integrity": "996dfb9"
+  },
+  "saved": true,
+  "schema_version": 1,
+  "service_materialization": "Managed service assigns skill IDs, normalizes limited line endings, generates icons and UI metadata. Exact private identities/file hashes are withheld from public GitHub."
+}
