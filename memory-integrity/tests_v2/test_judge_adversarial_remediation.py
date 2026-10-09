@@ -82,6 +82,36 @@ class WheelHashTests(unittest.TestCase):
             self.assertEqual(supply_chain.provenance_status("semantica"), "UNVERIFIED")
 
 
+    def test_record_metadata_cannot_hide_modified_installed_file(self):
+        import base64
+        import hashlib
+        import json
+        import tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            target = root / "module.py"
+            target.write_bytes(b"tampered")
+            expected = base64.urlsafe_b64encode(hashlib.sha256(b"original").digest()).decode().rstrip("=")
+            lock = root / "pins.json"
+            lock.write_text(json.dumps({"pins": [{
+                "name": "fakepkg", "version": "1.0", "revision": "source",
+                "source": "fixture", "record_sha256": {"module.py": expected}
+            }]}))
+            class Dist:
+                def read_text(self, name):
+                    return "module.py,sha256=" + expected + ",8\n"
+                def locate_file(self, name):
+                    return target
+            with (mock.patch.object(supply_chain, "LOCK", lock),
+                  mock.patch("importlib.util.find_spec", return_value=object()),
+                  mock.patch("importlib.metadata.version", return_value="1.0"),
+                  mock.patch("importlib.metadata.distribution", return_value=Dist())):
+                with self.assertRaises(supply_chain.SupplyChainError):
+                    supply_chain.provenance_status("fakepkg")
+
+
+
 class BitemporalTests(unittest.TestCase):
     def claim(self):
         return {"id": "A", "claim": {"type": "OBSERVED", "text": "A"},
