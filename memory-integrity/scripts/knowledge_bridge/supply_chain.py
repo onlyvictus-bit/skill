@@ -7,7 +7,9 @@ is a tampering signal, never silently adopted. provenance_status() reports
 VERIFIED only for an installed package matching the pin; absent packages are
 UNVERIFIED, never green. Standard library only.
 """
+import base64
 import csv
+import hashlib
 import importlib.metadata
 import importlib.util
 import io
@@ -107,4 +109,18 @@ def provenance_status(name):
         hashed_files = {path for path, digest in actual.items() if digest}
         if hashed_files != set(expected):
             return 'UNVERIFIED'
+        # Metadata alone is not proof: compare pinned hashes to installed bytes.
+        for record_path, pinned_digest in sorted(expected.items()):
+            relative = Path(record_path)
+            if relative.is_absolute() or '..' in relative.parts:
+                raise SupplyChainError('E_LOCK_RECORD_PATH: unsafe pinned file path')
+            try:
+                installed_file = Path(dist.locate_file(record_path))
+                observed = base64.urlsafe_b64encode(
+                    hashlib.sha256(installed_file.read_bytes()).digest()
+                ).decode('ascii').rstrip('=')
+            except (OSError, TypeError, ValueError) as exc:
+                raise SupplyChainError('E_LOCK_INSTALLED_FILE: unreadable wheel file') from exc
+            if observed != pinned_digest:
+                raise SupplyChainError('E_LOCK_INSTALLED_HASH: wheel file content mismatch')
     return "VERIFIED"
