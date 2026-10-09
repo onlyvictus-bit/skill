@@ -21,3 +21,16 @@ Rollback: use the retained R4 pair and its verifier or revert the bridge commit 
 Integrity repair: if preflight rejects a nested receipt, preserve the old run and rebuild a current pack through knowledge-retrieve. Do not edit or rehash a receipt to invent a backend, lineage or SHACL result. knowledge-audit now reports conflicting actual retrieval/prompt assertions even when IDs match. It independently reopens the oracle's permitted source references, so an unretrieved source unit is a retrieval/context gap rather than a fabricated source failure. Partial observations remain limitations.
 
 Automatic coding workflow: use [project-2](knowledge-project-2.md) for knowledge-project/refresh/impact, text queries and reverse traversal, observed local tests, admission and Fable consumption. The explicit projection/vector instructions above remain the project-1 compatibility route.
+
+
+### Remediation release v2 (security patch)
+
+The immutable original `knowledge-bridge-v1` archive pair stays in place for history.
+The new version is `knowledge-bridge-v2`, with archives `memory-integrity-knowledge-v2.zip`
+and `claude-mon-knowledge-v2.zip`, and its own matching
+`release/Knowledge-Bridge-Manifest-v2.json`. Regenerate only the v2 archives
+using `python -B release/Build-Knowledge-Bridge.py` on an authorized
+checkout, then run `python -B release/Verify-Knowledge-Bridge.py`.
+Do not rewrite v1 artifacts or claim a verified active release when the
+current-tree manifests diverge. Runtime third-party wheel hashes remain
+UNVERIFIED until fully pinned to measured distribution contents.

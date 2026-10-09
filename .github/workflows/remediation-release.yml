@@ -1,0 +1,33 @@
+name: remediation portable archive builder
+on:
+  push:
+    branches: [development/victus-judge-r4-remediation]
+permissions:
+  contents: write
+jobs:
+  build-and-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build v2 without touching historical releases
+        run: python -B release/Build-Knowledge-Bridge.py
+      - name: Test the released archive and current-source parity
+        run: python -B release/Verify-Knowledge-Bridge.py
+      - name: Commit generated v2 release bytes to same branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = "development/victus-judge-r4-remediation"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory-integrity/tests_v2/R4-CONTENT.json release/Knowledge-Bridge-Manifest-v2.json release/memory-integrity-knowledge-v2.zip release/claude-mon-knowledge-v2.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "build: publish immutable knowledge-bridge-v2 remediation archive pair"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi

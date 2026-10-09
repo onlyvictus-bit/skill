@@ -20,9 +20,14 @@ def suite(root,name):
     if p.returncode or count is None: raise AssertionError(str(root)+'/'+name+' failed\n'+output)
     return {'package':root.name,'suite':name,'tests':int(count.group(1)),'skipped':int(skipped.group(1)) if skipped else 0}
 def verify(folder):
-    manifest=json.loads((folder/'Knowledge-Bridge-Manifest.json').read_text(encoding='utf-8'))
-    assert manifest['release']=='knowledge-bridge-v1' and manifest['default_graph'] is False and manifest['installed_promoted'] is False
+    manifest=json.loads((folder/'Knowledge-Bridge-Manifest-v2.json').read_text(encoding='utf-8'))
+    assert manifest['release']=='knowledge-bridge-v2' and manifest['default_graph'] is False and manifest['installed_promoted'] is False
     assert set(manifest['packages'])==set(PACKAGES)
+    # Do not replace v1 under the same release name; validate it as history.
+    previous_bridge=json.loads((ROOT/'release/Knowledge-Bridge-Manifest.json').read_text(encoding='utf-8'))
+    assert previous_bridge['release']=='knowledge-bridge-v1'
+    for row in previous_bridge['packages'].values():
+        assert sha((ROOT/'release'/row['zip']).read_bytes())==row['sha256']
     spec=importlib.util.spec_from_file_location('historical_release_verifier',ROOT/'release/Verify-Memory-Integrity-R4.py');old=importlib.util.module_from_spec(spec);spec.loader.exec_module(old)
     # Historical package digests must still match their original manifests.
     for release in ('R3','R4'):
