@@ -14,7 +14,7 @@ import re
 
 
 def _known_timestamp(value):
-    if not isinstance(value, str) or not re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z', value):
+    if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', value):
         raise TruthError('E_TRUTH_KNOWN_AT: normalized UTC timestamp required')
     try:
         dt.datetime.fromisoformat(value.replace('Z', '+00:00'))
