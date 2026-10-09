@@ -7,8 +7,11 @@ is a tampering signal, never silently adopted. provenance_status() reports
 VERIFIED only for an installed package matching the pin; absent packages are
 UNVERIFIED, never green. Standard library only.
 """
+import csv
 import importlib.metadata
 import importlib.util
+import io
+import re
 import json
 from pathlib import Path
 
@@ -71,6 +74,9 @@ def provenance_status(name):
         raise SupplyChainError("E_LOCK_DRIFT: installed %s %s != pinned %s"
                                % (name, installed, pin["version"]))
     expected = pin.get("record_sha256") or {}
+    # A version/source reference without concrete wheel hashes is NOT hash-verified.
+    if not expected:
+        return 'UNVERIFIED'
     if expected:
         try:
             dist = importlib.metadata.distribution(name)
@@ -80,14 +86,13 @@ def provenance_status(name):
         if record is None:
             raise SupplyChainError("E_LOCK_RECORD_MISSING: no RECORD metadata")
         actual = {}
-        for line in record.splitlines():
-            parts = line.split(",")
-            if len(parts) >= 3 and parts[2]:
-                try:
-                    _algo, _, digest = parts[2].partition("=")
-                    actual[parts[0]] = digest
-                except ValueError:
-                    continue
+        for parts in csv.reader(io.StringIO(record)):
+            if len(parts) != 3 or not parts[1]:
+                continue
+            algo, separator, digest = parts[1].partition('=')
+            if separator != '=' or algo != 'sha256' or not re.fullmatch(r'[A-Za-z0-9_-]{43}', digest):
+                raise SupplyChainError('E_LOCK_RECORD_ALGORITHM: unsupported wheel digest')
+            actual[parts[0]] = digest
         missing = sorted(set(expected) - set(actual))
         if missing:
             raise SupplyChainError("E_LOCK_RECORD_FILES: %d RECORD entries absent"

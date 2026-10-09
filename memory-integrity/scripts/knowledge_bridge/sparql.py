@@ -8,6 +8,10 @@ Nodes flagged hidden/private are excluded unless include_hidden carries a
 written justification. Injection is structurally impossible: the grammar has
 no escape into evaluation. Standard library only.
 """
+import hashlib
+import hmac
+import json
+import os
 import re
 import time
 
@@ -61,19 +65,31 @@ def query(graph, query_text, limit=100, timeout=10, include_hidden=None):
     """Run a read-only SELECT. Returns [row-dict]. Refuses everything else."""
     if not isinstance(limit, int) or limit < 0:
         raise SparqlError("E_SPARQL_LIMIT: limit must be a non-negative int")
-    if include_hidden is not None:
-        if not isinstance(include_hidden, str) or len(include_hidden.strip()) < 8:
-            raise SparqlError("E_SPARQL_HIDDEN: including hidden nodes needs a written "
-                              "justification (at least 8 non-blank characters)")
     if not isinstance(graph, dict):
         raise SparqlError("E_SPARQL_GRAPH: graph must be an object")
     variables, patterns = _parse_select(query_text)
     if limit == 0:
         return []
-    hidden = set() if include_hidden else _hidden_ids(graph)
+    allow_hidden = False
+    if include_hidden is not None:
+        # An untrusted explanation is never a capability. A trusted issuer
+        # may sign a graph-bound approval using an out-of-repository key.
+        key = os.environ.get('SPARQL_HIDDEN_APPROVAL_KEY', '')
+        if not isinstance(include_hidden, dict) or not key:
+            raise SparqlError('E_SPARQL_HIDDEN: verified capability required')
+        digest = hashlib.sha256(json.dumps(graph, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        scope = include_hidden.get('graph_sha256')
+        signature = include_hidden.get('signature')
+        expected = hmac.new(key.encode(), ('sparql-hidden:' + digest).encode(), hashlib.sha256).hexdigest()
+        if scope != digest or not isinstance(signature, str) or not hmac.compare_digest(signature, expected):
+            raise SparqlError('E_SPARQL_HIDDEN: unverified graph capability')
+        allow_hidden = True
+    hidden = set() if allow_hidden else _hidden_ids(graph)
     deadline = time.perf_counter() + timeout
     rows, seen = [], set()
-    triples = list(_triples(graph))
+    # Hidden vertices must not leak through edges even if not SELECT-bound.
+    triples = [t for t in _triples(graph) if allow_hidden or
+               (t[0] not in hidden and t[2] not in hidden)]
     partials = [{}]
     for pattern in patterns:
         stepped = []

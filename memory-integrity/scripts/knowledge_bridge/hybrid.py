@@ -12,7 +12,7 @@ import math
 
 def _eligible(candidate):
     return isinstance(candidate, dict) and candidate.get("authorized") is True \
-        and candidate.get("stale") is not True \
+        and candidate.get("stale") is False \
         and isinstance(candidate.get("id"), str) and candidate["id"].strip() \
         and isinstance(candidate.get("score"), (int, float)) \
         and not isinstance(candidate.get("score"), bool) \

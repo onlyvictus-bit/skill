@@ -121,7 +121,9 @@ def _descendants(store, ident):
     return children
 
 
-def retract(store, ident, reason, op_id, known_at="~"):
+def retract(store, ident, reason, op_id, known_at=None):
+    if not isinstance(known_at, str) or not known_at.strip() or known_at == '~':
+        raise TruthError('E_TRUTH_KNOWN_AT: explicit knowledge timestamp required')
     if not (reason or "").strip():
         raise TruthError("E_TRUTH_REASON: retraction needs a reason")
     if ident not in store["claims"]:
@@ -157,18 +159,21 @@ def contradicts(store, first, second, op_id):
     return store
 
 
-def correct(store, ident, note, valid_from, valid_to, op_id):
+def correct(store, ident, note, valid_from, valid_to, op_id, known_at=None):
+    if not isinstance(known_at, str) or not known_at.strip() or known_at == '~':
+        raise TruthError('E_TRUTH_KNOWN_AT: explicit correction knowledge timestamp required')
     if ident not in store["claims"]:
         raise TruthError("E_TRUTH_UNKNOWN: %s" % (ident,))
     store, fresh = _record(store, {"op": "CORRECT", "op_id": op_id,
                                    "id": ident, "note": note,
-                                   "valid_from": valid_from, "valid_to": valid_to})
+                                   "valid_from": valid_from, "valid_to": valid_to, "known_at": known_at})
     if not fresh:
         return store
     versions = store["claims"][ident]["versions"]
-    known_from = versions[-1]["known_from"] if versions else ""
+    if versions and known_at < versions[-1]['known_from']:
+        raise TruthError('E_TRUTH_KNOWN_ORDER: correction predates prior knowledge')
     versions.append({"valid_from": valid_from, "valid_to": valid_to,
-                     "known_from": known_from, "known_to": "~"})
+                     "known_from": known_at, "known_to": "~"})
     return store
 
 
@@ -297,12 +302,13 @@ def replay(event_list):
         elif op == "RETRACT":
             store, _ = retract(store, event["id"], event.get("reason", "replay"),
                                event["op_id"],
-                               known_at=event.get("known_at", "~"))
+                               known_at=event.get("known_at"))
         elif op == "CONTRADICT":
             store = contradicts(store, *event["pair"], event["op_id"])
         elif op == "CORRECT":
             store = correct(store, event["id"], event.get("note", ""),
-                            event["valid_from"], event["valid_to"], event["op_id"])
+                            event["valid_from"], event["valid_to"], event["op_id"],
+                            known_at=event.get('known_at'))
         elif op == "ENTITY_REGISTER":
             store = register_entity(store, event["id"], event["aliases"], event["op_id"])
         elif op == "ENTITY_MATCH":

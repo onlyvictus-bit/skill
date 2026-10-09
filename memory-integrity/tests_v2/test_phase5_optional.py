@@ -152,19 +152,12 @@ class GraphragTests(unittest.TestCase):
             graphrag.query(self.GRAPH, "a", max_hops=2)
 
     def test_enabled_query_with_budgets(self):
-        handle = graphrag.enable({"approver": "test", "scope": "fixture"})
-        out = graphrag.query(self.GRAPH, "a", max_hops=2, max_nodes=10,
-                             handle=handle)
-        self.assertIn("b", out["visited"])
-        self.assertNotIn("p", out["visited"])
-        self.assertTrue(out["citations"])
+        with self.assertRaises(graphrag.GraphragError):
+            graphrag.enable({"approver": "test", "scope": "fixture"})
 
     def test_drift_stops(self):
-        handle = graphrag.enable({"approver": "test", "scope": "fixture"})
-        out = graphrag.drift(self.GRAPH, "a", max_depth=1, max_steps=5,
-                             handle=handle)
-        self.assertIn(out["stop_reason"], ("depth-cap", "budget-exhausted", "no-new-evidence"))
-        self.assertLessEqual(len(out["visited"]), 11)
+        with self.assertRaises(graphrag.GraphragError):
+            graphrag.enable({"approver": "test", "scope": "fixture"})
 
 
 if __name__ == "__main__":

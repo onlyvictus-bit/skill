@@ -1,5 +1,8 @@
 """Fresh task-relative admission, callable by an ordinary external Fable test."""
 from . import contracts as c,test_evidence
+import hashlib
+import hmac
+import os
 SUPPORTED={'source_identity','protected_request','structured_oracle','local_tests','python_syntax_extraction','resolved_static_dependencies','reviewed_propositions'}
 REVIEW_TIERS={'MANUAL_REPORTED_REVIEW','INDEPENDENT_VERIFIED'}
 REVIEWER_KINDS={'human','agent','institution'}
@@ -55,6 +58,16 @@ def check_reviewer_independence(review, producer_id, expected_digest=None):
         raise ValueError('E_ADMISSION_WITNESS: witness artifact digest malformed')
     if expected_digest is not None and review.get('oracle_digest') != expected_digest:
         raise ValueError('E_ADMISSION_ORACLE_BINDING: oracle digest mismatch')
+    key = os.environ.get('INDEPENDENT_REVIEW_WITNESS_KEY', '')
+    signature = witness.get('signature')
+    if not key or not isinstance(signature, str):
+        raise ValueError('E_ADMISSION_WITNESS_AUTH: verified witness required')
+    payload = ('review:' + identity['id'] + ':' + producer_id + ':' +
+               witness['run_id'] + ':' + witness['artifact_digest'] + ':' +
+               review.get('oracle_digest', '')).encode()
+    expected = hmac.new(key.encode(), payload, hashlib.sha256).hexdigest()
+    if not hmac.compare_digest(signature, expected):
+        raise ValueError('E_ADMISSION_WITNESS_AUTH: signature invalid')
     return tier
 
 

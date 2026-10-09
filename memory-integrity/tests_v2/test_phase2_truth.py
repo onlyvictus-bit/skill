@@ -24,7 +24,8 @@ class RetractionTests(unittest.TestCase):
         store = truth.assert_claim(store, assertion("A1", "base fact"), op_id="op-1")
         store = truth.assert_claim(store, assertion("A2", "derived", kind="DERIVED"), op_id="op-2",
                                    premises=["A1"])
-        store, affected = truth.retract(store, "A1", "source corrected", op_id="op-3")
+        store, affected = truth.retract(store, "A1", "source corrected", op_id="op-3",
+                                        known_at="2026-08-01T00:00:00Z")
         self.assertIn("A1", affected)
         self.assertIn("A2", affected)
         self.assertEqual(truth.status(store, "A1"), "RETRACTED")
@@ -34,8 +35,10 @@ class RetractionTests(unittest.TestCase):
     def test_retract_idempotent(self):
         store = truth.new_store()
         store = truth.assert_claim(store, assertion("A1", "x"), op_id="op-1")
-        store, _ = truth.retract(store, "A1", "why", op_id="op-2")
-        store2, affected2 = truth.retract(store, "A1", "why", op_id="op-2")
+        store, _ = truth.retract(store, "A1", "why", op_id="op-2",
+                                 known_at="2026-08-01T00:00:00Z")
+        store2, affected2 = truth.retract(store, "A1", "why", op_id="op-2",
+                                          known_at="2026-08-01T00:00:00Z")
         self.assertEqual(affected2, [])
         self.assertEqual(truth.event_count(store2), truth.event_count(store))
 
@@ -56,7 +59,8 @@ class RetractionTests(unittest.TestCase):
     def test_derived_on_retracted_premise_refused(self):
         store = truth.new_store()
         store = truth.assert_claim(store, assertion("A1", "base"), op_id="op-1")
-        store, _ = truth.retract(store, "A1", "gone", op_id="op-2")
+        store, _ = truth.retract(store, "A1", "gone", op_id="op-2",
+                                 known_at="2026-08-01T00:00:00Z")
         with self.assertRaises(truth.TruthError):
             store = truth.assert_claim(store, assertion("A2", "derived", kind="DERIVED"),
                                        op_id="op-3", premises=["A1"])
@@ -89,7 +93,8 @@ class BitemporalTests(unittest.TestCase):
                                    known_from="2026-06-01T00:00:00Z",
                                    valid_from="2026-01-01T00:00:00Z")
         store = truth.correct(store, "A1", "v0-was-wrong", "2026-01-01T00:00:00Z",
-                              "2026-03-01T00:00:00Z", op_id="op-2")
+                              "2026-03-01T00:00:00Z", op_id="op-2",
+                              known_at="2026-07-01T00:00:00Z")
         self.assertIn("A1", truth.as_valid_at(store, "2026-02-01T00:00:00Z"))
         self.assertTrue(truth.history(store, "A1"))
 
@@ -122,7 +127,8 @@ class ReplayTests(unittest.TestCase):
     def test_replay_twice_same_state(self):
         store = truth.new_store()
         store = truth.assert_claim(store, assertion("A1", "x"), op_id="op-1")
-        store, _ = truth.retract(store, "A1", "why", op_id="op-2")
+        store, _ = truth.retract(store, "A1", "why", op_id="op-2",
+                                 known_at="2026-08-01T00:00:00Z")
         replayed = truth.replay(truth.events(store))
         self.assertEqual(truth.status(replayed, "A1"), "RETRACTED")
         self.assertEqual(truth.event_count(replayed), truth.event_count(store))

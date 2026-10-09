@@ -11,6 +11,8 @@ nodes. Standard library only.
 
 
 import hashlib
+import hmac
+import json
 import os
 
 
@@ -28,20 +30,30 @@ def _handle_ok(handle):
         return False
     token = handle.get("token")
     return isinstance(token, str) and _ISSUED.get(token) == (
-        handle.get("approver"), handle.get("scope"))
+        handle.get("approver"), handle.get("scope"), handle.get("graph_sha256"))
 
 
 def enable(approval):
-    if not isinstance(approval, dict) or not approval.get("approver") \
-            or not approval.get("scope"):
-        raise GraphragError("E_GRAPHRAG_APPROVAL: written approval required")
+    # The key is supplied by a trusted deployment, not a caller's review note.
+    key = os.environ.get('GRAPHRAG_APPROVAL_KEY', '')
+    if not isinstance(approval, dict) or not key:
+        raise GraphragError('E_GRAPHRAG_APPROVAL: trusted signed approval required')
+    approver, scope, graph_sha = (approval.get('approver'), approval.get('scope'),
+                                   approval.get('graph_sha256'))
+    signature = approval.get('signature')
+    if not all(isinstance(v, str) and v for v in (approver, scope, graph_sha, signature)):
+        raise GraphragError('E_GRAPHRAG_APPROVAL: incomplete signed approval')
+    signed = ('graphrag:' + approver + ':' + scope + ':' + graph_sha).encode()
+    expected = hmac.new(key.encode(), signed, hashlib.sha256).hexdigest()
+    if not hmac.compare_digest(signature, expected):
+        raise GraphragError('E_GRAPHRAG_APPROVAL: invalid signature')
     _ISSUE_COUNTER[0] += 1
     token = hashlib.sha256(_PROCESS_KEY + approval["approver"].encode()
                            + approval["scope"].encode()
                            + str(_ISSUE_COUNTER[0]).encode()).hexdigest()
-    _ISSUED[token] = (approval["approver"], approval["scope"])
-    return {"enabled": True, "token": token, "approver": approval["approver"],
-            "scope": approval["scope"]}
+    _ISSUED[token] = (approver, scope, graph_sha)
+    return {"enabled": True, "token": token, "approver": approver,
+            "scope": scope, "graph_sha256": graph_sha}
 
 
 def _neighbors(graph, node, hop=1):
@@ -83,10 +95,20 @@ def communities(graph):
     return [sorted(members) for members in sorted(groups.values())]
 
 
+def _graph_authorized(graph, handle):
+    if not _handle_ok(handle) or not isinstance(graph, dict):
+        return False
+    project_id = graph.get('project_id')
+    if not isinstance(project_id, str) or not project_id or handle.get('scope') != project_id:
+        return False
+    digest = hashlib.sha256(json.dumps(graph, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    return hmac.compare_digest(digest, handle.get('graph_sha256', ''))
+
+
 def query(graph, start, max_hops=2, max_nodes=100, handle=None):
     """Breadth-first community query honoring budgets and private barriers."""
-    if not _handle_ok(handle):
-        raise GraphragError("E_GRAPHRAG_DISABLED: enable() with approval first")
+    if not _graph_authorized(graph, handle):
+        raise GraphragError('E_GRAPHRAG_DISABLED: verified graph-bound approval required')
     for name, value in (("max_hops", max_hops), ("max_nodes", max_nodes)):
         if not isinstance(value, int) or value <= 0:
             raise GraphragError("E_GRAPHRAG_BUDGET: %s must be a positive int" % (name,))
@@ -114,8 +136,8 @@ def query(graph, start, max_hops=2, max_nodes=100, handle=None):
 
 def drift(graph, start, max_depth=3, max_steps=50, handle=None):
     """Bounded iterative deepening. Stops with an explicit reason."""
-    if not _handle_ok(handle):
-        raise GraphragError("E_GRAPHRAG_DISABLED: enable() with approval first")
+    if not _graph_authorized(graph, handle):
+        raise GraphragError('E_GRAPHRAG_DISABLED: verified graph-bound approval required')
     for name, value in (("max_depth", max_depth), ("max_steps", max_steps)):
         if not isinstance(value, int) or value <= 0:
             raise GraphragError("E_GRAPHRAG_BUDGET: %s must be a positive int" % (name,))

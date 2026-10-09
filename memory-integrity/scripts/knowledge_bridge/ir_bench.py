@@ -52,7 +52,7 @@ def run_variant(name, rank_fn, queries, k=5):
         recalls.append(recall_at_k(ranked, relevant, k))
         rrs.append(mrr(ranked, relevant))
         ndcgs.append(ndcg_at_k(ranked, relevant, k))
-        missing += len([d for d in relevant if d not in ranked[:k]])
+        missing += len(set(relevant) - set(_unique(ranked)[:k]))
     count = max(len(queries), 1)
     return {"variant": name, "k": k,
             "recall@%d" % (k,): sum(recalls) / count,
