@@ -804,6 +804,30 @@
      "text": "Python path byte-identical; other suffixes stay UNSUPPORTED; change sets detected"
     }
    ]
+  },
+  {
+   "id": "REQ-30",
+   "priority": "required",
+   "test_ids": [
+    "TEST-PHASE4-IR"
+   ],
+   "text": "Provenance-first hybrid retrieval with honest measurement (CAP-08/CAP-24-partial)",
+   "criteria": [
+    {
+     "id": "REQ-30-1",
+     "test_ids": [
+      "TEST-PHASE4-IR"
+     ],
+     "text": "Pre/post filters, stable ties, losing variants reported with named winner"
+    },
+    {
+     "id": "REQ-30-2",
+     "test_ids": [
+      "TEST-PHASE4-IR"
+     ],
+     "text": "Deterministic providers; learned backends refuse without artifact approval; real-AI benchmark harness ready, live runs blocked"
+    }
+   ]
   }
  ],
  "schema": 2
