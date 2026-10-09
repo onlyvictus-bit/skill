@@ -16,7 +16,7 @@
 1. SPARQL: arbitrary justification refused; graph-bound signed capability required.
 2. GraphRAG: self-reported approver/scope refused; signed and graph-snapshot scope binding.
 3. Review witness: signed issuer receipt enforced, but institutional issuer authenticity not independently demonstrated in deployment.
-4. Wheel hashes: CSV RECORD parsing fixed, missing committed third-party digest fails closed as UNVERIFIED; complete active wheel pin set still pending.
+4. Wheel hashes: CSV RECORD parser fixed; Semantica __init__.py wheel hash pinned from 4 matching hosted OS/Python observations (runs 37932868772); installed file bytes now separately checked; incomplete wheel RECORD coverage returns UNVERIFIED, full pin set still pending.
 5. Bitemporal: explicit normalized knowledge timestamps required for retraction/correction, including deterministic event replay.
 6. IR: missing-required count computed from same deduplicated top-k set as recall.
 7. Freshness: unknown stale flag now excluded.

@@ -37,7 +37,7 @@
   ],
   "current_task": null,
   "milestone": "FULL-WORKFLOW",
-  "next_action": "Current user authorized remediation of ten Judge findings and commits. RED CI evidence: run 37931932607; source fixes at 0d7c05f; v2 portable builder success at 37932517630; exact-head release regression and authenticated-witness deployment remain unverified. Keep REQ-24..31 open until Fable specialist and complete gates pass.",
+  "next_action": "Source/security fixes and v2 archives committed on development/victus-judge-r4-remediation. Test-first RED workflow 37931932607; metadata-byte RED workflow 37934028726; portable v2 verified in hosted builder 37934182396. Last exact-head CI pass 37933284257 predates later wheel hardening. Run final exact-head CI and independent Fable Judge; keep full third-party wheel provenance, external reviewer issuer identity/key custody and Fable complete gate OPEN until verified.",
   "phase": "remediation-in-progress",
   "schema": 2
 }
