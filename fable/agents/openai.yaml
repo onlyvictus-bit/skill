@@ -1,0 +1,12 @@
+interface:
+  display_name: Fable
+  short_description: Govern project work with deterministic requirement, approval, recovery and evidence gates plus adaptive planning and adversarial verification.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
