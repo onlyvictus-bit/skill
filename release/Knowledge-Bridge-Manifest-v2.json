@@ -1,0 +1,25 @@
+{
+  "base_release": "2.0.0-m12-r4",
+  "bridge_version": "1.2.0",
+  "default_graph": false,
+  "evidence_class": "TEST_ONLY",
+  "installed_promoted": false,
+  "packages": {
+    "claude-mon": {
+      "bytes": 154357,
+      "entries": 68,
+      "sha256": "b813102da746ece49548eab02387dd733876be850447b62099e915fe9ba6a763",
+      "zip": "claude-mon-knowledge-v2.zip"
+    },
+    "memory-integrity": {
+      "bytes": 377751,
+      "entries": 148,
+      "sha256": "ebab3be349eb5be6a32e11dd253686866b4a1b84d05616700ca58a6120131680",
+      "zip": "memory-integrity-knowledge-v2.zip"
+    }
+  },
+  "release": "knowledge-bridge-v2",
+  "schema_version": 1,
+  "semantica_revision": "320761de5d040a54a3220acc563223b4a7ffdc51",
+  "semantica_version": "0.7.0"
+}
