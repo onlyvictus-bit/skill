@@ -6,15 +6,15 @@
   "installed_promoted": false,
   "packages": {
     "claude-mon": {
-      "bytes": 154348,
+      "bytes": 154698,
       "entries": 68,
-      "sha256": "c3b0fa2a0c4f51847d62542ce48e8f5d5dfcbb38ab8af6d6e91b8f28976d0fcf",
+      "sha256": "2aa7a541a870edf2f8c4cd7cf2be5cb2e0c387c0dc0cca7ca3a450749751265b",
       "zip": "claude-mon-knowledge-v1.zip"
     },
     "memory-integrity": {
-      "bytes": 334811,
-      "entries": 127,
-      "sha256": "12ce0f6cb3b5b8edb100f906a5c39f0e6567522e1ee2cb4baa247a0b5ee808be",
+      "bytes": 375228,
+      "entries": 147,
+      "sha256": "c61ba592eda24371fdce84bc86c483666209fe75f0911a1a3762b5ce4a5d66ac",
       "zip": "memory-integrity-knowledge-v1.zip"
     }
   },
