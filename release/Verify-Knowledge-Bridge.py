@@ -15,7 +15,9 @@ ROOT=Path(__file__).resolve().parents[1]
 PACKAGES=('memory-integrity','claude-mon')
 def sha(raw): return hashlib.sha256(raw).hexdigest()
 def suite(root,name):
-    p=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s',name],cwd=root,capture_output=True,text=True,encoding='utf-8',timeout=360,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',PYTHONIOENCODING='utf-8'))
+    # The full extracted v2 suite adds host/history checks to the real worker
+    # suite (observed 286s alone on Windows); retain a bounded ten-minute budget.
+    p=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s',name],cwd=root,capture_output=True,text=True,encoding='utf-8',timeout=600,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',PYTHONIOENCODING='utf-8'))
     output=p.stdout+p.stderr;count=re.search(r'Ran (\d+) tests?',output);skipped=re.search(r'skipped=(\d+)',output)
     if p.returncode or count is None: raise AssertionError(str(root)+'/'+name+' failed\n'+output)
     return {'package':root.name,'suite':name,'tests':int(count.group(1)),'skipped':int(skipped.group(1)) if skipped else 0}
