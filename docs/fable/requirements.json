@@ -828,6 +828,30 @@
      "text": "Deterministic providers; learned backends refuse without artifact approval; real-AI benchmark harness ready, live runs blocked"
     }
    ]
+  },
+  {
+   "id": "REQ-31",
+   "priority": "required",
+   "test_ids": [
+    "TEST-PHASE5-OPTIONAL"
+   ],
+   "text": "Opt-in formal reasoning, SPARQL-subset, NER shadow, ontology migration (CAP-10/11/12/13/14/15/16)",
+   "criteria": [
+    {
+     "id": "REQ-31-1",
+     "test_ids": [
+      "TEST-PHASE5-OPTIONAL"
+     ],
+     "text": "Bounded rules/SPARQL/ontology pass; NER uncertainty explicit"
+    },
+    {
+     "id": "REQ-31-2",
+     "test_ids": [
+      "TEST-PHASE5-OPTIONAL"
+     ],
+     "text": "Heavy backends stay deferred with approval-gated activation"
+    }
+   ]
   }
  ],
  "schema": 2
