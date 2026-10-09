@@ -29,8 +29,8 @@ def loads(raw):
 
 def read(path): return loads(Path(path).read_bytes())
 
-def keys(obj,names,where):
-    if not isinstance(obj,dict) or set(obj)!=set(names): raise ValueError('E_SCHEMA: '+where)
+def keys(obj,names,where,allow_extra=frozenset()):
+    if not isinstance(obj,dict) or set(obj)-set(names)-set(allow_extra) or set(names)-set(obj): raise ValueError('E_SCHEMA: '+where)
     return obj
 
 def string(value,where):

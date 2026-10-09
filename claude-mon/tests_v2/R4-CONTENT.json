@@ -14,10 +14,8 @@
     "tests_v2/test_r3_history.py"
   ],
   "added_r2_files": [
-    "references/INDEX.md",
     "references/r3-history-coordination.md",
     "scripts/complete_read_v2/coordination.py",
-    "tests_v2/R3-CONTENT.json",
     "tests_v2/baseline-r2.json",
     "tests_v2/test_r3_coordination.py",
     "tests_v2/test_r3_history.py"
@@ -48,7 +46,6 @@
   ],
   "changed_r2_files": [
     "SKILL.md",
-    "agents/openai.yaml",
     "capabilities-v2.json",
     "scripts/claude_mon_v2.py",
     "scripts/complete_read_v2/__init__.py",
@@ -56,8 +53,6 @@
     "scripts/complete_read_v2/ledger.py",
     "scripts/complete_read_v2/proof.py",
     "scripts/complete_read_v2/runner.py",
-    "tests/test_cli.py",
-    "tests/test_core.py",
     "tests_v2/test_ledger.py",
     "tests_v2/test_m4r_regressions.py",
     "tests_v2/test_preservation.py"
@@ -131,6 +126,6 @@
     "tests_v2/test_runner.py": "1702acc0dd34f87b210c9cdc23baa2ed78efdac67dafecc1a4deecd3ecbaf520",
     "tests_v2/test_unit_results.py": "cda8a2193b1fb611e913ba66e062bcc8fc17070ed9f9f0a588b9de63820c7c01"
   },
-  "release": "2.0.0-m12-r4",
+  "release": "2.0.0-m11-r4dev",
   "schema_version": 1
 }

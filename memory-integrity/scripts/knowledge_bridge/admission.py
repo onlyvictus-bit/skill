@@ -1,6 +1,8 @@
 """Fresh task-relative admission, callable by an ordinary external Fable test."""
 from . import contracts as c,test_evidence
 SUPPORTED={'source_identity','protected_request','structured_oracle','local_tests','python_syntax_extraction','resolved_static_dependencies','reviewed_propositions'}
+REVIEW_TIERS={'MANUAL_REPORTED_REVIEW','INDEPENDENT_VERIFIED'}
+REVIEWER_KINDS={'human','agent','institution'}
 
 def check_extraction(checks,doc,root,refs,allowed_sources=None):
     if not set(checks)&{'python_syntax_extraction','resolved_static_dependencies'}:return
@@ -14,6 +16,40 @@ def check_extraction(checks,doc,root,refs,allowed_sources=None):
     fresh=extract({i:doc['sources'][i] for i in sorted(scoped)},doc['repository'],root=root)['manifest']
     if any(fresh['sources'][i]['fragment']!=manifest['sources'][i]['fragment'] for i in ids):raise ValueError('E_ADMISSION_EXTRACTION_REPLAY')
     if 'resolved_static_dependencies' in checks and any(row['source_id'] in ids and row['kind'] in {'UNRESOLVED_CALL','UNRESOLVED_IMPORT','AMBIGUOUS_MODULE','DYNAMIC_BINDING','PARSE_FAILED'} for row in fresh['diagnostics']):raise ValueError('E_ADMISSION_EXTRACTION_UNRESOLVED')
+def review_tier(review):
+    """MANUAL is the compatible default. INDEPENDENT must be proven, never assumed."""
+    tier = review.get('tier', 'MANUAL_REPORTED_REVIEW')
+    if tier not in REVIEW_TIERS:
+        raise ValueError('E_ADMISSION_TIER: unknown review tier %r' % (tier,))
+    return tier
+
+
+def check_reviewer_independence(review, producer_id, expected_digest=None):
+    """One actor cannot self-declare the higher tier.
+
+    INDEPENDENT_VERIFIED requires a reviewer identity distinct from the
+    producer plus a matching oracle digest. Anything less stays MANUAL.
+    """
+    tier = review_tier(review)
+    if tier == 'MANUAL_REPORTED_REVIEW':
+        return tier
+    if producer_id is None:
+        raise ValueError('E_ADMISSION_PRODUCER_UNKNOWN: independent review needs a known producer')
+    identity = review.get('reviewer_identity')
+    if not isinstance(identity, dict):
+        raise ValueError('E_ADMISSION_IDENTITY: independent review needs reviewer_identity')
+    if not isinstance(identity.get('id'), str) or not identity['id'].strip():
+        raise ValueError('E_ADMISSION_IDENTITY: reviewer id required')
+    if identity.get('kind') not in REVIEWER_KINDS:
+        raise ValueError('E_ADMISSION_IDENTITY: reviewer kind must be one of %s'
+                         % (sorted(REVIEWER_KINDS),))
+    if identity['id'] == producer_id:
+        raise ValueError('E_ADMISSION_SELF_REVIEW: producer cannot verify its own oracle')
+    if expected_digest is not None and review.get('oracle_digest') != expected_digest:
+        raise ValueError('E_ADMISSION_ORACLE_BINDING: oracle digest mismatch')
+    return tier
+
+
 def validate_spec(spec):
     c.keys(spec,{'schema_version','task_id','purpose','criteria','required_checks','oracle_review'},'admission specification')
     if spec['schema_version']!=1:raise ValueError('E_ADMISSION_VERSION')
@@ -22,11 +58,12 @@ def validate_spec(spec):
     if not {'source_identity','protected_request','structured_oracle'}<=set(spec['required_checks']):raise ValueError('E_ADMISSION_CHECKS_REQUIRED')
     if not isinstance(spec['criteria'],dict) or not spec['criteria']:raise ValueError('E_ADMISSION_CRITERIA')
     for ident,cases in spec['criteria'].items():c.identity(ident,'criterion');c.strings(cases,'required test cases')
-    review=c.keys(spec['oracle_review'],{'reviewer','oracle_digest'},'independent oracle review');c.string(review['reviewer'],'oracle reviewer');c.sha(review['oracle_digest'])
+    review=c.keys(spec['oracle_review'],{'reviewer','oracle_digest'},'independent oracle review',allow_extra={'tier','reviewer_identity'});c.string(review['reviewer'],'oracle reviewer');c.sha(review['oracle_digest'])
     return spec
 
-def produce(spec,task,policy,pack,audit,protected,test_receipt,root,doc,oracle):
+def produce(spec,task,policy,pack,audit,protected,test_receipt,root,doc,oracle,producer_id=None):
     validate_spec(spec)
+    tier=check_reviewer_independence(spec['oracle_review'],producer_id)
     if spec['task_id']!=task['task_id'] or task['execution_task_digest'] is None:raise ValueError('E_ADMISSION_TASK_BINDING')
     if c.digest(c.canonical(oracle))!=spec['oracle_review']['oracle_digest']:raise ValueError('E_ADMISSION_ORACLE_BINDING')
     if not protected.get('ok') or audit.get('verdict')!='PASSED_FOR_DECLARED_STRUCTURED_CHECKS':raise ValueError('E_ADMISSION_CHECK_FAILED')
@@ -43,7 +80,7 @@ def produce(spec,task,policy,pack,audit,protected,test_receipt,root,doc,oracle):
         passed={row['id'] for row in fresh['cases'] if row['status']=='pass'}
         if any(not cases or not set(cases)<=passed for cases in spec['criteria'].values()):raise ValueError('E_ADMISSION_CRITERION_TEST_MISSING')
     elif any(spec['criteria'].values()):raise ValueError('E_ADMISSION_TEST_CHECK_UNDECLARED')
-    body={'schema_version':1,'kind':'knowledge-admission-v1','task_id':task['task_id'],'purpose':spec['purpose'],'criteria':spec['criteria'],'required_checks':spec['required_checks'],'spec_digest':c.digest(c.canonical(spec)),'task_digest':c.digest(c.canonical(task)),'policy_digest':c.digest(c.canonical(policy)),'pack_digest':pack['pack_digest'],'generation':doc['generation'],'oracle_digest':spec['oracle_review']['oracle_digest'],'oracle_review':spec['oracle_review'],'audit_digest':c.digest(c.canonical(audit)),'protected_digest':c.digest(c.canonical(protected)),'test_receipt_digest':test_receipt['receipt_digest'] if test_receipt else None,'verdict':'ADMITTED_FOR_DECLARED_OFFLINE_CHECKS','semantic_truth':'UNVERIFIED','oracle_evidence_class':'MANUAL_REPORTED_REVIEW','coverage':'DECLARED_TASK_ONLY'}
+    body={'schema_version':1,'kind':'knowledge-admission-v1','task_id':task['task_id'],'purpose':spec['purpose'],'criteria':spec['criteria'],'required_checks':spec['required_checks'],'spec_digest':c.digest(c.canonical(spec)),'task_digest':c.digest(c.canonical(task)),'policy_digest':c.digest(c.canonical(policy)),'pack_digest':pack['pack_digest'],'generation':doc['generation'],'oracle_digest':spec['oracle_review']['oracle_digest'],'oracle_review':spec['oracle_review'],'audit_digest':c.digest(c.canonical(audit)),'protected_digest':c.digest(c.canonical(protected)),'test_receipt_digest':test_receipt['receipt_digest'] if test_receipt else None,'verdict':'ADMITTED_FOR_DECLARED_OFFLINE_CHECKS','semantic_truth':'UNVERIFIED','oracle_evidence_class':tier,'coverage':'DECLARED_TASK_ONLY'}
     body['admission_digest']=c.digest(c.canonical(body));return body
 
 def verify(stored,fresh):
