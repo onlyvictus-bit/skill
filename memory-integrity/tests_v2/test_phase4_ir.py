@@ -53,6 +53,15 @@ class HybridTests(unittest.TestCase):
                                   rescore=lambda c: 0.0 if c["id"] == "d4" else c["score"])
         self.assertNotIn("d4", [c["id"] for c in ranked])
 
+    def test_nonfinite_scores_rejected(self):
+        bad = [dict(c, score=float("nan")) for c in self.CANDIDATES[:1]]
+        ranked, dropped = hybrid.rerank(bad, top_k=10)
+        self.assertEqual(ranked, [])
+        self.assertIn("d1", dropped)
+        with self.assertRaises(ValueError):
+            hybrid.rerank(self.CANDIDATES, top_k=10,
+                          rescore=lambda c: float("inf"))
+
 
 class MetricTests(unittest.TestCase):
     JUDGMENTS = {"q1": {"d1", "d3"}}
@@ -68,6 +77,11 @@ class MetricTests(unittest.TestCase):
     def test_empty_ranking_zero_not_error(self):
         self.assertEqual(ir_bench.recall_at_k([], {"d1"}, 5), 0.0)
         self.assertEqual(ir_bench.mrr([], {"d1"}), 0.0)
+
+    def test_duplicate_ids_count_once(self):
+        self.assertEqual(ir_bench.recall_at_k(["d1", "d1"], {"d1"}, 2), 1.0)
+        self.assertEqual(ir_bench.mrr(["d9", "d1", "d1"], {"d1"}), 0.5)
+        self.assertLessEqual(ir_bench.ndcg_at_k(["d1", "d1"], {"d1"}, 2), 1.0)
 
 
 class HonestyTests(unittest.TestCase):

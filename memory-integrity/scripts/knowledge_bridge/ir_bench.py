@@ -7,16 +7,27 @@ import math
 import time
 
 
+def _unique(ranked):
+    """Duplicate result IDs count once; ranking spam never inflates recall."""
+    seen, out = set(), []
+    for doc in ranked:
+        if doc not in seen:
+            seen.add(doc)
+            out.append(doc)
+    return out
+
+
 def recall_at_k(ranked, relevant, k):
     relevant = set(relevant)
     if not relevant or k <= 0:
         return 0.0
+    ranked = _unique(ranked)
     return len([d for d in ranked[:k] if d in relevant]) / len(relevant)
 
 
 def mrr(ranked, relevant):
     relevant = set(relevant)
-    for rank, doc in enumerate(ranked, start=1):
+    for rank, doc in enumerate(_unique(ranked), start=1):
         if doc in relevant:
             return 1.0 / rank
     return 0.0
@@ -26,7 +37,7 @@ def ndcg_at_k(ranked, relevant, k):
     relevant = set(relevant)
     if not relevant or k <= 0:
         return 0.0
-    gains = [1.0 if doc in relevant else 0.0 for doc in ranked[:k]]
+    gains = [1.0 if doc in relevant else 0.0 for doc in _unique(ranked)[:k]]
     dcg = sum(g / math.log2(i + 2) for i, g in enumerate(gains))
     ideal = sum(1.0 / math.log2(i + 2) for i in range(min(len(relevant), k)))
     return (dcg / ideal) if ideal else 0.0

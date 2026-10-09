@@ -79,6 +79,14 @@ class NerTests(unittest.TestCase):
         reviewed = ner_shadow.review_span(spans[0], True)
         self.assertTrue(reviewed["human_checked"])
 
+    def test_unicode_spans_are_byte_ranges(self):
+        spans = ner_shadow.extract("Zoë met François Düpont on 2026-03-04.")
+        raw = "Zoë met François Düpont on 2026-03-04.".encode("utf-8")
+        self.assertTrue(spans)
+        for span in spans:
+            start, end = span["byte_range"]
+            self.assertEqual(raw[start:end].decode("utf-8"), span["text"])
+
     def test_event_modality(self):
         events = ner_shadow.extract_events("The board might meet Tuesday. Minutes record the vote.")
         kinds = {e["modality"] for e in events}
@@ -100,6 +108,20 @@ class OntologyTests(unittest.TestCase):
         report = ontology.check_compat(schema, schema, [{"predicate": "NOPE"}])
         self.assertFalse(report["compatible"])
         self.assertTrue(report["violations"])
+
+    def test_endpoint_types_validated(self):
+        schema = ontology.schema(2)
+        nodes = [{"id": "c1", "type": "Component"}, {"id": "c2", "type": "Component"},
+                 {"id": "s9", "type": "SourceUnit"}]
+        good = ontology.check_compat(
+            schema, schema, [{"predicate": "DEPENDS_ON", "subject": "c1", "object": "c2"}],
+            nodes=nodes)
+        self.assertTrue(good["compatible"], good["violations"])
+        bad = ontology.check_compat(
+            schema, schema, [{"predicate": "DEPENDS_ON", "subject": "s9", "object": "c2"}],
+            nodes=nodes)
+        self.assertFalse(bad["compatible"])
+        self.assertTrue(any("type violation" in v for v in bad["violations"]))
 
 
 class DeferredTests(unittest.TestCase):

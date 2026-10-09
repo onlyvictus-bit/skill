@@ -61,9 +61,10 @@ def query(graph, query_text, limit=100, timeout=10, include_hidden=None):
     """Run a read-only SELECT. Returns [row-dict]. Refuses everything else."""
     if not isinstance(limit, int) or limit < 0:
         raise SparqlError("E_SPARQL_LIMIT: limit must be a non-negative int")
-    if include_hidden is not None and not (
-            isinstance(include_hidden, str) and include_hidden.strip()):
-        raise SparqlError("E_SPARQL_HIDDEN: including hidden nodes needs a written reason")
+    if include_hidden is not None:
+        if not isinstance(include_hidden, str) or len(include_hidden.strip()) < 8:
+            raise SparqlError("E_SPARQL_HIDDEN: including hidden nodes needs a written "
+                              "justification (at least 8 non-blank characters)")
     if not isinstance(graph, dict):
         raise SparqlError("E_SPARQL_GRAPH: graph must be an object")
     variables, patterns = _parse_select(query_text)

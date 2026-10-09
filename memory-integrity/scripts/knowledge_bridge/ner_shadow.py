@@ -41,10 +41,15 @@ def extract(text):
     if not isinstance(text, str):
         raise ValueError("E_NER_INPUT: text must be str")
     raw = text.encode("utf-8")
+
+    def _bytes(start_char, end_char):
+        return [len(text[:start_char].encode("utf-8")),
+                len(text[:end_char].encode("utf-8"))]
     spans = []
 
     def span(match, kind):
-        spans.append({"text": match.group(1), "byte_range": [match.start(1), match.end(1)],
+        spans.append({"text": match.group(1),
+                      "byte_range": _bytes(match.start(1), match.end(1)),
                       "kind": kind, "ambiguous": False,
                       "negated": _negated(text, match.start(1), match.end(1)),
                       "human_checked": False})
@@ -62,7 +67,7 @@ def extract(text):
     for word, occurrences in singles.items():
         for occurrence in occurrences:
             spans.append({"text": word,
-                          "byte_range": [occurrence.start(1), occurrence.end(1)],
+                          "byte_range": _bytes(occurrence.start(1), occurrence.end(1)),
                           "kind": "entity", "ambiguous": len(occurrences) > 1,
                           "negated": _negated(text, occurrence.start(1),
                                               occurrence.end(1)),
@@ -109,7 +114,13 @@ def extract_events(text):
             modality = "hypothetical"
         if _NEGATION.search(text[begin:start]):
             modality = "negated"
-        events.append({"text": match.group(1), "byte_range": [start, start + len(match.group(1))],
+        events.append({"text": match.group(1),
+                       "byte_range": [len(text[:start].encode("utf-8")),
+                                      len(text[:start + len(match.group(1))].encode("utf-8"))],
                        "type": "event", "actors": [], "modality": modality,
                        "human_checked": False})
+    for event in events:
+        start, end = event["byte_range"]
+        if text.encode("utf-8")[start:end].decode("utf-8", errors="replace") != event["text"]:
+            raise ValueError("E_NER_SPAN: event byte range mismatch")
     return events

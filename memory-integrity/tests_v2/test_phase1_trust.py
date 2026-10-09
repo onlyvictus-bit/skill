@@ -85,6 +85,23 @@ class OracleTierTests(unittest.TestCase):
                 review, producer_id="agent-1",
                 expected_digest="a" * 64)
 
+    def test_independent_without_witness_refused(self):
+        review = {"reviewer": "agent-2", "oracle_digest": "a" * 64,
+                  "tier": "INDEPENDENT_VERIFIED",
+                  "reviewer_identity": {"id": "agent-2", "kind": "agent"}}
+        with self.assertRaises(ValueError) as ctx:
+            admission.check_reviewer_independence(review, producer_id="agent-1")
+        self.assertIn("WITNESS", str(ctx.exception))
+
+    def test_independent_with_witness_passes(self):
+        review = {"reviewer": "agent-2", "oracle_digest": "a" * 64,
+                  "tier": "INDEPENDENT_VERIFIED",
+                  "reviewer_identity": {"id": "agent-2", "kind": "agent",
+                                        "witness": {"run_id": "run-9",
+                                                    "artifact_digest": "c" * 64}}}
+        self.assertEqual(admission.check_reviewer_independence(
+            review, producer_id="agent-1"), "INDEPENDENT_VERIFIED")
+
 
 class SupplyChainTests(unittest.TestCase):
     def test_tampered_pin_detected(self):
@@ -97,6 +114,26 @@ class SupplyChainTests(unittest.TestCase):
     def test_missing_package_never_green(self):
         verdict = supply_chain.provenance_status("semantica-nonexistent-xyz")
         self.assertNotEqual(verdict, "VERIFIED")
+
+    def test_record_hash_mismatch_refused(self):
+        import json
+        import tempfile
+        from unittest import mock
+        from pathlib import Path as _Path
+        with tempfile.TemporaryDirectory() as temp:
+            lock = _Path(temp) / "pins.json"
+            lock.write_text(json.dumps({"pins": [
+                {"name": "fakepkg", "version": "1.0",
+                 "revision": "r1", "source": "test",
+                 "record_sha256": {"f.py": "0" * 64}}]}))
+            fake_dist = mock.Mock()
+            fake_dist.read_text.return_value = "f.py,sha256=ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff,1\n"
+            with mock.patch.object(supply_chain, "LOCK", lock), \
+                 mock.patch("importlib.util.find_spec", return_value=object()), \
+                 mock.patch("importlib.metadata.version", return_value="1.0"), \
+                 mock.patch("importlib.metadata.distribution", return_value=fake_dist):
+                with self.assertRaises(supply_chain.SupplyChainError):
+                    supply_chain.provenance_status("fakepkg")
 
 
 if __name__ == "__main__":

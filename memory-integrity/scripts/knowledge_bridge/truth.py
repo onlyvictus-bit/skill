@@ -49,9 +49,15 @@ def status(store, ident):
 def _record(store, event):
     if event.get("op_id") in store["seen_ops"]:
         return store, False
+    claims = {}
+    for key, claim in store["claims"].items():
+        copy = dict(claim)
+        copy["versions"] = [dict(version) for version in claim.get("versions", [])]
+        copy["premises"] = list(claim.get("premises", []))
+        claims[key] = copy
     store = {"events": store["events"] + [event],
              "seen_ops": store["seen_ops"] + [event["op_id"]],
-             "claims": {k: dict(v) for k, v in store["claims"].items()},
+             "claims": claims,
              "edges": list(store["edges"]),
              "entities": {k: dict(v) for k, v in store["entities"].items()},
              "matches": list(store["matches"]),
@@ -78,6 +84,13 @@ def _check_claim(record):
 def assert_claim(store, record, op_id, premises=(), valid_from=None,
                  valid_to=None, known_from=None, known_to=None):
     _check_claim(record)
+    for premise in premises:
+        target = store["claims"].get(premise)
+        if target is None:
+            raise TruthError("E_TRUTH_PREMISE_MISSING: %s" % (premise,))
+        if target["truth"] != "CURRENT":
+            raise TruthError("E_TRUTH_PREMISE_STALE: %s is %s, not CURRENT"
+                             % (premise, target["truth"]))
     store, fresh = _record(store, {"op": "ASSERT", "op_id": op_id,
                                    "id": record["id"], "record": record,
                                    "premises": list(premises),
@@ -89,8 +102,9 @@ def assert_claim(store, record, op_id, premises=(), valid_from=None,
         return store
     store["claims"][record["id"]] = {
         "truth": "CURRENT", "record": record, "premises": list(premises),
-        "valid_from": valid_from or "", "valid_to": valid_to or "~",
-        "known_from": known_from or "", "known_to": known_to or "~"}
+        "retracted_at": None,
+        "versions": [{"valid_from": valid_from or "", "valid_to": valid_to or "~",
+                      "known_from": known_from or "", "known_to": known_to or "~"}]}
     return store
 
 
@@ -107,13 +121,14 @@ def _descendants(store, ident):
     return children
 
 
-def retract(store, ident, reason, op_id):
+def retract(store, ident, reason, op_id, known_at="~"):
     if not (reason or "").strip():
         raise TruthError("E_TRUTH_REASON: retraction needs a reason")
     if ident not in store["claims"]:
         raise TruthError("E_TRUTH_UNKNOWN: %s" % (ident,))
     store, fresh = _record(store, {"op": "RETRACT", "op_id": op_id,
-                                   "id": ident, "reason": reason})
+                                   "id": ident, "reason": reason,
+                                   "known_at": known_at})
     if not fresh:
         return store, []
     if store["claims"][ident]["truth"] == "RETRACTED":
@@ -121,6 +136,8 @@ def retract(store, ident, reason, op_id):
     affected = [ident] + sorted(_descendants(store, ident))
     for cid in affected:
         store["claims"][cid]["truth"] = "RETRACTED"
+        if store["claims"][cid]["retracted_at"] is None:
+            store["claims"][cid]["retracted_at"] = known_at
     return store, affected
 
 
@@ -148,25 +165,36 @@ def correct(store, ident, note, valid_from, valid_to, op_id):
                                    "valid_from": valid_from, "valid_to": valid_to})
     if not fresh:
         return store
-    store["claims"][ident]["valid_from"] = valid_from
-    store["claims"][ident]["valid_to"] = valid_to
+    versions = store["claims"][ident]["versions"]
+    known_from = versions[-1]["known_from"] if versions else ""
+    versions.append({"valid_from": valid_from, "valid_to": valid_to,
+                     "known_from": known_from, "known_to": "~"})
     return store
 
 
-def _visible(store, moment, window):
-    moment = str(moment)
-    return sorted(cid for cid, c in store["claims"].items()
-                  if c["truth"] == "CURRENT"
-                  and c[window[0]] <= moment
-                  and moment < c[window[1]])
+def _active_at(claim, moment, window):
+    return any(version[window[0]] <= moment and moment < version[window[1]]
+               for version in claim.get("versions", []))
 
 
 def as_valid_at(store, moment):
-    return _visible(store, moment, ("valid_from", "valid_to"))
+    """World truth at a moment: a version covers it and no retraction
+    strictly precedes it. Retracted claims remain visible before their
+    retraction moment instead of vanishing from history."""
+    moment = str(moment)
+    return sorted(cid for cid, claim in store["claims"].items()
+                  if _active_at(claim, moment, ("valid_from", "valid_to"))
+                  and (claim["truth"] != "RETRACTED"
+                       or (claim["retracted_at"] or "~") > moment))
 
 
 def known_as_of(store, moment):
-    return _visible(store, moment, ("known_from", "known_to"))
+    """Knowledge at a moment: known then and not yet retracted then."""
+    moment = str(moment)
+    return sorted(cid for cid, claim in store["claims"].items()
+                  if _active_at(claim, moment, ("known_from", "known_to"))
+                  and (claim["truth"] != "RETRACTED"
+                       or (claim["retracted_at"] or "~") > moment))
 
 
 def register_entity(store, eid, aliases, op_id):
@@ -268,7 +296,8 @@ def replay(event_list):
                                            else event.get("known_to")))
         elif op == "RETRACT":
             store, _ = retract(store, event["id"], event.get("reason", "replay"),
-                               event["op_id"])
+                               event["op_id"],
+                               known_at=event.get("known_at", "~"))
         elif op == "CONTRADICT":
             store = contradicts(store, *event["pair"], event["op_id"])
         elif op == "CORRECT":

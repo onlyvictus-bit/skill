@@ -10,19 +10,37 @@ nodes. Standard library only.
 """
 
 
+import hashlib
+import os
+
+
+_PROCESS_KEY = os.urandom(32)
+_ISSUED = {}
+_ISSUE_COUNTER = [0]
+
+
 class GraphragError(ValueError):
     pass
 
 
 def _handle_ok(handle):
-    return isinstance(handle, dict) and handle.get("enabled") is True
+    if not isinstance(handle, dict) or handle.get("enabled") is not True:
+        return False
+    token = handle.get("token")
+    return isinstance(token, str) and _ISSUED.get(token) == (
+        handle.get("approver"), handle.get("scope"))
 
 
 def enable(approval):
     if not isinstance(approval, dict) or not approval.get("approver") \
             or not approval.get("scope"):
         raise GraphragError("E_GRAPHRAG_APPROVAL: written approval required")
-    return {"enabled": True, "approver": approval["approver"],
+    _ISSUE_COUNTER[0] += 1
+    token = hashlib.sha256(_PROCESS_KEY + approval["approver"].encode()
+                           + approval["scope"].encode()
+                           + str(_ISSUE_COUNTER[0]).encode()).hexdigest()
+    _ISSUED[token] = (approval["approver"], approval["scope"])
+    return {"enabled": True, "token": token, "approver": approval["approver"],
             "scope": approval["scope"]}
 
 

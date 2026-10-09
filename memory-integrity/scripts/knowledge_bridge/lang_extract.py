@@ -85,6 +85,16 @@ def _refs(source_id, source, span):
         return [{"source_id": source_id}]
 
 
+def _byte_span(text, start_char, end_char):
+    """Map str offsets to byte offsets; multibyte prefixes must not skew spans."""
+    raw = text.encode("utf-8")
+    return [len(text[:start_char].encode("utf-8")), len(text[:end_char].encode("utf-8"))]
+
+
+def _brange(text, start_char, end_char):
+    return _byte_span(text, start_char, end_char)
+
+
 def _split_names(blob):
     names = []
     for part in blob.split(","):
@@ -114,11 +124,11 @@ def _parse_js(source_id, source, raw, repository, path):
 
     def diag(kind, start, end, detail):
         diagnostics.append({"kind": kind, "source_id": source_id,
-                            "range": [start, end], "detail": detail})
+                            "range": _brange(text, start, end), "detail": detail})
 
     def imp(kind, name, frm, start, end, type_only=False):
         imports.append({"kind": kind, "name": name, "module": frm,
-                        "binding": name, "range": [start, end],
+                        "binding": name, "range": _brange(text, start, end),
                         "type_only": type_only})
 
     for match in hits(r"\bimport\s+type\s*\{([^}]*)\}\s*from\s*(['\"])(.*?)\2"):
@@ -148,7 +158,7 @@ def _parse_js(source_id, source, raw, repository, path):
             imp("require", alias, match.group(3), match.start(), match.end())
 
     def exp(name, start, end, kind, default=False):
-        exports.append({"name": name, "range": [start, end], "kind": kind,
+        exports.append({"name": name, "range": _brange(text, start, end), "kind": kind,
                         "default": default})
 
     for match in hits(r"\bexport\s+type\s*\{([^}]*)\}(?:\s*from\s*(['\"])(.*?)\2)?"):
@@ -158,23 +168,23 @@ def _parse_js(source_id, source, raw, repository, path):
             edges.append({"predicate": "REEXPORTS", "subject": component,
                           "object": match.group(3),
                           "source_units": _refs(source_id, source,
-                                                [match.start(), match.end()])})
+                                                _brange(text, match.start(), match.end()))})
     for match in hits(r"\bexport\s*\{([^}]*)\}\s*from\s*(['\"])(.*?)\2"):
         edges.append({"predicate": "REEXPORTS", "subject": component,
                       "object": match.group(3),
                       "source_units": _refs(source_id, source,
-                                            [match.start(), match.end()])})
+                                            _brange(text, match.start(), match.end()))})
     for match in hits(r"\bexport\s*\*\s*as\s+([A-Za-z_$][\w$]*)\s*from\s*(['\"])(.*?)\2"):
         exp(match.group(1), match.start(), match.end(), "namespace-reexport")
         edges.append({"predicate": "REEXPORTS", "subject": component,
                       "object": match.group(3),
                       "source_units": _refs(source_id, source,
-                                            [match.start(), match.end()])})
+                                            _brange(text, match.start(), match.end()))})
     for match in hits(r"\bexport\s*\*\s*from\s*(['\"])(.*?)\1"):
         edges.append({"predicate": "REEXPORTS", "subject": component,
                       "object": match.group(2),
                       "source_units": _refs(source_id, source,
-                                            [match.start(), match.end()])})
+                                            _brange(text, match.start(), match.end()))})
     for match in hits(
             r"\bexport\s+(default\s+)?(async\s+)?(function\*?|class)\s+([A-Za-z_$][\w$]*)?"):
         name = match.group(4)
@@ -183,7 +193,7 @@ def _parse_js(source_id, source, raw, repository, path):
                 bool(match.group(1)))
             symbols.append({"id": module + "." + name, "name": name,
                             "qualified_name": module + "." + name,
-                            "range": [match.start(), match.end()],
+                            "range": _brange(text, match.start(), match.end()),
                             "kind": "symbol", "scope": ""})
         else:
             exp(None, match.start(), match.end(), "default-anonymous", True)
@@ -194,19 +204,19 @@ def _parse_js(source_id, source, raw, repository, path):
         exp(match.group(1), match.start(), match.end(), "var")
         symbols.append({"id": module + "." + match.group(1), "name": match.group(1),
                         "qualified_name": module + "." + match.group(1),
-                        "range": [match.start(), match.end()],
+                        "range": _brange(text, match.start(), match.end()),
                         "kind": "symbol", "scope": ""})
     for match in hits(r"\bmodule\.exports\s*=|\bexports\.([A-Za-z_$][\w$]*)\s*="):
         exp(match.group(1) or "module.exports", match.start(), match.end(), "commonjs")
     for match in hits(r"\b(?:namespace|module)\s+([A-Za-z_$][\w$]*)\s*\{"):
         symbols.append({"id": module + "." + match.group(1), "name": match.group(1),
                         "qualified_name": module + "." + match.group(1),
-                        "range": [match.start(), match.end()],
+                        "range": _brange(text, match.start(), match.end()),
                         "kind": "namespace", "scope": ""})
     for match in hits(r"\binterface\s+([A-Za-z_$][\w$]*)"):
         symbols.append({"id": module + "." + match.group(1), "name": match.group(1),
                         "qualified_name": module + "." + match.group(1),
-                        "range": [match.start(), match.end()],
+                        "range": _brange(text, match.start(), match.end()),
                         "kind": "interface", "scope": ""})
 
     bound = {}
@@ -253,15 +263,15 @@ def _parse_js(source_id, source, raw, repository, path):
         if candidates and _rebound_before(head, start):
             diag("DYNAMIC_BINDING", start, end,
                  "locally rebound name %r not resolved to import" % (head,))
-            calls.append({"callee": head, "range": [start, end], "scope": "",
+            calls.append({"callee": head, "range": _brange(text, start, end), "scope": "",
                           "subject": component, "resolved": False})
             continue
         if candidates:
-            calls.append({"callee": head, "range": [start, end], "scope": "",
+            calls.append({"callee": head, "range": _brange(text, start, end), "scope": "",
                           "subject": component, "resolved": True})
         else:
             diag("UNRESOLVED_CALL", start, end, "callee %r unbound" % (callee,))
-            calls.append({"callee": head, "range": [start, end], "scope": "",
+            calls.append({"callee": head, "range": _brange(text, start, end), "scope": "",
                           "subject": component, "resolved": False})
     return {"status": "OBSERVED", "module": module, "component": component,
             "nodes": [], "symbols": symbols, "edges": edges, "imports": imports,

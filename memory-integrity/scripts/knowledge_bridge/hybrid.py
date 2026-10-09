@@ -5,8 +5,9 @@ Order is the guarantee: pre-filter drops unauthorized/stale candidates
 BEFORE scoring influence, rescoring runs, then the filter runs AGAIN
 (post-filter), and ties break by stable id order. A top-scored forbidden
 candidate can never surface, and calibration records exactly what ran.
-Standard library only.
+Scores must be finite: NaN/inf are rejected, never ranked. Stdlib only.
 """
+import math
 
 
 def _eligible(candidate):
@@ -14,7 +15,8 @@ def _eligible(candidate):
         and candidate.get("stale") is not True \
         and isinstance(candidate.get("id"), str) and candidate["id"].strip() \
         and isinstance(candidate.get("score"), (int, float)) \
-        and not isinstance(candidate.get("score"), bool)
+        and not isinstance(candidate.get("score"), bool) \
+        and math.isfinite(candidate["score"])
 
 
 def rerank(candidates, top_k=10, rescore=None, weights=None):
@@ -33,8 +35,9 @@ def rerank(candidates, top_k=10, rescore=None, weights=None):
     if rescore is not None:
         for candidate in pool:
             value = rescore(candidate)
-            if not isinstance(value, (int, float)) or isinstance(value, bool):
-                raise ValueError("E_RERANK_SCORE: rescore must return numbers")
+            if isinstance(value, bool) or not isinstance(value, (int, float)) \
+                    or not math.isfinite(value):
+                raise ValueError("E_RERANK_SCORE: rescore must return finite numbers")
             candidate["score"] = value
     pool = [c for c in pool if _eligible(c)]
     dropped += [c["id"] for c in pool if not c["score"] > 0]

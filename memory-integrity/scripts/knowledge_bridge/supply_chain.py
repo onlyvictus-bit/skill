@@ -51,7 +51,12 @@ def verify_pins(table):
 
 
 def provenance_status(name):
-    """VERIFIED only when installed AND matching the pin. Else never green."""
+    """VERIFIED only when installed AND matching the pin. Else never green.
+
+    When installed, the distribution version must match; when the lock also
+    carries record_sha256 entries, every listed RECORD line hash must match
+    the installed wheel metadata. Absent packages are UNVERIFIED.
+    """
     table = controlled_pins()
     pin = next((e for e in table["pins"] if e["name"] == name), None)
     if pin is None:
@@ -65,4 +70,31 @@ def provenance_status(name):
     if installed != pin["version"]:
         raise SupplyChainError("E_LOCK_DRIFT: installed %s %s != pinned %s"
                                % (name, installed, pin["version"]))
+    expected = pin.get("record_sha256") or {}
+    if expected:
+        try:
+            dist = importlib.metadata.distribution(name)
+            record = dist.read_text("RECORD")
+        except (FileNotFoundError, KeyError, ValueError, OSError) as exc:
+            raise SupplyChainError("E_LOCK_RECORD_UNREADABLE: %s" % (exc,))
+        if record is None:
+            raise SupplyChainError("E_LOCK_RECORD_MISSING: no RECORD metadata")
+        actual = {}
+        for line in record.splitlines():
+            parts = line.split(",")
+            if len(parts) >= 3 and parts[2]:
+                try:
+                    _algo, _, digest = parts[2].partition("=")
+                    actual[parts[0]] = digest
+                except ValueError:
+                    continue
+        missing = sorted(set(expected) - set(actual))
+        if missing:
+            raise SupplyChainError("E_LOCK_RECORD_FILES: %d RECORD entries absent"
+                                   % (len(missing),))
+        mismatched = sorted(path for path in expected
+                            if path in actual and actual[path] != expected[path])
+        if mismatched:
+            raise SupplyChainError("E_LOCK_RECORD_HASH: %d RECORD hashes differ"
+                                   % (len(mismatched),))
     return "VERIFIED"

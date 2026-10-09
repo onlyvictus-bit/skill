@@ -45,6 +45,14 @@ def check_reviewer_independence(review, producer_id, expected_digest=None):
                          % (sorted(REVIEWER_KINDS),))
     if identity['id'] == producer_id:
         raise ValueError('E_ADMISSION_SELF_REVIEW: producer cannot verify its own oracle')
+    witness = identity.get('witness')
+    if not isinstance(witness, dict) or not isinstance(witness.get('run_id'), str) \
+            or not witness['run_id'].strip():
+        raise ValueError('E_ADMISSION_WITNESS: independent review needs a witness run id')
+    try:
+        c.sha(witness.get('artifact_digest', ''))
+    except ValueError:
+        raise ValueError('E_ADMISSION_WITNESS: witness artifact digest malformed')
     if expected_digest is not None and review.get('oracle_digest') != expected_digest:
         raise ValueError('E_ADMISSION_ORACLE_BINDING: oracle digest mismatch')
     return tier
@@ -80,6 +88,12 @@ def produce(spec,task,policy,pack,audit,protected,test_receipt,root,doc,oracle,p
         passed={row['id'] for row in fresh['cases'] if row['status']=='pass'}
         if any(not cases or not set(cases)<=passed for cases in spec['criteria'].values()):raise ValueError('E_ADMISSION_CRITERION_TEST_MISSING')
     elif any(spec['criteria'].values()):raise ValueError('E_ADMISSION_TEST_CHECK_UNDECLARED')
+    if tier == 'INDEPENDENT_VERIFIED':
+        known = {d for d in (test_receipt['receipt_digest'] if test_receipt else None,
+                             c.digest(c.canonical(audit))) if d}
+        witness_digest = spec['oracle_review']['reviewer_identity']['witness']['artifact_digest']
+        if witness_digest not in known:
+            raise ValueError('E_ADMISSION_WITNESS_BINDING: witness artifact not in evidence')
     body={'schema_version':1,'kind':'knowledge-admission-v1','task_id':task['task_id'],'purpose':spec['purpose'],'criteria':spec['criteria'],'required_checks':spec['required_checks'],'spec_digest':c.digest(c.canonical(spec)),'task_digest':c.digest(c.canonical(task)),'policy_digest':c.digest(c.canonical(policy)),'pack_digest':pack['pack_digest'],'generation':doc['generation'],'oracle_digest':spec['oracle_review']['oracle_digest'],'oracle_review':spec['oracle_review'],'audit_digest':c.digest(c.canonical(audit)),'protected_digest':c.digest(c.canonical(protected)),'test_receipt_digest':test_receipt['receipt_digest'] if test_receipt else None,'verdict':'ADMITTED_FOR_DECLARED_OFFLINE_CHECKS','semantic_truth':'UNVERIFIED','oracle_evidence_class':tier,'coverage':'DECLARED_TASK_ONLY'}
     body['admission_digest']=c.digest(c.canonical(body));return body
 

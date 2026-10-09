@@ -47,6 +47,30 @@ class RetractionTests(unittest.TestCase):
         self.assertEqual(truth.status(store, "A1"), "CONFLICTED")
         self.assertEqual(truth.status(store, "A2"), "CONFLICTED")
 
+    def test_derived_on_missing_premise_refused(self):
+        store = truth.new_store()
+        with self.assertRaises(truth.TruthError):
+            store = truth.assert_claim(store, assertion("A2", "derived", kind="DERIVED"),
+                                       op_id="op-1", premises=["GHOST"])
+
+    def test_derived_on_retracted_premise_refused(self):
+        store = truth.new_store()
+        store = truth.assert_claim(store, assertion("A1", "base"), op_id="op-1")
+        store, _ = truth.retract(store, "A1", "gone", op_id="op-2")
+        with self.assertRaises(truth.TruthError):
+            store = truth.assert_claim(store, assertion("A2", "derived", kind="DERIVED"),
+                                       op_id="op-3", premises=["A1"])
+
+    def test_history_survives_retraction(self):
+        store = truth.new_store()
+        store = truth.assert_claim(store, assertion("A1", "v1"), op_id="op-1",
+                                   known_from="2026-01-01T00:00:00Z")
+        store, _ = truth.retract(store, "A1", "corrected", op_id="op-2",
+                                 known_at="2026-03-01T00:00:00Z")
+        self.assertEqual(truth.status(store, "A1"), "RETRACTED")
+        self.assertIn("A1", truth.known_as_of(store, "2026-02-01T00:00:00Z"))
+        self.assertNotIn("A1", truth.known_as_of(store, "2026-04-01T00:00:00Z"))
+
 
 class BitemporalTests(unittest.TestCase):
     def test_as_of_excludes_future_known(self):

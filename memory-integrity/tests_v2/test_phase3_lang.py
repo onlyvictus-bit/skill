@@ -119,6 +119,18 @@ class PythonParityTests(unittest.TestCase):
         self.assertEqual(out["status"], "UNSUPPORTED")
 
 
+class UnicodeSpanTests(unittest.TestCase):
+    def test_multibyte_prefix_keeps_byte_spans(self):
+        text = "// café naïve résumé\nimport {add} from './util.js';\n"
+        out = frag("src/u.js", text)
+        raw = text.encode("utf-8")
+        imports = [i for i in out["imports"] if i["name"] == "add"]
+        self.assertEqual(len(imports), 1)
+        start, end = imports[0]["range"]
+        self.assertEqual(raw[start:end].decode("utf-8"),
+                         "import {add} from './util.js'")
+
+
 class IncrementalTests(unittest.TestCase):
     def test_changed_sources_detected(self):
         prev = {"a.js": "h1", "b.js": "h2"}
