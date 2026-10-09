@@ -773,6 +773,37 @@
      "text": "Possible matches never auto-merge; explicit merges roll back; replays deterministic"
     }
    ]
+  },
+  {
+   "id": "REQ-29",
+   "priority": "required",
+   "test_ids": [
+    "TEST-PHASE3-LANG"
+   ],
+   "text": "JS/TS structural extraction with explicit unknown states (CAP-06)",
+   "criteria": [
+    {
+     "id": "REQ-29-1",
+     "test_ids": [
+      "TEST-PHASE3-LANG"
+     ],
+     "text": "ESM/CJS/barrel/namespace/interface imports, exports, spans byte-exact"
+    },
+    {
+     "id": "REQ-29-2",
+     "test_ids": [
+      "TEST-PHASE3-LANG"
+     ],
+     "text": "Dynamic imports, shadowed bindings, anonymous defaults never become edges"
+    },
+    {
+     "id": "REQ-29-3",
+     "test_ids": [
+      "TEST-PHASE3-LANG"
+     ],
+     "text": "Python path byte-identical; other suffixes stay UNSUPPORTED; change sets detected"
+    }
+   ]
   }
  ],
  "schema": 2
