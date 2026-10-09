@@ -72,8 +72,10 @@ def _neighbors(graph, node, hop=1):
     return seen - {node}
 
 
-def communities(graph):
-    """Deterministic connected components over undirected edges."""
+def communities(graph, handle=None):
+    """Deterministic components; private graph identity requires authorization."""
+    if not _graph_authorized(graph, handle):
+        raise GraphragError('E_GRAPHRAG_DISABLED: verified graph-bound approval required')
     parent = {}
 
     def find(node):

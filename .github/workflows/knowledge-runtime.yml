@@ -23,6 +23,18 @@ jobs:
           subprocess.run([sys.executable, '-m', 'venv', '.knowledge-runtime'], check=True)
           exe = pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')
           subprocess.run([str(exe), '-m', 'pip', 'install', '-r', 'semantica-runtime/requirements-lock.txt'], check=True)
+      - name: Report observed Semantica wheel content digest (non-secret)
+        shell: python
+        run: |
+          import csv, importlib.metadata, pathlib, sys
+          exe = pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')
+          script = ('import csv,importlib.metadata,io; '
+                    'd=importlib.metadata.distribution("semantica"); '
+                    'r=list(csv.reader(io.StringIO(d.read_text("RECORD")))); '
+                    'print("SEMANTICA_INIT_WHEEL_RECORD",'
+                    'next((x[1] for x in r if x[0]=="semantica/__init__.py"),"ABSENT"))')
+          import subprocess
+          subprocess.run([str(exe), '-c', script], check=True)
       - name: Real runtime and protected workflow checks
         shell: python
         run: |

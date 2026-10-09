@@ -113,6 +113,68 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(ranked, [])
         self.assertIn("unknown", dropped)
 
+class SignedAuthorizationTests(unittest.TestCase):
+    def test_sparql_signed_capability_is_graph_bound(self):
+        import hashlib, hmac, json, os
+        from unittest import mock
+        graph = HiddenAuthorizationTests.GRAPH
+        digest = hashlib.sha256(json.dumps(graph, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        token = {"graph_sha256": digest,
+                 "signature": hmac.new(b"synthetic-private-key",
+                                      ("sparql-hidden:" + digest).encode(), hashlib.sha256).hexdigest()}
+        with mock.patch.dict(os.environ, {"SPARQL_HIDDEN_APPROVAL_KEY": "synthetic-private-key"}):
+            self.assertEqual(sparql.query(graph, "SELECT ?s WHERE { ?s LINK public }",
+                                          include_hidden=token), [{"s": "private"}])
+            altered = {**graph, "project_id": "other"}
+            with self.assertRaises(sparql.SparqlError):
+                sparql.query(altered, "SELECT ?s WHERE { ?s LINK public }",
+                             include_hidden=token)
+
+    def test_graphrag_signed_scope_and_graph_digest_required(self):
+        import hashlib, hmac, json, os
+        from unittest import mock
+        graph = GraphApprovalTests.GRAPH
+        digest = hashlib.sha256(json.dumps(graph, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        message = ("graphrag:trusted-owner:project-A:" + digest).encode()
+        approval = {"approver": "trusted-owner", "scope": "project-A", "graph_sha256": digest,
+                    "signature": hmac.new(b"trusted-key", message, hashlib.sha256).hexdigest()}
+        with mock.patch.dict(os.environ, {"GRAPHRAG_APPROVAL_KEY": "trusted-key"}):
+            handle = graphrag.enable(approval)
+            self.assertIn("B", graphrag.query(graph, "A", handle=handle)["visited"])
+            self.assertIn(["A", "B"], graphrag.communities(graph, handle=handle))
+            for changed in ({**graph, "project_id": "project-B"},
+                            {**graph, "nodes": [{"id": "A"}, {"id": "B"}, {"id": "new"}]}):
+                with self.assertRaises(graphrag.GraphragError):
+                    graphrag.query(changed, "A", handle=handle)
+            with self.assertRaises(graphrag.GraphragError):
+                graphrag.communities(graph)
+
+    def test_reviewer_witness_signed_by_trusted_issuer(self):
+        import hashlib, hmac, os
+        from unittest import mock
+        witness = {"run_id": "trusted-run", "artifact_digest": "a" * 64}
+        digest = "b" * 64
+        payload = ("review:reviewer:producer:trusted-run:" + "a" * 64 + ":" + digest).encode()
+        witness["signature"] = hmac.new(b"review-key", payload, hashlib.sha256).hexdigest()
+        review = {"tier": "INDEPENDENT_VERIFIED", "oracle_digest": digest,
+                  "reviewer_identity": {"id": "reviewer", "kind": "institution",
+                                        "witness": witness}}
+        with mock.patch.dict(os.environ, {"INDEPENDENT_REVIEW_WITNESS_KEY": "review-key"}):
+            self.assertEqual(admission.check_reviewer_independence(
+                review, producer_id="producer", expected_digest=digest), "INDEPENDENT_VERIFIED")
+            with self.assertRaises(ValueError):
+                admission.check_reviewer_independence(
+                    review, producer_id="different-producer", expected_digest=digest)
+
+
+class TimestampGuards(unittest.TestCase):
+    def test_retraction_rejects_malformed_timestamp(self):
+        row = BitemporalTests().claim()
+        for invalid in ("~", "tomorrow", "2026-02-31T00:00:00Z", "2026-01-01"):
+            store = truth.assert_claim(truth.new_store(), row, "op0")
+            with self.assertRaises(truth.TruthError):
+                truth.retract(store, "A", "source changed", "op1", known_at=invalid)
+
 
 if __name__ == "__main__":
     unittest.main()

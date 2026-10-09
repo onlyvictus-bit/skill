@@ -1,43 +1,43 @@
 {
- "basis": {
-  "plan_digest": "db6cc6a8d3e957c3f0afc2cd68cf16baae1136dfdff07ba3faff7fd14cd79b35",
-  "requirements_digest": "fb7cc0ef8ba5e1882c8b6b948eb6c6505015723b751663a23ef338d556a25718",
-  "tests_digest": "a49a3cd27bf6cbc1bd4ab1c9e39b896da829588546be9ff919d4f89d7b861ad8",
-  "prior_locked": {
-   "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
-   "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
-   "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
-  }
- },
- "campaign_id": "semantica-bridge",
- "completed_requirement_ids": [
-  "REQ-01",
-  "REQ-02",
-  "REQ-03",
-  "REQ-04",
-  "REQ-05",
-  "REQ-06",
-  "REQ-07",
-  "REQ-08",
-  "REQ-09",
-  "REQ-10",
-  "REQ-11",
-  "REQ-12",
-  "REQ-13",
-  "REQ-14",
-  "REQ-15",
-  "REQ-16",
-  "REQ-17",
-  "REQ-18",
-  "REQ-19",
-  "REQ-20",
-  "REQ-21",
-  "REQ-22",
-  "REQ-23"
- ],
- "current_task": null,
- "milestone": "FULL-WORKFLOW",
- "next_action": "Remediation track REQ-24..31 open under successor basis; prior REQ-01..23 closure preserved with digests in basis.prior_locked. See evidence run 20261009T104043475152Z-remediation.",
- "phase": "remediation-in-progress",
- "schema": 2
+  "basis": {
+    "plan_digest": "db6cc6a8d3e957c3f0afc2cd68cf16baae1136dfdff07ba3faff7fd14cd79b35",
+    "requirements_digest": "fb7cc0ef8ba5e1882c8b6b948eb6c6505015723b751663a23ef338d556a25718",
+    "tests_digest": "a49a3cd27bf6cbc1bd4ab1c9e39b896da829588546be9ff919d4f89d7b861ad8",
+    "prior_locked": {
+      "plan_digest": "a25020be4a29d1fb3676972e2f8b60245323e2f3279fd69a49dbf7173a39164e",
+      "requirements_digest": "660efb4687939434967a6fec01b34b96ebd76145003630d84eb5f08daca9a6da",
+      "tests_digest": "a7fbf1d6abdee04cdf5d4a21ae048aa15318443aae12492eb35cd58d1fe20e2f"
+    }
+  },
+  "campaign_id": "semantica-bridge",
+  "completed_requirement_ids": [
+    "REQ-01",
+    "REQ-02",
+    "REQ-03",
+    "REQ-04",
+    "REQ-05",
+    "REQ-06",
+    "REQ-07",
+    "REQ-08",
+    "REQ-09",
+    "REQ-10",
+    "REQ-11",
+    "REQ-12",
+    "REQ-13",
+    "REQ-14",
+    "REQ-15",
+    "REQ-16",
+    "REQ-17",
+    "REQ-18",
+    "REQ-19",
+    "REQ-20",
+    "REQ-21",
+    "REQ-22",
+    "REQ-23"
+  ],
+  "current_task": null,
+  "milestone": "FULL-WORKFLOW",
+  "next_action": "Current user authorized remediation of ten Judge findings and commits. RED CI evidence: run 37931932607; source fixes at 0d7c05f; v2 portable builder success at 37932517630; exact-head release regression and authenticated-witness deployment remain unverified. Keep REQ-24..31 open until Fable specialist and complete gates pass.",
+  "phase": "remediation-in-progress",
+  "schema": 2
 }

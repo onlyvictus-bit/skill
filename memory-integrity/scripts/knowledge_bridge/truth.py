@@ -9,6 +9,20 @@ once. Entity merges are explicit and reversible; proximity never auto-merges.
 Fable decisions project read-only; contradictions flag review, never override.
 Standard library only.
 """
+import datetime as dt
+import re
+
+
+def _known_timestamp(value):
+    if not isinstance(value, str) or not re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z', value):
+        raise TruthError('E_TRUTH_KNOWN_AT: normalized UTC timestamp required')
+    try:
+        dt.datetime.fromisoformat(value.replace('Z', '+00:00'))
+    except ValueError as exc:
+        raise TruthError('E_TRUTH_KNOWN_AT: invalid date') from exc
+    return value
+
+
 CLAIM_TYPES = ("OBSERVED", "DERIVED", "INFERRED", "HYPOTHESIS")
 TRUTH_STATES = ("CURRENT", "RETRACTED", "CONFLICTED", "UNKNOWN")
 ANTONYMS = (("up", "down"), ("allow", "deny"), ("true", "false"),
@@ -122,12 +136,14 @@ def _descendants(store, ident):
 
 
 def retract(store, ident, reason, op_id, known_at=None):
-    if not isinstance(known_at, str) or not known_at.strip() or known_at == '~':
-        raise TruthError('E_TRUTH_KNOWN_AT: explicit knowledge timestamp required')
+    _known_timestamp(known_at)
     if not (reason or "").strip():
         raise TruthError("E_TRUTH_REASON: retraction needs a reason")
     if ident not in store["claims"]:
         raise TruthError("E_TRUTH_UNKNOWN: %s" % (ident,))
+    prior = store['claims'][ident]['versions'][-1]['known_from']
+    if prior and known_at < prior:
+        raise TruthError('E_TRUTH_KNOWN_ORDER: retraction predates current knowledge')
     store, fresh = _record(store, {"op": "RETRACT", "op_id": op_id,
                                    "id": ident, "reason": reason,
                                    "known_at": known_at})
@@ -160,18 +176,18 @@ def contradicts(store, first, second, op_id):
 
 
 def correct(store, ident, note, valid_from, valid_to, op_id, known_at=None):
-    if not isinstance(known_at, str) or not known_at.strip() or known_at == '~':
-        raise TruthError('E_TRUTH_KNOWN_AT: explicit correction knowledge timestamp required')
+    _known_timestamp(known_at)
     if ident not in store["claims"]:
         raise TruthError("E_TRUTH_UNKNOWN: %s" % (ident,))
+    previous = store['claims'][ident]['versions'][-1]['known_from']
+    if previous and known_at < previous:
+        raise TruthError('E_TRUTH_KNOWN_ORDER: correction predates prior knowledge')
     store, fresh = _record(store, {"op": "CORRECT", "op_id": op_id,
                                    "id": ident, "note": note,
                                    "valid_from": valid_from, "valid_to": valid_to, "known_at": known_at})
     if not fresh:
         return store
     versions = store["claims"][ident]["versions"]
-    if versions and known_at < versions[-1]['known_from']:
-        raise TruthError('E_TRUTH_KNOWN_ORDER: correction predates prior knowledge')
     versions.append({"valid_from": valid_from, "valid_to": valid_to,
                      "known_from": known_at, "known_to": "~"})
     return store
