@@ -8,6 +8,11 @@ spec=importlib.util.spec_from_file_location('probes',path)
 p=importlib.util.module_from_spec(spec);spec.loader.exec_module(p)
 
 class ProbeContracts(unittest.TestCase):
+    def test_signed_native_revision_tokens(self):
+        for token in ['-1','1','-9223372036854775808','9223372036854775807']:
+            self.assertTrue(p.valid_revision(token))
+        for token in [None,'', '0','1.5','9223372036854775808','-9223372036854775809']:
+            self.assertFalse(p.valid_revision(token))
     def test_naive_or_nonfinite_lease_refused(self):
         for value in ['2026-10-10T00:00:00', '', None, 'NaN']:
             with self.assertRaises(ValueError): p.lease_time(value)
@@ -49,6 +54,12 @@ class ProbeContracts(unittest.TestCase):
         self.assertFalse(p.guard_mismatch(13,b'{"failed":[{"id":"p-1","guard_mismatch":true},{"id":"p-2","guard_mismatch":true}]}','p-1'))
         for value in [False,0,'',{}]:
             with self.assertRaises(ValueError):p.check_reclaim({'count':0,'reclaimed':value,'scoped':True},'p-1',None)
+    def test_conditional_command_binds_exact_task_and_owner(self):
+        good={'argv':['bd','--actor','A','--json','update','p-1','--title','x','--if-assignee','A','--if-status','in_progress']}
+        p.bind_guard(good,'p-1','A')
+        for key,value in [('p-1','p-2'),('A','B'),('in_progress','open')]:
+            bad={'argv':[value if x==key else x for x in good['argv']]}
+            with self.assertRaises(ValueError):p.bind_guard(bad,'p-1','A')
     def test_no_experiments_means_not_complete(self):
         with self.assertRaises(ValueError):p.verify_receipt({'schema':1,'ok':True,'commands':[],'results':{}})
 

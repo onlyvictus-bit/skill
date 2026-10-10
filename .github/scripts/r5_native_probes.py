@@ -34,6 +34,13 @@ def expired(expiry,observed):
     need(expiry.tzinfo is not None and observed.tzinfo is not None,'naive timestamp')
     return observed>=expiry
 
+def valid_revision(value):
+    # Claimed rows use fresh nonzero signed int64 row_lock tokens.
+    if not isinstance(value,str):return False
+    try:n=int(value,10)
+    except ValueError:return False
+    return str(n)==value and -(2**63)<=n<2**63 and n!=0
+
 def capture_ok(r):
     need(r.get('capture_complete') is True and r.get('timed_out') is False and r.get('output_limit_exceeded') is False and r.get('capture_errors')==[],'uncertain capture')
     need(type(r.get('exit_code')) is int and isinstance(r.get('stdout'),bytes) and isinstance(r.get('stderr'),bytes),'invalid capture')
@@ -64,6 +71,13 @@ def check_reclaim(v,ident,owner):
     expected=[] if owner is None else [{'id':ident,'previous_owner':owner}]
     need(v.get('scoped') is True and type(v.get('count')) is int and v['count']==len(expected) and (v.get('reclaimed')==expected or (owner is None and v.get('reclaimed') is None)),'unexpected reclaim result')
 
+def has_args(c,args):
+    argv=c.get('argv',[])
+    return any(argv[i:i+len(args)]==args for i in range(len(argv)-len(args)+1))
+
+def bind_guard(c,ident,owner):
+    need(has_args(c,['update',ident]) and has_args(c,['--actor',owner]) and has_args(c,['--if-assignee',owner]) and has_args(c,['--if-status','in_progress']),'conditional command target/actor/guards mismatch')
+
 def native_conflict(code,raw):
     text=raw.decode('utf-8','strict').lower()
     return code!=0 and 'merge conflict' in text and 'autocommit' in text
@@ -91,7 +105,7 @@ def verify_receipt(v):
     need(claims[0]['process_id']!=claims[1]['process_id'] and sum(c['exit_code']==0 for c in claims)==1,'not one real process winner')
     won=next(c for c in claims if c['exit_code']==0);need(won['argv'][won['argv'].index('--actor')+1]==owner,'wrong winning actor')
     held=issue(ref(claim,'read','independent issue read'));need(held['id']==ident and held.get('assignee')==owner and held['status']=='in_progress','claim readback mismatch')
-    need(held.get('revision')==claim['original_revision'],'original generation mismatch')
+    need(valid_revision(held.get('revision')) and held.get('revision')==claim['original_revision'],'original generation mismatch')
     expiry=lease_time(held.get('lease_expires_at'));need(expiry==lease_time(claim['lease_expires_at']),'lease summary mismatch')
     loser=cmds[claim['refs']['semantic_loser']];need(loser['exit_code']!=0 and 'already claimed' in (raw(loser,'stderr')+raw(loser,'stdout')).decode().lower(),'semantic loser refusal missing')
     live_reclaim=ref(claim,'live_reclaim','live lease reclaim control');check_reclaim(data(live_reclaim),ident,None)
@@ -100,30 +114,36 @@ def verify_receipt(v):
     need(before.get('assignee')==owner and lease_time(before['lease_expires_at'])==expiry and expired(expiry,lease_time(c['started_at'])),'expiry not reached with original lease')
     need(expired(expiry,lease_time(e['observed_at'])) and e['elapsed_monotonic_seconds']>=295,'real TTL not elapsed')
     need((lease_time(c['started_at'])-lease_time(won['started_at'])).total_seconds()>=295,'retained commands did not wait default TTL')
-    allowed=c['exit_code']==0;need(allowed==e['expired_conditional_write_allowed'],'expiry result mismatch')
+    need(before['id']==after['id']==ident and e['refs']['before']<e['refs']['write']<e['refs']['after'],'expiry target or chronology mismatch');bind_guard(c,ident,owner)
+    allowed=c['exit_code']==0;need(allowed==e['expired_conditional_write_allowed'] and e['automatic_expiry_fence']==('REFUTED' if allowed else 'OBSERVED_REFUSAL'),'expiry result mismatch')
     if allowed:need(after['title']=='expired old owner write' and after['lease_expires_at']==before['lease_expires_at'],'expired write or unchanged lease unproved')
     else:need(guard_mismatch(c['exit_code'],raw(c,'stderr'),ident) and after==before,'unclassified expiry refusal')
     check_reclaim(data(ref(e,'reclaim','real expired lease scoped reclaim')),ident,owner)
     freed=issue(ref(e,'freed','independent issue read'));need(freed['id']==ident and freed['status']=='open' and not freed.get('assignee') and not freed.get('lease_expires_at'),'reclaim readback missing')
     f=v['results']['changed_owner'];before=issue(ref(f,'before','independent issue read'));after=issue(ref(f,'after','independent issue read'));c=ref(f,'write','conditional title write')
-    need(before['assignee']==other and guard_mismatch(c['exit_code'],raw(c,'stderr'),ident) and before==after,'changed-owner guard/effect not proved')
+    need(before['id']==after['id']==ident and f['refs']['before']<f['refs']['write']<f['refs']['after'],'changed owner target or chronology mismatch');bind_guard(c,ident,owner)
+    need(f['stale_write_refused'] is True and f['issue_unchanged'] is True and before['assignee']==other and guard_mismatch(c['exit_code'],raw(c,'stderr'),ident) and before==after,'changed-owner guard/effect not proved')
     h1=data(ref(f,'head_before','native branch read'))['head'];h2=data(ref(f,'head_after','native branch read'))['head'];need(h1==h2==f['before_head']==f['after_head'],'stale write moved head')
     a=v['results']['aba'];before=issue(ref(a,'before','independent issue read'));after=issue(ref(a,'after','independent issue read'));c=ref(a,'write','conditional title write')
-    need(before['assignee']==owner and before['status']=='in_progress' and before['revision']!=held['revision'] and before['revision']==a['new_revision'],'ABA generation absent')
-    allowed=c['exit_code']==0;need(allowed==a['old_actor_status_token_allowed'],'ABA result mismatch')
+    need(valid_revision(before.get('revision')) and before['assignee']==owner and before['status']=='in_progress' and before['revision']!=held['revision'] and before['revision']==a['new_revision'],'ABA generation absent')
+    need(before['id']==after['id']==ident and a['refs']['before']<a['refs']['write']<a['refs']['after'],'ABA target or chronology mismatch');bind_guard(c,ident,owner)
+    allowed=c['exit_code']==0;need(allowed==a['old_actor_status_token_allowed'] and a['generation_fence']==('REFUTED' if allowed else 'OBSERVED_REFUSAL'),'ABA result mismatch')
     if allowed:need(after['title']=='old actor status token replay','ABA effect missing')
     else:need(guard_mismatch(c['exit_code'],raw(c,'stderr'),ident) and before==after,'ABA refusal unclassified')
     for kind in ['compatible_merge','native_conflict']:
         m=v['results'][kind];source=data(ref(m,'source','native branch write'));target=data(ref(m,'target','native branch read'));result=data(ref(m,'result','native branch read'));fork=data(ref(m,'fork_read','native branch read'))
         need(fork['head']==m['base_head'] and source['before_head']==m['base_head'] and source['head']==m['source_head'] and target['head']==m['target_head'] and result['head']==m['result_head'],'branch head summaries mismatch')
         need(source['branch']==m['source_branch'] and target['branch']==result['branch']=='main' and len({m['base_head'],m['source_head'],m['target_head']})==3,'not native divergent branches')
+        need(m['refs']['fork_read']<m['refs']['source']<m['refs']['target']<m['refs']['merge']<m['refs']['result'],'native merge chronology mismatch')
         if kind=='compatible_merge':
-            c=ref(m,'merge','compatible native merge');need(c['exit_code']==0 and data(c).get('conflicts')==0,'compatible merge unsuccessful')
-            need(issue(ref(m,'read_a','independent issue read'))['title']=='compatible source A' and issue(ref(m,'read_b','independent issue read'))['title']=='compatible target B','merged changes not read back')
+            c=ref(m,'merge','compatible native merge');need(has_args(c,['vc','merge',m['source_branch']]) and '--strategy' not in c['argv'] and c['exit_code']==0 and data(c).get('conflicts')==0 and m['both_changes_retained'] is True,'compatible merge unsuccessful')
+            ia=issue(ref(m,'read_a','independent issue read'));ib=issue(ref(m,'read_b','independent issue read'));need(ia['id']==source['issue']['id'] and ib['id']==target['issue']['id'] and ia['id']!=ib['id'] and ia['title']=='compatible source A' and ib['title']=='compatible target B','merged changes not read back')
             need(m['result_head'] not in {m['base_head'],m['source_head'],m['target_head']},'new merge commit absent')
             history={x['Hash'] for x in result['log']};need({m['base_head'],m['source_head'],m['target_head']}<=history,'native merge ancestry absent')
         else:
-            c=ref(m,'merge','actual native same-cell conflict');need(native_conflict(c['exit_code'],raw(c,'stderr')+raw(c,'stdout')),'not actual native merge conflict')
+            c=ref(m,'merge','actual native same-cell conflict');need(has_args(c,['vc','merge',m['source_branch']]) and '--strategy' not in c['argv'] and native_conflict(c['exit_code'],raw(c,'stderr')+raw(c,'stdout')),'not actual native merge conflict')
+            need(m['native_refused'] is True and m['target_and_source_preserved'] is True and m['partial_effects_observed'] is False and m['resolution_attempted'] is False,'contradictory conflict verdict')
+            need(source['issue']['id']==target['issue']['id']==result['issue']['id'],'conflict issue mismatch')
             need(target['issue']['title']=='conflict target title' and source['issue']['title']=='conflict source title' and result['issue']==target['issue'] and result['head']==target['head'],'conflict target changed')
             need(issue(ref(m,'read_source','independent issue read'))['title']=='conflict source title','source conflict changed')
             need(data(ref(m,'source_after','native branch read'))['head']==source['head'],'conflict source head changed')
@@ -227,7 +247,7 @@ class Probe:
         need(len(winners)==1,'race must have exactly one successful native claim')
         owner=winners[0];other=next(a for a in actors if a!=owner)
         read=self.issue(p,ident);need(read.get('assignee')==owner and read.get('status')=='in_progress','claim readback mismatch')
-        claim_read_idx=self.last_issue_index;original_revision=read.get('revision');need(isinstance(original_revision,str) and original_revision.isdecimal() and int(original_revision)>0,'invalid original revision');expiry=lease_time(read.get('lease_expires_at'))
+        claim_read_idx=self.last_issue_index;original_revision=read.get('revision');need(valid_revision(original_revision),'invalid original revision');expiry=lease_time(read.get('lease_expires_at'))
         need(not expired(expiry,utc()),'claim already expired')
         loser=next(r for a,r in outcomes if a==other);text=(loser['stderr']+loser['stdout']).decode('utf-8','replace').lower()
         infrastructure='exclusive lock' in text or 'another process' in text
@@ -261,7 +281,7 @@ class Probe:
         self.results['changed_owner']={'stale_write_refused':True,'before_head':head_before,'after_head':head_after,'new_owner':other,'old_owner':owner,'issue_unchanged':True,'refs':{'before':owner_before_idx,'after':owner_after_idx,'head_before':head_before_idx,'head_after':head_after_idx,'write':r['_index']}};self.save()
         self.bd(p,['unclaim',ident,'--if-assignee',other],other,label='new owner voluntarily releases')
         self.bd(p,['update',ident,'--claim'],owner,label='original actor claims new generation')
-        generation=self.issue(p,ident);need(isinstance(generation.get('revision'),str) and generation['revision'].isdecimal() and int(generation['revision'])>0,'invalid new revision');need(generation.get('assignee')==owner and generation['revision']!=original_revision,'ABA generation not changed')
+        generation=self.issue(p,ident);need(valid_revision(generation.get('revision')),'invalid new revision');need(generation.get('assignee')==owner and generation['revision']!=original_revision,'ABA generation not changed')
         aba_before_idx=self.last_issue_index
         r=self.update(p,ident,'old actor status token replay',owner,owner,expect=None);after=self.issue(p,ident);allowed=r['exit_code']==0
         if allowed:need(after['title']=='old actor status token replay','ABA replay effect missing')
