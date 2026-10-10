@@ -28,9 +28,21 @@
         {
           "path": "docs/fable/derived/remaining-verification.md",
           "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
+        },
+        {
+          "path": "docs/fable/derived/r5-step1.md",
+          "sha256": "06ca6407d277911cb0c3c662d924896dc9ce359026026dbd8903a8b9c1319287"
+        },
+        {
+          "path": "docs/fable/derived/r5-acceptance-matrix.md",
+          "sha256": "c3780ef5367d77f11198fa8593ffb3991c21ce013ccf5d78688efe673ddcb149"
+        },
+        {
+          "path": "docs/fable/derived/r5-source-basis.json",
+          "sha256": "b6e194a9843266ae0b2e2cfa5f634cd2489c92b54bfe8ae67fef7a836cfaf882"
         }
       ],
-      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; step-1 intake routing and bounded six-view R5 readiness design with explicit source/proof gaps",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -59,7 +71,11 @@
         "FUTURE-2",
         "FUTURE-3",
         "FUTURE-4",
-        "FUTURE-5"
+        "FUTURE-5",
+        "R5-STEP1-RECOVERY",
+        "R5-STEP1-SCOPE",
+        "R5-STEP1-TRACE",
+        "R5-STEP1-CONTINUITY"
       ],
       "status": "observed",
       "test_ids": [
@@ -68,7 +84,8 @@
         "TEST-ADVANCED",
         "TEST-EXTRACTION",
         "TEST-INSTALL",
-        "TEST-MODEL-BENEFIT"
+        "TEST-MODEL-BENEFIT",
+        "TEST-R5-STEP1"
       ]
     },
     {
@@ -98,9 +115,21 @@
         {
           "path": "docs/fable/derived/remaining-verification.md",
           "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
+        },
+        {
+          "path": "docs/fable/derived/r5-step1.md",
+          "sha256": "06ca6407d277911cb0c3c662d924896dc9ce359026026dbd8903a8b9c1319287"
+        },
+        {
+          "path": "docs/fable/derived/r5-acceptance-matrix.md",
+          "sha256": "c3780ef5367d77f11198fa8593ffb3991c21ce013ccf5d78688efe673ddcb149"
+        },
+        {
+          "path": "docs/fable/derived/r5-source-basis.json",
+          "sha256": "b6e194a9843266ae0b2e2cfa5f634cd2489c92b54bfe8ae67fef7a836cfaf882"
         }
       ],
-      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; step-1 intake routing and bounded six-view R5 readiness design with explicit source/proof gaps",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -129,7 +158,11 @@
         "FUTURE-2",
         "FUTURE-3",
         "FUTURE-4",
-        "FUTURE-5"
+        "FUTURE-5",
+        "R5-STEP1-RECOVERY",
+        "R5-STEP1-SCOPE",
+        "R5-STEP1-TRACE",
+        "R5-STEP1-CONTINUITY"
       ],
       "status": "observed",
       "test_ids": [
@@ -138,7 +171,8 @@
         "TEST-ADVANCED",
         "TEST-EXTRACTION",
         "TEST-INSTALL",
-        "TEST-MODEL-BENEFIT"
+        "TEST-MODEL-BENEFIT",
+        "TEST-R5-STEP1"
       ]
     },
     {

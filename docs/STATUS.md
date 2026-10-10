@@ -55,3 +55,19 @@ The release manifest records memory-integrity-r4.zip SHA-256
 888d435b4fb5a2eac3d8e14ac783c40399b0d473aee676ff164189b08d87bc6a
 and claude-mon-r4.zip SHA-256
 5cf842c5e02c05e3e34069090a7d00e05d8eee250701fb786eaa638b3e6bba57.
+
+## R5 step-1 planning record (2026-10-10)
+
+The missing M7/R5 requirements freeze is now recorded in the existing Fable
+control plane. See [the recovered basis and boundaries](fable/derived/r5-step1.md)
+and [acceptance mappings](fable/derived/r5-acceptance-matrix.md).
+Planning records are constructed; original-specification recovery remains
+PARTIAL. The exact historical four-trap comparison was not recovered; four
+source-reconstructed candidates are explicitly provisional. That gap blocks
+claiming the original M7 comparison complete.
+
+Ownership/expiry fencing, real conflicting native merge and OS kill inside a
+native claim remain UNVERIFIED. The current pilot injects interruption after
+the native effect returns; it does not establish the during-command kill case.
+R5 runtime qualification, package release and installed promotion are not
+complete. Existing R4/knowledge packages and capability flags are unchanged.

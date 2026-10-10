@@ -1,6 +1,6 @@
 {
-  "milestone": "REMAINING-WORK",
-  "plan_id": "semantica-completion-recovery-v5",
+  "milestone": "R5-STEP1",
+  "plan_id": "r5-step1-freeze-v1",
   "schema": 2,
   "tasks": [
     {
@@ -243,6 +243,271 @@
         "TEST-MODEL",
         "TEST-MODEL-BENEFIT",
         "TEST-REGRESSION"
+      ]
+    },
+    {
+      "action": "Build and publish only the missing step-1 planning records; preserve old requirements and runtime/package bytes",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-source-basis.json",
+        "docs/fable/derived/r5-acceptance-matrix.md",
+        "docs/fable/intake-r5-step1.txt",
+        "docs/fable/specialists.json",
+        "docs/STATUS.md"
+      ],
+      "criterion_ids": [
+        "R5-STEP1-RECOVERY-1",
+        "R5-STEP1-RECOVERY-2",
+        "R5-STEP1-RECOVERY-3",
+        "R5-STEP1-SCOPE-1",
+        "R5-STEP1-SCOPE-2",
+        "R5-STEP1-SCOPE-3",
+        "R5-STEP1-TRACE-1",
+        "R5-STEP1-TRACE-2",
+        "R5-STEP1-TRACE-3",
+        "R5-STEP1-CONTINUITY-1",
+        "R5-STEP1-CONTINUITY-2",
+        "R5-STEP1-CONTINUITY-3"
+      ],
+      "id": "TASK-R5-STEP1",
+      "requirement_ids": [
+        "R5-STEP1-RECOVERY",
+        "R5-STEP1-SCOPE",
+        "R5-STEP1-TRACE",
+        "R5-STEP1-CONTINUITY"
+      ],
+      "test_ids": [
+        "TEST-R5-STEP1"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Resolve the historical four-trap specification gap before claiming original M7 completion",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-ORIGINAL-SPEC-1",
+        "R5-ORIGINAL-SPEC-2"
+      ],
+      "id": "TASK-R5-ORIGINAL-SPEC",
+      "requirement_ids": [
+        "R5-ORIGINAL-SPEC"
+      ],
+      "test_ids": [
+        "TEST-R5-ORIGINAL-SPEC"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Qualify exact runtime, project, database and observation scope",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-IDENTITY-1",
+        "R5-IDENTITY-2",
+        "R5-IDENTITY-3"
+      ],
+      "id": "TASK-R5-IDENTITY",
+      "requirement_ids": [
+        "R5-IDENTITY"
+      ],
+      "test_ids": [
+        "TEST-R5-IDENTITY"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Prove ownership, expiry, reclaim and effective execution fencing",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-OWNERSHIP-1",
+        "R5-OWNERSHIP-2",
+        "R5-OWNERSHIP-3",
+        "R5-OWNERSHIP-4"
+      ],
+      "id": "TASK-R5-OWNERSHIP",
+      "requirement_ids": [
+        "R5-OWNERSHIP"
+      ],
+      "test_ids": [
+        "TEST-R5-OWNERSHIP"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Enforce current prerequisite evidence at native execution and acceptance boundaries",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-DEPENDENCIES-1",
+        "R5-DEPENDENCIES-2",
+        "R5-DEPENDENCIES-3"
+      ],
+      "id": "TASK-R5-DEPENDENCIES",
+      "requirement_ids": [
+        "R5-DEPENDENCIES"
+      ],
+      "test_ids": [
+        "TEST-R5-DEPENDENCIES"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Qualify actual compatible and conflicting native task-state merges",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-MERGE-1",
+        "R5-MERGE-2",
+        "R5-MERGE-3",
+        "R5-MERGE-4"
+      ],
+      "id": "TASK-R5-MERGE",
+      "requirement_ids": [
+        "R5-MERGE"
+      ],
+      "test_ids": [
+        "TEST-R5-MERGE"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Prove interruption recovery with stable identity and no blind resend",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-RECOVERY-1",
+        "R5-RECOVERY-2",
+        "R5-RECOVERY-3",
+        "R5-RECOVERY-4"
+      ],
+      "id": "TASK-R5-RECOVERY",
+      "requirement_ids": [
+        "R5-RECOVERY"
+      ],
+      "test_ids": [
+        "TEST-R5-RECOVERY"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Preserve independently verifiable append-only history through native workflows",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-HISTORY-1",
+        "R5-HISTORY-2",
+        "R5-HISTORY-3"
+      ],
+      "id": "TASK-R5-HISTORY",
+      "requirement_ids": [
+        "R5-HISTORY"
+      ],
+      "test_ids": [
+        "TEST-R5-HISTORY"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Compare the adopted four traps using equal cases and honest denominators",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-COMPARISON-1",
+        "R5-COMPARISON-2",
+        "R5-COMPARISON-3"
+      ],
+      "id": "TASK-R5-COMPARISON",
+      "requirement_ids": [
+        "R5-COMPARISON"
+      ],
+      "test_ids": [
+        "TEST-R5-COMPARISON"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Build and inspect matching R5 release packages",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-PACKAGES-1",
+        "R5-PACKAGES-2",
+        "R5-PACKAGES-3"
+      ],
+      "id": "TASK-R5-PACKAGES",
+      "requirement_ids": [
+        "R5-PACKAGES"
+      ],
+      "test_ids": [
+        "TEST-R5-PACKAGES"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Publish and verify the exact final R5 commit while preserving newer work",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-PUBLISH-1",
+        "R5-PUBLISH-2",
+        "R5-PUBLISH-3"
+      ],
+      "id": "TASK-R5-PUBLISH",
+      "requirement_ids": [
+        "R5-PUBLISH"
+      ],
+      "test_ids": [
+        "TEST-R5-PUBLISH"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Verify matching installed copies separately from repository publication",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-INSTALL-1",
+        "R5-INSTALL-2",
+        "R5-INSTALL-3"
+      ],
+      "id": "TASK-R5-INSTALL",
+      "requirement_ids": [
+        "R5-INSTALL"
+      ],
+      "test_ids": [
+        "TEST-R5-INSTALL"
+      ]
+    },
+    {
+      "action": "FUTURE, NOT EXECUTION AUTHORITY IN STEP 1: Document recovery, observability and supported limits for qualified native operations",
+      "artifacts": [
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/derived/r5-acceptance-matrix.md"
+      ],
+      "criterion_ids": [
+        "R5-OPERATIONS-1",
+        "R5-OPERATIONS-2",
+        "R5-OPERATIONS-3"
+      ],
+      "id": "TASK-R5-OPERATIONS",
+      "requirement_ids": [
+        "R5-OPERATIONS"
+      ],
+      "test_ids": [
+        "TEST-R5-OPERATIONS"
       ]
     }
   ]

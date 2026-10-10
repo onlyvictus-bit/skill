@@ -105,6 +105,170 @@
       "id": "TEST-MODEL-BENEFIT",
       "instructions": "Run pinned real model; retain raw prompts, outputs and fixed independent tests for all comparison arms; failure is a valid measured outcome",
       "kind": "manual"
+    },
+    {
+      "id": "TEST-R5-STEP1",
+      "instructions": "Compare the exact user request to intake, source basis and report. Check all source hashes against BASE, every branch search result and all recorded read spans. Missing original specification must remain an explicit blocker.",
+      "kind": "manual",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-step1.md"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-ORIGINAL-SPEC",
+      "instructions": "Reopen a verifiable original source or exact user adoption of the replacement. A public summary, four passing fixture tests or model inference alone must not pass this check.",
+      "kind": "manual",
+      "source_links": [
+        {
+          "path": "docs/FOUR-FEATURE-PLAN.md"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-IDENTITY",
+      "instructions": "Run the production observer against pinned Beads in a selected disposable environment. Deliberately change every relevant identity and observation boundary; refused cases cause zero native writes. Retain exact commands, readback, hashes and limits.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "native_status",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-OWNERSHIP",
+      "instructions": "Use real pinned Beads and the production adapter with two actors. Retain winning/losing commands, real lease timing, reclaimed ownership and evidence of stale-owner rejection at the effect and acceptance boundaries. Do not substitute a mocked clock for native expiry proof.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "validate_shared_claim_authorization",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        },
+        {
+          "function": "coordinate_guarded_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-DEPENDENCIES",
+      "instructions": "Port the recovered forced-closure and late-revocation oracles to the actual production native/coordination consumer. Independently count native calls and approval consumption and inspect CM accepted/history rows before and after each boundary.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "run_task",
+          "path": "memory-integrity/scripts/coordination_workflow.py"
+        },
+        {
+          "function": "guard",
+          "path": "claude-mon/scripts/complete_read_v2/coordination.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-MERGE",
+      "instructions": "First prove pinned CLI can construct divergent branches and a reproducible conflict. Then run compatible/conflicting cases through the production native path, compare actual database heads/content and CM history, and attempt stale-proof reuse. Fixture preview success is not native merge qualification.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "preview_merge",
+          "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+        },
+        {
+          "function": "verify_retained_merge",
+          "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+        },
+        {
+          "function": "branch_fixture",
+          "path": "memory-integrity/scripts/coordination_workflow.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-RECOVERY",
+      "instructions": "Fault-inject each named boundary with the production journal and real native process. Count actual effects, capture kill timing/containment proof, reopen native and CM state in a fresh process and retry only read-only reconciliation. Ambiguous native application must remain UNKNOWN.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "coordinate_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        },
+        {
+          "function": "reconcile_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-HISTORY",
+      "instructions": "Run the recovered mutation/checkpoint attacks on the CM history produced by actual native workflows. Inspect normal SQL rejection, replay and independent checkpoint results; replacing both database and trusted checkpoint is outside the threat model.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "verify_history",
+          "path": "claude-mon/scripts/complete_read_v2/ledger.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-COMPARISON",
+      "instructions": "Run the four-case comparison only after TEST-R5-ORIGINAL-SPEC passes. Record each arm and case separately; a blocked/unsupported native case is not a passed case or a zero. Include source/runtime identities and raw outcome fingerprints.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "path": "docs/FOUR-FEATURE-PLAN.md"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-PACKAGES",
+      "instructions": "Adapt the existing paired builder/verifier for R5 only after qualification. Reopen the exact generated ZIPs, manifests and extracted front door; verify files, matching companion, preserved legacy bytes and honest granular capability declarations.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "path": ".github/workflows/r4-release-builder.yml"
+        },
+        {
+          "path": "release/Verify-Memory-Integrity-R4.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-PUBLISH",
+      "instructions": "Read remote main and use a protected fast-forward publication. Verify remote commit/tree/package identities and fetch all required CI jobs on that exact final SHA. A successful push, HTTP 200 or earlier green SHA is insufficient.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "path": ".github/workflows/ci.yml"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-INSTALL",
+      "instructions": "Reopen the actual selected installation after replacement, compare runtime bytes to package source, run its front door and matching companion and rehearse rollback. Hosted Windows proof does not prove the user host; no installation is performed by step 1.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "path": "memory-integrity/scripts/memory_integrity_workflow.py"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-OPERATIONS",
+      "instructions": "Exercise failed, unknown, stale and successful CLI paths and rollback with the selected runtime. Inspect visible receipts and retained state. Measure latency/resources rather than invent limits or recovery-time targets.",
+      "kind": "runtime",
+      "source_links": [
+        {
+          "function": "verify",
+          "path": "memory-integrity/scripts/coordination_workflow.py"
+        },
+        {
+          "function": "reconcile_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ]
     }
   ]
 }

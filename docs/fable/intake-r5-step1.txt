@@ -1,0 +1,13 @@
+Source: user conversation, 2026-10-10.
+Exact current request:
+@Autonomous Operator check if step 1 is alredy completed or present in git(commit or any other file) if not build it
+
+Referenced step 1:
+Recover and freeze the requirements. Recheck GitHub main, preserve existing changes, recover the original M7 requirements and four-trap definitions, and extend the existing Fable records. Specify exactly which native operations R5 supports. Every requirement has an implementation target, acceptance test and runtime proof requirement. Missing specifications remain visible blockers.
+
+Scope of this turn: inspect and build missing planning records, verify them and sync the documentation to the named GitHub repository under the earlier explicit GitHub commit/publication authorization. No native database mutation, runtime install, skill replacement, provider call, broad native qualification or R5 package release is performed by step 1.
+
+Earlier exact GitHub authorization in this conversation:
+@Autonomous Operator skill to do all merging and upgrading process as  required, verify if this is best plan or you can find issue or failure in this plan and find the root cause and solve the plan and implement it in github and commit it in git skill
+
+Unresolved intake: the full original four-feature specification referenced by the public summary is not present in the searched current branch snapshots. Candidate traps are reconstructed from existing executable oracles, not claimed as recovered original wording/grouping. Scope/specification adoption must be explicit before claiming that original comparison complete.

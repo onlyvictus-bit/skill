@@ -309,6 +309,31 @@
       "scope": "REMAINING-WORK",
       "tests_digest": "8ede8fd3e71921146aefc087935d00cba7574d5174f14758f754fec73c5d85e7",
       "write_set_baseline": {}
+    },
+    {
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-10T09:38:49.787194+00:00",
+      "authorization": {
+        "quote": "@Autonomous Operator check if step 1 is alredy completed or present in git(commit or any other file) if not build it",
+        "source": "conversation"
+      },
+      "id": "APP-R5-STEP1-20261010",
+      "plan_digest": "215959af598400b4ab5ddc9746c25db5dbabd018d580871dc26e7d3901a5c74e",
+      "requirements_digest": "655120e09649c0806a054cba310dfec0d380d15ed8974dd7018729692bd1f38a",
+      "scope": "R5-STEP1",
+      "tests_digest": "ecf5111842a9056c25e08b83459cfb0a31ea77d3a74e302f02d99042ff769f7d",
+      "write_set_baseline": {
+        "docs/STATUS.md": "e8c0b9bb4c1232c32584be11f5e55600136971135b1c896769bc11c813a78131",
+        "docs/fable/derived/r5-acceptance-matrix.md": "c3780ef5367d77f11198fa8593ffb3991c21ce013ccf5d78688efe673ddcb149",
+        "docs/fable/derived/r5-source-basis.json": "b6e194a9843266ae0b2e2cfa5f634cd2489c92b54bfe8ae67fef7a836cfaf882",
+        "docs/fable/derived/r5-step1.md": "06ca6407d277911cb0c3c662d924896dc9ce359026026dbd8903a8b9c1319287",
+        "docs/fable/intake-r5-step1.txt": "ddea20720d750b4d8eb3e7f2b1be5335269ed26a38c9a06baa627867fa41e1f3",
+        "docs/fable/plan.json": "d150e8aaa2cedb6c3444eeca8014139773da980ccbcea13a523cb5efa323d33a",
+        "docs/fable/requirements.json": "8d4885f7c07365955cc414d150003890ce501135f7367b0cdcc79553f478cd6a",
+        "docs/fable/specialists.json": "b9c287badf8c62b056b408cbb0292e99801c624bd6be6e573e2dd257869473e0",
+        "docs/fable/tests.json": "1312a06ef2eee9eb49e308b075854e58fc3dbba6380830db9de0745a08f64fbe"
+      }
     }
   ],
   "schema": 2

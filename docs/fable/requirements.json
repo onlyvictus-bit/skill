@@ -717,6 +717,1001 @@
         "TEST-REVIEW"
       ],
       "text": "Verified compatible portable release and GitHub publication"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-STEP1-RECOVERY-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Pin current main, all listed branch heads and relevant historical commits; preserve unrelated edits through an isolated worktree."
+        },
+        {
+          "id": "R5-STEP1-RECOVERY-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Identify existing M3-M7 public summaries, native proof and fixture tests; explicitly disclose that the complete original four-trap grouping was not recovered."
+        },
+        {
+          "id": "R5-STEP1-RECOVERY-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Retain source byte hashes and actual read spans; distinguish lexical discovery from complete source reading."
+        }
+      ],
+      "id": "R5-STEP1-RECOVERY",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-step1.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-STEP1"
+      ],
+      "text": "Recover current M7/R5 planning evidence and disclose missing original material"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-STEP1-SCOPE-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Separate existing qualified observation/shared claim from future ownership/reclaim and real merge; preserve generic write and merge qualification flags as false."
+        },
+        {
+          "id": "R5-STEP1-SCOPE-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Specify disposable pilot setup separately from real shared-project operations; this step authorizes documentation and verification only, not native mutations or installation."
+        },
+        {
+          "id": "R5-STEP1-SCOPE-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Separate current injected interruption after a returned native effect from still-unproved OS kill during the native command."
+        }
+      ],
+      "id": "R5-STEP1-SCOPE",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-step1.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-STEP1"
+      ],
+      "text": "Define operation-specific native qualification and authorization boundaries"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-STEP1-TRACE-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Map ownership, expiry, dependency, compatible merge, conflicting merge, recovery, protected history, comparison, packages, CI and installed-copy outcomes to stable criteria, targets, consumers and typed tests."
+        },
+        {
+          "id": "R5-STEP1-TRACE-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Label four source-reconstructed candidate traps as provisional rather than the recovered original four; prevent original M7 completion claims until the source gap is resolved."
+        },
+        {
+          "id": "R5-STEP1-TRACE-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Future requirements remain future because only step 1 is being built; promote the applicable requirements and bind authorization before their implementation or qualification."
+        }
+      ],
+      "id": "R5-STEP1-TRACE",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-step1.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-STEP1"
+      ],
+      "text": "Atomize the future R5 acceptance contract without claiming its execution"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-STEP1-CONTINUITY-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Preserve all previous requirement, criterion and test definitions and prior approvals/evidence; the previous complete state is retained in the source-basis report."
+        },
+        {
+          "id": "R5-STEP1-CONTINUITY-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Bind the new step-1 approval and state to current requirements/plan/test digests; do not reuse old evidence as fresh proof of this new planning basis."
+        },
+        {
+          "id": "R5-STEP1-CONTINUITY-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-step1.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-STEP1"
+          ],
+          "text": "Document the remaining original-specification, ownership-fence, real-conflict and process-kill proof gaps, with a concrete next action and no global R5 completion label."
+        }
+      ],
+      "id": "R5-STEP1-CONTINUITY",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-step1.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-STEP1"
+      ],
+      "text": "Preserve prior Semantica completion and record honest R5 recovery state"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-ORIGINAL-SPEC-1",
+          "source_links": [
+            {
+              "path": "docs/FOUR-FEATURE-PLAN.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-ORIGINAL-SPEC"
+          ],
+          "text": "Recover the original four-case comparison with identity/provenance and map every original acceptance detail, or retain the gap as blocked."
+        },
+        {
+          "id": "R5-ORIGINAL-SPEC-2",
+          "source_links": [
+            {
+              "path": "docs/FOUR-FEATURE-PLAN.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-ORIGINAL-SPEC"
+          ],
+          "text": "If recovery is impossible, obtain explicit adoption of a replacement comparison; preserve the historical gap and identify replacement criteria without pretending original recovery."
+        }
+      ],
+      "id": "R5-ORIGINAL-SPEC",
+      "priority": "future",
+      "source_links": [
+        {
+          "path": "docs/FOUR-FEATURE-PLAN.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-ORIGINAL-SPEC"
+      ],
+      "text": "Resolve the historical four-trap specification gap before claiming original M7 completion"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-IDENTITY-1",
+          "source_links": [
+            {
+              "function": "native_status",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-IDENTITY"
+          ],
+          "text": "Verify extracted executable bytes, pinned version/revision, exact project/database/prefix, branch/head and current complete observation before any allowed native effect."
+        },
+        {
+          "id": "R5-IDENTITY-2",
+          "source_links": [
+            {
+              "function": "native_status",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-IDENTITY"
+          ],
+          "text": "Reject wrong identity, malformed JSON, warning diagnostics, incomplete edges/pagination and drift; record timeout/output/process-tree limits."
+        },
+        {
+          "id": "R5-IDENTITY-3",
+          "source_links": [
+            {
+              "function": "native_status",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-IDENTITY"
+          ],
+          "text": "Use read-only observation without inferring an atomic mutation fence or standing project authority."
+        }
+      ],
+      "id": "R5-IDENTITY",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "native_status",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-IDENTITY"
+      ],
+      "text": "Qualify exact runtime, project, database and observation scope"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-OWNERSHIP-1",
+          "source_links": [
+            {
+              "function": "validate_shared_claim_authorization",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "coordinate_guarded_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OWNERSHIP"
+          ],
+          "text": "Two distinct real processes/actors compete for one task; exactly one native claim wins and actor/state are independently read back."
+        },
+        {
+          "id": "R5-OWNERSHIP-2",
+          "source_links": [
+            {
+              "function": "validate_shared_claim_authorization",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "coordinate_guarded_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OWNERSHIP"
+          ],
+          "text": "Observe real expiry and reclaim with actual times and runtime lease behavior; old ownership cannot authorize later execution or acceptance."
+        },
+        {
+          "id": "R5-OWNERSHIP-3",
+          "source_links": [
+            {
+              "function": "validate_shared_claim_authorization",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "coordinate_guarded_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OWNERSHIP"
+          ],
+          "text": "Inject ownership change between check and effect; prove an effective fence at the actual consumer or refuse execution. A precheck alone is insufficient."
+        },
+        {
+          "id": "R5-OWNERSHIP-4",
+          "source_links": [
+            {
+              "function": "validate_shared_claim_authorization",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "coordinate_guarded_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OWNERSHIP"
+          ],
+          "text": "Bind current per-operation authorization to selection, operation, work item, task and actor; changed/expired/revoked authorizations cause zero effects."
+        }
+      ],
+      "id": "R5-OWNERSHIP",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "validate_shared_claim_authorization",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        },
+        {
+          "function": "coordinate_guarded_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-OWNERSHIP"
+      ],
+      "text": "Prove ownership, expiry, reclaim and effective execution fencing"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-DEPENDENCIES-1",
+          "source_links": [
+            {
+              "function": "run_task",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            },
+            {
+              "function": "guard",
+              "path": "claude-mon/scripts/complete_read_v2/coordination.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-DEPENDENCIES"
+          ],
+          "text": "A native closed/ready state without current accepted predecessor proof cannot unlock a dependent; blocked work causes zero downstream calls and spends zero approval."
+        },
+        {
+          "id": "R5-DEPENDENCIES-2",
+          "source_links": [
+            {
+              "function": "run_task",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            },
+            {
+              "function": "guard",
+              "path": "claude-mon/scripts/complete_read_v2/coordination.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-DEPENDENCIES"
+          ],
+          "text": "Revocation after preparation but before dispatch blocks the effect and approval spend; revocation after dispatch blocks acceptance while retaining history."
+        },
+        {
+          "id": "R5-DEPENDENCIES-3",
+          "source_links": [
+            {
+              "function": "run_task",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            },
+            {
+              "function": "guard",
+              "path": "claude-mon/scripts/complete_read_v2/coordination.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-DEPENDENCIES"
+          ],
+          "text": "Changed sources, stale graph/branch/fence and missing or corrupt CAS cannot qualify prerequisites; repeated reads are not claimed as an atomic cross-store transaction."
+        }
+      ],
+      "id": "R5-DEPENDENCIES",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "run_task",
+          "path": "memory-integrity/scripts/coordination_workflow.py"
+        },
+        {
+          "function": "guard",
+          "path": "claude-mon/scripts/complete_read_v2/coordination.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-DEPENDENCIES"
+      ],
+      "text": "Enforce current prerequisite evidence at native execution and acceptance boundaries"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-MERGE-1",
+          "source_links": [
+            {
+              "function": "preview_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "verify_retained_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "branch_fixture",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-MERGE"
+          ],
+          "text": "Demonstrate real divergent native branches, ancestry and compatible merge with base/source/target/result identity and retained source bytes."
+        },
+        {
+          "id": "R5-MERGE-2",
+          "source_links": [
+            {
+              "function": "preview_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "verify_retained_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "branch_fixture",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-MERGE"
+          ],
+          "text": "Create an actual conflicting merge, detect it and require a reviewed resolution basis; no silent ours/theirs selection and no accepted-proof import."
+        },
+        {
+          "id": "R5-MERGE-3",
+          "source_links": [
+            {
+              "function": "preview_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "verify_retained_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "branch_fixture",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-MERGE"
+          ],
+          "text": "Moved heads, changed preview, unsupported ancestry or cycles refuse before merge; retain origin/head/readback evidence and make partial native effects explicit."
+        },
+        {
+          "id": "R5-MERGE-4",
+          "source_links": [
+            {
+              "function": "preview_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "verify_retained_merge",
+              "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+            },
+            {
+              "function": "branch_fixture",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-MERGE"
+          ],
+          "text": "After a successful merge, invalidate prior graph/head applicability and require a newly authorized basis with fresh evidence; preserve historical acceptance and both origins."
+        }
+      ],
+      "id": "R5-MERGE",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "preview_merge",
+          "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+        },
+        {
+          "function": "verify_retained_merge",
+          "path": "memory-integrity/scripts/hybrid_bridge/branch.py"
+        },
+        {
+          "function": "branch_fixture",
+          "path": "memory-integrity/scripts/coordination_workflow.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-MERGE"
+      ],
+      "text": "Qualify actual compatible and conflicting native task-state merges"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-RECOVERY-1",
+          "source_links": [
+            {
+              "function": "coordinate_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECOVERY"
+          ],
+          "text": "Keep separate probes for failure before effect, a real process kill during a native command, and interruption after effect; the existing InterruptAfterEffect pilot proves only the last."
+        },
+        {
+          "id": "R5-RECOVERY-2",
+          "source_links": [
+            {
+              "function": "coordinate_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECOVERY"
+          ],
+          "text": "Persist intent before allowed mutation; missing/ambiguous readback remains UNKNOWN and never automatically resends an uncertain operation."
+        },
+        {
+          "id": "R5-RECOVERY-3",
+          "source_links": [
+            {
+              "function": "coordinate_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECOVERY"
+          ],
+          "text": "Reopen in a fresh process, read back actual selected native state and reconcile once; repeat returns idempotently with no second effect."
+        },
+        {
+          "id": "R5-RECOVERY-4",
+          "source_links": [
+            {
+              "function": "coordinate_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECOVERY"
+          ],
+          "text": "Operation identity cannot rebind command, selection, actor or work item; both native readback and CM chain/projection replay must be verified."
+        }
+      ],
+      "id": "R5-RECOVERY",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "coordinate_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        },
+        {
+          "function": "reconcile_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-RECOVERY"
+      ],
+      "text": "Prove interruption recovery with stable identity and no blind resend"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-HISTORY-1",
+          "source_links": [
+            {
+              "function": "verify_history",
+              "path": "claude-mon/scripts/complete_read_v2/ledger.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-HISTORY"
+          ],
+          "text": "Ordinary event update/delete/unsealed insertion is refused; corrections and revocations append rather than erase."
+        },
+        {
+          "id": "R5-HISTORY-2",
+          "source_links": [
+            {
+              "function": "verify_history",
+              "path": "claude-mon/scripts/complete_read_v2/ledger.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-HISTORY"
+          ],
+          "text": "Replay detects projection tampering and a retained external checkpoint detects truncated history; without a checkpoint anchored completeness remains UNVERIFIED."
+        },
+        {
+          "id": "R5-HISTORY-3",
+          "source_links": [
+            {
+              "function": "verify_history",
+              "path": "claude-mon/scripts/complete_read_v2/ledger.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-HISTORY"
+          ],
+          "text": "Native claim/merge/recovery paths retain full intent/outcome/unknown/reconciled identities without merging SQLite stores or laundering native closed state into proof."
+        }
+      ],
+      "id": "R5-HISTORY",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "verify_history",
+          "path": "claude-mon/scripts/complete_read_v2/ledger.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-HISTORY"
+      ],
+      "text": "Preserve independently verifiable append-only history through native workflows"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-COMPARISON-1",
+          "source_links": [
+            {
+              "path": "docs/FOUR-FEATURE-PLAN.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-COMPARISON"
+          ],
+          "text": "Use the recovered/adopted exact four cases against frozen baseline and candidate, with identical sources, inputs, tools and evaluation rules."
+        },
+        {
+          "id": "R5-COMPARISON-2",
+          "source_links": [
+            {
+              "path": "docs/FOUR-FEATURE-PLAN.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-COMPARISON"
+          ],
+          "text": "Retain expected rejection, actual calls/effects, approval spend, accepted rows and history before/after; fixture and native outcomes remain separate."
+        },
+        {
+          "id": "R5-COMPARISON-3",
+          "source_links": [
+            {
+              "path": "docs/FOUR-FEATURE-PLAN.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-COMPARISON"
+          ],
+          "text": "Report detections, omissions, regressions, runtime/resource measurements and unsupported outcomes; do not claim superiority without comparative evidence."
+        }
+      ],
+      "id": "R5-COMPARISON",
+      "priority": "future",
+      "source_links": [
+        {
+          "path": "docs/FOUR-FEATURE-PLAN.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-COMPARISON"
+      ],
+      "text": "Compare the adopted four traps using equal cases and honest denominators"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-PACKAGES-1",
+          "source_links": [
+            {
+              "path": ".github/workflows/r4-release-builder.yml"
+            },
+            {
+              "path": "release/Verify-Memory-Integrity-R4.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-PACKAGES"
+          ],
+          "text": "Generate both content manifests, both deterministic ZIPs and one release manifest identifying scope, package SHA-256, sizes/entries and source commit."
+        },
+        {
+          "id": "R5-PACKAGES-2",
+          "source_links": [
+            {
+              "path": ".github/workflows/r4-release-builder.yml"
+            },
+            {
+              "path": "release/Verify-Memory-Integrity-R4.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-PACKAGES"
+          ],
+          "text": "Extract the exact pair into a fresh directory, reject unsafe entries and run full matching-package tests plus relevant Semantica regressions."
+        },
+        {
+          "id": "R5-PACKAGES-3",
+          "source_links": [
+            {
+              "path": ".github/workflows/r4-release-builder.yml"
+            },
+            {
+              "path": "release/Verify-Memory-Integrity-R4.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-PACKAGES"
+          ],
+          "text": "Preserve existing R3/R4 and knowledge-v1/v2 archives for rollback; unsupported flags remain false and no R5 qualification is hard-coded before proof."
+        }
+      ],
+      "id": "R5-PACKAGES",
+      "priority": "future",
+      "source_links": [
+        {
+          "path": ".github/workflows/r4-release-builder.yml"
+        },
+        {
+          "path": "release/Verify-Memory-Integrity-R4.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-PACKAGES"
+      ],
+      "text": "Build and inspect matching R5 release packages"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-PUBLISH-1",
+          "source_links": [
+            {
+              "path": ".github/workflows/ci.yml"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-PUBLISH"
+          ],
+          "text": "Recheck GitHub main immediately before publication and use an expected-head/non-force update; changed head requires review and integration."
+        },
+        {
+          "id": "R5-PUBLISH-2",
+          "source_links": [
+            {
+              "path": ".github/workflows/ci.yml"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-PUBLISH"
+          ],
+          "text": "Run Windows/Linux CI on the final release commit without skip-ci; retain exact SHA and all required job outcomes, not results from an earlier code commit."
+        },
+        {
+          "id": "R5-PUBLISH-3",
+          "source_links": [
+            {
+              "path": ".github/workflows/ci.yml"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-PUBLISH"
+          ],
+          "text": "Reopen published file/package identities and retain concise public proof with sensitive/raw host receipts kept outside the public repository."
+        }
+      ],
+      "id": "R5-PUBLISH",
+      "priority": "future",
+      "source_links": [
+        {
+          "path": ".github/workflows/ci.yml"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-PUBLISH"
+      ],
+      "text": "Publish and verify the exact final R5 commit while preserving newer work"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-INSTALL-1",
+          "source_links": [
+            {
+              "path": "memory-integrity/scripts/memory_integrity_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-INSTALL"
+          ],
+          "text": "Select the exact installation target under applicable authorization, preserve a rollback copy and install the matching verified pair."
+        },
+        {
+          "id": "R5-INSTALL-2",
+          "source_links": [
+            {
+              "path": "memory-integrity/scripts/memory_integrity_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-INSTALL"
+          ],
+          "text": "Verify runtime file hashes, actual installed CLI/companion behavior and declared capability boundaries; distinguish service UI materialization from runtime content."
+        },
+        {
+          "id": "R5-INSTALL-3",
+          "source_links": [
+            {
+              "path": "memory-integrity/scripts/memory_integrity_workflow.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-INSTALL"
+          ],
+          "text": "If local Windows-host qualification is required, run a host pilot there and retain its exact runtime/project identity rather than infer it from hosted Windows CI."
+        }
+      ],
+      "id": "R5-INSTALL",
+      "priority": "future",
+      "source_links": [
+        {
+          "path": "memory-integrity/scripts/memory_integrity_workflow.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-INSTALL"
+      ],
+      "text": "Verify matching installed copies separately from repository publication"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-OPERATIONS-1",
+          "source_links": [
+            {
+              "function": "verify",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OPERATIONS"
+          ],
+          "text": "Retain structured operation identities, command/readback counts, bounded time/output/concurrency and clear BLOCKED/UNKNOWN/FAILED states."
+        },
+        {
+          "id": "R5-OPERATIONS-2",
+          "source_links": [
+            {
+              "function": "verify",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OPERATIONS"
+          ],
+          "text": "Rehearse rollback and interrupted-operation reconciliation against disposable data; do not delete history or a blocker to manufacture readiness."
+        },
+        {
+          "id": "R5-OPERATIONS-3",
+          "source_links": [
+            {
+              "function": "verify",
+              "path": "memory-integrity/scripts/coordination_workflow.py"
+            },
+            {
+              "function": "reconcile_native_operation",
+              "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-OPERATIONS"
+          ],
+          "text": "Document the raw-command bypass and SQLite-Dolt atomicity limits, exact scope/version and any required ownership enforcement mechanism."
+        }
+      ],
+      "id": "R5-OPERATIONS",
+      "priority": "future",
+      "source_links": [
+        {
+          "function": "verify",
+          "path": "memory-integrity/scripts/coordination_workflow.py"
+        },
+        {
+          "function": "reconcile_native_operation",
+          "path": "memory-integrity/scripts/hybrid_bridge/native.py"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-OPERATIONS"
+      ],
+      "text": "Document recovery, observability and supported limits for qualified native operations"
     }
   ],
   "schema": 2

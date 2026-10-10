@@ -1,0 +1,44 @@
+{
+  "basis": {
+    "plan_digest": "215959af598400b4ab5ddc9746c25db5dbabd018d580871dc26e7d3901a5c74e",
+    "requirements_digest": "655120e09649c0806a054cba310dfec0d380d15ed8974dd7018729692bd1f38a",
+    "tests_digest": "ecf5111842a9056c25e08b83459cfb0a31ea77d3a74e302f02d99042ff769f7d"
+  },
+  "created_at": "2026-10-10T09:40:19.799114+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        "docs/STATUS.md",
+        "docs/fable/derived/r5-acceptance-matrix.md",
+        "docs/fable/derived/r5-source-basis.json",
+        "docs/fable/derived/r5-step1.md",
+        "docs/fable/intake-r5-step1.txt",
+        "docs/fable/specialists.json"
+      ],
+      "artifacts_digest": "3112bfce680b3edeae5779d000309ee28ecc1bc77be89c01bd9c72771f8e1075",
+      "basis": {
+        "plan_digest": "215959af598400b4ab5ddc9746c25db5dbabd018d580871dc26e7d3901a5c74e",
+        "requirements_digest": "655120e09649c0806a054cba310dfec0d380d15ed8974dd7018729692bd1f38a",
+        "tests_digest": "ecf5111842a9056c25e08b83459cfb0a31ea77d3a74e302f02d99042ff769f7d"
+      },
+      "criterion_ids": [
+        "R5-STEP1-RECOVERY-1",
+        "R5-STEP1-RECOVERY-2",
+        "R5-STEP1-RECOVERY-3"
+      ],
+      "evidence_type": "manual",
+      "id": "EV-2cf2b580d00a4e80957fd5c22130fb70",
+      "note": "All three documentation criteria reviewed against the actual request, source basis, scope/acceptance report and canonical mappings. Existing definitions and runtime/package bytes preserved. Original four-trap specification remains an explicit blocker; future native qualification and release tests were not run.",
+      "observed_at": "2026-10-10T09:40:19.797733+00:00",
+      "observer": "Codex self-review",
+      "requirement_ids": [
+        "R5-STEP1-RECOVERY"
+      ],
+      "result": "pass",
+      "source": "Pinned GitHub branch/commit records, opened repository sources, source-hash/traceability review, structural gates and six focused TEST_ONLY policy tests",
+      "test_id": "TEST-R5-STEP1"
+    }
+  ],
+  "run_id": "20261010T094019799114Z-767b664c",
+  "schema": 2
+}
