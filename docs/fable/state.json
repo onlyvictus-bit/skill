@@ -1,8 +1,8 @@
 {
   "basis": {
-    "plan_digest": "5d8e57fd213bab0a40b10a02e3391bcb1912f69952843a44a020c8df097b542d",
-    "requirements_digest": "1b9849bfc00a13159b7369e5236748792108c06fbef81eef2dacc627bf27b154",
-    "tests_digest": "05b0f8d221e347e7675bdb38a29741eb949fcb0374e3afa70c941f3d060093c5"
+    "plan_digest": "9a57c60c9a07d49ce86618b2076778134c873c24a3372fb7787374451f83c332",
+    "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+    "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607"
   },
   "campaign_id": "skill-native-r5",
   "completed_requirement_ids": [
@@ -14,9 +14,9 @@
     "R5-RECONCILE-PROOF",
     "R5-RECONCILE-NEXT"
   ],
-  "current_task": "TASK-R5-SOURCE-RECONCILIATION",
-  "milestone": "R5-SOURCE-RECONCILIATION",
-  "next_action": "Scoped source/evidence reconciliation published and verified by Git readback. Finish exact-head publication CI verification; then real ownership/fence and native-conflict feasibility on a selected pinned Windows environment. Resolve original native-M7 source/adoption before original four-trap completion. Full R5 runtime/release/install remains partial; historical unrelated requirements retain their earlier evidence basis.",
-  "phase": "verify",
+  "current_task": "TASK-R5-NATIVE-PROBES",
+  "milestone": "R5-NATIVE-PROBES",
+  "next_action": "Implement strict real native probe harness; run pinned Windows expiry and conflict experiments and retain negative guarantees without promotion.",
+  "phase": "execute",
   "schema": 2
 }

@@ -355,6 +355,28 @@
         "docs/fable/specialists.json": "6c82fbe28fa1501a39d242347655b54591e5b11087a1e657b0426b838050be56",
         "docs/fable/tests.json": "6199e6232d97b8770dc6adde97f893244d0bf0300878398a68d33ff9e5c5efb7"
       }
+    },
+    {
+      "id": "APP-R5-NATIVE-PROBES-001",
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-10T14:59:19.702488+00:00",
+      "scope": "R5-NATIVE-PROBES",
+      "authorization": {
+        "source": "conversation",
+        "quote": "Finish complete real expiry/fencing and native-conflict probes"
+      },
+      "plan_digest": "9a57c60c9a07d49ce86618b2076778134c873c24a3372fb7787374451f83c332",
+      "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+      "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607",
+      "write_set_baseline": {
+        "docs/fable/derived/r5-native-probes.md": "5fe0f25c8dd41291a1c5aaf2240f25efaf22c18dbda1fc4804b1933150d4f054",
+        "docs/fable/intake-r5-native-probes.txt": "538c05a99accaa4a3c32cf8410381fcdb7c475db4165ef5f9b2cbab9d86a25f0",
+        "docs/fable/plan.json": "09af1fe57cb409984287ba79dac1ee3420cd108b85a24b69b9a5fa858a3ac2f9",
+        "docs/fable/requirements.json": "ec688f2310beaaf3bd28f2e20c80387337ee083e1e694ae7f6df1aa67f48a913",
+        "docs/fable/specialists.json": "a1dd5c0e196abb56d4321e4ab1fc36295a3aca7371adffda07a8f726847db411",
+        "docs/fable/tests.json": "aeacb737c3993335c386171cd9164b9568aecacd6e5a08589654a6698fd16f37"
+      }
     }
   ],
   "schema": 2

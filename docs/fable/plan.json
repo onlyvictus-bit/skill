@@ -1,6 +1,6 @@
 {
-  "milestone": "R5-SOURCE-RECONCILIATION",
-  "plan_id": "r5-source-reconciliation-v1",
+  "milestone": "R5-NATIVE-PROBES",
+  "plan_id": "r5-native-probes-v1",
   "schema": 2,
   "tasks": [
     {
@@ -542,6 +542,34 @@
         "TEST-R5-RECONCILE-SOURCE",
         "TEST-R5-RECONCILE-PROOF",
         "TEST-R5-RECONCILE-NEXT"
+      ]
+    },
+    {
+      "id": "TASK-R5-NATIVE-PROBES",
+      "action": "Implement and execute disposable real expiry/fencing and native-conflict probes, preserve negative results and publish bounded evidence.",
+      "artifacts": [
+        ".github/scripts/r5_native_probes.py",
+        ".github/scripts/r5_native_probe_helper.go",
+        ".github/tests/test_r5_native_probes.py",
+        ".github/workflows/r5-native-probes.yml",
+        "docs/fable/derived/r5-native-probes.md",
+        "docs/fable/derived/r5-native-probes-evidence.json",
+        "docs/STATUS.md"
+      ],
+      "requirement_ids": [
+        "R5-PROBE-EXPIRY",
+        "R5-PROBE-MERGE",
+        "R5-PROBE-BOUNDARY"
+      ],
+      "criterion_ids": [
+        "R5-PROBE-EXPIRY-1",
+        "R5-PROBE-MERGE-1",
+        "R5-PROBE-BOUNDARY-1"
+      ],
+      "test_ids": [
+        "TEST-R5-PROBE-EXPIRY",
+        "TEST-R5-PROBE-MERGE",
+        "TEST-R5-PROBE-BOUNDARY"
       ]
     }
   ]

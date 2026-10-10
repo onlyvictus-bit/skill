@@ -1874,6 +1874,87 @@
         "TEST-R5-RECONCILE-NEXT"
       ],
       "text": "Provide an executable next qualification route and preserve runtime/package boundaries"
+    },
+    {
+      "id": "R5-PROBE-EXPIRY",
+      "priority": "required",
+      "text": "Run actual pinned default lease expiry, scoped reclaim, changed-owner CAS and ABA with raw evidence and independent readback; report guarantees as verified/refuted, never equate probe completion with production fencing.",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-native-probes.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-PROBE-EXPIRY"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PROBE-EXPIRY-1",
+          "text": "Run actual pinned default lease expiry, scoped reclaim, changed-owner CAS and ABA with raw evidence and independent readback; report guarantees as verified/refuted, never equate probe completion with production fencing.",
+          "test_ids": [
+            "TEST-R5-PROBE-EXPIRY"
+          ],
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-native-probes.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5-PROBE-MERGE",
+      "priority": "required",
+      "text": "Construct real native divergent branches with recorded base/source/target/result heads, show compatible changes retained and actual same-cell conflict with independent partial-effect inspection and no automatic resolution.",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-native-probes.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-PROBE-MERGE"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PROBE-MERGE-1",
+          "text": "Construct real native divergent branches with recorded base/source/target/result heads, show compatible changes retained and actual same-cell conflict with independent partial-effect inspection and no automatic resolution.",
+          "test_ids": [
+            "TEST-R5-PROBE-MERGE"
+          ],
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-native-probes.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5-PROBE-BOUNDARY",
+      "priority": "required",
+      "text": "Verify strict receipts, fresh disposable paths, pinned binary/source/helper identities, preserved package bytes, append-only historical governance and exact GitHub publication; no native production promotion.",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-native-probes.md"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-PROBE-BOUNDARY"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PROBE-BOUNDARY-1",
+          "text": "Verify strict receipts, fresh disposable paths, pinned binary/source/helper identities, preserved package bytes, append-only historical governance and exact GitHub publication; no native production promotion.",
+          "test_ids": [
+            "TEST-R5-PROBE-BOUNDARY"
+          ],
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-native-probes.md"
+            }
+          ]
+        }
+      ]
     }
   ],
   "schema": 2

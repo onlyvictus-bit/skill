@@ -1,0 +1,83 @@
+name: r5-native-probes
+on:
+  push:
+    branches: [development/r5-native-probes]
+    paths:
+      - .github/scripts/r5_native_probes.py
+      - .github/scripts/r5_native_probe_helper.go
+      - .github/tests/test_r5_native_probes.py
+      - .github/workflows/r5-native-probes.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-expiry-fencing-and-conflict:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    env:
+      CGO_ENABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.7"
+          cache: false
+      - name: Verify probe contracts
+        run: python -B -m unittest discover -s .github/tests -v
+      - name: Build probe-only helper from exact pinned upstream
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $source = Join-Path $env:RUNNER_TEMP 'r5-pinned-beads-source'
+          git clone --depth 1 --branch v1.3.1 https://github.com/gastownhall/beads.git $source
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned source clone failed' }
+          $revision = (git -C $source rev-parse HEAD).Trim()
+          if ($revision -ne 'c1c4b642ac1c08d8c828007a1c2f96e47e43ef7c') { throw 'Pinned source revision mismatch' }
+          $helperDir = Join-Path $source 'cmd/r5-native-probe-helper'
+          New-Item -ItemType Directory -Path $helperDir | Out-Null
+          Copy-Item .github/scripts/r5_native_probe_helper.go (Join-Path $helperDir 'main.go')
+          $helper = Join-Path $env:RUNNER_TEMP 'r5-native-probe-helper.exe'
+          Push-Location $source
+          try {
+            go build -tags gms_pure_go -o $helper ./cmd/r5-native-probe-helper
+            if ($LASTEXITCODE -ne 0) { throw 'Pinned helper compilation failed' }
+            $trackedDiff = git diff --name-only HEAD
+            if ($trackedDiff) { throw 'Pinned upstream tracked source changed' }
+          } finally { Pop-Location }
+          "PROBE_HELPER=$helper" >> $env:GITHUB_ENV
+          "PROBE_HELPER_SHA=$((Get-FileHash -Algorithm SHA256 $helper).Hash.ToLowerInvariant())" >> $env:GITHUB_ENV
+      - name: Download and verify pinned release executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $archive = Join-Path $env:RUNNER_TEMP 'beads_1.3.1_windows_amd64.zip'
+          Invoke-WebRequest https://github.com/gastownhall/beads/releases/download/v1.3.1/beads_1.3.1_windows_amd64.zip -OutFile $archive
+          if ((Get-FileHash -Algorithm SHA256 $archive).Hash.ToLowerInvariant() -ne '48cd82e1d3e311c9bf9a5d6d67ad1a8542ae13d4e20c5bfb527656c5e666af76') { throw 'Release archive hash mismatch' }
+          $runtime = Join-Path $env:RUNNER_TEMP 'r5-pinned-release'
+          Expand-Archive $archive $runtime
+          $bd = (Get-ChildItem $runtime -Recurse -Filter bd.exe | Select-Object -First 1).FullName
+          if ((Get-FileHash -Algorithm SHA256 $bd).Hash.ToLowerInvariant() -ne 'ac5b60114e5e7ef9de8878b45fc35941937341d3447366c99bc91c81557be7a4') { throw 'Release executable hash mismatch' }
+          "PROBE_BD=$bd" >> $env:GITHUB_ENV
+          "PROBE_WORKSPACE=$(Join-Path $env:RUNNER_TEMP 'r5-disposable-native-probes')" >> $env:GITHUB_ENV
+          "PROBE_RECEIPT=$(Join-Path $env:RUNNER_TEMP 'r5-real-native-probes.json')" >> $env:GITHUB_ENV
+      - name: Run actual expiry and native conflict experiments
+        shell: pwsh
+        run: |
+          python -B .github/scripts/r5_native_probes.py --bd "$env:PROBE_BD" --helper "$env:PROBE_HELPER" --helper-sha "$env:PROBE_HELPER_SHA" --workspace "$env:PROBE_WORKSPACE" --receipt "$env:PROBE_RECEIPT"
+          if ($LASTEXITCODE -ne 0) { throw 'Real native probes blocked; inspect retained receipt' }
+      - name: Independently reopen retained receipt
+        shell: pwsh
+        run: |
+          python -B -c "import importlib.util,json,pathlib,os;s=importlib.util.spec_from_file_location('p','.github/scripts/r5_native_probes.py');p=importlib.util.module_from_spec(s);s.loader.exec_module(p);p.verify_receipt(json.loads(pathlib.Path(os.environ['PROBE_RECEIPT']).read_text(encoding='utf-8')));print('Receipt byte hashes and bounded probe verdict verified')"
+          if ($LASTEXITCODE -ne 0) { throw 'Retained receipt verification failed' }
+      - name: Retain raw successful or blocked experiment receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r5-real-native-probes
+          path: ${{ env.PROBE_RECEIPT }}
+          if-no-files-found: warn
+          retention-days: 30
