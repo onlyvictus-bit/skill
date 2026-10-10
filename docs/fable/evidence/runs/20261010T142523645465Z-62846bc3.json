@@ -1,0 +1,45 @@
+{
+  "basis": {
+    "plan_digest": "5d8e57fd213bab0a40b10a02e3391bcb1912f69952843a44a020c8df097b542d",
+    "requirements_digest": "1b9849bfc00a13159b7369e5236748792108c06fbef81eef2dacc627bf27b154",
+    "tests_digest": "05b0f8d221e347e7675bdb38a29741eb949fcb0374e3afa70c941f3d060093c5"
+  },
+  "created_at": "2026-10-10T14:25:23.645465+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        "docs/FOUR-FEATURE-PLAN.md",
+        "docs/NATIVE-QUAL-01.md",
+        "docs/STATUS.md",
+        "docs/fable/derived/r5-reconciliation-evidence.json",
+        "docs/fable/derived/r5-source-reconciliation.md",
+        "docs/fable/intake-r5-reconciliation.txt",
+        "docs/fable/specialists.json"
+      ],
+      "artifacts_digest": "2191956e70965fec1ebc6b872b9ffc48e4d5bf29b8875c3c61df5032698ed6cd",
+      "basis": {
+        "plan_digest": "5d8e57fd213bab0a40b10a02e3391bcb1912f69952843a44a020c8df097b542d",
+        "requirements_digest": "1b9849bfc00a13159b7369e5236748792108c06fbef81eef2dacc627bf27b154",
+        "tests_digest": "05b0f8d221e347e7675bdb38a29741eb949fcb0374e3afa70c941f3d060093c5"
+      },
+      "criterion_ids": [
+        "R5-RECONCILE-NEXT-1",
+        "R5-RECONCILE-NEXT-2",
+        "R5-RECONCILE-NEXT-3"
+      ],
+      "evidence_type": "manual",
+      "id": "EV-900cff8408384f86b873627743a667de",
+      "note": "Existing pinned Windows workflow/CLI routes read, absent local native runtime disclosed; native policy/pilot suite had 26 pass and two platform skips. All prior requirements/tests/tasks/approvals and all runtime/capability/package bytes preserved. Reviewed documentation published via connected GitHub with expected-head fast-forward to 7a927ea517f1a0bd65e5f24dc5ad5d6e029b4538, tree 2d528549d43d9a7e02ad1349046c72424937af01, then fetched and tree-equality verified. Exact-head CI runs 38059474585 and 38059474783 started; not yet passed at this observation. Original native-M7/full R5 remain partial; append-only evidence only.",
+      "observed_at": "2026-10-10T14:25:23.645191+00:00",
+      "observer": "model self-review with GitHub/Git readback",
+      "requirement_ids": [
+        "R5-RECONCILE-NEXT"
+      ],
+      "result": "pass",
+      "source": "docs/fable/derived/r5-reconciliation-evidence.json",
+      "test_id": "TEST-R5-RECONCILE-NEXT"
+    }
+  ],
+  "run_id": "20261010T142523645465Z-62846bc3",
+  "schema": 2
+}

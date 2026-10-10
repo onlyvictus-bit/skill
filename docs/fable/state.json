@@ -11,11 +11,12 @@
     "R5-STEP1-TRACE",
     "R5-STEP1-CONTINUITY",
     "R5-RECONCILE-SOURCE",
-    "R5-RECONCILE-PROOF"
+    "R5-RECONCILE-PROOF",
+    "R5-RECONCILE-NEXT"
   ],
   "current_task": "TASK-R5-SOURCE-RECONCILIATION",
   "milestone": "R5-SOURCE-RECONCILIATION",
-  "next_action": "Verify documentation publication; then real ownership/fence and native-conflict feasibility on a selected pinned Windows environment. Resolve original native-M7 source/adoption before original four-trap completion. Full R5 runtime/release/install remains partial.",
+  "next_action": "Scoped source/evidence reconciliation published and verified by Git readback. Finish exact-head publication CI verification; then real ownership/fence and native-conflict feasibility on a selected pinned Windows environment. Resolve original native-M7 source/adoption before original four-trap completion. Full R5 runtime/release/install remains partial; historical unrelated requirements retain their earlier evidence basis.",
   "phase": "verify",
   "schema": 2
 }
