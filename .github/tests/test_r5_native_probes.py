@@ -49,6 +49,8 @@ class ProbeContracts(unittest.TestCase):
         with self.assertRaises(ValueError):p.verify_receipt(receipt)
     def test_branch_name_error_is_not_native_conflict(self):
         self.assertFalse(p.native_conflict(1,b'branch r5probeconflict not found'))
+        self.assertFalse(p.native_conflict(None,b'merge conflict with autocommit enabled'))
+        self.assertFalse(p.native_conflict(True,b'merge conflict with autocommit enabled'))
         self.assertTrue(p.native_conflict(1,b'merge conflict with autocommit enabled'))
     def test_mixed_task_guard_and_malformed_empty_reclaim_refused(self):
         self.assertFalse(p.guard_mismatch(13,b'{"failed":[{"id":"p-1","guard_mismatch":true},{"id":"p-2","guard_mismatch":true}]}','p-1'))

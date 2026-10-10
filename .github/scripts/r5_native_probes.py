@@ -80,7 +80,7 @@ def bind_guard(c,ident,owner):
 
 def native_conflict(code,raw):
     text=raw.decode('utf-8','strict').lower()
-    return code!=0 and 'merge conflict' in text and 'autocommit' in text
+    return type(code) is int and code!=0 and 'merge conflict' in text and 'autocommit' in text
 
 def verify_receipt(v):
     need(v.get('schema')==1 and v.get('ok') is True and v.get('overall')=='REAL_NATIVE_PROBES_COMPLETED','incomplete experiments')
@@ -90,7 +90,7 @@ def verify_receipt(v):
         need(v.get(flag) is False,'capability promotion forbidden')
     need(v.get('identity',{}).get('executable_sha256')==EXECUTABLE_SHA and v.get('source_revision')==REVISION,'missing pinned identity')
     for i,c in enumerate(cmds):
-        verify_raw(c);need(c.get('index')==i and c['capture_complete'] is True and c['timed_out'] is False and not c['capture_errors'] and c['output_limit_exceeded'] is False,'uncertain retained command')
+        verify_raw(c);need(type(c.get('exit_code')) is int and c.get('index')==i and c['capture_complete'] is True and c['timed_out'] is False and not c['capture_errors'] and c['output_limit_exceeded'] is False,'uncertain retained command')
     def ref(result,name,label):
         i=result.get('refs',{}).get(name);need(type(i) is int and 0<=i<len(cmds),'missing command reference: '+name)
         c=cmds[i];need(c.get('label')==label,'wrong referenced command: '+name);return c
@@ -133,6 +133,7 @@ def verify_receipt(v):
     for kind in ['compatible_merge','native_conflict']:
         m=v['results'][kind];source=data(ref(m,'source','native branch write'));target=data(ref(m,'target','native branch read'));result=data(ref(m,'result','native branch read'));fork=data(ref(m,'fork_read','native branch read'))
         need(fork['head']==m['base_head'] and source['before_head']==m['base_head'] and source['head']==m['source_head'] and target['head']==m['target_head'] and result['head']==m['result_head'],'branch head summaries mismatch')
+        need(source.get('restored_branch')==target.get('restored_branch')==result.get('restored_branch')=='main','helper restoration not retained')
         need(source['branch']==m['source_branch'] and target['branch']==result['branch']=='main' and len({m['base_head'],m['source_head'],m['target_head']})==3,'not native divergent branches')
         need(m['refs']['fork_read']<m['refs']['source']<m['refs']['target']<m['refs']['merge']<m['refs']['result'],'native merge chronology mismatch')
         if kind=='compatible_merge':
@@ -213,7 +214,7 @@ class Probe:
         self.helper(p,'main','fork','r5probecompatible')
         need(self.helper(p,'r5probecompatible','read',a)['head']==base,'fork is not at base');fork_idx=self.last_helper_index
         source=self.helper(p,'r5probecompatible','write',a,'compatible source A')['head'];source_idx=self.last_helper_index
-        need(self.issue(p,a,'r5probecompatible')['title']=='compatible source A','source not independently visible')
+        need(self.helper(p,'main','read',a)['head']==base,'source helper moved main head');need(self.issue(p,a)['title']=='merge base A','source helper changed main issue');need(self.issue(p,a,'r5probecompatible')['title']=='compatible source A','source not independently visible')
         self.update(p,b,'compatible target B');target=self.helper(p,'main','read',b)['head'];target_idx=self.last_helper_index
         need(len({base,source,target})==3,'not divergent histories')
         merge=self.bd(p,['vc','merge','r5probecompatible'],label='compatible native merge')
@@ -225,7 +226,7 @@ class Probe:
         base=after['head'];self.helper(p,'main','fork','r5probeconflict')
         need(self.helper(p,'r5probeconflict','read',a)['head']==base,'conflict fork mismatch');fork_idx=self.last_helper_index
         source=self.helper(p,'r5probeconflict','write',a,'conflict source title')['head'];source_idx=self.last_helper_index
-        self.update(p,a,'conflict target title');before=self.helper(p,'main','read',a);target_idx=self.last_helper_index
+        need(self.helper(p,'main','read',a)['head']==base,'conflict source helper moved main head');need(self.issue(p,a)['title']=='compatible source A','conflict source helper changed main issue');self.update(p,a,'conflict target title');before=self.helper(p,'main','read',a);target_idx=self.last_helper_index
         need(len({base,source,before['head']})==3,'conflict histories not divergent')
         need(self.issue(p,a,'r5probeconflict')['title']=='conflict source title','conflict source read missing')
         export_before=self.export(p);status_before=self.status(p)

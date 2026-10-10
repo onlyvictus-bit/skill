@@ -10,11 +10,14 @@ import (
  "regexp"
  "time"
  "github.com/steveyegge/beads/internal/storage/embeddeddolt"
+ "github.com/steveyegge/beads/internal/storage/issueops"
+ "github.com/steveyegge/beads/internal/storage/versioncontrolops"
 )
 func main() { if err:=run();err!=nil {fmt.Fprintln(os.Stderr,err);os.Exit(2)} }
 func run() error {
  if len(os.Args)!=8 {return fmt.Errorf("expected root, database, project, branch, operation, issue-or-new-branch, title")}
  root,db,project,branch,op,id,title:=os.Args[1],os.Args[2],os.Args[3],os.Args[4],os.Args[5],os.Args[6],os.Args[7]
+ if !regexp.MustCompile(`^[A-Za-z_][A-Za-z0-9_]*$`).MatchString(db){return fmt.Errorf("database identifier refused")}
  if !filepath.IsAbs(root) {return fmt.Errorf("absolute disposable root required")}
  marker,err:=os.ReadFile(filepath.Join(root,"r5-disposable-probe.json"));if err!=nil{return err}
  var identity map[string]string;if err=json.Unmarshal(marker,&identity);err!=nil{return err}
@@ -27,16 +30,36 @@ func run() error {
  if op=="fork" && (branch!="main" || !regexp.MustCompile(`^r5probe[a-z]+$`).MatchString(id)) {return fmt.Errorf("fork refused")}
  if op=="write" && (branch=="main" || len(title)==0) {return fmt.Errorf("only source-branch title write permitted")}
  ctx,cancel:=context.WithTimeout(context.Background(),30*time.Second);defer cancel()
- var s *embeddeddolt.EmbeddedDoltStore
- if op=="read" {s,err=embeddeddolt.OpenReadOnly(ctx,filepath.Join(root,".beads"),db,branch)} else {s,err=embeddeddolt.Open(ctx,filepath.Join(root,".beads"),db,branch)}
- if err!=nil{return err};defer s.Close()
- before,err:=s.GetCurrentCommit(ctx);if err!=nil{return err}
- selected,err:=s.CurrentBranch(ctx);if err!=nil{return err};if selected!=branch{return fmt.Errorf("selected branch mismatch: %s",selected)}
- if op=="fork" {err=s.Branch(ctx,id)}
- if op=="write" {err=s.UpdateIssue(ctx,id,map[string]interface{}{"title":title},"r5branchprobe");if err==nil {_,err=s.CommitAll(ctx,"R5 disposable source branch probe")}}
+ // Beads store methods open new sessions. Keep checkout and every operation
+ // on this one pinned connection. driver/v2 v2.2.0 discards pooled sessions,
+ // so OpenSQL USE/head_ref setup must be reapplied after pinning.
+ sqlDB,cleanup,err:=embeddeddolt.OpenSQL(ctx,filepath.Join(root,".beads","embeddeddolt"),db,"")
+ if err!=nil{return err};defer cleanup()
+ conn,err:=sqlDB.Conn(ctx);if err!=nil{return err};defer conn.Close()
+ if _,err=conn.ExecContext(ctx,"USE `"+db+"`");err!=nil{return err}
+ if err=versioncontrolops.CheckoutBranch(ctx,conn,branch);err!=nil{return err}
+ defer func(){_ = versioncontrolops.CheckoutBranch(context.Background(),conn,"main")}()
+ selected,err:=versioncontrolops.CurrentBranch(ctx,conn);if err!=nil{return err};if selected!=branch{return fmt.Errorf("selected branch mismatch: %s",selected)}
+ var before string;if err=conn.QueryRowContext(ctx,"SELECT HASHOF('HEAD')").Scan(&before);err!=nil{return err}
+ if op=="fork" {err=versioncontrolops.CreateBranch(ctx,conn,id)}
+ if op=="write" {
+   tx,e:=conn.BeginTx(ctx,nil);if e!=nil{return e}
+   _,e=issueops.UpdateIssueInTx(ctx,tx,id,map[string]interface{}{"title":title},"r5branchprobe")
+   if e!=nil{_ = tx.Rollback();return e};if e=tx.Commit();e!=nil{return e}
+   status,e:=versioncontrolops.Status(ctx,conn);if e!=nil{return e};dirty:=map[string]bool{}
+   for _,entry:=range status.Staged{dirty[entry.Table]=true};for _,entry:=range status.Unstaged{dirty[entry.Table]=true}
+   if len(dirty)==0{return fmt.Errorf("source write produced no pending tracked tables")}
+   err=versioncontrolops.StageAndCommit(ctx,conn,dirty,"R5 disposable source branch probe","")
+ }
  if err!=nil{return err}
- after,err:=s.GetCurrentCommit(ctx);if err!=nil{return err}
+ var after string;if err=conn.QueryRowContext(ctx,"SELECT HASHOF('HEAD')").Scan(&after);err!=nil{return err}
  out:=map[string]interface{}{"branch":selected,"before_head":before,"head":after,"operation":op}
- if op!="fork" {issue,e:=s.GetIssue(ctx,id);if e!=nil{return e};out["issue"]=issue;log,e:=s.Log(ctx,0);if e!=nil{return e};out["log"]=log;conflicts,e:=s.GetConflicts(ctx);if e!=nil{return e};out["conflicts"]=conflicts}
+ if op!="fork" {
+   issue,e:=issueops.GetIssueInTx(ctx,conn,id);if e!=nil{return e};out["issue"]=issue
+   log,e:=versioncontrolops.Log(ctx,conn,0);if e!=nil{return e};out["log"]=log
+   conflicts,e:=versioncontrolops.GetConflicts(ctx,conn);if e!=nil{return e};out["conflicts"]=conflicts
+ }
+ if err=versioncontrolops.CheckoutBranch(ctx,conn,"main");err!=nil{return err}
+ restored,err:=versioncontrolops.CurrentBranch(ctx,conn);if err!=nil{return err};if restored!="main"{return fmt.Errorf("main restoration failed")};out["restored_branch"]=restored
  return json.NewEncoder(os.Stdout).Encode(out)
 }
