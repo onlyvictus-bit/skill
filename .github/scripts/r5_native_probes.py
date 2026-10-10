@@ -133,6 +133,7 @@ def verify_receipt(v):
     for kind in ['compatible_merge','native_conflict']:
         m=v['results'][kind];source=data(ref(m,'source','native branch write'));target=data(ref(m,'target','native branch read'));result=data(ref(m,'result','native branch read'));fork=data(ref(m,'fork_read','native branch read'))
         need(fork['head']==m['base_head'] and source['before_head']==m['base_head'] and source['head']==m['source_head'] and target['head']==m['target_head'] and result['head']==m['result_head'],'branch head summaries mismatch')
+        need(source.get('native_initialized_head')==source['before_head'] and source.get('source_lease_count')==0 and fork.get('native_initialized_head')==fork['head'] and fork.get('source_lease_count')==0,'source native initialization changed head or leases')
         need(source.get('restored_branch')==target.get('restored_branch')==result.get('restored_branch')=='main','helper restoration not retained')
         need(source['branch']==m['source_branch'] and target['branch']==result['branch']=='main' and len({m['base_head'],m['source_head'],m['target_head']})==3,'not native divergent branches')
         need(m['refs']['fork_read']<m['refs']['source']<m['refs']['target']<m['refs']['merge']<m['refs']['result'],'native merge chronology mismatch')

@@ -11,6 +11,7 @@ import (
  "time"
  "github.com/steveyegge/beads/internal/storage/embeddeddolt"
  "github.com/steveyegge/beads/internal/storage/issueops"
+ "github.com/steveyegge/beads/internal/storage/schema"
  "github.com/steveyegge/beads/internal/storage/versioncontrolops"
 )
 func main() { if err:=run();err!=nil {fmt.Fprintln(os.Stderr,err);os.Exit(2)} }
@@ -38,9 +39,17 @@ func run() error {
  conn,err:=sqlDB.Conn(ctx);if err!=nil{return err};defer conn.Close()
  if _,err=conn.ExecContext(ctx,"USE `"+db+"`");err!=nil{return err}
  if err=versioncontrolops.CheckoutBranch(ctx,conn,branch);err!=nil{return err}
- defer func(){_ = versioncontrolops.CheckoutBranch(context.Background(),conn,"main")}()
+ defer func(){cleanupCtx,cancelCleanup:=context.WithTimeout(context.Background(),3*time.Second);defer cancelCleanup();_ = versioncontrolops.CheckoutBranch(cleanupCtx,conn,"main")}()
  selected,err:=versioncontrolops.CurrentBranch(ctx,conn);if err!=nil{return err};if selected!=branch{return fmt.Errorf("selected branch mismatch: %s",selected)}
  var before string;if err=conn.QueryRowContext(ctx,"SELECT HASHOF('HEAD')").Scan(&before);err!=nil{return err}
+ var initializedHead string;var sourceLeaseCount int;var mainMigrationsApplied int
+ if branch!="main" {
+   mainMigrationsApplied,err=schema.MigrateUp(ctx,conn);if err!=nil{return fmt.Errorf("native source schema initialization: %w",err)}
+   if err=conn.QueryRowContext(ctx,"SELECT HASHOF('HEAD')").Scan(&initializedHead);err!=nil{return err}
+   if initializedHead!=before{return fmt.Errorf("native source initialization moved tracked head")}
+   if err=conn.QueryRowContext(ctx,"SELECT COUNT(*) FROM leases").Scan(&sourceLeaseCount);err!=nil{return err}
+   if sourceLeaseCount!=0{return fmt.Errorf("merge-only source branch contains unexpected leases")}
+ }
  if op=="fork" {err=versioncontrolops.CreateBranch(ctx,conn,id)}
  if op=="write" {
    tx,e:=conn.BeginTx(ctx,nil);if e!=nil{return e}
@@ -54,6 +63,7 @@ func run() error {
  if err!=nil{return err}
  var after string;if err=conn.QueryRowContext(ctx,"SELECT HASHOF('HEAD')").Scan(&after);err!=nil{return err}
  out:=map[string]interface{}{"branch":selected,"before_head":before,"head":after,"operation":op}
+ if branch!="main"{out["native_initialized_head"]=initializedHead;out["source_lease_count"]=sourceLeaseCount;out["main_migrations_applied"]=mainMigrationsApplied}
  if op!="fork" {
    issue,e:=issueops.GetIssueInTx(ctx,conn,id);if e!=nil{return e};out["issue"]=issue
    log,e:=versioncontrolops.Log(ctx,conn,0);if e!=nil{return e};out["log"]=log
