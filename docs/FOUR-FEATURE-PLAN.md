@@ -20,3 +20,11 @@ the milestones, gates, and boundaries enforced here.
 Native writes, effective ownership fences, live memory backends, OCR
 transcription, and live model calls. Each needs its own approval and
 observed evidence; offline `TEST_ONLY` results never qualify them.
+
+## Source-recovery follow-up (2026-10-10)
+
+An October 3 amended hybrid proposal supplies four concrete cases in the
+user-provided recovered excerpts. Its connection to this native M7 grouping is
+unconfirmed; it is not silently adopted as the original specification.
+See [the source/evidence reconciliation and proposed cases](fable/derived/r5-source-reconciliation.md).
+The full original plan and complete native four-trap qualification remain open.

@@ -334,6 +334,27 @@
         "docs/fable/specialists.json": "b9c287badf8c62b056b408cbb0292e99801c624bd6be6e573e2dd257869473e0",
         "docs/fable/tests.json": "1312a06ef2eee9eb49e308b075854e58fc3dbba6380830db9de0745a08f64fbe"
       }
+    },
+    {
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-10T14:13:06.895630+00:00",
+      "authorization": {
+        "quote": "do next step",
+        "source": "conversation"
+      },
+      "id": "APP-R5-RECONCILIATION-001",
+      "plan_digest": "5d8e57fd213bab0a40b10a02e3391bcb1912f69952843a44a020c8df097b542d",
+      "requirements_digest": "1b9849bfc00a13159b7369e5236748792108c06fbef81eef2dacc627bf27b154",
+      "scope": "R5-SOURCE-RECONCILIATION",
+      "tests_digest": "05b0f8d221e347e7675bdb38a29741eb949fcb0374e3afa70c941f3d060093c5",
+      "write_set_baseline": {
+        "docs/fable/intake-r5-reconciliation.txt": "5ecbc6e3a124719ded7e60c781cd9fa9603a5c6063e9c88b01e7875b715fff32",
+        "docs/fable/plan.json": "938a1f5c7e8a565064510df9b222577b2e7b606c88b87e7cc2c1c072ca84fc8a",
+        "docs/fable/requirements.json": "69543259b82e1df323d47af04e6c615baa903d04dd00ad9b9d00ed8fc7f3a462",
+        "docs/fable/specialists.json": "6c82fbe28fa1501a39d242347655b54591e5b11087a1e657b0426b838050be56",
+        "docs/fable/tests.json": "6199e6232d97b8770dc6adde97f893244d0bf0300878398a68d33ff9e5c5efb7"
+      }
     }
   ],
   "schema": 2

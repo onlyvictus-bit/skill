@@ -1,0 +1,3 @@
+Latest user instruction: "do next step".
+Context: continue the already authorized GitHub skill work after reading the three supplied source-recovery attachments. Prior user scope includes implementation and GitHub commit/publication.
+This bounded milestone reconciles sources, recovers historical CI receipts, corrects unsupported documentation and prepares the next native qualification. It does not manufacture explicit adoption of a replacement four-trap specification, authorize another database, install on the user host, or promote any native capability.

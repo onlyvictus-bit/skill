@@ -81,6 +81,12 @@ The receipt deliberately retains:
 This is disposable-environment native qualification only, not authority to
 mutate a shared/project database.
 
-This closes the previously unobserved kill/interruption-during-claim recovery
-boundary for the disposable pilot. Conflicting native branch merge remains a
-separate unobserved boundary.
+This observes reconciliation after an injected interruption following a returned
+native claim effect. The pilot calls `adapter.execute(...)` before raising
+`InterruptedError`; it does not kill the OS process inside the native claim.
+Kill-during-command recovery and conflicting native branch merge remain separate
+unobserved boundaries.
+
+The two retained historical Windows receipt archives were recovered and checked
+again on 2026-10-10. See the [source and evidence reconciliation](fable/derived/r5-source-reconciliation.md)
+for exact artifact/receipt identities and the remaining qualification gaps.

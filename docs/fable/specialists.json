@@ -40,9 +40,17 @@
         {
           "path": "docs/fable/derived/r5-source-basis.json",
           "sha256": "b6e194a9843266ae0b2e2cfa5f634cd2489c92b54bfe8ae67fef7a836cfaf882"
+        },
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md",
+          "sha256": "bc18f0a0104211496d71a3dc3e157e6c8e1d321044377a0a56e715e1907e37f3"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json",
+          "sha256": "dbd0e83dddb6abd0db98eb84c632e890cc588d48cd6ef1531c22b40744063158"
         }
       ],
-      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; step-1 intake routing and bounded six-view R5 readiness design with explicit source/proof gaps",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; step-1 intake routing and bounded six-view R5 readiness design with explicit source/proof gaps; source-reconciliation intake/design and exact documentation publication with explicit historical/native proof boundaries",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -75,7 +83,10 @@
         "R5-STEP1-RECOVERY",
         "R5-STEP1-SCOPE",
         "R5-STEP1-TRACE",
-        "R5-STEP1-CONTINUITY"
+        "R5-STEP1-CONTINUITY",
+        "R5-RECONCILE-SOURCE",
+        "R5-RECONCILE-PROOF",
+        "R5-RECONCILE-NEXT"
       ],
       "status": "observed",
       "test_ids": [
@@ -85,7 +96,10 @@
         "TEST-EXTRACTION",
         "TEST-INSTALL",
         "TEST-MODEL-BENEFIT",
-        "TEST-R5-STEP1"
+        "TEST-R5-STEP1",
+        "TEST-R5-RECONCILE-SOURCE",
+        "TEST-R5-RECONCILE-PROOF",
+        "TEST-R5-RECONCILE-NEXT"
       ]
     },
     {
@@ -127,9 +141,17 @@
         {
           "path": "docs/fable/derived/r5-source-basis.json",
           "sha256": "b6e194a9843266ae0b2e2cfa5f634cd2489c92b54bfe8ae67fef7a836cfaf882"
+        },
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md",
+          "sha256": "bc18f0a0104211496d71a3dc3e157e6c8e1d321044377a0a56e715e1907e37f3"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json",
+          "sha256": "dbd0e83dddb6abd0db98eb84c632e890cc588d48cd6ef1531c22b40744063158"
         }
       ],
-      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; step-1 intake routing and bounded six-view R5 readiness design with explicit source/proof gaps",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; step-1 intake routing and bounded six-view R5 readiness design with explicit source/proof gaps; source-reconciliation intake/design and exact documentation publication with explicit historical/native proof boundaries",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -162,7 +184,10 @@
         "R5-STEP1-RECOVERY",
         "R5-STEP1-SCOPE",
         "R5-STEP1-TRACE",
-        "R5-STEP1-CONTINUITY"
+        "R5-STEP1-CONTINUITY",
+        "R5-RECONCILE-SOURCE",
+        "R5-RECONCILE-PROOF",
+        "R5-RECONCILE-NEXT"
       ],
       "status": "observed",
       "test_ids": [
@@ -172,7 +197,10 @@
         "TEST-EXTRACTION",
         "TEST-INSTALL",
         "TEST-MODEL-BENEFIT",
-        "TEST-R5-STEP1"
+        "TEST-R5-STEP1",
+        "TEST-R5-RECONCILE-SOURCE",
+        "TEST-R5-RECONCILE-PROOF",
+        "TEST-R5-RECONCILE-NEXT"
       ]
     },
     {
@@ -333,9 +361,17 @@
         {
           "path": "docs/fable/derived/remaining-verification.md",
           "sha256": "ee4798fca61b25507d88ab13afb204eb1fc5d1803ce63007990a61446ddf9f58"
+        },
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md",
+          "sha256": "bc18f0a0104211496d71a3dc3e157e6c8e1d321044377a0a56e715e1907e37f3"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json",
+          "sha256": "dbd0e83dddb6abd0db98eb84c632e890cc588d48cd6ef1531c22b40744063158"
         }
       ],
-      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations",
+      "reason": "Approved bounded extension/recovery: evidence-led mechanism decision, six-view design, independent current runtime/source families, leaf completion and exact release/save observations; source-reconciliation intake/design and exact documentation publication with explicit historical/native proof boundaries",
       "requirement_ids": [
         "REQ-01",
         "REQ-02",
@@ -364,7 +400,10 @@
         "FUTURE-2",
         "FUTURE-3",
         "FUTURE-4",
-        "FUTURE-5"
+        "FUTURE-5",
+        "R5-RECONCILE-SOURCE",
+        "R5-RECONCILE-PROOF",
+        "R5-RECONCILE-NEXT"
       ],
       "status": "observed",
       "test_ids": [
@@ -373,7 +412,10 @@
         "TEST-ADVANCED",
         "TEST-EXTRACTION",
         "TEST-INSTALL",
-        "TEST-MODEL-BENEFIT"
+        "TEST-MODEL-BENEFIT",
+        "TEST-R5-RECONCILE-SOURCE",
+        "TEST-R5-RECONCILE-PROOF",
+        "TEST-R5-RECONCILE-NEXT"
       ]
     }
   ]

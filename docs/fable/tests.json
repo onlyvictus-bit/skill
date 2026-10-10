@@ -269,6 +269,45 @@
           "path": "memory-integrity/scripts/hybrid_bridge/native.py"
         }
       ]
+    },
+    {
+      "id": "TEST-R5-RECONCILE-SOURCE",
+      "instructions": "Reopen the source/evidence report and its exact provenance records. Observe every criterion of R5-RECONCILE-SOURCE; preserve historical/unverified scope and verify the approved documentation-only diff.",
+      "kind": "manual",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-RECONCILE-PROOF",
+      "instructions": "Reopen the source/evidence report and its exact provenance records. Observe every criterion of R5-RECONCILE-PROOF; preserve historical/unverified scope and verify the approved documentation-only diff.",
+      "kind": "manual",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json"
+        }
+      ]
+    },
+    {
+      "id": "TEST-R5-RECONCILE-NEXT",
+      "instructions": "Reopen the source/evidence report and its exact provenance records. Observe every criterion of R5-RECONCILE-NEXT; preserve historical/unverified scope and verify the approved documentation-only diff.",
+      "kind": "manual",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json"
+        }
+      ]
     }
   ]
 }

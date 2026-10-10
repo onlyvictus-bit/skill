@@ -1,0 +1,170 @@
+{
+  "baseline_commit": "e36cbe57190e033c862161a80b2a14868c47c3a9",
+  "campaign_status": "PARTIAL",
+  "comparison_arms": [
+    "current Fable+v2",
+    "compact cards only",
+    "compact cards+Beads"
+  ],
+  "historical_native_receipts": [
+    {
+      "artifact_id": 11471297205,
+      "artifact_name": "m7-native-pilot-receipt",
+      "artifact_unexpired_at_inspection": true,
+      "bd_sha256": "ac5b60114e5e7ef9de8878b45fc35941937341d3447366c99bc91c81557be7a4",
+      "claim_invocations": 1,
+      "command_count": 8,
+      "fresh_native_execution_performed": false,
+      "github_artifact_digest": "sha256:5f999ea603db1495cda26c224b65cc63a5c853ca180ef3843d07e1885520470e",
+      "head_sha": "9fa76107f3a974bd6255ac151bd39ad97bdcaa25",
+      "independent_database_replay_performed": false,
+      "installed_promoted": false,
+      "internal_chain_reported": "VERIFIED",
+      "job_conclusion": "success",
+      "job_id": 112714739126,
+      "journal_events": [
+        "NATIVE_INTENT",
+        "NATIVE_UNKNOWN",
+        "NATIVE_RECONCILED"
+      ],
+      "json_bytes": 6219,
+      "json_name": "mi-m7-native-pilot-receipt.json",
+      "json_sha256": "8a2c07a82f2e83be9e93183e2d8e999e98769ae5c259e8d32aaf51b64d408647",
+      "native_beads_qualified": false,
+      "projection_replay_reported": "VERIFIED",
+      "run_id": 37597856215,
+      "shared_database_authorized": false,
+      "statuses": {
+        "interrupted": "UNKNOWN",
+        "recovered": "RECONCILED_NATIVE_APPLIED",
+        "recovered_again": "IDEMPOTENT_RECONCILED"
+      },
+      "successful_command_count": 8,
+      "verdict": "M7_DISPOSABLE_PILOT_VERIFIED",
+      "zip_bytes": 1639,
+      "zip_name": "m7-native-pilot-receipt.zip",
+      "zip_sha256": "5f999ea603db1495cda26c224b65cc63a5c853ca180ef3843d07e1885520470e"
+    },
+    {
+      "artifact_id": 11474434366,
+      "artifact_name": "r4-shared-claim-qualification-receipt",
+      "artifact_unexpired_at_inspection": true,
+      "claim_invocations": 1,
+      "command_count": 8,
+      "fresh_native_execution_performed": false,
+      "generic_native_write_qualified": false,
+      "github_artifact_digest": "sha256:b17d6c5d466fd72dafbc3e2731c47e37ff388e60fe4adc4a2204d6c8e475cda7",
+      "head_sha": "dec5229c8c7b006ec1dd24070230937112bd1357",
+      "independent_database_replay_performed": false,
+      "internal_chain_reported": "VERIFIED",
+      "job_conclusion": "success",
+      "job_id": 112742102265,
+      "journal_events": [
+        "NATIVE_INTENT",
+        "NATIVE_OUTCOME"
+      ],
+      "json_bytes": 6012,
+      "json_name": "mi-r4-shared-claim-receipt.json",
+      "json_sha256": "bd1242cada22f8f8bb24794127e62f18691e5d0e3799008bba2568a8f1cc6de1",
+      "native_beads_qualified": false,
+      "native_merge_qualified": false,
+      "native_shared_claim_protocol_qualified": true,
+      "projection_replay_reported": "VERIFIED",
+      "run_id": 37606183562,
+      "shared_database_authorized": false,
+      "statuses": {
+        "first": "NATIVE_APPLIED",
+        "second": "IDEMPOTENT_NATIVE_APPLIED"
+      },
+      "successful_command_count": 8,
+      "verdict": "R4_SHARED_CLAIM_PROTOCOL_VERIFIED",
+      "zip_bytes": 1543,
+      "zip_name": "r4-shared-claim-receipt.zip",
+      "zip_sha256": "b17d6c5d466fd72dafbc3e2731c47e37ff388e60fe4adc4a2204d6c8e475cda7"
+    }
+  ],
+  "inspection_date": "2026-10-10",
+  "local_native_runtime_available": false,
+  "manifest_inventory_count": 25,
+  "native_workflows_dispatched_this_milestone": false,
+  "october_3_proposed_cases": [
+    "missing requirement/source",
+    "failing check",
+    "Beads closure without evidence",
+    "changed dependency after passing run"
+  ],
+  "original_native_m7_case_grouping_confirmed": false,
+  "original_plan_bytes_independently_verified": false,
+  "os_kill_during_native_command_observed": false,
+  "passage_source_paths_matched": 7,
+  "pilot_interruption_boundary": "after adapter.execute returns; not an OS kill during command",
+  "preservation": {
+    "all_prior_approval_objects_unchanged": true,
+    "all_prior_requirement_test_task_objects_unchanged": true,
+    "historical_evidence_unchanged_before_new_runs": true,
+    "runtime_capability_package_paths_unchanged": true,
+    "scope": "all changes under docs/"
+  },
+  "publication": {
+    "expected_head_before_commit": "e36cbe57190e033c862161a80b2a14868c47c3a9",
+    "target": "onlyvictus-bit/skill main",
+    "verification": "remote head and exact published files checked after commit; not predicted here"
+  },
+  "read_lines_total": 809,
+  "remaining": [
+    "original native-M7 source/adoption provenance",
+    "real native expiry/reclaim and stale-owner effect fencing",
+    "real native branch conflict/merge",
+    "actual during-command process-kill recovery",
+    "source-bound three-arm four-trap comparison",
+    "R5 package/release/install qualification"
+  ],
+  "replacement_cases_explicitly_adopted": false,
+  "review": "model self-review; no independent-agent verdict",
+  "schema_version": 1,
+  "scope": "documentation source and historical receipt reconciliation",
+  "source_recovery_zip_supplied": false,
+  "supplied_sources": [
+    {
+      "bytes": 20636,
+      "name": "Pasted text(10).txt",
+      "read_span": [
+        1,
+        205
+      ],
+      "read_status": "COMPLETE",
+      "sha256": "515668b6db205fdd5d235dc2c7a08a3a92514cb139f11a322bf81310040ca86b"
+    },
+    {
+      "bytes": 14296,
+      "name": "M7_Source_Recovery_Manifest.json",
+      "read_span": [
+        1,
+        321
+      ],
+      "read_status": "COMPLETE",
+      "sha256": "e980e16791a0166969c9145c1485b9893de1bbf60e2d0523711f15165e69c06b"
+    },
+    {
+      "bytes": 18131,
+      "name": "M7_Recovered_Source_Passages.md",
+      "read_span": [
+        1,
+        283
+      ],
+      "read_status": "COMPLETE",
+      "sha256": "f5dd3a8159c8f67cde4b31e056045c84d62ce95a495fe1451c4e92ecf32e5860"
+    }
+  ],
+  "tests": {
+    "cli_help_exit_codes": {
+      "m7_native_pilot.py": 0,
+      "r4_shared_claim_pilot.py": 0
+    },
+    "command": "python3 -B -m unittest discover -s memory-integrity/tests_v2 -p 'test_*native*.py'",
+    "native_beads_execution": false,
+    "passed": 26,
+    "platform_skipped": 2,
+    "run": 28
+  }
+}

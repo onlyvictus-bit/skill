@@ -1,0 +1,45 @@
+{
+  "basis": {
+    "plan_digest": "5d8e57fd213bab0a40b10a02e3391bcb1912f69952843a44a020c8df097b542d",
+    "requirements_digest": "1b9849bfc00a13159b7369e5236748792108c06fbef81eef2dacc627bf27b154",
+    "tests_digest": "05b0f8d221e347e7675bdb38a29741eb949fcb0374e3afa70c941f3d060093c5"
+  },
+  "created_at": "2026-10-10T14:22:15.111897+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        "docs/FOUR-FEATURE-PLAN.md",
+        "docs/NATIVE-QUAL-01.md",
+        "docs/STATUS.md",
+        "docs/fable/derived/r5-reconciliation-evidence.json",
+        "docs/fable/derived/r5-source-reconciliation.md",
+        "docs/fable/intake-r5-reconciliation.txt",
+        "docs/fable/specialists.json"
+      ],
+      "artifacts_digest": "2191956e70965fec1ebc6b872b9ffc48e4d5bf29b8875c3c61df5032698ed6cd",
+      "basis": {
+        "plan_digest": "5d8e57fd213bab0a40b10a02e3391bcb1912f69952843a44a020c8df097b542d",
+        "requirements_digest": "1b9849bfc00a13159b7369e5236748792108c06fbef81eef2dacc627bf27b154",
+        "tests_digest": "05b0f8d221e347e7675bdb38a29741eb949fcb0374e3afa70c941f3d060093c5"
+      },
+      "criterion_ids": [
+        "R5-RECONCILE-PROOF-1",
+        "R5-RECONCILE-PROOF-2",
+        "R5-RECONCILE-PROOF-3"
+      ],
+      "evidence_type": "manual",
+      "id": "EV-f6529b10ac924b079d3dd921f85524c0",
+      "note": "Two historical Windows ZIPs match GitHub artifact digests, extracted JSON hashes and successful jobs; eight commands/one claim and repeated-result/event/capability consistency inspected. Pilot calls adapter.execute before interruption; public wording corrected. Private receipt bundle retained; public artifacts contain concise identities only. No OS-kill proof, fresh native execution or independent database replay.",
+      "observed_at": "2026-10-10T14:22:15.111577+00:00",
+      "observer": "model self-review with source/hash/code observations",
+      "requirement_ids": [
+        "R5-RECONCILE-PROOF"
+      ],
+      "result": "pass",
+      "source": "docs/fable/derived/r5-reconciliation-evidence.json",
+      "test_id": "TEST-R5-RECONCILE-PROOF"
+    }
+  ],
+  "run_id": "20261010T142215111897Z-c3f12563",
+  "schema": 2
+}

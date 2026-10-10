@@ -1,6 +1,6 @@
 {
-  "milestone": "R5-STEP1",
-  "plan_id": "r5-step1-freeze-v1",
+  "milestone": "R5-SOURCE-RECONCILIATION",
+  "plan_id": "r5-source-reconciliation-v1",
   "schema": 2,
   "tasks": [
     {
@@ -508,6 +508,40 @@
       ],
       "test_ids": [
         "TEST-R5-OPERATIONS"
+      ]
+    },
+    {
+      "action": "Reconcile supplied source evidence, recover historical native receipts, correct the after-effect proof scope and publish the bounded qualification handoff without promoting native capabilities.",
+      "artifacts": [
+        "docs/fable/derived/r5-source-reconciliation.md",
+        "docs/fable/derived/r5-reconciliation-evidence.json",
+        "docs/fable/intake-r5-reconciliation.txt",
+        "docs/fable/specialists.json",
+        "docs/FOUR-FEATURE-PLAN.md",
+        "docs/NATIVE-QUAL-01.md",
+        "docs/STATUS.md"
+      ],
+      "criterion_ids": [
+        "R5-RECONCILE-SOURCE-1",
+        "R5-RECONCILE-SOURCE-2",
+        "R5-RECONCILE-SOURCE-3",
+        "R5-RECONCILE-PROOF-1",
+        "R5-RECONCILE-PROOF-2",
+        "R5-RECONCILE-PROOF-3",
+        "R5-RECONCILE-NEXT-1",
+        "R5-RECONCILE-NEXT-2",
+        "R5-RECONCILE-NEXT-3"
+      ],
+      "id": "TASK-R5-SOURCE-RECONCILIATION",
+      "requirement_ids": [
+        "R5-RECONCILE-SOURCE",
+        "R5-RECONCILE-PROOF",
+        "R5-RECONCILE-NEXT"
+      ],
+      "test_ids": [
+        "TEST-R5-RECONCILE-SOURCE",
+        "TEST-R5-RECONCILE-PROOF",
+        "TEST-R5-RECONCILE-NEXT"
       ]
     }
   ]

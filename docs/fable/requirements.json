@@ -1712,6 +1712,168 @@
         "TEST-R5-OPERATIONS"
       ],
       "text": "Document recovery, observability and supported limits for qualified native operations"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-RECONCILE-SOURCE-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-SOURCE"
+          ],
+          "text": "Identify all three supplied files by SHA-256 and complete read spans; distinguish supplied excerpts from unavailable original-plan bytes."
+        },
+        {
+          "id": "R5-RECONCILE-SOURCE-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-SOURCE"
+          ],
+          "text": "Record the four October 3 cases, equal three-arm comparison, interrupt/resume, OFF mode, retained unaffected work, repair coverage and metrics without silently replacing the original M7 grouping."
+        },
+        {
+          "id": "R5-RECONCILE-SOURCE-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-SOURCE"
+          ],
+          "text": "Preserve the existing original-specification requirement and historical evidence; no new original-specification or native-comparison pass is declared."
+        }
+      ],
+      "id": "R5-RECONCILE-SOURCE",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-RECONCILE-SOURCE"
+      ],
+      "text": "Preserve recovered proposal provenance and the unresolved original native-M7 specification gap"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-RECONCILE-PROOF-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-PROOF"
+          ],
+          "text": "Recover both historical Windows receipt archives, match downloaded ZIP hashes to GitHub artifact digests and independently inspect command counts, events, result identities and capability limits."
+        },
+        {
+          "id": "R5-RECONCILE-PROOF-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-PROOF"
+          ],
+          "text": "Correct the claim of kill-during-claim proof: the pilot injects interruption after adapter.execute returns; distinguish that from a real process kill inside the native command."
+        },
+        {
+          "id": "R5-RECONCILE-PROOF-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-PROOF"
+          ],
+          "text": "Retain only concise public evidence identities; keep raw receipts private. Receipt consistency is not independent database replay or a fresh native run."
+        }
+      ],
+      "id": "R5-RECONCILE-PROOF",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-RECONCILE-PROOF"
+      ],
+      "text": "Correct native pilot proof scope using actual code and recovered historical CI receipts"
+    },
+    {
+      "criteria": [
+        {
+          "id": "R5-RECONCILE-NEXT-1",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-NEXT"
+          ],
+          "text": "Document current runtime availability, exact existing Windows workflows and pilot entrypoints, supported scope and concrete remaining native probes; no unavailable host result is fabricated."
+        },
+        {
+          "id": "R5-RECONCILE-NEXT-2",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-NEXT"
+          ],
+          "text": "Preserve all runtime code, capability files and release archives byte-for-byte; recheck existing relevant native policy/pilot tests and disclose platform skips."
+        },
+        {
+          "id": "R5-RECONCILE-NEXT-3",
+          "source_links": [
+            {
+              "path": "docs/fable/derived/r5-source-reconciliation.md"
+            }
+          ],
+          "test_ids": [
+            "TEST-R5-RECONCILE-NEXT"
+          ],
+          "text": "Record scoped verification and append-only Fable continuity; publish only reviewed documentation against the expected current GitHub head."
+        }
+      ],
+      "id": "R5-RECONCILE-NEXT",
+      "priority": "required",
+      "source_links": [
+        {
+          "path": "docs/fable/derived/r5-source-reconciliation.md"
+        },
+        {
+          "path": "docs/fable/derived/r5-reconciliation-evidence.json"
+        }
+      ],
+      "test_ids": [
+        "TEST-R5-RECONCILE-NEXT"
+      ],
+      "text": "Provide an executable next qualification route and preserve runtime/package boundaries"
     }
   ],
   "schema": 2

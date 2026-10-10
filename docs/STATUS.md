@@ -8,7 +8,7 @@ R3 release archives remain unchanged for rollback and audit history.
 | Capability | R4 status | Evidence / limit |
 |---|---|---|
 | Read-only native observation | QUALIFIED for pinned v1.3.1 selection | Exact executable/project/database identity, complete issue/dependency observation, strict diagnostics |
-| Durable native journal/recovery | QUALIFIED | CM NATIVE_INTENT/OUTCOME/UNKNOWN/RECONCILED, exactly-once recovery |
+| Durable native journal/recovery | QUALIFIED within observed pilot scope | CM journal and after-effect interruption reconciliation; OS kill inside the claim remains unverified |
 | Shared-project claim protocol | QUALIFIED | Run 37606183562: production adapter, one claim, readonly readback, idempotent repeat, CM chain/replay VERIFIED |
 | Generic native writes | NOT QUALIFIED | No create/close/delete/arbitrary update authority |
 | Native merge | NOT QUALIFIED | Fixture policy exists; real conflicting native merge is not a release claim |
@@ -71,3 +71,17 @@ native claim remain UNVERIFIED. The current pilot injects interruption after
 the native effect returns; it does not establish the during-command kill case.
 R5 runtime qualification, package release and installed promotion are not
 complete. Existing R4/knowledge packages and capability flags are unchanged.
+
+## Source/evidence reconciliation (2026-10-10)
+
+The supplied recovery excerpts identify an October 3 four-case proposal:
+missing requirement/source, failing check, Beads closure without evidence and a
+changed dependency after a passing run. The original native-M7 grouping remains
+unconfirmed; no original-comparison or R5 qualification pass is declared.
+
+Historical CI receipt archives for runs 37597856215 and 37606183562 were recovered
+from GitHub and their ZIP SHA-256 values matched the artifact digests. Receipt
+commands/events and scope were inspected. These are retained historical results,
+not new native executions, independent database replay or proof on the user host.
+The source correction and concrete next probes are in
+[the reconciliation report](fable/derived/r5-source-reconciliation.md).
