@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "scope": "DISPOSABLE_WINDOWS_NATIVE_PROBES",
+  "overall": "REAL_NATIVE_PROBES_COMPLETED",
+  "workflow": {
+    "run_id": 38063816470,
+    "job_id": 114247307057,
+    "commit": "0bd04d11bc6d71902d0f654d46d1f37c79c42afa",
+    "url": "https://github.com/onlyvictus-bit/skill/actions/runs/38063816470",
+    "conclusion": "success"
+  },
+  "artifact": {
+    "id": 11674445921,
+    "name": "r5-real-native-probes",
+    "zip_sha256": "613ad966014f304f17c9d6224f429f57c86eb6719c8e532d5c1f13a1171c3e87",
+    "zip_bytes": 54800,
+    "receipt_path": "docs/fable/evidence/native/r5-real-native-probes.json",
+    "receipt_sha256": "a92afa231fefb09699cb0c4ce650632e3c66ead33b8310433736b01a43b73daf"
+  },
+  "identity": {
+    "executable_sha256": "ac5b60114e5e7ef9de8878b45fc35941937341d3447366c99bc91c81557be7a4",
+    "helper_sha256": "05602412307b0e740d52cc9d6a97632849b059f2d4d697c2dbfe74c1c325cc65",
+    "helper_source_sha256": "0bf5a3449b2933e4747ca1c2dedea3242dadeb6c64210041d1d1b415c2b33411",
+    "platform": "win32",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "workflow_commit": "0bd04d11bc6d71902d0f654d46d1f37c79c42afa",
+    "default_lease_ttl_seconds": 300
+  },
+  "source_revision": "c1c4b642ac1c08d8c828007a1c2f96e47e43ef7c",
+  "command_count": 60,
+  "results": {
+    "claim": {
+      "issue_id": "launcher-542",
+      "owner": "r5actora",
+      "loser": "r5actorb",
+      "exactly_one_winner": true,
+      "race_loser_infrastructure_lock": false,
+      "competition_scope": "NATIVE_PROCESS_CLAIM_RACE",
+      "original_revision": "-8016546825410281260",
+      "lease_expires_at": "2026-10-10T15:39:23+00:00",
+      "refs": {
+        "race_a": 6,
+        "race_b": 5,
+        "read": 7,
+        "semantic_loser": 5,
+        "live_reclaim": 8
+      }
+    },
+    "compatible_merge": {
+      "base_head": "7punq4bm9ic2di20stv6mtb5am8tsrip",
+      "source_head": "fo9fnac15l6i0lfprd8tpjh91kkh0ac2",
+      "target_head": "cpgd8jc74b076qhhjmldn40lrj8oe1rn",
+      "result_head": "bin6448jbquel76p7fsvqfsgpeg814rn",
+      "both_changes_retained": true,
+      "source_branch": "r5probecompatible",
+      "refs": {
+        "fork_read": 16,
+        "source": 17,
+        "target": 22,
+        "result": 24,
+        "merge": 23,
+        "read_a": 25,
+        "read_b": 26
+      }
+    },
+    "native_conflict": {
+      "base_head": "bin6448jbquel76p7fsvqfsgpeg814rn",
+      "source_head": "u9k540l83l640omsr4cmc6i7lv5n4r7d",
+      "target_head": "toqcsjr5ml3nm9cu0uciddltumjnvdjf",
+      "result_head": "toqcsjr5ml3nm9cu0uciddltumjnvdjf",
+      "native_refused": true,
+      "target_and_source_preserved": true,
+      "partial_effects_observed": false,
+      "source_branch": "r5probeconflict",
+      "resolution_attempted": false,
+      "refs": {
+        "fork_read": 28,
+        "source": 29,
+        "target": 33,
+        "result": 38,
+        "merge": 37,
+        "read_source": 40,
+        "source_after": 41,
+        "export_before": 35,
+        "export_after": 43,
+        "status_before": 36,
+        "status_after": 42
+      }
+    },
+    "expiry": {
+      "lease_expires_at": "2026-10-10T15:39:23+00:00",
+      "observed_at": "2026-10-10T15:39:24.000153+00:00",
+      "elapsed_monotonic_seconds": 302.19579380000005,
+      "automatic_expiry_fence": "REFUTED",
+      "expired_conditional_write_allowed": true,
+      "refs": {
+        "before": 44,
+        "after": 46,
+        "write": 45,
+        "reclaim": 47,
+        "freed": 48
+      },
+      "reclaim_verified": true
+    },
+    "changed_owner": {
+      "stale_write_refused": true,
+      "before_head": "9qmisfpkt041hes7ci035ulq7e9ch7qb",
+      "after_head": "9qmisfpkt041hes7ci035ulq7e9ch7qb",
+      "new_owner": "r5actorb",
+      "old_owner": "r5actora",
+      "issue_unchanged": true,
+      "refs": {
+        "before": 50,
+        "after": 53,
+        "head_before": 51,
+        "head_after": 54,
+        "write": 52
+      }
+    },
+    "aba": {
+      "original_revision": "-8016546825410281260",
+      "new_revision": "-1377342343508996052",
+      "old_actor_status_token_allowed": true,
+      "generation_fence": "REFUTED",
+      "refs": {
+        "before": 57,
+        "after": 59,
+        "write": 58
+      }
+    }
+  },
+  "verification": {
+    "raw_receipt_reopened": true,
+    "artifact_digest_matched": true,
+    "repository_tests_passed": 19,
+    "root_tampering_variants_rejected": 10,
+    "independent_reviews": [
+      {
+        "reviewer": "expiry_review",
+        "verdict": "VERIFIED_WITH_CAVEATS",
+        "tampering_variants_rejected": 6
+      },
+      {
+        "reviewer": "conflict_review",
+        "verdict": "VERIFIED_WITH_CAVEATS",
+        "tampering_variants_rejected": 6
+      }
+    ]
+  },
+  "development_ci": {
+    "commit": "0bd04d11bc6d71902d0f654d46d1f37c79c42afa",
+    "repository_run": 38063816437,
+    "repository_jobs_passed": 8,
+    "optional_semantica_run": 38063819524,
+    "optional_ubuntu_jobs_passed": 2,
+    "optional_windows_jobs_failed": 2,
+    "failure": "Unchanged extracted knowledge package DistributedSession.close cleanup: WinError32 on temporary output file. Checkout runtime tests passed178 per Windows job; extracted-package suite failed1 of374. Not evidence for native probe failure or a clean full release."
+  },
+  "blocked_attempts": [
+    {
+      "run_id": 38062363017,
+      "receipt_path": "docs/fable/evidence/native/r5-native-probes-blocked-38062363017.json",
+      "receipt_sha256": "2ac64ad078ca6e047e38e1f68f9805b9e58b58c0aa39cf5786d0e6ea15f10828",
+      "counts_as_completed_probe": false
+    },
+    {
+      "run_id": 38062595748,
+      "receipt_path": "docs/fable/evidence/native/r5-native-probes-blocked-38062595748.json",
+      "receipt_sha256": "00c0dcb7ee72500a373601cf3dfa7f8616548cc0f90571461a2aff906bbd5864",
+      "counts_as_completed_probe": false
+    },
+    {
+      "run_id": 38063260511,
+      "receipt_path": "docs/fable/evidence/native/r5-native-probes-blocked-38063260511.json",
+      "receipt_sha256": "1b8c756072862453cab92186d9eddb53f6e294b93d582137406bbae62f92adbb",
+      "counts_as_completed_probe": false
+    }
+  ],
+  "native_beads_qualified": false,
+  "native_fencing_qualified": false,
+  "native_merge_qualified": false,
+  "shared_database_authorized": false
+}

@@ -357,17 +357,17 @@
       }
     },
     {
-      "id": "APP-R5-NATIVE-PROBES-001",
       "actor": "user",
       "approved": true,
       "approved_at": "2026-10-10T14:59:19.702488+00:00",
-      "scope": "R5-NATIVE-PROBES",
       "authorization": {
-        "source": "conversation",
-        "quote": "Finish complete real expiry/fencing and native-conflict probes"
+        "quote": "Finish complete real expiry/fencing and native-conflict probes",
+        "source": "conversation"
       },
+      "id": "APP-R5-NATIVE-PROBES-001",
       "plan_digest": "9a57c60c9a07d49ce86618b2076778134c873c24a3372fb7787374451f83c332",
       "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+      "scope": "R5-NATIVE-PROBES",
       "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607",
       "write_set_baseline": {
         "docs/fable/derived/r5-native-probes.md": "5fe0f25c8dd41291a1c5aaf2240f25efaf22c18dbda1fc4804b1933150d4f054",
@@ -376,6 +376,78 @@
         "docs/fable/requirements.json": "ec688f2310beaaf3bd28f2e20c80387337ee083e1e694ae7f6df1aa67f48a913",
         "docs/fable/specialists.json": "a1dd5c0e196abb56d4321e4ab1fc36295a3aca7371adffda07a8f726847db411",
         "docs/fable/tests.json": "aeacb737c3993335c386171cd9164b9568aecacd6e5a08589654a6698fd16f37"
+      }
+    },
+    {
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-10T15:22:43.369588+00:00",
+      "authorization": {
+        "quote": "Finish complete real expiry/fencing and native-conflict probes",
+        "source": "conversation"
+      },
+      "id": "APP-R5-NATIVE-PROBES-002",
+      "plan_digest": "7cc99d186240e52f311063163b414c786e435d918e6a6bb19480cf50b8631c6f",
+      "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+      "scope": "R5-NATIVE-PROBES",
+      "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607",
+      "write_set_baseline": {
+        "docs/fable/derived/r5-native-probes.md": "dad22b7f4fc730bdb4fad03e050d29df866704ac2b5fd0c0970318598e9f1fa8",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062363017.json": "2ac64ad078ca6e047e38e1f68f9805b9e58b58c0aa39cf5786d0e6ea15f10828",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062595748.json": "00c0dcb7ee72500a373601cf3dfa7f8616548cc0f90571461a2aff906bbd5864",
+        "docs/fable/plan.json": "c45ce1ef0f4c0554ae601ad60f0e5bf3cbb2824d88af14a49c8b8382fde3e5b6",
+        "docs/fable/specialists.json": "367a793049b7f6673df567a3675d72fc5a51cc5b8cfa1a85f6ab2ef669aedd03"
+      }
+    },
+    {
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-10T15:30:01.022659+00:00",
+      "authorization": {
+        "quote": "Finish complete real expiry/fencing and native-conflict probes",
+        "source": "conversation"
+      },
+      "id": "APP-R5-NATIVE-PROBES-003",
+      "plan_digest": "c80b55bce34e68dba5214928f484b2dc5079708009382a6343303af08fdb6fc4",
+      "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+      "scope": "R5-NATIVE-PROBES",
+      "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607",
+      "write_set_baseline": {
+        "docs/fable/approvals.json": "e7cdb47363c57bd109a3ddcb5f248b0d252ffeb8d8660c641241fbfe6abf0e08",
+        "docs/fable/derived/r5-native-probes.md": "9183cdc0bb5bb8fd08b82c8e586f94cc4fbe24fa8970159cd2312915d4f6121b",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062363017.json": "2ac64ad078ca6e047e38e1f68f9805b9e58b58c0aa39cf5786d0e6ea15f10828",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062595748.json": "00c0dcb7ee72500a373601cf3dfa7f8616548cc0f90571461a2aff906bbd5864",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38063260511.json": "1b8c756072862453cab92186d9eddb53f6e294b93d582137406bbae62f92adbb",
+        "docs/fable/plan.json": "460a8dad402deca869d40f6288dd3f4f50ff9c441cb93d587e0ef7d4a25b4398",
+        "docs/fable/specialists.json": "b8f4705044dfdf4eb0877544e2e7d0684e1bd150ab6472a200cc0113653afe9d",
+        "docs/fable/state.json": "cfffe2860e1581e619666609554ab21487a4cc6286d957e6bc6cb6753dfb489d"
+      }
+    },
+    {
+      "actor": "user",
+      "approved": true,
+      "approved_at": "2026-10-10T15:47:23.851656+00:00",
+      "authorization": {
+        "quote": "Finish complete real expiry/fencing and native-conflict probes",
+        "source": "conversation"
+      },
+      "id": "APP-R5-NATIVE-PROBES-004",
+      "plan_digest": "c80b55bce34e68dba5214928f484b2dc5079708009382a6343303af08fdb6fc4",
+      "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+      "scope": "R5-NATIVE-PROBES",
+      "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607",
+      "write_set_baseline": {
+        "docs/STATUS.md": "6b7fc4f9ff0ece7db96c00102b70ade07efa11a992bf0dc1481e8ff9fce077d4",
+        "docs/fable/approvals.json": "d481ad240091d11ca628f91a1353618644121056ae82cba39e48c20d5785d04a",
+        "docs/fable/derived/r5-native-probes-evidence.json": "b1eb3280907dde2f5eccd29fcbbf1f7ec2fcebe1c68413ee924471b6fe386d1a",
+        "docs/fable/derived/r5-native-probes.md": "3e1476d1ffc4862829386ca33b293872ba5c962e6ba367b5444c3a379c909028",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062363017.json": "2ac64ad078ca6e047e38e1f68f9805b9e58b58c0aa39cf5786d0e6ea15f10828",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062595748.json": "00c0dcb7ee72500a373601cf3dfa7f8616548cc0f90571461a2aff906bbd5864",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38063260511.json": "1b8c756072862453cab92186d9eddb53f6e294b93d582137406bbae62f92adbb",
+        "docs/fable/evidence/native/r5-real-native-probes.json": "a92afa231fefb09699cb0c4ce650632e3c66ead33b8310433736b01a43b73daf",
+        "docs/fable/plan.json": "460a8dad402deca869d40f6288dd3f4f50ff9c441cb93d587e0ef7d4a25b4398",
+        "docs/fable/specialists.json": "56c592ac8c81934931673f4436eb3eec9e662493e0c496e572565785c6bd6aaa",
+        "docs/fable/state.json": "fbfb9b0d0f2cd01c2cbfd0785197cc28f4198dfc1c4c01706b6d47a1b69e6dc2"
       }
     }
   ],

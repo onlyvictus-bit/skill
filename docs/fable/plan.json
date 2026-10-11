@@ -1,6 +1,6 @@
 {
   "milestone": "R5-NATIVE-PROBES",
-  "plan_id": "r5-native-probes-v1",
+  "plan_id": "r5-native-probes-v3",
   "schema": 2,
   "tasks": [
     {
@@ -554,7 +554,12 @@
         ".github/workflows/r5-native-probes.yml",
         "docs/fable/derived/r5-native-probes.md",
         "docs/fable/derived/r5-native-probes-evidence.json",
-        "docs/STATUS.md"
+        "docs/STATUS.md",
+        "docs/fable/intake-r5-native-probes.txt",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062363017.json",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062595748.json",
+        "docs/fable/evidence/native/r5-real-native-probes.json",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38063260511.json"
       ],
       "requirement_ids": [
         "R5-PROBE-EXPIRY",

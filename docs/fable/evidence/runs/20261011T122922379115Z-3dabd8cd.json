@@ -1,0 +1,48 @@
+{
+  "basis": {
+    "plan_digest": "c80b55bce34e68dba5214928f484b2dc5079708009382a6343303af08fdb6fc4",
+    "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+    "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607"
+  },
+  "created_at": "2026-10-11T12:29:22.379115+00:00",
+  "observations": [
+    {
+      "artifacts": [
+        ".github/scripts/r5_native_probe_helper.go",
+        ".github/scripts/r5_native_probes.py",
+        ".github/tests/test_r5_native_probes.py",
+        ".github/workflows/r5-native-probes.yml",
+        "docs/STATUS.md",
+        "docs/fable/derived/r5-native-probes-evidence.json",
+        "docs/fable/derived/r5-native-probes.md",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062363017.json",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38062595748.json",
+        "docs/fable/evidence/native/r5-native-probes-blocked-38063260511.json",
+        "docs/fable/evidence/native/r5-real-native-probes.json",
+        "docs/fable/intake-r5-native-probes.txt"
+      ],
+      "artifacts_digest": "c59dd7aee648d59d90c8c4f4a12864f4d953480fc47f669a2fd768f92f7f5fc2",
+      "basis": {
+        "plan_digest": "c80b55bce34e68dba5214928f484b2dc5079708009382a6343303af08fdb6fc4",
+        "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
+        "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607"
+      },
+      "criterion_ids": [
+        "R5-PROBE-MERGE-1"
+      ],
+      "evidence_type": "runtime",
+      "id": "EV-3def00e71fd64ed2a0e03bcb2aef58be",
+      "note": "Real compatible native merge retains changes/ancestry; real native same-cell conflict refused with observed HEAD/export/status/source preserved; no resolution.",
+      "observed_at": "2026-10-11T12:29:22.378404+00:00",
+      "observer": "Windows Actions38063816470, root reopen and independent expiry_review/conflict_review",
+      "requirement_ids": [
+        "R5-PROBE-MERGE"
+      ],
+      "result": "pass",
+      "source": "docs/fable/derived/r5-native-probes-evidence.json; docs/fable/evidence/native/r5-real-native-probes.json; https://github.com/onlyvictus-bit/skill/actions/runs/38063816470",
+      "test_id": "TEST-R5-PROBE-MERGE"
+    }
+  ],
+  "run_id": "20261011T122922379115Z-3dabd8cd",
+  "schema": 2
+}

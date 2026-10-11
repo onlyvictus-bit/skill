@@ -66,8 +66,9 @@ PARTIAL. The exact historical four-trap comparison was not recovered; four
 source-reconstructed candidates are explicitly provisional. That gap blocks
 claiming the original M7 comparison complete.
 
-Ownership/expiry fencing, real conflicting native merge and OS kill inside a
-native claim remain UNVERIFIED. The current pilot injects interruption after
+At the step-1 checkpoint, ownership/expiry fencing, real conflicting native
+merge and OS kill inside a native claim remained UNVERIFIED. See the later
+real-probe results below for the updated experiment status. The current pilot injects interruption after
 the native effect returns; it does not establish the during-command kill case.
 R5 runtime qualification, package release and installed promotion are not
 complete. Existing R4/knowledge packages and capability flags are unchanged.
@@ -85,3 +86,22 @@ commands/events and scope were inspected. These are retained historical results,
 not new native executions, independent database replay or proof on the user host.
 The source correction and concrete next probes are in
 [the reconciliation report](fable/derived/r5-source-reconciliation.md).
+
+## Real native expiry and conflict probes (2026-10-10)
+
+[The real disposable Windows probes are complete](fable/derived/r5-native-probes.md).
+Run 38063816470 retained 60 native command transcripts. Actual 302-second expiry
+and scoped reclaim passed; changed-owner conditional writes were refused without
+issue/HEAD changes. Compatible native merge retained both changes; a real
+same-cell conflict was refused with observed HEAD/export/status/source preserved.
+
+Automatic expiry fencing and generation fencing are **REFUTED**: an expired
+owner could write before reclaim, and an old actor/status guard could write after
+an ABA ownership cycle. Full native fencing and release-level native merge
+qualification remain false. This completion is for the experiments; R5 release,
+original M7 comparison, during-command kill recovery and installed promotion
+remain unfinished. The manifest and full raw/blocked receipts are retained in Git.
+
+Eight repository CI jobs passed at the probe code commit. Optional Semantica CI
+had two Ubuntu passes and two Windows extracted-package cleanup failures
+(WinError32 in unchanged DistributedSession.close); full release CI is not claimed.

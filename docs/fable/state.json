@@ -1,6 +1,6 @@
 {
   "basis": {
-    "plan_digest": "9a57c60c9a07d49ce86618b2076778134c873c24a3372fb7787374451f83c332",
+    "plan_digest": "c80b55bce34e68dba5214928f484b2dc5079708009382a6343303af08fdb6fc4",
     "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
     "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607"
   },
@@ -12,11 +12,14 @@
     "R5-STEP1-CONTINUITY",
     "R5-RECONCILE-SOURCE",
     "R5-RECONCILE-PROOF",
-    "R5-RECONCILE-NEXT"
+    "R5-RECONCILE-NEXT",
+    "R5-PROBE-EXPIRY",
+    "R5-PROBE-MERGE",
+    "R5-PROBE-BOUNDARY"
   ],
   "current_task": "TASK-R5-NATIVE-PROBES",
   "milestone": "R5-NATIVE-PROBES",
-  "next_action": "Implement strict real native probe harness; run pinned Windows expiry and conflict experiments and retain negative guarantees without promotion.",
-  "phase": "execute",
+  "next_action": "Publish scoped completed probes and verify exact-head CI. Full native expiry/generation fencing remains REFUTED; atomic lease/generation enforcement at actual effect/acceptance is future production work. Windows extracted Semantica package cleanup defect remains unresolved.",
+  "phase": "verify",
   "schema": 2
 }
