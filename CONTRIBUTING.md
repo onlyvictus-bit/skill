@@ -17,3 +17,24 @@ Native/Beads milestones and acceptance gates live in that plan summary.
    for releases; land feature work on `development/*` branches.
 5. Do not commit caches (`__pycache__`, `.pytest_cache`, `*.pyc`), databases,
    pilot workspaces, or secrets. CI rejects them.
+
+## Commit records and one-commit-at-a-time publication
+
+Each change must include a detailed Markdown record under `docs/changes/` using
+`YYYY-MM-DD-topic.md`, with a link from `CHANGELOG.md`. Record the exact added,
+updated or deleted paths, what changed and why, checks actually observed,
+evidence/CI identifiers, limitations and remaining work. Treat these notes as
+derived change history; `docs/fable/` remains the project control plane.
+
+Use a scoped commit message such as `docs(native-probes): describe the change`.
+Stage only the intended files, inspect the staged diff and create one commit.
+Before each push, fetch/recheck the destination branch and confirm that the range
+from its current remote head to the proposed head contains exactly one new
+commit. Push that single commit, verify the resulting remote SHA/tree, then
+proceed to the next commit. Use development branches for feature work; promotion
+to `main` follows existing release rules or explicit user authorization.
+
+Do not batch several unpushed commits, rewrite already published history or
+force push to satisfy this rule. If the destination head changes, preserve the
+newer work and reconcile before retrying. Never describe a triggered but pending
+CI run as passed; attach a later observation separately.

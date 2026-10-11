@@ -1,5 +1,12 @@
 # Changelog
 
+## Native probe evidence and publication notes - 2026-10-11
+
+- Adds real disposable Windows expiry/reclaim, changed-owner fencing, compatible merge and same-cell native-conflict probes with retained raw evidence.
+- Records that automatic expiry fencing and generation fencing are refuted; broad native qualification and R5 release remain unfinished.
+- Adds a [detailed change record](docs/changes/2026-10-11-native-probes.md) listing every added/updated path, ordered commits, exact evidence, final CI results and remaining work.
+- Documents one-commit-at-a-time publication in `CONTRIBUTING.md`; preserves existing commit history, skill packages and release archives.
+
 ## Knowledge bridge / 1.1.0 - 2026-10-08
 
 - Completes the offline coding workflow with exact-byte automatic AST extraction, narrowly scoped real Semantica relationship extraction, automatic lexical/LSA/hybrid retrieval and project-2 typed SHACL.
