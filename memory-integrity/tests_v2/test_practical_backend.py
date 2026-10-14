@@ -246,34 +246,40 @@ class PracticalBackendTests(unittest.TestCase):
         with self.assertRaises(practical_backend.PracticalUncertainDelivery):
             practical_backend.PracticalBackend(self.selected, runner=malformed).read_dependencies("mip-42")
 
-    def test_title_dispatches_exactly_one_bounded_dolt_sql_session_and_reports_working_set_only(self):
-        result = self.backend.guarded_title(title())
-        self.assertEqual(result["status"], "WORKING_SET_APPLIED")
-        self.assertFalse(result["head_committed"])
-        self.assertEqual(len(self.runner.calls), 1)
-        argv, batch, timeout, cwd = self.runner.calls[0]
-        self.assertEqual(argv[0], SELECTION["dolt_executable"])
-        self.assertEqual(argv[1:9], ("--host", "127.0.0.1", "--port", "3306", "--no-tls", "--use-db", "beads_scratch", "--branch"))
-        self.assertEqual(argv[9], "main")
-        self.assertEqual(argv[10:14], ("sql", "-r", "json", "-q"))
-        self.assertEqual(timeout, practical_backend.SQL_TIMEOUT_SECONDS)
-        self.assertEqual(cwd, SELECTION["scratch_root"])
-        self.assertIn("START TRANSACTION", argv[-1])
+    def test_stopped_v1_entry_points_stay_stopped_before_lease_dispatch(self):
+        # The reviewed-invalid v1 predecessor is deliberately stopped
+        # (practical-resume-20261014.md:30; WIP record:63). It must not be
+        # re-enabled to make old fixtures green: every v1 mutation entry
+        # point refuses before any process can start.
+        calls = (
+            ("transition", lambda: self.backend.transition(transition())),
+            ("guarded_title", lambda: self.backend.guarded_title(title())),
+            ("initial_claim", lambda: self.backend.initial_claim(initial_claim())),
+            ("expired_reacquire", lambda: self.backend.expired_reacquire(expired_reacquire())),
+        )
+        for name, call in calls:
+            with self.subTest(entry=name):
+                with self.assertRaisesRegex(practical_contract.PracticalContractError,
+                                            "E_PRACTICAL_LEASE_REVISION_REQUIRED"):
+                    call()
+        self.assertEqual(self.runner.calls, [])
 
-    def test_operation_rebinding_and_uncertain_delivery_never_retry_a_write(self):
-        first = self.backend.guarded_title(title())
-        self.assertEqual(first["status"], "WORKING_SET_APPLIED")
-        with self.assertRaises(practical_contract.PracticalContractError):
-            self.backend.guarded_title(title(title="different title"))
-        self.assertEqual(len(self.runner.calls), 1)
-
-        uncertain = practical_backend.PracticalBackend(
-            self.selected, runner=RecordingRunner(stdout=b"", returncode=1))
+    def test_operation_identity_is_never_rebound_and_unknown_never_retries(self):
+        # Transport-neutral seal both the stopped predecessor and the lease
+        # successor rely on: the same operation id cannot be rebound to a new
+        # digest, and an uncertain operation is never retried. Exactly-one
+        # bounded dispatch on the lease path is proven in-flight by
+        # test_practical_lease_backend.py::test_exact_receipt_one_dispatch_is_not_native_qualification
+        # (uncommitted), so it is cited, not duplicated, here.
+        request = title(operation_id="op-seal-1")
+        self.assertIsNone(self.backend._remember_or_refuse(
+            request["operation_id"], request["command_digest"]))
+        with self.assertRaisesRegex(practical_contract.PracticalContractError,
+                                    "E_PRACTICAL_OPERATION_REBIND"):
+            self.backend._remember_or_refuse(request["operation_id"], "b" * 64)
         with self.assertRaises(practical_backend.PracticalUncertainDelivery):
-            uncertain.guarded_title(title(operation_id="op-uncertain"))
-        with self.assertRaises(practical_backend.PracticalUncertainDelivery):
-            uncertain.guarded_title(title(operation_id="op-uncertain"))
-        self.assertEqual(len(uncertain._runner.calls), 1)
+            self.backend._remember_or_refuse(request["operation_id"], request["command_digest"])
+        self.assertEqual(self.runner.calls, [])
 
     def test_operation_readback_is_bound_to_operation_id_and_digest_not_reused_title_or_status(self):
         request = title()

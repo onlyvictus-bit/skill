@@ -21,6 +21,7 @@ SELECTION = {
     "dolt_sha256": "a" * 64, "host": "127.0.0.1", "port": 3306,
     "database": "beads_scratch", "main_branch": "main",
     "incarnation": "scratch-incarnation-20261013",
+    "native_node_id": "practical-scratch-node-1",
     "candidate_route": "APPROVED_SCRATCH_PRACTICAL_CONTRACT",
 }
 
@@ -103,11 +104,24 @@ class PracticalConsumerTests(unittest.TestCase):
         ledger.create_work_item(self.db, "cm-work-17", "task", "source")
         ledger.coordination_put(self.db, "cm-work-17", {"registered": True})
         self.backend = offline_backend()
-        self.consumer = practical_consumer.PracticalNativeConsumer(self.db, self.backend)
 
     def tearDown(self):
         self.db.close()
 
+    def test_stopped_v1_consumer_constructor_stays_stopped(self):
+        # The v1 consumer is deliberately stopped pending the real lease-v2
+        # replacement (practical-resume-20261014.md:30): construction refuses
+        # before any reader registration, so no injected predecessor runner
+        # can register a fabricated native proof path. The gate precedes the
+        # concrete-type check, which the refusal below documents.
+        with self.assertRaisesRegex(practical_consumer.PracticalConsumerError,
+                                    "E_PRACTICAL_REVISION_STOPPED"):
+            practical_consumer.PracticalNativeConsumer(self.db, self.backend)
+        with self.assertRaisesRegex(practical_consumer.PracticalConsumerError,
+                                    "E_PRACTICAL_REVISION_STOPPED"):
+            practical_consumer.PracticalNativeConsumer(self.db, object())
+
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED); winner/readback intent covered in-flight by test_practical_lease_backend.py::test_exact_receipt_one_dispatch_is_not_native_qualification (uncommitted)")
     def test_dispatch_uses_winner_reservation_then_real_operation_readback(self):
         req = request()
         self.backend.receipt = backend_receipt(self.backend, req)
@@ -117,6 +131,7 @@ class PracticalConsumerTests(unittest.TestCase):
         self.assertEqual(self.backend.reads, 1)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0], 1)
 
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED); readback-only recovery intent covered in-flight by test_practical_lease_backend.py::test_new_backend_and_reused_capability_cannot_repeat_mutation and test_readback_has_no_mutation_and_missing_is_unknown (uncommitted)")
     def test_loser_and_recovery_do_readback_only_never_replay_mutation(self):
         req = request()
         self.backend.receipt = backend_receipt(self.backend, req)
@@ -129,6 +144,7 @@ class PracticalConsumerTests(unittest.TestCase):
         self.assertEqual(self.backend.dispatched, 1)
         self.assertEqual(self.backend.reads, 1)
 
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED); unknown-on-error intent covered in-flight by test_practical_lease_backend.py::test_foreign_receipt_becomes_unknown_never_applied (uncommitted)")
     def test_backend_error_marks_unknown_and_never_retries_dispatch(self):
         req = request()
         self.backend.fail_dispatch = RuntimeError("lost response")
@@ -139,6 +155,7 @@ class PracticalConsumerTests(unittest.TestCase):
         self.assertFalse(again["inserted"])
         self.assertEqual(self.backend.dispatched, 1)
 
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED); no committed v2 consumer exists yet, so the stale-grant prerequisite has no committable target; prerequisite checks move to the lease-bound execute path (uncommitted practical_lease_backend.py), P3 decision pending")
     def test_current_backend_prerequisite_refuses_stale_grant_before_dispatch(self):
         req = request()
         stale = self.backend.read_grant
@@ -148,6 +165,7 @@ class PracticalConsumerTests(unittest.TestCase):
         self.assertEqual(self.backend.dispatched, 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_INTENT'").fetchone()[0], 0)
 
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED); no committed v2 consumer exists yet; changed-grant refusal moves to the lease-bound execute path (uncommitted practical_lease_backend.py), P3 decision pending")
     def test_historical_applied_event_cannot_authorize_later_changed_grant(self):
         req = request()
         self.backend.receipt = backend_receipt(self.backend, req)
@@ -162,6 +180,7 @@ class PracticalConsumerTests(unittest.TestCase):
         self.assertEqual(self.backend.reads, reads_before)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0], 1)
 
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED); compact-readback refusal intent covered in-flight by test_practical_lease_backend.py::test_foreign_receipt_becomes_unknown_never_applied (uncommitted)")
     def test_foreign_or_compact_readback_cannot_seal_success(self):
         req = request()
         self.backend.receipt = {"operation_id": req["operation_id"],
@@ -171,6 +190,7 @@ class PracticalConsumerTests(unittest.TestCase):
             self.consumer.dispatch_guarded_title(req)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0], 0)
 
+    @unittest.skip("v1 consumer stopped (E_PRACTICAL_REVISION_STOPPED precedes the concrete-type check, locked by the gate test above); injection rejection covered in-flight by test_practical_lease_backend.py::test_public_constructor_rejects_injected_runner (uncommitted)")
     def test_non_concrete_backend_and_direct_success_payload_fail_closed(self):
         with self.assertRaisesRegex(practical_consumer.PracticalConsumerError, "E_PRACTICAL_BACKEND"):
             practical_consumer.PracticalNativeConsumer(self.db, object())

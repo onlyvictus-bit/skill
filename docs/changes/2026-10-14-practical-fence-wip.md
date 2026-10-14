@@ -61,3 +61,15 @@ Pre-commit checks include Git whitespace/diff inspection, exact archive hash ver
 See [the exact resume record](../fable/derived/practical-resume-20261014.md). Required work includes the real v2 schema/assertion routine, DB-minted300-second lease transitions, sealed native transport, full lease-bound CM consumer/CLI and verified dependency observations, native race/heartbeat/ABA/interruption/recovery proof, independent adversarial review, regression closure and matching final packages. Helper/reviewer agents stopped on workspace agent-credit exhaustion; their partial findings are not final approval.
 
 Keep all qualification flags false. Do not install this candidate. Leave existing installations and old releases in place as the non-destructive rollback path. The stopped predecessor must not be re-enabled simply to make old fixtures green, and packing lists must not be regenerated to disguise unfinished behavior. Publication/push and installed replacement still require separate human approval.
+
+## CI triage record — 14 October 2026 (afternoon, uncommitted)
+
+Hosted CI on pushed HEAD `c6bde65` (run 38547854075, ubuntu 3.11) reported `Ran 427 tests: FAILED (failures=2, errors=10, skipped=54, expected failures=1)`. Disposition of all 12, resolved locally per file:
+
+- `test_practical_consumer.py` SELECTION fixture repaired (added the contract-required `native_node_id`, assertions untouched); the 7 errors underneath were the deliberate v1 consumer STOPPED gate, so the file now holds 1 gate lock-in test (`test_stopped_v1_consumer_constructor_stays_stopped`) and 7 skips with explicit reasons (each names its in-flight v2 coverage or the missing committable target).
+- `test_practical_backend.py` 2 errors were the deliberate v1 STOPPED gate (original to `adbbe1b`, gates kept); the tests now lock the gate (`test_stopped_v1_entry_points_stay_stopped_before_lease_dispatch`) and the shared operation seal (`test_operation_identity_is_never_rebound_and_unknown_never_retries`). File: 12 tests OK.
+- `test_practical_cli.py` 2 failures are already green in this tree via the in-flight `practical-title` work (9 tests OK); that work is another worker's uncommitted surface and was not touched.
+- `test_preservation.py` 1 failure is manifest drift, deferred to closure regeneration per plan (regenerating now would certify unfinished WIP).
+- The `ValueError: bad companion` BLOCKED verdict in the log is a negative-path test working as designed (`test_m7_native_pilot.py:333`), not a failure.
+
+Re-targeting the 9 stopped tests at the real v2 transport is blocked on other workers committing their surfaces: the lease backend pins `DOLT_PIN ca21a9d1…` (unreconciled with verified dolt v2.4.2 `317526a9…`), depends on the uncommitted ledger `consume_practical_native_dispatch`, and its tests are uncommitted. Tracked tests cannot import untracked modules (CI checks out committed code only). The P3 no-deletion decision (options a/b/c in the reviewer's plan) is still owed by the human and shapes the v2 consumer path.
