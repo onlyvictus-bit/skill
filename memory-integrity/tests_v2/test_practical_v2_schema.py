@@ -106,6 +106,45 @@ class CorrespondenceTests(unittest.TestCase):
         self.assertIn('dolt_ignore', mod().v2_schema_sql().lower())
 
 
+class LeaseLiveVerificationTests(unittest.TestCase):
+    def test_initial_claim_verifies_live_lease_row(self):
+        sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
+                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            **LEASE_SNAPSHOT,
+                                            selection_digest='b' * 64,
+                                            native_node_id='practical-approved-scratch-only')
+        self.assertIn('FROM leases', sql)
+        self.assertIn('E_MI2_LEASE_MISMATCH', sql)
+        self.assertIn('lease_expires_at > @mi2_auth', sql)
+
+    def test_reassign_verifies_new_lease_live(self):
+        sql = mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
+                                       'grant-new-8', 'bob', '2026-10-20 12:00:00',
+                                       **LEASE_SNAPSHOT)
+        self.assertIn('FROM leases', sql)
+        self.assertIn('E_MI2_LEASE_MISMATCH', sql)
+
+    def test_heartbeat_guard_refuses_dead_leases_without_mutation(self):
+        sql = mod().verify_heartbeat_sql('store-1', 'task-9', 'alice',
+                                         'practical-approved-scratch-only')
+        for text in ('FROM leases', 'lease_expires_at > @mi2_auth',
+                     'E_MI2_HEARTBEAT'):
+            self.assertIn(text, sql)
+        for forbidden in ('INSERT ', 'UPDATE ', 'DELETE ', 'UpsertLease',
+                          're-arm', 'rearm'):
+            self.assertNotIn(forbidden, sql)
+
+    def test_liveness_uses_db_clock_never_caller_now(self):
+        sql = mod().verify_heartbeat_sql('store-1', 'task-9', 'alice',
+                                         'practical-approved-scratch-only')
+        self.assertIn('UTC_TIMESTAMP()', sql)
+
+    def test_heartbeat_malformed_inputs_refuse(self):
+        with self.assertRaises(ValueError):
+            mod().verify_heartbeat_sql('store-1', '', 'alice',
+                                       'practical-approved-scratch-only')
+
+
 class V2SchemaTests(unittest.TestCase):
     def test_v2_schema_creates_grant_history_metadata_token_operations(self):
         sql = mod().v2_schema_sql()

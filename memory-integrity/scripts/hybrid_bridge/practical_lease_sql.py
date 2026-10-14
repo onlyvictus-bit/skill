@@ -82,6 +82,19 @@ def _transition_prologue():
             'SET @mi2_auth = UTC_TIMESTAMP();']
 
 
+def _lease_live_assert(task, holder, node, granted, expiry, heartbeat):
+    """The supplied lease snapshot must equal a live native lease row at DB
+    authorization time. Liveness is DB-clock compared; no caller now value."""
+    return [
+        "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM leases AS l "
+        'WHERE l.issue_id = ' + task + ' AND l.holder = ' + holder
+        + ' AND l.granted_node = ' + node + ' AND l.granted_at = ' + granted
+        + ' AND l.lease_expires_at = ' + expiry + ' AND l.heartbeat_at = ' + heartbeat
+        + ' AND l.lease_expires_at > @mi2_auth'
+        + ") = 1, 'E_MI2_LEASE_MISMATCH');",
+    ]
+
+
 def _transition_epilogue():
     return ['COMMIT;']
 
@@ -123,6 +136,9 @@ def initial_claim_grant_sql(store_incarnation, task_id, actor, new_grant_id,
         "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
         'WHERE store_incarnation = ' + incarnation + ' AND grant_id = ' + grant
         + ") = 0, 'E_MI2_GRANT_REUSE');",
+    ])
+    statements.extend(_lease_live_assert(task, who, node, granted, expiry, heartbeat))
+    statements.extend([
         'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
         'status,fixed_deadline_utc,issue_revision,tombstoned,'
         'lease_node,lease_granted_at,lease_expiry,lease_heartbeat) VALUES ('
@@ -175,6 +191,9 @@ def reassign_grant_sql(store_incarnation, task_id, prior_grant_id, new_grant_id,
         "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
         'WHERE store_incarnation = ' + incarnation + ' AND grant_id = ' + grant
         + ") = 0, 'E_MI2_GRANT_REUSE');",
+    ])
+    statements.extend(_lease_live_assert(task, who, node, granted, expiry, heartbeat))
+    statements.extend([
         'UPDATE mi_practical_v2_grants SET tombstoned = 1 WHERE store_incarnation = '
         + incarnation + ' AND grant_id = ' + prior + ' AND task_id = ' + task
         + ' AND tombstoned = 0;',
@@ -232,6 +251,29 @@ def release_grant_sql(store_incarnation, task_id, grant_id, at_utc):
 def reclaim_grant_sql(store_incarnation, task_id, grant_id, at_utc):
     """Expiry reclaim: tombstone plus history. Bytes retained, never deleted."""
     return _retire_grant_sql('RECLAIMED', store_incarnation, task_id, grant_id, at_utc)
+
+
+def verify_heartbeat_sql(store_incarnation, task_id, holder, node):
+    """Heartbeat liveness verification only: asserts exactly one live native
+    lease row for this holder on this node at DB authorization time. Emits no
+    INSERT, UPDATE or DELETE and never re-arms anything: a missing, expired,
+    foreign or mismatched lease refuses here instead of falling back."""
+    _name(store_incarnation, 'store_incarnation')
+    task = _text(_name(task_id, 'task_id'))
+    who = _text(_name(holder, 'holder'))
+    where = _text(_name(node, 'node'))
+    statements = _transition_prologue()
+    statements.append(
+        "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM leases AS l "
+        'WHERE l.issue_id = ' + task + ' AND l.holder = ' + who
+        + ' AND l.granted_node = ' + where + ' AND l.lease_expires_at > @mi2_auth'
+        + ") = 1, 'E_MI2_HEARTBEAT');")
+    statements.append(
+        'SELECT l.issue_id,l.holder,l.granted_node,l.lease_expires_at FROM leases AS l '
+        'WHERE l.issue_id = ' + task + ' AND l.holder = ' + who
+        + ' AND l.granted_node = ' + where + ' AND l.lease_expires_at > @mi2_auth;')
+    statements.extend(_transition_epilogue())
+    return '\n'.join(statements)
 
 
 def _title_batch(selection, request, pause_seconds=None):
