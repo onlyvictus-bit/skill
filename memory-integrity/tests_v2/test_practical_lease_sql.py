@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest
 from tests_v2.test_practical_lease_contract import packet
+from tests_v2.test_practical_lease_issuer import claim_packet
 
 
 class LeaseSQL(unittest.TestCase):
@@ -58,6 +59,38 @@ class LeaseSQL(unittest.TestCase):
         self.assertLess(sql.index('DO SLEEP(20)'), sql.index('UPDATE issues'))
         with self.assertRaises(ValueError):
             self.sql.experiment_guarded_title_sql(self.selection, self.request, pause_seconds='20; DROP TABLE x')
+
+    def test_initial_claim_requires_the_db_current_pointer_before_title_use(self):
+        sql = self.sql.initial_claim_sql(self.selection, claim_packet())
+        self.assertIn('mi_practical_v2_current_grants', self.sql.v2_schema_sql())
+        self.assertIn('INSERT INTO mi_practical_v2_current_grants', sql)
+        guarded = self.sql.guarded_title_sql(self.selection, self.request)
+        self.assertIn('JOIN mi_practical_v2_current_grants AS c', guarded)
+        self.assertIn('c.grant_id = g.grant_id', guarded)
+        self.assertIn('UPDATE mi_practical_v2_current_grants SET current_revision = @mi2_token', guarded)
+
+    def test_title_compares_stored_deadline_and_exact_registered_database_branch(self):
+        guarded = self.sql.guarded_title_sql(self.selection, self.request)
+        self.assertIn('g.fixed_deadline_utc = l.lease_expires_at', guarded)
+        self.assertIn('m.selected_database = ', guarded)
+        self.assertIn('m.selected_main_branch = ', guarded)
+        self.assertIn('DATABASE() IN (', guarded)
+
+    def test_title_uses_microsecond_authorization_and_explicit_error_handler(self):
+        guarded = self.sql.guarded_title_sql(self.selection, self.request)
+        self.assertIn('SET @mi2_auth = UTC_TIMESTAMP(6);', guarded)
+        self.assertNotIn('SET @mi2_auth = UTC_TIMESTAMP();', guarded)
+        self.assertIn('BEGIN NOT ATOMIC', guarded)
+        self.assertIn('DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; RESIGNAL; END;', guarded)
+        self.assertLess(guarded.index('BEGIN NOT ATOMIC'), guarded.index('START TRANSACTION;'))
+        self.assertLess(guarded.index('COMMIT;'), guarded.rindex('END;'))
+
+    def test_title_predicates_use_binary_exact_owner_node_and_grant_comparisons(self):
+        guarded = self.sql.guarded_title_sql(self.selection, self.request)
+        for predicate in ('BINARY l.holder = BINARY ', 'BINARY l.granted_node = BINARY ',
+                          'BINARY g.grant_id = BINARY ', 'BINARY g.actor = BINARY i.assignee',
+                          'BINARY assignee = BINARY '):
+            self.assertIn(predicate, guarded)
 
 
 if __name__ == '__main__':

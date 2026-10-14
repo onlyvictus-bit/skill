@@ -2,6 +2,7 @@
 """Central, append-only companion audit ledger (schema 4)."""
 import hashlib
 import json
+import re
 import sqlite3
 import time
 import uuid
@@ -162,10 +163,15 @@ _PRACTICAL_BINDING_FIELDS = (
     "original_row_lock", "fixed_deadline", "command_digest",
     "backend_operation_id",
 )
+_PRACTICAL_LEASE_FIELDS = (
+    "lease_holder", "lease_granted_node", "lease_granted_at_utc",
+    "lease_expires_at_utc", "lease_heartbeat_at_utc",
+)
+_PRACTICAL_BINDING_V2_FIELDS = _PRACTICAL_BINDING_FIELDS + _PRACTICAL_LEASE_FIELDS
 _PRACTICAL_DIGEST_FIELDS = ("selection_digest", "command_digest")
 _PRACTICAL_KINDS = (
-    "PRACTICAL_NATIVE_INTENT", "PRACTICAL_NATIVE_APPLIED",
-    "PRACTICAL_NATIVE_UNKNOWN",
+    "PRACTICAL_NATIVE_INTENT", "PRACTICAL_NATIVE_DISPATCHED",
+    "PRACTICAL_NATIVE_APPLIED", "PRACTICAL_NATIVE_UNKNOWN",
 )
 _PRACTICAL_OWNER_SEAL = object()
 _PRACTICAL_READER_SEAL = object()
@@ -178,10 +184,12 @@ def _practical_sha(value):
 
 def _practical_binding(value):
     """Validate and canonicalize the complete immutable practical basis."""
-    if not isinstance(value,dict) or set(value) != set(_PRACTICAL_BINDING_FIELDS):
+    if not isinstance(value,dict) or set(value) not in (
+            set(_PRACTICAL_BINDING_FIELDS), set(_PRACTICAL_BINDING_V2_FIELDS)):
         raise LedgerError("E_PRACTICAL_BINDING: exact immutable binding fields required")
     out=dict(value)
-    for field in _PRACTICAL_BINDING_FIELDS:
+    fields = _PRACTICAL_BINDING_V2_FIELDS if set(out) == set(_PRACTICAL_BINDING_V2_FIELDS) else _PRACTICAL_BINDING_FIELDS
+    for field in fields:
         if field == "original_row_lock":
             continue
         if not isinstance(out[field],str) or not out[field].strip():
@@ -207,6 +215,27 @@ def _practical_binding(value):
             parsed=datetime.strptime(deadline,"%Y-%m-%d %H:%M:%S.%f")
     except ValueError as exc:
         raise LedgerError("E_PRACTICAL_BINDING: fixed_deadline must be a recognized UTC timestamp") from exc
+    if fields == _PRACTICAL_BINDING_V2_FIELDS:
+        lease_times={}
+        for field in ("lease_granted_at_utc", "lease_expires_at_utc", "lease_heartbeat_at_utc"):
+            value=out[field]
+            # The protected backend records database UTC DATETIME bytes, not a
+            # converted client/RFC3339 representation.  Bind those original
+            # bytes exactly, while requiring a whole-second native lease.
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}",value):
+                raise LedgerError("E_PRACTICAL_BINDING: %s must be a pinned-second native UTC timestamp" % field)
+            try:
+                lease_times[field]=datetime.strptime(value,"%Y-%m-%d %H:%M:%S.%f")
+            except ValueError as exc:
+                raise LedgerError("E_PRACTICAL_BINDING: %s must be a valid UTC calendar time" % field) from exc
+            if lease_times[field].microsecond != 0:
+                raise LedgerError("E_PRACTICAL_BINDING: %s must be pinned to a whole second" % field)
+        if out["actor"] != out["lease_holder"]:
+            raise LedgerError("E_PRACTICAL_BINDING: actor must equal the lease holder")
+        if out["fixed_deadline"] != out["lease_expires_at_utc"]:
+            raise LedgerError("E_PRACTICAL_BINDING: fixed deadline must equal lease expiry")
+        if not (lease_times["lease_granted_at_utc"] <= lease_times["lease_heartbeat_at_utc"] < lease_times["lease_expires_at_utc"]):
+            raise LedgerError("E_PRACTICAL_BINDING: lease times must satisfy granted <= heartbeat < expiry")
     return out
 
 
@@ -221,12 +250,12 @@ def _practical_detail(row):
 
 
 def _practical_validate_receipt(binding, receipt):
-    if not isinstance(receipt,dict) or set(receipt) != set(_PRACTICAL_BINDING_FIELDS + ("observed_state",)):
+    if not isinstance(receipt,dict) or set(receipt) != set(binding) | {"observed_state"}:
         raise LedgerError("E_PRACTICAL_RECEIPT: exact readback receipt fields required")
     observed=receipt.get("observed_state")
     if observed not in ("WORKING_SET_APPLIED", "UNKNOWN", "MISSING", "HEAD"):
         raise LedgerError("E_PRACTICAL_RECEIPT: unsupported observed state")
-    receipt_binding={field:receipt[field] for field in _PRACTICAL_BINDING_FIELDS}
+    receipt_binding={field:receipt[field] for field in binding}
     if _canon(_practical_binding(receipt_binding)) != _canon(binding):
         raise LedgerError("E_PRACTICAL_RECEIPT: readback result is foreign to the durable intent")
     return dict(receipt)
@@ -258,6 +287,9 @@ def _validate_practical_history(rows):
             if existing and existing != binding["operation_id"]:
                 raise LedgerError("E_PRACTICAL_HISTORY: backend operation identity is reused")
             backend_operations[binding["backend_operation_id"]]=binding["operation_id"]
+        elif row["kind"] == "PRACTICAL_NATIVE_DISPATCHED":
+            if set(detail)!={"binding"}:
+                raise LedgerError("E_PRACTICAL_HISTORY: dispatched detail changed")
         elif row["kind"] == "PRACTICAL_NATIVE_APPLIED":
             if set(detail)!={"binding","receipt"}:
                 raise LedgerError("E_PRACTICAL_HISTORY: applied detail changed")
@@ -278,21 +310,29 @@ def _validate_practical_history(rows):
         if first["kind"] != "PRACTICAL_NATIVE_INTENT":
             raise LedgerError("E_PRACTICAL_HISTORY: operation has no leading intent")
         durable=_canon(binding)
-        if len(events)>3:
+        if len(events)>4:
             raise LedgerError("E_PRACTICAL_HISTORY: operation has extra transitions")
         for index,(row,current) in enumerate(events):
             if _canon(current)!=durable:
                 raise LedgerError("E_PRACTICAL_HISTORY: immutable binding changed")
-            if index and row["kind"] not in ("PRACTICAL_NATIVE_APPLIED","PRACTICAL_NATIVE_UNKNOWN"):
-                raise LedgerError("E_PRACTICAL_HISTORY: invalid practical transition")
-            if index == 2 and (events[1][0]["kind"] != "PRACTICAL_NATIVE_UNKNOWN" or
-                               row["kind"] != "PRACTICAL_NATIVE_APPLIED"):
-                raise LedgerError("E_PRACTICAL_HISTORY: only UNKNOWN may reconcile to APPLIED")
+        kinds=[row["kind"] for row,_ in events]
+        if "PRACTICAL_NATIVE_DISPATCHED" in kinds:
+            if len(kinds)<2 or kinds[1] != "PRACTICAL_NATIVE_DISPATCHED" or \
+                    kinds.count("PRACTICAL_NATIVE_DISPATCHED") != 1:
+                raise LedgerError("E_PRACTICAL_HISTORY: dispatch must occur exactly once after intent")
+            terminals=kinds[2:]
+        else:
+            terminals=kinds[1:]
+        if any(kind not in ("PRACTICAL_NATIVE_APPLIED","PRACTICAL_NATIVE_UNKNOWN") for kind in terminals):
+            raise LedgerError("E_PRACTICAL_HISTORY: invalid practical transition")
+        if len(terminals)>2 or (len(terminals)==2 and terminals != ["PRACTICAL_NATIVE_UNKNOWN","PRACTICAL_NATIVE_APPLIED"]):
+            raise LedgerError("E_PRACTICAL_HISTORY: only UNKNOWN may reconcile to APPLIED")
 
 
 def _practical_current_work_item(db, binding):
     row=db.execute("SELECT id FROM work_items WHERE id=?",(binding["work_item_id"],)).fetchone()
-    if row is None or coordination_get(db,binding["work_item_id"]) is None:
+    policy=coordination_get(db,binding["work_item_id"])
+    if row is None or not isinstance(policy,dict) or policy.get("registered") is not True:
         raise LedgerError("E_PRACTICAL_WORK_ITEM: a current registered CM work item is required")
 
 
@@ -375,6 +415,36 @@ def reserve_practical_native_intent(db, binding):
         raise
 
 
+def consume_practical_native_dispatch(db, binding, reservation):
+    """Durably consume the winner-only dispatch capability before native work.
+
+    This only records the CM-side claim.  It does not run a subprocess, infer a
+    backend effect, or turn a v1 intent into native proof.  The database-bound
+    opaque reservation and the persisted event together prevent a reopened or
+    second backend object from issuing another dispatch for the same intent.
+    """
+    binding=_practical_binding(binding)
+    if db.in_transaction:
+        raise LedgerError("E_PRACTICAL_TRANSACTION: dispatch consumption requires its own transaction")
+    _begin(db)
+    try:
+        _practical_current_work_item(db,binding); _practical_owner(reservation,db,binding)
+        rows,durable=_practical_intent_locked(db,binding)
+        if rows[-1]["kind"] != "PRACTICAL_NATIVE_INTENT":
+            db.execute("COMMIT")
+            return {"dispatch":False,"kind":rows[-1]["kind"],"binding":dict(durable)}
+        _append(db,"PRACTICAL_NATIVE_DISPATCHED",durable["work_item_id"],
+                _canon({"binding":durable}),actor=durable["actor"],
+                op_id="PRACTICAL:"+durable["operation_id"],
+                identity={"work_item_id":durable["work_item_id"],"operation_id":durable["operation_id"]},
+                evidence_refs=[durable["selection_digest"],durable["command_digest"]])
+        db.execute("COMMIT")
+        return {"dispatch":True,"kind":"PRACTICAL_NATIVE_DISPATCHED","binding":dict(durable)}
+    except Exception:
+        if db.in_transaction: db.execute("ROLLBACK")
+        raise
+
+
 def _practical_intent_locked(db, binding):
     rows=_practical_events_locked(db,binding["operation_id"])
     _validate_practical_history(_practical_events_locked(db))
@@ -399,7 +469,7 @@ def mark_practical_native_unknown(db, reservation, error):
     try:
         _practical_current_work_item(db,binding); _practical_owner(reservation,db,binding)
         rows,durable=_practical_intent_locked(db,binding)
-        if len(rows)>1:
+        if rows[-1]["kind"] in ("PRACTICAL_NATIVE_APPLIED","PRACTICAL_NATIVE_UNKNOWN"):
             db.execute("COMMIT")
             return {"inserted":False,"kind":rows[-1]["kind"],"binding":dict(durable)}
         _append(db,"PRACTICAL_NATIVE_UNKNOWN",binding["work_item_id"],

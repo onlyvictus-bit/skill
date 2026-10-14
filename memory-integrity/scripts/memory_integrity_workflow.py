@@ -19,13 +19,22 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 from integrity_v2 import engine_client, report
-from hybrid_bridge import cards, beads_bridge
+from hybrid_bridge import cards, beads_bridge, practical_cli
 
 SCHEMA_DIGEST = "bf3c6314a1b0e8503230f483ef0be19cbf2ace1d4cab96eb4d7a2599b0270c9f"
 PROFILE = {"schema_version":2, "provider":"fake", "model":"offline-fixture-1",
            "encoding":"test-char", "encoding_version":"1", "counting_method":"test",
            "context_limit":1000000, "output_limit":100000,
            "endpoint":"offline://fixture", "purpose":"offline-audit", "max_spend":0}
+
+
+class _WorkflowParser(argparse.ArgumentParser):
+    """Keep legacy argparse behavior except practical routes always emit JSON."""
+
+    def error(self, message):
+        if len(sys.argv) > 1 and sys.argv[1] in practical_cli.COMMANDS:
+            raise practical_cli.PracticalCLIError("E_PRACTICAL_ARGUMENTS: " + message)
+        super().error(message)
 
 
 def canonical(value):
@@ -258,7 +267,7 @@ def native_observe(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = _WorkflowParser(description=__doc__)
     sub = parser.add_subparsers(dest="command",required=True)
     run = sub.add_parser("offline-run")
     for key in ("claude-mon-root","source","task","responses-file","run-dir"):
@@ -282,6 +291,7 @@ def main():
     observe = sub.add_parser("native-observe")
     for key in ("claude-mon-root","selection-file","receipt"):
         observe.add_argument("--"+key,required=True)
+    practical_cli.register(sub)
     for name in ("coordinate-init","coordinate-run","coordinate-resume","coordinate-ready","coordinate-verify","coordinate-revoke","history-seal","branch-preview","branch-merge-fixture","branch-reconcile-fixture"):
         command = sub.add_parser(name)
         command.add_argument("--claude-mon-root",required=True)
@@ -302,10 +312,16 @@ def main():
             command.add_argument("--fixture-file",required=True)
         if name in ("branch-merge-fixture","branch-reconcile-fixture"):
             command.add_argument("--operation-id",required=True)
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
+    except practical_cli.PracticalCLIError as exc:
+        print(json.dumps(practical_cli.refusal(exc),sort_keys=True,ensure_ascii=False))
+        return 2
     try:
         if args.command.startswith("knowledge-"):
             out = knowledge.dispatch(args)
+        elif args.command in practical_cli.COMMANDS:
+            out = practical_cli.dispatch(args)
         elif args.command == "native-observe":
             out = native_observe(args)
         elif args.command.startswith(("coordinate-","branch-")) or args.command == "history-seal":
@@ -314,9 +330,12 @@ def main():
         else:
             out = offline_run(args) if args.command == "offline-run" else verify(args)
     except Exception as exc:
-        out = {"ok":False,"overall":"BLOCKED","evidence_class":"NATIVE_OBSERVED_UNQUALIFIED" if args.command=="native-observe" else "TEST_ONLY",
-               "blockers":[type(exc).__name__ + ": " + str(exc)],
-               "adapter_calls":0,"approvals_consumed":0}
+        if args.command in practical_cli.COMMANDS:
+            out = practical_cli.refusal(exc)
+        else:
+            out = {"ok":False,"overall":"BLOCKED","evidence_class":"NATIVE_OBSERVED_UNQUALIFIED" if args.command=="native-observe" else "TEST_ONLY",
+                   "blockers":[type(exc).__name__ + ": " + str(exc)],
+                   "adapter_calls":0,"approvals_consumed":0}
         if args.command=="native-observe":
             out.update(active=False,native_beads_qualified=False,database_write_performed=False,inference_sent=False)
     print(json.dumps(out,sort_keys=True,ensure_ascii=False))

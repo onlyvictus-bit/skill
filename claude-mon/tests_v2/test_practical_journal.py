@@ -16,6 +16,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from complete_read_v2 import ledger  # noqa: E402
 
+RETAINED_TEMP = (Path(__file__).resolve().parents[3] / "build-validation" /
+                 "retained-temp")
+
 
 def binding(**changes):
     value = {
@@ -53,7 +56,8 @@ class Readback:
 class PracticalJournalTests(unittest.TestCase):
     def setUp(self):
         # Keep unique local evidence after a run; this test never deletes it.
-        self.temp = Path(tempfile.mkdtemp(prefix="practical-journal-"))
+        self.temp = Path(tempfile.mkdtemp(
+            prefix="practical-journal-", dir=RETAINED_TEMP))
         self.path = self.temp / "cm-ledger.sqlite"
         self.db = ledger.connect(self.path)
         ledger.create_work_item(self.db, "W", "task-digest", "source-id")

@@ -78,7 +78,7 @@ class CorrespondenceTests(unittest.TestCase):
 
     def test_mint_populates_lease_snapshot_columns(self):
         sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
-                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            'grant-new-1', '2026-10-14 10:05:00.000000',
                                             **LEASE_SNAPSHOT,
                                             selection_digest='b' * 64,
                                             native_node_id='practical-approved-scratch-only')
@@ -87,7 +87,7 @@ class CorrespondenceTests(unittest.TestCase):
 
     def test_initial_claim_mints_namespace_row(self):
         sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
-                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            'grant-new-1', '2026-10-14 10:05:00.000000',
                                             **LEASE_SNAPSHOT,
                                             selection_digest='b' * 64,
                                             native_node_id='practical-approved-scratch-only')
@@ -101,6 +101,18 @@ class CorrespondenceTests(unittest.TestCase):
                                      'grant-new-8', 'bob', '2026-10-20 12:00:00',
                                      **bad)
 
+    def test_legacy_seed_helpers_refuse_deadline_that_disagrees_with_lease_expiry(self):
+        with self.assertRaises(ValueError):
+            mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
+                                          'grant-new-1', '2026-10-20 12:00:00',
+                                          **LEASE_SNAPSHOT,
+                                          selection_digest='b' * 64,
+                                          native_node_id='practical-approved-scratch-only')
+        with self.assertRaises(ValueError):
+            mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
+                                     'grant-new-8', 'bob', '2026-10-20 12:00:00',
+                                     **LEASE_SNAPSHOT)
+
     @unittest.expectedFailure
     def test_dolt_ignore_configuration_proven_on_live_db(self):
         self.assertIn('dolt_ignore', mod().v2_schema_sql().lower())
@@ -109,7 +121,7 @@ class CorrespondenceTests(unittest.TestCase):
 class LeaseLiveVerificationTests(unittest.TestCase):
     def test_initial_claim_verifies_live_lease_row(self):
         sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
-                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            'grant-new-1', '2026-10-14 10:05:00.000000',
                                             **LEASE_SNAPSHOT,
                                             selection_digest='b' * 64,
                                             native_node_id='practical-approved-scratch-only')
@@ -119,7 +131,7 @@ class LeaseLiveVerificationTests(unittest.TestCase):
 
     def test_reassign_verifies_new_lease_live(self):
         sql = mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
-                                       'grant-new-8', 'bob', '2026-10-20 12:00:00',
+                                       'grant-new-8', 'bob', '2026-10-14 10:05:00.000000',
                                        **LEASE_SNAPSHOT)
         self.assertIn('FROM leases', sql)
         self.assertIn('E_MI2_LEASE_MISMATCH', sql)
@@ -162,11 +174,34 @@ class V2SchemaTests(unittest.TestCase):
         grants = sql[sql.index('mi_practical_v2_grants'):]
         self.assertRegex(grants, r'PRIMARY KEY\s*\(\s*store_incarnation\s*,\s*grant_id\s*\)')
 
+    def test_one_current_grant_pointer_is_structural_not_an_actor_inference(self):
+        sql = mod().v2_schema_sql()
+        block = sql[sql.index('mi_practical_v2_current_grants'):]
+        block = block[:block.index(';')]
+        self.assertRegex(block, r'PRIMARY KEY\s*\(\s*store_incarnation\s*,\s*task_id\s*\)')
+        self.assertIn('grant_id', block)
+        self.assertIn('current_revision', block)
+
+    def test_schema_and_ignore_registration_are_distinct_actual_builders(self):
+        schema = mod().v2_schema_sql()
+        ignore = mod().v2_dolt_ignore_registration_sql()
+        bootstrap = mod().v2_namespace_bootstrap_sql()
+        self.assertNotIn('dolt_ignore', schema.lower())
+        for name in ('mi_practical_v2_grants', 'mi_practical_v2_current_grants',
+                     'mi_practical_v2_grant_history', 'mi_practical_v2_metadata',
+                     'mi_practical_v2_token_history', 'mi_practical_v2_operations'):
+            self.assertIn(hx(name), ignore)
+        self.assertIn('INSERT INTO dolt_ignore', ignore)
+        self.assertIn('SELECT pattern,ignored FROM dolt_ignore', ignore)
+        self.assertIn('UUID()', bootstrap)
+        self.assertIn('SELECT store_incarnation', bootstrap)
+        self.assertNotIn('store-1', bootstrap)
+
 
 class MintingTransitionTests(unittest.TestCase):
     def test_initial_claim_inserts_grant_and_history_atomically(self):
         sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
-                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            'grant-new-1', '2026-10-14 10:05:00.000000',
                                             **LEASE_SNAPSHOT,
                                             selection_digest='b' * 64,
                                             native_node_id='practical-approved-scratch-only')
@@ -180,7 +215,7 @@ class MintingTransitionTests(unittest.TestCase):
 
     def test_reassign_tombstones_prior_and_mints_fresh_never_deleting(self):
         sql = mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
-                                       'grant-new-8', 'bob', '2026-10-20 12:00:00',
+                                       'grant-new-8', 'bob', '2026-10-14 10:05:00.000000',
                                        **LEASE_SNAPSHOT)
         self.assertIn('tombstoned', sql)
         self.assertIn(hx('grant-old-7'), sql)
@@ -224,7 +259,7 @@ class MintingTransitionTests(unittest.TestCase):
 class BindingComparisonTests(unittest.TestCase):
     def test_unknown_grant_is_compared_in_database_not_python(self):
         sql = mod().guarded_title_sql(selection(), packet(grant_id='grant-never-issued'))
-        self.assertIn('g.grant_id = ' + hx('grant-never-issued'), sql)
+        self.assertIn('BINARY g.grant_id = BINARY ' + hx('grant-never-issued'), sql)
 
     def test_expiry_equality_refuses_strict_less_than_only(self):
         sql = mod().guarded_title_sql(selection(), packet())
