@@ -57,8 +57,13 @@ def lease_request(**changes):
 
 class PracticalCLI(unittest.TestCase):
     def setUp(self):
+        # The retained location is deliberate (run dirs stay for inspection);
+        # only its pre-existence was host-provided. Ensure it so a fresh
+        # CI checkout behaves like a lived-in tree.
+        retained_base = ROOT.parent.parent / 'build-validation' / 'retained-temp'
+        retained_base.mkdir(parents=True, exist_ok=True)
         retained = Path(tempfile.mkdtemp(prefix='practical-cli-retained-',
-                                         dir=str(ROOT.parent.parent / 'build-validation' / 'retained-temp')))
+                                         dir=str(retained_base)))
         self.selection_file = retained / 'selection.json'
         self.request_file = retained / 'request.json'
         self.cm_ledger = retained / 'cm-ledger.sqlite'
