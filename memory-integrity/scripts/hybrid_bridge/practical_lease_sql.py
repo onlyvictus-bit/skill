@@ -5,11 +5,192 @@ v2 scratch schema, protected lease-minting transitions, actual CLI error/rollbac
 proof, consumer integration, and the real synchronized race. String tests do
 not establish Dolt grammar, atomicity, native eligibility, or durability.
 """
+from datetime import datetime
+
 from .practical_contract import (
     LeaseGuardedTitleRequest, LeasePracticalSelection, PracticalContractError,
     strict_canonical_json,
 )
 from .practical_sql import _text
+
+_UTC_FORMATS = ('%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f')
+
+
+def _utc(value, field):
+    """Pinned second-precision UTC text. Anything else refuses before SQL."""
+    if not isinstance(value, str):
+        raise PracticalContractError('E_MI2_TIME: %s must be UTC text' % (field,))
+    for form in _UTC_FORMATS:
+        try:
+            datetime.strptime(value, form)
+            return value
+        except ValueError:
+            continue
+    raise PracticalContractError('E_MI2_TIME: %s is not pinned UTC YYYY-MM-DD HH:MM:SS[.ffffff]'
+                                 % (field,))
+
+
+def _name(value, field):
+    if not isinstance(value, str) or not value.strip():
+        raise PracticalContractError('E_MI2_NAME: %s required' % (field,))
+    if len(value) > 192:
+        raise PracticalContractError('E_MI2_NAME: %s over length' % (field,))
+    return value
+
+
+def v2_schema_sql():
+    """Matching v2 scratch schema: grants, append-only history, metadata,
+    token history, operations and the assert procedure. No DELETE, DROP,
+    DOLT_ADD or DOLT_COMMIT anywhere: history is tombstoned, never removed."""
+    return '\n'.join([
+        'CREATE TABLE IF NOT EXISTS mi_practical_v2_grants ('
+        'store_incarnation VARCHAR(192) NOT NULL, grant_id VARCHAR(192) NOT NULL, '
+        'task_id VARCHAR(192) NOT NULL, actor VARCHAR(192) NOT NULL, '
+        'status VARCHAR(64) NOT NULL, fixed_deadline_utc DATETIME(6) NOT NULL, '
+        'issue_revision BIGINT NOT NULL, tombstoned TINYINT NOT NULL DEFAULT 0, '
+        'PRIMARY KEY(store_incarnation, grant_id));',
+        'CREATE TABLE IF NOT EXISTS mi_practical_v2_grant_history ('
+        'store_incarnation VARCHAR(192) NOT NULL, grant_id VARCHAR(192) NOT NULL, '
+        'event_kind VARCHAR(64) NOT NULL, event_utc DATETIME(6) NOT NULL, '
+        'details LONGTEXT NOT NULL, '
+        'PRIMARY KEY(store_incarnation, grant_id, event_kind, event_utc));',
+        'CREATE TABLE IF NOT EXISTS mi_practical_v2_metadata ('
+        'store_incarnation VARCHAR(192) NOT NULL, namespace_key VARCHAR(96) NOT NULL, '
+        'selection_digest CHAR(64) NOT NULL, native_node_id VARCHAR(192) NOT NULL, '
+        'PRIMARY KEY(store_incarnation, namespace_key));',
+        'CREATE TABLE IF NOT EXISTS mi_practical_v2_token_history ('
+        'store_incarnation VARCHAR(192) NOT NULL, row_token BIGINT NOT NULL, '
+        'operation_id VARCHAR(192) NOT NULL, PRIMARY KEY(store_incarnation, row_token), '
+        'UNIQUE KEY mi2_token_operation(store_incarnation, operation_id));',
+        'CREATE TABLE IF NOT EXISTS mi_practical_v2_operations ('
+        'store_incarnation VARCHAR(192) NOT NULL, operation_id VARCHAR(192) NOT NULL, '
+        'command_digest CHAR(64) NOT NULL, binding_json LONGTEXT NOT NULL, '
+        'receipt_json LONGTEXT NOT NULL, authorization_time DATETIME(6) NOT NULL, '
+        'resulting_row_lock BIGINT NOT NULL, '
+        'PRIMARY KEY(store_incarnation, operation_id), '
+        'UNIQUE KEY mi2_operation_digest(store_incarnation, operation_id, command_digest));',
+        'CREATE PROCEDURE IF NOT EXISTS mi_practical_assert_v2(cond BOOL, err VARCHAR(192)) '
+        "BEGIN IF NOT cond THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = err; END IF; END;",
+    ])
+
+
+def _transition_prologue():
+    return ['START TRANSACTION;',
+            'SET @mi2_auth = UTC_TIMESTAMP();']
+
+
+def _transition_epilogue():
+    return ['COMMIT;']
+
+
+def initial_claim_grant_sql(store_incarnation, task_id, actor, new_grant_id,
+                            fixed_deadline_utc):
+    """First protected grant: refuses when the grant id already exists anywhere
+    in this store incarnation. Caller proposes, PRIMARY KEY disposes."""
+    incarnation = _text(_name(store_incarnation, 'store_incarnation'))
+    task = _text(_name(task_id, 'task_id'))
+    who = _text(_name(actor, 'actor'))
+    grant = _text(_name(new_grant_id, 'new_grant_id'))
+    _utc(fixed_deadline_utc, 'fixed_deadline_utc')
+    deadline = _text(fixed_deadline_utc)
+    statements = _transition_prologue()
+    statements.extend([
+        "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
+        'WHERE store_incarnation = ' + incarnation + ' AND grant_id = ' + grant
+        + ") = 0, 'E_MI2_GRANT_REUSE');",
+        'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
+        'status,fixed_deadline_utc,issue_revision,tombstoned) VALUES ('
+        + incarnation + ',' + grant + ',' + task + ',' + who
+        + ",'GRANTED'," + deadline + ',0,0);',
+        'SET @mi2_grant_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_grant_changed = 1, 'E_MI2_GRANT_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,'
+        'event_utc,details) VALUES (' + incarnation + ',' + grant
+        + ",'MINTED',@mi2_auth,'initial-claim');",
+        'SET @mi2_history_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_history_changed = 1, 'E_MI2_HISTORY_CARDINALITY');",
+    ])
+    statements.extend(_transition_epilogue())
+    return '\n'.join(statements)
+
+
+def reassign_grant_sql(store_incarnation, task_id, prior_grant_id, new_grant_id,
+                       actor, fixed_deadline_utc):
+    """Ownership transfer: tombstones the prior grant row, mints a fresh one,
+    appends both history rows. The prior row is never deleted."""
+    incarnation = _text(_name(store_incarnation, 'store_incarnation'))
+    task = _text(_name(task_id, 'task_id'))
+    prior = _text(_name(prior_grant_id, 'prior_grant_id'))
+    grant = _text(_name(new_grant_id, 'new_grant_id'))
+    if prior_grant_id == new_grant_id:
+        raise PracticalContractError('E_MI2_GRANT_REUSE: new grant must differ from prior')
+    who = _text(_name(actor, 'actor'))
+    _utc(fixed_deadline_utc, 'fixed_deadline_utc')
+    deadline = _text(fixed_deadline_utc)
+    statements = _transition_prologue()
+    statements.extend([
+        "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
+        'WHERE store_incarnation = ' + incarnation + ' AND grant_id = ' + prior
+        + ' AND task_id = ' + task + ' AND tombstoned = 0'
+        + ") = 1, 'E_MI2_PRIOR_GRANT');",
+        "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
+        'WHERE store_incarnation = ' + incarnation + ' AND grant_id = ' + grant
+        + ") = 0, 'E_MI2_GRANT_REUSE');",
+        'UPDATE mi_practical_v2_grants SET tombstoned = 1 WHERE store_incarnation = '
+        + incarnation + ' AND grant_id = ' + prior + ' AND task_id = ' + task
+        + ' AND tombstoned = 0;',
+        'SET @mi2_tomb_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_tomb_changed = 1, 'E_MI2_TOMB_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
+        'status,fixed_deadline_utc,issue_revision,tombstoned) VALUES ('
+        + incarnation + ',' + grant + ',' + task + ',' + who
+        + ",'GRANTED'," + deadline + ',0,0);',
+        'SET @mi2_grant_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_grant_changed = 1, 'E_MI2_GRANT_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,'
+        'event_utc,details) VALUES (' + incarnation + ',' + prior
+        + ",'TOMBSTONED',@mi2_auth,'reassign');",
+        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,'
+        'event_utc,details) VALUES (' + incarnation + ',' + grant
+        + ",'MINTED',@mi2_auth,'reassign');",
+    ])
+    statements.extend(_transition_epilogue())
+    return '\n'.join(statements)
+
+
+def _retire_grant_sql(kind, store_incarnation, task_id, grant_id, at_utc):
+    incarnation = _text(_name(store_incarnation, 'store_incarnation'))
+    task = _text(_name(task_id, 'task_id'))
+    grant = _text(_name(grant_id, 'grant_id'))
+    _utc(at_utc, 'at_utc')
+    check = ('SELECT COUNT(*) FROM mi_practical_v2_grants WHERE store_incarnation = '
+             + incarnation + ' AND grant_id = ' + grant
+             + ' AND task_id = ' + task + ' AND tombstoned = 0')
+    update = ('UPDATE mi_practical_v2_grants SET tombstoned = 1 WHERE store_incarnation = '
+              + incarnation + ' AND grant_id = ' + grant + ' AND task_id = ' + task
+              + ' AND tombstoned = 0')
+    history = ('INSERT INTO mi_practical_v2_grant_history'
+               '(store_incarnation,grant_id,event_kind,event_utc,details) VALUES ('
+               + incarnation + ',' + grant + ',' + _text(kind)
+               + ',@mi2_auth,' + _text(kind.lower()) + ')')
+    statements = _transition_prologue()
+    statements.append("CALL mi_practical_assert_v2((" + check + ") = 1, 'E_MI2_PRIOR_GRANT');")
+    statements.append(update + ';')
+    statements.append('SET @mi2_tomb_changed = ROW_COUNT();')
+    statements.append("CALL mi_practical_assert_v2(@mi2_tomb_changed = 1, 'E_MI2_TOMB_CARDINALITY');")
+    statements.append(history + ';')
+    statements.extend(_transition_epilogue())
+    return '\n'.join(statements)
+
+
+def release_grant_sql(store_incarnation, task_id, grant_id, at_utc):
+    """Voluntary release: tombstone plus history. Bytes retained, never deleted."""
+    return _retire_grant_sql('RELEASED', store_incarnation, task_id, grant_id, at_utc)
+
+
+def reclaim_grant_sql(store_incarnation, task_id, grant_id, at_utc):
+    """Expiry reclaim: tombstone plus history. Bytes retained, never deleted."""
+    return _retire_grant_sql('RECLAIMED', store_incarnation, task_id, grant_id, at_utc)
 
 
 def _title_batch(selection, request, pause_seconds=None):
