@@ -73,3 +73,7 @@ Hosted CI on pushed HEAD `c6bde65` (run 38547854075, ubuntu 3.11) reported `Ran 
 - The `ValueError: bad companion` BLOCKED verdict in the log is a negative-path test working as designed (`test_m7_native_pilot.py:333`), not a failure.
 
 Re-targeting the 9 stopped tests at the real v2 transport is blocked on other workers committing their surfaces: the lease backend pins `DOLT_PIN ca21a9d1…` (unreconciled with verified dolt v2.4.2 `317526a9…`), depends on the uncommitted ledger `consume_practical_native_dispatch`, and its tests are uncommitted. Tracked tests cannot import untracked modules (CI checks out committed code only). The P3 no-deletion decision (options a/b/c in the reviewer's plan) is still owed by the human and shapes the v2 consumer path.
+
+## P3 decision — recorded 14 October 2026 (afternoon, uncommitted)
+
+Human decision: **(b) release/unclaim/reclaim stay permanently offline-only.** No lease-row deletion permission is granted; the no-deletion invariant remains absolute. Native proof covers initial-grant, reassign (tombstone+mint, no delete needed), and heartbeat only. Consequences: the v2 lease builders for release/unclaim/reclaim are offline reference material, not natively provable paths; the two skipped prerequisite tests (`stale_grant`, `historical_applied_event`) lift against the lease-bound initial/reassign execute path once committed, never against a delete-based ending.
