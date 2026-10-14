@@ -6,6 +6,7 @@ proof, consumer integration, and the real synchronized race. String tests do
 not establish Dolt grammar, atomicity, native eligibility, or durability.
 """
 from datetime import datetime
+import re
 
 from .practical_contract import (
     LeaseGuardedTitleRequest, LeasePracticalSelection, PracticalContractError,
@@ -48,6 +49,8 @@ def v2_schema_sql():
         'task_id VARCHAR(192) NOT NULL, actor VARCHAR(192) NOT NULL, '
         'status VARCHAR(64) NOT NULL, fixed_deadline_utc DATETIME(6) NOT NULL, '
         'issue_revision BIGINT NOT NULL, tombstoned TINYINT NOT NULL DEFAULT 0, '
+        'lease_node VARCHAR(192) NOT NULL, lease_granted_at DATETIME(6) NOT NULL, '
+        'lease_expiry DATETIME(6) NOT NULL, lease_heartbeat DATETIME(6) NOT NULL, '
         'PRIMARY KEY(store_incarnation, grant_id));',
         'CREATE TABLE IF NOT EXISTS mi_practical_v2_grant_history ('
         'store_incarnation VARCHAR(192) NOT NULL, grant_id VARCHAR(192) NOT NULL, '
@@ -83,25 +86,49 @@ def _transition_epilogue():
     return ['COMMIT;']
 
 
+def _digest64(value, field):
+    if not isinstance(value, str) or not re.fullmatch(r'[0-9a-f]{64}', value or ''):
+        raise PracticalContractError('E_MI2_DIGEST: %s must be 64 hex' % (field,))
+    return value
+
+
+def _lease_snapshot(lease_node, granted_at_utc, expiry_utc, heartbeat_utc):
+    node = _text(_name(lease_node, 'lease_node'))
+    granted = _text(_utc(granted_at_utc, 'lease_granted_at_utc'))
+    expiry = _text(_utc(expiry_utc, 'lease_expiry_utc'))
+    heartbeat = _text(_utc(heartbeat_utc, 'lease_heartbeat_utc'))
+    return node, granted, expiry, heartbeat
+
+
 def initial_claim_grant_sql(store_incarnation, task_id, actor, new_grant_id,
-                            fixed_deadline_utc):
+                            fixed_deadline_utc, lease_node, lease_granted_at_utc,
+                            lease_expiry_utc, lease_heartbeat_utc,
+                            selection_digest, native_node_id):
     """First protected grant: refuses when the grant id already exists anywhere
-    in this store incarnation. Caller proposes, PRIMARY KEY disposes."""
+    in this store incarnation. Caller proposes, PRIMARY KEY disposes. The
+    observed lease snapshot is stored on the grant row; the namespace identity
+    row is minted here if absent, never overwritten."""
     incarnation = _text(_name(store_incarnation, 'store_incarnation'))
     task = _text(_name(task_id, 'task_id'))
     who = _text(_name(actor, 'actor'))
     grant = _text(_name(new_grant_id, 'new_grant_id'))
     _utc(fixed_deadline_utc, 'fixed_deadline_utc')
     deadline = _text(fixed_deadline_utc)
+    node, granted, expiry, heartbeat = _lease_snapshot(
+        lease_node, lease_granted_at_utc, lease_expiry_utc, lease_heartbeat_utc)
+    digest = _text(_digest64(selection_digest, 'selection_digest'))
+    native = _text(_name(native_node_id, 'native_node_id'))
     statements = _transition_prologue()
     statements.extend([
         "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
         'WHERE store_incarnation = ' + incarnation + ' AND grant_id = ' + grant
         + ") = 0, 'E_MI2_GRANT_REUSE');",
         'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
-        'status,fixed_deadline_utc,issue_revision,tombstoned) VALUES ('
+        'status,fixed_deadline_utc,issue_revision,tombstoned,'
+        'lease_node,lease_granted_at,lease_expiry,lease_heartbeat) VALUES ('
         + incarnation + ',' + grant + ',' + task + ',' + who
-        + ",'GRANTED'," + deadline + ',0,0);',
+        + ",'GRANTED'," + deadline + ',0,0,'
+        + node + ',' + granted + ',' + expiry + ',' + heartbeat + ');',
         'SET @mi2_grant_changed = ROW_COUNT();',
         "CALL mi_practical_assert_v2(@mi2_grant_changed = 1, 'E_MI2_GRANT_CARDINALITY');",
         'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,'
@@ -109,15 +136,25 @@ def initial_claim_grant_sql(store_incarnation, task_id, actor, new_grant_id,
         + ",'MINTED',@mi2_auth,'initial-claim');",
         'SET @mi2_history_changed = ROW_COUNT();',
         "CALL mi_practical_assert_v2(@mi2_history_changed = 1, 'E_MI2_HISTORY_CARDINALITY');",
+        # Namespace identity is DB-created once per incarnation, then only read
+        # back. A real statement error aborts the batch; zero affected rows
+        # simply means this incarnation was already minted by an earlier claim.
+        'INSERT INTO mi_practical_v2_metadata(store_incarnation,namespace_key,'
+        'selection_digest,native_node_id) SELECT ' + incarnation + ",'identity',"
+        + digest + ',' + native
+        + ' WHERE NOT EXISTS (SELECT 1 FROM mi_practical_v2_metadata '
+        'WHERE store_incarnation = ' + incarnation + " AND namespace_key = 'identity');",
     ])
     statements.extend(_transition_epilogue())
     return '\n'.join(statements)
 
 
 def reassign_grant_sql(store_incarnation, task_id, prior_grant_id, new_grant_id,
-                       actor, fixed_deadline_utc):
+                       actor, fixed_deadline_utc, lease_node, lease_granted_at_utc,
+                       lease_expiry_utc, lease_heartbeat_utc):
     """Ownership transfer: tombstones the prior grant row, mints a fresh one,
-    appends both history rows. The prior row is never deleted."""
+    appends both history rows. The prior row is never deleted. The fresh row
+    carries the newly observed lease snapshot."""
     incarnation = _text(_name(store_incarnation, 'store_incarnation'))
     task = _text(_name(task_id, 'task_id'))
     prior = _text(_name(prior_grant_id, 'prior_grant_id'))
@@ -127,6 +164,8 @@ def reassign_grant_sql(store_incarnation, task_id, prior_grant_id, new_grant_id,
     who = _text(_name(actor, 'actor'))
     _utc(fixed_deadline_utc, 'fixed_deadline_utc')
     deadline = _text(fixed_deadline_utc)
+    node, granted, expiry, heartbeat = _lease_snapshot(
+        lease_node, lease_granted_at_utc, lease_expiry_utc, lease_heartbeat_utc)
     statements = _transition_prologue()
     statements.extend([
         "CALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_grants "
@@ -142,9 +181,11 @@ def reassign_grant_sql(store_incarnation, task_id, prior_grant_id, new_grant_id,
         'SET @mi2_tomb_changed = ROW_COUNT();',
         "CALL mi_practical_assert_v2(@mi2_tomb_changed = 1, 'E_MI2_TOMB_CARDINALITY');",
         'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
-        'status,fixed_deadline_utc,issue_revision,tombstoned) VALUES ('
+        'status,fixed_deadline_utc,issue_revision,tombstoned,'
+        'lease_node,lease_granted_at,lease_expiry,lease_heartbeat) VALUES ('
         + incarnation + ',' + grant + ',' + task + ',' + who
-        + ",'GRANTED'," + deadline + ',0,0);',
+        + ",'GRANTED'," + deadline + ',0,0,'
+        + node + ',' + granted + ',' + expiry + ',' + heartbeat + ');',
         'SET @mi2_grant_changed = ROW_COUNT();',
         "CALL mi_practical_assert_v2(@mi2_grant_changed = 1, 'E_MI2_GRANT_CARDINALITY');",
         'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,'

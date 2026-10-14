@@ -2,8 +2,19 @@
 
 These assert generated SQL text, schema shape and contract binding only.
 They are NOT live Dolt grammar, atomicity or native-eligibility proof.
+
+Fence-disabled live control (definition, runs only against a live scratch
+database): build the authority predicate, then run the identical batch with
+every fence family below stripped (grant equality, row_lock equality, lease
+timestamps, strict deadline, tombstone, replay guard). The stripped batch
+MUST authorize a stale request that the fenced batch refuses; otherwise the
+experiment does not distinguish the fence and proves nothing. Abort conditions:
+any stale committed effect, any partial effect without its exact receipt, any
+revived old request. This control is defined here; its execution needs a live
+database and is not claimed by any test in this file.
 """
 import importlib
+import re
 from pathlib import Path
 import sys
 import unittest
@@ -31,6 +42,70 @@ def hx(text):
     return 'CONVERT(0x' + text.encode('utf-8').hex() + ' USING utf8mb4)'
 
 
+LEASE_SNAPSHOT = {
+    'lease_node': 'practical-approved-scratch-only',
+    'lease_granted_at_utc': '2026-10-14 10:00:00.000000',
+    'lease_expiry_utc': '2026-10-14 10:05:00.000000',
+    'lease_heartbeat_utc': '2026-10-14 10:00:00.000000',
+}
+
+
+def grant_ddl_columns():
+    ddl = mod().v2_schema_sql()
+    block = ddl[ddl.index('mi_practical_v2_grants'):]
+    block = block[:block.index(';')]
+    return set(re.findall(r'(\w+)\s+(?:VARCHAR|DATETIME|BIGINT|TINYINT|LONGTEXT|CHAR)', block))
+
+
+def title_grant_refs():
+    sql = mod().guarded_title_sql(selection(), packet())
+    return set(re.findall(r'g\.(\w+)\s*=', sql))
+
+
+class CorrespondenceTests(unittest.TestCase):
+    def test_every_title_grant_column_exists_in_schema(self):
+        missing = title_grant_refs() - grant_ddl_columns()
+        self.assertEqual(missing, set())
+
+    def test_namespace_columns_cover_metadata_predicates(self):
+        ddl = mod().v2_schema_sql()
+        block = ddl[ddl.index('mi_practical_v2_metadata'):]
+        block = block[:block.index(';')]
+        cols = set(re.findall(r'(\w+)\s+(?:VARCHAR|DATETIME|BIGINT|TINYINT|LONGTEXT|CHAR)', block))
+        sql = mod().guarded_title_sql(selection(), packet())
+        refs = set(re.findall(r'm\.(\w+)\s*=', sql))
+        self.assertEqual(refs - cols, set())
+
+    def test_mint_populates_lease_snapshot_columns(self):
+        sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
+                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            **LEASE_SNAPSHOT,
+                                            selection_digest='b' * 64,
+                                            native_node_id='practical-approved-scratch-only')
+        for literal in ('practical-approved-scratch-only', '2026-10-14 10:05:00.000000'):
+            self.assertIn(literal.encode('utf-8').hex(), sql)
+
+    def test_initial_claim_mints_namespace_row(self):
+        sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
+                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            **LEASE_SNAPSHOT,
+                                            selection_digest='b' * 64,
+                                            native_node_id='practical-approved-scratch-only')
+        self.assertIn('INSERT INTO mi_practical_v2_metadata', sql)
+        self.assertIn('namespace_key', sql)
+
+    def test_reassign_rejects_bad_lease_facts(self):
+        bad = dict(LEASE_SNAPSHOT, lease_expiry_utc='someday')
+        with self.assertRaises(ValueError):
+            mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
+                                     'grant-new-8', 'bob', '2026-10-20 12:00:00',
+                                     **bad)
+
+    @unittest.expectedFailure
+    def test_dolt_ignore_configuration_proven_on_live_db(self):
+        self.assertIn('dolt_ignore', mod().v2_schema_sql().lower())
+
+
 class V2SchemaTests(unittest.TestCase):
     def test_v2_schema_creates_grant_history_metadata_token_operations(self):
         sql = mod().v2_schema_sql()
@@ -52,7 +127,10 @@ class V2SchemaTests(unittest.TestCase):
 class MintingTransitionTests(unittest.TestCase):
     def test_initial_claim_inserts_grant_and_history_atomically(self):
         sql = mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
-                                            'grant-new-1', '2026-10-20 12:00:00')
+                                            'grant-new-1', '2026-10-20 12:00:00',
+                                            **LEASE_SNAPSHOT,
+                                            selection_digest='b' * 64,
+                                            native_node_id='practical-approved-scratch-only')
         self.assertLess(sql.index('START TRANSACTION'), sql.index('COMMIT;'))
         self.assertIn('INSERT INTO mi_practical_v2_grants', sql)
         self.assertIn('INSERT INTO mi_practical_v2_grant_history', sql)
@@ -63,7 +141,8 @@ class MintingTransitionTests(unittest.TestCase):
 
     def test_reassign_tombstones_prior_and_mints_fresh_never_deleting(self):
         sql = mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
-                                       'grant-new-8', 'bob', '2026-10-20 12:00:00')
+                                       'grant-new-8', 'bob', '2026-10-20 12:00:00',
+                                       **LEASE_SNAPSHOT)
         self.assertIn('tombstoned', sql)
         self.assertIn(hx('grant-old-7'), sql)
         self.assertIn(hx('grant-new-8'), sql)
@@ -81,13 +160,26 @@ class MintingTransitionTests(unittest.TestCase):
     def test_malformed_inputs_refuse_before_sql(self):
         with self.assertRaises(ValueError):
             mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
-                                          'grant-new-1', 'next Friday')
+                                          'grant-new-1', 'next Friday',
+                                          **LEASE_SNAPSHOT,
+                                          selection_digest='b' * 64,
+                                          native_node_id='practical-approved-scratch-only')
         with self.assertRaises(ValueError):
             mod().reassign_grant_sql('store-1', 'task-9', 'grant-old-7',
-                                     'grant-old-7', 'bob', '2026-10-20 12:00:00')
+                                     'grant-old-7', 'bob', '2026-10-20 12:00:00',
+                                     **LEASE_SNAPSHOT)
         with self.assertRaises(ValueError):
             mod().initial_claim_grant_sql('store-1', '', 'alice',
-                                          'grant-new-1', '2026-10-20 12:00:00')
+                                          'grant-new-1', '2026-10-20 12:00:00',
+                                          **LEASE_SNAPSHOT,
+                                          selection_digest='b' * 64,
+                                          native_node_id='practical-approved-scratch-only')
+        with self.assertRaises(ValueError):
+            mod().initial_claim_grant_sql('store-1', 'task-9', 'alice',
+                                          'grant-new-1', '2026-10-20 12:00:00',
+                                          **LEASE_SNAPSHOT,
+                                          selection_digest='not-hex',
+                                          native_node_id='practical-approved-scratch-only')
 
 
 class BindingComparisonTests(unittest.TestCase):
