@@ -1,6 +1,146 @@
 {
   "requirements": [
     {
+      "id": "R5-PRACTICAL-P1",
+      "priority": "required",
+      "text": "Atomic local backend fence",
+      "source_links": [
+        "docs/fable/derived/practical-fence-contract.json",
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P1"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PRACTICAL-P1-1",
+          "text": "Backend authorization binds current incarnation, database, branch, task, actor, status, grant, signed original row token, immutable operation deadline and DB time in the same SQL transaction as effect and receipt.",
+          "test_ids": [
+            "TEST-PRACTICAL-P1"
+          ]
+        },
+        {
+          "id": "R5-PRACTICAL-P1-2",
+          "text": "Real open-transaction ownership race leaves no stale committed title, revision or operation receipt; current-owner positive control succeeds.",
+          "test_ids": [
+            "TEST-PRACTICAL-P1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5-PRACTICAL-P2",
+      "priority": "required",
+      "text": "Protected ownership transitions",
+      "source_links": [
+        "docs/fable/derived/practical-fence-contract.json",
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P2"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PRACTICAL-P2-1",
+          "text": "Initial claim, live same-owner retry, expired reacquisition, reassignment, unclaim, reclaim and heartbeat have explicit non-reviving generation semantics; unsupported routes refuse.",
+          "test_ids": [
+            "TEST-PRACTICAL-P2"
+          ]
+        },
+        {
+          "id": "R5-PRACTICAL-P2-2",
+          "text": "Real expiry, heartbeat-revival, ABA, missing/foreign grant and race cases refuse stale authority without deleting history.",
+          "test_ids": [
+            "TEST-PRACTICAL-P2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5-PRACTICAL-P3",
+      "priority": "required",
+      "text": "Protected skill and companion consumer",
+      "source_links": [
+        "docs/fable/derived/practical-fence-contract.json",
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P3"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PRACTICAL-P3-1",
+          "text": "Only atomic intent reservation winner dispatches; full immutable operation binding is persisted before native mutation.",
+          "test_ids": [
+            "TEST-PRACTICAL-P3"
+          ]
+        },
+        {
+          "id": "R5-PRACTICAL-P3-2",
+          "text": "Internally invoked exact backend operation readback is authoritative; caller success dictionaries and historical results cannot authorize current changed work.",
+          "test_ids": [
+            "TEST-PRACTICAL-P3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5-PRACTICAL-P4",
+      "priority": "required",
+      "text": "Native interrupted-operation recovery",
+      "source_links": [
+        "docs/fable/derived/practical-fence-contract.json",
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P4"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PRACTICAL-P4-1",
+          "text": "A real outstanding native client is killed at an observed inside-command barrier; own server crash/restart is separately observed.",
+          "test_ids": [
+            "TEST-PRACTICAL-P4"
+          ]
+        },
+        {
+          "id": "R5-PRACTICAL-P4-2",
+          "text": "Fresh-process and repeated recovery read original exact operation only, leaving ambiguous outcomes UNKNOWN and performing zero replay writes.",
+          "test_ids": [
+            "TEST-PRACTICAL-P4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5-PRACTICAL-P5",
+      "priority": "required",
+      "text": "Matching exact-byte candidate release",
+      "source_links": [
+        "docs/fable/derived/practical-fence-contract.json",
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P5"
+      ],
+      "criteria": [
+        {
+          "id": "R5-PRACTICAL-P5-1",
+          "text": "Source and retained clean-extracted-package regressions, actual native receipts and independent adversarial review substantiate a narrowly scoped candidate.",
+          "test_ids": [
+            "TEST-PRACTICAL-P5"
+          ]
+        },
+        {
+          "id": "R5-PRACTICAL-P5-2",
+          "text": "Matching instructions, capabilities, companion pin, content manifests, ZIPs, release manifest and report preserve old releases and all qualification boundaries.",
+          "test_ids": [
+            "TEST-PRACTICAL-P5"
+          ]
+        }
+      ]
+    },
+    {
       "criteria": [
         {
           "id": "REQ-01-1",

@@ -1,6 +1,38 @@
 {
   "approvals": [
     {
+      "id": "APP-PRACTICAL-WIP-LOCAL-COMMIT-20261014",
+      "actor": "user",
+      "approved": true,
+      "authorization": {
+        "quote": "COMMIT IT",
+        "source": "Direct human message after the partial-not-release-ready report"
+      },
+      "scope": "LOCAL_WIP_COMMIT_ONLY",
+      "branch": "development/r5-practical-fence-wip-20261014",
+      "plan_digest": "151451c4f12a5c6e73cbbbb7058fb9bca213ee14c047d6f80676c8a100229bc0",
+      "requirements_digest": "1088d937ecba3af81ddbf86698a24b5f2540e2df7e6b28d725dba5f1687f3507",
+      "tests_digest": "1685d7b1784a19b175cee2f680873c2d1d7b480f9e27f728fbbc37a3b85e853a",
+      "excludes": ["Push", "Release qualification", "Installation", "Shared database migration", "Live AI calls", "Deletion"]
+    },
+    {
+      "id": "APP-PRACTICAL-ISOLATED-P1-P5",
+      "actor": "user",
+      "approved": true,
+      "authorization": {
+        "quote": "Adopt practical contract + approve isolated stages 1–5",
+        "source": "Direct human reply to call_4d8011c8d078432fb880c7c3770c3d37"
+      },
+      "scope": "PRACTICAL-ISOLATED-P1-P5",
+      "plan_digest": "151451c4f12a5c6e73cbbbb7058fb9bca213ee14c047d6f80676c8a100229bc0",
+      "requirements_digest": "1088d937ecba3af81ddbf86698a24b5f2540e2df7e6b28d725dba5f1687f3507",
+      "tests_digest": "1685d7b1784a19b175cee2f680873c2d1d7b480f9e27f728fbbc37a3b85e853a",
+      "write_set_baseline_manifest": "Source-Baseline.json outside source checkout",
+      "write_set_baseline_manifest_sha256": "f3c62c4830f025bb95a347c9b3cf01d7a1936bc1ceca601adce6f40745c765ff",
+      "source_commit": "ad3f66e4cd885494cf5d4b10453d089288d7c517",
+      "excludes": ["Installation", "Shared database migration", "Live AI calls", "Commit", "Push", "Installed-copy replacement", "File/data deletion"]
+    },
+    {
       "actor": "user",
       "approved": true,
       "approved_at": "2026-10-07T14:19:56.023596+00:00",

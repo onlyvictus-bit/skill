@@ -1,8 +1,8 @@
 {
   "basis": {
-    "plan_digest": "c80b55bce34e68dba5214928f484b2dc5079708009382a6343303af08fdb6fc4",
-    "requirements_digest": "1fcb02cfb851d08db7dc3c52475b1a03d0357cb5b5bc79c222d9538c32ef0795",
-    "tests_digest": "cb67d7a6161063829d0480c4490dfe96b2e6bc6695f2dacd42b5fa8168ca7607"
+    "plan_digest": "151451c4f12a5c6e73cbbbb7058fb9bca213ee14c047d6f80676c8a100229bc0",
+    "requirements_digest": "1088d937ecba3af81ddbf86698a24b5f2540e2df7e6b28d725dba5f1687f3507",
+    "tests_digest": "1685d7b1784a19b175cee2f680873c2d1d7b480f9e27f728fbbc37a3b85e853a"
   },
   "campaign_id": "skill-native-r5",
   "completed_requirement_ids": [
@@ -17,9 +17,9 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "TASK-R5-NATIVE-PROBES",
-  "milestone": "R5-NATIVE-PROBES",
-  "next_action": "Publish scoped completed probes and verify exact-head CI. Full native expiry/generation fencing remains REFUTED; atomic lease/generation enforcement at actual effect/acceptance is future production work. Windows extracted Semantica package cleanup defect remains unresolved.",
-  "phase": "verify",
+  "current_task": "TASK-PRACTICAL-P1",
+  "milestone": "PRACTICAL-ISOLATED-P1-P5",
+  "next_action": "Complete test-first protected backend and consumer, then observe real synchronized race/positive control in the retained scratch pilot. Normal Beads ancestor gate is not bypassed. Historical strict fence and broad native acceptance/merge qualification remain false. No publication or installed promotion is authorized.",
+  "phase": "execute",
   "schema": 2
 }

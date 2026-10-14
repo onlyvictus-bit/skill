@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "contract_id": "R5-PRACTICAL-LOCAL-FENCE-v1",
+  "decision": "ADOPTED_FOR_ISOLATED_IMPLEMENTATION",
+  "authorization": {
+    "source": "Direct human answer to request_user_input_async call_4d8011c8d078432fb880c7c3770c3d37",
+    "quote": "Adopt practical contract + approve isolated stages 1–5",
+    "scope": "Isolated local candidate, disposable databases and termination only of retained own test client/server processes",
+    "excludes": ["Toolchain or dependency installation", "Shared database migration", "Live AI call", "Commit", "Push", "Installed-copy replacement", "File/data deletion"]
+  },
+  "intake": {
+    "path": "C:\\Users\\sakth\\.codex\\attachments\\23159729-f5b2-48e1-a64c-9b048e96e5ed\\pasted-text-1.txt",
+    "sha256": "15dada64b05267af2aff7909efa57e45b985c13f6276e0b543b8298c82d6d7d1",
+    "lines_read": 75
+  },
+  "source": {
+    "commit": "ad3f66e4cd885494cf5d4b10453d089288d7c517",
+    "tree": "003cf1770d86b684462ca6feb50060b8f9e7a280",
+    "baseline_manifest": "../Source-Baseline.json from candidate workspace root",
+    "baseline_manifest_sha256": "f3c62c4830f025bb95a347c9b3cf01d7a1936bc1ceca601adce6f40745c765ff",
+    "tracked_files_verified_against_git_blobs": 401
+  },
+  "invariant": "At backend authorization A, exact current grant, owner, status, original revision and original fixed deadline must match. DB UTC time A must be before the fixed deadline. Every protected ownership/title/heartbeat transition shares the issue row_lock conflict mechanism. Already-authorized SQL persistence may complete after the original deadline.",
+  "clock": "One backend UTC_TIMESTAMP(6) authorization sample per transaction; equality at original deadline refuses",
+  "durability_scope": "Client-process and local database-server crash/restart recovery only",
+  "effect_states": ["WORKING_SET_APPLIED", "HEAD_COMMITTED"],
+  "history_ordering": "SQL COMMIT precedes any separate Dolt HEAD commit. No DOLT_ADD or DOLT_COMMIT inside the open data transaction.",
+  "receipt_authority": "Exact backend operation record stored with title/revision effect in one SQL transaction. CM history cannot substitute for it.",
+  "local_tables": "Grant, grant history, operation and associated namespace/token identity tables are dolt_ignored and local-only. Not replicated or merge-qualified.",
+  "recovery": "Read the original operation binding in a fresh process. Missing or ambiguous outcome remains UNKNOWN. Never replay uncertain mutation, refresh identity or extend original deadline.",
+  "boundary": "Protected permanent-issue adapter and skill APIs only. Not arbitrary raw bd/SQL writers, DB admin modification, wisps, multi-replica leases or merge enforcement. Unsupported protected routes refuse before mutation.",
+  "strict_contract_history": "Prior strict expiry-before-recoverability records remain unchanged and unsatisfied; this explicit decision changes that requirement for this separately labelled practical capability.",
+  "native_practical_fence_qualified": false,
+  "strict_expiry_before_save_qualified": false,
+  "native_beads_qualified": false,
+  "native_merge_qualified": false,
+  "native_acceptance_qualified": false,
+  "installed_qualified": false,
+  "stages": [
+    {"id": "P1", "name": "Small backend fence", "state": "IN_PROGRESS", "gate": "Synchronized real old-owner transaction versus committed newer grant: zero stale title/revision/receipt; current-owner success control"},
+    {"id": "P2", "name": "Protected ownership transitions", "state": "PENDING", "gate": "Claim, reassignment, release/reclaim and guarded heartbeat preserve grant generations; ABA/expired/missing/foreign/unsupported routes refuse"},
+    {"id": "P3", "name": "Public skill and journal integration", "state": "PENDING", "gate": "Atomic intent winner only; backend op-id readback, immutable binding, no caller-created success or direct protected bypass"},
+    {"id": "P4", "name": "Real interruption recovery", "state": "PENDING", "gate": "Outstanding native client kill and separate server crash/restart; fresh-process readback and repeated recovery make no additional writes"},
+    {"id": "P5", "name": "Exact pair verification and packaging", "state": "PENDING", "gate": "Source and clean extracted-package suites, scoped adversarial review, paired digest/manifests/ZIPs/verification report; old releases retained"}
+  ]
+}

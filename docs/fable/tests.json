@@ -2,6 +2,51 @@
   "schema": 2,
   "tests": [
     {
+      "id": "TEST-PRACTICAL-P1",
+      "kind": "offline-and-native",
+      "instructions": "Backend authorization binds current incarnation, database, branch, task, actor, status, grant, signed original row token, immutable operation deadline and DB time in the same SQL transaction as effect and receipt. Real open-transaction ownership race leaves no stale committed title, revision or operation receipt; current-owner positive control succeeds.",
+      "source_links": [
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "evidence_state": "NOT_YET_NATIVE_PROVEN"
+    },
+    {
+      "id": "TEST-PRACTICAL-P2",
+      "kind": "offline-and-native",
+      "instructions": "Initial claim, live same-owner retry, expired reacquisition, reassignment, unclaim, reclaim and heartbeat have explicit non-reviving generation semantics; unsupported routes refuse. Real expiry, heartbeat-revival, ABA, missing/foreign grant and race cases refuse stale authority without deleting history.",
+      "source_links": [
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "evidence_state": "NOT_YET_NATIVE_PROVEN"
+    },
+    {
+      "id": "TEST-PRACTICAL-P3",
+      "kind": "offline-and-native",
+      "instructions": "Only atomic intent reservation winner dispatches; full immutable operation binding is persisted before native mutation. Internally invoked exact backend operation readback is authoritative; caller success dictionaries and historical results cannot authorize current changed work.",
+      "source_links": [
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "evidence_state": "NOT_YET_NATIVE_PROVEN"
+    },
+    {
+      "id": "TEST-PRACTICAL-P4",
+      "kind": "offline-and-native",
+      "instructions": "A real outstanding native client is killed at an observed inside-command barrier; own server crash/restart is separately observed. Fresh-process and repeated recovery read original exact operation only, leaving ambiguous outcomes UNKNOWN and performing zero replay writes.",
+      "source_links": [
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "evidence_state": "NOT_YET_NATIVE_PROVEN"
+    },
+    {
+      "id": "TEST-PRACTICAL-P5",
+      "kind": "automated-and-independent-review",
+      "instructions": "Source and retained clean-extracted-package regressions, actual native receipts and independent adversarial review substantiate a narrowly scoped candidate. Matching instructions, capabilities, companion pin, content manifests, ZIPs, release manifest and report preserve old releases and all qualification boundaries.",
+      "source_links": [
+        "docs/fable/derived/practical-fence-plan.md"
+      ],
+      "evidence_state": "NOT_YET_NATIVE_PROVEN"
+    },
+    {
       "argv": [
         "python",
         "-B",

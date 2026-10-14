@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased practical local fence checkpoint - 2026-10-14
+
+- Saves the explicitly approved isolated candidate as work in progress, not an M7/R5 release or native qualification.
+- Adds a protected companion intent/recovery journal and a lease-bound request/SQL template; stops the reviewed-invalid predecessor mutation and consumer paths.
+- Records 62 passing focused tests and the unfinished 21-test group's one failure and ten errors; preserves historical raw evidence and helper bytes.
+- Keeps old ZIPs, capability flags, Semantica code and installed copies unchanged; no GitHub push or installation is authorized by the local commit request.
+- See the [detailed WIP change record](docs/changes/2026-10-14-practical-fence-wip.md) and [continuation checkpoint](docs/fable/derived/practical-resume-20261014.md).
+
 ## Native probe evidence and publication notes - 2026-10-11
 
 - Adds real disposable Windows expiry/reclaim, changed-owner fencing, compatible merge and same-cell native-conflict probes with retained raw evidence.

@@ -1,8 +1,116 @@
 {
-  "milestone": "R5-NATIVE-PROBES",
-  "plan_id": "r5-native-probes-v3",
+  "milestone": "PRACTICAL-ISOLATED-P1-P5",
+  "plan_id": "r5-practical-local-fence-v1",
   "schema": 2,
   "tasks": [
+    {
+      "id": "TASK-PRACTICAL-P1",
+      "action": "Atomic local backend fence",
+      "artifacts": [
+        "docs/fable/derived/practical-fence-plan.md",
+        "docs/fable/derived/practical-fence-contract.json"
+      ],
+      "criterion_ids": [
+        "R5-PRACTICAL-P1-1",
+        "R5-PRACTICAL-P1-2"
+      ],
+      "requirement_ids": [
+        "R5-PRACTICAL-P1"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P1"
+      ],
+      "approval_scope": "PRACTICAL-ISOLATED-P1-P5",
+      "depends_on": []
+    },
+    {
+      "id": "TASK-PRACTICAL-P2",
+      "action": "Protected ownership transitions",
+      "artifacts": [
+        "docs/fable/derived/practical-fence-plan.md",
+        "docs/fable/derived/practical-fence-contract.json"
+      ],
+      "criterion_ids": [
+        "R5-PRACTICAL-P2-1",
+        "R5-PRACTICAL-P2-2"
+      ],
+      "requirement_ids": [
+        "R5-PRACTICAL-P2"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P2"
+      ],
+      "approval_scope": "PRACTICAL-ISOLATED-P1-P5",
+      "depends_on": [
+        "TASK-PRACTICAL-P1"
+      ]
+    },
+    {
+      "id": "TASK-PRACTICAL-P3",
+      "action": "Protected skill and companion consumer",
+      "artifacts": [
+        "docs/fable/derived/practical-fence-plan.md",
+        "docs/fable/derived/practical-fence-contract.json"
+      ],
+      "criterion_ids": [
+        "R5-PRACTICAL-P3-1",
+        "R5-PRACTICAL-P3-2"
+      ],
+      "requirement_ids": [
+        "R5-PRACTICAL-P3"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P3"
+      ],
+      "approval_scope": "PRACTICAL-ISOLATED-P1-P5",
+      "depends_on": [
+        "TASK-PRACTICAL-P2"
+      ]
+    },
+    {
+      "id": "TASK-PRACTICAL-P4",
+      "action": "Native interrupted-operation recovery",
+      "artifacts": [
+        "docs/fable/derived/practical-fence-plan.md",
+        "docs/fable/derived/practical-fence-contract.json"
+      ],
+      "criterion_ids": [
+        "R5-PRACTICAL-P4-1",
+        "R5-PRACTICAL-P4-2"
+      ],
+      "requirement_ids": [
+        "R5-PRACTICAL-P4"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P4"
+      ],
+      "approval_scope": "PRACTICAL-ISOLATED-P1-P5",
+      "depends_on": [
+        "TASK-PRACTICAL-P3"
+      ]
+    },
+    {
+      "id": "TASK-PRACTICAL-P5",
+      "action": "Matching exact-byte candidate release",
+      "artifacts": [
+        "docs/fable/derived/practical-fence-plan.md",
+        "docs/fable/derived/practical-fence-contract.json"
+      ],
+      "criterion_ids": [
+        "R5-PRACTICAL-P5-1",
+        "R5-PRACTICAL-P5-2"
+      ],
+      "requirement_ids": [
+        "R5-PRACTICAL-P5"
+      ],
+      "test_ids": [
+        "TEST-PRACTICAL-P5"
+      ],
+      "approval_scope": "PRACTICAL-ISOLATED-P1-P5",
+      "depends_on": [
+        "TASK-PRACTICAL-P4"
+      ]
+    },
     {
       "action": "Review and implement M0-M7 offline local adapter, structured audit and release; preserve future authorization boundaries",
       "artifacts": [
