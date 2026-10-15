@@ -76,4 +76,82 @@ Re-targeting the 9 stopped tests at the real v2 transport is blocked on other wo
 
 ## P3 decision — recorded 14 October 2026 (afternoon, uncommitted)
 
-Human decision: **(b) release/unclaim/reclaim stay permanently offline-only.** No lease-row deletion permission is granted; the no-deletion invariant remains absolute. Native proof covers initial-grant, reassign (tombstone+mint, no delete needed), and heartbeat only. Consequences: the v2 lease builders for release/unclaim/reclaim are offline reference material, not natively provable paths; the two skipped prerequisite tests (`stale_grant`, `historical_applied_event`) lift against the lease-bound initial/reassign execute path once committed, never against a delete-based ending.
+Human decision: **(b) release/unclaim/reclaim stay permanently offline-only.** No lease-row deletion permission is granted; the no-deletion invariant remains absolute. Native proof covers initial-grant, reassign (tombstone+mint, no delete needed), and heartbeat only. Consequences: the v2 lease builders for release/unclaim/reclaim are offline reference material, not natively provable paths. (Evening update: the stale/historical prerequisite guarantees already have executable v2 coverage — prerequisite refusal and reserve-level rebind tests, all green — since the lease transport committed; only live proof awaits a working host.)
+
+## Implementation session — 14 October 2026 evening (uncommitted)
+
+Base `12c394e`, tree clean before and after (no commit/push authority for
+this session; all paths below are working-tree only).
+
+- **B1 timestamps FIXED (TDD).** `initial_claim_sql` rendered receipt lease
+  snapshots without the fractional suffix the title contract requires, so no
+  claim-path receipt could feed a subsequent title request. Failing tests
+  written first (3 sub-asserts failed as designed), then the three
+  `DATE_FORMAT`s gained `.%f` (values stay second-truncated). Twin search:
+  no other suffix-less lease rendering remains in the builder.
+- **E consumer BUILT, 7 guarantees executable.** New
+  `practical_lease_consumer.py` (`LeaseNativeConsumer`): concrete-type gate,
+  internal current-authority precheck (refuses before reservation), winner-only
+  dispatch with backend-persisted consumption, independent exact readback via
+  the registered ledger callback, APPLIED-or-UNKNOWN completion, read-only
+  reconcile. New `LeaseScratchBackend.read_current_authority` (SELECT-only,
+  exact-shape, 0/ambiguity refused). The 7 skipped v1 tests are migrated to
+  v2 bodies in place (gate test kept); skipped count drops by exactly 7 and
+  the v1 stopped gates are untouched. A migrated test caught a real hole
+  during development (callback once ignored a missing read and would have
+  sealed APPLIED without backend evidence); fixed with an explicit None check.
+- **B2 pin UNRECONCILED, recorded.** Local dolt v2.4.2 hashes `35BC2B8E…`;
+  no local binary matches `ca21a9d1…` (bd.exe not present on this host).
+  No substitution made. Needs the other worker's one-sentence answer.
+- **C/D/F native BLOCKED (5th `dolt init` failure).** Fresh-temp retry
+  returns identical `NotFound: FileSystem.access`; no native commands
+  dispatched, no ACL/retry workarounds attempted. Race ladder, kill/crash
+  recovery and grammar/rollback proof need a working host or workflow.
+- **G retrieval BLOCKED without pinned runtime.** CI windows-latest shows
+  `WinError 32` on session `output` cleanup plus one `Errno 22`; the file is
+  untouched since Semantica 1.2 (not a WIP regression). Local worker runs
+  fail earlier (`E_PYTHON_RANGE` on 3.14; venv install forbidden), so the
+  exact failure is unreproducible here. No shared-code change made.
+- **Full suites on final tree:** MI 463 tests, 0 errors, 1 failure
+  (preservation manifest, deferred), 50 skips, 1 expectedFailure;
+  CM 208 tests, 0 errors, 1 failure (preservation manifest).
+- **Handoff corrections:** the GPT brief's "9 stale fixtures" framing is
+  superseded (2 backend + 7 consumer re-targeted, not fixture-fixed); the
+  brief's P1-step-2 assumed a committable lease precondition that only
+  exists once the v2 transport committed. The no-deletion conflict stands as
+  decided above; native reassignment remains unimplemented (sidecar grant
+  helper only) and unproven.
+
+## Adversarial review corrections — 14 October 2026 night (uncommitted)
+
+An independent-shape review reproduced two defects without a native
+database; both are fixed below with failing-first regression tests.
+The reviewer also resolved the pin and scoped the remaining proof.
+
+- **Consumer subclass readback bypass CLOSED.** The v2 consumer registered
+  itself as the protected reader without guarding its own type, so a
+  subclass overriding the readback callback could record APPLIED with zero
+  native calls. `LeaseNativeConsumer` now requires exact-type construction
+  and carries `__slots__` (instance-level method replacement is
+  structurally impossible); backend subprocess paths were already
+  exact-type guarded and needed no change. Regression tests cover subclass
+  refusal and shadow-assignment refusal.
+- **Grant lifecycle status corrected.** Producers write `CURRENT` (initial
+  claim) and `GRANTED` (reassign mint); a task status such as `in_progress`
+  is never a live grant. The consumer prerequisite now accepts exactly the
+  producer set (plus the untouched tombstoned/pointer checks); all fixtures
+  moved from `in_progress` to `CURRENT`. Retired lifecycles refuse.
+- **Changed-authority test restored.** The historical test had drifted into
+  a second digest-rebinding test; a dedicated changed-grant test now drives
+  the original scenario (authority moves on after APPLIED, same request
+  refuses at the prerequisite with no new intent or mutation) alongside the
+  rebind test.
+- **Pin RESOLVED (correction of this log's earlier claim).** Re-hashed here:
+  `DOLT_PIN ca21a9d1…` is Dolt **2.4.1** at
+  `R4-memory-integrity/runtime/dolt-v2.4.1/.../dolt.exe` (verified match).
+  "No local binary matches" was a workspace-scope error. Dolt 2.4.1 fails
+  `init` on this host identically (6th location); native proof still needs
+  a working host or workflow, now with a known-good binary identity.
+- **Label correction:** the v2 consumer is an implementation under
+  verification, not the completed public workflow; `practical-title` and
+  `practical-reconcile` stay preflight-gated pending native proof.

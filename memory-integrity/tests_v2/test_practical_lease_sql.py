@@ -6,7 +6,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest
+from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest, PracticalContractError
 from tests_v2.test_practical_lease_contract import packet
 from tests_v2.test_practical_lease_issuer import claim_packet
 
@@ -91,6 +91,22 @@ class LeaseSQL(unittest.TestCase):
                           'BINARY g.grant_id = BINARY ', 'BINARY g.actor = BINARY i.assignee',
                           'BINARY assignee = BINARY '):
             self.assertIn(predicate, guarded)
+
+    def test_initial_claim_receipt_lease_snapshots_carry_fractional_suffix(self):
+        # A claim-path receipt must feed a valid subsequent title request, and
+        # the title contract only parses microsecond-suffixed lease text.
+        sql = self.sql.initial_claim_sql(self.selection, claim_packet())
+        for snapshot in ('@mi2_lease_granted', '@mi2_lease_expiry', '@mi2_lease_heartbeat'):
+            with self.subTest(snapshot=snapshot):
+                self.assertIn("DATE_FORMAT(%s,'%%Y-%%m-%%d %%H:%%i:%%s.%%f')" % snapshot, sql)
+
+    def test_suffixless_lease_snapshot_cannot_form_a_title_request(self):
+        # Locks the invariant from the validation side: without the suffix
+        # the snapshot is refused, so the builder above must always emit it.
+        with self.assertRaisesRegex(PracticalContractError, 'E_PRACTICAL_LEASE_EXPIRY'):
+            LeaseGuardedTitleRequest.from_value(packet(lease_expires_at_utc='2026-10-14 10:05:00'))
+        parsed = LeaseGuardedTitleRequest.from_value(packet())
+        self.assertEqual(parsed.fixed_deadline_utc, parsed.lease_expires_at_utc)
 
 
 if __name__ == '__main__':

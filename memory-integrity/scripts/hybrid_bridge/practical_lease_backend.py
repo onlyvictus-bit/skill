@@ -224,6 +224,50 @@ class LeaseScratchBackend:
             'working-set receipt observed; integrated protected readback still required')
         return receipt
 
+    def read_current_authority(self, value):
+        """SELECT-only snapshot of the current issue/lease/grant/pointer state.
+
+        A precheck never replaces the database transaction fence; it only lets
+        a consumer refuse before reserving execution authority. Exactly one
+        row must exist: zero means stale or missing, several means ambiguous.
+        """
+        request = LeaseGuardedTitleRequest.from_value(value)
+        if type(self) is not LeaseScratchBackend:
+            raise PracticalContractError('E_MI2_BACKEND_TYPE')
+        selected = self.selection
+        namespace = _text(selected.incarnation)
+        task = _text(request.task_id)
+        database = _text(selected.database)
+        sql = ('SELECT i.id AS issue_id,i.title AS issue_title,i.status AS issue_status,'
+               'i.assignee AS assignee,i.row_lock AS issue_row_lock,i.ephemeral AS ephemeral,'
+               'l.holder AS holder,l.granted_node AS granted_node,'
+               'l.granted_at AS granted_at,l.lease_expires_at AS lease_expires_at,'
+               'l.heartbeat_at AS heartbeat_at,'
+               'g.grant_id AS grant_id,g.actor AS grant_actor,g.status AS grant_status,'
+               'g.fixed_deadline_utc AS fixed_deadline_utc,g.issue_revision AS issue_revision,'
+               'g.tombstoned AS tombstoned,g.lease_node AS lease_node,'
+               'g.lease_granted_at AS lease_granted_at,g.lease_expiry AS lease_expiry,'
+               'g.lease_heartbeat AS lease_heartbeat,'
+               'c.current_revision AS current_revision,'
+               'm.selection_digest AS selection_digest,m.native_node_id AS native_node_id,'
+               'm.selected_database AS selected_database,m.selected_main_branch AS selected_main_branch,'
+               'UTC_TIMESTAMP(6) AS observed_utc '
+               'FROM issues AS i JOIN leases AS l ON l.issue_id=i.id '
+               'JOIN mi_practical_v2_current_grants AS c ON c.store_incarnation=' + namespace
+               + ' AND c.task_id=i.id '
+               'JOIN mi_practical_v2_grants AS g ON g.store_incarnation=c.store_incarnation '
+               'AND g.grant_id=c.grant_id AND g.task_id=c.task_id '
+               'JOIN mi_practical_v2_metadata AS m ON m.store_incarnation=c.store_incarnation '
+               "AND m.namespace_key='identity' WHERE BINARY i.id=BINARY " + task
+               + ' AND DATABASE() IN (' + database + ",CONCAT(" + database + ",'/main'))"
+               + " AND active_branch()='main';")
+        rows = LeaseScratchBackend._invoke(self, sql)
+        if not rows:
+            raise LeaseDeliveryUnknown('E_MI2_AUTHORITY_ABSENT')
+        if len(rows) != 1:
+            raise LeaseDeliveryUnknown('E_MI2_AUTHORITY_CARDINALITY')
+        return rows[0]
+
     def read_operation(self, value):
         request = LeaseGuardedTitleRequest.from_value(value)
         self.intent_binding(request)

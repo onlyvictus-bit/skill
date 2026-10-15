@@ -495,9 +495,9 @@ def initial_claim_sql(selection, request):
         'authorization_time,resulting_row_lock) VALUES (' + namespace + ',' + operation + ',' + digest + ','
         + binding_json + ',JSON_SET(CAST(' + receipt_json + " AS JSON),'$.authorization_time_utc',"
         + "DATE_FORMAT(@mi2_auth,'%Y-%m-%d %H:%i:%s.%f'),'$.lease_granted_at_utc',"
-        + "DATE_FORMAT(@mi2_lease_granted,'%Y-%m-%d %H:%i:%s'),'$.lease_expires_at_utc',"
-        + "DATE_FORMAT(@mi2_lease_expiry,'%Y-%m-%d %H:%i:%s'),'$.lease_heartbeat_at_utc',"
-        + "DATE_FORMAT(@mi2_lease_heartbeat,'%Y-%m-%d %H:%i:%s'),'$.resulting_row_lock',@mi2_token),"
+        + "DATE_FORMAT(@mi2_lease_granted,'%Y-%m-%d %H:%i:%s.%f'),'$.lease_expires_at_utc',"
+        + "DATE_FORMAT(@mi2_lease_expiry,'%Y-%m-%d %H:%i:%s.%f'),'$.lease_heartbeat_at_utc',"
+        + "DATE_FORMAT(@mi2_lease_heartbeat,'%Y-%m-%d %H:%i:%s.%f'),'$.resulting_row_lock',@mi2_token),"
         + '@mi2_auth,@mi2_token);',
         'SET @mi2_receipt_changed = ROW_COUNT();',
         "CALL mi_practical_assert_v2(@mi2_receipt_changed = 1, 'E_MI2_RECEIPT_CARDINALITY');",

@@ -186,5 +186,30 @@ class LeaseBackend(unittest.TestCase):
                 self.backend.read_operation(req)
 
 
+    def test_current_authority_read_is_select_only_and_exact(self):
+        row = dict(issue_id='mipx-1', issue_title='t', issue_status='in_progress',
+                   assignee='alice', issue_row_lock=-7, ephemeral=0,
+                   holder='alice', granted_node='practical-approved-scratch-only',
+                   granted_at='2026-10-14 10:00:00', lease_expires_at='2026-10-14 10:05:00',
+                   heartbeat_at='2026-10-14 10:00:00', grant_id='grant-1', grant_actor='alice',
+                   grant_status='CURRENT', fixed_deadline_utc='2026-10-14 10:05:00',
+                   issue_revision=-7, tombstoned=0, lease_node='practical-approved-scratch-only',
+                   lease_granted_at='2026-10-14 10:00:00', lease_expiry='2026-10-14 10:05:00',
+                   lease_heartbeat='2026-10-14 10:00:00', current_revision=-7,
+                   selection_digest=self.selection.digest,
+                   native_node_id='practical-approved-scratch-only',
+                   selected_database='mipx', selected_main_branch='main',
+                   observed_utc='2026-10-14 10:00:01.000000')
+        result = process_result(row)
+        with patch.object(self.mod, '_native_boundary'), patch.object(
+                self.mod.subprocess, 'run', return_value=result) as process:
+            self.assertEqual(self.backend.read_current_authority(self.request), row)
+        sql = process.call_args.args[0][-1]
+        self.assertTrue(sql.lstrip().upper().startswith('SELECT'))
+        for forbidden in ('UPDATE ', 'INSERT ', 'DELETE ', 'COMMIT;', 'DOLT_'):
+            self.assertNotIn(forbidden, sql)
+        self.assertIn('observed_utc', sql)
+
+
 if __name__=='__main__':
     unittest.main(verbosity=2)
