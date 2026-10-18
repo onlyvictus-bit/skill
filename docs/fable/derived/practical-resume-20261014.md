@@ -174,3 +174,54 @@ One minor short-docstring phrase is deferred and recorded in the report.
 R1 is closed, not the whole native/product campaign. Next priority is core
 memory/chunk/retrieval/embedding task acceptance and source/package usability;
 the native ladder, publication and installed replacement remain separate gates.
+
+## 2026-10-18 - local correction committed; N1 acceptance approved
+
+User authorized "COMMIT IT AND THAN". The reviewed eight-path correction is
+locally committed as 6c5ba969feecabcdb1c05be12de41512aec01220, with no file
+deletions and nothing pushed. Fresh precommit practical MI evidence:
+execution-provenance-precommit-24db89fb96f64abda6feff54de00d63b/Receipt.json,
+280 cases, 279 pass and one prior expected failure; source stayed stable.
+The final preservation verifier passed before commit. This supersedes older
+uncommitted status text without rewriting that historical evidence.
+
+The user separately approved "N1 acceptance harness and local tests". Follow
+the latest N1 section of the existing practical plan: real public offline CLI,
+retained coding-source bundle, exact coverage/fresh recall, no-write resume,
+copied stale/missing/corrupt/rehashed-proof variants, and non-vacuous oracles.
+No production code, model/runtime activation, native operation, install,
+package change, push or additional commit is included. Existing parent native
+requirements remain unmet. Next: implement the external retained test harness
+under build-validation, observe N1-A through N1-H, review and report honestly.
+
+## Latest N1 checkpoint - 2026-10-18: complete with explicit caveats
+
+N1 is now executed, not awaiting harness implementation. The initial fresh
+independent review returned FIX-FIRST for a missing rehashed-response-content
+control. Parent observed the new control-checker fail on that initial receipt,
+added only a retained copied-response/ledger/map test arm, and observed it pass.
+All previous harness/receipt/proof bytes remain; no product change was needed.
+The final entire N1 run passes eight groups across 13 actual public CLI calls
+(eight success controls, five correctly caused refusals), including inner
+E_RESULT_CONTENT after outer file/CAS hashes were valid. The original 24 saved
+run files stay byte-identical, and 60,704 source bytes/965 units/four chunks
+reassemble exactly. All 527 final-run baseline files are retained; product
+trees remain exactly the bytes committed as 6c5ba96.
+
+Final receipt core-memory-acceptance-84d3b1f1dbd14de49676e64ea381053b/Receipt.json,
+SHA-256 5102e7159d7a0b968e3fe9f6739ebb95b28dee5eb06154581318355a07ac557f.
+Details, red/green hashes, focused regressions and reviewer scope are in
+docs/fable/evidence/core-memory-acceptance-20261018/report.md.
+
+Parent verdict: VERIFIED WITH CAVEATS for N1 only, after the one review-driven
+fix pass and direct observation. No second independent review of corrected
+bytes was performed or claimed. Fresh MI279+1xfail, CM18, CLI9 checks pass;
+the earlier broad non-green regression state is not cleared by them.
+
+Exact next resume: N1 is closed. Define task-relative retrieval/model quality
+acceptance, or a scoped offline-core release with broad and clean-package
+checks. Model/native execution, new commits/pushes, packages and installed
+replacement remain separate approvals. No live AI, model download, native
+Beads/Dolt test, deletion of existing files or installed change occurred.
+N1 plan/state/report and private test helpers are not committed; the earlier
+eight-path correction commit is complete and still unpushed by this agent.

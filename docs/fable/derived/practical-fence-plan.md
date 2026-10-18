@@ -649,3 +649,223 @@ is recorded/deferred. R1 is complete; neither the native ladder nor the whole
 memory skill/release/installation is declared complete. The next useful track
 is task-relative core usability/retrieval/embedding acceptance and release
 qualification, with optional native capabilities still disabled and tracked.
+
+## 2026-10-18 - N1 core-memory acceptance: approved bounded plan
+
+AUTH: the user requested "COMMIT IT AND THAN" followed by completion of the
+next required step after a deep plan. The reviewed eight-path provenance
+correction is locally committed as 6c5ba969feecabcdb1c05be12de41512aec01220.
+Nothing was pushed. Then the user explicitly selected "Approve N1 acceptance
+harness and local tests (Recommended)" in response to the bounded N1 card.
+That approval covers this test-only milestone, not additional product behavior,
+native execution, model installation/inference, releases, pushes or installation.
+
+### Target, spec and architecture
+
+Goal: observe whether the existing offline-run/verify consumer can retain and
+reopen a bounded coding-source bundle without coverage loss, duplicate resume,
+stale recall or silent artifact damage. This is one reviewable acceptance
+milestone, not a new memory service, directory ingester or embedding engine.
+
+Spec: existing memory-integrity/references/r2-workflow.md, workflow facade,
+integrity_v2/report.py and recall.py, and companion partition.py. Their public
+behavior remains authoritative. Supplied review fixtures are TEST_ONLY; all/
+every/total/absence queries enumerate units, other queries locate substrings.
+Neither route generates an answer or proves semantic understanding.
+
+Architecture: a standalone retained harness under the existing sibling
+build-validation directory invokes the actual public CLI in separate Python
+processes. Exact source copies, fixtures, stdout/stderr, exit codes, before/
+after file hashes and commands stay private there. Repository production code,
+SKILL instructions, capabilities, manifests and ZIPs are untouched. Existing
+Fable plan/resume/state remain the only campaign control plane.
+
+### Evidence and choice
+
+Facts: public verification reopens CAS/SQLite and rechecks current source
+digests; the consumer already exposes source excerpts, coverage denominator
+and zero-write shadow projections. The prior four fixture tests/50 MiB
+mechanical check passed. Existing lexical TF-IDF/LSA is not a learned embedding.
+The earlier authored model experiment did not demonstrate coding benefit.
+
+| Option | Mechanism / main failure | Constraint fit | Decision |
+| --- | --- | --- | --- |
+| No build | Repeat the three-line smoke; larger-source omissions remain untested | Lowest risk, inadequate new evidence | Retain as regression baseline |
+| Retained public-path harness | Exercise real code excerpts and negative variants through offline-run/verify; curated fixtures can be mistaken for comprehension | No new runtime or product changes | Recommended and approved N1 |
+| Learned retrieval/graph hybrid | Select installed model runtime and measure retrieval/coding outcomes; more dependencies and quality uncertainty | Requires distinct model/runtime authority and an evaluation specification | Later, not silently activated |
+
+Constraints/feasibility lens: exact source bytes and declared unit coverage are
+observable without AI; semantic correctness and native fencing are not.
+Outside-view/cost lens: reuse the functioning facade and retained harness
+pattern rather than another authority or service. A larger fixture is still
+not representative production quality; report its measured size/counts.
+Pre-mortem: a test only compares a manifest with itself, accepts an arbitrary
+error as tamper proof, or mutates the original run. Independent byte oracles,
+cloned variants, exact refusal codes and before/after inventories catch those.
+
+Evidence families: source and existing tests are one implementation family;
+fresh subprocess artifacts/readbacks provide a distinct measurement, but the
+curated expected source and fixture interpretations remain authored together.
+Fresh review is an independent challenge, not independent semantic ground truth.
+Confidence in this bounded approach: Medium until the fresh public-path run
+and its adversarial controls are observed; no numeric confidence is invented.
+Weak link: fixture review quality is not comprehension. Cheapest falsifier:
+reassemble every recalled original_excerpt against the exact bundle bytes,
+then change a copied dependency and demand STALE with no recalled records.
+Pivot: if the current consumer accepts stale/damaged evidence, retain a failing
+receipt and stop for a bounded product-fix design; never weaken the test.
+
+### Declared surfaces and preservation
+
+- Create build-validation/Core-Memory-Acceptance-20261018.py: offline harness.
+- Create collision-free core-memory-acceptance-<UUID> directories there only.
+- Append evidence and progress to this plan and practical-resume-20261014.md;
+  update docs/fable/state.json without closing parent P1-P5/native requirements.
+- Produce docs/fable/evidence/core-memory-acceptance-20261018/report.md after
+  observing the run; do not publish source excerpts/raw private receipts.
+- Do not edit any existing package source, test, capabilities, manifests or ZIP.
+- Do not commit N1 artifacts under the earlier eight-path commit authority.
+
+Before writing, record Git HEAD/status and source-file SHA-256 inventory.
+Recheck declared edit targets before editing and integrate concurrent work.
+Every baseline file must remain; package source hashes must remain identical.
+New scratch variants are created exclusively; no baseline file is overwritten
+or deleted. Scratch SQLite may create its own transient internal files; this
+is not cleanup authority over existing user evidence. Keep every failed run.
+
+### Test contract and execution order
+
+Harness interfaces: create_bundle(run: Path) -> (source: Path, provenance: list),
+call(label: str, command: str, *args: str) -> (exit_code: int, output: dict),
+check(name: str, callable) -> retained per-check result, and main() -> int.
+Only fixed actual Python offline-run/verify and companion capabilities
+commands may be invoked. No shell, arbitrary runner, provider, native binary,
+network or cleanup operation belongs to the harness.
+
+1. Copy four actual implementation/test files into a framed UTF-8 bundle with
+   per-file original byte hashes/ranges: memory_integrity_workflow.py,
+   integrity_v2/recall.py, companion complete_read_v2/partition.py and
+   tests_v2/test_r2_workflow.py. Add one separately labelled synthetic Unicode
+   line longer than 4096 bytes, to exercise child-span boundaries. Source
+   frames preserve original bytes. This is a single explicit text-source
+   consumer, not proof of automatic repository/multiple-source ingestion.
+2. Build exact primary IDs with the pinned companion manifest; independently
+   check contiguous half-open byte ranges, per-unit hashes, byte reassembly,
+   unique/ordered IDs and exact-once primary assignment. Do not derive the
+   expected excerpt text from the consumer's output. Fixture interpretations
+   explicitly say structural TEST_ONLY retention, not semantic review.
+3. Invoke the public offline-run in one process; reopen verify in distinct
+   processes for exhaustive and locator queries. Retain raw output separately.
+4. Apply negative variants only to newly created copies, then reverify the
+   unchanged original. Never delete an artifact to simulate missing data:
+   make a fresh clone that omits that artifact while retaining its mapping.
+5. Re-run focused correction/companion regressions, verify source preservation,
+   request fresh read-only Fable Sol review, reproduce load-bearing challenges,
+   and write the observed verdict. Blocked commands are not passing checks.
+
+Required acceptance cases (each gets its own check record):
+
+| ID | Public observation and independent expected result |
+| --- | --- |
+| N1-A | Fresh exhaustive recall: IDs equal ordered manifest primary IDs exactly once; concatenated original_excerpt bytes equal the entire bundle; all file frame ranges/hash identities survive; result remains TEST_ONLY and semantic_answer_generated=false |
+| N1-B | Locator: for literal code phrase and absent phrase, returned IDs equal direct byte-slice substring matches, not model-ranked guesses; exhaustive queries never shrink denominator to locator hits |
+| N1-C | Unchanged resume: resumed=true; entire existing run inventory and ledger bytes unchanged, including after fresh-process verify; zero-write shadow remains |
+| N1-D | Changed-source copy: verify against a new dependency-changed bundle returns nonzero, STALE, E_RUNMAP_STALE, no recall; original source/run remains current and unchanged |
+| N1-E | Missing response-artifact clone: nonzero BLOCKED, E_RUNMAP_ARTIFACT, no recall; clean baseline read remains successful |
+| N1-F | Corrupt response-artifact clone: retained bad bytes; nonzero BLOCKED/E_RUNMAP_ARTIFACT, no recall; rehashed fabricated content is a separate control, not hidden by the outer hash check |
+| N1-G | Rehashed approval-tamper clone: after a fixture-only provider change and rebinding the cloned ledger hash, verify still refuses through the inner ledger/request proof; assert specific refusal, not arbitrary transport failure |
+| N1-H | Non-vacuity: feeding expected-assertion helpers truncated recalled records or a fake successful stale/tamper response must fail their assertions; do not alter production code to manufacture red/green |
+
+Core excerpt oracle:
+
+```python
+records = fresh['recall']['records']
+assert [r['unit_id'] for r in records] == expected_ids
+assert b''.join(r['original_excerpt'].encode('utf-8') for r in records) == raw
+assert fresh['recall']['coverage_basis']['units'] == len(expected_ids)
+assert fresh['recall']['semantic_answer_generated'] is False
+```
+
+For a refusal, assert nonzero exit, ok=false, the required overall and named
+blocker prefix, plus absence of recall. Runtime/tool failure alone must be
+reported FAILED/INCONCLUSIVE, not accepted as the desired stale/tamper refusal.
+Separate a rehashed tamper control from an outer-hash mismatch in reporting.
+
+Run after implementation from source-git:
+
+```powershell
+& 'C:\Python314\python.exe' -B '..\build-validation\Core-Memory-Acceptance-20261018.py'
+```
+
+No product feature is implemented in N1, so production TDD red/green is not
+claimed. The harness must demonstrate N1-H against deliberately bad observations
+and distinguish any harness repair from a skill repair. Retry at most three
+evidence-changing attempts on the same failure; retain every attempt and stop
+at an unapproved surface, source drift, unexpected effect or scope contradiction.
+
+### Checklist and gate after N1
+
+- [x] Save this approved design, source baseline and explicit test boundaries.
+- [x] Implement the retained harness; run N1-A through N1-H with actual CLI.
+- [x] Observe focused regressions and unchanged production source bytes.
+- [x] Fresh read-only adversarial review; parent reproduces key checks.
+- [x] Record exact receipts, limits, unresolved findings and next resume point.
+
+N1 can close only bounded current-source retention and recall acceptance.
+Do not set native, embedding-quality, release-ready or installed flags true.
+Model-quality evaluation, broad full-CI closure, matching release packaging,
+publication and installed smoke/rollback remain separate milestones/approvals.
+
+Observed N1 execution: all eight checks passed through 12 actual public CLI
+invocations (eight exit 0 controls and four required exit 2 refusals). Four
+actual source copies plus labelled synthetic Unicode produced 60,704 bytes,
+965 primary units and four chunks. Original saved run has 24 byte-identical
+files after resume/verification. Fresh valid clone passed before negatives.
+The four negative arms produced the intended named stale/artifact/inner-
+approval refusals, not generic transport errors. N1-H rejected three fake
+passing/wrong-cause observations. No existing product source changed.
+
+Private receipt core-memory-acceptance-14b735d8008744579f61b9c2616dd9d6/Receipt.json,
+SHA-256 81cf6203ec30f1a9a28851496a4340dadf82b602035598ef2954bbe5b7ee30a8.
+Verify-Core-Memory-Acceptance-20261018.py independently checks its raw logs,
+source identities, controls/refusal causes, original run and all 526 baseline
+files (523 outside the three intended doc edits unchanged). Report at
+docs/fable/evidence/core-memory-acceptance-20261018/report.md. Review is pending;
+do not infer independent acceptance from this execution paragraph alone.
+
+Ruling: the Fable plan is the single ledger; do not create Superpowers' second
+plan/workspace or run its cleanup/automatic-commit steps. The user's explicit
+no-deletion and separate commit/install gates control. This costs retaining
+more local evidence, not removal of any hybrid feature. Production TDD is not
+claimed for a test-only harness; its critical oracles were falsified with bad
+observations. N1-D is source-change invalidation, not dependency-graph repair.
+
+N1 final closure: initial fresh independent review returned FIX-FIRST because
+the rehashed approval arm did not replace the required rehashed response-content
+arm. Parent accepted that important coverage finding. A retained check against
+the first receipt failed MISSING_REHASHED_RESPONSE_CONTENT_CONTROL; the harness
+then gained one new copied, hash-rebound CAS response/ledger/map variant and
+the check passed. This is a test-only fix, not a skill behavior repair. The
+original harness, verifier, every run and all red/green evidence are retained.
+
+Final N1 receipt core-memory-acceptance-84d3b1f1dbd14de49676e64ea381053b/Receipt.json,
+SHA-256 5102e7159d7a0b968e3fe9f6739ebb95b28dee5eb06154581318355a07ac557f:
+eight groups pass through 13 public invocations, with eight successful controls
+and five intended refusals. The added variant passes all outer mapped hashes
+and CAS identity, then is refused with E_RESULT_CONTENT and no recall. Final
+readback and original/clean-clone controls pass. All 527 baseline files remain;
+523 outside four Fable edit targets unchanged. Product trees still match HEAD.
+Post-fix regressions: MI 279 pass plus one known xfail, CM18 and CLI9 pass.
+
+Final parent acceptance is VERIFIED WITH CAVEATS; the initial independent
+FIX-FIRST verdict is not rewritten into an independent review of corrected
+bytes. Per the inline execution contract, the review-driven fix is closed by
+observed red/green control, complete N1 rerun, raw-artifact re-verification and
+focused regressions. Current resume/state supersede their minor stale-action
+wording. Whole-project CI remains non-green/unverified as previously recorded.
+
+N1 is complete within its TEST_ONLY structural retention/recall contract. It
+does not activate model/native/release/installed readiness. Next milestone is
+a separately defined task-relative retrieval-quality evaluation or scoped core
+release qualification; do not install models, regenerate historical manifests,
+commit/push N1 work or replace installed copies without the appropriate gate.
