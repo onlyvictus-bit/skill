@@ -869,3 +869,215 @@ does not activate model/native/release/installed readiness. Next milestone is
 a separately defined task-relative retrieval-quality evaluation or scoped core
 release qualification; do not install models, regenerate historical manifests,
 commit/push N1 work or replace installed copies without the appropriate gate.
+
+## 2026-10-18 - N2 offline retrieval baseline and readiness plan
+
+AUTH: user requested "COMMIT IT AND THAN" followed by the next planned step.
+N1's four repository records were verified and committed locally as
+0905d0e6ca12bfac16ee28794e63e25dd2a846f6. Nothing was pushed. The user then
+explicitly selected "Approve N2 offline baseline and readiness checks
+(Recommended)" for the bounded card: source obligations, actual no-worker
+knowledge-project/retrieve, current source/access/budget refusal, no model/
+native operation, install/download, deletion, production change or release.
+
+Goal: establish what information the current configured retrieval paths can
+actually deliver for four bounded coding tasks, without confusing mandatory
+source delivery with ranked retrieval or claiming an embedding-quality pass.
+Architecture: one private retained harness in the existing build-validation
+directory; actual unchanged public knowledge CLI and source-aware substring
+locator; exact frozen independent source obligations; per-command raw logs,
+pack/source hashes and fresh-process negative controls. No second governor.
+Spec: knowledge-project-2.md, knowledge-contract.md, actual workflow.py,
+indexing.py, impact.py, retrieval_v2.py and integrity_v2/recall.py.
+
+### Evidence-led decision
+
+Observed preflight: no KNOWLEDGE_WORKER_PYTHON selection; C:\Python314\python.exe
+is 3.14.3 and importlib find_spec reports numpy/sklearn/semantica absent. This
+is the selected interpreter, not proof that no other installed runtime exists.
+Without --worker-python the public status explicitly reports DEGRADED,
+runtime UNAVAILABLE and graph-required readiness BLOCKED. A text retrieval
+request has empty ranked results and no embedding metadata; only independently
+declared required units reopen. AST feature vectors are signed hashed lexical
+features, not learned semantic embeddings. Do not rename them as model proof.
+
+| Option | Mechanism and main failure | Decision |
+| --- | --- | --- |
+| Keep N1 only | Exact retention tests; does not measure query discovery or optional runtime readiness | Retain, insufficient next evidence |
+| No-worker baseline | Run actual configured path and literal locator against predeclared coding-task obligations; can reveal that ranking is unavailable | Recommended, approved N2 |
+| Selected Semantica/learned runtime | Observe lexical/LSA/graph or learned vectors with pinned runtime/model files; dependency cost and quality still uncertain | Separate runtime/model selection and approval, no automatic install |
+
+Constraint lens: measurement can observe current no-worker behavior now;
+unavailable ranked engines cannot receive invented scores or synthetic passes.
+Cost lens: avoid copying an old experiment or installing substantial runtime
+dependencies before knowing what is missing. Do not optimize queries after
+seeing outcomes. Pre-mortem: mandatory units make a search look successful by
+construction; therefore report separate mandatory-unit delivery, literal
+discovery and ranked-engine status with blocked scores null, not zero.
+Evidence families: implementation and authored tests share one origin;
+fresh CLI/artifact observations challenge actual integration; manual task
+source obligations are a separate authored oracle but not a calibrated dataset.
+Fresh review challenges both source mappings and claims. No numeric confidence.
+Confidence: Medium for the measured scope until its negative controls/review;
+learned quality remains unverified regardless of all structural checks passing.
+Weak link: whether four hand-authored file obligations capture every real
+coding dependency. Cheapest falsifier: a natural-language query with no
+mandatory units must not acquire invented ranked results or a quality flag.
+Pivot: if the configured route is degraded, finish the bounded report and
+request explicit runtime selection; never silently install, fake a worker or
+claim that predeclaring all required units demonstrates discovery quality.
+
+### Frozen tasks, metrics and test boundaries
+
+Copy four actual files to a new private project root, preserving bytes and
+relative paths: workflow facade, integrity_v2/recall.py, integrity_v2/report.py,
+and companion complete_read_v2/partition.py. Add a clearly labelled synthetic
+Python canary that raises if imported; indexing must parse it without executing
+it. This is a bounded declared corpus, not a representative production dataset.
+The current working repository and every old run remain untouched.
+
+Freeze these task declarations, literal probes and query strings in Oracle.json
+before executing retrieval; retain its original SHA-256 after the run. Each
+task requires every unit in its independently named files, not units selected
+from retrieval output. Expected primary units derive from original UTF-8 line
+bytes under the documented 4096-byte bound; if an actual line exceeds that
+bound, use the companion's declared child-span protocol and retain that fact.
+
+| Task | Query | Literal probe | Independently required source IDs |
+| --- | --- | --- | --- |
+| freshness | Which code rejects source edits before recalled results are returned? | E_RUNMAP_STALE | recall, report |
+| unicode | Which code splits oversized UTF-8 lines without losing source bytes? | E_UNIT_UNSCHEDULABLE | partition |
+| approval | Which code binds accepted results to the exact request and approval? | E_REQUEST_APPROVAL | report, workflow |
+| resume | Which code refuses reuse when task or saved review basis changes? | E_RESUME_BASIS | workflow, recall |
+
+Report literal matching unit IDs, observed required-file hit counts/denominator,
+truncated flag and returned bytes; do not call that semantic recall. Report
+the no-worker pack's required-unit counts and exact excerpts separately from
+its empty ranked result list. All ranked/model comparison scores remain null
+with BLOCKED_NO_SELECTED_RUNTIME; coverage/semantic truth remain UNVERIFIED.
+
+Declared surfaces: create private Retrieval-Baseline-Acceptance-20261018.py
+and UUID run directories under existing build-validation; append this plan/
+resume, update state, add evidence/retrieval-baseline-20261018/report.md.
+No package source/tests, SKILL, capabilities, historical manifests/ZIPs or
+installed copies change. New implementation is a test-only harness, not a
+production feature; prove its critical assertions reject bad observations.
+
+Child startup uses the existing retained runpy pattern, not mocked command
+responses. Only knowledge-status/project/impact/retrieve and exact companion
+capabilities/read-only Git identity commands may run. No worker/model flags,
+test execution of project source, native binary, network, shell or external AI.
+Indexing normally unlinks writer.lock. To honor no-deletion, archive only the
+current child PID's newly created writer.lock inside this run's exact index
+directory to a unique retained filename. Refuse foreign locks and every other
+existing-file deletion. This is a cleanup-retention adapter, not proof of
+unchanged runtime cleanup, concurrency, OS sandboxing or crash durability.
+No stale-lock removal/recovery test or shared/index migration is authorized.
+
+### Execution, review focus and observable done
+
+INTENT: current no-worker retrieval is degraded; this milestone measures and
+reports it truthfully rather than enabling or improving an engine. Preserve
+the core skill and all hybrid work. Record HEAD/status and all source hashes
+before starting; recheck edit targets before writing, and reverify afterward.
+
+| ID | Required observation / failure the test catches |
+| --- | --- |
+| N2-A | Public knowledge-status says DEGRADED/UNAVAILABLE/BLOCKED, never treating exit 0 as a ready worker |
+| N2-B | Actual knowledge-project creates source-bound project-2 generation for all declared files, including parsed unexecuted canary; exact original hashes/ranges remain |
+| N2-C | Four frozen task packs reopen exactly their complete mandatory units; raw bytes match originals; actual substring locator measurements remain separate; no-worker ranked results empty, metadata absent, semantic/coverage unverified |
+| N2-D | Graph-required task without a worker refuses E_GRAPH_RUNTIME_UNAVAILABLE and creates no evidence pack |
+| N2-E | Removing a required source from current access refuses E_REQUIRED_ACCESS_REVOKED, no pack |
+| N2-F | Tiny authorized byte budget refuses E_PACK_BUDGET instead of truncating mandatory units, no pack |
+| N2-G | A newly copied project changes one mandatory source; old generation refuses E_REQUIRED_STALE, no pack; unchanged original survives |
+| N2-H | A changed optional source has explicit stale/impact reporting; unrelated mandatory units still reopen without admitting stale facts |
+| N2-I | Natural-language query with no independently required units yields no invented search results; record this as unavailable discovery, not quality success |
+| N2-J | Critical assertions reject missing/reordered source units, false readiness or forged embedding metadata on a degraded result; every original project/index/oracle file is retained and unchanged except the recorded normal new index publication |
+
+For every refusal require nonzero process exit, ok=false, exact named blocker
+and absence of a created pack; transport/permission/syntax errors do not pass.
+Code pattern for mandatory oracle (expected is derived from frozen raw files):
+
+```python
+assert [(u['source_id'], u['unit_id']) for u in pack['units']] == required_pairs
+for source_id in required_source_ids:
+    assert b''.join(u['text'].encode('utf-8') for u in pack['units']
+                    if u['source_id'] == source_id) == frozen_bytes[source_id]
+assert pack['retrieval']['results'] == []
+assert pack['retrieval']['embedding_metadata'] is None
+assert pack['coverage'] == pack['semantic_audit'] == 'UNVERIFIED'
+```
+
+Startup retention affects filesystem cleanup, so compare no new source drift
+against HEAD, rerun the relevant existing retrieval/type/contract tests using
+retained fixtures, and retain any blocked/full-suite results explicitly.
+Request one fresh read-only Fable Sol review. Parent reproduces key findings;
+fix only approved test-harness gaps, not product behavior on a surprise.
+Stop/replan on any product defect, unapproved operation, lost evidence or
+three evidence-changing failures on the same issue. Keep every failed receipt.
+
+- [x] Freeze plan, task oracle, source inventory and bounded runtime status.
+- [x] Execute actual public path N2-A through N2-J and retain complete artifacts.
+- [x] Verify original files/index, frozen oracle and unchanged product source.
+- [x] Run focused regressions; review and record any limits/findings honestly.
+- [x] Advance resume/state to the exact next unmet gate, not another N2 rebuild.
+
+Run from source-git after implementation:
+
+```powershell
+& 'C:\Python314\python.exe' -B '..\build-validation\Retrieval-Baseline-Acceptance-20261018.py'
+```
+
+Completion is COMPLETE_OFFLINE_BASELINE_RANKED_QUALITY_BLOCKED, not a semantic
+quality, embedding, coding-benefit, native, release or installed-readiness pass.
+Next gate: explicitly select/verify an existing supported pinned worker, or
+separately approve an isolated runtime install before actual ranked comparison.
+No new commit/push is implied by approving this N2 test milestone.
+
+Observed N2 execution: ten groups passed through13 actual public calls (nine
+success observations, four specific expected refusals). Mandatory-unit delivery
+is527/527,266/266,689/689,528/528 across four frozen task contracts. Literal
+required-file hits2/2,1/1,1/2,1/2; natural-language literal hits zero. Ranked
+comparison is BLOCKED_NO_SELECTED_RUNTIME with null scores, never a model pass.
+Primary private receipt retrieval-baseline-acceptance-
+50c35faff94f435eb22811536274e079/Receipt.json, SHA-256
+a5bbe45fc7b26f76b9baf9dcd6215a5f6bc3de40eba867bb08c23384f0dd24f2.
+Frozen oracle237cc6cc7a36811dfd5fb5724b10db649c6a3feadbde3c43e92a136ef0e41caa.
+All527 repository before/after identities match; original project/index and
+oracle remained unchanged. Selected existing host contracts22/22 pass, with
+three relevant subprocess/runtime exclusions and no full-CI claim. Fresh
+read-only review now gates acceptance; see the N2 report, not older next-task
+instructions to implement the already executed harness.
+
+N2 review correction: independent FIX-FIRST found absent retained locator IDs/
+byte evidence and no recorded reordered-unit falsifier. Parent preserved the
+initial helper/verifier/run, observed the coverage checker fail on that receipt,
+then repaired only the private harness. New full run873e696aa2754c7aa0d142c08c03a14a
+passes ten groups/13publiccalls; eight original locator payloads and reopened
+unit lengths/hashes are retained. N2-J now exercises reordered-unit rejection.
+Coverage checker, independent artifact verifier and fresh selected22contracts
+pass. Primary receipt0667b4c80874ae52d2d6ee5dcabf4796894905dd8649d94671e685ddf29bf93b.
+See report for red/green proofs and exact IDs/bytes. Repeat read-only acceptance
+review is pending; no product fix or expanded qualification is claimed.
+
+User's normal-PowerShell metadata check was received/hash-verified:
+3b3d0cb032777eeb313efc39367f78c39b930c429f67d9b18250c71784501a1b.
+Python3.12.10 has NumPy1.26.4, no sklearn/semantica import specs. No worker is
+selected. Future supported runtime setup requires a bounded plan and separate
+install approval; N2 does not install/activate any optional runtime/model.
+
+N2 final acceptance: repeat read-only Fable review returned SHIP for N2 only;
+both Important retained-evidence gaps are closed. Parent's observed complete
+rerun and independent verifier support VERIFIED_WITH_CAVEATS, with ranked
+quality still BLOCKED/null. See final report section for reviewed identities
+and exclusions. Resume/state now point to supported isolated worker setup
+planning/approval, not another N2 run. No product/native/model/release readiness
+promotion, new commit, push or installation is included.
+
+N2 checkpoint publication authorization - 2026-10-18: user subsequently said
+"COMMIT AND WHAT NEXT STEP?". This authorizes the containing local commit of
+the four N2 Fable records, not a push, runtime install, package or installed
+replacement. Fresh artifact verifier, retained-evidence coverage checker and
+selected22hostcontracts pass before commit. All private helpers/raw receipts
+remain outside Git. The next unmet gate remains supported isolated worker
+setup/evaluation planning and separate installation/activation approval.

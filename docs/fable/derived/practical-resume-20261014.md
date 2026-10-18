@@ -225,3 +225,86 @@ replacement remain separate approvals. No live AI, model download, native
 Beads/Dolt test, deletion of existing files or installed change occurred.
 N1 plan/state/report and private test helpers are not committed; the earlier
 eight-path correction commit is complete and still unpushed by this agent.
+
+## 2026-10-18 - N1 records committed; N2 offline baseline approved
+
+N1's four repository records are committed locally as
+0905d0e6ca12bfac16ee28794e63e25dd2a846f6; no push. Private helpers/raw runs
+remain retained outside Git. N1 artifact verifier and rehashed-response checker
+passed again before commit. Do not call the private helpers a portable release.
+
+The user explicitly approved N2 offline baseline/readiness checks. Follow the
+latest N2 section of the existing practical plan. No worker interpreter is
+selected; the current Python3.14.3 has no numpy/sklearn/semantica. N2 measures
+actual no-worker behavior, source delivery, literal discovery and refusal
+boundaries, not a fake embedding/model comparison. Four independent coding-task
+file obligations and query strings are frozen before retrieval. Preserve all
+source/index/pack/oracle/failed artifacts. Any new writer.lock cleanup is a
+test-only archive of this child's own newly created scratch lock, never removal
+of foreign or historical locks. No model/native run, install, production change,
+push or package/installed change is approved. Next: implement/run the bounded
+private harness, verify sources and review its measured result.
+
+N2 execution checkpoint: all ten bounded groups passed through 13 actual public
+CLI calls, with four specifically caused refusals. Manual required-file packs
+reopened every declared unit, but no-worker ranked results were empty; ordinary
+natural-language substring queries found no units. Literal required-file hits
+were 2/2,1/1,1/2,1/2. Do not present mandatory inclusion as discovery quality.
+No optional runtime/model was selected, activated or installed. Fresh selected
+host contracts passed22/22 (not full discovery or ranked runtime tests).
+Report: docs/fable/evidence/retrieval-baseline-20261018/report.md.
+Primary receipt SHA-256 a5bbe45fc7b26f76b9baf9dcd6215a5f6bc3de40eba867bb08c23384f0dd24f2.
+Source/project/index/oracle inventories are retained and unchanged. Fresh
+read-only review is now the gate, not another unimplemented harness.
+
+N2 review/fix checkpoint: initial independent verdict FIX-FIRST identified two
+missing retained-evidence obligations (exact locator IDs/bytes and exercised
+reorder rejection). Initial run remains unchanged. Parent observed the coverage
+checker fail before correction and pass after a new complete harness run.
+Corrected receipt873e696aa2754c7aa0d142c08c03a14a SHA-256
+0667b4c80874ae52d2d6ee5dcabf4796894905dd8649d94671e685ddf29bf93b.
+Ten groups/13publiccalls, eight retained locator payloads, four rejection probes,
+fresh verifier and selected22hostcontracts pass. Repeat read-only review gates
+final acceptance. No product code changed and no model/native execution ran.
+
+The user correctly ran the host-only metadata helper. Its receipt
+Retrieval-Runtime-Discovery-b5b2744dbe0c439788aad9108252a48e.json SHA-256
+3b3d0cb032777eeb313efc39367f78c39b930c429f67d9b18250c71784501a1b
+was read and verified. Python3.12.10 has NumPy1.26.4, but sklearn/semantica
+absent there. This resolves package-discovery UNKNOWN for that interpreter,
+not worker readiness; do not repeat that host check or auto-install anything.
+After N2 review closes, next unmet gate is a supported pinned runtime setup
+decision/approval, not another N2 harness rebuild or native Beads diversion.
+
+## Latest N2 checkpoint - 2026-10-18: complete offline baseline, quality blocked
+
+Repeat independent read-only acceptance review returned SHIP for N2 only,
+closing both Important evidence gaps after correction. Parent accepts
+VERIFIED_WITH_CAVEATS based on its own full rerun and source/artifact verifier.
+Ten groups/13publiccalls, eight original locator payloads and recorded reorder
+rejection,22selectedcontracts, unchanged product trees and retained528baseline
+files are verified. Initial FIX-FIRST/red/old helper/run artifacts remain.
+Ranked/embedding quality is BLOCKED_NO_SELECTED_RUNTIME, scores null. Native,
+fullCI, model/real-project benefit, releases and installed readiness stay unmet.
+
+User's host metadata command was correct; receipt already read/hash-verified.
+Do not ask them to rerun it. Python3.12.10 has NumPy1.26.4 but lacks sklearn/
+semantica; current Python3.14.3 lacks all three. No worker is selected. Next:
+show a supported isolated runtime setup/evaluation plan and ask separately
+before any installation or activation. Prefer existing lexical/LSA route
+without learned weights initially. Never alter global/current Python packages,
+install, download weights, run native Beads or promote flags under N2 authority.
+N1 commit0905d0e is local; N2 docs/helpers are uncommitted, nothing pushed.
+
+## N2 local commit authorization - 2026-10-18
+
+AUTH: user said "COMMIT AND WHAT NEXT STEP?". The containing Git commit records
+the four reviewed N2 Fable documents plus this publication-status annotation.
+Earlier uncommitted wording is historical, not the current resume instruction.
+The private harnesses, original/failed runs and raw receipts remain retained
+outside Git; this is not a portable release. No push or installation is approved.
+Fresh precommit artifact/coverage checks and22selectedcontracts pass; protected
+product trees remain unchanged. Next show the bounded supported-worker setup
+and lexical/LSA evaluation plan, then ask separately before installing or
+activating it. N2 is closed; ranked/embedding quality and full release remain
+unqualified. Do not repeat N2, the host metadata command or native feasibility.
