@@ -129,7 +129,7 @@ def _source_manifest():
     here = Path(__file__).resolve().parent
     names = ('practical_race_controller.py', 'practical_race_verify.py',
              'practical_race_alice.py', 'practical_contract.py', 'practical_lease_sql.py',
-             'practical_lease_backend.py', 'practical_lease_consumer.py')
+             'practical_lease_backend.py', 'practical_lease_consumer.py', 'practical_execution.py')
     manifest = {}
     for name in names:
         path = here / name
@@ -1130,10 +1130,33 @@ class _LiveDriver:
                 'resumed_at': self._clock(),
                 'authority_readable': authority['readable'],
                 'predicate_refused': authority['refused'],
+                'execution_diagnostics': self.execution_diagnostics(),
                 'refusal': stale_refusal_attribution(
                     outcome=outcome,
                     predicate_refused=authority['refused'],
                     authority_readable=authority['readable'])}
+
+    def execution_diagnostics(self):
+        """Read the original CM event independently, never a worker cause field.
+
+        This adds observations only. It does not change refusal attribution,
+        operate the backend, create/reopen a ledger, or call completion.
+        """
+        from .practical_execution import read_execution_diagnostics
+        from .practical_lease_backend import LeaseScratchBackend
+        unavailable = {'available': False, 'causal_status': 'UNVERIFIED',
+                       'evidence_class': 'TRANSPORT_DIAGNOSTICS_ONLY', 'capture_complete': False}
+        db = getattr(self, '_cm_db', None)
+        request = getattr(self, 'alice_request', None)
+        if db is None or request is None:
+            return dict(unavailable, code='E_EXECUTION_NO_JOURNAL')
+        try:
+            backend = LeaseScratchBackend(self.schedule['requests']['selection'])
+            sql = self.schedule['phases']['alice_arm']['batch']
+            return read_execution_diagnostics(db, backend.intent_binding(request),
+                expected_sql_sha256=hashlib.sha256(sql.encode('utf-8')).hexdigest())
+        except Exception:
+            return dict(unavailable, code='E_EXECUTION_UNREADABLE')
 
     def _stale_predicate_state(self):
         """Independently re-read current authority for the stale request.

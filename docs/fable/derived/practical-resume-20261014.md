@@ -57,3 +57,51 @@ All three native helper agents stopped with `Your workspace is out of credits`. 
 P1 remains partially implemented; P2 incomplete; P3 journal portion unit-tested but consumer stopped; P4 runtime policy prepared but native interruption/race proof absent; P5 not ready. No whole approved stage is declared native-complete by this checkpoint.
 
 Publication, installs, shared databases, provider calls and deletion remain excluded. Existing installed copies were not replaced. The only eventual completion label justified by this approved range is a narrowly scoped ordinary local protected-adapter capability, not full M7/R5/native merge, strict expiry-before-save, power-loss or production qualification.
+
+## Current continuation — 2026-10-18: original execution diagnostics
+
+This latest entry supersedes older next-action wording above; older evidence
+is retained, not rewritten. Source checkpoint before this successor is
+fbabbab5e69e924ac4aae6c3a4fb6de62aae3d55 on the practical WIP branch.
+The lease-v2 backend AND internal consumer already exist. Only the old unsafe
+v1 consumer remains stopped; practical public commands stay preflight-only.
+The unchanged original GPT handoff is now explicitly marked historical with
+an appended correction. Do not revive its stale runtime or fixture advice.
+
+The next bounded local step is diagnostic preservation, not another fence:
+`practical_execution.py` captures fixed selection/SQL/command hashes, the
+actual process exit or timeout class and Base64 raw-byte prefixes (64 KiB per
+channel), plus original lengths/full hashes and explicit missing/truncated
+state. Exception messages and environment values are not serialized. A normal
+native command may itself print sensitive content; these retained diagnostics
+are local evidence, not a payload approved for external sharing.
+
+The sealed backend binds this observation into the existing protected CM
+UNKNOWN reason before the consumer can swallow the exception. The controller
+reads the original CM history independently and exposes diagnostics with
+`causal_status=UNVERIFIED`. Worker-provided causes remain ignored. No companion
+schema/API change, SQL-predicate change, new dispatch route, second ledger,
+native acceptance or retry permission is introduced. A clean parsed result
+with an invalid/foreign receipt retains its original transport bytes too.
+
+Current plan and checks: see the 2026-10-18 section in the existing practical
+plan and `docs/fable/evidence/execution-diagnostics-20261018/verification.md`.
+Failing-before and passing-after raw receipts are retained under the existing
+`build-validation` directory outside this checkout. The first wider test run
+caught an incorrect new-test expectation: the existing model returns exit 1
+and stderr, not a spawn exception. That expectation was corrected against the
+unchanged model source; the failed receipt is retained, not counted green.
+
+A fresh Fable reviewer was attempted but could not start because the workspace
+was out of credits. Independent review remains PENDING; parent inspection is
+not a substitute for it. Full unmodified CI, source/package preservation gates
+and native proof are not claimed by the focused offline checks.
+
+Next: review this exact diff, then separately authorize and run the pinned
+native grammar/forced-rollback preflight before the three-arm synchronized
+race. Native diagnostic interpretation still needs actual pinned-runtime
+observations; no error-string guess may replace that proof. Enabled stale
+effect stops the candidate; missing/transport/syntax/permission cause stays
+INCONCLUSIVE. Prior manifests/ZIPs/installed copies remain unchanged and
+publication or promotion requires separate approval. No files/data are to be
+deleted, no native activation is allowed, and no API/LLM key is needed.

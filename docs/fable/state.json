@@ -19,8 +19,19 @@
   ],
   "current_task": "TASK-PRACTICAL-P1",
   "milestone": "PRACTICAL-ISOLATED-P1-P5",
-  "next_action": "Bounded offline integration repair is saved and verified; read docs/fable/evidence/offline-repair-20261017/repair-report.md and the exact saved diff. Independent review remains pending. Do not start native experiments, packaging, installation, commit, push or publication under this offline-only authorization. Parent P1-P5 and broad release/native gates remain open.",
+  "next_action": "Read the latest 2026-10-18 entry in docs/fable/derived/practical-resume-20261014.md and the execution-diagnostics verification report. The old GPT handoff is historical. Bounded diagnostic preservation does not establish native execution causation. Independent review, real pinned grammar/rollback/paired race and full release/install gates remain open. No native experiment, activation, packaging, commit, push or installed promotion follows from this local repair authorization.",
   "phase": "execute",
+  "execution_diagnostics_repair": {
+    "date": "2026-10-18",
+    "status": "OFFLINE_DIAGNOSTICS_IMPLEMENTED_CAUSE_UNPROVEN",
+    "plan": "docs/fable/derived/practical-fence-plan.md",
+    "evidence": "docs/fable/evidence/execution-diagnostics-20261018/verification.md",
+    "native_execution": false,
+    "native_causation_proven": false,
+    "release_ready": false,
+    "installed": false,
+    "independent_review": "PENDING_WORKSPACE_CREDITS"
+  },
   "offline_integration_repair": {
     "date": "2026-10-17",
     "status": "OFFLINE_REPAIR_VERIFIED_NATIVE_UNVERIFIED",

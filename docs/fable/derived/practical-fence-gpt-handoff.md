@@ -300,3 +300,31 @@ Fable governance update, independent review, manifest regeneration (clears the `
 3. **Never soften `dolt_ignore` handling.** It stays an `expectedFailure` until proven live. A silently-passing ignore test is worse than a red one.
 4. **Report the exact command and its output** for every verification claim.
 5. **When something surprises you, stop and say so.** A surprise is the most valuable thing you will find.
+
+---
+
+## HISTORICAL / SUPERSEDED — 2026-10-18
+
+The original 17,991 bytes above are retained unchanged as historical evidence
+(SHA-256 of that original prefix: 1dc09c0129af24a4fb162ac6d61dcf98127d207f5ea2b44655e94f2eb4019332).
+They are NOT current build instructions. Use the latest dated entry in
+`docs/fable/derived/practical-resume-20261014.md`, the existing practical plan
+and `docs/fable/state.json` for current routing. Never treat this original
+handoff, its test counts, runtime recommendations or next-step sequence as
+current authority.
+
+Material corrections: the protected SQL writes grant/operation history while
+CM owns its separate existing audit journal; Beads v1.3.1 is present and its
+pinned binary hash was verified; the candidate selects Dolt v2.4.1, not an
+implicit v2.4.2 switch; adding native_node_id alone cannot activate the stopped
+v1 consumer. A lease-v2 backend and internal consumer now exist but the public
+commands remain preflight-only. In the disabled comparison an unsafe stale
+effect is the required counterfactual, not evidence that the enabled fence
+failed. Only an enabled-arm stale committed effect refutes that candidate.
+
+The 2026-10-18 successor retains original command diagnostics in protected CM
+UNKNOWN events and reads them independently. It deliberately does not turn
+error text or those diagnostic packets into native refusal/success proof.
+Native causation, real grammar/rollback/race, independent review, release and
+installed verification remain open. No native test or activation follows from
+this archival correction.

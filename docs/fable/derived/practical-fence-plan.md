@@ -300,6 +300,41 @@ A fresh native Fable Sol reviewer completed a read-only source challenge during 
 
 The review advised "Resolve authority before native work." This plan preserves that restriction for any case whose native transition would remove an active lease row; offline consistency work and a non-deleting initial-claim probe do not consume that missing permission. Never use the distinction to run a deleting handoff, unclaim or reclaim implicitly. The first ownership race must use an explicitly permitted, semantically valid competing transition, or remain blocked.
 
+## 2026-10-18 — next-step plan: retain original execution diagnostics
+
+Authority: the user requested, "complete the next required step after created a best deep plan". This authorizes this bounded local code/test/documentation successor, not a native run, installation, release, commit or push. Existing P1-P5 acceptance criteria remain open. Fable is the only governor and this existing document is the plan; Superpowers supplies debugging, test-first and verification practices.
+
+### Decision and observable target
+
+Fix the observed loss at the sealed transport -> CM UNKNOWN -> worker -> controller boundary. A failed or timed-out mutating invocation must retain bounded original output bytes, exit/timeout classification, exact selection/request/SQL identities and capture completeness in the existing protected CM history. The parent controller must read that history independently rather than trust a worker's supplied cause. Diagnostics alone must never authorize replay, APPLIED, a fence-refusal verdict or any qualification flag.
+
+Options: documentation-only is reversible but leaves the diagnostic loss; a new fence/service would add a mechanism and authority surface without addressing this first; a bounded transport observation bound into the existing UNKNOWN reason is the smallest adequate repair. Choose the existing-journal route: no second authoritative ledger, database migration, callback injection, driver install or SQL predicate change.
+
+Constraint challenge: the consumer deliberately swallows delivery exceptions and reads back, so exception attributes alone cannot survive the worker boundary. Existing protected UNKNOWN reasons can retain the packet without changing the companion's history schema. Cost challenge: do not rerun native experiments or broaden packaging while command failure remains unattributed. Falsification challenge: invalid bytes, timeout, truncation, wrong operation/SQL/selection, forged worker fields and an unrelated error that mentions a fence code must not become proof. Implementation and mocked process tests are one correlated evidence family; real pinned-runtime diagnostics are the still-missing independent observation. Confidence in the bounded design is medium until its red/green and connected regressions run; native safety remains unverified.
+
+### Scope and file ownership
+
+Parent owns this successor: new `memory-integrity/scripts/hybrid_bridge/practical_execution.py`, its focused tests, transport integration in `practical_lease_backend.py`, controller readout in `practical_race_controller.py`, and the existing Fable state/resume/handoff annotations. Reuse `LeaseScratchBackend`, generated SQL, `mark_practical_native_unknown`, canonical binding and protected CM events. The consumer, companion engine, SQL builders/predicates, SKILL instructions, capability flags, old manifests/packages and Semantica implementation remain unchanged.
+
+### Implementation checklist and verification
+
+- [x] Baseline: retain HEAD, clean status, target hashes and all pre-edit file hashes in a new uniquely named local evidence directory. Recheck before edits.
+- [x] Red: prove a real backend failure currently loses non-UTF8 stdout/stderr, exit status and invocation identity in its durable UNKNOWN reason. Use the real in-memory CM journal/backend and mock only the unavoidable subprocess/physical-host boundary.
+- [x] Transport: capture byte prefixes (64 KiB per channel), original byte lengths and full-byte SHA-256 values. Record missing/non-byte output explicitly; timeout is not an engine rejection. Keep command arguments out of generic exception strings; record executable/runtime pin, loopback/db/main selection, SQL hash and fixed transport options. No credentials/environment values are serialized.
+- [x] Journal: bind the observed command packet to the original exact immutable intent and generated SQL in the protected UNKNOWN reason before the exception can be swallowed. Preserve the single durable dispatch and readback-only recovery; no additional terminal event on retry.
+- [x] Reader: add a read-only diagnostics query over exact practical events. Verify history integrity, operation binding, command identity and packet hashes; missing/ambiguous/foreign data is unavailable diagnostics, never permission to resend. Expose diagnostics as observations, never a fence verdict.
+- [x] Controller: attach independently read CM diagnostics to Alice's observed result. Ignore worker-provided capture/cause fields. Leave `stale_refusal_attribution` and the canonical verifier unchanged.
+- [x] Adversarial green: prove original bytes survive through UNKNOWN/readback and a reopened CM connection; wrong binding, malformed Base64, corrupt hashes, duplicate command, timeout, truncated bytes and caller-created cause cannot create APPLIED or qualify a run.
+- [x] Regression: run current 70-case focused baseline, stopped-predecessor gates, practical consumer/journal tests, connected race tests and CLI refusal checks using retained fixtures. No deleting cleanup or native executable. Compare failures with the preserved baseline rather than relabeling blocked checks green.
+- [x] Continuity: preserve the old handoff's original bytes as a prefix, append an explicit historical/superseded warning and point to the existing resume record. Update that resume/state with exact evidence and remaining gates, without changing historical receipt hashes.
+- [x] Review/hand-off: inspect the actual diff, source stability, unchanged protected files and recurrence sites. Attempt a fresh read-only Fable reviewer; unavailable review remains PENDING, never substituted with a claim of independence. Save the observed verification report and hashes in a new evidence location.
+
+Observed closure of this bounded substep: 275 MI checks (274 pass plus the unchanged expected-failure placeholder), 18 CM checks and 9 CLI checks; zero unexpected failures/errors in the final groups. Retained-fixture offline evidence only. The fresh reviewer attempt failed for workspace credits and is still PENDING, not completed. Parent verification report: `docs/fable/evidence/execution-diagnostics-20261018/verification.md`. Native cause/proof and parent P1-P5 gates remain open; no release or merge readiness follows from these checkboxes.
+
+Cheapest falsifier: an unrelated process failure with fence-like text must still produce durable UNKNOWN and canonical INCONCLUSIVE after diagnostic capture. Pivot: if preserving diagnostics requires changing SQL authority, adding an evidence-as-authorization seam or changing the companion event schema, stop and revise this plan before building that larger mechanism. A captured SQL diagnostic is not yet proven execution causation: interpreting actual pinned-runtime diagnostics and real native grammar/rollback/paired race remains the next separately gated proof milestone.
+
+No guarantee of zero defects is made. Completion of this substep means measured diagnostic preservation plus unchanged refusal/no-replay safety, not complete M7/R5, a releasable skill, native qualification or installation.
+
 ## 17 October 2026 — authorized offline integration repair
 
 The current human request authorizes finishing and saving bounded offline

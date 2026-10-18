@@ -56,6 +56,9 @@ def _mark_pause(sql):
 
 class LeaseDeliveryUnknown(RuntimeError):
     """Uncertain transport/readback; never grants permission to retry mutation."""
+    def __init__(self, message, *, transport_observation=None):
+        super().__init__(message)
+        self.transport_observation = transport_observation
 
 
 def _native_boundary(selection):
@@ -191,6 +194,7 @@ class LeaseScratchBackend:
         return binding
 
     def _invoke(self, sql, *, timeout=TIMEOUT_SECONDS):
+        from .practical_execution import capture_transport, ObservedRows
         if type(self) is not LeaseScratchBackend:
             raise PracticalContractError('E_MI2_BACKEND_TYPE')
         _native_boundary(self.selection)
@@ -206,10 +210,15 @@ class LeaseScratchBackend:
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout,
                 shell=False, check=False, creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
         except Exception as exc:
-            raise LeaseDeliveryUnknown('E_MI2_PROCESS') from exc
+            observation = capture_transport(self.selection, sql, argv, timeout, error=exc)
+            raise LeaseDeliveryUnknown('E_MI2_PROCESS', transport_observation=observation) from exc
+        observation = capture_transport(self.selection, sql, argv, timeout, result=result)
         if result.returncode != 0 or not isinstance(result.stderr,bytes) or result.stderr.strip():
-            raise LeaseDeliveryUnknown('E_MI2_PROCESS_RESULT')
-        return _rows(result.stdout)
+            raise LeaseDeliveryUnknown('E_MI2_PROCESS_RESULT', transport_observation=observation)
+        try:
+            return ObservedRows(_rows(result.stdout), observation)
+        except LeaseDeliveryUnknown as exc:
+            raise LeaseDeliveryUnknown(str(exc), transport_observation=observation) from exc
 
     def _receipt(self, request, row):
         fields = {'binding_json','receipt_json','command_digest','authorization_time','resulting_row_lock'}
@@ -273,13 +282,16 @@ class LeaseScratchBackend:
         claimed = ledger.consume_practical_native_dispatch(cm_db,binding,reservation)
         if not claimed['dispatch']:
             raise PracticalContractError('E_MI2_OPERATION_READBACK_ONLY')
+        rows = None
         try:
             rows = LeaseScratchBackend._invoke(self,sql,timeout=timeout)
             if len(rows) != 1:
                 raise LeaseDeliveryUnknown('E_MI2_RECEIPT_ABSENT')
             receipt = LeaseScratchBackend._receipt(self,request,rows[0])
         except Exception as exc:
-            ledger.mark_practical_native_unknown(cm_db,reservation,'lease dispatch uncertain: '+type(exc).__name__)
+            from .practical_execution import diagnostic_reason
+            ledger.mark_practical_native_unknown(cm_db,reservation,
+                diagnostic_reason(binding, self.selection, sql, exc, rows))
             if isinstance(exc,LeaseDeliveryUnknown):
                 raise
             raise LeaseDeliveryUnknown('E_MI2_DELIVERY_UNKNOWN') from exc
@@ -338,13 +350,17 @@ class LeaseScratchBackend:
         claimed = ledger.consume_practical_native_dispatch(cm_db,binding,reservation)
         if not claimed['dispatch']:
             raise PracticalContractError('E_MI2_OPERATION_READBACK_ONLY')
+        sql = practical_lease_sql.reassign_title_sql(self.selection,request)
+        rows = None
         try:
-            rows = LeaseScratchBackend._invoke(self,practical_lease_sql.reassign_title_sql(self.selection,request))
+            rows = LeaseScratchBackend._invoke(self,sql)
             if len(rows) != 1:
                 raise LeaseDeliveryUnknown('E_MI2_RECEIPT_ABSENT')
             receipt = LeaseScratchBackend._receipt(self,request,rows[0])
         except Exception as exc:
-            ledger.mark_practical_native_unknown(cm_db,reservation,'lease dispatch uncertain: '+type(exc).__name__)
+            from .practical_execution import diagnostic_reason
+            ledger.mark_practical_native_unknown(cm_db,reservation,
+                diagnostic_reason(binding, self.selection, sql, exc, rows))
             if isinstance(exc,LeaseDeliveryUnknown):
                 raise
             raise LeaseDeliveryUnknown('E_MI2_DELIVERY_UNKNOWN') from exc
