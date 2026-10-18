@@ -19,7 +19,7 @@
   ],
   "current_task": "TASK-PRACTICAL-P1",
   "milestone": "PRACTICAL-ISOLATED-P1-P5",
-  "next_action": "Read the latest 2026-10-18 entry in docs/fable/derived/practical-resume-20261014.md and the execution-diagnostics verification report. The old GPT handoff is historical. Bounded diagnostic preservation does not establish native execution causation. Independent review, real pinned grammar/rollback/paired race and full release/install gates remain open. No native experiment, activation, packaging, commit, push or installed promotion follows from this local repair authorization.",
+  "next_action": "R1 bounded offline provenance correction is complete with VERIFIED_WITH_CAVEATS after fresh independent saved-diff SHIP review and parent reproduction. Read provenance-correction.md and the latest resume. Prioritize the user's useful large-task memory/chunk/retrieval/embedding acceptance and core source/package usability; no model/embedding-quality or whole-skill readiness claim follows from fixture/50MiB mechanical tests. Broader guarded suites are not fully green. Native preflight/comparisons, new publication, packaging and installed-copy replacement remain separately gated.",
   "phase": "execute",
   "execution_diagnostics_repair": {
     "date": "2026-10-18",
@@ -30,7 +30,15 @@
     "native_causation_proven": false,
     "release_ready": false,
     "installed": false,
-    "independent_review": "PENDING_WORKSPACE_CREDITS"
+    "independent_review": "COMPLETED_FIX_FIRST_PROVENANCE",
+    "reviewed_commit": "0f1fe58b66a03e34244b1f2ac56e5588d2489eee",
+    "review_evidence": "docs/fable/evidence/execution-diagnostics-20261018/review.md",
+    "review_finding": "Supported CM reason APIs can fabricate complete-looking sealed-source diagnostic packets; self-hashes and byte completeness do not authenticate producer or full invocation identity.",
+    "provenance_correction": "COMPLETE_OFFLINE_VERIFIED_WITH_CAVEATS",
+    "correction_evidence": "docs/fable/evidence/execution-diagnostics-20261018/provenance-correction.md",
+    "successor_review": "COMPLETED_SHIP_FOR_BOUNDED_OFFLINE_CONTRACT",
+    "core_smoke": "TEST_ONLY_50MIB_PARTITION_AND_FOUR_PUBLIC_FIXTURE_WORKFLOW_TESTS_PASSED",
+    "embedding_quality_proven": false
   },
   "offline_integration_repair": {
     "date": "2026-10-17",

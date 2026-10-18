@@ -105,3 +105,72 @@ effect stops the candidate; missing/transport/syntax/permission cause stays
 INCONCLUSIVE. Prior manifests/ZIPs/installed copies remain unchanged and
 publication or promotion requires separate approval. No files/data are to be
 deleted, no native activation is allowed, and no API/LLM key is needed.
+
+## Latest continuation - 2026-10-18: independent review completed, FIX-FIRST
+
+Published source remains 0f1fe58b66a03e34244b1f2ac56e5588d2489eee;
+the current turn began with a clean tree. Fresh native Fable Sol review of
+fbabbab5..0f1fe58 completed successfully; the old workspace-credit blockage
+is not the current review result. Verdict: FIX-FIRST, P2/moderate provenance
+finding, not an unauthorized-write or native-acceptance finding.
+
+Normal CM reserve/consume/mark-unknown APIs can retain a caller-built packet
+which the diagnostics reader labels available/complete/SEALED_DOLT_CLIENT.
+Rehashed changed port/command digest are accepted too. Both reviewer and
+parent reproduced this without a native process or database tampering.
+History hashes and completeness do not authenticate a producer. Causal status
+remains UNVERIFIED; no APPLIED, replay or fence verdict was created.
+
+Review/evidence: docs/fable/evidence/execution-diagnostics-20261018/review.md.
+The existing practical plan now sequences a bounded provenance correction
+before pinned grammar/forced-rollback preflight, paired race and later
+heartbeat/ABA/interruption tests. The recommended correction explicitly
+labels unauthenticated diagnostics; it does not introduce a new fence or
+another authority store. Human approval is pending before that behavior/
+evidence-contract change. No native helper is claimed ready to execute.
+
+Fresh focused runs reproduced 301 passes plus one existing expected failure
+across 302 MI/CM/CLI checks, zero unexpected failures/errors. Adapted retained
+offline checks only. The existing pinned binaries were hashed, not executed.
+No source/SQL/CM change, native test, deletion, install, package regeneration,
+commit or push was performed in this review turn. All qualification flags
+remain false. Current task and unmet parent P1-P5 gates remain unchanged.
+
+## Latest execution - 2026-10-18: approved provenance correction saved
+
+The human approved the recommended offline direction with "do whichis best"
+and clarified that useful memory/chunk/embedding support is the priority.
+The bounded correction is now implemented, not awaiting design approval:
+new captures say DECLARED_DOLT_CLIENT, old packet bytes remain compatible,
+and every available/unavailable result explicitly reports unauthenticated
+producer and unverified invocation identity. No new authority store or fence.
+
+Five new regression failures were observed before the source fix; all 21
+diagnostic checks pass now. Connected practical groups: 280 MI (279 pass plus
+one known expected failure), 18 CM and nine CLI checks. Same-policy broader
+before/after discovery ran 942 cases each; only those five failures closed,
+with no new failing/error IDs. Existing guard blocks and frozen-manifest/
+other failures are retained; this is not full green CI or a release verdict.
+
+Existing public offline workflow also passed four fresh-process fixture tests
+for recall, no-duplicate resume and invalid/unresolved-input refusal. Pure
+50 MiB mechanical partition/reassembly and missing-primary detection passed.
+No embedding/model quality, semantic perfection or live memory-service
+persistence was inferred from those observations.
+
+Evidence: docs/fable/evidence/execution-diagnostics-20261018/provenance-correction.md.
+All 524 original files remain, 518 unrelated originals byte-identical. No prior
+class/function removed, packages/installed copies/native flags unchanged.
+HEAD remains published 0f1fe58; this successor is uncommitted/unpushed.
+Fresh saved-diff review is the current gate. After acceptance, prioritize
+task-relative core usability/retrieval/embedding and packaging acceptance;
+the optional native ladder remains separate and unqualified, not deleted.
+
+Final saved-diff review is now completed: SHIP for this bounded explicit-
+unauthenticated correction, no blocking/moderate finding. Parent acceptance:
+VERIFIED WITH CAVEATS; nine selected reviewer checks passed, with parent
+independently reproducing the load-bearing source/test/preservation claims.
+One minor short-docstring phrase is deferred and recorded in the report.
+R1 is closed, not the whole native/product campaign. Next priority is core
+memory/chunk/retrieval/embedding task acceptance and source/package usability;
+the native ladder, publication and installed replacement remain separate gates.

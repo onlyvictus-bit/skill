@@ -405,3 +405,247 @@ The stopped predecessor, companion journal, practical timing contract and all
 prior data/packages/evidence remain. No further implementation is required by
 OFFLINE-A through OFFLINE-I. Independent review of the saved diff is pending;
 any native experiment or release/install action needs separate authorization.
+
+## 2026-10-18 - exact published repair review and next proof gates
+
+### Target, authority and observed starting point
+
+The user requested a deep plan followed by completion of the next required
+step, identifying independent review before separately approved native
+preflight/comparisons. The next review is now completed, not credit-blocked.
+The reviewed range is fbabbab5e69e924ac4aae6c3a4fb6de62aae3d55 through
+0f1fe58b66a03e34244b1f2ac56e5588d2489eee. Arrival was a clean checkout on
+development/r5-practical-fence-wip-20261014. This section supersedes older
+next-action wording, not historical test results or approval records.
+
+The fresh Fable Sol reviewer returned FIX-FIRST for the bounded diagnostics
+repair. Parent reproduction confirms the finding. Normal CM reserve,
+consume and mark-unknown APIs can store a schema-valid caller-created
+diagnostic packet. The reader reports available/complete and echoes the
+SEALED_DOLT_CLIENT label without any native invocation. Rehashed changes to
+port and command digest also pass its self-consistency checks. No APPLIED,
+replay, fence verdict or qualification is produced; causal_status remains
+UNVERIFIED. Integrity and byte completeness are not producer authenticity.
+
+Evidence: docs/fable/evidence/execution-diagnostics-20261018/review.md.
+The existing TEST-PRACTICAL-P1/P2/P3/P4/P5 acceptance criteria stay open.
+No lease timing, fence predicate, companion schema, native authority or
+deletion rule is changed by this plan. No native run is authorized by saving it.
+
+### Decision and alternatives
+
+| Option | Mechanism / primary failure | Decision |
+| --- | --- | --- |
+| Keep the checkpoint unchanged | Preserve offline containment but leave misleading producer/identity claims | Safe as held WIP; cannot close this review finding |
+| Explicit unauthenticated diagnostics | Separate self-consistency, byte completeness and source claims from authenticated origin; keep all diagnostics non-authoritative | Recommended smallest correction, pending human approval of that explicit contract |
+| Protected producer attestation | Add a producer capability and independently expected invocation binding so ordinary reason writers cannot impersonate sealed capture | Stronger but changes the trust boundary; separate architecture approval, not a quiet follow-up patch |
+
+The recommended correction does not pretend to authenticate data. It makes
+the existing actual guarantee explicit and test-enforced. Native command
+identity/cause must still be established by reviewed owned-process observations
+and backend readback; no packet label or hash substitutes for those witnesses.
+
+Constraint lens: CM deliberately permits caller-written uncertainty reasons,
+so their hash-chained storage proves retention, not who ran a native command.
+Cost lens: adding another authority/ledger would broaden a small review repair
+and its failure surface. Falsification lens: the cheapest test is the exact
+schema-valid public-API forgery already reproduced, not a forbidden extra
+field. Code, generated-text tests and parent/reviewer probes share the same
+implementation evidence family; a fresh analyst is an independent challenge,
+not a second native-runtime measurement. Confidence is high in the reproduced
+provenance limitation; native effectiveness remains UNVERIFIED.
+
+Weak link: a future consumer may confuse complete bytes with authenticated
+origin. Pivot: if authenticated producer/command provenance is required, do
+not describe the recommended annotation as its implementation; return for the
+stronger trust-boundary design. No new fence is started to close this finding.
+
+### Review focus and completion checks
+
+| Input / failure class | Required observable check |
+| --- | --- |
+| Canonical caller packet through normal CM lifecycle | Never reported producer-authenticated, never APPLIED or causally proven |
+| Rehashed changed port/executable/timeout/command digest | Cannot be presented as independently verified invocation identity |
+| Historical SEALED_DOLT_CLIENT packet | Retain original stored bytes; expose its label as a claim with unverified provenance |
+| Timeout, missing/truncated output, foreign binding or SQL | Keep incomplete/unavailable and read-only semantics; no replay to improve diagnostics |
+| Unrelated transport failure mentioning a fence code | Connected canonical result stays INCONCLUSIVE/REFUSAL_UNKNOWN |
+
+### Sequenced tasks inside the existing campaign
+
+#### R0 - exact-commit independent review (completed)
+
+- [x] Inspect the exact ten-file diff without changing HEAD/index/source.
+- [x] Obtain the fresh read-only Fable Sol verdict; do not substitute parent
+  inspection or the old credit failure for this completed review.
+- [x] Parent reproduces the supported-API forgery and changed-command case
+  without native processes, DBA writes, introspection or module patching.
+- [x] Re-run the focused groups: 275 MI checks (274 pass, one known expected
+  failure), 18 CM passes and nine CLI preflight passes; zero unexpected errors.
+- [x] Read/hash the existing Dolt/Beads binaries without executing them.
+
+#### R1 - bounded offline provenance correction (approval pending)
+
+Scope: practical_execution.py, diagnostic fallback metadata in
+practical_race_controller.py only if needed for uniform output, focused
+test_practical_execution.py regressions, and these existing Fable records.
+Do not change the companion ledger, SQL predicates, protected consumer,
+public CLI activation, release files or installed copies.
+
+1. Obtain explicit agreement to describe these packets as unauthenticated
+   diagnostics rather than introduce a sealed-producer guarantee.
+2. Write the valid public-API forgery regression first. Its observable target
+   is explicit unverified provenance even when capture_complete is true, no
+   successful terminal event and no write/replay authority. Observe it fail
+   because the provenance distinction is absent, not because a fixture broke.
+3. Make the smallest additive output/wording correction. A new source label
+   must describe a claim; historical labels/packets remain readable and
+   unmodified. Producer authenticity and independently verified invocation
+   identity must never be asserted by a self-hash. Preserve byte-limit,
+   missing/timeout/truncation, immutable-binding and SQL-digest checks.
+4. Add separate malformed/rehashed invocation and legacy-packet cases, then
+   exercise the real backend -> journal -> controller -> canonical verdict
+   chain with only unavoidable process boundaries modeled.
+5. Run focused MI/CM/CLI plus the safe largest feasible broader suites against
+   a captured exact pre-fix baseline. Retain fixtures, blocked actions and
+   named failures; a baseline-compared/adapted run is not unchanged green CI.
+6. Obtain fresh read-only review of the saved successor and reproduce its
+   findings. Only then close R1. No automatic commit/push follows.
+
+#### R2 - pinned native grammar and forced-rollback preflight (gated)
+
+Dependencies: R1 accepted; exact helper/source bytes reviewed; explicit
+native-test approval. Reuse existing binaries, not a replacement toolchain:
+
+- Dolt: work/R4-memory-integrity/runtime/dolt-v2.4.1/extracted/dolt-windows-amd64/bin/dolt.exe
+  SHA-256 ca21a9d1dab233a694b99ad0be9e78590967a1cc2773eb202fa0dd2929239ba2.
+- Beads: work/R3-memory-integrity/runtime/beads-v1.3.1/bin/bd.exe
+  SHA-256 ac5b60114e5e7ef9de8878b45fc35941937341d3447366c99bc91c81557be7a4.
+
+Paths above are relative to C:/Users/sakth/Documents/Codex/2026-10-02/ad.
+Read/hash checks passed in this review turn; no version/native command ran.
+
+Use one new retained UUID run below the already approved physical scratch
+roots, ordinary Beads safety checks, private loopback server, no hooks/shared
+DBs/credentials and only owned process handles. Refuse reused/foreign stores.
+The reviewed helper must bind exact source/helper/binary/command hashes and
+raw status/output before any test execution; no old helper is assumed ready.
+
+Test the actual schema, procedure body, namespace/selection readback,
+database/main identity, result-set shape and timestamp representation. Confirm
+the assertion routine actually installed, not merely IF NOT EXISTS returning
+against a different body. Force a known mid-transaction assertion failure and
+separate late failures after issue update, grant/history update and operation
+receipt insertion. Include token collision, duplicate operation and cardinality
+failures. Use harness-only fixed fault points, never an arbitrary-SQL public
+entrypoint. Fresh independent connection readback must show either the full
+allowed effect/receipt pair or no durable partial effect; CLI exit alone is
+insufficient. Retain every failed run; never retry an uncertain operation.
+
+No DELETE/DROP, lease release/unclaim/reclaim, cleanup or file overwrite is
+allowed. Stop only owned local processes and preserve files. Transaction
+rollback is the behavior under test, not permission to remove prior data.
+Any unsupported grammar, unexpected diagnostic, lost handle or ambiguous
+effect is BLOCKED/INCONCLUSIVE, not a fence pass. A partial committed effect
+refutes the tested candidate and stops the ladder.
+
+#### R3 - enabled/disabled/valid-owner comparison (gated after R2)
+
+Map to TEST-PRACTICAL-P1. Observe Alice's real authorization snapshot/session,
+commit the legitimate Bob transition, resume Alice, and independently inspect
+S0/S1/S2 issue/lease/grant/history/token/receipt/CM records. Prove the competing
+transition satisfies the no-deletion scope before allowing that arm. Enabled
+stale durable effect stops the candidate. A proper refusal requires observed
+native causation, not UNKNOWN plus current staleness or captured error text.
+
+Require a valid-owner success and the explicit harness-only disabled bundle
+to expose the stale effect. Record exactly which predicates/token/history
+checks the disabled arm removes; that is a bundle comparison, not proof about
+one isolated check. An unrelated failure or non-executed control is
+INCONCLUSIVE. No disable-fence switch enters the public workflow.
+
+#### R4 - heartbeat/ownership-return, then real interruption (later gates)
+
+After native P1 acceptance, map the real DB-time expiry/heartbeat and A-B-A
+or spelling-variant cases to TEST-PRACTICAL-P2. No accelerated or mocked clock
+substitutes for actual lease expiry. Release/reclaim cases stay blocked by
+the unresolved lease-row-deletion decision; never silently change that rule.
+
+After the protected consumer/public path and exact operation binding are
+qualified, map actual outstanding-client interruption and separate owned-server
+crash/restart to TEST-PRACTICAL-P4. Retain the inside-command barrier, owned
+handles and before/after rows. Fresh-process readback uses the original
+operation only; repeated recovery produces no new native write or terminal
+duplication. A server restart or Python exception after return is not this test.
+
+### Preservation, stop and release boundary
+
+No production/source behavior was changed while creating this review plan.
+All historical reports, failed candidates, raw receipts, manifests, packages
+and installed skills remain. Current native/release/installed flags remain
+false. The review/probes are not a whole-M7 verdict. Gate B, native merges,
+four-trap comparison, broad regression closure, final packages, exact-commit
+CI and installed smoke/rollback retain their own unmet gates.
+
+Stop at any unapproved transition, scope-changing defect or unsafe enabled
+effect. Three failed evidence-changing corrections on one mechanism require
+re-planning. No promise of zero defects, fixed number of sessions or full
+completion is substituted for the observations above.
+
+### R1 authorization and execution ruling
+
+After the specific offline-provenance approval question, the human answered:
+"do whichis best, i just want to use this best skill to work to over come memory
+and chunk and embedding issue while performing big and large and complex task
+and coding and developing, dont remove any wanted and important file or detail,
+i added most of best behaviour from various skill to make this hybrid skill.
+give me what i expected".
+
+This accepts the recommended bounded offline correction, not a new native
+experiment, installed replacement, provider call or publication. The product
+priority is usable memory/chunking/recall/embedding support with honest limits,
+not an unbounded Beads detour. Existing hybrid functionality/files stay intact.
+
+Ruling: implement R1 inline in the current isolated development checkout,
+using this existing Fable plan as the ledger. Do not create another governor,
+plan store, Git worktree or commits. No cleanup/deletion step from a generic
+execution skill applies under the user's explicit preservation constraint.
+The evidence contract is unauthenticated diagnostics: completeness refers to
+retained bytes/status, not producer authenticity or independently checked full
+invocation. New labels say DECLARED_DOLT_CLIENT; old SEALED_DOLT_CLIENT packets
+stay readable verbatim. Both available and unavailable outputs explicitly
+deny producer authentication and independent invocation verification. There
+is no claim that a real caller packet is distinguished from a valid forgery.
+Cost if the stronger guarantee is later required: a separately reviewed and
+approved protected producer design, not reinterpretation of these flags.
+
+Execution checklist:
+- [x] Observe five provenance regressions fail against the pre-fix source.
+- [x] Make the minimum diagnostic-label/output correction, preserving old APIs.
+- [x] Repeat the focused groups and baseline-compare safe broader suites.
+- [x] Fresh reviewer checks the exact saved successor; parent verifies findings.
+- [x] Record exact source/test evidence and remaining native/usefulness gates.
+
+R1 observed execution: 21 diagnostic tests red (five new failures) -> 21 green;
+280 practical MI cases (279 passes and one known expected failure), 18 CM and
+nine public practical CLI passes. Across 942 broader adapted cases per phase,
+only those five failures closed and no new failure/error IDs appeared. Broad
+suites are not fully green: old failures, guarded operations and frozen
+manifest drift remain explicitly reported, not waived.
+
+User-goal verification additionally observed the original public offline
+workflow in fresh Python children: four fixture-based recall/resume/input-
+refusal checks passed. A synthetic 50 MiB source reassembled exactly from
+801 primary units/200 chunks and detected a missing primary. These prove
+mechanical partition and bounded offline persistence, not semantic/model or
+embedding quality. Evidence and exact hashes:
+docs/fable/evidence/execution-diagnostics-20261018/provenance-correction.md.
+Source is frozen for final review; no new commit/push or install is authorized.
+
+R1 closure: the fresh saved-diff reviewer returned SHIP, no blocking/moderate
+finding for the approved offline contract, nine independent selected no-write
+checks passing. Parent acceptance is VERIFIED WITH CAVEATS after direct
+reproduction and the retained evidence checks. Minor short-docstring wording
+is recorded/deferred. R1 is complete; neither the native ladder nor the whole
+memory skill/release/installation is declared complete. The next useful track
+is task-relative core usability/retrieval/embedding acceptance and release
+qualification, with optional native capabilities still disabled and tracked.

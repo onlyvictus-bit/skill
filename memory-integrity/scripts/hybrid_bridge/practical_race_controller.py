@@ -1145,7 +1145,9 @@ class _LiveDriver:
         from .practical_execution import read_execution_diagnostics
         from .practical_lease_backend import LeaseScratchBackend
         unavailable = {'available': False, 'causal_status': 'UNVERIFIED',
-                       'evidence_class': 'TRANSPORT_DIAGNOSTICS_ONLY', 'capture_complete': False}
+                       'evidence_class': 'TRANSPORT_DIAGNOSTICS_ONLY', 'capture_complete': False,
+                       'provenance_status': 'UNAUTHENTICATED', 'producer_authenticated': False,
+                       'invocation_identity_verified': False}
         db = getattr(self, '_cm_db', None)
         request = getattr(self, 'alice_request', None)
         if db is None or request is None:

@@ -256,6 +256,64 @@ class ExecutionDiagnostics(unittest.TestCase):
         self.assertFalse(out['available'])
         self.assertEqual(out['causal_status'],'UNVERIFIED')
 
+    def caller_packet(self, *, legacy=False, changed_identity=False):
+        """Supported CM APIs only; no native process or backend invocation."""
+        mod=self.module()
+        capture=mod.capture_transport(selected(),self.sql,['caller-chosen-argv'],15,
+            result=SimpleNamespace(returncode=23,stdout=b'caller-output',stderr=b'caller-error'))
+        if legacy:
+            capture['source']='SEALED_DOLT_CLIENT'
+        if changed_identity:
+            capture.update(port=65535,executable='C:/caller/dolt.exe',timeout_seconds=44,
+                           command_sha256='a'*64)
+        reason=mod.diagnostic_reason(self.binding,selected(),self.sql,
+            backend_module.LeaseDeliveryUnknown('caller',transport_observation=capture))
+        ledger.consume_practical_native_dispatch(self.db,self.binding,self.cap)
+        ledger.mark_practical_native_unknown(self.db,self.cap,reason)
+        return self.read()
+
+    def assert_unauthenticated(self,out):
+        self.assertEqual(out.get('provenance_status'),'UNAUTHENTICATED')
+        self.assertIs(out.get('producer_authenticated'),False)
+        self.assertIs(out.get('invocation_identity_verified'),False)
+        self.assertEqual(out['causal_status'],'UNVERIFIED')
+        self.assertEqual(self.db.execute(
+            "SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0],0)
+
+    def test_valid_public_api_forgery_is_explicitly_unauthenticated_not_sealed_proof(self):
+        out=self.caller_packet()
+        self.assertTrue(out['available'])
+        self.assertTrue(out['capture_complete'])
+        self.assertEqual(base64.b64decode(out['observation']['transport']['stdout']['base64']),b'caller-output')
+        self.assert_unauthenticated(out)
+
+    def test_rehashed_claimed_invocation_is_never_independently_verified(self):
+        out=self.caller_packet(changed_identity=True)
+        self.assertTrue(out['available'])
+        self.assertEqual(out['observation']['transport']['command_sha256'],'a'*64)
+        self.assert_unauthenticated(out)
+
+    def test_legacy_sealed_label_is_retained_but_never_authenticates_producer(self):
+        out=self.caller_packet(legacy=True)
+        self.assertTrue(out['available'])
+        self.assertEqual(out['observation']['transport']['source'],'SEALED_DOLT_CLIENT')
+        before=self.db.total_changes
+        self.assert_unauthenticated(out)
+        self.assertEqual(self.db.total_changes,before)
+
+    def test_current_capture_uses_declared_source_and_never_implies_authentication(self):
+        self.fail_process()
+        out=self.read()
+        self.assertEqual(out['observation']['transport']['source'],'DECLARED_DOLT_CLIENT')
+        self.assert_unauthenticated(out)
+
+    def test_controller_missing_journal_still_reports_unverified_provenance(self):
+        from hybrid_bridge import practical_race_controller as controller
+        driver=object.__new__(controller._LiveDriver)
+        out=driver.execution_diagnostics()
+        self.assertFalse(out['available'])
+        self.assert_unauthenticated(out)
+
 
 if __name__=='__main__':
     unittest.main(verbosity=2)

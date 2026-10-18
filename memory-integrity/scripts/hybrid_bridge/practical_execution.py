@@ -1,8 +1,11 @@
 """Bounded diagnostics in the existing CM UNKNOWN event, never fence proof.
 
-Packet hashes detect damage, not a malicious database administrator or Python
-module patch. These observations cannot authorize success, replay or native
-qualification. No native process or database migration is performed here.
+Packet hashes check self-consistency, not authenticity. Supported CM reason
+APIs can retain caller-built packets without any subprocess invocation; no DBA
+access or module patch is needed. All source/command fields are claims. Even
+complete bytes cannot authenticate a producer or independently verify argv.
+These observations cannot authorize success, replay or native qualification.
+No native process or database migration is performed here.
 """
 import base64
 from hashlib import sha256
@@ -56,7 +59,7 @@ def capture_transport(selection, sql, argv, timeout, *, result=None, error=None)
         returncode=None
     if type(returncode) is not int:
         returncode=None
-    return dict(source='SEALED_DOLT_CLIENT',selection_digest=selection.digest,
+    return dict(source='DECLARED_DOLT_CLIENT',selection_digest=selection.digest,
         dolt_sha256=selection.dolt_sha256,executable=selection.dolt_executable,
         host=selection.host,port=selection.port,database=selection.database,branch='main',
         sql_sha256=sha256(sql.encode('utf-8')).hexdigest(),command_sha256=_hash(argv),
@@ -91,7 +94,11 @@ def _check_channel(value):
 
 
 def validate_observation(value, binding, *, expected_sql_sha256):
-    """Validate damage/identity; never interpret a database rejection."""
+    """Check shape, binding and claimed identity consistency, not origin/argv.
+
+    Historical SEALED_DOLT_CLIENT is only a retained label, not authentication.
+    A valid self-hash cannot independently verify any claimed transport fact.
+    """
     from complete_read_v2 import ledger
     if not isinstance(value,dict) or set(value)!={'schema_version','kind','binding','transport','transport_sha256'} or \
             type(value['schema_version']) is not int or value['schema_version']!=1 or value['kind']!=KIND:
@@ -105,7 +112,8 @@ def validate_observation(value, binding, *, expected_sql_sha256):
     if not _sha(expected_sql_sha256) or data['sql_sha256']!=expected_sql_sha256 or \
             data['selection_digest']!=basis['selection_digest'] or data['database']!=basis['database'] or \
             data['branch']!='main' or data['host']!='127.0.0.1' or data['dolt_sha256']!=_PIN or \
-            data['source']!='SEALED_DOLT_CLIENT' or not _sha(data['command_sha256']):
+            data['source'] not in ('DECLARED_DOLT_CLIENT','SEALED_DOLT_CLIENT') or \
+            not _sha(data['command_sha256']):
         raise ValueError('E_EXECUTION_COMMAND_IDENTITY')
     if not isinstance(data['executable'],str) or data['executable'].replace('\\','/').split('/')[-1].lower()!='dolt.exe' or \
             type(data['port']) is not int or not 1<=data['port']<=65535 or \
@@ -150,10 +158,17 @@ def _pairs(items):
 
 
 def read_execution_diagnostics(db, binding, *, expected_sql_sha256):
-    """Read protected history only; no reserve, complete, migrate or retry."""
+    """Read retained history only; no reserve, complete, migrate or retry.
+
+    Available/complete means well-formed retained data, never an authenticated
+    native producer. Hash-chain integrity cannot upgrade a caller-written
+    UNKNOWN reason into independent invocation or execution-cause evidence.
+    """
     from complete_read_v2 import ledger
     unavailable=dict(available=False,causal_status='UNVERIFIED',
-        evidence_class='TRANSPORT_DIAGNOSTICS_ONLY',capture_complete=False)
+        evidence_class='TRANSPORT_DIAGNOSTICS_ONLY',capture_complete=False,
+        provenance_status='UNAUTHENTICATED',producer_authenticated=False,
+        invocation_identity_verified=False)
     try:
         binding=ledger._practical_binding(binding)
         history=ledger.verify_history(db)
