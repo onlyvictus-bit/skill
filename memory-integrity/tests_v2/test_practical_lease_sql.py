@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest, PracticalContractError
 from tests_v2.test_practical_lease_contract import packet
+from tests_v2.test_practical_lease_contract import reassign_packet
 from tests_v2.test_practical_lease_issuer import claim_packet
 
 
@@ -107,6 +108,62 @@ class LeaseSQL(unittest.TestCase):
             LeaseGuardedTitleRequest.from_value(packet(lease_expires_at_utc='2026-10-14 10:05:00'))
         parsed = LeaseGuardedTitleRequest.from_value(packet())
         self.assertEqual(parsed.fixed_deadline_utc, parsed.lease_expires_at_utc)
+
+    def test_reassign_authority_binds_old_holder_snapshot_and_current_grant(self):
+        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
+        for text in ['JOIN leases AS l', 'JOIN mi_practical_v2_grants AS g',
+                     'JOIN mi_practical_v2_current_grants AS c',
+                     'l.holder', 'c.grant_id = g.grant_id',
+                     '@mi2_auth < l.lease_expires_at']:
+            self.assertIn(text, sql)
+        self.assertEqual(sql.count('UTC_TIMESTAMP('), 1)
+
+    def test_reassign_transfers_issue_and_lease_in_place_without_deletion(self):
+        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
+        self.assertNotIn('DELETE ', sql)
+        self.assertNotIn('DROP ', sql)
+        issue_update = sql[sql.index('UPDATE issues'):sql.index('SET @mi2_issue_changed')]
+        self.assertIn('assignee =', issue_update)
+        self.assertIn('title = ', issue_update)
+        lease_update = sql[sql.index('UPDATE leases'):sql.index('SET @mi2_lease_changed')]
+        self.assertIn('holder =', lease_update)
+        self.assertIn('heartbeat_at', lease_update)
+        # Original lease identity never moves: granted moment and expiry are
+        # read, never assigned, in the transfer.
+        self.assertNotIn('granted_at =', lease_update)
+        self.assertNotIn('lease_expires_at =', lease_update)
+
+    def test_reassign_tombstones_prior_grant_and_mints_granted_successor(self):
+        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
+        self.assertIn('SET tombstoned = 1', sql)
+        self.assertIn("'GRANTED'", sql)
+        self.assertIn('UPDATE mi_practical_v2_current_grants SET grant_id =', sql)
+        self.assertIn('mi_practical_v2_token_history', sql)
+        self.assertIn('E_MI2_TOMB_CARDINALITY', sql[:sql.index('COMMIT;')])
+        # Each history write is asserted on its own: removing either insert's
+        # check independently fails this count.
+        self.assertEqual(sql.count('E_MI2_HISTORY_CARDINALITY'), 2)
+        # Positional association, not just a total: the tombstone assertion
+        # sits between the two history inserts, the mint assertion after.
+        tomb = sql.index("'TOMBSTONED',@mi2_auth,'reassign');")
+        mint = sql.index("'MINTED',@mi2_auth,'reassign');")
+        first = sql.index('E_MI2_HISTORY_CARDINALITY')
+        self.assertTrue(tomb < first < mint)
+        second = sql.index('E_MI2_HISTORY_CARDINALITY', mint)
+        self.assertTrue(mint < second < sql.index('COMMIT;'))
+        self.assertIn('E_MI2_HISTORY_CARDINALITY', sql[:sql.index('COMMIT;')])
+        self.assertIn('E_MI2_RECEIPT_CARDINALITY', sql[:sql.index('COMMIT;')])
+        self.assertLess(sql.index('COMMIT;'), sql.rindex('SELECT receipt_json'))
+        self.assertIn('DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; RESIGNAL; END;', sql)
+
+    def test_reassign_receipt_keeps_original_facts_and_names_resulting_heartbeat(self):
+        # The receipt must not overwrite a digest-bound request field: the
+        # original lease snapshot stays verbatim while the transfer-moment
+        # heartbeat is recorded under a separately named resulting field.
+        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
+        operations = sql[sql.index('INSERT INTO mi_practical_v2_operations'):]
+        self.assertIn("'$.resulting_lease_heartbeat_at_utc'", operations)
+        self.assertNotIn("'$.lease_heartbeat_at_utc'", operations)
 
 
 if __name__ == '__main__':

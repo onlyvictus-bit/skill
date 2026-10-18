@@ -26,6 +26,7 @@ from hybrid_bridge import practical_backend, practical_consumer  # noqa: E402
 from hybrid_bridge import practical_contract  # noqa: E402
 from hybrid_bridge import practical_lease_backend  # noqa: E402
 from hybrid_bridge.practical_lease_consumer import LeaseConsumerError, LeaseNativeConsumer  # noqa: E402
+from tests_v2.test_practical_lease_contract import reassign_packet  # noqa: E402
 
 # Deliberate tripwire: the literal must match the sealed backend DOLT_PIN.
 # A pin change breaks these tests loudly instead of silently re-targeting.
@@ -377,6 +378,175 @@ class LeaseConsumerTests(unittest.TestCase):
             LeaseNativeConsumer(self.db, ShadowedBackend(lease_selection()))
         with self.assertRaises(LeaseConsumerError):
             self.consumer.dispatch_lease_title({"success": True})
+
+
+def reassign_persisted_row(selection, request, **changes):
+    binding = request.as_dict()
+    binding.update(selection_digest=selection.digest, store_incarnation=selection.incarnation,
+                   database=selection.database, branch='main', native_node_id=selection.native_node_id)
+    receipt = dict(binding, status='WORKING_SET_APPLIED',
+                   evidence_class='NATIVE_OBSERVED_UNQUALIFIED', native_write_qualified=False,
+                   head_committed=False, backend_operation_id=request.operation_id,
+                   native_task_id=request.task_id, original_row_lock=request.expected_row_lock,
+                   fixed_deadline_utc=request.fixed_deadline_utc,
+                   prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
+                   target_actor=request.target_actor,
+                   authorization_time_utc='2026-10-14 10:00:01.000000', resulting_row_lock=812,
+                   resulting_lease_heartbeat_at_utc='2026-10-14 10:00:01.000000')
+    receipt.update(changes)
+    return dict(binding_json=json.dumps(binding), receipt_json=json.dumps(receipt),
+                command_digest=request.command_digest,
+                authorization_time=receipt['authorization_time_utc'], resulting_row_lock=812)
+
+
+def xfer_packet(operation_id='op-xfer-1', **changes):
+    # Reassign request aligned with authority_row (mip-42 / row_lock 731 /
+    # grant-7): the transferor currency fixtures above. Digest recomputed.
+    return reassign_packet(task_id='mip-42', expected_row_lock=731, grant_id='grant-7',
+                           work_item_id='cm-work-17', operation_id=operation_id, **changes)
+
+
+class LeaseReassignConsumerTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = Path(tempfile.mkdtemp(prefix="practical-reassign-"))
+        self.db = ledger.connect(self.temp / "cm.sqlite")
+        ledger.create_work_item(self.db, "cm-work-17", "task", "source")
+        ledger.coordination_put(self.db, "cm-work-17", {"registered": True})
+        self.lease_backend = practical_lease_backend.LeaseScratchBackend(lease_selection())
+        self.consumer = LeaseNativeConsumer(self.db, self.lease_backend)
+        self.calls = []
+
+    def tearDown(self):
+        self.db.close()
+
+    def patched(self, authority, dispatch=None, readback=None):
+        def run(argv, **kwargs):
+            sql = argv[-1]
+            self.calls.append(sql)
+            if sql.lstrip().upper().startswith('SELECT') and 'observed_utc' in sql:
+                payload = {'rows': [authority]}
+            elif sql.lstrip().upper().startswith('SELECT'):
+                payload = {'rows': [readback] if readback is not None else []}
+            else:
+                payload = {'rows': [dispatch]}
+            return SimpleNamespace(returncode=0, stdout=json.dumps(payload).encode(), stderr=b'')
+        return (patch.object(practical_lease_backend, '_native_boundary'),
+                patch.object(practical_lease_backend.subprocess, 'run', side_effect=run))
+
+    def kinds(self):
+        return [row[0] for row in self.db.execute(
+            "SELECT kind FROM events WHERE kind LIKE 'PRACTICAL_NATIVE_%' ORDER BY seq")]
+
+    def test_reassign_winner_dispatch_then_real_readback_applies(self):
+        request = practical_contract.LeaseReassignRequest.from_value(xfer_packet())
+        auth = authority_row(self.lease_backend.selection.digest)
+        receipt = reassign_persisted_row(self.lease_backend.selection, request)
+        boundary, process = self.patched(auth, dispatch=receipt, readback=receipt)
+        with boundary, process:
+            result = self.consumer.dispatch_reassign_title(xfer_packet())
+        self.assertEqual(result["kind"], "PRACTICAL_NATIVE_APPLIED")
+        self.assertTrue(result["inserted"])
+        self.assertEqual(len(self.calls), 3)
+        self.assertEqual(self.kinds(),
+                         ["PRACTICAL_NATIVE_INTENT", "PRACTICAL_NATIVE_DISPATCHED",
+                          "PRACTICAL_NATIVE_UNKNOWN", "PRACTICAL_NATIVE_APPLIED"])
+        applied = self.db.execute(
+            "SELECT detail FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0]
+        detail = json.loads(applied)
+        self.assertEqual(detail["binding"]["new_grant_id"], 'grant-2')
+        self.assertEqual(detail["binding"]["target_actor"], 'bob')
+
+    def test_reassign_stale_transferor_refuses_before_reservation(self):
+        auth = authority_row(self.lease_backend.selection.digest, issue_row_lock=999)
+        boundary, process = self.patched(auth)
+        with boundary, process:
+            with self.assertRaisesRegex(LeaseConsumerError, "E_PRACTICAL_CURRENT_AUTHORITY"):
+                self.consumer.dispatch_reassign_title(xfer_packet())
+        self.assertEqual(self.kinds(), [])
+        self.assertEqual(len(self.calls), 1)
+
+    def test_reassign_wrong_resulting_heartbeat_refuses_despite_bounds(self):
+        # Reported probe: authorization 10:00:01 with resulting heartbeat
+        # 10:00:00 sits inside granted<=heartbeat<=auth, yet it is not the
+        # transfer-time value the builder writes. It must yield UNKNOWN with
+        # zero APPLIED. Companion cases: invalid precision, missing heartbeat.
+        # Each row is built from its own dispatch packet so only the heartbeat
+        # under test differs; anything else refusing would hide the defect.
+        auth = authority_row(self.lease_backend.selection.digest)
+        cases = {
+            'one-second-wrong': '2026-10-14 10:00:00.000000',
+            'nonzero-microsecond': '2026-10-14 10:00:01.000001',
+            'suffix-less': '2026-10-14 10:00:01',
+        }
+        for name, heartbeat in cases.items():
+            with self.subTest(case=name):
+                operation = 'op-heartbeat-' + name
+                request = practical_contract.LeaseReassignRequest.from_value(
+                    xfer_packet(operation_id=operation))
+                row = reassign_persisted_row(self.lease_backend.selection, request)
+                receipt = json.loads(row['receipt_json'])
+                receipt['resulting_lease_heartbeat_at_utc'] = heartbeat
+                row['receipt_json'] = json.dumps(receipt)
+                consumer = LeaseNativeConsumer(self.db, practical_lease_backend.LeaseScratchBackend(
+                    lease_selection()))
+                boundary, process = self.patched(auth, dispatch=row, readback=row)
+                with boundary, process:
+                    result = consumer.dispatch_reassign_title(xfer_packet(operation_id=operation))
+                self.assertEqual(result['kind'], 'PRACTICAL_NATIVE_UNKNOWN')
+        operation = 'op-heartbeat-missing'
+        request = practical_contract.LeaseReassignRequest.from_value(
+            xfer_packet(operation_id=operation))
+        missing = reassign_persisted_row(self.lease_backend.selection, request)
+        receipt = json.loads(missing['receipt_json'])
+        del receipt['resulting_lease_heartbeat_at_utc']
+        missing['receipt_json'] = json.dumps(receipt)
+        consumer = LeaseNativeConsumer(self.db, practical_lease_backend.LeaseScratchBackend(
+            lease_selection()))
+        boundary, process = self.patched(auth, dispatch=missing, readback=missing)
+        with boundary, process:
+            result = consumer.dispatch_reassign_title(xfer_packet(operation_id=operation))
+        self.assertEqual(result['kind'], 'PRACTICAL_NATIVE_UNKNOWN')
+        self.assertNotIn('PRACTICAL_NATIVE_APPLIED', self.kinds())
+
+    def test_bounds_only_check_would_accept_the_probe(self):
+        # Non-vacuity proof for the regression above: the previous
+        # bounds-only rule accepts the exact probe row, so that test
+        # distinguishes the old check from the repaired validator.
+        from datetime import datetime as _dt
+        granted = _dt(2026, 10, 14, 10, 0, 0)
+        auth = _dt(2026, 10, 14, 10, 0, 1)
+        transferred = _dt(2026, 10, 14, 10, 0, 0)
+        self.assertTrue(granted <= transferred <= auth)
+        self.assertNotEqual(transferred, auth.replace(microsecond=0))
+
+    def test_reassign_expired_lease_and_exact_deadline_refuse_before_reservation(self):
+        # DB clock at or past the original expiry refuses even with an
+        # otherwise current transferor snapshot; nothing is reserved.
+        for observed in ('2026-10-14 10:05:00.000000', '2026-10-14 10:06:00.000000'):
+            with self.subTest(observed=observed):
+                auth = authority_row(self.lease_backend.selection.digest, observed_utc=observed)
+                boundary, process = self.patched(auth)
+                with boundary, process:
+                    with self.assertRaisesRegex(LeaseConsumerError,
+                                                'E_PRACTICAL_CURRENT_AUTHORITY'):
+                        self.consumer.dispatch_reassign_title(xfer_packet())
+        self.assertEqual(self.kinds(), [])
+
+    def test_reassign_recovery_reads_only_and_rebind_refuses(self):
+        request = practical_contract.LeaseReassignRequest.from_value(xfer_packet())
+        auth = authority_row(self.lease_backend.selection.digest)
+        receipt = reassign_persisted_row(self.lease_backend.selection, request)
+        boundary, process = self.patched(auth, dispatch=receipt, readback=receipt)
+        with boundary, process:
+            first = self.consumer.dispatch_reassign_title(xfer_packet())
+            self.assertTrue(first["inserted"])
+            recovered = self.consumer.reconcile_lease_title(xfer_packet())
+            self.assertEqual(recovered["kind"], "PRACTICAL_NATIVE_APPLIED")
+            self.assertFalse(recovered["inserted"])
+            with self.assertRaisesRegex(Exception, "E_PRACTICAL_BINDING"):
+                self.consumer.dispatch_reassign_title(xfer_packet(title="renamed twice"))
+        self.assertEqual(self.kinds().count("PRACTICAL_NATIVE_DISPATCHED"), 1)
+        self.assertEqual(self.kinds().count("PRACTICAL_NATIVE_APPLIED"), 1)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,206 @@
+{
+  "groups": [
+    {
+      "group": "MI v2",
+      "baseline": "safe-python-baseline-mi.json",
+      "after": "acceptance-mi-v2.json",
+      "before_counts": {
+        "tests": 615,
+        "failures": 2,
+        "errors": 36,
+        "skips": 54,
+        "expected_failures": 1,
+        "unexpected_successes": 0
+      },
+      "after_counts": {
+        "tests": 642,
+        "failures": 2,
+        "errors": 36,
+        "skips": 54,
+        "expected_failures": 1,
+        "unexpected_successes": 0
+      },
+      "declared_added_tests": 27,
+      "problem_set_changes": {
+        "failures": {
+          "new": [],
+          "resolved": []
+        },
+        "errors": {
+          "new": [],
+          "resolved": []
+        },
+        "skips": {
+          "new": [],
+          "resolved": []
+        },
+        "expected_failures": {
+          "new": [],
+          "resolved": []
+        },
+        "unexpected_successes": {
+          "new": [],
+          "resolved": []
+        }
+      }
+    },
+    {
+      "group": "CM v2",
+      "baseline": "baseline-cm-aligned.json",
+      "after": "safe-python-final-cm.json",
+      "before_counts": {
+        "tests": 208,
+        "failures": 1,
+        "errors": 1,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "after_counts": {
+        "tests": 208,
+        "failures": 1,
+        "errors": 1,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "declared_added_tests": 0,
+      "problem_set_changes": {
+        "failures": {
+          "new": [],
+          "resolved": []
+        },
+        "errors": {
+          "new": [],
+          "resolved": []
+        },
+        "skips": {
+          "new": [],
+          "resolved": []
+        },
+        "expected_failures": {
+          "new": [],
+          "resolved": []
+        },
+        "unexpected_successes": {
+          "new": [],
+          "resolved": []
+        }
+      }
+    },
+    {
+      "group": "MI legacy",
+      "baseline": "baseline-memory-integrity-legacy.json",
+      "after": "final-mi-legacy.json",
+      "before_counts": {
+        "tests": 21,
+        "failures": 0,
+        "errors": 4,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "after_counts": {
+        "tests": 21,
+        "failures": 0,
+        "errors": 4,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "declared_added_tests": 0,
+      "problem_set_changes": {
+        "failures": {
+          "new": [],
+          "resolved": []
+        },
+        "errors": {
+          "new": [],
+          "resolved": []
+        },
+        "skips": {
+          "new": [],
+          "resolved": []
+        },
+        "expected_failures": {
+          "new": [],
+          "resolved": []
+        },
+        "unexpected_successes": {
+          "new": [],
+          "resolved": []
+        }
+      }
+    },
+    {
+      "group": "CM legacy",
+      "baseline": "baseline-claude-mon-legacy.json",
+      "after": "final-cm-legacy.json",
+      "before_counts": {
+        "tests": 21,
+        "failures": 3,
+        "errors": 14,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "after_counts": {
+        "tests": 21,
+        "failures": 3,
+        "errors": 14,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "declared_added_tests": 0,
+      "problem_set_changes": {
+        "failures": {
+          "new": [],
+          "resolved": []
+        },
+        "errors": {
+          "new": [],
+          "resolved": []
+        },
+        "skips": {
+          "new": [],
+          "resolved": []
+        },
+        "expected_failures": {
+          "new": [],
+          "resolved": []
+        },
+        "unexpected_successes": {
+          "new": [],
+          "resolved": []
+        }
+      }
+    }
+  ],
+  "baseline_definitions_preserved": {
+    "memory-integrity/tests_v2/test_practical_race_harness.py": {
+      "baseline_definitions": 252,
+      "removed": [],
+      "new": []
+    },
+    "memory-integrity/scripts/hybrid_bridge/practical_race_alice.py": {
+      "baseline_definitions": 3,
+      "removed": [],
+      "new": []
+    },
+    "memory-integrity/scripts/hybrid_bridge/practical_race_controller.py": {
+      "baseline_definitions": 71,
+      "removed": [],
+      "new": [
+        "_orchestrate.observe"
+      ]
+    },
+    "memory-integrity/scripts/hybrid_bridge/practical_race_verify.py": {
+      "baseline_definitions": 27,
+      "removed": [],
+      "new": [
+        "_validate_transfer_state"
+      ]
+    }
+  }
+}

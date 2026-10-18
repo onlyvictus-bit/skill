@@ -1,0 +1,14 @@
+  UNMET GATES-lease-reassign:B4 (unchecked): full memory-integrity suite reports zero errors (preservation failure retained)
+  UNMET GATES-lease-reassign:B5 (unchecked): full companion suite reports zero errors (preservation failure retained)
+  UNMET GATES-lease-reassign:F1 (unchecked): real-Beads race, positive control and fence-disabled comparison with retained receipts bound to exact source and runtime bytes
+  UNMET GATES-lease-reassign:F2 (unchecked): remaining ownership, heartbeat and ABA cases on a real store
+  UNMET GATES-lease-reassign:F3 (unchecked): genuine in-command client interruption and owned-server crash/restart with fresh-process reconciliation and no replay
+  UNMET GATES-lease-reassign:F4 (unchecked): public workflow qualification
+  UNMET GATES-lease-reassign:F5 (unchecked): independent adversarial review of the exact diff and evidence
+  UNMET GATES-lease-reassign:F6 (unchecked): required regression closure and final matching skill and companion metadata and packages
+  UNMET GATES-lease-reassign:F7 (unchecked): clean-extracted-package verification
+  UNMET GATES-lease-reassign:F8 (unchecked): separately authorized commit, push and exact-commit CI
+  UNMET GATES-lease-reassign:F9 (unchecked): separately authorized installation plus smoke and rollback test
+GATES-lease-reassign.md: 54 gates
+UNMET: 11 (met: 43)
+  GATES-lease-reassign:B4, GATES-lease-reassign:B5, GATES-lease-reassign:F1, GATES-lease-reassign:F2, GATES-lease-reassign:F3, GATES-lease-reassign:F4, GATES-lease-reassign:F5, GATES-lease-reassign:F6, GATES-lease-reassign:F7, GATES-lease-reassign:F8, GATES-lease-reassign:F9

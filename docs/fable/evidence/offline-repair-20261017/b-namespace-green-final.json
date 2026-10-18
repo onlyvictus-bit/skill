@@ -1,0 +1,36 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_race_offline_sequence.py -k Namespace -v",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\b-namespace-green-final.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_race_offline_sequence.py",
+    "-k",
+    "Namespace",
+    "-v"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 3,
+  "failures": [
+    {
+      "test": "test_minted_namespace_is_bound_before_registration (test_practical_race_offline_sequence.NamespacePropagationRegressionTests.test_minted_namespace_is_bound_before_registration)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 80, in test_minted_namespace_is_bound_before_registration\n    self.assertIn(\"store_incarnation = '\" + self.minted + \"'\", registration)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: \"store_incarnation = 'db-minted-offline-namespace'\" not found in \"START TRANSACTION;\\nUPDATE mi_practical_v2_metadata SET selection_digest = CONVERT(0x65616338653830616533646366306635623464666638336438336531356237383963303637383539616236663631323030636633333436326161366338376134 USING utf8mb4),native_node_id = CONVERT(0x70726163746963616c2d617070726f7665642d736372617463682d6f6e6c79 USING utf8mb4),selected_database = CONVERT(0x6d697078 USING utf8mb4),selected_main_branch = CONVERT(0x6d61696e USING utf8mb4) WHERE singleton = 1 AND store_incarnation = CONVERT(0x64622d6d696e7465642d6f66666c696e652d6e616d657370616365 USING utf8mb4) AND selection_digest IS NULL;\\nCALL mi_practical_assert_v2((SELECT COUNT(*) FROM mi_practical_v2_metadata WHERE singleton = 1 AND store_incarnation = CONVERT(0x64622d6d696e7465642d6f66666c696e652d6e616d657370616365 USING utf8mb4) AND selection_digest = CONVERT(0x65616338653830616533646366306635623464666638336438336531356237383963303637383539616236663631323030636633333436326161366338376134 USING utf8mb4) AND native_node_id = CONVERT(0x70726163746963616c2d617070726f7665642d736372617463682d6f6e6c79 USING utf8mb4) AND selected_database = CONVERT(0x6d697078 USING utf8mb4) AND selected_main_branch = CONVERT(0x6d61696e USING utf8mb4)) = 1, 'E_MI2_SELECTION_IDENTITY');\\nCOMMIT;\\nSELECT store_incarnation,namespace_key,selection_digest,native_node_id,selected_database,selected_main_branch FROM mi_practical_v2_metadata WHERE singleton = 1;\"\n"
+    }
+  ],
+  "errors": [],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "11271135e763e9d7fba8452cd987fdd3f7530ce742bd75a4126ab68938feea71"
+}

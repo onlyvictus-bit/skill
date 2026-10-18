@@ -1,0 +1,110 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon",
+  "discovery_command": "python -B -m unittest discover -s tests_v2",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\docs\\fable\\evidence\\offline-repair-20261017\\safe-python-baseline-cm.json",
+    "--allow-python",
+    "discover",
+    "-s",
+    "tests_v2"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 208,
+  "failures": [
+    {
+      "test": "test_release_exact_content_and_declared_changes (test_preservation.Preservation.test_release_exact_content_and_declared_changes)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_preservation.py\", line 28, in test_release_exact_content_and_declared_changes\n    self.assertEqual(actual, manifest[\"files\"])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'capabilities-v2.json': '60aec0d3b484edd64[6822 chars]519'} != {'SKILL.md': '1abb535cbe96715da076bca843285[6609 chars]c01'}\nDiff is 7186 characters long. Set self.maxDiff to None to see it.\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "test_dispatch_claim_is_durable_once_before_unknown (test_practical_dispatch.PracticalDispatchTests.test_dispatch_claim_is_durable_once_before_unknown)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-p76yrcsr'\n"
+    },
+    {
+      "test": "test_generic_event_api_refuses_dispatched_namespace (test_practical_dispatch.PracticalDispatchTests.test_generic_event_api_refuses_dispatched_namespace)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-8056xbqi'\n"
+    },
+    {
+      "test": "test_invalid_capability_reopened_store_and_rebound_binding_cannot_consume (test_practical_dispatch.PracticalDispatchTests.test_invalid_capability_reopened_store_and_rebound_binding_cannot_consume)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-a_0ky8vn'\n"
+    },
+    {
+      "test": "test_legacy_intent_to_applied_remains_valid_but_cannot_later_dispatch (test_practical_dispatch.PracticalDispatchTests.test_legacy_intent_to_applied_remains_valid_but_cannot_later_dispatch)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-1fkw5k7d'\n"
+    },
+    {
+      "test": "test_reservation_and_consumption_race_has_one_durable_dispatch (test_practical_dispatch.PracticalDispatchTests.test_reservation_and_consumption_race_has_one_durable_dispatch)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-f30pyqva'\n"
+    },
+    {
+      "test": "test_reservation_refuses_a_stored_but_unregistered_policy (test_practical_dispatch.PracticalDispatchTests.test_reservation_refuses_a_stored_but_unregistered_policy)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-qrxakrts'\n"
+    },
+    {
+      "test": "test_v2_lease_binding_is_all_or_none_and_self_consistent (test_practical_dispatch.PracticalDispatchTests.test_v2_lease_binding_is_all_or_none_and_self_consistent)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-qz02dmad'\n"
+    },
+    {
+      "test": "test_v2_receipt_does_not_treat_true_as_numeric_row_lock (test_practical_dispatch.PracticalDispatchTests.test_v2_receipt_does_not_treat_true_as_numeric_row_lock)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_dispatch.py\", line 53, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-dispatch-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-dispatch-atyc57p_'\n"
+    },
+    {
+      "test": "test_generic_event_api_refuses_practical_namespace (test_practical_journal.PracticalJournalTests.test_generic_event_api_refuses_practical_namespace)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-6a2z4fnw'\n"
+    },
+    {
+      "test": "test_historical_receipt_cannot_authorize_a_new_grant (test_practical_journal.PracticalJournalTests.test_historical_receipt_cannot_authorize_a_new_grant)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-5a134ymt'\n"
+    },
+    {
+      "test": "test_malformed_or_foreign_result_cannot_create_terminal_event (test_practical_journal.PracticalJournalTests.test_malformed_or_foreign_result_cannot_create_terminal_event)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-c21s_0oe'\n"
+    },
+    {
+      "test": "test_missing_or_nonworking_readback_is_durable_unknown_and_idempotent (test_practical_journal.PracticalJournalTests.test_missing_or_nonworking_readback_is_durable_unknown_and_idempotent)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-2vo7nsif'\n"
+    },
+    {
+      "test": "test_only_registered_reader_can_seal_fresh_exact_applied_readback (test_practical_journal.PracticalJournalTests.test_only_registered_reader_can_seal_fresh_exact_applied_readback)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-mwgk50fv'\n"
+    },
+    {
+      "test": "test_reopened_store_reconciles_intent_without_replaying_dispatch_token (test_practical_journal.PracticalJournalTests.test_reopened_store_reconciles_intent_without_replaying_dispatch_token)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-uh6eo_zm'\n"
+    },
+    {
+      "test": "test_reopened_unknown_reconciles_once_to_fresh_exact_applied_readback (test_practical_journal.PracticalJournalTests.test_reopened_unknown_reconciles_once_to_fresh_exact_applied_readback)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-89tae2ks'\n"
+    },
+    {
+      "test": "test_reservation_requires_current_registered_work_item_and_exact_binding (test_practical_journal.PracticalJournalTests.test_reservation_requires_current_registered_work_item_and_exact_binding)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-roo3pmlv'\n"
+    },
+    {
+      "test": "test_reuse_with_wrong_task_or_original_binding_refuses (test_practical_journal.PracticalJournalTests.test_reuse_with_wrong_task_or_original_binding_refuses)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-9di7c5xy'\n"
+    },
+    {
+      "test": "test_two_connections_get_exactly_one_dispatch_winner (test_practical_journal.PracticalJournalTests.test_two_connections_get_exactly_one_dispatch_winner)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_practical_journal.py\", line 59, in setUp\n    self.temp = Path(tempfile.mkdtemp(\n                     ~~~~~~~~~~~~~~~~^\n        prefix=\"practical-journal-\", dir=RETAINED_TEMP))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\tempfile.py\", line 385, in mkdtemp\n    _os.mkdir(file, 0o700)\n    ~~~~~~~~~^^^^^^^^^^^^^\nFileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\2026-10-17\\\\paste-the-entire-prompt-below-into\\\\work\\\\build-validation\\\\retained-temp\\\\practical-journal-5ztvrwg8'\n"
+    },
+    {
+      "test": "test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept (test_r3_coordination.CoordinationTests.test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\observed-baseline\\claude-mon\\tests_v2\\test_r3_coordination.py\", line 325, in test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept\n    graph_path.unlink()\n    ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 1042, in unlink\n    os.unlink(self)\n    ~~~~~~~~~^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\offline_test_policy\\sitecustomize.py\", line 35, in guard\n    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)\nPermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove\n"
+    }
+  ],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "33d9f3249ea428f23cd30deff42cc0c34101795e4a60716766dbd3ef434d60d8",
+  "guarded_python_children_allowed": true
+}

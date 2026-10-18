@@ -1,0 +1,76 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_race_offline_sequence.py -k CompleteTransfer -v",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\g-complete-relationships-red.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_race_offline_sequence.py",
+    "-k",
+    "CompleteTransfer",
+    "-v"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 4,
+  "failures": [
+    {
+      "test": "test_baseline_claim_history_cannot_disappear (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_baseline_claim_history_cannot_disappear)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 360, in test_baseline_claim_history_cannot_disappear\n    self.assertEqual(result['verdict'], verify.FAILED, result)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' != 'FAILED'\n- PASSED\n+ FAILED\n : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_duplicate_rows_cannot_hide_an_unsafe_second_observation (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_duplicate_rows_cannot_hide_an_unsafe_second_observation)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 377, in test_duplicate_rows_cannot_hide_an_unsafe_second_observation\n    self.assertEqual(result['verdict'], verify.FAILED, result)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'FAILED'\n- INCONCLUSIVE\n+ FAILED\n : {'verdict': 'INCONCLUSIVE', 'reasons': [{'code': 'DUPLICATE_ROW_IDENTITY', 'severity': 'UNPROVEN', 'detail': \"S1 issues repeats identity ('mipx-1',)\", 'table': 'issues', 'row': \"('mipx-1',)\"}], 'unsafe': [], 'unproven': ['DUPLICATE_ROW_IDENTITY'], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='after_transfer', table='metadata', field='store_incarnation')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='after_transfer', table='metadata', field='selection_digest')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='after_transfer', table='grants', field='actor')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='after_transfer', table='grants', field='fixed_deadline_utc')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='after_transfer', table='grant_history', field='grant_id')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='after_transfer', table='token_history', field='operation_id')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='final', table='grants', field='actor')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_transfer_relationships_are_required_in_both_phases (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_transfer_relationships_are_required_in_both_phases) (phase='final', table='grants', field='fixed_deadline_utc')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 352, in test_transfer_relationships_are_required_in_both_phases\n    self.assertNotEqual(result['verdict'], verify.PASSED, result)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PASSED' == 'PASSED' : {'verdict': 'PASSED', 'reasons': [], 'unsafe': [], 'unproven': [], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    },
+    {
+      "test": "test_unsafe_s1_survives_later_receipt_collection_error (test_practical_race_offline_sequence.CompleteTransferRelationshipTests.test_unsafe_s1_survives_later_receipt_collection_error)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 367, in test_unsafe_s1_survives_later_receipt_collection_error\n    self.assertEqual(result['verdict'], verify.FAILED, result)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'FAILED'\n- INCONCLUSIVE\n+ FAILED\n : {'verdict': 'INCONCLUSIVE', 'reasons': [{'code': 'HARNESS_ERROR', 'severity': 'UNPROVEN', 'detail': 'orchestration failed: ValueError'}], 'unsafe': [], 'unproven': ['HARNESS_ERROR'], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    }
+  ],
+  "errors": [],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "11271135e763e9d7fba8452cd987fdd3f7530ce742bd75a4126ab68938feea71"
+}

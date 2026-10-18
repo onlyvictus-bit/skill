@@ -1,0 +1,28 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_consumer.py",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner_v1.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\final-consumer.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_consumer.py"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 17,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": true,
+  "runner_sha256": "11271135e763e9d7fba8452cd987fdd3f7530ce742bd75a4126ab68938feea71"
+}

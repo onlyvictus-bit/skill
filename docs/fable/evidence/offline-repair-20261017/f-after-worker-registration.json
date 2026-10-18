@@ -1,0 +1,36 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_race_offline_sequence.py -k complete_uncertain -v",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\f-after-worker-registration.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_race_offline_sequence.py",
+    "-k",
+    "complete_uncertain",
+    "-v"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 1,
+  "failures": [
+    {
+      "test": "test_complete_uncertain_sequence_reaches_only_execution_cause_uncertainty (test_practical_race_offline_sequence.FullSequenceOfflineTests.test_complete_uncertain_sequence_reaches_only_execution_cause_uncertainty)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 247, in test_complete_uncertain_sequence_reaches_only_execution_cause_uncertainty\n    self.assertEqual(result['verdict'], verify.INCONCLUSIVE, result)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'FAILED' != 'INCONCLUSIVE'\n- FAILED\n+ INCONCLUSIVE\n : {'verdict': 'FAILED', 'reasons': [{'code': 'OPERATION_RECORD_DISAGREEMENT', 'severity': 'UNSAFE', 'detail': \"operation 'op-positive-race-790dce19bf0d48de' is reported by the mapping but absent from the final snapshot\", 'operation_id': 'op-positive-race-790dce19bf0d48de'}, {'code': 'OBSERVATION_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': \"S2 operation records cover ['op-claim-race-790dce19bf0d48de', 'op-positive-race-790dce19bf0d48de', 'op-reassign-1'], expected exactly ['op-reassign-1']\"}, {'code': 'REFUSAL_UNKNOWN', 'severity': 'UNPROVEN', 'detail': 'the stale operation was refused with no attributable source, so the protected fence was never shown to reject it'}], 'unsafe': ['OPERATION_RECORD_DISAGREEMENT'], 'unproven': ['OBSERVATION_INCOMPLETE', 'REFUSAL_UNKNOWN'], 'stopped': True, 'releases': {'stop_alice': True, 'stop_server': True}}\n"
+    }
+  ],
+  "errors": [],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "11271135e763e9d7fba8452cd987fdd3f7530ce742bd75a4126ab68938feea71"
+}

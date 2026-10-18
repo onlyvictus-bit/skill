@@ -20,7 +20,7 @@ from typing import Any, Mapping
 
 from complete_read_v2 import ledger
 
-from .practical_contract import LeaseGuardedTitleRequest, PracticalContractError
+from .practical_contract import LeaseGuardedTitleRequest, LeaseReassignRequest, PracticalContractError
 from .practical_lease_backend import LeaseDeliveryUnknown, LeaseScratchBackend
 from .practical_lease_sql import _same_utc_moment
 
@@ -112,6 +112,13 @@ class LeaseNativeConsumer:
             raise LeaseConsumerError(
                 'E_PRACTICAL_REQUEST: exact lease-guarded-title request required') from exc
 
+    def _reassign_request(self, value) -> LeaseReassignRequest:
+        try:
+            return LeaseReassignRequest.from_value(value)
+        except PracticalContractError as exc:
+            raise LeaseConsumerError(
+                'E_PRACTICAL_REQUEST: exact lease-reassign request required') from exc
+
     def _current_prerequisite(self, request: LeaseGuardedTitleRequest) -> None:
         """Fail closed before any intent is reserved; the SQL repeats this atomically."""
         try:
@@ -197,6 +204,19 @@ class LeaseNativeConsumer:
 
     def dispatch_lease_title(self, value) -> dict[str, Any]:
         """Dispatch at most once; a loser/retry can only read the stored operation."""
+        return self._dispatch_title(value, pause_seconds=None)
+
+    def dispatch_paused_lease_title(self, value, *, pause_seconds) -> dict[str, Any]:
+        """Harness support: the same title dispatch with a bounded pause inside
+        the transaction, so an authorization snapshot can be observed rather
+        than assumed. The journal, consumption, readback and terminal states
+        are identical to the ordinary dispatch.
+        """
+        if type(pause_seconds) is not int or not 1 <= pause_seconds <= 30:
+            raise LeaseConsumerError('E_PRACTICAL_PAUSE_BOUNDS: pause must be 1..30 seconds')
+        return self._dispatch_title(value, pause_seconds=pause_seconds)
+
+    def _dispatch_title(self, value, *, pause_seconds) -> dict[str, Any]:
         request = self._request(value)
         self._current_prerequisite(request)
         try:
@@ -211,20 +231,30 @@ class LeaseNativeConsumer:
                 self._db, binding, self._reader_registration)
         try:
             # The backend persists dispatch consumption before the mutating
-            # process starts, then marks the attempt UNKNOWN until an exact
-            # independent readback proves the effect. A returned receipt is
-            # never treated as proof here: completion re-reads below.
-            self._backend.execute_guarded_title(
-                request, cm_db=self._db, reservation=reservation['reservation'])
-        except Exception as exc:
+            # process; completion re-reads below and a returned receipt is
+            # never treated as proof here.
+            if pause_seconds is None:
+                self._backend.execute_guarded_title(
+                    request, cm_db=self._db, reservation=reservation['reservation'])
+            else:
+                self._backend.execute_paused_guarded_title(
+                    request, cm_db=self._db, reservation=reservation['reservation'],
+                    pause_seconds=pause_seconds)
+        except Exception:
             return ledger.complete_practical_native_readback(
                 self._db, binding, self._reader_registration, reservation['reservation'])
+        return ledger.complete_practical_native_readback(
+            self._db, binding, self._reader_registration, reservation['reservation'])
         return ledger.complete_practical_native_readback(
             self._db, binding, self._reader_registration, reservation['reservation'])
 
     def reconcile_lease_title(self, value) -> dict[str, Any]:
         """Read-only recovery: it cannot acquire a winner token or replay SQL."""
-        request = self._request(value)
+        if isinstance(value, LeaseReassignRequest) or (
+                isinstance(value, Mapping) and value.get('action') == 'reassign_title_lease'):
+            request = self._reassign_request(value)
+        else:
+            request = self._request(value)
         try:
             binding = self._backend.intent_binding(request)
         except PracticalContractError as exc:
@@ -233,3 +263,32 @@ class LeaseNativeConsumer:
         self._requests[request.operation_id] = request
         return ledger.complete_practical_native_readback(
             self._db, binding, self._reader_registration)
+
+    def dispatch_reassign_title(self, value) -> dict[str, Any]:
+        """Transfer dispatch at most once; a loser/retry can only read back."""
+        request = self._reassign_request(value)
+        # The transferor prerequisite is the same currency shape as a title:
+        # assignee, holder, grant, pointer and store must all be current
+        # before any intent is reserved.
+        self._current_prerequisite(request)
+        try:
+            binding = self._backend.intent_binding(request)
+        except PracticalContractError as exc:
+            raise LeaseConsumerError(
+                'E_PRACTICAL_BINDING: lease facts do not bind this store') from exc
+        reservation = ledger.reserve_practical_native_intent(self._db, binding)
+        self._requests[request.operation_id] = request
+        if not reservation['winner']:
+            return ledger.complete_practical_native_readback(
+                self._db, binding, self._reader_registration)
+        try:
+            # As in title dispatch, the backend persists dispatch consumption
+            # before the mutating process; completion re-reads below and a
+            # returned receipt is never treated as proof here.
+            self._backend.execute_reassign_title(
+                request, cm_db=self._db, reservation=reservation['reservation'])
+        except Exception as exc:
+            return ledger.complete_practical_native_readback(
+                self._db, binding, self._reader_registration, reservation['reservation'])
+        return ledger.complete_practical_native_readback(
+            self._db, binding, self._reader_registration, reservation['reservation'])

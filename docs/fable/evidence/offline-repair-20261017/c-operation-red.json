@@ -1,0 +1,44 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_race_offline_sequence.py -k Operation -v",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\c-operation-red.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_race_offline_sequence.py",
+    "-k",
+    "Operation",
+    "-v"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 2,
+  "failures": [
+    {
+      "test": "test_actual_alice_request_identity_reaches_schedule_and_barrier (test_practical_race_offline_sequence.OperationPropagationRegressionTests.test_actual_alice_request_identity_reaches_schedule_and_barrier)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 113, in test_actual_alice_request_identity_reaches_schedule_and_barrier\n    self.assertEqual(driver.schedule['operation_ids']['alice'], actual)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'op-1' != 'op-stale-race-0123456789abcdef'\n- op-1\n+ op-stale-race-0123456789abcdef\n\n"
+    },
+    {
+      "test": "test_wrong_or_missing_worker_operation_identity_is_not_consumed (test_practical_race_offline_sequence.OperationPropagationRegressionTests.test_wrong_or_missing_worker_operation_identity_is_not_consumed) (operation_id='wrong-operation')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 133, in test_wrong_or_missing_worker_operation_identity_is_not_consumed\n    self.assertIsNone(outcome['outcome'])\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'APPLIED' is not None\n"
+    },
+    {
+      "test": "test_wrong_or_missing_worker_operation_identity_is_not_consumed (test_practical_race_offline_sequence.OperationPropagationRegressionTests.test_wrong_or_missing_worker_operation_identity_is_not_consumed) (operation_id=None)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 133, in test_wrong_or_missing_worker_operation_identity_is_not_consumed\n    self.assertIsNone(outcome['outcome'])\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'APPLIED' is not None\n"
+    }
+  ],
+  "errors": [],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "11271135e763e9d7fba8452cd987fdd3f7530ce742bd75a4126ab68938feea71"
+}

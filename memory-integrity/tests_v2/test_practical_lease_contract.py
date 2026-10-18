@@ -57,5 +57,45 @@ class LeaseContract(unittest.TestCase):
             self.request(value)
 
 
+def reassign_packet(**changes):
+    value = dict(schema_version=2, work_item_id='work-1', operation_id='op-reassign-1',
+                 action='reassign_title_lease', task_id='mipx-1', actor='alice',
+                 target_actor='bob', title='bob takes the task',
+                 expected_status='in_progress', grant_id='grant-1', new_grant_id='grant-2',
+                 expected_row_lock=-7,
+                 lease_holder='alice', lease_granted_node='practical-approved-scratch-only',
+                 lease_granted_at_utc='2026-10-14 10:00:00.000000',
+                 lease_expires_at_utc='2026-10-14 10:05:00.000000',
+                 lease_heartbeat_at_utc='2026-10-14 10:00:00.000000')
+    value.update(changes)
+    value['command_digest'] = contract.canonical_command_digest(value)
+    return value
+
+
+class LeaseReassignContract(unittest.TestCase):
+    def request(self, value):
+        self.assertTrue(hasattr(contract, 'LeaseReassignRequest'),
+                        'real-lease-bound reassign request is absent')
+        return contract.LeaseReassignRequest.from_value(value)
+
+    def test_reassign_binds_transferor_snapshot_and_successor(self):
+        req = self.request(reassign_packet())
+        self.assertEqual(req.fixed_deadline_utc, req.lease_expires_at_utc)
+        self.assertEqual(req.target_actor, 'bob')
+        self.assertNotIn('new_deadline_utc', {field.name for field in fields(req)})
+
+    def test_reassign_refuses_self_transfer_and_title_free_transfer(self):
+        for change in [dict(target_actor='alice'), dict(title=''),
+                       dict(action='guarded_title_lease'),
+                       dict(lease_holder='bob'),
+                       dict(lease_expires_at_utc='2026-10-14 10:05:00')]:
+            with self.subTest(change=change), self.assertRaises(contract.PracticalContractError):
+                self.request(reassign_packet(**change))
+
+    def test_reassign_refuses_reused_grant_id(self):
+        with self.assertRaisesRegex(contract.PracticalContractError, 'E_PRACTICAL_REASSIGN_GRANT'):
+            self.request(reassign_packet(new_grant_id='grant-1'))
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

@@ -1,0 +1,66 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_race*.py",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\g-neighbors.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_race*.py"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 156,
+  "failures": [
+    {
+      "test": "test_fractional_second_boundaries_and_rollover (test_practical_race_harness.DatetimeAssumptionTests.test_fractional_second_boundaries_and_rollover) (authorization='2026-10-14 10:00:01.000000')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 932, in test_fractional_second_boundaries_and_rollover\n    self.assertEqual(result['verdict'], verify.PASSED, result['reasons'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'PASSED'\n- INCONCLUSIVE\n+ PASSED\n : [{'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_fractional_second_boundaries_and_rollover (test_practical_race_harness.DatetimeAssumptionTests.test_fractional_second_boundaries_and_rollover) (authorization='2026-10-14 10:00:01.999999')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 932, in test_fractional_second_boundaries_and_rollover\n    self.assertEqual(result['verdict'], verify.PASSED, result['reasons'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'PASSED'\n- INCONCLUSIVE\n+ PASSED\n : [{'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_fractional_second_boundaries_and_rollover (test_practical_race_harness.DatetimeAssumptionTests.test_fractional_second_boundaries_and_rollover) (authorization='2026-10-14 10:00:01.000001')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 932, in test_fractional_second_boundaries_and_rollover\n    self.assertEqual(result['verdict'], verify.PASSED, result['reasons'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'PASSED'\n- INCONCLUSIVE\n+ PASSED\n : [{'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_fractional_second_boundaries_and_rollover (test_practical_race_harness.DatetimeAssumptionTests.test_fractional_second_boundaries_and_rollover) (authorization='2026-10-14 10:04:59.999999')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 932, in test_fractional_second_boundaries_and_rollover\n    self.assertEqual(result['verdict'], verify.PASSED, result['reasons'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'PASSED'\n- INCONCLUSIVE\n+ PASSED\n : [{'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_fractional_second_boundaries_and_rollover (test_practical_race_harness.DatetimeAssumptionTests.test_fractional_second_boundaries_and_rollover) (authorization='2026-10-14 23:59:59.999999')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 932, in test_fractional_second_boundaries_and_rollover\n    self.assertEqual(result['verdict'], verify.PASSED, result['reasons'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'FAILED' != 'PASSED'\n- FAILED\n+ PASSED\n : [{'code': 'GRANT_LEASE_FACTS_MISMATCH', 'severity': 'UNSAFE', 'detail': 'S1: successor grant deadline differs from original expiry', 'phase': 'S1'}, {'code': 'GRANT_LEASE_FACTS_MISMATCH', 'severity': 'UNSAFE', 'detail': 'S2: successor grant deadline differs from original expiry', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_fractional_second_boundaries_and_rollover (test_practical_race_harness.DatetimeAssumptionTests.test_fractional_second_boundaries_and_rollover) (authorization='2026-12-31 23:59:59.500000')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 932, in test_fractional_second_boundaries_and_rollover\n    self.assertEqual(result['verdict'], verify.PASSED, result['reasons'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'FAILED' != 'PASSED'\n- FAILED\n+ PASSED\n : [{'code': 'GRANT_LEASE_FACTS_MISMATCH', 'severity': 'UNSAFE', 'detail': 'S1: successor grant deadline differs from original expiry', 'phase': 'S1'}, {'code': 'GRANT_LEASE_FACTS_MISMATCH', 'severity': 'UNSAFE', 'detail': 'S2: successor grant deadline differs from original expiry', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_authorization_may_finish_saving_after_the_original_deadline (test_practical_race_harness.EvidenceSchemaTests.test_authorization_may_finish_saving_after_the_original_deadline)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 673, in test_authorization_may_finish_saving_after_the_original_deadline\n    self.assertEqual(verify.judge_evidence(evidence)['verdict'], verify.PASSED,\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     verify.judge_evidence(evidence)['reasons'])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'INCONCLUSIVE' != 'PASSED'\n- INCONCLUSIVE\n+ PASSED\n : [{'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S1: history time differs from transfer authorization', 'phase': 'S1'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}, {'code': 'GRANT_HISTORY_INCOMPLETE', 'severity': 'UNPROVEN', 'detail': 'S2: history time differs from transfer authorization', 'phase': 'S2'}]\n"
+    },
+    {
+      "test": "test_unobserved_transfer_state_stops_the_run (test_practical_race_harness.OrchestrationTests.test_unobserved_transfer_state_stops_the_run)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 709, in test_unobserved_transfer_state_stops_the_run\n    self.assertEqual(result['verdict'], verify.INCONCLUSIVE)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'FAILED' != 'INCONCLUSIVE'\n- FAILED\n+ INCONCLUSIVE\n\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "test_beads_identity_requires_observed_schema (test_practical_race_harness.LiveDriverTransportTests.test_beads_identity_requires_observed_schema)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_harness.py\", line 1256, in test_beads_identity_requires_observed_schema\n    self.assertFalse(identity['beads']['observed'])\n                     ~~~~~~~~^^^^^^^^^\nKeyError: 'beads'\n"
+    }
+  ],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "11271135e763e9d7fba8452cd987fdd3f7530ce742bd75a4126ab68938feea71"
+}

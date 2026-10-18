@@ -240,6 +240,77 @@ class GuardedTitleRequest(TransitionRequest):
             raise PracticalContractError("E_PRACTICAL_COMMAND_DIGEST")
 
 
+@dataclass(frozen=True)
+class LeaseReassignRequest:
+    """Ownership transfer with an exact observed lease snapshot and a title.
+
+    The transferor (actor) must currently hold the live lease; the successor
+    (target_actor) must differ. No deadline travels: the fixed deadline
+    derives from the original lease expiry, and no new-deadline field exists.
+    """
+    schema_version: int
+    work_item_id: str
+    operation_id: str
+    action: str
+    task_id: str
+    actor: str
+    target_actor: str
+    title: str
+    expected_status: str
+    grant_id: str
+    new_grant_id: str
+    expected_row_lock: int
+    lease_holder: str
+    lease_granted_node: str
+    lease_granted_at_utc: str
+    lease_expires_at_utc: str
+    lease_heartbeat_at_utc: str
+    command_digest: str
+
+    @classmethod
+    def from_value(cls, value):
+        if isinstance(value, cls):
+            value.validate()
+            return value
+        data = _exact_mapping(value, frozenset(cls.__dataclass_fields__),
+                              "E_PRACTICAL_REASSIGN_SCHEMA")
+        request = cls(**data)
+        request.validate()
+        return request
+
+    def as_dict(self):
+        return {key: getattr(self, key) for key in self.__dataclass_fields__}
+
+    @property
+    def fixed_deadline_utc(self):
+        return self.lease_expires_at_utc
+
+    def validate(self):
+        if type(self.schema_version) is not int or self.schema_version != 2 \
+                or self.action != "reassign_title_lease":
+            raise PracticalContractError("E_PRACTICAL_REASSIGN_ACTION")
+        for key in ("work_item_id", "operation_id", "task_id", "actor", "target_actor",
+                    "grant_id", "new_grant_id", "lease_holder", "lease_granted_node"):
+            _text(getattr(self, key), "E_PRACTICAL_" + key.upper())
+        if self.target_actor == self.actor:
+            raise PracticalContractError("E_PRACTICAL_REASSIGN_TARGET")
+        if self.new_grant_id == self.grant_id:
+            raise PracticalContractError("E_PRACTICAL_REASSIGN_GRANT")
+        if self.expected_status != "in_progress" or self.actor != self.lease_holder:
+            raise PracticalContractError("E_PRACTICAL_REASSIGN_OWNER")
+        _int64_nonzero(self.expected_row_lock, "E_PRACTICAL_ROW_LOCK")
+        if not isinstance(self.title, str) or not self.title or len(self.title) > 500 or "\x00" in self.title:
+            raise PracticalContractError("E_PRACTICAL_TITLE")
+        granted = _native_lease_timestamp(self.lease_granted_at_utc, "E_PRACTICAL_LEASE_GRANTED")
+        heartbeat = _native_lease_timestamp(self.lease_heartbeat_at_utc, "E_PRACTICAL_LEASE_HEARTBEAT")
+        expiry = _native_lease_timestamp(self.lease_expires_at_utc, "E_PRACTICAL_LEASE_EXPIRY")
+        if not granted <= heartbeat < expiry:
+            raise PracticalContractError("E_PRACTICAL_LEASE_ORDER")
+        validate_digest(self.command_digest)
+        if self.command_digest != canonical_command_digest(self.as_dict()):
+            raise PracticalContractError("E_PRACTICAL_COMMAND_DIGEST")
+
+
 _EXPIRED_REACQUIRE_KEYS = frozenset({
     "schema_version", "work_item_id", "operation_id", "action", "task_id", "actor",
     "expected_status", "prior_grant_id", "prior_deadline_utc", "expected_row_lock",

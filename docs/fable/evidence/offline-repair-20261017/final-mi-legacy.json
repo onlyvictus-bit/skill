@@ -1,0 +1,45 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\docs\\fable\\evidence\\offline-repair-20261017\\final-mi-legacy.json",
+    "--allow-python",
+    "discover",
+    "-s",
+    "tests"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 21,
+  "failures": [],
+  "errors": [
+    {
+      "test": "test_bridge_seed_and_verify_proves_persisted_canary_and_cleans_it (test_memory_watchdog.WatchdogTests.test_bridge_seed_and_verify_proves_persisted_canary_and_cleans_it)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests\\test_memory_watchdog.py\", line 82, in setUp\n    self.server = ThreadingHTTPServer((\"127.0.0.1\", 0), Handler)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 457, in __init__\n    self.server_bind()\n    ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\http\\server.py\", line 148, in server_bind\n    socketserver.TCPServer.server_bind(self)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 478, in server_bind\n    self.socket.bind(self.server_address)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\offline_test_policy\\sitecustomize.py\", line 38, in guard\n    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)\nPermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind\n"
+    },
+    {
+      "test": "test_recall_audit_reads_compact_result_titles (test_memory_watchdog.WatchdogTests.test_recall_audit_reads_compact_result_titles)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests\\test_memory_watchdog.py\", line 82, in setUp\n    self.server = ThreadingHTTPServer((\"127.0.0.1\", 0), Handler)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 457, in __init__\n    self.server_bind()\n    ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\http\\server.py\", line 148, in server_bind\n    socketserver.TCPServer.server_bind(self)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 478, in server_bind\n    self.socket.bind(self.server_address)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\offline_test_policy\\sitecustomize.py\", line 38, in guard\n    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)\nPermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind\n"
+    },
+    {
+      "test": "test_roundtrip_uses_current_api_and_cleans_canary (test_memory_watchdog.WatchdogTests.test_roundtrip_uses_current_api_and_cleans_canary)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests\\test_memory_watchdog.py\", line 82, in setUp\n    self.server = ThreadingHTTPServer((\"127.0.0.1\", 0), Handler)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 457, in __init__\n    self.server_bind()\n    ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\http\\server.py\", line 148, in server_bind\n    socketserver.TCPServer.server_bind(self)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 478, in server_bind\n    self.socket.bind(self.server_address)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\offline_test_policy\\sitecustomize.py\", line 38, in guard\n    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)\nPermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind\n"
+    },
+    {
+      "test": "test_status_uses_current_agentmemory_api_and_does_not_claim_healthy (test_memory_watchdog.WatchdogTests.test_status_uses_current_agentmemory_api_and_does_not_claim_healthy)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests\\test_memory_watchdog.py\", line 82, in setUp\n    self.server = ThreadingHTTPServer((\"127.0.0.1\", 0), Handler)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 457, in __init__\n    self.server_bind()\n    ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\http\\server.py\", line 148, in server_bind\n    socketserver.TCPServer.server_bind(self)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Python314\\Lib\\socketserver.py\", line 478, in server_bind\n    self.socket.bind(self.server_address)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\offline_test_policy\\sitecustomize.py\", line 38, in guard\n    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)\nPermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind\n"
+    }
+  ],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "33d9f3249ea428f23cd30deff42cc0c34101795e4a60716766dbd3ef434d60d8",
+  "guarded_python_children_allowed": true
+}

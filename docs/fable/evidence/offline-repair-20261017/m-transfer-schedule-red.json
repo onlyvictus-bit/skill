@@ -1,0 +1,37 @@
+{
+  "interpreter": "C:\\Python314\\python.exe",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "cwd": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+  "discovery_command": "python -B -m unittest discover -s tests_v2 -p test_practical_race_offline_sequence.py -k existing_backend -v",
+  "actual_command": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-17\\paste-the-entire-prompt-below-into\\work\\retained_runner.py",
+    "--receipt",
+    "..\\docs\\fable\\evidence\\offline-repair-20261017\\m-transfer-schedule-red.json",
+    "discover",
+    "-s",
+    "tests_v2",
+    "-p",
+    "test_practical_race_offline_sequence.py",
+    "-k",
+    "existing_backend",
+    "-v"
+  ],
+  "adapters": [
+    "TemporaryDirectory retained without cleanup",
+    "audit blocks every file deletion and external process"
+  ],
+  "tests_run": 1,
+  "failures": [
+    {
+      "test": "test_existing_backend_and_companion_bindings_reach_canonical_evidence (test_practical_race_offline_sequence.FullSequenceOfflineTests.test_existing_backend_and_companion_bindings_reach_canonical_evidence)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_practical_race_offline_sequence.py\", line 330, in test_existing_backend_and_companion_bindings_reach_canonical_evidence\n    self.assertEqual(driver.schedule['requests']['bob_reassign']['command_digest'],\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     record['binding']['command_digest'])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '83404ea3856c876ae608c1d5f87a9b29e618eeafec7d90e3a615b11375f476e5' != 'a77d9e46f098883d926cd1077ce004bc7bbc1bc2052e7d831793e5bdd71acf46'\n- 83404ea3856c876ae608c1d5f87a9b29e618eeafec7d90e3a615b11375f476e5\n+ a77d9e46f098883d926cd1077ce004bc7bbc1bc2052e7d831793e5bdd71acf46\n\n"
+    }
+  ],
+  "errors": [],
+  "skips": [],
+  "expected_failures": [],
+  "unexpected_successes": [],
+  "successful": false,
+  "runner_sha256": "33d9f3249ea428f23cd30deff42cc0c34101795e4a60716766dbd3ef434d60d8",
+  "guarded_python_children_allowed": false
+}

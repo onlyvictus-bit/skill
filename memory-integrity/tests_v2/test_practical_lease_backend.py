@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT.parent / 'claude-mon/scripts'))
 from complete_read_v2 import ledger
 from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest
 from tests_v2.test_practical_lease_contract import packet
+from tests_v2.test_practical_lease_contract import reassign_packet
 
 PIN = 'ca21a9d1dab233a694b99ad0be9e78590967a1cc2773eb202fa0dd2929239ba2'
 
@@ -48,6 +49,27 @@ def persisted_row(selection, request, **changes):
 
 def process_result(row):
     return SimpleNamespace(returncode=0, stdout=json.dumps({'rows':[row]}).encode(), stderr=b'')
+
+
+def reassign_persisted_row(selection, request, **changes):
+    # Reassignment-shaped stored row: the full request binding plus the exact
+    # receipt extras the SQL builder records (mirrors reassign_title_sql).
+    binding = request.as_dict()
+    binding.update(selection_digest=selection.digest, store_incarnation=selection.incarnation,
+                   database=selection.database, branch='main', native_node_id=selection.native_node_id)
+    receipt = dict(binding, status='WORKING_SET_APPLIED',
+                   evidence_class='NATIVE_OBSERVED_UNQUALIFIED', native_write_qualified=False,
+                   head_committed=False, backend_operation_id=request.operation_id,
+                   native_task_id=request.task_id, original_row_lock=request.expected_row_lock,
+                   fixed_deadline_utc=request.fixed_deadline_utc,
+                   prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
+                   target_actor=request.target_actor,
+                   authorization_time_utc='2026-10-14 10:00:01.000000', resulting_row_lock=812,
+                   resulting_lease_heartbeat_at_utc='2026-10-14 10:00:01.000000')
+    receipt.update(changes)
+    return dict(binding_json=json.dumps(binding), receipt_json=json.dumps(receipt),
+                command_digest=request.command_digest,
+                authorization_time=receipt['authorization_time_utc'], resulting_row_lock=812)
 
 
 class LeaseBackend(unittest.TestCase):
@@ -209,6 +231,82 @@ class LeaseBackend(unittest.TestCase):
         for forbidden in ('UPDATE ', 'INSERT ', 'DELETE ', 'COMMIT;', 'DOLT_'):
             self.assertNotIn(forbidden, sql)
         self.assertIn('observed_utc', sql)
+
+
+    def test_reassign_binding_carries_predecessor_and_successor(self):
+        from hybrid_bridge.practical_contract import LeaseReassignRequest
+        parsed = LeaseReassignRequest.from_value(reassign_packet())
+        binding = self.backend.intent_binding(reassign_packet())
+        self.assertEqual(binding['grant_id'], 'grant-1')
+        self.assertEqual(binding['new_grant_id'], 'grant-2')
+        self.assertEqual(binding['target_actor'], 'bob')
+        self.assertEqual(binding['actor'], 'alice')
+        self.assertEqual(binding['fixed_deadline'], parsed.fixed_deadline_utc)
+        self.assertEqual(len(binding), 20)
+
+    def test_reassign_executes_one_bounded_session_with_transfer_receipt(self):
+        from hybrid_bridge.practical_contract import LeaseReassignRequest
+        request = LeaseReassignRequest.from_value(reassign_packet())
+        row = reassign_persisted_row(self.selection, request)
+        result = process_result(row)
+        reassign_binding = self.backend.intent_binding(reassign_packet())
+        cap = ledger.reserve_practical_native_intent(self.db, reassign_binding)['reservation']
+        with patch.object(self.mod, '_native_boundary'), patch.object(
+                self.mod.subprocess, 'run', return_value=result) as process:
+            out = self.backend.execute_reassign_title(reassign_packet(), cm_db=self.db, reservation=cap)
+        self.assertEqual(process.call_count, 1)
+        argv = process.call_args.args[0]
+        self.assertEqual(argv[0], self.selection.dolt_executable)
+        self.assertIn('UPDATE leases SET holder', argv[-1])
+        self.assertFalse(out['native_write_qualified'])
+        self.assertFalse(out['head_committed'])
+        self.assertEqual(out['new_grant_id'], 'grant-2')
+        self.assertEqual(out['target_actor'], 'bob')
+        self.assertEqual(out['resulting_lease_heartbeat_at_utc'], '2026-10-14 10:00:01.000000')
+        self.assertEqual(ledger.verify_history(self.db)['internal_chain'], 'VERIFIED')
+
+    def test_reassign_foreign_receipt_becomes_unknown_never_applied(self):
+        from hybrid_bridge.practical_contract import LeaseReassignRequest
+        request = LeaseReassignRequest.from_value(reassign_packet())
+        forged = reassign_persisted_row(self.selection, request, native_task_id='other')
+        reassign_binding = self.backend.intent_binding(reassign_packet())
+        cap = ledger.reserve_practical_native_intent(self.db, reassign_binding)['reservation']
+        with patch.object(self.mod, '_native_boundary'), patch.object(
+                self.mod.subprocess, 'run', return_value=process_result(forged)):
+            with self.assertRaises(self.mod.LeaseDeliveryUnknown):
+                self.backend.execute_reassign_title(reassign_packet(), cm_db=self.db, reservation=cap)
+        self.assertEqual(self.db.execute(
+            "SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0], 0)
+
+
+    def test_reassign_receipt_refuses_invalid_precision_and_missing_heartbeat(self):
+        # The validator pins the resulting heartbeat to a whole-second native
+        # value equal to the truncated authorization moment. Invalid precision
+        # and a missing field are refusals, not silently accepted bounds. The
+        # receipt validator is exercised directly here because the companion
+        # journal enforces exactly-once dispatch, which a sub-case matrix over
+        # one operation id cannot legitimately repeat.
+        from hybrid_bridge.practical_contract import LeaseReassignRequest
+        request = LeaseReassignRequest.from_value(reassign_packet())
+        base = '"resulting_lease_heartbeat_at_utc": "2026-10-14 10:00:01.000000"'
+        cases = (
+            ('nonzero microseconds', base,
+             '"resulting_lease_heartbeat_at_utc": "2026-10-14 10:00:01.500000"'),
+            ('missing heartbeat key', base + '}', '}'),
+            ('unpinned second suffix', base,
+             '"resulting_lease_heartbeat_at_utc": "2026-10-14 10:00:01"'),
+        )
+        for label, needle, replacement in cases:
+            with self.subTest(case=label):
+                row = reassign_persisted_row(self.selection, request)
+                self.assertIn(needle, row['receipt_json'], label)
+                row['receipt_json'] = row['receipt_json'].replace(needle, replacement)
+                with self.assertRaises(self.mod.LeaseDeliveryUnknown):
+                    self.mod.LeaseScratchBackend._receipt(self.backend, request, row)
+        # The untouched receipt still validates, so the refusals above are not
+        # an artifact of a broken fixture.
+        self.mod.LeaseScratchBackend._receipt(
+            self.backend, request, reassign_persisted_row(self.selection, request))
 
 
 if __name__=='__main__':

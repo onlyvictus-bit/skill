@@ -168,6 +168,7 @@ _PRACTICAL_LEASE_FIELDS = (
     "lease_expires_at_utc", "lease_heartbeat_at_utc",
 )
 _PRACTICAL_BINDING_V2_FIELDS = _PRACTICAL_BINDING_FIELDS + _PRACTICAL_LEASE_FIELDS
+_PRACTICAL_REASSIGN_FIELDS = _PRACTICAL_BINDING_V2_FIELDS + ("target_actor", "new_grant_id")
 _PRACTICAL_DIGEST_FIELDS = ("selection_digest", "command_digest")
 _PRACTICAL_KINDS = (
     "PRACTICAL_NATIVE_INTENT", "PRACTICAL_NATIVE_DISPATCHED",
@@ -185,10 +186,16 @@ def _practical_sha(value):
 def _practical_binding(value):
     """Validate and canonicalize the complete immutable practical basis."""
     if not isinstance(value,dict) or set(value) not in (
-            set(_PRACTICAL_BINDING_FIELDS), set(_PRACTICAL_BINDING_V2_FIELDS)):
+            set(_PRACTICAL_BINDING_FIELDS), set(_PRACTICAL_BINDING_V2_FIELDS),
+            set(_PRACTICAL_REASSIGN_FIELDS)):
         raise LedgerError("E_PRACTICAL_BINDING: exact immutable binding fields required")
     out=dict(value)
-    fields = _PRACTICAL_BINDING_V2_FIELDS if set(out) == set(_PRACTICAL_BINDING_V2_FIELDS) else _PRACTICAL_BINDING_FIELDS
+    if set(out) == set(_PRACTICAL_REASSIGN_FIELDS):
+        fields = _PRACTICAL_REASSIGN_FIELDS
+    elif set(out) == set(_PRACTICAL_BINDING_V2_FIELDS):
+        fields = _PRACTICAL_BINDING_V2_FIELDS
+    else:
+        fields = _PRACTICAL_BINDING_FIELDS
     for field in fields:
         if field == "original_row_lock":
             continue
@@ -215,7 +222,7 @@ def _practical_binding(value):
             parsed=datetime.strptime(deadline,"%Y-%m-%d %H:%M:%S.%f")
     except ValueError as exc:
         raise LedgerError("E_PRACTICAL_BINDING: fixed_deadline must be a recognized UTC timestamp") from exc
-    if fields == _PRACTICAL_BINDING_V2_FIELDS:
+    if fields in (_PRACTICAL_BINDING_V2_FIELDS, _PRACTICAL_REASSIGN_FIELDS):
         lease_times={}
         for field in ("lease_granted_at_utc", "lease_expires_at_utc", "lease_heartbeat_at_utc"):
             value=out[field]
@@ -236,6 +243,11 @@ def _practical_binding(value):
             raise LedgerError("E_PRACTICAL_BINDING: fixed deadline must equal lease expiry")
         if not (lease_times["lease_granted_at_utc"] <= lease_times["lease_heartbeat_at_utc"] < lease_times["lease_expires_at_utc"]):
             raise LedgerError("E_PRACTICAL_BINDING: lease times must satisfy granted <= heartbeat < expiry")
+    if fields == _PRACTICAL_REASSIGN_FIELDS:
+        if out["target_actor"] == out["actor"]:
+            raise LedgerError("E_PRACTICAL_BINDING: successor must differ from transferor")
+        if out["new_grant_id"] == out["grant_id"]:
+            raise LedgerError("E_PRACTICAL_BINDING: successor grant must differ from prior grant")
     return out
 
 

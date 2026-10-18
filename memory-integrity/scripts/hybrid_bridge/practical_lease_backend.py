@@ -17,15 +17,41 @@ import subprocess
 from typing import ClassVar
 
 from .practical_contract import (LeasePracticalSelection, LeaseGuardedTitleRequest,
+                                 LeaseReassignRequest,
                                  PracticalContractError, strict_canonical_json)
 from .practical_sql import _text
 from . import practical_lease_sql
 
 DOLT_PIN = 'ca21a9d1dab233a694b99ad0be9e78590967a1cc2773eb202fa0dd2929239ba2'
+# Fixed, source-recorded observation marker. It is attached only to the bounded
+# pause of the paused-title capability, carries no predicate and no authority,
+# and exists so a second session can observe which session is holding the
+# transaction open. It must be in the SQL that actually executes: a marker on a
+# separate copy would let the watcher search for something that never ran.
+PAUSE_BARRIER_MARKER = 'PRACTICAL_RACE_BARRIER'
 APPROVED_ROOTS = (Path('C:/Users/sakth/memory-integrity-practical-fence-20261013'),
                   Path('C:/Users/sakth/memory-integrity-scratch-20261011/practical-fence-20261013'))
 TIMEOUT_SECONDS = 15
 MAX_CAPTURE_BYTES = 1024 * 1024
+
+
+def _mark_pause(sql):
+    """Attach the fixed observation marker to the bounded pause.
+
+    Bounded and idempotent: it only touches the parentheses of the pause
+    statement, adds no clause, and never runs twice.
+    """
+    if PAUSE_BARRIER_MARKER in sql:
+        return sql
+    for statement in ('DO SLEEP(', 'SLEEP('):
+        index = sql.find(statement)
+        if index < 0:
+            continue
+        end = sql.find(')', index)
+        if end < 0:
+            break
+        return sql[:end + 1] + ' /* ' + PAUSE_BARRIER_MARKER + ' */' + sql[end + 1:]
+    raise LeaseDeliveryUnknown('E_MI2_PAUSE_MARKER: no bounded pause to mark')
 
 
 class LeaseDeliveryUnknown(RuntimeError):
@@ -114,6 +140,15 @@ def _token(value):
     return type(value) is int and value != 0 and -(2**63) <= value < 2**63
 
 
+def _parse_request(value):
+    """Accept exactly the two lease-bound request contracts, nothing else."""
+    if isinstance(value, LeaseReassignRequest) or (
+            not isinstance(value, LeaseGuardedTitleRequest)
+            and isinstance(value, dict) and value.get('action') == 'reassign_title_lease'):
+        return LeaseReassignRequest.from_value(value)
+    return LeaseGuardedTitleRequest.from_value(value)
+
+
 @dataclass(frozen=True, slots=True, init=False)
 class LeaseScratchBackend:
     """Pinned low-level candidate; no injectable runner, mutable reader or activation."""
@@ -138,10 +173,10 @@ class LeaseScratchBackend:
         return False
 
     def intent_binding(self, value):
-        request = LeaseGuardedTitleRequest.from_value(value)
+        request = _parse_request(value)
         if request.lease_granted_node != self.selection.native_node_id:
             raise PracticalContractError('E_MI2_FOREIGN_LEASE_NODE')
-        return dict(work_item_id=request.work_item_id, operation_id=request.operation_id,
+        binding = dict(work_item_id=request.work_item_id, operation_id=request.operation_id,
                     selection_digest=self.selection.digest, store_incarnation=self.selection.incarnation,
                     database=self.selection.database, branch='main', native_task_id=request.task_id,
                     actor=request.actor, grant_id=request.grant_id, original_row_lock=request.expected_row_lock,
@@ -151,8 +186,11 @@ class LeaseScratchBackend:
                     lease_granted_at_utc=request.lease_granted_at_utc,
                     lease_expires_at_utc=request.lease_expires_at_utc,
                     lease_heartbeat_at_utc=request.lease_heartbeat_at_utc)
+        if isinstance(request, LeaseReassignRequest):
+            binding.update(target_actor=request.target_actor, new_grant_id=request.new_grant_id)
+        return binding
 
-    def _invoke(self, sql):
+    def _invoke(self, sql, *, timeout=TIMEOUT_SECONDS):
         if type(self) is not LeaseScratchBackend:
             raise PracticalContractError('E_MI2_BACKEND_TYPE')
         _native_boundary(self.selection)
@@ -165,7 +203,7 @@ class LeaseScratchBackend:
                    DOLT_ROOT_PATH=str(Path(self.selection.scratch_root)/'.practical-dolt-config'))
         try:
             result = subprocess.run(argv, cwd=self.selection.scratch_root, env=env,
-                stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=TIMEOUT_SECONDS,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout,
                 shell=False, check=False, creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
         except Exception as exc:
             raise LeaseDeliveryUnknown('E_MI2_PROCESS') from exc
@@ -188,6 +226,29 @@ class LeaseScratchBackend:
                         backend_operation_id=request.operation_id,native_task_id=request.task_id,
                         original_row_lock=request.expected_row_lock,fixed_deadline_utc=request.fixed_deadline_utc,
                         authorization_time_utc=row['authorization_time'],resulting_row_lock=row['resulting_row_lock'])
+        if isinstance(request, LeaseReassignRequest):
+            # Original digest-bound facts stay verbatim in the binding above;
+            # the transfer outcome lives under separately named resulting
+            # fields. The heartbeat value itself comes from the stored row,
+            # so the check below pins its exact transfer-time relationship
+            # instead of trusting an echo of the receipt field.
+            heartbeat_text = receipt.get('resulting_lease_heartbeat_at_utc')
+            try:
+                transferred = datetime.strptime(heartbeat_text, '%Y-%m-%d %H:%M:%S.%f')
+            except (TypeError, ValueError) as exc:
+                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_HEARTBEAT') from exc
+            if transferred.microsecond != 0:
+                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_HEARTBEAT')
+            # The builder renders CAST(auth AS DATETIME): MySQL truncates the
+            # fractional part, it never rounds. Runtime truncation behavior
+            # stays unverified until observed against a live server.
+            if transferred != _utc(row['authorization_time']).replace(microsecond=0):
+                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_HEARTBEAT')
+            expected.update(prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
+                            target_actor=request.target_actor,
+                            resulting_lease_heartbeat_at_utc=receipt.get('resulting_lease_heartbeat_at_utc'))
+            if not _utc(request.lease_granted_at_utc) <= transferred:
+                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_TRANSFER')
         if set(receipt) != set(expected) or strict_canonical_json(receipt) != strict_canonical_json(expected) or \
                 receipt.get('native_write_qualified') is not False or receipt.get('head_committed') is not False or \
                 not _token(row['resulting_row_lock']) or row['resulting_row_lock'] == request.expected_row_lock:
@@ -196,11 +257,15 @@ class LeaseScratchBackend:
             raise LeaseDeliveryUnknown('E_MI2_RECEIPT_AUTHORIZATION')
         return receipt
 
-    def execute_guarded_title(self, value, *, cm_db, reservation):
+    def _execute_protected(self, request, cm_db, reservation, *, sql, timeout):
+        """The one protected dispatch path: reserve, consume, run, read back.
+
+        Reservation-before-dispatch, winner-only consumption, exact receipt
+        validation and the APPLIED-or-UNKNOWN outcome are identical for every
+        protected action, so the title, paused-title and transfer dispatches
+        share this body rather than three drifting copies.
+        """
         from complete_read_v2 import ledger
-        if type(self) is not LeaseScratchBackend:
-            raise PracticalContractError('E_MI2_BACKEND_TYPE')
-        request = LeaseGuardedTitleRequest.from_value(value)
         binding = self.intent_binding(request)
         # Refuse bogus capability and unsafe path before consuming the attempt.
         ledger._practical_owner(reservation,cm_db,binding)
@@ -209,7 +274,72 @@ class LeaseScratchBackend:
         if not claimed['dispatch']:
             raise PracticalContractError('E_MI2_OPERATION_READBACK_ONLY')
         try:
-            rows = LeaseScratchBackend._invoke(self,practical_lease_sql.guarded_title_sql(self.selection,request))
+            rows = LeaseScratchBackend._invoke(self,sql,timeout=timeout)
+            if len(rows) != 1:
+                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_ABSENT')
+            receipt = LeaseScratchBackend._receipt(self,request,rows[0])
+        except Exception as exc:
+            ledger.mark_practical_native_unknown(cm_db,reservation,'lease dispatch uncertain: '+type(exc).__name__)
+            if isinstance(exc,LeaseDeliveryUnknown):
+                raise
+            raise LeaseDeliveryUnknown('E_MI2_DELIVERY_UNKNOWN') from exc
+        # This low-level transport does not register a caller-provided reader or
+        # fabricate CM APPLIED. Integrated consumer readback remains a P3 gate.
+        ledger.mark_practical_native_unknown(cm_db,reservation,
+            'working-set receipt observed; integrated protected readback still required')
+        return receipt
+
+    def execute_guarded_title(self, value, *, cm_db, reservation):
+        if type(self) is not LeaseScratchBackend:
+            raise PracticalContractError('E_MI2_BACKEND_TYPE')
+        request = LeaseGuardedTitleRequest.from_value(value)
+        return self._execute_protected(
+            request, cm_db, reservation,
+            sql=practical_lease_sql.guarded_title_sql(self.selection, request),
+            timeout=TIMEOUT_SECONDS)
+
+    def execute_paused_guarded_title(self, value, *, cm_db, reservation, pause_seconds):
+        """Harness support: the same protected title dispatch with a bounded
+        observation pause inside the open transaction.
+
+        This exists so the race harness can watch a real authorization
+        snapshot rather than assume one. It is deliberately not a SQL
+        injection point: the batch is derived here from the validated request
+        and a bounded pause, no caller text reaches the store, and the
+        reservation, consumption, receipt and UNKNOWN handling are the same
+        protected path as every other dispatch.
+        """
+        if type(self) is not LeaseScratchBackend:
+            raise PracticalContractError('E_MI2_BACKEND_TYPE')
+        if type(pause_seconds) is not int or not 1 <= pause_seconds <= 30:
+            raise PracticalContractError('E_MI2_PAUSE_BOUNDS')
+        request = LeaseGuardedTitleRequest.from_value(value)
+        sql = practical_lease_sql.experiment_guarded_title_sql(
+            self.selection, request, pause_seconds=pause_seconds)
+        # The marker must be inside the statement that executes, otherwise the
+        # watcher's session search can never match the real session.
+        sql = _mark_pause(sql)
+        # The pause legitimately outlives the ordinary transport budget, so the
+        # bound is the pause plus the ordinary margin and nothing more.
+        return self._execute_protected(
+            request, cm_db, reservation, sql=sql, timeout=TIMEOUT_SECONDS + pause_seconds)
+
+    def execute_reassign_title(self, value, *, cm_db, reservation):
+        """Ownership-transfer dispatch: same winner/consumption/readback shape
+        as title dispatch, but through the reassign batch and receipt."""
+        from complete_read_v2 import ledger
+        if type(self) is not LeaseScratchBackend:
+            raise PracticalContractError('E_MI2_BACKEND_TYPE')
+        request = LeaseReassignRequest.from_value(value)
+        binding = self.intent_binding(request)
+        # Refuse bogus capability and unsafe path before consuming the attempt.
+        ledger._practical_owner(reservation,cm_db,binding)
+        _native_boundary(self.selection)
+        claimed = ledger.consume_practical_native_dispatch(cm_db,binding,reservation)
+        if not claimed['dispatch']:
+            raise PracticalContractError('E_MI2_OPERATION_READBACK_ONLY')
+        try:
+            rows = LeaseScratchBackend._invoke(self,practical_lease_sql.reassign_title_sql(self.selection,request))
             if len(rows) != 1:
                 raise LeaseDeliveryUnknown('E_MI2_RECEIPT_ABSENT')
             receipt = LeaseScratchBackend._receipt(self,request,rows[0])
@@ -231,7 +361,7 @@ class LeaseScratchBackend:
         a consumer refuse before reserving execution authority. Exactly one
         row must exist: zero means stale or missing, several means ambiguous.
         """
-        request = LeaseGuardedTitleRequest.from_value(value)
+        request = _parse_request(value)
         if type(self) is not LeaseScratchBackend:
             raise PracticalContractError('E_MI2_BACKEND_TYPE')
         selected = self.selection
@@ -269,7 +399,7 @@ class LeaseScratchBackend:
         return rows[0]
 
     def read_operation(self, value):
-        request = LeaseGuardedTitleRequest.from_value(value)
+        request = _parse_request(value)
         self.intent_binding(request)
         selected = self.selection
         sql = ('SELECT o.receipt_json,o.binding_json,o.command_digest,o.authorization_time,o.resulting_row_lock '

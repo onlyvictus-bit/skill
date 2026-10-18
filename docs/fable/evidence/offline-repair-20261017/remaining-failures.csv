@@ -1,0 +1,1749 @@
+receipt,kind,test,category,final_line,traceback
+acceptance-mi-v2.json,failures,test_grandchild_pipe_holder_killed (test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed),Blocked native/non-Python/unguarded process,AssertionError: False is not true : ['tree-sweep: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: taskkill /PID 44552 /T /F'],"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_native_containment.py"", line 33, in test_grandchild_pipe_holder_killed
+    self.assertTrue(result[""capture_complete""], result.get(""capture_errors""))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : ['tree-sweep: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: taskkill /PID 44552 /T /F']
+"
+acceptance-mi-v2.json,failures,test_release_exact_content_and_declared_changes (test_preservation.Preservation.test_release_exact_content_and_declared_changes),Existing preservation manifest drift,Diff is 18189 characters long. Set self.maxDiff to None to see it.,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_preservation.py"", line 28, in test_release_exact_content_and_declared_changes
+    self.assertEqual(actual, manifest[""files""])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'capabilities-v2.json': 'd515fda3b16e1600b[17535 chars]74d'} != {'SKILL.md': '32433ef88cdaf3a0ce738fc99f145[14817 chars]014'}
+Diff is 18189 characters long. Set self.maxDiff to None to see it.
+"
+acceptance-mi-v2.json,errors,test_degraded_pack_cannot_claim_shacl_or_lineage (test_knowledge_audit_integrity.OptionalReceiptIntegrity.test_degraded_pack_cannot_claim_shacl_or_lineage),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmppawrya6q rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_audit_integrity.py"", line 124, in setUp
+    self.build()
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_foreign_backend_cannot_qualify_optional_pack (test_knowledge_audit_integrity.OptionalReceiptIntegrity.test_foreign_backend_cannot_qualify_optional_pack),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpr5jaova4 rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_audit_integrity.py"", line 124, in setUp
+    self.build()
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_public_preflight_rejects_forged_pack_before_run_state (test_knowledge_audit_integrity.OptionalReceiptIntegrity.test_public_preflight_rejects_forged_pack_before_run_state),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpdcfq8c0d rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_audit_integrity.py"", line 124, in setUp
+    self.build()
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_unknown_nested_receipt_keys_are_refused (test_knowledge_audit_integrity.OptionalReceiptIntegrity.test_unknown_nested_receipt_keys_are_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpsagn3pzx rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_audit_integrity.py"", line 124, in setUp
+    self.build()
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_valid_direct_fallback_preserves_protected_workflow (test_knowledge_audit_integrity.OptionalReceiptIntegrity.test_valid_direct_fallback_preserves_protected_workflow),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp6bbb32yl rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_audit_integrity.py"", line 124, in setUp
+    self.build()
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_corrupted_generation_and_changed_branch_refused (test_knowledge_bridge.AdditionalContracts.test_corrupted_generation_and_changed_branch_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpjfn_eycb rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 199, in test_corrupted_generation_and_changed_branch_refused
+    self.build();pointer=(self.store/'CURRENT').read_text().strip();path=self.store/'generations'/pointer/'generation.json'
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_current_acl_loader_does_not_reopen_denied_sources (test_knowledge_bridge.AdditionalContracts.test_current_acl_loader_does_not_reopen_denied_sources),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp0yzkllvi rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 196, in test_current_acl_loader_does_not_reopen_denied_sources
+    self.build();(self.root/'secret.txt').unlink()
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_different_query_embedding_model_refused (test_knowledge_bridge.AdditionalContracts.test_different_query_embedding_model_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpx5izz6me rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 192, in test_different_query_embedding_model_refused
+    self.build();g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_nonaxis_query_pack_verifies_without_rounding_drift (test_knowledge_bridge.AdditionalContracts.test_nonaxis_query_pack_verifies_without_rounding_drift),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpw8851dc2 rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 171, in test_nonaxis_query_pack_verifies_without_rounding_drift
+    self.build();g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_optional_pack_cannot_falsify_embedding_provenance (test_knowledge_bridge.AdditionalContracts.test_optional_pack_cannot_falsify_embedding_provenance),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpl57dyjzf rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 175, in test_optional_pack_cannot_falsify_embedding_provenance
+    self.task['require_graph']=False;self.build();g=self.i.load(self.store,self.root,CM)
+                                     ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_rehashed_forged_assertion_pack_refused (test_knowledge_bridge.AdditionalContracts.test_rehashed_forged_assertion_pack_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpr99udo4g rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 185, in test_rehashed_forged_assertion_pack_refused
+    self.build();g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_unreviewed_derivation_cycle_refused (test_knowledge_bridge.AdditionalContracts.test_unreviewed_derivation_cycle_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 59, in build
+    c.validate_projection(projection,sources)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\contracts.py"", line 134, in validate_projection
+    if count!=len(ids): raise ValueError('E_DERIVATION_CYCLE')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: E_DERIVATION_CYCLE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 183, in test_unreviewed_derivation_cycle_refused
+    with self.assertRaisesRegex(ValueError,'DERIVATION_CYCLE'): self.build()
+                                                                ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_bad_endpoint_missing_unit_duplicate_id_unknown_field_refused (test_knowledge_bridge.Bridge.test_bad_endpoint_missing_unit_duplicate_id_unknown_field_refused) (change='endpoint'),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 59, in build
+    c.validate_projection(projection,sources)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\contracts.py"", line 139, in validate_projection
+    if row['id'] in edges or row['subject'] not in ids or row['object'] not in ids or row['predicate'] not in PREDICATES: raise ValueError('E_EDGE_ENDPOINT_OR_TYPE')
+                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: E_EDGE_ENDPOINT_OR_TYPE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 53, in test_bad_endpoint_missing_unit_duplicate_id_unknown_field_refused
+    with self.assertRaises(ValueError): self.i.build(self.root,self.sources,p,self.store,CM)
+                                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_canonical_manifest_reopen_and_drift (test_knowledge_bridge.Bridge.test_canonical_manifest_reopen_and_drift),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpnnfothf_ rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 37, in test_canonical_manifest_reopen_and_drift
+    built=self.build(); g=self.i.load(self.store,self.root,CM)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_interrupted_publication_preserves_current_and_writer_lock (test_knowledge_bridge.Bridge.test_interrupted_publication_preserves_current_and_writer_lock),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpmrj8t4vg rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 58, in test_interrupted_publication_preserves_current_and_writer_lock
+    a=self.build(); before=(self.store/'CURRENT').read_bytes()
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_missing_worker_and_bad_query_vector_block (test_knowledge_bridge.Bridge.test_missing_worker_and_bad_query_vector_block),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp4srcra4p rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 100, in test_missing_worker_and_bad_query_vector_block
+    self.build(); g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_permission_filter_before_worker_and_pack (test_knowledge_bridge.Bridge.test_permission_filter_before_worker_and_pack),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmphur_2d46 rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 73, in test_permission_filter_before_worker_and_pack
+    self.build(); g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_revoked_required_scope_budget_unknown_worker_result_blocks (test_knowledge_bridge.Bridge.test_revoked_required_scope_budget_unknown_worker_result_blocks),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpwh7a985j rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 91, in test_revoked_required_scope_budget_unknown_worker_result_blocks
+    self.build(); g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_source_escape_refused (test_knowledge_bridge.Bridge.test_source_escape_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 56, in build
+    sources=freeze(root,source_map,companion)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 36, in freeze
+    path=c.within(root,row['path']);raw=path.read_bytes();raw.decode('utf-8');total+=len(raw)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\contracts.py"", line 86, in within
+    if p.is_absolute() or '..' in p.parts or '\\' in relative or ':' in relative: raise ValueError('E_PATH_ESCAPE')
+                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: E_PATH_ESCAPE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 56, in test_source_escape_refused
+    with self.assertRaises(ValueError): self.build()
+                                        ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_backend_label_cannot_qualify_graph_required_pack (test_knowledge_bridge.SavedPackSecurity.test_backend_label_cannot_qualify_graph_required_pack),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmph2d1n0bq rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 220, in test_backend_label_cannot_qualify_graph_required_pack
+    self.build();g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_derivation_premise_units_reopened (test_knowledge_bridge.SavedPackSecurity.test_derivation_premise_units_reopened),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpe25yrh2c rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 236, in test_derivation_premise_units_reopened
+    self.build();g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_rehashed_unauthorized_path_refused (test_knowledge_bridge.SavedPackSecurity.test_rehashed_unauthorized_path_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp0o746mrc rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 227, in test_rehashed_unauthorized_path_refused
+    self.build();g=self.i.load(self.store,self.root,CM)
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_bridge.py"", line 30, in build
+    def build(self): return self.i.build(self.root,self.sources,self.projection,self.store,CM)
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_branch_change_blocks_current_use (test_knowledge_completion.Completion.test_branch_change_blocks_current_use),Blocked native/non-Python/unguarded process,PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpa1fzmru2 init,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 94, in test_branch_change_blocks_current_use
+    for args in [('init',),('config','user.email','fixture@example.invalid'),('config','user.name','Fixture'),('add','.'),('commit','-m','initial')]:subprocess.run(['git','-C',str(self.root),*args],check=True,capture_output=True)
+                                                                                                                                                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpa1fzmru2 init
+"
+acceptance-mi-v2.json,errors,test_empty_skipped_and_forged_test_receipt_cannot_pass (test_knowledge_completion.Completion.test_empty_skipped_and_forged_test_receipt_cannot_pass),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpuqzjmk74 rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 106, in test_empty_skipped_and_forged_test_receipt_cannot_pass
+    self.build();doc=indexing.load(self.store,self.root,CM);result=te.run(self.root,doc,['test_sample.py'],timeout=20);self.assertFalse(result['ok']);self.assertEqual(result['cases'][0]['status'],'skipped')
+    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 71, in build
+    impact,_,_=self.modules();return impact.build(self.root,self.map,self.store,CM)
+                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\impact.py"", line 67, in build
+    answer=indexing.build(root,source_map,projection,store,companion,construction=construction,expected_sources=sources)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_real_tests_fail_and_stale_pass_never_admits (test_knowledge_completion.Completion.test_real_tests_fail_and_stale_pass_never_admits),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpt1jad8vx rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 98, in test_real_tests_fail_and_stale_pass_never_admits
+    _,te,_=self.modules();doc=self.build();frozen=indexing.load(self.store,self.root,CM)
+                              ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 71, in build
+    impact,_,_=self.modules();return impact.build(self.root,self.map,self.store,CM)
+                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\impact.py"", line 67, in build
+    answer=indexing.build(root,source_map,projection,store,companion,construction=construction,expected_sources=sources)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_requested_extraction_checks_reject_failed_required_parser (test_knowledge_completion.Completion.test_requested_extraction_checks_reject_failed_required_parser),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 61, in build
+    body={'schema_version':1,'workspace_id':source_map['workspace_id'],'repository':source_map['repository'],'repository_identity':repository_identity(root),'source_basis_digest':c.digest(c.canonical(sources)),'sources':sources,'projection':projection,'observed_at':now,'built_at':now,'publication_state':'STRUCTURE_VALIDATED','semantic_truth':'UNVERIFIED'}
+                                                                                                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 25, in repository_identity
+    return {'commit':git('rev-parse','HEAD'),'branch':git('symbolic-ref','--short','HEAD')}
+                     ~~~^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 23, in git
+    p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp0a2xov7v rev-parse HEAD
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 115, in test_requested_extraction_checks_reject_failed_required_parser
+    _,_,ad=self.modules();self.build();doc=indexing.load(self.store,self.root,CM)
+                          ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 71, in build
+    impact,_,_=self.modules();return impact.build(self.root,self.map,self.store,CM)
+                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\impact.py"", line 67, in build
+    answer=indexing.build(root,source_map,projection,store,companion,construction=construction,expected_sources=sources)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_same_branch_unrelated_commit_and_incremental_reuse (test_knowledge_completion.Completion.test_same_branch_unrelated_commit_and_incremental_reuse),Blocked native/non-Python/unguarded process,PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp_xza17ef init,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 74, in test_same_branch_unrelated_commit_and_incremental_reuse
+    for args in [('init',),('config','user.email','fixture@example.invalid'),('config','user.name','Fixture'),('add','.'),('commit','-m','initial')]:subprocess.run(['git','-C',str(self.root),*args],check=True,capture_output=True)
+                                                                                                                                                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmp_xza17ef init
+"
+acceptance-mi-v2.json,errors,test_source_edit_between_extraction_and_publication_is_refused (test_knowledge_completion.Completion.test_source_edit_between_extraction_and_publication_is_refused),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 57, in build
+    if expected_sources is not None and sources!=expected_sources:raise ValueError('E_STALE_CONSTRUCTION_SOURCE')
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: E_STALE_CONSTRUCTION_SOURCE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 90, in test_source_edit_between_extraction_and_publication_is_refused
+    with self.assertRaisesRegex(ValueError,'STALE'):self.build()
+                                                    ~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 71, in build
+    impact,_,_=self.modules();return impact.build(self.root,self.map,self.store,CM)
+                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\impact.py"", line 67, in build
+    answer=indexing.build(root,source_map,projection,store,companion,construction=construction,expected_sources=sources)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_knowledge_completion.py"", line 88, in race
+    return original(*args,**kwargs)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\knowledge_bridge\indexing.py"", line 78, in build
+    lock.unlink(missing_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_info_accepts_short_database_path (test_native_paths.PathIdentityTests.test_info_accepts_short_database_path),Windows short-path observation unavailable,OSError: no short form,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_native_paths.py"", line 41, in test_info_accepts_short_database_path
+    value = {""database_path"": short_form(temp), ""mode"": ""direct"",
+                              ~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_native_paths.py"", line 25, in short_form
+    raise OSError(""no short form"")
+OSError: no short form
+"
+acceptance-mi-v2.json,errors,test_short_and_long_forms_unify (test_native_paths.PathIdentityTests.test_short_and_long_forms_unify),Windows short-path observation unavailable,OSError: no short form,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_native_paths.py"", line 34, in test_short_and_long_forms_unify
+    self.assertEqual(obs._long_path(short_form(temp)),
+                                    ~~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_native_paths.py"", line 25, in short_form
+    raise OSError(""no short form"")
+OSError: no short form
+"
+acceptance-mi-v2.json,errors,test_missing_result_artifact_blocks_fresh_read (test_r2_workflow.Workflow.test_missing_result_artifact_blocks_fresh_read),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_r2_workflow.py"", line 58, in test_missing_result_artifact_blocks_fresh_read
+    (self.run_dir / artifacts[-1]).unlink()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_changed_dirty_bytes_change_observed_identity (test_r3_branch.BranchPolicyTests.test_changed_dirty_bytes_change_observed_identity),Blocked native/non-Python/unguarded process,PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git init C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpovxrzb3f,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_r3_branch.py"", line 58, in test_changed_dirty_bytes_change_observed_identity
+    subprocess.run([""git"",""init"",tmp],check=True,capture_output=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git init C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\retained-fixtures\tmpovxrzb3f
+"
+acceptance-mi-v2.json,errors,test_non_git_is_an_explicit_boundary (test_r3_branch.BranchPolicyTests.test_non_git_is_an_explicit_boundary),Blocked native/non-Python/unguarded process,PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C not-a-repository rev-parse --show-toplevel,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_r3_branch.py"", line 115, in test_non_git_is_an_explicit_boundary
+    observed = branch.observe_git_workspace(Path(self.id()).parent / ""not-a-repository"")
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\hybrid_bridge\branch.py"", line 38, in observe_git_workspace
+    probe = _git(path, ""rev-parse"", ""--show-toplevel"")
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\scripts\hybrid_bridge\branch.py"", line 31, in _git
+    return subprocess.run([""git"", ""-C"", str(path), *args], capture_output=True,
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                          text=True, encoding=""utf-8"", timeout=5, check=False)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\subprocess.py"", line 1548, in _execute_child
+    sys.audit(""subprocess.Popen"", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 53, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: ' + str(command)[:180])
+PermissionError: OFFLINE_REPAIR_NO_UNGUARDED_PROCESS: git -C not-a-repository rev-parse --show-toplevel
+"
+acceptance-mi-v2.json,errors,test_conflict_and_missing_cas_leave_dirty_origin_and_ledger_unchanged (test_r3_central_merge.CentralMerge.test_conflict_and_missing_cas_leave_dirty_origin_and_ledger_unchanged),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_r3_central_merge.py"", line 79, in test_conflict_and_missing_cas_leave_dirty_origin_and_ledger_unchanged
+    (self.cas/base[""cas_digest""]).unlink()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_retained_merge_reopens_all_origins_and_reconciles_interrupted_intent (test_r3_central_merge.CentralMerge.test_retained_merge_reopens_all_origins_and_reconciles_interrupted_intent),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_r3_central_merge.py"", line 106, in test_retained_merge_reopens_all_origins_and_reconciles_interrupted_intent
+    path.unlink()
+    ~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+acceptance-mi-v2.json,errors,test_missing_source_blocked (test_source_binding.BindingTests.test_missing_source_blocked),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests_v2\test_source_binding.py"", line 52, in test_missing_source_blocked
+    (root / ""a.txt"").unlink()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+safe-python-final-cm.json,failures,test_release_exact_content_and_declared_changes (test_preservation.Preservation.test_release_exact_content_and_declared_changes),Existing preservation manifest drift,Diff is 7186 characters long. Set self.maxDiff to None to see it.,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests_v2\test_preservation.py"", line 28, in test_release_exact_content_and_declared_changes
+    self.assertEqual(actual, manifest[""files""])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'capabilities-v2.json': '60aec0d3b484edd64[6822 chars]519'} != {'SKILL.md': '1abb535cbe96715da076bca843285[6609 chars]c01'}
+Diff is 7186 characters long. Set self.maxDiff to None to see it.
+"
+safe-python-final-cm.json,errors,test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept (test_r3_coordination.CoordinationTests.test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests_v2\test_r3_coordination.py"", line 325, in test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept
+    graph_path.unlink()
+    ~~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-mi-legacy.json,errors,test_bridge_seed_and_verify_proves_persisted_canary_and_cleans_it (test_memory_watchdog.WatchdogTests.test_bridge_seed_and_verify_proves_persisted_canary_and_cleans_it),Blocked network/system action,PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests\test_memory_watchdog.py"", line 82, in setUp
+    self.server = ThreadingHTTPServer((""127.0.0.1"", 0), Handler)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\http\server.py"", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 38, in guard
+    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)
+PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind
+"
+final-mi-legacy.json,errors,test_recall_audit_reads_compact_result_titles (test_memory_watchdog.WatchdogTests.test_recall_audit_reads_compact_result_titles),Blocked network/system action,PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests\test_memory_watchdog.py"", line 82, in setUp
+    self.server = ThreadingHTTPServer((""127.0.0.1"", 0), Handler)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\http\server.py"", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 38, in guard
+    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)
+PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind
+"
+final-mi-legacy.json,errors,test_roundtrip_uses_current_api_and_cleans_canary (test_memory_watchdog.WatchdogTests.test_roundtrip_uses_current_api_and_cleans_canary),Blocked network/system action,PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests\test_memory_watchdog.py"", line 82, in setUp
+    self.server = ThreadingHTTPServer((""127.0.0.1"", 0), Handler)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\http\server.py"", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 38, in guard
+    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)
+PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind
+"
+final-mi-legacy.json,errors,test_status_uses_current_agentmemory_api_and_does_not_claim_healthy (test_memory_watchdog.WatchdogTests.test_status_uses_current_agentmemory_api_and_does_not_claim_healthy),Blocked network/system action,PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\memory-integrity\tests\test_memory_watchdog.py"", line 82, in setUp
+    self.server = ThreadingHTTPServer((""127.0.0.1"", 0), Handler)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File ""C:\Python314\Lib\http\server.py"", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File ""C:\Python314\Lib\socketserver.py"", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 38, in guard
+    raise PermissionError('OFFLINE_REPAIR_OFFLINE_ONLY: ' + event)
+PermissionError: OFFLINE_REPAIR_OFFLINE_ONLY: socket.bind
+"
+final-cm-legacy.json,failures,test_end_to_end_cli_materializes_chunk_and_status_hides_content (test_cli.CliTests.test_end_to_end_cli_materializes_chunk_and_status_hides_content),Blocked file deletion/cleanup,,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_cli.py"", line 25, in test_end_to_end_cli_materializes_chunk_and_status_hides_content
+    reg = json.loads(self.run_cli(""register"", ""--project"", td, ""--source"", str(src)).stdout)
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_cli.py"", line 15, in run_cli
+    self.assertEqual(proc.returncode, expect, proc.stderr or proc.stdout)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : {""error"": ""PermissionError"", ""message"": ""OFFLINE_REPAIR_NO_DELETION: os.remove"", ""ok"": false}
+
+"
+final-cm-legacy.json,failures,test_register_preserves_provenance_when_cli_option_is_omitted (test_cli.CliTests.test_register_preserves_provenance_when_cli_option_is_omitted),Blocked file deletion/cleanup,,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_cli.py"", line 44, in test_register_preserves_provenance_when_cli_option_is_omitted
+    first = json.loads(self.run_cli(
+                       ~~~~~~~~~~~~^
+        ""register"", ""--project"", td, ""--source"", str(src),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        ""--provenance"", ""user-request"",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).stdout)
+    ^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_cli.py"", line 15, in run_cli
+    self.assertEqual(proc.returncode, expect, proc.stderr or proc.stdout)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : {""error"": ""PermissionError"", ""message"": ""OFFLINE_REPAIR_NO_DELETION: os.remove"", ""ok"": false}
+
+"
+final-cm-legacy.json,failures,test_verify_returns_nonzero_on_stale_source (test_cli.CliTests.test_verify_returns_nonzero_on_stale_source),Blocked file deletion/cleanup,,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_cli.py"", line 58, in test_verify_returns_nonzero_on_stale_source
+    sid = json.loads(self.run_cli(""register"", ""--project"", td, ""--source"", str(src)).stdout)[""source_id""]
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_cli.py"", line 15, in run_cli
+    self.assertEqual(proc.returncode, expect, proc.stderr or proc.stdout)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : {""error"": ""PermissionError"", ""message"": ""OFFLINE_REPAIR_NO_DELETION: os.remove"", ""ok"": false}
+
+"
+final-cm-legacy.json,errors,test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary (test_core.ClaudeMonCoreTests.test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 94, in test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_chunk_payload_materializes_exact_bytes_and_hash (test_core.ClaudeMonCoreTests.test_chunk_payload_materializes_exact_bytes_and_hash),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 106, in test_chunk_payload_materializes_exact_bytes_and_hash
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_chunk_verifier_detects_missing_and_duplicate_primary_units (test_core.ClaudeMonCoreTests.test_chunk_verifier_detects_missing_and_duplicate_primary_units),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 118, in test_chunk_verifier_detects_missing_and_duplicate_primary_units
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_receipt_becomes_stale_after_source_change_without_rewriting_history (test_core.ClaudeMonCoreTests.test_receipt_becomes_stale_after_source_change_without_rewriting_history),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 194, in test_receipt_becomes_stale_after_source_change_without_rewriting_history
+    src, rec, um, cm, chunks = self._prepared_source()
+                               ~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 133, in _prepared_source
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_receipt_cannot_be_complete_without_exact_input_hashes (test_core.ClaudeMonCoreTests.test_receipt_cannot_be_complete_without_exact_input_hashes),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 158, in test_receipt_cannot_be_complete_without_exact_input_hashes
+    src, rec, um, cm, chunks = self._prepared_source()
+                               ~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 133, in _prepared_source
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_receipt_complete_is_task_bound_and_append_only (test_core.ClaudeMonCoreTests.test_receipt_complete_is_task_bound_and_append_only),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 140, in test_receipt_complete_is_task_bound_and_append_only
+    src, rec, um, cm, chunks = self._prepared_source()
+                               ~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 133, in _prepared_source
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_register_changed_content_preserves_version_history (test_core.ClaudeMonCoreTests.test_register_changed_content_preserves_version_history),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 60, in test_register_changed_content_preserves_version_history
+    first = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_register_uses_content_hash_and_rejects_outside_root (test_core.ClaudeMonCoreTests.test_register_uses_content_hash_and_rejects_outside_root),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 45, in test_register_uses_content_hash_and_rejects_outside_root
+    rec = register_source(self.root, src, required=True, provenance=[""user-request""])
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_status_does_not_emit_source_content (test_core.ClaudeMonCoreTests.test_status_does_not_emit_source_content),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 208, in test_status_does_not_emit_source_content
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_unit_manifest_is_exact_deterministic_and_unicode_safe (test_core.ClaudeMonCoreTests.test_unit_manifest_is_exact_deterministic_and_unicode_safe),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 70, in test_unit_manifest_is_exact_deterministic_and_unicode_safe
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_unitize_rejects_invalid_utf8 (test_core.ClaudeMonCoreTests.test_unitize_rejects_invalid_utf8),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 88, in test_unitize_rejects_invalid_utf8
+    rec = register_source(self.root, src, kind=""text"")
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_verify_receipt_rechecks_input_hashes_in_saved_receipt (test_core.ClaudeMonCoreTests.test_verify_receipt_rechecks_input_hashes_in_saved_receipt),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 173, in test_verify_receipt_rechecks_input_hashes_in_saved_receipt
+    src, rec, um, cm, chunks = self._prepared_source()
+                               ~~~~~~~~~~~~~~~~~~~~~^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_core.py"", line 133, in _prepared_source
+    rec = register_source(self.root, src)
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_gate_blocks_stale_receipt (test_fable_bridge.FableBridgeTests.test_gate_blocks_stale_receipt),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_fable_bridge.py"", line 21, in setUp
+    self.rec = register_source(self.root, self.src, required=True)
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"
+final-cm-legacy.json,errors,test_gate_blocks_until_matching_complete_task_receipt_exists (test_fable_bridge.FableBridgeTests.test_gate_blocks_until_matching_complete_task_receipt_exists),Blocked file deletion/cleanup,PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove,"Traceback (most recent call last):
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\tests\test_fable_bridge.py"", line 21, in setUp
+    self.rec = register_source(self.root, self.src, required=True)
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 169, in register_source
+    _atomic_write_json(root / REGISTRY_REL, registry)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 104, in _atomic_write_json
+    _atomic_write_bytes(path, canonical_json_bytes(value) + b""\n"")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\claude-mon\scripts\claude_mon_core.py"", line 100, in _atomic_write_bytes
+    tmp.unlink(missing_ok=True)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File ""C:\Python314\Lib\pathlib\__init__.py"", line 1042, in unlink
+    os.unlink(self)
+    ~~~~~~~~~^^^^^^
+  File ""C:\Users\sakth\Documents\Codex\2026-10-17\paste-the-entire-prompt-below-into\work\offline_test_policy\sitecustomize.py"", line 35, in guard
+    raise PermissionError('OFFLINE_REPAIR_NO_DELETION: ' + event)
+PermissionError: OFFLINE_REPAIR_NO_DELETION: os.remove
+"

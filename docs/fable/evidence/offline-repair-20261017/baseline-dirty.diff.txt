@@ -1,0 +1,1515 @@
+diff --git a/claude-mon/scripts/complete_read_v2/ledger.py b/claude-mon/scripts/complete_read_v2/ledger.py
+index 3249d56..3e1c9f5 100644
+--- a/claude-mon/scripts/complete_read_v2/ledger.py
++++ b/claude-mon/scripts/complete_read_v2/ledger.py
+@@ -168,6 +168,7 @@ _PRACTICAL_LEASE_FIELDS = (
+     "lease_expires_at_utc", "lease_heartbeat_at_utc",
+ )
+ _PRACTICAL_BINDING_V2_FIELDS = _PRACTICAL_BINDING_FIELDS + _PRACTICAL_LEASE_FIELDS
++_PRACTICAL_REASSIGN_FIELDS = _PRACTICAL_BINDING_V2_FIELDS + ("target_actor", "new_grant_id")
+ _PRACTICAL_DIGEST_FIELDS = ("selection_digest", "command_digest")
+ _PRACTICAL_KINDS = (
+     "PRACTICAL_NATIVE_INTENT", "PRACTICAL_NATIVE_DISPATCHED",
+@@ -185,10 +186,16 @@ def _practical_sha(value):
+ def _practical_binding(value):
+     """Validate and canonicalize the complete immutable practical basis."""
+     if not isinstance(value,dict) or set(value) not in (
+-            set(_PRACTICAL_BINDING_FIELDS), set(_PRACTICAL_BINDING_V2_FIELDS)):
++            set(_PRACTICAL_BINDING_FIELDS), set(_PRACTICAL_BINDING_V2_FIELDS),
++            set(_PRACTICAL_REASSIGN_FIELDS)):
+         raise LedgerError("E_PRACTICAL_BINDING: exact immutable binding fields required")
+     out=dict(value)
+-    fields = _PRACTICAL_BINDING_V2_FIELDS if set(out) == set(_PRACTICAL_BINDING_V2_FIELDS) else _PRACTICAL_BINDING_FIELDS
++    if set(out) == set(_PRACTICAL_REASSIGN_FIELDS):
++        fields = _PRACTICAL_REASSIGN_FIELDS
++    elif set(out) == set(_PRACTICAL_BINDING_V2_FIELDS):
++        fields = _PRACTICAL_BINDING_V2_FIELDS
++    else:
++        fields = _PRACTICAL_BINDING_FIELDS
+     for field in fields:
+         if field == "original_row_lock":
+             continue
+@@ -215,7 +222,7 @@ def _practical_binding(value):
+             parsed=datetime.strptime(deadline,"%Y-%m-%d %H:%M:%S.%f")
+     except ValueError as exc:
+         raise LedgerError("E_PRACTICAL_BINDING: fixed_deadline must be a recognized UTC timestamp") from exc
+-    if fields == _PRACTICAL_BINDING_V2_FIELDS:
++    if fields in (_PRACTICAL_BINDING_V2_FIELDS, _PRACTICAL_REASSIGN_FIELDS):
+         lease_times={}
+         for field in ("lease_granted_at_utc", "lease_expires_at_utc", "lease_heartbeat_at_utc"):
+             value=out[field]
+@@ -236,6 +243,11 @@ def _practical_binding(value):
+             raise LedgerError("E_PRACTICAL_BINDING: fixed deadline must equal lease expiry")
+         if not (lease_times["lease_granted_at_utc"] <= lease_times["lease_heartbeat_at_utc"] < lease_times["lease_expires_at_utc"]):
+             raise LedgerError("E_PRACTICAL_BINDING: lease times must satisfy granted <= heartbeat < expiry")
++    if fields == _PRACTICAL_REASSIGN_FIELDS:
++        if out["target_actor"] == out["actor"]:
++            raise LedgerError("E_PRACTICAL_BINDING: successor must differ from transferor")
++        if out["new_grant_id"] == out["grant_id"]:
++            raise LedgerError("E_PRACTICAL_BINDING: successor grant must differ from prior grant")
+     return out
+ 
+ 
+diff --git a/docs/changes/2026-10-14-practical-fence-wip.md b/docs/changes/2026-10-14-practical-fence-wip.md
+index 960a6db..e335e03 100644
+--- a/docs/changes/2026-10-14-practical-fence-wip.md
++++ b/docs/changes/2026-10-14-practical-fence-wip.md
+@@ -124,6 +124,14 @@ this session; all paths below are working-tree only).
+ 
+ ## Adversarial review corrections — 14 October 2026 night (uncommitted)
+ 
++Language standard adopted from review: **focused checks pass; reported
++full suites have zero errors but two known preservation failures.** The
++v2 consumer is an implementation under verification, not a completed
++workflow. Offline-progressable work remaining (builders/bindings, CLI and
++consumer wiring, race/interruption harness with assertions, regression and
++release-verification logic) is distinct from runtime-gated proof (real
++transitions, ladder, interruption, public end-to-end, final behavior).
++
+ An independent-shape review reproduced two defects without a native
+ database; both are fixed below with failing-first regression tests.
+ The reviewer also resolved the pin and scoped the remaining proof.
+@@ -155,3 +163,398 @@ The reviewer also resolved the pin and scoped the remaining proof.
+ - **Label correction:** the v2 consumer is an implementation under
+   verification, not the completed public workflow; `practical-title` and
+   `practical-reconcile` stay preflight-gated pending native proof.
++
++## Transfer semantics ADOPTED — human decision, experimental scope
++
++The human explicitly adopts the in-place lease transfer (holder plus
++transfer-moment heartbeat; granted time, granting node and original
++expiry frozen; successor inherits remaining duration) as an EXPERIMENTAL,
++scratch-scope custom protected-adapter protocol: disposable fence-owned
++local databases only; not equivalent Beads behavior; not for production,
++shared stores, replicas or merges; no-deletion kept; release/unclaim/
++reclaim stay offline-only; original digest-bound facts immutable with
++resulting facts under separate names; history assertions per write;
++race/controls prepared but not executed. Native, commit, push, publish
++and install gates all retained. Reopen only on materially new evidence.
++
++## Ownership transition builder — 15 October 2026 (uncommitted)
++
++New `LeaseReassignRequest` contract (transferor snapshot, distinct
++successor, title, no deadline fields) and `reassign_title_sql` builder:
++authority over issue, lease, grant, current pointer and metadata; issue
++transfer plus title and token; native lease row updated in place (holder
++and heartbeat only — granted moment and expiry never move, so the
++original deadline survives); prior grant tombstoned, `GRANTED` successor
++minted, current pointer moved, token/operation/receipt recorded, all
++cardinality-asserted with rollback. This deliberately diverges from a
++Beads delete-and-recreate transfer: the no-deletion rule forbids removing
++the row, and the holder change shares one atomic transaction with every
++dependent update. Failing-first builder and contract tests (5 new), all
++green with neighbors; live grammar, rollback and race proof still require
++a working host. Execution wiring (backend method, consumer path, CLI)
++comes after, not in this change.
++Review follow-up (same night): both grant-history inserts now carry
++explicit row-count assertions (the "all cardinality-asserted" claim was
++overstated without them); the receipt no longer overwrites the
++digest-bound `lease_heartbeat_at_utc` — the transfer moment is recorded
++under `resulting_lease_heartbeat_at_utc` while original facts stay
++verbatim (the claim builder only ever added DB-minted fields, never
++overwrote); the transfer is labeled a custom protected-adapter protocol,
++not equivalent Beads behavior.
++
++## Native race controller — PREPARED, NOT EXECUTED (no execution authority)
++
++Prerequisites (all pending): a host where `dolt init` works, Dolt 2.4.1
++(`ca21a9d1…`), a fresh disposable directory, and separate execution
++authorization. No command below has been run; no process started or killed.
++
++Setup (harness-owned DDL; the fence creates no Beads tables itself):
++`dolt init`, start `dolt sql-server --host 127.0.0.1 --port <PORT> --no-tls`
++(owned server, terminated after), apply `v2_schema_sql`, create minimal
++Beads-shaped `issues`/`leases` tables covering exactly the columns the
++fence predicates read, bootstrap namespace, register selection, seed one
++open unassigned issue.
++
++Paired cases (same schedule, observed barriers via
++`experiment_guarded_title_sql(pause_seconds=20)` holding Alice's
++transaction open, never sleep-only assumptions):
++1. Alice's title batch authorizes against her live grant, then pauses.
++2. Controller commits Bob's `execute_reassign_title` on a separate
++   connection and reads back issue, lease, grant, pointer, token and
++   operation rows.
++3. Alice resumes unchanged: her UPDATE matches zero rows, the cardinality
++   assert fails, the batch rolls back with no receipt row.
++4. Fresh-process readback asserts Bob's state intact, zero stale Alice
++   effect, zero stale receipt, journal UNKNOWN for Alice's op, APPLIED for
++   Bob's; no retry or authority refresh anywhere.
++Positive control: Bob's title through the same path succeeds.
++Fence-disabled comparison: the identical schedule with fence predicates
++stripped from both batches (harness-only SQL variants, no production
++disable flag) must expose the stale title effect the enabled arm
++prevents; if both arms refuse for another reason the comparison is
++inconclusive, not proof. Expiry, heartbeat, ABA, spelling and foreign
++cases reuse the same schedule with varied snapshots. Client-kill and
++server-crash runs need their own separate authorization and are not
++prepared here.
++
++## Gates A-C execution — uncommitted follow-up (same night)
++
++- Gate A done: one-second-wrong/invalid-precision/missing resulting
++  heartbeat now refuses (new `E_MI2_RECEIPT_HEARTBEAT`: strict
++  microsecond-zero format plus exact equality with authorization time
++  truncated to seconds; granted-time lower bound kept). Non-vacuity shown:
++  bounds-only logic accepts the probe. The truncation rule assumes MySQL
++  `CAST(x AS DATETIME)` truncates rather than rounds; live behavior stays
++  unverified until observed on a server.
++- Gate B done except full suites below: positional history association
++  (TOMBSTONED assert between the inserts, MINTED assert after) green;
++  journal (10) and dispatch (8) green through the ledger V3 change.
++- Gate C done except execution: `practical_race_controller.py`
++  (schedule builder from the real builders, harness-only disabled arm,
++  engine verification with pin + `.beads` marker, run path refusing by
++  default and marked UNVERIFIED) plus `practical_race_verify.py` (pure
++  PASSED/FAILED/INCONCLUSIVE oracle) with 8 offline harness tests green.
++Adapted native-workflow spec: new push-triggered workflow on the WIP
++branch running the controller against a working host with the pin
++assertion first; file not created, nothing dispatched.
++
++## Gate C repair (refuted labels corrected, uncommitted)
++
++- Verifier is now fail-closed: empty snapshots, absent journal entries,
++  missing dispatch observations and disappeared rows are reasons, never
++  passes; stale title with unchanged ownership fields fails via full-row
++  comparison; disappeared rows fail; unattributed changes are inconclusive
++  unless fence-attributed proof exists; observed stale/duplicate/loss
++  always fails.
++- Orchestration implemented behind the confirmation gate with an
++  injectable driver seam (order, barrier evidence, refusal mapping,
++  stop-always all offline-tested with fakes); the live driver internals
++  are UNVERIFIED and have never run.
++- Engine identity split: structural preflight (paths, pin, `.beads`
++  marker) separate from observed store identity, which the beads run
++  must supply; synthetic stores keep the synthetic label and cannot
++  satisfy beads assertions.
++- GATES.md repaired to explicit-ID format with full CHECK commands.
++- Gate D: this record + report carry diff, outputs, locations, labels and
++  blockers; independent review stays REVIEW_PENDING.
++
++## Offline harness completion pass — 17 October 2026 (uncommitted)
++
++Base HEAD `3ea2355`, 10 modified tracked files and 4 untracked files on
++arrival. Authority: the local, non-destructive work packages 1–5 only. No
++native execution, no commit, no push, no install, no deletion. The result is
++OFFLINE_HARNESS_IMPLEMENTED_NATIVE_UNVERIFIED. Every qualification flag in
++`practical-fence-contract.json` stays false.
++
++**Reconciliation first.** Two claims in the Gate C repair section above were
++refuted against the saved bytes rather than accepted:
++
++- "GATES.md repaired to explicit-ID format with full CHECK commands" was
++  false. The saved `docs/fable/GATES-lease-reassign.md` failed the parser with
++  14 explicit errors and exit 2: no gate carried an explicit `ID:` prefix,
++  attributes sat behind nested bullet marks so they read as orphans, several
++  gates had no CHECK at all, and A2/A3/A4 used "same command as A1" prose.
++- The harness was green at 16 tests while five integrated false passes were
++  live. A strict helper existed and was unused: `run_race` called
++  `verify_winner_predicates` and scored it with a private
++  `_judge_predicates`, while `judge_outcome` sat unused beside them.
++
++**Failing-first observations, all through the real `run_race()` entrypoint**
++(a scratch driver, before any edit): `wait_barrier` returning None gave
++PASSED; a stale successful backend operation record with an UNKNOWN CM journal
++gave PASSED; extended expiry plus wrong grant actor plus disagreeing grant
++revision gave PASSED; a real-Beads identity holding only an unverified marker
++string gave PASSED; positive and disabled-control phases scheduled but never
++executed gave PASSED. The parser gave exit 2 on the saved gates file.
++
++**What changed.**
++
++- `practical_race_verify.py` is now the single authoritative, fail-closed
++  path. `judge_evidence` is the only verdict function; the divergent
++  `verify_winner_predicates`, `verify_final_state`, `check_no_stale_receipt`,
++  `check_single_dispatch` and `judge_outcome` are gone rather than kept in
++  parallel. A strict evidence schema is required first: run id and schema
++  version, source commit plus working-tree and source-manifest digests,
++  controller and verifier digests, runtime pin, synthetic versus real-Beads
++  evidence class, observed database identity, exact task/actor/grant/operation
++  identities, validated barrier, S0/S1/S2 observations, backend operation
++  records, CM history and dispatch counts, and both control results.
++- Reasons carry explicit codes and severities. English-prefix classification
++  is gone. UNSAFE forces FAILED even when other evidence is incomplete;
++  everything unverifiable is INCONCLUSIVE; only zero reasons is PASSED.
++- Row identity is per table, including `issue_id` and composite keys such as
++  `(store_incarnation, grant_id)` and `(store_incarnation, row_token)`. The
++  old generic `id`/`operation_id`/`grant_id` heuristic is gone, and duplicate
++  identities are reported instead of being collapsed by dictionary
++  construction.
++- Database-generated conflict tokens are validated for type, freshness,
++  uniqueness and cross-record agreement, never predicted before the run.
++- `practical_race_controller.py` orchestrates the complete schedule with S0,
++  S1 and S2 boundaries and calls `judge_evidence` exactly once. It contains no
++  verdict logic of its own. Barrier evidence must be a validated mapping bound
++  to the exact run, operation and database session, with
++  authorization <= transfer <= resume ordering sampled from the database
++  clock. `None`, an empty mapping, a boolean and a sleep string are all
++  refused; unsupported synchronization is explicitly INCONCLUSIVE.
++- The live driver is implemented rather than stubbed. It owns the server and
++  client processes it starts, hashes the pinned binary, queries observed store
++  identity instead of asserting it, runs the sidecar bootstrap and selection
++  registration, builds requests from observed authority, and terminates only
++  its own retained handles. Its SQL is builder-produced and allowlisted, with
++  one statement per call. There is no production disable-fence switch. The
++  harness claim step is labelled MECHANISM-ONLY because the protected
++  consumer exposes no claim dispatch; it is not consumer integration proof.
++- New `practical_race_alice.py` runs the stale owner's dispatch as a bounded
++  separate client process, because the pause lives inside an open transaction
++  and cannot be observed from a thread sharing the CM connection.
++- The synthetic fixture now creates the `dependencies` table the generated
++  transfer predicates join; the previous fixture could not execute the real
++  SQL at all.
++- The datetime rule is labeled a runtime-dependent assumption with no
++  universal MySQL claim, and fractional-second boundaries plus minute, hour,
++  day and year rollover are covered.
++
++**Gate A3 was named but never implemented.** The historical ledger claimed the
++validator rejected invalid-precision and missing heartbeat evidence "inside
++the probe test"; no such test existed. `test_reassign_receipt_refuses_invalid_precision_and_missing_heartbeat`
++now exists and passes.
++
++**Fresh checks** (PowerShell 5.1, Python 3.14.3, this session, counts read from
++output and never copied):
++
++| Group | Command | Result |
++|---|---|---|
++| Race harness | `unittest discover -s tests_v2 -p "test_practical_race_harness.py"` | Ran 86, OK |
++| Focused lease suites | `-p "test_practical_lease_*.py"` | Ran 44, OK |
++| Companion journal/dispatch | `claude-mon` `-p "test_practical_*.py"` | Ran 18, OK |
++| Full memory-integrity | `unittest discover -s tests_v2` | Ran 569, 0 errors, 1 failure, 50 skips, 1 expected failure |
++| Full companion | `claude-mon` `unittest discover -s tests_v2` | Ran 208, 0 errors, 1 failure |
++
++Both single failures are the known preservation-manifest drift, deliberately
++not regenerated so it cannot certify unfinished work. Zero errors were
++introduced. `docs/fable/GATES-lease-reassign.md` now parses: 39 gates, 28 met,
++11 unmet, exit 1 because unmet gates exist.
++
++**Not done and not claimed.** No native execution, no host observation, no
++independent review (`REVIEW_PENDING`), no regression closure, no publication,
++no installation, and no claim that the broader M7/R5 scope is complete. The
++live driver is implemented but has never been executed.
++
++## Review repair round — 17 October 2026 (uncommitted)
++
++An independent read-only review refuted the completeness claim in the entry
++above. Every finding was reproduced locally before anything was changed; none
++was taken on assertion. Two gates whose evidence overstated what had been
++proven (D5, E2) were reopened.
++
++**Falsifier note.** The previous pass's own test suite was green while six
++verifier false passes and six driver wiring defects were live. Green tests
++derived from the same implementation are correlated evidence, not proof of
++completeness; that is exactly the mistake this round corrects.
++
++### Verifier: six further false passes, all confirmed through run_race()
++
++| Case | Before | After | Reason code |
++|---|---|---|---|
++| Final transfer history emptied | PASSED | INCONCLUSIVE | `GRANT_HISTORY_INCOMPLETE` |
++| Only the MINTED history row removed | PASSED | INCONCLUSIVE | `GRANT_HISTORY_INCOMPLETE` |
++| Stale row in the final operations snapshot, omitted from the record mapping | PASSED | FAILED | `STALE_BACKEND_SUCCESS_RECORD`, `OPERATION_RECORD_DISAGREEMENT` |
++| Snapshot and mapping disagree on one operation field | PASSED | FAILED | `OPERATION_RECORD_DISAGREEMENT` |
++| Unrelated task present before the race disappears | PASSED | FAILED | `ROW_LOST` |
++| Unrelated grant present before the race disappears | PASSED | FAILED | `ROW_LOST` |
++| Successor grant lease node / expiry / heartbeat / granted-at disagree with the lease | PASSED | FAILED | `GRANT_LEASE_FACTS_MISMATCH` |
++| Current-grant pointer in a foreign namespace | PASSED | FAILED | `POINTER_MISMATCH` |
++| No attributable protected-fence refusal | PASSED | INCONCLUSIVE | `REFUSAL_UNKNOWN` |
++
++Root causes and repairs:
++
++- The append-only transfer record was never required to exist. History is now
++  checked for both the prior `TOMBSTONED` and the successor `MINTED` rows, and
++  a history entry for an unrelated grant is a foreign event.
++- Two observations of the same backend state were never compared. The final
++  operations snapshot and the operation-record mapping must agree on identity,
++  digest, authorization time and resulting token; a stale row appearing in
++  only one of them is an observed stale effect.
++- "Unaffected work survives" was enforced only for tables classified as
++  unaffected, so a vanished unrelated row inside `issues` or `grants` passed.
++  Survival is now scoped per row: only the claimed task's rows, its two grant
++  ids, its winner token and its winner operation may change.
++- The successor grant's lease snapshot was not cross-checked against the lease
++  row it claims to describe. All four lease fields are now compared.
++- The current-grant pointer was matched by task id only, so a foreign-namespace
++  pointer satisfied it. The namespace is now bound.
++- An absent refusal source was treated as no objection. A pass must now
++  establish that the protected mechanism refused the stale write.
++
++### Driver: six wiring defects plus a synchronization gap, all confirmed
++
++| Defect | Before | After |
++|---|---|---|
++| `apply_ddl` refused its own multi-statement schema batch | `E_HARNESS_SQL: exactly one statement per call is required`, zero invocations | 4 batch invocations; the stored procedure body and its internal semicolons survive intact |
++| `cm_observations` concatenated a string with a list | `TypeError: can only concatenate str (not "list") to str` | iterates stale plus every winner id |
++| `run_transfer` subscripted a dataclass | `TypeError: 'LeaseReassignRequest' object is not subscriptable` | reads `request.operation_id`; committed requires an exact `WORKING_SET_APPLIED`, so returning without an exception is not proof |
++| `read_state` flattened results and zipped them onto table names | 10 rows in, 8 kept, a grant-history row filed under `current_grants` | grouped results; every row stays under its own table |
++| `positive_control` treated a non-exception `UNKNOWN` as success | `applied: True` with `PRACTICAL_NATIVE_UNKNOWN` | `applied: False`; success additionally confirmed by independent readback of the issue title |
++| `disabled_comparison` refused its own comment-led batch | zero SQL invocations, `executed: True` claimed anyway | executes in one builder-verified batch, confirms the stale effect by readback, and reports `executed: False` when it cannot run |
++| `start_alice` marked a paused batch the worker never ran | marker absent from the worker spec; the worker rebuilt the ordinary unpaused SQL | the spec carries only a pause length; the sealed backend derives the paused batch itself |
++| `store_identity` read metadata before the sidecar existed | identity observed before bootstrap | schema, bootstrap and registration now precede identity; no task is seeded without it |
++| The child could not import the harness or the companion | no `PYTHONPATH` | the client environment carries the resolved script roots |
++| The owned client process was never released | only the server was stopped | both owned processes are released on every path, and a failed release blocks a pass |
++| Source hashing omitted the worker and the companion | 6 modules | 7 harness modules plus the companion ledger actually used |
++
++### The paused-batch synchronization gap
++
++The marked, paused batch existed only inside the harness. The worker called
++the ordinary protected dispatch, and the sealed backend built the ordinary
++unpaused title SQL, so the intended paused transaction was never the batch that
++ran. Repair: `LeaseScratchBackend.execute_paused_guarded_title` derives the
++paused batch itself from the validated request and a bounded 1..30 pause, and
++`LeaseNativeConsumer.dispatch_paused_lease_title` exposes it over the same
++journal, consumption, receipt and UNKNOWN path. All three protected dispatches
++now share one `_execute_protected` body, so reservation-before-dispatch,
++winner-only consumption, exact receipt validation and the APPLIED-or-UNKNOWN
++terminal cannot drift apart. No caller SQL crosses any boundary, and the
++transport bound grows by exactly the pause. The ordinary transport budget
++would otherwise have timed out a 20-second pause, which this also fixes.
++
++### Fresh checks
++
++| Group | Command | Result |
++|---|---|---|
++| Race harness | `unittest discover -s tests_v2 -p "test_practical_race_harness.py"` | Ran 114, OK |
++| Reviewer verifier cases | same, `-k ReviewerVerifierCaseTests` | Ran 10, OK |
++| Driver wiring | same, `-k DriverWiringTests` | Ran 18, OK |
++| Focused lease suites | `-p "test_practical_lease_*.py"` | Ran 44, OK |
++| Companion journal/dispatch | `claude-mon` `-p "test_practical_*.py"` | Ran 18, OK |
++| Full memory-integrity | `unittest discover -s tests_v2` | Ran 597, 0 errors, 1 failure, 50 skips, 1 expected failure |
++| Full companion | `claude-mon` `unittest discover -s tests_v2` | Ran 208, 0 errors, 1 failure |
++
++Both single failures remain the known preservation-manifest drift, deliberately
++not regenerated. `docs/fable/GATES-lease-reassign.md` parses at 42 gates,
++31 met, 11 unmet.
++
++**Two defects this round was caught introducing.** A refactor of the shared
++consumer dispatch body lost a method's indentation, and the new backend helper
++was first written without its `cm_db` and `reservation` parameters. Both were
++found by the focused regressions before any claim was made, and both are
++recorded here because the first pass's lesson was precisely that a green
++harness is not a finished one.
++
++**Still not claimed.** No native execution, no host observation, no
++independent review of this round (`REVIEW_PENDING`), no regression closure, no
++publication and no installation. The live driver and the paused dispatch remain
++unexecuted against any server.
++
++## Contract-integration repair round — 17 October 2026 (uncommitted)
++
++A second independent review confirmed the previous round's fixes but found
++that connecting the driver to the real components exposed contracts the new
++mocks did not represent. All findings were reproduced locally first.
++
++### What the mocks had been hiding
++
++- `complete_practical_native_readback` returns exactly
++  `{inserted, kind, binding}`. The driver read `observed_state`, which the
++  companion never returns, so a real successful transfer was read as
++  `committed: false`. The mock supplied the invented field, which is why its
++  tests passed. `completion_outcome` now maps only an explicit terminal event
++  name; a missing or unrecognized field is never success.
++- The consumer can return an uncertain terminal **without raising**, so the
++  worker's exception-only attribution lost the rejection entirely. The worker
++  now reports the real terminal and no refusal at all. Attribution moved to
++  the controller, which independently re-reads current authority: if Alice's
++  own request can no longer satisfy the protected predicates, that is observed
++  evidence the fence stopped it; anything else stays unattributed. An unknown
++  outcome is never promoted to a fence refusal.
++- `_claim_request` built the historical v1 `InitialClaimRequest`, which the
++  current `initial_claim_sql` refuses. It now builds the v2 `LeaseClaimRequest`
++  (`schema_version: 2`, `action: initial_claim_lease`, `expected_status: open`)
++  from observed facts, with no caller deadline, lease timestamp, node or token.
++- `seed` ran an UPDATE against a row that does not exist on a fresh store. It
++  now INSERTs the task, reads the database-minted namespace back, and rebinds
++  the selection to it before anything is signed. Alice's own request is
++  derived from post-claim authority rather than the pre-claim fixture packet.
++- The controller marked a copy of the paused batch that the backend never ran,
++  so the watcher's session search could never match. `PAUSE_BARRIER_MARKER` is
++  now defined by the sealed backend and attached to the SQL that actually
++  executes; the controller delegates to that one definition.
++- Three more evidence cases passed: a successor grant omitting its lease
++  snapshot fields (each field is now mandatory, not compared only when
++  present), an S1 lease holder inconsistent with the claimed committed transfer
++  (S1 is now validated as thoroughly as S2, including its pointer and prior
++  grant), and a stale backend row observed in S1 but absent in S2 (every phase
++  is now scanned, so an observed unsafe effect cannot disappear backwards).
++
++### The decisive new test
++
++`RealComponentIntegrationTests` runs the real builders, the real sealed
++backend, the real consumer and an in-memory companion journal, faking only the
++native process boundary. It confirms the real completion shape, that the
++driver commits on `PRACTICAL_NATIVE_APPLIED` and not on
++`PRACTICAL_NATIVE_UNKNOWN`, that the journal records exactly one dispatch
++consumption with a verified chain, that the executed paused SQL carries the
++marker, that the v2 claim request is accepted by the real builder, and that
++the observed store identity satisfies the verifier.
++
++The integration suite keeps retained, uniquely named temp journals and deletes
++nothing, matching the standing no-deletion rule.
++
++### Fresh checks
++
++| Group | Result |
++|---|---|
++| Race harness | Ran 132, OK |
++| Real contract tests | Ran 7, OK |
++| Actual-component integration | Ran 6, OK |
++| Second-round verifier cases | Ran 5, OK |
++| Focused lease suites | Ran 44, OK |
++| Companion journal/dispatch | Ran 18, OK |
++| Full memory-integrity | Ran 615, 0 errors, 1 failure, 50 skips, 1 expected failure |
++| Full companion | Ran 208, 0 errors, 1 failure |
++
++Both single failures remain the known preservation-manifest drift. The gate
++ledger parses at 45 gates, 34 met, 11 unmet. Gate H records this round.
++
++**Still not claimed.** No native execution, no host observation, and no
++independent review of this round (`REVIEW_PENDING`). The next native-run
++proposal stays premature until that review clears.
+diff --git a/memory-integrity/scripts/hybrid_bridge/practical_contract.py b/memory-integrity/scripts/hybrid_bridge/practical_contract.py
+index 90ca015..855dc60 100644
+--- a/memory-integrity/scripts/hybrid_bridge/practical_contract.py
++++ b/memory-integrity/scripts/hybrid_bridge/practical_contract.py
+@@ -240,6 +240,77 @@ class GuardedTitleRequest(TransitionRequest):
+             raise PracticalContractError("E_PRACTICAL_COMMAND_DIGEST")
+ 
+ 
++@dataclass(frozen=True)
++class LeaseReassignRequest:
++    """Ownership transfer with an exact observed lease snapshot and a title.
++
++    The transferor (actor) must currently hold the live lease; the successor
++    (target_actor) must differ. No deadline travels: the fixed deadline
++    derives from the original lease expiry, and no new-deadline field exists.
++    """
++    schema_version: int
++    work_item_id: str
++    operation_id: str
++    action: str
++    task_id: str
++    actor: str
++    target_actor: str
++    title: str
++    expected_status: str
++    grant_id: str
++    new_grant_id: str
++    expected_row_lock: int
++    lease_holder: str
++    lease_granted_node: str
++    lease_granted_at_utc: str
++    lease_expires_at_utc: str
++    lease_heartbeat_at_utc: str
++    command_digest: str
++
++    @classmethod
++    def from_value(cls, value):
++        if isinstance(value, cls):
++            value.validate()
++            return value
++        data = _exact_mapping(value, frozenset(cls.__dataclass_fields__),
++                              "E_PRACTICAL_REASSIGN_SCHEMA")
++        request = cls(**data)
++        request.validate()
++        return request
++
++    def as_dict(self):
++        return {key: getattr(self, key) for key in self.__dataclass_fields__}
++
++    @property
++    def fixed_deadline_utc(self):
++        return self.lease_expires_at_utc
++
++    def validate(self):
++        if type(self.schema_version) is not int or self.schema_version != 2 \
++                or self.action != "reassign_title_lease":
++            raise PracticalContractError("E_PRACTICAL_REASSIGN_ACTION")
++        for key in ("work_item_id", "operation_id", "task_id", "actor", "target_actor",
++                    "grant_id", "new_grant_id", "lease_holder", "lease_granted_node"):
++            _text(getattr(self, key), "E_PRACTICAL_" + key.upper())
++        if self.target_actor == self.actor:
++            raise PracticalContractError("E_PRACTICAL_REASSIGN_TARGET")
++        if self.new_grant_id == self.grant_id:
++            raise PracticalContractError("E_PRACTICAL_REASSIGN_GRANT")
++        if self.expected_status != "in_progress" or self.actor != self.lease_holder:
++            raise PracticalContractError("E_PRACTICAL_REASSIGN_OWNER")
++        _int64_nonzero(self.expected_row_lock, "E_PRACTICAL_ROW_LOCK")
++        if not isinstance(self.title, str) or not self.title or len(self.title) > 500 or "\x00" in self.title:
++            raise PracticalContractError("E_PRACTICAL_TITLE")
++        granted = _native_lease_timestamp(self.lease_granted_at_utc, "E_PRACTICAL_LEASE_GRANTED")
++        heartbeat = _native_lease_timestamp(self.lease_heartbeat_at_utc, "E_PRACTICAL_LEASE_HEARTBEAT")
++        expiry = _native_lease_timestamp(self.lease_expires_at_utc, "E_PRACTICAL_LEASE_EXPIRY")
++        if not granted <= heartbeat < expiry:
++            raise PracticalContractError("E_PRACTICAL_LEASE_ORDER")
++        validate_digest(self.command_digest)
++        if self.command_digest != canonical_command_digest(self.as_dict()):
++            raise PracticalContractError("E_PRACTICAL_COMMAND_DIGEST")
++
++
+ _EXPIRED_REACQUIRE_KEYS = frozenset({
+     "schema_version", "work_item_id", "operation_id", "action", "task_id", "actor",
+     "expected_status", "prior_grant_id", "prior_deadline_utc", "expected_row_lock",
+diff --git a/memory-integrity/scripts/hybrid_bridge/practical_lease_backend.py b/memory-integrity/scripts/hybrid_bridge/practical_lease_backend.py
+index 95591f2..be86a83 100644
+--- a/memory-integrity/scripts/hybrid_bridge/practical_lease_backend.py
++++ b/memory-integrity/scripts/hybrid_bridge/practical_lease_backend.py
+@@ -17,17 +17,43 @@ import subprocess
+ from typing import ClassVar
+ 
+ from .practical_contract import (LeasePracticalSelection, LeaseGuardedTitleRequest,
++                                 LeaseReassignRequest,
+                                  PracticalContractError, strict_canonical_json)
+ from .practical_sql import _text
+ from . import practical_lease_sql
+ 
+ DOLT_PIN = 'ca21a9d1dab233a694b99ad0be9e78590967a1cc2773eb202fa0dd2929239ba2'
++# Fixed, source-recorded observation marker. It is attached only to the bounded
++# pause of the paused-title capability, carries no predicate and no authority,
++# and exists so a second session can observe which session is holding the
++# transaction open. It must be in the SQL that actually executes: a marker on a
++# separate copy would let the watcher search for something that never ran.
++PAUSE_BARRIER_MARKER = 'PRACTICAL_RACE_BARRIER'
+ APPROVED_ROOTS = (Path('C:/Users/sakth/memory-integrity-practical-fence-20261013'),
+                   Path('C:/Users/sakth/memory-integrity-scratch-20261011/practical-fence-20261013'))
+ TIMEOUT_SECONDS = 15
+ MAX_CAPTURE_BYTES = 1024 * 1024
+ 
+ 
++def _mark_pause(sql):
++    """Attach the fixed observation marker to the bounded pause.
++
++    Bounded and idempotent: it only touches the parentheses of the pause
++    statement, adds no clause, and never runs twice.
++    """
++    if PAUSE_BARRIER_MARKER in sql:
++        return sql
++    for statement in ('DO SLEEP(', 'SLEEP('):
++        index = sql.find(statement)
++        if index < 0:
++            continue
++        end = sql.find(')', index)
++        if end < 0:
++            break
++        return sql[:end + 1] + ' /* ' + PAUSE_BARRIER_MARKER + ' */' + sql[end + 1:]
++    raise LeaseDeliveryUnknown('E_MI2_PAUSE_MARKER: no bounded pause to mark')
++
++
+ class LeaseDeliveryUnknown(RuntimeError):
+     """Uncertain transport/readback; never grants permission to retry mutation."""
+ 
+@@ -114,6 +140,15 @@ def _token(value):
+     return type(value) is int and value != 0 and -(2**63) <= value < 2**63
+ 
+ 
++def _parse_request(value):
++    """Accept exactly the two lease-bound request contracts, nothing else."""
++    if isinstance(value, LeaseReassignRequest) or (
++            not isinstance(value, LeaseGuardedTitleRequest)
++            and isinstance(value, dict) and value.get('action') == 'reassign_title_lease'):
++        return LeaseReassignRequest.from_value(value)
++    return LeaseGuardedTitleRequest.from_value(value)
++
++
+ @dataclass(frozen=True, slots=True, init=False)
+ class LeaseScratchBackend:
+     """Pinned low-level candidate; no injectable runner, mutable reader or activation."""
+@@ -138,10 +173,10 @@ class LeaseScratchBackend:
+         return False
+ 
+     def intent_binding(self, value):
+-        request = LeaseGuardedTitleRequest.from_value(value)
++        request = _parse_request(value)
+         if request.lease_granted_node != self.selection.native_node_id:
+             raise PracticalContractError('E_MI2_FOREIGN_LEASE_NODE')
+-        return dict(work_item_id=request.work_item_id, operation_id=request.operation_id,
++        binding = dict(work_item_id=request.work_item_id, operation_id=request.operation_id,
+                     selection_digest=self.selection.digest, store_incarnation=self.selection.incarnation,
+                     database=self.selection.database, branch='main', native_task_id=request.task_id,
+                     actor=request.actor, grant_id=request.grant_id, original_row_lock=request.expected_row_lock,
+@@ -151,8 +186,11 @@ class LeaseScratchBackend:
+                     lease_granted_at_utc=request.lease_granted_at_utc,
+                     lease_expires_at_utc=request.lease_expires_at_utc,
+                     lease_heartbeat_at_utc=request.lease_heartbeat_at_utc)
++        if isinstance(request, LeaseReassignRequest):
++            binding.update(target_actor=request.target_actor, new_grant_id=request.new_grant_id)
++        return binding
+ 
+-    def _invoke(self, sql):
++    def _invoke(self, sql, *, timeout=TIMEOUT_SECONDS):
+         if type(self) is not LeaseScratchBackend:
+             raise PracticalContractError('E_MI2_BACKEND_TYPE')
+         _native_boundary(self.selection)
+@@ -165,7 +203,7 @@ class LeaseScratchBackend:
+                    DOLT_ROOT_PATH=str(Path(self.selection.scratch_root)/'.practical-dolt-config'))
+         try:
+             result = subprocess.run(argv, cwd=self.selection.scratch_root, env=env,
+-                stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=TIMEOUT_SECONDS,
++                stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout,
+                 shell=False, check=False, creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+         except Exception as exc:
+             raise LeaseDeliveryUnknown('E_MI2_PROCESS') from exc
+@@ -188,6 +226,29 @@ class LeaseScratchBackend:
+                         backend_operation_id=request.operation_id,native_task_id=request.task_id,
+                         original_row_lock=request.expected_row_lock,fixed_deadline_utc=request.fixed_deadline_utc,
+                         authorization_time_utc=row['authorization_time'],resulting_row_lock=row['resulting_row_lock'])
++        if isinstance(request, LeaseReassignRequest):
++            # Original digest-bound facts stay verbatim in the binding above;
++            # the transfer outcome lives under separately named resulting
++            # fields. The heartbeat value itself comes from the stored row,
++            # so the check below pins its exact transfer-time relationship
++            # instead of trusting an echo of the receipt field.
++            heartbeat_text = receipt.get('resulting_lease_heartbeat_at_utc')
++            try:
++                transferred = datetime.strptime(heartbeat_text, '%Y-%m-%d %H:%M:%S.%f')
++            except (TypeError, ValueError) as exc:
++                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_HEARTBEAT') from exc
++            if transferred.microsecond != 0:
++                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_HEARTBEAT')
++            # The builder renders CAST(auth AS DATETIME): MySQL truncates the
++            # fractional part, it never rounds. Runtime truncation behavior
++            # stays unverified until observed against a live server.
++            if transferred != _utc(row['authorization_time']).replace(microsecond=0):
++                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_HEARTBEAT')
++            expected.update(prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
++                            target_actor=request.target_actor,
++                            resulting_lease_heartbeat_at_utc=receipt.get('resulting_lease_heartbeat_at_utc'))
++            if not _utc(request.lease_granted_at_utc) <= transferred:
++                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_TRANSFER')
+         if set(receipt) != set(expected) or strict_canonical_json(receipt) != strict_canonical_json(expected) or \
+                 receipt.get('native_write_qualified') is not False or receipt.get('head_committed') is not False or \
+                 not _token(row['resulting_row_lock']) or row['resulting_row_lock'] == request.expected_row_lock:
+@@ -196,11 +257,80 @@ class LeaseScratchBackend:
+             raise LeaseDeliveryUnknown('E_MI2_RECEIPT_AUTHORIZATION')
+         return receipt
+ 
+-    def execute_guarded_title(self, value, *, cm_db, reservation):
++    def _execute_protected(self, request, cm_db, reservation, *, sql, timeout):
++        """The one protected dispatch path: reserve, consume, run, read back.
++
++        Reservation-before-dispatch, winner-only consumption, exact receipt
++        validation and the APPLIED-or-UNKNOWN outcome are identical for every
++        protected action, so the title, paused-title and transfer dispatches
++        share this body rather than three drifting copies.
++        """
+         from complete_read_v2 import ledger
++        binding = self.intent_binding(request)
++        # Refuse bogus capability and unsafe path before consuming the attempt.
++        ledger._practical_owner(reservation,cm_db,binding)
++        _native_boundary(self.selection)
++        claimed = ledger.consume_practical_native_dispatch(cm_db,binding,reservation)
++        if not claimed['dispatch']:
++            raise PracticalContractError('E_MI2_OPERATION_READBACK_ONLY')
++        try:
++            rows = LeaseScratchBackend._invoke(self,sql,timeout=timeout)
++            if len(rows) != 1:
++                raise LeaseDeliveryUnknown('E_MI2_RECEIPT_ABSENT')
++            receipt = LeaseScratchBackend._receipt(self,request,rows[0])
++        except Exception as exc:
++            ledger.mark_practical_native_unknown(cm_db,reservation,'lease dispatch uncertain: '+type(exc).__name__)
++            if isinstance(exc,LeaseDeliveryUnknown):
++                raise
++            raise LeaseDeliveryUnknown('E_MI2_DELIVERY_UNKNOWN') from exc
++        # This low-level transport does not register a caller-provided reader or
++        # fabricate CM APPLIED. Integrated consumer readback remains a P3 gate.
++        ledger.mark_practical_native_unknown(cm_db,reservation,
++            'working-set receipt observed; integrated protected readback still required')
++        return receipt
++
++    def execute_guarded_title(self, value, *, cm_db, reservation):
++        if type(self) is not LeaseScratchBackend:
++            raise PracticalContractError('E_MI2_BACKEND_TYPE')
++        request = LeaseGuardedTitleRequest.from_value(value)
++        return self._execute_protected(
++            request, cm_db, reservation,
++            sql=practical_lease_sql.guarded_title_sql(self.selection, request),
++            timeout=TIMEOUT_SECONDS)
++
++    def execute_paused_guarded_title(self, value, *, cm_db, reservation, pause_seconds):
++        """Harness support: the same protected title dispatch with a bounded
++        observation pause inside the open transaction.
++
++        This exists so the race harness can watch a real authorization
++        snapshot rather than assume one. It is deliberately not a SQL
++        injection point: the batch is derived here from the validated request
++        and a bounded pause, no caller text reaches the store, and the
++        reservation, consumption, receipt and UNKNOWN handling are the same
++        protected path as every other dispatch.
++        """
+         if type(self) is not LeaseScratchBackend:
+             raise PracticalContractError('E_MI2_BACKEND_TYPE')
++        if type(pause_seconds) is not int or not 1 <= pause_seconds <= 30:
++            raise PracticalContractError('E_MI2_PAUSE_BOUNDS')
+         request = LeaseGuardedTitleRequest.from_value(value)
++        sql = practical_lease_sql.experiment_guarded_title_sql(
++            self.selection, request, pause_seconds=pause_seconds)
++        # The marker must be inside the statement that executes, otherwise the
++        # watcher's session search can never match the real session.
++        sql = _mark_pause(sql)
++        # The pause legitimately outlives the ordinary transport budget, so the
++        # bound is the pause plus the ordinary margin and nothing more.
++        return self._execute_protected(
++            request, cm_db, reservation, sql=sql, timeout=TIMEOUT_SECONDS + pause_seconds)
++
++    def execute_reassign_title(self, value, *, cm_db, reservation):
++        """Ownership-transfer dispatch: same winner/consumption/readback shape
++        as title dispatch, but through the reassign batch and receipt."""
++        from complete_read_v2 import ledger
++        if type(self) is not LeaseScratchBackend:
++            raise PracticalContractError('E_MI2_BACKEND_TYPE')
++        request = LeaseReassignRequest.from_value(value)
+         binding = self.intent_binding(request)
+         # Refuse bogus capability and unsafe path before consuming the attempt.
+         ledger._practical_owner(reservation,cm_db,binding)
+@@ -209,7 +339,7 @@ class LeaseScratchBackend:
+         if not claimed['dispatch']:
+             raise PracticalContractError('E_MI2_OPERATION_READBACK_ONLY')
+         try:
+-            rows = LeaseScratchBackend._invoke(self,practical_lease_sql.guarded_title_sql(self.selection,request))
++            rows = LeaseScratchBackend._invoke(self,practical_lease_sql.reassign_title_sql(self.selection,request))
+             if len(rows) != 1:
+                 raise LeaseDeliveryUnknown('E_MI2_RECEIPT_ABSENT')
+             receipt = LeaseScratchBackend._receipt(self,request,rows[0])
+@@ -231,7 +361,7 @@ class LeaseScratchBackend:
+         a consumer refuse before reserving execution authority. Exactly one
+         row must exist: zero means stale or missing, several means ambiguous.
+         """
+-        request = LeaseGuardedTitleRequest.from_value(value)
++        request = _parse_request(value)
+         if type(self) is not LeaseScratchBackend:
+             raise PracticalContractError('E_MI2_BACKEND_TYPE')
+         selected = self.selection
+@@ -269,7 +399,7 @@ class LeaseScratchBackend:
+         return rows[0]
+ 
+     def read_operation(self, value):
+-        request = LeaseGuardedTitleRequest.from_value(value)
++        request = _parse_request(value)
+         self.intent_binding(request)
+         selected = self.selection
+         sql = ('SELECT o.receipt_json,o.binding_json,o.command_digest,o.authorization_time,o.resulting_row_lock '
+diff --git a/memory-integrity/scripts/hybrid_bridge/practical_lease_consumer.py b/memory-integrity/scripts/hybrid_bridge/practical_lease_consumer.py
+index 74393b7..8cc22b9 100644
+--- a/memory-integrity/scripts/hybrid_bridge/practical_lease_consumer.py
++++ b/memory-integrity/scripts/hybrid_bridge/practical_lease_consumer.py
+@@ -20,7 +20,7 @@ from typing import Any, Mapping
+ 
+ from complete_read_v2 import ledger
+ 
+-from .practical_contract import LeaseGuardedTitleRequest, PracticalContractError
++from .practical_contract import LeaseGuardedTitleRequest, LeaseReassignRequest, PracticalContractError
+ from .practical_lease_backend import LeaseDeliveryUnknown, LeaseScratchBackend
+ from .practical_lease_sql import _same_utc_moment
+ 
+@@ -112,6 +112,13 @@ class LeaseNativeConsumer:
+             raise LeaseConsumerError(
+                 'E_PRACTICAL_REQUEST: exact lease-guarded-title request required') from exc
+ 
++    def _reassign_request(self, value) -> LeaseReassignRequest:
++        try:
++            return LeaseReassignRequest.from_value(value)
++        except PracticalContractError as exc:
++            raise LeaseConsumerError(
++                'E_PRACTICAL_REQUEST: exact lease-reassign request required') from exc
++
+     def _current_prerequisite(self, request: LeaseGuardedTitleRequest) -> None:
+         """Fail closed before any intent is reserved; the SQL repeats this atomically."""
+         try:
+@@ -197,6 +204,19 @@ class LeaseNativeConsumer:
+ 
+     def dispatch_lease_title(self, value) -> dict[str, Any]:
+         """Dispatch at most once; a loser/retry can only read the stored operation."""
++        return self._dispatch_title(value, pause_seconds=None)
++
++    def dispatch_paused_lease_title(self, value, *, pause_seconds) -> dict[str, Any]:
++        """Harness support: the same title dispatch with a bounded pause inside
++        the transaction, so an authorization snapshot can be observed rather
++        than assumed. The journal, consumption, readback and terminal states
++        are identical to the ordinary dispatch.
++        """
++        if type(pause_seconds) is not int or not 1 <= pause_seconds <= 30:
++            raise LeaseConsumerError('E_PRACTICAL_PAUSE_BOUNDS: pause must be 1..30 seconds')
++        return self._dispatch_title(value, pause_seconds=pause_seconds)
++
++    def _dispatch_title(self, value, *, pause_seconds) -> dict[str, Any]:
+         request = self._request(value)
+         self._current_prerequisite(request)
+         try:
+@@ -211,20 +231,30 @@ class LeaseNativeConsumer:
+                 self._db, binding, self._reader_registration)
+         try:
+             # The backend persists dispatch consumption before the mutating
+-            # process starts, then marks the attempt UNKNOWN until an exact
+-            # independent readback proves the effect. A returned receipt is
+-            # never treated as proof here: completion re-reads below.
+-            self._backend.execute_guarded_title(
+-                request, cm_db=self._db, reservation=reservation['reservation'])
+-        except Exception as exc:
++            # process; completion re-reads below and a returned receipt is
++            # never treated as proof here.
++            if pause_seconds is None:
++                self._backend.execute_guarded_title(
++                    request, cm_db=self._db, reservation=reservation['reservation'])
++            else:
++                self._backend.execute_paused_guarded_title(
++                    request, cm_db=self._db, reservation=reservation['reservation'],
++                    pause_seconds=pause_seconds)
++        except Exception:
+             return ledger.complete_practical_native_readback(
+                 self._db, binding, self._reader_registration, reservation['reservation'])
+         return ledger.complete_practical_native_readback(
+             self._db, binding, self._reader_registration, reservation['reservation'])
++        return ledger.complete_practical_native_readback(
++            self._db, binding, self._reader_registration, reservation['reservation'])
+ 
+     def reconcile_lease_title(self, value) -> dict[str, Any]:
+         """Read-only recovery: it cannot acquire a winner token or replay SQL."""
+-        request = self._request(value)
++        if isinstance(value, LeaseReassignRequest) or (
++                isinstance(value, Mapping) and value.get('action') == 'reassign_title_lease'):
++            request = self._reassign_request(value)
++        else:
++            request = self._request(value)
+         try:
+             binding = self._backend.intent_binding(request)
+         except PracticalContractError as exc:
+@@ -233,3 +263,32 @@ class LeaseNativeConsumer:
+         self._requests[request.operation_id] = request
+         return ledger.complete_practical_native_readback(
+             self._db, binding, self._reader_registration)
++
++    def dispatch_reassign_title(self, value) -> dict[str, Any]:
++        """Transfer dispatch at most once; a loser/retry can only read back."""
++        request = self._reassign_request(value)
++        # The transferor prerequisite is the same currency shape as a title:
++        # assignee, holder, grant, pointer and store must all be current
++        # before any intent is reserved.
++        self._current_prerequisite(request)
++        try:
++            binding = self._backend.intent_binding(request)
++        except PracticalContractError as exc:
++            raise LeaseConsumerError(
++                'E_PRACTICAL_BINDING: lease facts do not bind this store') from exc
++        reservation = ledger.reserve_practical_native_intent(self._db, binding)
++        self._requests[request.operation_id] = request
++        if not reservation['winner']:
++            return ledger.complete_practical_native_readback(
++                self._db, binding, self._reader_registration)
++        try:
++            # As in title dispatch, the backend persists dispatch consumption
++            # before the mutating process; completion re-reads below and a
++            # returned receipt is never treated as proof here.
++            self._backend.execute_reassign_title(
++                request, cm_db=self._db, reservation=reservation['reservation'])
++        except Exception as exc:
++            return ledger.complete_practical_native_readback(
++                self._db, binding, self._reader_registration, reservation['reservation'])
++        return ledger.complete_practical_native_readback(
++            self._db, binding, self._reader_registration, reservation['reservation'])
+diff --git a/memory-integrity/scripts/hybrid_bridge/practical_lease_sql.py b/memory-integrity/scripts/hybrid_bridge/practical_lease_sql.py
+index 105d246..847ceee 100644
+--- a/memory-integrity/scripts/hybrid_bridge/practical_lease_sql.py
++++ b/memory-integrity/scripts/hybrid_bridge/practical_lease_sql.py
+@@ -637,3 +637,168 @@ def guarded_title_sql(selection, request):
+ def experiment_guarded_title_sql(selection, request, *, pause_seconds):
+     """Harness-only bounded pause after actual authorization/snapshot read."""
+     return _title_batch(selection, request, pause_seconds)
++
++
++def reassign_title_sql(selection, request):
++    """Ownership transfer plus title, offline candidate only.
++
++    The transferor's exact live lease snapshot, current grant and conflict
++    token authorize the batch. The native lease row is updated in place
++    (holder plus heartbeat); granted moment and expiry never move, so the
++    original deadline survives the transfer. That is a custom
++    protected-adapter protocol, not equivalent Beads behavior: the pinned
++    Beads implementation clears the previous lease on assignee transfer, and
++    this builder deliberately does not, because the no-deletion rule forbids
++    removing the row. The holder change shares one atomic transaction with
++    the grant tombstone, successor mint, current-pointer move, token
++    rotation, operation record and receipt. Native grammar, rollback and
++    all-or-nothing behavior require the retained real probes.
++    """
++    from .practical_contract import LeaseReassignRequest
++
++    selection = LeasePracticalSelection.from_value(selection)
++    request = LeaseReassignRequest.from_value(request)
++    if selection.native_node_id != request.lease_granted_node:
++        raise PracticalContractError('E_MI2_FOREIGN_LEASE_NODE')
++    namespace = _text(selection.incarnation)
++    operation = _text(request.operation_id)
++    digest = _text(request.command_digest)
++    task = _text(request.task_id)
++    actor = _text(request.actor)
++    target = _text(request.target_actor)
++    grant = _text(request.grant_id)
++    successor = _text(request.new_grant_id)
++    database = _text(selection.database)
++    branch = _text(selection.main_branch)
++    node = _text(selection.native_node_id)
++    binding = request.as_dict()
++    binding.update(selection_digest=selection.digest, store_incarnation=selection.incarnation,
++                   database=selection.database, branch='main', native_node_id=selection.native_node_id)
++    receipt = dict(binding, status='WORKING_SET_APPLIED', evidence_class='NATIVE_OBSERVED_UNQUALIFIED',
++                   native_write_qualified=False, head_committed=False,
++                   backend_operation_id=request.operation_id, native_task_id=request.task_id,
++                   original_row_lock=request.expected_row_lock,
++                   fixed_deadline_utc=request.fixed_deadline_utc,
++                   prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
++                   target_actor=request.target_actor)
++    binding_json = _text(strict_canonical_json(binding).decode('utf-8'))
++    receipt_json = _text(strict_canonical_json(receipt).decode('utf-8'))
++    predicate = ' AND '.join([
++        _binary_equals('i.id', task),
++        'i.status = ' + _text('in_progress'),
++        _binary_equals('i.assignee', actor),
++        'i.row_lock = ' + str(request.expected_row_lock),
++        'i.ephemeral = 0',
++        'l.issue_id = i.id',
++        _binary_equals('l.holder', _text(request.lease_holder)),
++        _binary_equals('l.granted_node', _text(request.lease_granted_node)),
++        'l.granted_at = ' + _text(request.lease_granted_at_utc),
++        'l.lease_expires_at = ' + _text(request.lease_expires_at_utc),
++        'l.heartbeat_at = ' + _text(request.lease_heartbeat_at_utc),
++        '@mi2_auth < l.lease_expires_at',
++        _binary_equals('g.grant_id', grant),
++        'g.task_id = i.id', 'BINARY g.actor = BINARY i.assignee', 'g.tombstoned = 0',
++        'g.issue_revision = i.row_lock',
++        'g.fixed_deadline_utc = l.lease_expires_at',
++        'c.grant_id = g.grant_id', 'c.current_revision = i.row_lock',
++        'BINARY g.lease_node = BINARY l.granted_node', 'g.lease_granted_at = l.granted_at',
++        'g.lease_expiry = l.lease_expires_at', 'g.lease_heartbeat = l.heartbeat_at',
++        'g.store_incarnation = m.store_incarnation',
++        'm.namespace_key = ' + _text('identity'),
++        'm.store_incarnation = ' + _text(selection.incarnation),
++        'm.selection_digest = ' + _text(selection.digest),
++        'm.native_node_id = l.granted_node',
++        'm.selected_database = ' + _text(selection.database),
++        'm.selected_main_branch = ' + _text(selection.main_branch),
++        'DATABASE() IN (' + _text(selection.database) + ',CONCAT('
++        + _text(selection.database) + ",'/main'))",
++        'active_branch() = ' + _text('main'),
++        'NOT EXISTS (SELECT 1 FROM dependencies AS d WHERE d.issue_id = i.id)',
++    ])
++    authority = ('SELECT COUNT(*) FROM issues AS i JOIN leases AS l ON l.issue_id = i.id '
++                 'JOIN mi_practical_v2_grants AS g ON g.task_id = i.id '
++                 'JOIN mi_practical_v2_current_grants AS c ON c.store_incarnation = g.store_incarnation '
++                 'AND c.task_id = g.task_id '
++                 'JOIN mi_practical_v2_metadata AS m ON m.store_incarnation = g.store_incarnation '
++                 'WHERE ' + predicate)
++    return '\n'.join([
++        'BEGIN NOT ATOMIC',
++        'DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; RESIGNAL; END;',
++        'START TRANSACTION;',
++        'SET @mi2_auth = UTC_TIMESTAMP(6);',
++        'SET @mi2_authorized = (' + authority + ');',
++        "CALL mi_practical_assert_v2(@mi2_authorized = 1, 'E_MI2_AUTH');",
++        'SET @mi2_operation_exists = (SELECT COUNT(*) FROM mi_practical_v2_operations '
++        'WHERE store_incarnation = ' + namespace + ' AND operation_id = ' + operation + ');',
++        "CALL mi_practical_assert_v2(@mi2_operation_exists = 0, 'E_MI2_OPERATION_REPLAY');",
++        'SET @mi2_successor_exists = (SELECT COUNT(*) FROM mi_practical_v2_grants '
++        'WHERE store_incarnation = ' + namespace + ' AND grant_id = ' + successor + ');',
++        "CALL mi_practical_assert_v2(@mi2_successor_exists = 0, 'E_MI2_GRANT_REUSE');",
++        "CALL mi_practical_assert_v2(" + actor + ' <> ' + target + ", 'E_MI2_REASSIGN_TARGET');",
++        'SET @mi2_token = CAST(CONV(SUBSTRING(SHA2(UUID(), 256), 1, 15), 16, 10) AS SIGNED);',
++        "CALL mi_practical_assert_v2(@mi2_token > 0 AND @mi2_token <> "
++        + str(request.expected_row_lock) + ", 'E_MI2_TOKEN');",
++        # One issue UPDATE hands task, title and conflict token to the
++        # successor; the transferor's revision gates the row.
++        'UPDATE issues SET assignee = ' + target + ', title = ' + _text(request.title)
++        + ', row_lock = @mi2_token WHERE ' + _binary_equals('id', task)
++        + ' AND ' + _binary_equals('assignee', actor)
++        + ' AND status = ' + _text('in_progress') + ' AND row_lock = ' + str(request.expected_row_lock) + ';',
++        'SET @mi2_issue_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_issue_changed = 1, 'E_MI2_ISSUE_CARDINALITY');",
++        # In-place holder transfer: the transfer moment becomes the heartbeat
++        # while granted moment and expiry never move.
++        'UPDATE leases SET holder = ' + target + ', heartbeat_at = CAST(@mi2_auth AS DATETIME) '
++        'WHERE issue_id = ' + task + ' AND holder = ' + _text(request.lease_holder) + ';',
++        'SET @mi2_lease_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_lease_changed = 1, 'E_MI2_LEASE_CARDINALITY');",
++        'UPDATE mi_practical_v2_grants SET tombstoned = 1 WHERE '
++        + _binary_equals('store_incarnation', namespace) + ' AND ' + _binary_equals('grant_id', grant)
++        + ' AND ' + _binary_equals('task_id', task)
++        + ' AND issue_revision = ' + str(request.expected_row_lock) + ' AND tombstoned = 0;',
++        'SET @mi2_tomb_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_tomb_changed = 1, 'E_MI2_TOMB_CARDINALITY');",
++        'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
++        'status,fixed_deadline_utc,issue_revision,tombstoned,'
++        'lease_node,lease_granted_at,lease_expiry,lease_heartbeat) VALUES ('
++        + namespace + ',' + successor + ',' + task + ',' + target
++        + ",'GRANTED'," + _text(request.fixed_deadline_utc) + ',@mi2_token,0,'
++        + node + ',' + _text(request.lease_granted_at_utc) + ','
++        + _text(request.lease_expires_at_utc) + ',CAST(@mi2_auth AS DATETIME));',
++        'SET @mi2_grant_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_grant_changed = 1, 'E_MI2_GRANT_CARDINALITY');",
++        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,event_utc,details) VALUES ('
++        + namespace + ',' + grant + ",'TOMBSTONED',@mi2_auth,'reassign');",
++        'SET @mi2_history_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_history_changed = 1, 'E_MI2_HISTORY_CARDINALITY');",
++        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,event_utc,details) VALUES ('
++        + namespace + ',' + successor + ",'MINTED',@mi2_auth,'reassign');",
++        'SET @mi2_history_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_history_changed = 1, 'E_MI2_HISTORY_CARDINALITY');",
++        'UPDATE mi_practical_v2_current_grants SET grant_id = ' + successor
++        + ', current_revision = @mi2_token WHERE '
++        + _binary_equals('store_incarnation', namespace) + ' AND ' + _binary_equals('task_id', task)
++        + ' AND ' + _binary_equals('grant_id', grant)
++        + ' AND current_revision = ' + str(request.expected_row_lock) + ';',
++        'SET @mi2_current_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_current_changed = 1, 'E_MI2_CURRENT_GRANT_CARDINALITY');",
++        'INSERT INTO mi_practical_v2_token_history(store_incarnation,row_token,operation_id) '
++        'VALUES (' + namespace + ',@mi2_token,' + operation + ');',
++        'SET @mi2_token_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_token_changed = 1, 'E_MI2_TOKEN_CARDINALITY');",
++        'INSERT INTO mi_practical_v2_operations(store_incarnation,operation_id,command_digest,'
++        'binding_json,receipt_json,authorization_time,resulting_row_lock) VALUES ('
++        + namespace + ',' + operation + ',' + digest + ',' + binding_json
++        + ',JSON_SET(CAST(' + receipt_json + " AS JSON),'$.authorization_time_utc',"
++        "DATE_FORMAT(@mi2_auth,'%Y-%m-%d %H:%i:%s.%f'),'$.resulting_lease_heartbeat_at_utc',"
++        "DATE_FORMAT(CAST(@mi2_auth AS DATETIME),'%Y-%m-%d %H:%i:%s.%f'),"
++        "'$.resulting_row_lock',@mi2_token),"
++        '@mi2_auth,@mi2_token);',
++        'SET @mi2_receipt_changed = ROW_COUNT();',
++        "CALL mi_practical_assert_v2(@mi2_receipt_changed = 1, 'E_MI2_RECEIPT_CARDINALITY');",
++        'COMMIT;',
++        'END;',
++        'SELECT receipt_json,binding_json,command_digest,authorization_time,resulting_row_lock '
++        'FROM mi_practical_v2_operations WHERE store_incarnation = ' + namespace
++        + ' AND operation_id = ' + operation + ' AND command_digest = ' + digest + ';',
++    ])
+diff --git a/memory-integrity/tests_v2/test_practical_consumer.py b/memory-integrity/tests_v2/test_practical_consumer.py
+index b1217f1..01fdd02 100644
+--- a/memory-integrity/tests_v2/test_practical_consumer.py
++++ b/memory-integrity/tests_v2/test_practical_consumer.py
+@@ -26,6 +26,7 @@ from hybrid_bridge import practical_backend, practical_consumer  # noqa: E402
+ from hybrid_bridge import practical_contract  # noqa: E402
+ from hybrid_bridge import practical_lease_backend  # noqa: E402
+ from hybrid_bridge.practical_lease_consumer import LeaseConsumerError, LeaseNativeConsumer  # noqa: E402
++from tests_v2.test_practical_lease_contract import reassign_packet  # noqa: E402
+ 
+ # Deliberate tripwire: the literal must match the sealed backend DOLT_PIN.
+ # A pin change breaks these tests loudly instead of silently re-targeting.
+@@ -379,5 +380,174 @@ class LeaseConsumerTests(unittest.TestCase):
+             self.consumer.dispatch_lease_title({"success": True})
+ 
+ 
++def reassign_persisted_row(selection, request, **changes):
++    binding = request.as_dict()
++    binding.update(selection_digest=selection.digest, store_incarnation=selection.incarnation,
++                   database=selection.database, branch='main', native_node_id=selection.native_node_id)
++    receipt = dict(binding, status='WORKING_SET_APPLIED',
++                   evidence_class='NATIVE_OBSERVED_UNQUALIFIED', native_write_qualified=False,
++                   head_committed=False, backend_operation_id=request.operation_id,
++                   native_task_id=request.task_id, original_row_lock=request.expected_row_lock,
++                   fixed_deadline_utc=request.fixed_deadline_utc,
++                   prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
++                   target_actor=request.target_actor,
++                   authorization_time_utc='2026-10-14 10:00:01.000000', resulting_row_lock=812,
++                   resulting_lease_heartbeat_at_utc='2026-10-14 10:00:01.000000')
++    receipt.update(changes)
++    return dict(binding_json=json.dumps(binding), receipt_json=json.dumps(receipt),
++                command_digest=request.command_digest,
++                authorization_time=receipt['authorization_time_utc'], resulting_row_lock=812)
++
++
++def xfer_packet(operation_id='op-xfer-1', **changes):
++    # Reassign request aligned with authority_row (mip-42 / row_lock 731 /
++    # grant-7): the transferor currency fixtures above. Digest recomputed.
++    return reassign_packet(task_id='mip-42', expected_row_lock=731, grant_id='grant-7',
++                           work_item_id='cm-work-17', operation_id=operation_id, **changes)
++
++
++class LeaseReassignConsumerTests(unittest.TestCase):
++    def setUp(self):
++        self.temp = Path(tempfile.mkdtemp(prefix="practical-reassign-"))
++        self.db = ledger.connect(self.temp / "cm.sqlite")
++        ledger.create_work_item(self.db, "cm-work-17", "task", "source")
++        ledger.coordination_put(self.db, "cm-work-17", {"registered": True})
++        self.lease_backend = practical_lease_backend.LeaseScratchBackend(lease_selection())
++        self.consumer = LeaseNativeConsumer(self.db, self.lease_backend)
++        self.calls = []
++
++    def tearDown(self):
++        self.db.close()
++
++    def patched(self, authority, dispatch=None, readback=None):
++        def run(argv, **kwargs):
++            sql = argv[-1]
++            self.calls.append(sql)
++            if sql.lstrip().upper().startswith('SELECT') and 'observed_utc' in sql:
++                payload = {'rows': [authority]}
++            elif sql.lstrip().upper().startswith('SELECT'):
++                payload = {'rows': [readback] if readback is not None else []}
++            else:
++                payload = {'rows': [dispatch]}
++            return SimpleNamespace(returncode=0, stdout=json.dumps(payload).encode(), stderr=b'')
++        return (patch.object(practical_lease_backend, '_native_boundary'),
++                patch.object(practical_lease_backend.subprocess, 'run', side_effect=run))
++
++    def kinds(self):
++        return [row[0] for row in self.db.execute(
++            "SELECT kind FROM events WHERE kind LIKE 'PRACTICAL_NATIVE_%' ORDER BY seq")]
++
++    def test_reassign_winner_dispatch_then_real_readback_applies(self):
++        request = practical_contract.LeaseReassignRequest.from_value(xfer_packet())
++        auth = authority_row(self.lease_backend.selection.digest)
++        receipt = reassign_persisted_row(self.lease_backend.selection, request)
++        boundary, process = self.patched(auth, dispatch=receipt, readback=receipt)
++        with boundary, process:
++            result = self.consumer.dispatch_reassign_title(xfer_packet())
++        self.assertEqual(result["kind"], "PRACTICAL_NATIVE_APPLIED")
++        self.assertTrue(result["inserted"])
++        self.assertEqual(len(self.calls), 3)
++        self.assertEqual(self.kinds(),
++                         ["PRACTICAL_NATIVE_INTENT", "PRACTICAL_NATIVE_DISPATCHED",
++                          "PRACTICAL_NATIVE_UNKNOWN", "PRACTICAL_NATIVE_APPLIED"])
++        applied = self.db.execute(
++            "SELECT detail FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0]
++        detail = json.loads(applied)
++        self.assertEqual(detail["binding"]["new_grant_id"], 'grant-2')
++        self.assertEqual(detail["binding"]["target_actor"], 'bob')
++
++    def test_reassign_stale_transferor_refuses_before_reservation(self):
++        auth = authority_row(self.lease_backend.selection.digest, issue_row_lock=999)
++        boundary, process = self.patched(auth)
++        with boundary, process:
++            with self.assertRaisesRegex(LeaseConsumerError, "E_PRACTICAL_CURRENT_AUTHORITY"):
++                self.consumer.dispatch_reassign_title(xfer_packet())
++        self.assertEqual(self.kinds(), [])
++        self.assertEqual(len(self.calls), 1)
++
++    def test_reassign_wrong_resulting_heartbeat_refuses_despite_bounds(self):
++        # Reported probe: authorization 10:00:01 with resulting heartbeat
++        # 10:00:00 sits inside granted<=heartbeat<=auth, yet it is not the
++        # transfer-time value the builder writes. It must yield UNKNOWN with
++        # zero APPLIED. Companion cases: invalid precision, missing heartbeat.
++        # Each row is built from its own dispatch packet so only the heartbeat
++        # under test differs; anything else refusing would hide the defect.
++        auth = authority_row(self.lease_backend.selection.digest)
++        cases = {
++            'one-second-wrong': '2026-10-14 10:00:00.000000',
++            'nonzero-microsecond': '2026-10-14 10:00:01.000001',
++            'suffix-less': '2026-10-14 10:00:01',
++        }
++        for name, heartbeat in cases.items():
++            with self.subTest(case=name):
++                operation = 'op-heartbeat-' + name
++                request = practical_contract.LeaseReassignRequest.from_value(
++                    xfer_packet(operation_id=operation))
++                row = reassign_persisted_row(self.lease_backend.selection, request)
++                receipt = json.loads(row['receipt_json'])
++                receipt['resulting_lease_heartbeat_at_utc'] = heartbeat
++                row['receipt_json'] = json.dumps(receipt)
++                consumer = LeaseNativeConsumer(self.db, practical_lease_backend.LeaseScratchBackend(
++                    lease_selection()))
++                boundary, process = self.patched(auth, dispatch=row, readback=row)
++                with boundary, process:
++                    result = consumer.dispatch_reassign_title(xfer_packet(operation_id=operation))
++                self.assertEqual(result['kind'], 'PRACTICAL_NATIVE_UNKNOWN')
++        operation = 'op-heartbeat-missing'
++        request = practical_contract.LeaseReassignRequest.from_value(
++            xfer_packet(operation_id=operation))
++        missing = reassign_persisted_row(self.lease_backend.selection, request)
++        receipt = json.loads(missing['receipt_json'])
++        del receipt['resulting_lease_heartbeat_at_utc']
++        missing['receipt_json'] = json.dumps(receipt)
++        consumer = LeaseNativeConsumer(self.db, practical_lease_backend.LeaseScratchBackend(
++            lease_selection()))
++        boundary, process = self.patched(auth, dispatch=missing, readback=missing)
++        with boundary, process:
++            result = consumer.dispatch_reassign_title(xfer_packet(operation_id=operation))
++        self.assertEqual(result['kind'], 'PRACTICAL_NATIVE_UNKNOWN')
++        self.assertNotIn('PRACTICAL_NATIVE_APPLIED', self.kinds())
++
++    def test_bounds_only_check_would_accept_the_probe(self):
++        # Non-vacuity proof for the regression above: the previous
++        # bounds-only rule accepts the exact probe row, so that test
++        # distinguishes the old check from the repaired validator.
++        from datetime import datetime as _dt
++        granted = _dt(2026, 10, 14, 10, 0, 0)
++        auth = _dt(2026, 10, 14, 10, 0, 1)
++        transferred = _dt(2026, 10, 14, 10, 0, 0)
++        self.assertTrue(granted <= transferred <= auth)
++        self.assertNotEqual(transferred, auth.replace(microsecond=0))
++
++    def test_reassign_expired_lease_and_exact_deadline_refuse_before_reservation(self):
++        # DB clock at or past the original expiry refuses even with an
++        # otherwise current transferor snapshot; nothing is reserved.
++        for observed in ('2026-10-14 10:05:00.000000', '2026-10-14 10:06:00.000000'):
++            with self.subTest(observed=observed):
++                auth = authority_row(self.lease_backend.selection.digest, observed_utc=observed)
++                boundary, process = self.patched(auth)
++                with boundary, process:
++                    with self.assertRaisesRegex(LeaseConsumerError,
++                                                'E_PRACTICAL_CURRENT_AUTHORITY'):
++                        self.consumer.dispatch_reassign_title(xfer_packet())
++        self.assertEqual(self.kinds(), [])
++
++    def test_reassign_recovery_reads_only_and_rebind_refuses(self):
++        request = practical_contract.LeaseReassignRequest.from_value(xfer_packet())
++        auth = authority_row(self.lease_backend.selection.digest)
++        receipt = reassign_persisted_row(self.lease_backend.selection, request)
++        boundary, process = self.patched(auth, dispatch=receipt, readback=receipt)
++        with boundary, process:
++            first = self.consumer.dispatch_reassign_title(xfer_packet())
++            self.assertTrue(first["inserted"])
++            recovered = self.consumer.reconcile_lease_title(xfer_packet())
++            self.assertEqual(recovered["kind"], "PRACTICAL_NATIVE_APPLIED")
++            self.assertFalse(recovered["inserted"])
++            with self.assertRaisesRegex(Exception, "E_PRACTICAL_BINDING"):
++                self.consumer.dispatch_reassign_title(xfer_packet(title="renamed twice"))
++        self.assertEqual(self.kinds().count("PRACTICAL_NATIVE_DISPATCHED"), 1)
++        self.assertEqual(self.kinds().count("PRACTICAL_NATIVE_APPLIED"), 1)
++
++
+ if __name__ == "__main__":
+     unittest.main(verbosity=2)
+diff --git a/memory-integrity/tests_v2/test_practical_lease_backend.py b/memory-integrity/tests_v2/test_practical_lease_backend.py
+index a8ad636..05124a6 100644
+--- a/memory-integrity/tests_v2/test_practical_lease_backend.py
++++ b/memory-integrity/tests_v2/test_practical_lease_backend.py
+@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT.parent / 'claude-mon/scripts'))
+ from complete_read_v2 import ledger
+ from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest
+ from tests_v2.test_practical_lease_contract import packet
++from tests_v2.test_practical_lease_contract import reassign_packet
+ 
+ PIN = 'ca21a9d1dab233a694b99ad0be9e78590967a1cc2773eb202fa0dd2929239ba2'
+ 
+@@ -50,6 +51,27 @@ def process_result(row):
+     return SimpleNamespace(returncode=0, stdout=json.dumps({'rows':[row]}).encode(), stderr=b'')
+ 
+ 
++def reassign_persisted_row(selection, request, **changes):
++    # Reassignment-shaped stored row: the full request binding plus the exact
++    # receipt extras the SQL builder records (mirrors reassign_title_sql).
++    binding = request.as_dict()
++    binding.update(selection_digest=selection.digest, store_incarnation=selection.incarnation,
++                   database=selection.database, branch='main', native_node_id=selection.native_node_id)
++    receipt = dict(binding, status='WORKING_SET_APPLIED',
++                   evidence_class='NATIVE_OBSERVED_UNQUALIFIED', native_write_qualified=False,
++                   head_committed=False, backend_operation_id=request.operation_id,
++                   native_task_id=request.task_id, original_row_lock=request.expected_row_lock,
++                   fixed_deadline_utc=request.fixed_deadline_utc,
++                   prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
++                   target_actor=request.target_actor,
++                   authorization_time_utc='2026-10-14 10:00:01.000000', resulting_row_lock=812,
++                   resulting_lease_heartbeat_at_utc='2026-10-14 10:00:01.000000')
++    receipt.update(changes)
++    return dict(binding_json=json.dumps(binding), receipt_json=json.dumps(receipt),
++                command_digest=request.command_digest,
++                authorization_time=receipt['authorization_time_utc'], resulting_row_lock=812)
++
++
+ class LeaseBackend(unittest.TestCase):
+     def setUp(self):
+         self.assertTrue((ROOT/'scripts/hybrid_bridge/practical_lease_backend.py').is_file(),
+@@ -211,5 +233,81 @@ class LeaseBackend(unittest.TestCase):
+         self.assertIn('observed_utc', sql)
+ 
+ 
++    def test_reassign_binding_carries_predecessor_and_successor(self):
++        from hybrid_bridge.practical_contract import LeaseReassignRequest
++        parsed = LeaseReassignRequest.from_value(reassign_packet())
++        binding = self.backend.intent_binding(reassign_packet())
++        self.assertEqual(binding['grant_id'], 'grant-1')
++        self.assertEqual(binding['new_grant_id'], 'grant-2')
++        self.assertEqual(binding['target_actor'], 'bob')
++        self.assertEqual(binding['actor'], 'alice')
++        self.assertEqual(binding['fixed_deadline'], parsed.fixed_deadline_utc)
++        self.assertEqual(len(binding), 20)
++
++    def test_reassign_executes_one_bounded_session_with_transfer_receipt(self):
++        from hybrid_bridge.practical_contract import LeaseReassignRequest
++        request = LeaseReassignRequest.from_value(reassign_packet())
++        row = reassign_persisted_row(self.selection, request)
++        result = process_result(row)
++        reassign_binding = self.backend.intent_binding(reassign_packet())
++        cap = ledger.reserve_practical_native_intent(self.db, reassign_binding)['reservation']
++        with patch.object(self.mod, '_native_boundary'), patch.object(
++                self.mod.subprocess, 'run', return_value=result) as process:
++            out = self.backend.execute_reassign_title(reassign_packet(), cm_db=self.db, reservation=cap)
++        self.assertEqual(process.call_count, 1)
++        argv = process.call_args.args[0]
++        self.assertEqual(argv[0], self.selection.dolt_executable)
++        self.assertIn('UPDATE leases SET holder', argv[-1])
++        self.assertFalse(out['native_write_qualified'])
++        self.assertFalse(out['head_committed'])
++        self.assertEqual(out['new_grant_id'], 'grant-2')
++        self.assertEqual(out['target_actor'], 'bob')
++        self.assertEqual(out['resulting_lease_heartbeat_at_utc'], '2026-10-14 10:00:01.000000')
++        self.assertEqual(ledger.verify_history(self.db)['internal_chain'], 'VERIFIED')
++
++    def test_reassign_foreign_receipt_becomes_unknown_never_applied(self):
++        from hybrid_bridge.practical_contract import LeaseReassignRequest
++        request = LeaseReassignRequest.from_value(reassign_packet())
++        forged = reassign_persisted_row(self.selection, request, native_task_id='other')
++        reassign_binding = self.backend.intent_binding(reassign_packet())
++        cap = ledger.reserve_practical_native_intent(self.db, reassign_binding)['reservation']
++        with patch.object(self.mod, '_native_boundary'), patch.object(
++                self.mod.subprocess, 'run', return_value=process_result(forged)):
++            with self.assertRaises(self.mod.LeaseDeliveryUnknown):
++                self.backend.execute_reassign_title(reassign_packet(), cm_db=self.db, reservation=cap)
++        self.assertEqual(self.db.execute(
++            "SELECT COUNT(*) FROM events WHERE kind='PRACTICAL_NATIVE_APPLIED'").fetchone()[0], 0)
++
++
++    def test_reassign_receipt_refuses_invalid_precision_and_missing_heartbeat(self):
++        # The validator pins the resulting heartbeat to a whole-second native
++        # value equal to the truncated authorization moment. Invalid precision
++        # and a missing field are refusals, not silently accepted bounds. The
++        # receipt validator is exercised directly here because the companion
++        # journal enforces exactly-once dispatch, which a sub-case matrix over
++        # one operation id cannot legitimately repeat.
++        from hybrid_bridge.practical_contract import LeaseReassignRequest
++        request = LeaseReassignRequest.from_value(reassign_packet())
++        base = '"resulting_lease_heartbeat_at_utc": "2026-10-14 10:00:01.000000"'
++        cases = (
++            ('nonzero microseconds', base,
++             '"resulting_lease_heartbeat_at_utc": "2026-10-14 10:00:01.500000"'),
++            ('missing heartbeat key', base + '}', '}'),
++            ('unpinned second suffix', base,
++             '"resulting_lease_heartbeat_at_utc": "2026-10-14 10:00:01"'),
++        )
++        for label, needle, replacement in cases:
++            with self.subTest(case=label):
++                row = reassign_persisted_row(self.selection, request)
++                self.assertIn(needle, row['receipt_json'], label)
++                row['receipt_json'] = row['receipt_json'].replace(needle, replacement)
++                with self.assertRaises(self.mod.LeaseDeliveryUnknown):
++                    self.mod.LeaseScratchBackend._receipt(self.backend, request, row)
++        # The untouched receipt still validates, so the refusals above are not
++        # an artifact of a broken fixture.
++        self.mod.LeaseScratchBackend._receipt(
++            self.backend, request, reassign_persisted_row(self.selection, request))
++
++
+ if __name__=='__main__':
+     unittest.main(verbosity=2)
+diff --git a/memory-integrity/tests_v2/test_practical_lease_contract.py b/memory-integrity/tests_v2/test_practical_lease_contract.py
+index ba872f2..21f80cf 100644
+--- a/memory-integrity/tests_v2/test_practical_lease_contract.py
++++ b/memory-integrity/tests_v2/test_practical_lease_contract.py
+@@ -57,5 +57,45 @@ class LeaseContract(unittest.TestCase):
+             self.request(value)
+ 
+ 
++def reassign_packet(**changes):
++    value = dict(schema_version=2, work_item_id='work-1', operation_id='op-reassign-1',
++                 action='reassign_title_lease', task_id='mipx-1', actor='alice',
++                 target_actor='bob', title='bob takes the task',
++                 expected_status='in_progress', grant_id='grant-1', new_grant_id='grant-2',
++                 expected_row_lock=-7,
++                 lease_holder='alice', lease_granted_node='practical-approved-scratch-only',
++                 lease_granted_at_utc='2026-10-14 10:00:00.000000',
++                 lease_expires_at_utc='2026-10-14 10:05:00.000000',
++                 lease_heartbeat_at_utc='2026-10-14 10:00:00.000000')
++    value.update(changes)
++    value['command_digest'] = contract.canonical_command_digest(value)
++    return value
++
++
++class LeaseReassignContract(unittest.TestCase):
++    def request(self, value):
++        self.assertTrue(hasattr(contract, 'LeaseReassignRequest'),
++                        'real-lease-bound reassign request is absent')
++        return contract.LeaseReassignRequest.from_value(value)
++
++    def test_reassign_binds_transferor_snapshot_and_successor(self):
++        req = self.request(reassign_packet())
++        self.assertEqual(req.fixed_deadline_utc, req.lease_expires_at_utc)
++        self.assertEqual(req.target_actor, 'bob')
++        self.assertNotIn('new_deadline_utc', {field.name for field in fields(req)})
++
++    def test_reassign_refuses_self_transfer_and_title_free_transfer(self):
++        for change in [dict(target_actor='alice'), dict(title=''),
++                       dict(action='guarded_title_lease'),
++                       dict(lease_holder='bob'),
++                       dict(lease_expires_at_utc='2026-10-14 10:05:00')]:
++            with self.subTest(change=change), self.assertRaises(contract.PracticalContractError):
++                self.request(reassign_packet(**change))
++
++    def test_reassign_refuses_reused_grant_id(self):
++        with self.assertRaisesRegex(contract.PracticalContractError, 'E_PRACTICAL_REASSIGN_GRANT'):
++            self.request(reassign_packet(new_grant_id='grant-1'))
++
++
+ if __name__ == '__main__':
+     unittest.main(verbosity=2)
+diff --git a/memory-integrity/tests_v2/test_practical_lease_sql.py b/memory-integrity/tests_v2/test_practical_lease_sql.py
+index 83f0036..917b4a7 100644
+--- a/memory-integrity/tests_v2/test_practical_lease_sql.py
++++ b/memory-integrity/tests_v2/test_practical_lease_sql.py
+@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
+ sys.path.insert(0, str(ROOT / 'scripts'))
+ from hybrid_bridge.practical_contract import LeasePracticalSelection, LeaseGuardedTitleRequest, PracticalContractError
+ from tests_v2.test_practical_lease_contract import packet
++from tests_v2.test_practical_lease_contract import reassign_packet
+ from tests_v2.test_practical_lease_issuer import claim_packet
+ 
+ 
+@@ -108,6 +109,62 @@ class LeaseSQL(unittest.TestCase):
+         parsed = LeaseGuardedTitleRequest.from_value(packet())
+         self.assertEqual(parsed.fixed_deadline_utc, parsed.lease_expires_at_utc)
+ 
++    def test_reassign_authority_binds_old_holder_snapshot_and_current_grant(self):
++        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
++        for text in ['JOIN leases AS l', 'JOIN mi_practical_v2_grants AS g',
++                     'JOIN mi_practical_v2_current_grants AS c',
++                     'l.holder', 'c.grant_id = g.grant_id',
++                     '@mi2_auth < l.lease_expires_at']:
++            self.assertIn(text, sql)
++        self.assertEqual(sql.count('UTC_TIMESTAMP('), 1)
++
++    def test_reassign_transfers_issue_and_lease_in_place_without_deletion(self):
++        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
++        self.assertNotIn('DELETE ', sql)
++        self.assertNotIn('DROP ', sql)
++        issue_update = sql[sql.index('UPDATE issues'):sql.index('SET @mi2_issue_changed')]
++        self.assertIn('assignee =', issue_update)
++        self.assertIn('title = ', issue_update)
++        lease_update = sql[sql.index('UPDATE leases'):sql.index('SET @mi2_lease_changed')]
++        self.assertIn('holder =', lease_update)
++        self.assertIn('heartbeat_at', lease_update)
++        # Original lease identity never moves: granted moment and expiry are
++        # read, never assigned, in the transfer.
++        self.assertNotIn('granted_at =', lease_update)
++        self.assertNotIn('lease_expires_at =', lease_update)
++
++    def test_reassign_tombstones_prior_grant_and_mints_granted_successor(self):
++        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
++        self.assertIn('SET tombstoned = 1', sql)
++        self.assertIn("'GRANTED'", sql)
++        self.assertIn('UPDATE mi_practical_v2_current_grants SET grant_id =', sql)
++        self.assertIn('mi_practical_v2_token_history', sql)
++        self.assertIn('E_MI2_TOMB_CARDINALITY', sql[:sql.index('COMMIT;')])
++        # Each history write is asserted on its own: removing either insert's
++        # check independently fails this count.
++        self.assertEqual(sql.count('E_MI2_HISTORY_CARDINALITY'), 2)
++        # Positional association, not just a total: the tombstone assertion
++        # sits between the two history inserts, the mint assertion after.
++        tomb = sql.index("'TOMBSTONED',@mi2_auth,'reassign');")
++        mint = sql.index("'MINTED',@mi2_auth,'reassign');")
++        first = sql.index('E_MI2_HISTORY_CARDINALITY')
++        self.assertTrue(tomb < first < mint)
++        second = sql.index('E_MI2_HISTORY_CARDINALITY', mint)
++        self.assertTrue(mint < second < sql.index('COMMIT;'))
++        self.assertIn('E_MI2_HISTORY_CARDINALITY', sql[:sql.index('COMMIT;')])
++        self.assertIn('E_MI2_RECEIPT_CARDINALITY', sql[:sql.index('COMMIT;')])
++        self.assertLess(sql.index('COMMIT;'), sql.rindex('SELECT receipt_json'))
++        self.assertIn('DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; RESIGNAL; END;', sql)
++
++    def test_reassign_receipt_keeps_original_facts_and_names_resulting_heartbeat(self):
++        # The receipt must not overwrite a digest-bound request field: the
++        # original lease snapshot stays verbatim while the transfer-moment
++        # heartbeat is recorded under a separately named resulting field.
++        sql = self.sql.reassign_title_sql(self.selection, reassign_packet())
++        operations = sql[sql.index('INSERT INTO mi_practical_v2_operations'):]
++        self.assertIn("'$.resulting_lease_heartbeat_at_utc'", operations)
++        self.assertNotIn("'$.lease_heartbeat_at_utc'", operations)
++
+ 
+ if __name__ == '__main__':
+     unittest.main(verbosity=2)

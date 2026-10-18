@@ -637,3 +637,168 @@ def guarded_title_sql(selection, request):
 def experiment_guarded_title_sql(selection, request, *, pause_seconds):
     """Harness-only bounded pause after actual authorization/snapshot read."""
     return _title_batch(selection, request, pause_seconds)
+
+
+def reassign_title_sql(selection, request):
+    """Ownership transfer plus title, offline candidate only.
+
+    The transferor's exact live lease snapshot, current grant and conflict
+    token authorize the batch. The native lease row is updated in place
+    (holder plus heartbeat); granted moment and expiry never move, so the
+    original deadline survives the transfer. That is a custom
+    protected-adapter protocol, not equivalent Beads behavior: the pinned
+    Beads implementation clears the previous lease on assignee transfer, and
+    this builder deliberately does not, because the no-deletion rule forbids
+    removing the row. The holder change shares one atomic transaction with
+    the grant tombstone, successor mint, current-pointer move, token
+    rotation, operation record and receipt. Native grammar, rollback and
+    all-or-nothing behavior require the retained real probes.
+    """
+    from .practical_contract import LeaseReassignRequest
+
+    selection = LeasePracticalSelection.from_value(selection)
+    request = LeaseReassignRequest.from_value(request)
+    if selection.native_node_id != request.lease_granted_node:
+        raise PracticalContractError('E_MI2_FOREIGN_LEASE_NODE')
+    namespace = _text(selection.incarnation)
+    operation = _text(request.operation_id)
+    digest = _text(request.command_digest)
+    task = _text(request.task_id)
+    actor = _text(request.actor)
+    target = _text(request.target_actor)
+    grant = _text(request.grant_id)
+    successor = _text(request.new_grant_id)
+    database = _text(selection.database)
+    branch = _text(selection.main_branch)
+    node = _text(selection.native_node_id)
+    binding = request.as_dict()
+    binding.update(selection_digest=selection.digest, store_incarnation=selection.incarnation,
+                   database=selection.database, branch='main', native_node_id=selection.native_node_id)
+    receipt = dict(binding, status='WORKING_SET_APPLIED', evidence_class='NATIVE_OBSERVED_UNQUALIFIED',
+                   native_write_qualified=False, head_committed=False,
+                   backend_operation_id=request.operation_id, native_task_id=request.task_id,
+                   original_row_lock=request.expected_row_lock,
+                   fixed_deadline_utc=request.fixed_deadline_utc,
+                   prior_grant_id=request.grant_id, new_grant_id=request.new_grant_id,
+                   target_actor=request.target_actor)
+    binding_json = _text(strict_canonical_json(binding).decode('utf-8'))
+    receipt_json = _text(strict_canonical_json(receipt).decode('utf-8'))
+    predicate = ' AND '.join([
+        _binary_equals('i.id', task),
+        'i.status = ' + _text('in_progress'),
+        _binary_equals('i.assignee', actor),
+        'i.row_lock = ' + str(request.expected_row_lock),
+        'i.ephemeral = 0',
+        'l.issue_id = i.id',
+        _binary_equals('l.holder', _text(request.lease_holder)),
+        _binary_equals('l.granted_node', _text(request.lease_granted_node)),
+        'l.granted_at = ' + _text(request.lease_granted_at_utc),
+        'l.lease_expires_at = ' + _text(request.lease_expires_at_utc),
+        'l.heartbeat_at = ' + _text(request.lease_heartbeat_at_utc),
+        '@mi2_auth < l.lease_expires_at',
+        _binary_equals('g.grant_id', grant),
+        'g.task_id = i.id', 'BINARY g.actor = BINARY i.assignee', 'g.tombstoned = 0',
+        'g.issue_revision = i.row_lock',
+        'g.fixed_deadline_utc = l.lease_expires_at',
+        'c.grant_id = g.grant_id', 'c.current_revision = i.row_lock',
+        'BINARY g.lease_node = BINARY l.granted_node', 'g.lease_granted_at = l.granted_at',
+        'g.lease_expiry = l.lease_expires_at', 'g.lease_heartbeat = l.heartbeat_at',
+        'g.store_incarnation = m.store_incarnation',
+        'm.namespace_key = ' + _text('identity'),
+        'm.store_incarnation = ' + _text(selection.incarnation),
+        'm.selection_digest = ' + _text(selection.digest),
+        'm.native_node_id = l.granted_node',
+        'm.selected_database = ' + _text(selection.database),
+        'm.selected_main_branch = ' + _text(selection.main_branch),
+        'DATABASE() IN (' + _text(selection.database) + ',CONCAT('
+        + _text(selection.database) + ",'/main'))",
+        'active_branch() = ' + _text('main'),
+        'NOT EXISTS (SELECT 1 FROM dependencies AS d WHERE d.issue_id = i.id)',
+    ])
+    authority = ('SELECT COUNT(*) FROM issues AS i JOIN leases AS l ON l.issue_id = i.id '
+                 'JOIN mi_practical_v2_grants AS g ON g.task_id = i.id '
+                 'JOIN mi_practical_v2_current_grants AS c ON c.store_incarnation = g.store_incarnation '
+                 'AND c.task_id = g.task_id '
+                 'JOIN mi_practical_v2_metadata AS m ON m.store_incarnation = g.store_incarnation '
+                 'WHERE ' + predicate)
+    return '\n'.join([
+        'BEGIN NOT ATOMIC',
+        'DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; RESIGNAL; END;',
+        'START TRANSACTION;',
+        'SET @mi2_auth = UTC_TIMESTAMP(6);',
+        'SET @mi2_authorized = (' + authority + ');',
+        "CALL mi_practical_assert_v2(@mi2_authorized = 1, 'E_MI2_AUTH');",
+        'SET @mi2_operation_exists = (SELECT COUNT(*) FROM mi_practical_v2_operations '
+        'WHERE store_incarnation = ' + namespace + ' AND operation_id = ' + operation + ');',
+        "CALL mi_practical_assert_v2(@mi2_operation_exists = 0, 'E_MI2_OPERATION_REPLAY');",
+        'SET @mi2_successor_exists = (SELECT COUNT(*) FROM mi_practical_v2_grants '
+        'WHERE store_incarnation = ' + namespace + ' AND grant_id = ' + successor + ');',
+        "CALL mi_practical_assert_v2(@mi2_successor_exists = 0, 'E_MI2_GRANT_REUSE');",
+        "CALL mi_practical_assert_v2(" + actor + ' <> ' + target + ", 'E_MI2_REASSIGN_TARGET');",
+        'SET @mi2_token = CAST(CONV(SUBSTRING(SHA2(UUID(), 256), 1, 15), 16, 10) AS SIGNED);',
+        "CALL mi_practical_assert_v2(@mi2_token > 0 AND @mi2_token <> "
+        + str(request.expected_row_lock) + ", 'E_MI2_TOKEN');",
+        # One issue UPDATE hands task, title and conflict token to the
+        # successor; the transferor's revision gates the row.
+        'UPDATE issues SET assignee = ' + target + ', title = ' + _text(request.title)
+        + ', row_lock = @mi2_token WHERE ' + _binary_equals('id', task)
+        + ' AND ' + _binary_equals('assignee', actor)
+        + ' AND status = ' + _text('in_progress') + ' AND row_lock = ' + str(request.expected_row_lock) + ';',
+        'SET @mi2_issue_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_issue_changed = 1, 'E_MI2_ISSUE_CARDINALITY');",
+        # In-place holder transfer: the transfer moment becomes the heartbeat
+        # while granted moment and expiry never move.
+        'UPDATE leases SET holder = ' + target + ', heartbeat_at = CAST(@mi2_auth AS DATETIME) '
+        'WHERE issue_id = ' + task + ' AND holder = ' + _text(request.lease_holder) + ';',
+        'SET @mi2_lease_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_lease_changed = 1, 'E_MI2_LEASE_CARDINALITY');",
+        'UPDATE mi_practical_v2_grants SET tombstoned = 1 WHERE '
+        + _binary_equals('store_incarnation', namespace) + ' AND ' + _binary_equals('grant_id', grant)
+        + ' AND ' + _binary_equals('task_id', task)
+        + ' AND issue_revision = ' + str(request.expected_row_lock) + ' AND tombstoned = 0;',
+        'SET @mi2_tomb_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_tomb_changed = 1, 'E_MI2_TOMB_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_grants(store_incarnation,grant_id,task_id,actor,'
+        'status,fixed_deadline_utc,issue_revision,tombstoned,'
+        'lease_node,lease_granted_at,lease_expiry,lease_heartbeat) VALUES ('
+        + namespace + ',' + successor + ',' + task + ',' + target
+        + ",'GRANTED'," + _text(request.fixed_deadline_utc) + ',@mi2_token,0,'
+        + node + ',' + _text(request.lease_granted_at_utc) + ','
+        + _text(request.lease_expires_at_utc) + ',CAST(@mi2_auth AS DATETIME));',
+        'SET @mi2_grant_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_grant_changed = 1, 'E_MI2_GRANT_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,event_utc,details) VALUES ('
+        + namespace + ',' + grant + ",'TOMBSTONED',@mi2_auth,'reassign');",
+        'SET @mi2_history_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_history_changed = 1, 'E_MI2_HISTORY_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_grant_history(store_incarnation,grant_id,event_kind,event_utc,details) VALUES ('
+        + namespace + ',' + successor + ",'MINTED',@mi2_auth,'reassign');",
+        'SET @mi2_history_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_history_changed = 1, 'E_MI2_HISTORY_CARDINALITY');",
+        'UPDATE mi_practical_v2_current_grants SET grant_id = ' + successor
+        + ', current_revision = @mi2_token WHERE '
+        + _binary_equals('store_incarnation', namespace) + ' AND ' + _binary_equals('task_id', task)
+        + ' AND ' + _binary_equals('grant_id', grant)
+        + ' AND current_revision = ' + str(request.expected_row_lock) + ';',
+        'SET @mi2_current_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_current_changed = 1, 'E_MI2_CURRENT_GRANT_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_token_history(store_incarnation,row_token,operation_id) '
+        'VALUES (' + namespace + ',@mi2_token,' + operation + ');',
+        'SET @mi2_token_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_token_changed = 1, 'E_MI2_TOKEN_CARDINALITY');",
+        'INSERT INTO mi_practical_v2_operations(store_incarnation,operation_id,command_digest,'
+        'binding_json,receipt_json,authorization_time,resulting_row_lock) VALUES ('
+        + namespace + ',' + operation + ',' + digest + ',' + binding_json
+        + ',JSON_SET(CAST(' + receipt_json + " AS JSON),'$.authorization_time_utc',"
+        "DATE_FORMAT(@mi2_auth,'%Y-%m-%d %H:%i:%s.%f'),'$.resulting_lease_heartbeat_at_utc',"
+        "DATE_FORMAT(CAST(@mi2_auth AS DATETIME),'%Y-%m-%d %H:%i:%s.%f'),"
+        "'$.resulting_row_lock',@mi2_token),"
+        '@mi2_auth,@mi2_token);',
+        'SET @mi2_receipt_changed = ROW_COUNT();',
+        "CALL mi_practical_assert_v2(@mi2_receipt_changed = 1, 'E_MI2_RECEIPT_CARDINALITY');",
+        'COMMIT;',
+        'END;',
+        'SELECT receipt_json,binding_json,command_digest,authorization_time,resulting_row_lock '
+        'FROM mi_practical_v2_operations WHERE store_incarnation = ' + namespace
+        + ' AND operation_id = ' + operation + ' AND command_digest = ' + digest + ';',
+    ])

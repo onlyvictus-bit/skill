@@ -299,3 +299,74 @@ Begin P1a's failing schema/query correspondence test and finish the executable v
 A fresh native Fable Sol reviewer completed a read-only source challenge during this planning turn and returned FIX-FIRST for the current WIP, not a runtime qualification. It independently identified the schema/query contradiction, sidecar-only minting, missing single-current-grant invariant, clock/transition gaps, lease-deletion authority conflict and scoped release-builder problem. The parent checked those load-bearing issues against source; the refinement above includes their closure gates. Final code/receipt review remains required after implementation.
 
 The review advised "Resolve authority before native work." This plan preserves that restriction for any case whose native transition would remove an active lease row; offline consistency work and a non-deleting initial-claim probe do not consume that missing permission. Never use the distinction to run a deleting handoff, unclaim or reclaim implicitly. The first ownership race must use an explicitly permitted, semantically valid competing transition, or remain blocked.
+
+## 17 October 2026 — authorized offline integration repair
+
+The current human request authorizes finishing and saving bounded offline
+implementation, regressions and existing evidence records. It explicitly
+excludes native database experiments, new fences/authority stores, deletion,
+agents, external AI, installation, Git commits/pushes, workflows, publication,
+release manifests, packages and installed-copy replacement. This narrower
+authorization governs this run; the older native stages above remain open.
+
+Arrival was observed, not inferred: HEAD
+3ea23556fd336ba64a3ebcf6b4fc169e71051d11, branch
+development/r5-practical-fence-wip-20261014, ten modified tracked files and
+five untracked files. Effective writes were demonstrated by a retained probe.
+All 501 arrival files were hashed; intended source/evidence targets were
+snapshotted and rechecked before writes. The supplied primary review was read
+completely, SHA-256 61303dcd9331865434e9dd62eead6875c42d697da5c94d5a6d61997bef7aef3d,
+and its claims were reproduced against the saved source.
+
+INTENT: remove false execution-cause attribution and connect the existing
+successor's producer/consumer contracts. UNKNOWN plus current staleness cannot
+establish which predicate an earlier operation reached. Current authority,
+delivery, execution cause, backend effects and companion terminals remain
+separate observations. No new rejection-evidence mechanism was introduced.
+
+The four approved local steps were: reproduce/correct attribution; repair
+identity and result propagation; share transfer invariants and drive the real
+offline sequence; verify and update this campaign's evidence. They were
+executed autonomously under the user's approval, without another milestone
+approval request. These are refinements of the existing practical campaign,
+not new native-stage approvals or a second governance store.
+
+Decision: keeping the review-only/no-build state would retain a reproduced
+false PASS. Repairing the existing driver, worker and canonical verifier is
+the smallest adequate option. A stronger hybrid with another fence, authority
+store or new rejection protocol is outside this approval and was not built.
+The remaining weak link is native execution-cause evidence. The cheap
+falsifier was the unrelated-transport-failure sequence: it first PASSED, and
+now reaches the canonical verifier as INCONCLUSIVE/REFUSAL_UNKNOWN. Native
+cause, SQL grammar, atomicity, races and durability remain UNVERIFIED.
+
+| Bounded criterion | Saved implementation and measured regression |
+|---|---|
+| OFFLINE-A: no false causal PASS | stale_refusal_attribution and actual resume_alice/run_race; RefusalCausationRegressionTests, including caller-created cause refusal |
+| OFFLINE-B: one namespace/selection | bootstrap UUID readback and independent identity validation before registration; NamespacePropagationRegressionTests and connected setup |
+| OFFLINE-C: actual operation identities | actual Alice packet, schedule, barrier, worker outcome and journal binding; actual post-claim transfer packet retained; OperationPropagationRegressionTests and connected binding assertions |
+| OFFLINE-D: explicit observation contracts | actual physical schema map (including dependencies), nested Beads shape, complete backend receipts and CM event bindings, preserved claim records, S2 mapping before controls; ObservationContractRegressionTests and connected packet assertions |
+| OFFLINE-E: complete applicable S1/S2 invariants | one shared committed-transfer validator, frozen lease/grant facts, tombstone, pointer/revision, token/history/operation agreement and preservation; Shared/AdditionalScripted/CompleteTransferRelationshipTests |
+| OFFLINE-F: connected sequence | six FullSequenceOfflineTests drive actual driver/builders/worker/consumer/ledger/verifier; one fault test contains sixteen fault subcases; only native physical/process boundaries are modeled |
+| OFFLINE-G: broader differences accounted | observed 501-file baseline copy verified byte-for-byte; adapted MI v2 615 to 642 with unchanged existing outcomes; adapted CM v2 208 to 208 with unchanged existing outcomes; all failures/errors retained |
+| OFFLINE-H: honest campaign records | this section, state.json, GATES-lease-reassign.md and the WIP correction; broad/native/release/independent-review gates stay open |
+| OFFLINE-I: saved bytes and preservation | acceptance-source.json, verify_saved.py, final inventory and Git diff checks; every arrival file retained and unrelated dirty changes unchanged |
+
+Bounded status: OFFLINE_REPAIR_VERIFIED_NATIVE_UNVERIFIED. This does not close
+P1-P5, full regression/release acceptance, public claim qualification, native
+fencing or installed readiness. The claim remains a mechanism-only direct
+sealed-backend step because the public consumer exposes no claim dispatch.
+
+Evidence is retained under docs/fable/evidence/offline-repair-20261017:
+baseline.json, immutable failing/passing receipts, acceptance-source.json,
+connected-evidence.json (18 modeled cases), connected-fault-matrix.csv,
+regression-comparison.json and repair-report.md. The report records exact
+interpreter/CWD/commands, every remaining failure/error and source hashes.
+The earlier six RealComponentIntegrationTests are retained as narrower
+component coverage; they are no longer described as a complete workflow.
+
+Rollback is retention plus disabled/unqualified use, not a reset or deletion.
+The stopped predecessor, companion journal, practical timing contract and all
+prior data/packages/evidence remain. No further implementation is required by
+OFFLINE-A through OFFLINE-I. Independent review of the saved diff is pending;
+any native experiment or release/install action needs separate authorization.
