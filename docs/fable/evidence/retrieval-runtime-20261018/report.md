@@ -1,4 +1,127 @@
-# Current publication - containing readback checkpoint; normal-account read pending
+# CURRENT CHECKPOINT - NOT SAFE TO FREEZE OR RUN
+
+User requested a local Git checkpoint before the usage limit, with completed
+work and exact resume instructions. Stop further build/evaluation now. The
+containing commit saves these4Fable records; nothing pushed. Private WIP code,
+runtime and rawreceipts remain on disk, with exact identities recorded below.
+
+## Completed/observed
+
+- Successful normalaccount readback: receiptSHA
+  0f8b59631efae98e716603a1b998dd52822fdec5d006af439a332aa4d781ec86.
+  Actual normalSID1001/nonadmin,525product+458protected+1015oldN3+3index match.
+- New continuation9tests:9expected REDfailures then9GREEN/no errors/skips.
+- Existing evaluator25contracts and oldrunner7controls: GREEN/no errors/skips.
+  These oldrunner controls do not exercise the successor's new gates.
+- Original13query/measurement/replay functions and actual case/safety/29test
+  ladder AST-identical; reviewer independently identified14unchangedfunctions.
+- Full existing runtime/input identity preflight passed:17,273files,53package
+  identities and12historical setup command artifacts; not a new query result.
+- Agent-only interpreter probe: stub started, exit103, No Python at normaluser
+  WindowsApps base path. ResultSHA
+  8124d2784631c987d6ad08ffb2b97cffb7f28817b7c3a529fcdcc06783dc04fe.
+- New evaluation clone/Prepared/hostclaim/receipt absent. No query/evaluation
+  attempt consumed, no product/runtime/ACL changes or deleted files.
+
+## Final native review: FIX_FIRST (no correction pass started)
+
+Critical: coordinator115-117/368-376 writes host-claim before verifying exact
+canonical/no-reparse root; a junction replacement can redirect the first write.
+Launcher16-17 merely checks file/claim existence. Reject root/ancestor aliases
+BEFORE ANY WRITE; RED test must prove no marker in redirected target.
+
+Important: launcher21/controller368-369 consumes the evaluation claim before a
+normal-account interpreter launchability probe. Agent103 does not prove host
+failure/success. Require one retained normalhost probe before claim; no retries.
+
+Important: preflight165-173 trusts unpinned Prepared plus mutable self-hashes;
+clone input digest_file lacks hardlink/opened-handle/postread identity guards.
+Childgate126-133 checks helpers/docs only. Externally pin Prepared through
+launcher/controller/children, parse the captured verified bytes, use safe_file
+for relevant inputs and child gates. RED tests: Prepared drift; input+selfhash
+co-edit; postprepare hardlink/path substitution; child substitution.
+
+Minor observations retained: misleading test digest annotation; ambiguous
+native_execution flag (must distinguish Python worker from native Beads);
+oldrunner controls only support inherited behavior. Hardabort/receipt-write
+failure can leave marker-only: parent ruling UNKNOWN/no acceptance/no resend,
+with immediate durable attempt-intent record required in resumed correction.
+
+Reviewer set-asides are explicitly UNVERIFIED: clone equality/final seals;
+normalhost launch;24arm metrics; fresh replay/safety;29runtime tests; realhost
+side effects (audit hook is not OS sandbox); N3-D results; semantic/coding/full
+skill/native/release/install/fullCI benefit. Future commit pin must be rebound.
+Do not infer any of these from passing offline controls or source AST identity.
+
+## Exact retained private WIP identities
+
+Root: C:/Users/sakth/Documents/Codex/2026-10-02/ad/work/R5-practical-fence-20261013/build-validation/n3-retrieval-9ec6fb1db36444acba2945896e8b8d17/
+
+| File | Bytes | SHA256 |
+| --- | ---: | --- |
+| Evaluate-N3-Continuation-20261019.py |31717|5b915b282b997221b26cbb54204e896c7c3017522b9362111bf42231b09b8c80|
+| Test-N3-Continuation-20261019.py |8106|e87e417ba33d742ec630b6d37f504617e1b86927cf83bd34bb46edf93a929c06|
+| Run-N3-Continuation-20261019.ps1 |2137|bb52d63815d1a57d16acbf7a5269ed89065318bd108d22df881fcc27d0ea70a7|
+
+Retained test receipts (paths relative to the same root):
+continuation-evaluation-controls-c11b80d068bb46b79997b72e40ad9cfd/Receipt.json (9RED);
+continuation-evaluation-controls-8d1063ba97b24b8a8feed81d67e798a7/Receipt.json (9GREEN);
+evaluation-controls-530e5fb01bf3450aacb4ffea2fbc7766/Receipt.json (25GREEN);
+evaluation-runner-controls-c67b2670a8764bf68300b8615f486348/Receipt.json (7GREEN).
+
+## Resume order
+
+1.Read LAST checkpoint section of the existing plan and practical resume file.
+2.Verify containing commit's actualSHA,4doc-only diff and original product/input
+  hashes; old a6ee520 handoffs are retired for new execution, retained unchanged.
+3.Build a separate exact-new-commit successor; do NOT mutate old guards/base.HEAD.
+4.One consolidated RED/GREEN correction pass for the3review blockers plus
+  immediate intent record; then relevant full offline regression/preservation.
+5.Only then new input-only clone, external Prepared seal and reviewed normalhost
+  interpreter probe/one evaluation command under the existing authorization.
+6.Observe actual24arms/replay/safety/exact29tests, then independent N3-D result
+  review. No automatic qualification, package, install or push.
+
+This checkpoint is NOT a working/evaluated N3 release. No source completion,
+runtime quality or whole-skill readiness claim. All older report bytes follow.
+
+---
+
+# Historical N3 continuation - normal-account readback passed; evaluation authorized
+
+The user completed the exact-a6ee520 normal-account readback. Direct receipt
+inspection/hash verification confirms SHA256
+`0f8b59631efae98e716603a1b998dd52822fdec5d006af439a332aa4d781ec86`.
+Actual SID1001, not elevated; all525product+458protected+1015oldN3+3index paths
+matched without observation errors. Git index unchanged and final revision
+rechecked. This closes the actual host readback gate, not retrieval evaluation.
+
+New authorization: "AUTHORIZED DO COMPLETE NEXT STEP ... IF NEEDED, MAKE A
+CLONE OF N3 AND DO CHSNGES FOR TESTING". This covers one reviewed N3-B/C
+continuation and N3-D review using the existing runtime/original inputs. The old
+readback receipt's retry=false remains intact. No install/download/external AI,
+native Beads/ACL/delete/commit/push/release/installed-copy change is included.
+
+Private successor: Evaluate-N3-Continuation-20261019.py; separate input-only
+clone/output evaluation-continuation-a6ee520-20261019. The old evaluator,
+contracts, Before/Prepared/index and base.HEAD are unchanged. New9controls
+passed after9REDfailures; existing25contract+7runner controls pass. AST verifies
+unchanged original13query/measurement/replay helpers and actual case/safety/
+29test ladder. These are OFFLINE controls, not actual retrieval observations.
+Full input/runtime preflight now passed, including all17,273installed files,
+53package identities and12setup log artifacts. This verifies current file
+identity and the earlier positive-control evidence, not fresh retrieval quality.
+One interpreter-only agent probe started the venv stub but exited103, stderr
+"No Python at" the normalaccountWindowsApps basePython path. ResultSHA256
+8124d2784631c987d6ad08ffb2b97cffb7f28817b7c3a529fcdcc06783dc04fe.
+No retrieval query or evaluation claim was consumed; no alternate runtime,
+install or ACL change. Actual evaluation needs the normal account after fresh
+native code review/fixes and newinput preparation. Review is still pending.
+All prior report bytes remain below. Current new Fable records are uncommitted.
+
+---
+
+# Historical publication - containing readback checkpoint; normal-account read pending
 
 User authorized committing the completed readback records: "CONTINUE AND
 COMPLETE FROM WHERE YOU STOPED, AND COMMIT IT". This containing LOCAL commit

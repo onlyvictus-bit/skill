@@ -701,3 +701,64 @@ ExactnewSHA/hashes are recorded in the private successor Handoff/postcommitproof
 not by another repo edit that would shift the pin again. Repository stays clean.
 Only actualnormalnonelevatedPowerShell can finish readback; no N3evaluation
 authority, worker/model/nativeBeads/install/ACL change, deletion or push.
+
+## Current N3 continuation - host readback passed; evaluation authorized
+
+The user ran the a6ee520-bound readback in normal nonadministrator PowerShell.
+Direct saved-receipt hash matches 0f8b59631efae98e716603a1b998dd52822fdec5d006af439a332aa4d781ec86;
+status NORMAL_ACCOUNT_READBACK_OBSERVED_NOT_N3_EVALUATION. All458protected,
+525product,1015originalN3 and3index files matched; no scan errors/missing paths.
+The old false retry flag remains unchanged: it describes read-only scope.
+
+User now authorized the five-step reviewed N3-B/C continuation plus N3-D review,
+including an input-only clone if useful. New private coordinator/controls/launcher
+are separate from all original artifacts.9newcontrols and25+7priorcontrols pass;
+AST comparison verifies unchanged original13query/measurement/replay functions
+and case/safety/29test ladder. No actual query or worker was launched yet.
+Exact new runtime preflight and fresh native code review are in progress; do
+not prepare/run/send an unreviewed host command. HEAD remainsa6ee520; current
+Fable edits are local/uncommitted. No new commit/push/install/ACL/delete allowed.
+
+Next: review/fix/TDD, freeze new inputs/currentdocument hashes, probe existing
+worker once. If Windows blocks the agent, provide one hashchecked normal-host
+evaluation command under THIS approval. Do not repeat the old evaluator,
+rebaseline, monkeypatchbase.HEAD, retune questions or substitute a runtime.
+Runtime measurements/29tests and final independent N3-D result review remain
+unobserved. All fixtures/negative results remain; no whole-skill readiness claim.
+
+Runtime preflight now passed: original sources/questions/inputs and entire
+17,273file installed environment match;53package identities/12setup log artifacts
+verified. No new positive-control query. Interpreter-only agent probe exited103
+with "No Python at" the normalaccountWindowsApps base path; retained ResultSHA
+8124d2784631c987d6ad08ffb2b97cffb7f28817b7c3a529fcdcc06783dc04fe.
+Do not rerun or install/changeACL. This did not consume the evaluation claim.
+Normalhost execution is required after code review/fixes and newinput sealing.
+
+## RESUME HERE - user-requested checkpoint before usage limit
+
+User now asks to commit completed work/save exact resume state, not continue
+building. Status NOT_SAFE_TO_FREEZE_OR_RUN. Final native review FIX_FIRST:
+1Critical preclaim root-alias write and2Important gaps (normalhost identity
+probe before claim; externally sealed Prepared plus safe clone/child reads).
+No fix pass started.9new+25oldcontracts+7oldrunnercontrols green do not close
+these findings. No clone directory/Prepared/claim/query/29runtime suite exists.
+
+The containing local commit records all4finished Fable changes. No push.
+Private WIP code/tests/launcher and all receipts/fixtures remain on disk; exact
+paths/sizes/hashes are in the final plan section and report, not silently uploaded.
+After this commit, DO NOT RUN any a6ee520-bound continuation/oldN3 command.
+
+Next session: read the LAST plan section 'CHECKPOINT: user requested commit
+before usage limit' and report's CURRENT section; verify actual HEAD and diff,
+then verify the3private WIP hashes. Rebind a NEW successor to the actual
+containing commit (only4Fabledocs changed; product/originalinput hashes must
+match). Preserve old guard/baseHEAD0584a89/oldPrepared/receipts unchanged.
+Write RED controls for3review blockers, implement ONE consolidated fix pass,
+add immediate retained attempt-intent record (hard-abort stays UNKNOWN/no retry),
+run the relevant full offline controls, then prepare/freeze a new input-only
+clone and external seal. Existing N3 authorization covers this safe continuation;
+actual worker needs one reviewed normal-account host probe/command, not install.
+Only after actual24arms/replay/safety/exact29tests can N3-D review occur.
+No file deletion, credential/API/model/native Beads/ACL/global change, push,
+release/install qualification or installed-copy replacement is authorized.
+No claim that this checkpoint completes N3 or the full skill.

@@ -2153,3 +2153,201 @@ Private postcommitproof and Handoff give exact measuredidentities. If rebind,
 comparison, preservation or controls fail, stop and retain everything; do not
 send a hostcommand or claimnormalread. Actualhostread remains the human-only
 lastgate; no N3evaluation/29runtime/N3-D activation, install, deletion or push.
+
+## Approved N3 evaluation continuation implementation plan - 2026-10-19
+
+> For agentic workers: use superpowers:executing-plans inline, with one fresh
+> native read-only final review. This section is the sole plan/ledger.
+
+AUTH: "AUTHORIZED DO COMPLETE NEXT STEP ... IF NEEDED, MAKE A CLONE OF N3
+AND DO CHSNGES FOR TESTING" approves the preceding five-step N3-B/C/D
+continuation proposal. No new install/download/external AI/native Beads/ACL
+change/deletion/commit/push/package/installed-copy replacement is included.
+
+Goal: evaluate the existing retrieval implementation using the unchanged four
+coding questions, original source obligations/bounds and exact29test selection.
+Architecture: separate private evaluator successor and input-only clone; reuse
+the old measurement/replay/safety functions and installed53package environment.
+Do not run or modify the old evaluator or monkeypatch its base.HEAD/preflight.
+Tech stack: Python3.14 stdlib controller, existing isolated Python3.12 worker,
+PowerShell launcher; unchanged lexical/LSA/Semantica implementation.
+Spec: original N3 section of this file, frozen Oracle.json and v3 contracts,
+plus the user-approved five-step continuation proposal immediately above.
+
+Observed basis: HEAD a6ee520b81e860ffaf6360d030c548aa53464381, clean development
+checkout before this plan. ActualnormalSID1001/nonelevated readback succeeded;
+receiptSHA0f8b59631efae98e716603a1b998dd52822fdec5d006af439a332aa4d781ec86.
+All525product+458protected+1015originalN3+3index identities matched. Its false
+evaluation_retry_authorized is historical read-only scope, not a missing initial
+N3 approval. Preserve that receipt unchanged; this new authorization is separate.
+
+INTENT: prior evaluator stopped before its host claim because original evidence
+could not be observed from the normal account; permissions and actual readback
+are now proven. New evaluation explicitly verifies current commit/readback and
+unchanged original inputs, rather than disabling an existing stale-commit guard.
+
+Options: hold produces no quality measurements; changing old guards destroys the
+frozen handoff and is rejected; copying the entire environment creates redundant
+runtime/install authority and is rejected. Recommended input-only clone, with
+separate outputs/claim/receipt and new strict preflight. Source code unchanged.
+Weak link: execution-context access to the existing WindowsApps-based worker.
+Cheapest falsifier: one retained interpreter-identity probe before consuming the
+actual evaluation attempt. Agent denial produces a normal-host handoff, never
+impersonation, alternate Python, security change or automatic resend.
+
+Global constraints: no deletion of ANY old or new files/fixtures; no question
+retuning, source/canary expansion, pin changes, learned-model calls or package
+updates. Existing old Before/Prepared/contracts/index remain byte-identical.
+All outputs create-new. Keep metadata local/self-reported/unauthenticated and
+semantic_quality/whole-skill/native/release qualifications UNVERIFIED/false.
+Surrounding system must remain healthy against both original and new seals.
+
+Review focus (with owning tests): wrong/stale commit or failed/unbound host
+receipt (Task1 contract); input-copy/path alias or old-output write (Task1
+clone); denied scan/path replacement (existing24guardcontrols plus Task1
+preflight); postidentity failures/replay (Task1 attempt); subprocess side effects
+and discovery/mandatory mislabelling (Task2 existing runner/measurement suites).
+
+### Task N3-CONT-1: exact-commit successor and isolated input clone
+
+Files under private n3-retrieval-.../: Evaluate-N3-Continuation-20261019.py,
+Test-N3-Continuation-20261019.py, Run-N3-Continuation-20261019.ps1;
+new evaluation-continuation-a6ee520-20261019/ only for inputs/results.
+Consumes unchanged v3 contracts, original Prepared input hashes/index and
+continuation-readback-20261019-a6ee520/continuation.py/normal host receipt.
+Produces preflight(prepared=True), prepare(), run_evaluation() using exactHEAD,
+strict readback/preservation checks, fresh clone and durable one-shot attempt.
+- [ ] Write/run failing continuation tests: invalid host receipt/context, wrong
+  HEAD/input hashes, repeat claim, postclaim preflight failure, clone preservation.
+- [ ] Copy the old coordinator into a new filename, then change only orchestration
+  gates/clone preparation/attempt capture; measurement/query/safety ladder and
+  exactly29test IDs retain their original behavior and limits.
+- [ ] Run focused controls and prior evaluator/runner contract suites; retain
+  RED/GREEN outputs and fixture files. Expected zero unexpected failures/skips.
+- [ ] Prepare clone with create-new files; verify source/template/index equality,
+  original guard still refuses currentHEAD, all original evidence/runtime hashes.
+
+### Task N3-CONT-2: review, actual evaluation and N3-D handoff
+
+Consumes Task1 helper/clone hashes, original frozen questions/bounds/test IDs;
+produces sealed Prepared/launcher, evaluation Receipt-host.json, honest report.
+- [ ] Fresh native reviewer checks exact handoff; one parent Critical/Important
+  fix pass with RED/GREEN tests if needed. No unreviewed automatic execution.
+- [ ] Freeze allhelper/current4Fabledoc/input identities; preserve old packets.
+  Run identity probe once; if agent cannot launch worker, provide one reviewed
+  normal nonadministrator host command under this approval (not a new ask).
+- [ ] Actual evaluation:24case/mode/arm measurements or explicit failed-arm
+  results, fresh-process verification, stale/access/budget/forgery controls and
+  exact29tests. Failure retains receipt, never retries or claims missing quality.
+- [ ] Review actual results, independent review where available, recheck all
+  preservation and record honest quality/readiness limits. No automatic release.
+
+Ruling: this continues the already approved design and inline method; no repeat
+brainstorm interview/approval, newworktree or competing Superpowers ledger.
+Commit/cleanup steps in skill defaults are NOT authorized; retain everything.
+No shell-specific task scripts that create a competing workspace are run; this
+section records brief/BASE/tests/rulings/completion. BASE for both tasks=a6ee520.
+If actual host execution is unavailable here, Task2 stays PARTIAL with exact
+human-only command/receipt gap; do not mark N3-D runtime review complete.
+
+Task N3-CONT-1 progress:9newcontrols GREEN after9expectedmissingfeatureRED;
+25existingmeasurementcontracts+7existingrunnercontrols GREEN. AST comparison
+verifies unchanged13query/measurement/replay functions and actual case/safety/
+29test ladder. Original input/metadata/full17,273file installed-runtime preflight
+passed without starting any query.53installedpackage identities/12setup logs
+verified. This is current file identity plus historical positive-control evidence,
+not a newly observed retrieval result. Fresh native code review still pending.
+
+Ruling: one interpreter-only probe used the existing verified venv launcher,
+not an alternate runtime. Stub started but exited103; stderr says "No Python at"
+the normal account's WindowsApps Python3.12 path. Probe Result.json SHA256
+8124d2784631c987d6ad08ffb2b97cffb7f28817b7c3a529fcdcc06783dc04fe.
+No retrieval/evaluation claim was consumed. Actual evaluation requires the
+normal account's execution context; provide one reviewed host command under
+the existing approval, not another install, ACL change, identity spoof or retry.
+
+## CHECKPOINT: user requested commit before usage limit - 2026-10-19
+
+AUTH: "COMMIT EVERYTHING, WHICH IS FININSHED SO FAR, MY LIMIT IS going to over,
+so need to save the details in git on whats completed so far, and to continue
+from which we left". Stop further build/evaluation and commit the four current
+Fable records locally. No push. Preserve all private helpers/fixtures/receipts
+outside Git as before; their exact identities and resume details are recorded
+here and in the report. Do not silently upload machine-specific runtime/raw data.
+
+Status: NOT_SAFE_TO_FREEZE_OR_RUN. Native reviewer returned FIX_FIRST, one
+Critical and two Important findings. No correction pass has started. No new
+evaluation directory, Prepared seal, host claim, query or evaluation receipt
+exists.9new+25existingcontract+7existingrunner controls are green but do NOT
+close the review findings. Full existing runtime/input identity preflight passed;
+agent interpreter stub exited103 as documented. No task/milestone/N3-D is done.
+
+Resume artifact root (retained private):
+C:/Users/sakth/Documents/Codex/2026-10-02/ad/work/R5-practical-fence-20261013/build-validation/n3-retrieval-9ec6fb1db36444acba2945896e8b8d17/
+
+| WIP artifact | Bytes | SHA256 |
+| --- | ---: | --- |
+| Evaluate-N3-Continuation-20261019.py |31717|5b915b282b997221b26cbb54204e896c7c3017522b9362111bf42231b09b8c80|
+| Test-N3-Continuation-20261019.py |8106|e87e417ba33d742ec630b6d37f504617e1b86927cf83bd34bb46edf93a929c06|
+| Run-N3-Continuation-20261019.ps1 |2137|bb52d63815d1a57d16acbf7a5269ed89065318bd108d22df881fcc27d0ea70a7|
+
+### Required next correction pass (not implemented)
+
+1. BEFORE ANY WRITE, verify the exact canonical output root and every existing
+   ancestor with the pinned no-reparse reader. Reject a junction/symlink/root
+   substitution before mkdir(host-claim). RED test must prove no target marker.
+   Finding: coordinator115-117/368-376; launcher16-17. Critical.
+2. Run one retained exact interpreter-identity probe in the actual normal-host
+   context BEFORE evaluation claim. Agent probe is historical, not host proof.
+   A failed host probe must leave no evaluation claim and must not auto-repeat.
+   Finding: launcher21/coordinator368-369 versus plan preclaim requirement.
+3. Externally bind the reviewed Prepared SHA through launcher/controller/child
+   entrypoints; parse bytes captured by guard.safe_file only. Reopen clone inputs
+   with that reader (hardlink/open-handle/postread path protection). Child gate
+   must verify the external seal and relevant operation inputs. RED controls:
+   altered Prepared; input+its self-hash co-edit; postprepare hardlink/path
+   substitution; child-side substitution. Current mutable self-attestation fails.
+
+Then ONE consolidated parent fix pass to GREEN, whole relevant offline suite,
+new input-only clone and exact seals, host-only command under existing N3
+approval, actual24arms/replay/safety/exact29tests and independent result review.
+Do not launch until Critical/Important fixes and preservation pass. No new
+runtime, install, model/native Beads/ACL operation or deletion is authorized.
+
+Ruling: this containing checkpoint changes HEAD. All a6ee520-bound handoffs
+are RETIRED for new execution, not edited/reset. Resume must obtain the actual
+containing SHA with git rev-parse HEAD and build a separate successor pinned
+to that exact SHA, updating current guard/Prepared/launcher identities together.
+Preserve old base.HEAD=0584a89 and every old file/claim. The successful normal
+readback receipt remains historical evidence for a6ee520; it is not relabelled
+as a readback of the new commit. Compare the containing commit's diff (only
+four approved docs) and all original product/input hashes before rebinding.
+Cost if wrong: stale handoff or falsely promoted provenance. No old command run.
+
+### Reviewer set-asides: parent rulings, all still unverified
+
+1. Clone equality/seal: absent, must be observed after fixes; otherwise false
+   prepared-input assurance.2.Normalhost launch: agent103 is not host failure;
+   require own preclaim observation or execution remains blocked.
+3.24arms/quality: unrun; no IDs/scores/hits/misses/OOV/pack bytes invented.
+4.Fresh replay/safety: source-inspected only; require actual refusals/replay.
+5.Exact29tests: selection preserved, not executed; never count as passed.
+6.Real subprocess side effects: audit hook is not an OS sandbox; unobserved,
+   do not assert actual network/filesystem/process containment.
+7.N3-D: no actual results to review yet; code review is not result review.
+8.Semantic/coding/product/native/release/install/fullCI benefit: outside this
+   code review, all prior UNVERIFIED/false labels remain unchanged.
+9.Future commit: explicit rebind required above; no --ignore-head/base mutation.
+
+Deferred minors: fixture digest annotation misleading (hash recomputed in test);
+native_execution flag ambiguous (means no native Beads, not no Python worker);
+7runnercontrols target old evaluator (reported only as inherited controls).
+Hard-abort/receipt-write failure may leave marker only: Ruling that means UNKNOWN
+and no automatic repeat/acceptance, not a completed receipt. Add an immediate
+create-new attempt-intent record in the resumed correction pass; do not claim
+OS-process-interruption recovery proof. Cost if wrong: unknown partial execution.
+
+Verification before commit: rerun9new+25oldcontracts+7oldrunnercontrols, JSON
+parse/diff check, exact4stagedpaths/no deletions and committed blob identity.
+Current WIP code and its failing-review state are retained without modification.
+No push/installation/qualification activation. This is a resume checkpoint only.
