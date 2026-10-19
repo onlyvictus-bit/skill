@@ -660,3 +660,44 @@ HEAD remains4f5885656d07bb938560a17451b372bc1ea94da1, new4Fableedits uncommitted
 No push/newcommit/install/qualification activation. Next prepare/review normal-
 host readback and exact-current-commit N3 continuation, then obtain separate
 evaluationretry authority. Do not rerun oldN3 command or bypass0584a89HEADguard.
+
+## Current checkpoint - committed permission work; read-only continuation, 2026-10-19
+
+AUTH "COMMIT EVERYTHING YOU FINISHED": committed4reviewedFable records as
+4ef9638427e81a23d6ef5f2ee4b9ae133fb3d701 (parent4f58856),4blobhashes verified,
+0deletions/no push. Then approved normalaccountreadback/explicitnewcommit gate
+built privately under n3-retrieval-.../continuation-readback-20261019/.
+
+Native review FIX_FIRST's5findings reproduced and fixed inoneparentpass;24/24
+controls pass, plus prior23ACLcontrols. No second independentSHIP claimed.
+Agent correctedpreflight00533a38:525product+458protected+1015priorN3+3indexfiles
+match; noGitindexwrite, finalHEAD/status/docsrecheck. Source/evidence are still
+count1; installedGit's known2links are separatelypath/hash/count-pinned.
+
+Next allowed action: ONE externallyhash-checked Run-N3-Readback.ps1 in actual
+normal nonadministrator PowerShell(accountSID1001). It runs controllerPython314
+only, no worker, retrieval, nativeBeads, network, install, ACL or Git write. It
+retains one normal-account-readback/Receipt.json even for post-identity failure;
+wrongaccount/elevation refuse beforeconsumingattempt. Neverrerun/deleteclaims.
+No actualhostread observed yet. This is a read-only continuation gate, not new
+evaluationengine or approval to runN3. Oldrunner/contracts/Before/Prepared/index
+unchanged; retryfalse; remainingN3-B/C/29tests/N3-D remain pending. Currenthead
+4ef9638 mustnotchange after sealing; newcontinuationFablerecords remain uncommitted.
+
+## Current publication - containing readback commit; successor required
+
+User now said "CONTINUE AND COMPLETE FROM WHERE YOU STOPED, AND COMMIT IT".
+Commit all4completed readbackrecords locally. This supersedes the prior no-new-
+commit boundary. Preserve the4ef9638-bound private handoff as RETIRED_UNUSED;
+its normal-account-readback marker is absent and its guard must keep refusing
+newHEAD. No oldcommand rerun, pin update in place, reset or evidence overwrite.
+
+After this containing commit exists, use exactly itsSHA in a sibling private
+continuation-readback-20261019-<shortHEAD>. Same code as verified predecessor
+except EXPECTED_HEAD literal/launchercheckerhash; byte-identical tests. Prove
+this mechanicaldiff, rerun24+23controls and full originalreadonlypreflight, then
+seal NEW Prepared/hashchecked hostcommand. All oldhelper/data bytes retained.
+ExactnewSHA/hashes are recorded in the private successor Handoff/postcommitproof,
+not by another repo edit that would shift the pin again. Repository stays clean.
+Only actualnormalnonelevatedPowerShell can finish readback; no N3evaluation
+authority, worker/model/nativeBeads/install/ACL change, deletion or push.

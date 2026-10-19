@@ -1,3 +1,65 @@
+# Current publication - containing readback checkpoint; normal-account read pending
+
+User authorized committing the completed readback records: "CONTINUE AND
+COMPLETE FROM WHERE YOU STOPED, AND COMMIT IT". This containing LOCAL commit
+publishes only4Fable records; no push. It supersedes4ef9638 as the activebasis.
+The prior frozen private4ef9638 handoff is retained unchanged and RETIRED_UNUSED;
+no actualnormalhost attempt exists. Do not run that oldcommand after commit.
+
+The same approved read-only gate is mechanically rebound in a NEW sibling
+`continuation-readback-20261019-<containing-commit-shortSHA>` after commit,
+using the exact resultingSHA, not by changing/bypassing an oldguard. Only its
+literalhead and launchercheckerhash change; tests remain byte-identical.
+Measured sourcecomparison,24controls,23ACLcontrols and originalreadonlybaseline
+preflight must pass before NEWPrepared and newhashchecked command are released.
+No repo edit after this commit: exactfinalidentities live in the private successor
+Handoff/postcommitproof. All oldhelpers, receipts and importantdata preserved.
+
+Prior independent FIX_FIRST review plus parentverifiedone-pass fixes apply to
+unchangedlogic; no second independentSHIP is claimed. Readback is still human-
+only: actualnormalSID1001, nonelevated. AgentSID1003 must refuse. This is NOT
+N3evaluation/retrieval/29tests/N3-D authorization. No source/qualification/ACL/
+install/globalconfiguration change, deletion or push. Normalread remains unproven
+until the one actualhost receipt is observed; localbuild does not substitute it.
+
+---
+
+# Current checkpoint - local commit4ef9638; normal-account readback pending
+
+The completed permission records were committed locally as
+`4ef9638427e81a23d6ef5f2ee4b9ae133fb3d701`, parent4f58856. All4committedblobs
+hash-match;0filesdeleted; no push. All57read grants remain verified.
+
+The separately approved read-only continuation is built and parent-verified
+after independent FIX_FIRST review.24/24controls pass (five review-targeted
+RED failures reproduced before fixes), plus23priorACLcontrols. Fresh corrected
+agentpreflightSHA`00533a38ceb5332d4e39d1965330e3b82c3b0c200751cadb56ba772c801c463f`
+verifies525product+458protected+1015originalN3+3indexfiles, unchangedGitindex,
+finalHEAD/status/docsrecheck. No second independent SHIP verdict is claimed.
+
+Private files: `continuation-readback-20261019/continuation.py`,
+`test_continuation.py`, `Run-N3-Readback.ps1`, `Review-and-Fix-Record.md`.
+Corrections enforce pinned absoluteGit/no optional writes, captured postidentity
+failure/replay refusal, postreadpathidentity/samehandleJSON, and finalrevision.
+Git's systemdispatcher has2knownhardlinks; its exactpath/hash/count is pinned;
+all source/evidence still require1link. No globalconfiguration/trust/ACL change.
+Initial agent receipts retained but superseded for their no-Git-write claim.
+
+**Normal-account actual readback is still UNVERIFIED.** The realagenttoken is
+sandboxSID1003; hostrequiresnormalSID1001 and nonelevation. ONE hash-bound new
+readback command is the next human-only check. It records local/selfreported,
+unauthenticated point-in-time observations, not an atomic snapshot or execution
+authorization. Runtime imports are not rerun. No worker/retrieval/model/native
+Beads/install/network/Gitwrite/delete action by that helper. NewFablerecords are
+uncommitted; head stays4ef9638 for the sealedreadback. All priorreportbytes retained.
+
+This successor is a read-only continuation gate, **not a new N3 evaluation
+runner**. Original evaluator/oldHEADguard/contracts/Before/Prepared/index are
+unchanged. N3-B/C and29runtime tests/N3-D remain unrun; evaluation_retry_authorized
+staysfalse. Do not run oldN3 commands or bypass itsguard afterreadback.
+
+---
+
 # Current checkpoint - all57read grants verified; N3 remains stopped, 2026-10-19
 
 **VERIFIED WITH CAVEATS for the approved permission correction only.** The user

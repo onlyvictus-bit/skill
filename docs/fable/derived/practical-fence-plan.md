@@ -2053,3 +2053,103 @@ relaxed guard, fixes self-induced pending-child metadata drift. Verdict VERIFIED
 WITH CAVEATS for ACL scope only; this is not N3 or whole-skill readiness.
 Next: reviewed normal-host readback and exact-current-commit N3 continuation;
 old evaluator/diagnostic remain stopped. New Fable record edits uncommitted.
+
+### Approved checkpoint commit and read-only N3 continuation - 2026-10-19
+
+AUTH: "COMMIT EVERYTHING YOU FINISHED AND COMPLETE next step ... reviewed
+normal-account readback and an N3 continuation ... Do not rerun the old N3
+command or bypass its commit guard." Finished4Fable records committed locally
+as4ef9638427e81a23d6ef5f2ee4b9ae133fb3d701, parent4f5885656d07bb938560a17451b372bc1ea94da1;
+4committed blobs hash-match reviewed bytes,0files deleted, clean tree before
+this continuation plan. No push. Machine-specific helpers/runtime/rawreceipts
+remain outside Git by existing approval boundaries; no silent mass upload.
+
+INTENT: build a separate read-only continuation/readback gate, pinned exactly to
+4ef9638 and frozen original evidence. Old evaluator/contracts/Before/Prepared/
+runtime/index remain byte-identical. Do not replace base.HEAD or monkeypatch
+original preflight; no --ignore-head option, newbaseline, automatic retry or
+evaluation authorization. This stage's proof is a continuation/readback packet,
+not a replacement evaluation engine or a native/release qualification.
+
+Options: hold leaves normal read unverified; rerunning or weakening oldguard is
+rejected; recommended exact-commit read-only successor independently checks
+commit ancestry/diff,529repositoryidentities (525unchangedproduct+4alloweddocs),
+458protected project/N1/N2 hashes and1015preexistingN3 hashes. Existing public
+evaluation requirements/4questions/29tests remain unchanged for later activation.
+No duplicate worker, retrieval, ranking, evidence-acceptance or fence mechanism.
+
+Task1: frozen read-only checker/core and retained tests. Tests must catch wrong
+commit, forbidden source delta, stale/added/missing source, scan/read denial,
+reparse/hardlink traversal, wrongaccount/elevation, changed legacy inputs and
+duplicate attempts. Use Python3.14 stdlib and Windows token-query APIs only;
+no worker/interpreter launch beyond controller, network, install or ACL write.
+Task2: externally hash-bound PowerShell launcher validates actual normal SID
+S-1-5-21-2571509308-2482563067-4170768140-1001 and non-elevation, records all
+check failures in one new retained receipt; no false complete inventory.
+Task3: test RED/GREEN and live agent read-only preflight, inspect frozen source
+preservation, fresh native review of exact handoff, update this existing ledger.
+Task4: normal-account readback requires the human's existing PowerShell context;
+do not impersonate, solicit credentials, elevate, schedule or alter security.
+If agent cannot run with normal SID, hand over only the reviewed command.
+
+Done for local build: executable reviewed readback/continuation gate, pinned
+newcommit and all oldinputs, negative controls, retained results. Host-read done
+only after actual normalaccount observation. N3-B/C evaluation and29runtime tests
+remain unrun and evaluation_retry_authorized=false; future execution needs its
+own reviewed successor/authorization. Any new inaccessible original path stops;
+no expansion of prior19folder/38file ACL grant, skipping or rebaseline.
+
+Ruling: retain existing isolated development checkout/private artifacts and
+singleFablegovernor, not a new worktree/environment/competing plan store. Retain
+all old and new fixtures (user no-deletion overrides skill cleanup). This request
+approved the finished checkpoint commit; new continuation edits remain local
+unless separately authorized for commit. All helper claims are local self-
+reported observations, not authenticated producers or qualification authority.
+
+Build outcome: native independent review FIX_FIRST identified5loadbearing gaps
+(optionalGitwrites, PATH-selectedGit, preclaimerrors, postreadpathswap/JSONreopen,
+missingfinalHEAD/status/docsrecheck). Parent acceptedall and completedONEfixpass
+with5targetedREDfailures and24/24GREENcontrols. No secondnativeSHIP claimed.
+Correctedagentpreflight00533a38 verifies525product+458protected+1015oldN3+3index
+files; Gitindex unchanged/finalrevision reread, actualsandboxSID1003. Full product
+CI/N3's29runtime tests not run or represented by these local controls.
+
+Ruling: one retained private scratchGit fixture init/config/add(no commit) proves
+index behavior; no sourceGit or globalconfig writes by the corrected host helper.
+The installed Git dispatcher naturally has2hardlinks (cmd/git.exe/git-lfs.exe);
+pin its path/SHA/count2 only, while source/evidence remain strictcount1. Actual
+fixture path-swap uses non-overwriting renames and retains both files. Old agent
+preflights are retained but superseded for their unproven no-Git-write claim.
+Review-and-Fix-Record.md retains findings/tests/rulings in the private continuation
+directory. All5reviewfindings fixed; none deferred. Normalhost readback remains
+unobserved, no evaluationretry; prepare/seal final3helperfiles/currentdocs only
+after this record. User must run from actualnonelevatedaccount1001; agent cannot
+impersonate it. Parent handoff verdict: VERIFIED_WITH_CAVEATS, not fullN3ready.
+
+### User-approved readback checkpoint commit and exact rebind - 2026-10-19
+
+AUTH: user "CONTINUE AND COMPLETE FROM WHERE YOU STOPED, AND COMMIT IT".
+The finished4readbackFable records are now authorized for a containing local
+commit. No push. Prior4ef9638-bound helper/Prepared/launcher and allrawartifacts
+remain byte-identical and RETIRED_UNUSED after that commit; actualnormalhost
+claim is absent. Do not hand over or run the oldcommand after HEADchanges.
+
+Approved continuation of the same scope: after committing these4records, create
+one sibling private directory named continuation-readback-20261019-<newshortHEAD>.
+Reuse the verified3helperfiles with ONLY the literal EXPECTED_HEAD and launcher
+checkerSHA changes; tests copied byte-identically. Prove normalizedsource equality,
+newHEAD ancestry/original525source hashes and alloldinputs; rerun24controls and
+23ACLcontrols. Seal a NEW Prepared in that newdirectory; never edit/reuse old
+Prepared or change an oldguard. Oldguard must still reject the newcommit.
+
+No new mechanism, evaluator, worktree, environment, sourcechange or permission
+grant. Same actualnormalSID1001/nonelevation, one-shot receipt, noGitwrites,
+hardlink/source protection and unauthenticatedpointintime caveats. No second
+independentSHIP claim; priorfivefindings remain fixed/tested, no logicdiff.
+This containing commit is the exact newbasis, resolved only after it exists;
+the successor then hardcodes the resulting SHA. Keep repository unchanged after
+that commit so the sealed handoff is commit-consistent and the tree stays clean.
+Private postcommitproof and Handoff give exact measuredidentities. If rebind,
+comparison, preservation or controls fail, stop and retain everything; do not
+send a hostcommand or claimnormalread. Actualhostread remains the human-only
+lastgate; no N3evaluation/29runtime/N3-D activation, install, deletion or push.
