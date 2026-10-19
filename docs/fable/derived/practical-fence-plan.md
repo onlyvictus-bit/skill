@@ -1081,3 +1081,904 @@ replacement. Fresh artifact verifier, retained-evidence coverage checker and
 selected22hostcontracts pass before commit. All private helpers/raw receipts
 remain outside Git. The next unmet gate remains supported isolated worker
 setup/evaluation planning and separate installation/activation approval.
+
+## N3 isolated retrieval runtime and measured search - proposed 2026-10-18
+
+Status: PLAN_VERIFIED_INSTALLATION_APPROVAL_PENDING; installation/activation approval is not yet
+recorded. User requested completing the next step after a deep plan. This is
+a bounded setup/evaluation of the existing worker, not a new memory authority,
+native fence, embedding model or rewrite. Fable remains the single governor;
+Deep Plan supplies decision synthesis and Superpowers supplies execution and
+verification discipline. This section is the implementation plan; do not create
+a parallel plan store or infer approval to commit it.
+
+**Goal:** observe the existing pinned local worker perform lexical/LSA retrieval
+through the actual public skill path, measure discovery independently from
+mandatory source delivery, and preserve the current skill and all old evidence.
+
+**Architecture:** a new UUID-owned Python3.12 virtual environment and retained
+test run under sibling build-validation. Pass its absolute Scripts/python.exe
+only to the test's --worker-python. Reuse the unchanged CLI, WorkerClient,
+source maps, current policy, task obligations and verify_pack implementation.
+No persistent worker environment variable or installed-skill promotion occurs.
+
+**Spec:** existing N1/N2 done criteria, knowledge-project-2.md,
+knowledge-operations.md, knowledge-contract.md, worker.py/worker_client.py,
+offline_engine.py and retrieval_v2.py; exact measured source obligations remain
+the four cases frozen in N2 Oracle.json. Installation and test authority must
+be explicit and recorded before the first install/activation command.
+
+### Opened evidence, assumptions and decision
+
+- Basis0584a89f11bfeec4c9ae8caa81f4492cf10c2abb, initially clean worktree.
+- The user-run metadata receipt3b3d0cb032777eeb313efc39367f78c39b930c429f67d9b18250c71784501a1b
+  records Python3.12.10, NumPy1.26.4, no sklearn/semantica. It is not a working
+  runtime or an exhaustive survey. Do not rerun that completed host command.
+- worker.py runtime_identity rejects Python outside3.10-3.13 and requires
+  Semantica0.7.0 with VCS revision320761de5d040a54a3220acc563223b4a7ffdc51.
+  Its handshake checks identity and pyshacl import-spec availability; it does
+  not establish successful numerical imports or a successful retrieval.
+- The pinned upstream pyproject was opened read-only and agrees on the version,
+  Python range and NumPy>=2.0.2 requirement. Existing NumPy1.26.4 is insufficient
+  for that source. Do not upgrade the user's existing environment.
+  Source: https://github.com/semantica-agi/semantica/blob/320761de5d040a54a3220acc563223b4a7ffdc51/pyproject.toml
+- requirements-lock.txt is explicitly an observed dependency snapshot, not a
+  hash-verified supply-chain lock. Preserve it; record the actual installer
+  resolution, archive URLs/digests and pip check outcome. No silent unpinning,
+  latest-version fallback, --ignore-requires-python or dependency omission.
+- WorkerClient strips provider credentials from its child environment and
+  enables offline model settings. The worker's Python socket blocking is not
+  an OS sandbox. This plan invokes neither ModelClient nor provider APIs.
+- N2's retained automatic projection has54nodes/171edges including its labelled
+  canary. N3 uses only the four actual permitted files for its fair comparison;
+  measure the new projection and visible candidate counts rather than infer
+  them from N2. Preserve vector/message/pack limits; do not widen them to pass.
+  A failed PowerShell JSON view was corrected with ConvertFrom-Json -AsHashtable;
+  its earlier zero counts were a parsing failure, not a source observation.
+
+| Option | Mechanism / primary failure | Decision |
+| --- | --- | --- |
+| Keep no-worker mode | Reopen authored mandatory sources; ranking remains unavailable | Preserve as rollback, insufficient for actual retrieval evaluation |
+| New isolated pinned core worker | Run existing lexical TF-IDF and corpus LSA with separate dependencies; Windows launch/wheel/ABI failure is possible | Recommended smallest complete step |
+| Learned weights plus advanced graph/model route | Adds model files, runtimes and evaluation surface; may increase cost without measured coding benefit | Future separate approval, not N3 |
+
+Constraints lens: ordinary source/package/installed files must not change;
+identity handshake alone cannot prove imports/ranking. Numerical/SHACL and
+actual public retrieval controls are mandatory. Cost lens: reuse the existing
+worker and corpus, avoid new providers/weights and broad native detours. Costs
+are local disk/download/time; there is no calibrated duration/size estimate.
+Pre-mortem: a green handshake is mistaken for a useful search engine, or all
+required units are preinserted and misreported as discovered. Separate the
+positive worker control, ranking-only arms, mandatory arms and quality metrics.
+Evidence families: local implementation and its authored tests are one family;
+upstream pinned dependency specification is another; user-host package metadata
+and N2 raw public-path observations are environment measurements, not model
+quality evidence. Historical CI/reports do not prove this Windows installation.
+Confidence in the route: Medium; supported by those sources but launch, binary
+dependency compatibility and corpus retrieval behavior remain unobserved here.
+Weak link: supported version declarations do not prove this host can launch
+the new environment and import the complete pinned stack. Cheapest falsifier:
+new-environment isolation/version/import/handshake plus a three-node numerical
+and SHACL positive control before any task-quality result. Pivot on failure:
+retain everything, diagnose the exact cause, keep N2 as last verified baseline;
+do not bypass Windows security, replace the pin or invent worker success.
+
+### Authority, preservation and exact surfaces
+
+Allowed only after named N3 approval: create one new UUID-owned runtime/run,
+fetch Semantica at the exact VCS revision and its pinned core dependencies plus
+pyshacl, and run the bounded local retrieval checks below. Use Python3.12.10
+from the already observed host selection; do not install a different Python or
+system toolchain. If the agent cannot launch it, retain a precise failed receipt
+and prepare one host script with identical scope; no elevation/ACL/gate bypass.
+N3 authority covers exactly one new virtual environment, at most one
+non-installing resolution command and one install command. A failed creation,
+resolution or install stops setup; no second environment, repeated install or
+dependency fallback is authorized. Reusing an already-created empty run for a
+host handoff requires proving no resolution/install command was started;
+otherwise obtain revised approval rather than silently starting again.
+
+The approval must explicitly settle installer-owned temporary cleanup:
+package installers may delete their own newly created transient files even
+with --no-clean (which retains build directories, not every temporary object).
+No existing source, user data, old run, receipt, runtime, shared cache or skill
+may be deleted/overwritten. Do not claim literal zero-file deletion during a
+normal package installation. Without this narrow exception installation remains
+blocked. Test evidence uses retention adapters instead of cleanup.
+Official mechanics: https://pip.pypa.io/en/stable/cli/pip_install/
+and https://docs.python.org/3.12/library/venv.html .
+
+Create only after approval under
+C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\build-validation:
+
+- N3-Retrieval-Runtime-20261018.py: one coordinator for UUID isolation,
+  source-bound observations, actual public commands, preserved raw logs,
+  source/oracle checking and final receipt. Reuse N1 retention helpers and
+  N2 patterns; do not copy a production implementation or change old helpers.
+- Test-N3-Retrieval-Harness-20261018.py: host-only harness regressions using
+  synthetic observations, never promoted as actual runtime/ranking evidence.
+- Run-N3-Retrieval-20261018.ps1: optional host entrypoint, only if observed
+  Windows access prevents the same approved command from the agent.
+- n3-retrieval-<UUID>/: runtime, installer temp/cache, source copies, index,
+  frozen oracle/policies/tasks, worker stream files, raw commands and receipts.
+  Allocate the environment once. Distinct test cases/replays use new exclusive
+  subdirectories/files inside that same run; they are not more environments
+  or installation attempts. Never replace an earlier result.
+
+Update only existing Fable plan/resume/state and new
+docs/fable/evidence/retrieval-runtime-20261018/report.md after execution.
+No product Python/tests, SKILL, capability, dependency snapshot, manifest/ZIP,
+installed copy, Git index/config, native DB or external service write changes.
+No commit/push is included. No learned model, provider extra, answer generation,
+network service or broad benchmark is included. Do not execute tests from the
+copied four-source target corpus, import that target code, or call knowledge-test.
+Only the enumerated repository host contracts and actual-worker cases below
+may execute; these are skill validation tests, not arbitrary target-project code.
+
+### N3-A - isolated setup and real worker positive control
+
+- [ ] Freeze HEAD/source/doc hashes and retained original N2 oracle/receipts.
+  Compare current edit targets again before writing. Record the exact user
+  N3 approval, its limits and installer-cleanup choice in the new run receipt.
+- [ ] Write host-only checks first: unrelated path rejection, missing/mismatched
+  VCS identity, handshake-only success, empty/skipped runtime tests and a fake
+  worker result must not become qualified runtime evidence. Observe those
+  checks fail against deliberately bad observations, then pass the validator.
+- [ ] Allocate a fresh absolute directory, set process-local installer TEMP/TMP/
+  cache there, and create the venv with no system-site-packages. Never use
+  --clear/--upgrade on an existing environment or --user/global pip install.
+  Verify sys.prefix != sys.base_prefix and include-system-site-packages=false.
+- [ ] Non-installing resolution preflight first, then install from the existing exact
+  requirements-lock.txt only after its report fits the approved core-only
+  scope. Retain stdout/stderr/argv/status and available archive hashes. Use
+  explicit PyPI/public GitHub origins, no extra indexes/provider credentials,
+  no disabled TLS or Requires-Python checks. Stop rather than install a new
+  compiler, interpreter, provider/model extras or silently change dependency
+  versions if the snapshot cannot resolve. Build tools strictly needed by the
+  pinned source may be confined to the same new installer build environment.
+  Bind the requirements by absolute path and the recorded SHA-256 before both
+  commands. --isolated ignores ordinary pip environment settings; use explicit
+  --cache-dir in both commands, never rely on PIP_CACHE_DIR for isolation.
+  Check and disable inherited package-index/configuration overrides without
+  printing credentials; no shared pip cache or existing package tree is used.
+  The installer child environment sets PIP_CONFIG_FILE=os.devnull and strips
+  other inherited PIP_* overrides; explicit CLI --cache-dir/--index-url remain.
+  This suppresses configuration loading without editing any user/system file.
+  Source: https://pip.pypa.io/en/stable/topics/configuration/#pip-config-file .
+  Record effective origins and stop on an unapproved extra index or TLS bypass.
+- [ ] Record pip check, actual package versions, Semantica direct_url.json
+  commit, executable hash and numerical imports under the worker's sanitized
+  no-user-site environment. Check NumPy, scipy, sklearn, Semantica, rdflib and
+  pyshacl imports explicitly; metadata-only success is insufficient.
+- [ ] Invoke the unchanged public knowledge-status with --worker-python set
+  only on this command. Then invoke the actual worker on a three-node fixture
+  through WorkerClient: finite vectors, lexical correct top result, source
+  lineage and genuine SHACL conformity. Record original result/ranges/hashes;
+  failure must stop before presenting a task-quality pass.
+
+Representative approved-only commands, substituting only the newly allocated
+absolute venv path and new exclusive receipt paths:
+
+```powershell
+$n3Requirements = 'C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\semantica-runtime\requirements-lock.txt'
+if ((Get-FileHash -LiteralPath $n3Requirements -Algorithm SHA256).Hash.ToLowerInvariant() -ne '892900d3bb4e27e6b645dba453fbb9440f6ea46889181e3eae7bfd0bb0b453cf') { throw 'N3 requirements drift' }
+$n3PipCache = Join-Path $n3Run 'pip-cache'
+& 'C:\windows\py.exe' -3.12 -B -m venv $n3NewVenv
+& $n3Python -B -m pip --isolated --disable-pip-version-check --cache-dir $n3PipCache install --no-input --index-url https://pypi.org/simple --dry-run --report $n3Resolution -r $n3Requirements
+# The coordinator must recheck the requirements hash and accept the retained resolution before this install.
+& $n3Python -B -m pip --isolated --disable-pip-version-check --cache-dir $n3PipCache install --no-input --index-url https://pypi.org/simple --report $n3Install -r $n3Requirements
+& $n3Python -B -m pip check
+& 'C:\Python314\python.exe' -B 'memory-integrity\scripts\memory_integrity_workflow.py' knowledge-status --claude-mon-root $n3Companion --worker-python $n3Python --worker-timeout 60
+```
+
+The coordinator must validate these paths before invoking them; they are not
+instructions to paste unresolved variables or to run setup before approval.
+An installer dry-run can still fetch/build metadata; it is not a no-download
+or no-code-execution check. All setup is inside the installation consent.
+
+### N3-B - frozen public-path retrieval, not mandatory-delivery theater
+
+- [ ] Copy exactly the four original N2 actual source files byte-for-byte;
+  assert their hashes against the retained Oracle.json. Preserve the original
+  N2 canary/run, but exclude the canary from N3's comparison corpus. Freeze
+  N3 Oracle.json with the unchanged four query strings, literal probes and
+  independently required source IDs before any retrieval/metric computation.
+- [ ] Freeze bounds for both ranking modes: max_hops0, seeds5, max_visits100,
+  max_results5, outgoing direction, task max_bytes2,000,000, worker timeout60s.
+  The corpus, access and byte ceiling are identical across the new literal,
+  lexical and LSA arms; raw read bytes/returned bytes must be reported, not
+  asserted equal. Record that locator returns unit IDs, ranking returns nodes
+  and source closure, and the metric levels differ. Do not silently tune the
+  query, corpus, budget, k or expected sources after an outcome.
+- [ ] Build a new project-2 index via actual knowledge-project. Do not import or
+  execute the copied project code. Archive only the child-owned writer lock;
+  refuse foreign locks. Retain WorkerClient TemporaryFile streams in this
+  new run using the exact test-only retention adapter below, not a fake process.
+- [ ] For every case/mode run actual knowledge-retrieve twice with independent
+  task files: ranking-only required_units=[] for discovery measurement; the
+  original mandatory file obligations for safety delivery. Preserve exact
+  ranked IDs/scores/path/edge IDs, lineage, source-unit references, fit-scope/
+  configuration/sklearn identities, raw stdout/stderr and pack digests.
+- [ ] Independently reopen every returned unit from frozen original bytes,
+  validate range/hash/order, and calculate required-file hits/denominator,
+  missing expected sources, unique discovered source/unit IDs, extraneous file
+  hits relative to the authored oracle, reopened UTF-8 bytes and serialized
+  pack bytes. Keep mandatory-delivery totals out of discovery numerators.
+- [ ] Recompute the literal baseline on the same four-source N3 corpus; retain
+  its exact observed IDs plus open_unit byte lengths/hashes. Keep historical
+  N2 artifacts unchanged. Full natural-language substring matching remains a
+  deliberately weak literal baseline, not an equal semantic algorithm; report
+  this limitation and do not infer general superiority from its zero hits.
+- [ ] Require a genuine SEMANTICA_OBSERVED result with matching0.7.0/revision,
+  nonempty actual fixture results, genuine SHACL and finite bounded scores.
+  Technical readiness and measured case quality are separate fields. A real
+  task miss/OOV/scope refusal is reported as that case's failure/limitation,
+  not a passing quality result or a reason to alter the frozen exam. No N3
+  measurement establishes universal semantic understanding or learned quality.
+
+Existing public command pattern (no --model-* or --rerank arguments):
+
+```powershell
+& 'C:\Python314\python.exe' -B 'memory-integrity\scripts\memory_integrity_workflow.py' knowledge-retrieve --claude-mon-root $n3Companion --project-root $n3Project --index-dir $n3Index --policy-file $n3Policy --task-file $n3Task --query-text $n3FrozenQuery --embedding-mode lexical --max-hops 0 --seeds 5 --max-visits 100 --max-results 5 --worker-python $n3Python --worker-timeout 60 --evidence-pack $n3NewPack
+```
+
+For the LSA arm only embedding-mode changes to lsa. Each call has its own new
+output paths. Never overwrite a pack or retry to replace an unfavorable score.
+
+#### Exact host-only worker stream retention adapter
+
+The CLI and fresh verification process install this adapter before runpy/API
+dispatch. Replace only worker_client's tempfile namespace in that host process,
+not the global tempfile module and not the worker response/process function.
+The actual worker still runs unchanged through WorkerClient/_process; Popen
+receives real binary file descriptors with identical read/write/seek semantics.
+No source file or response bytes are patched. Roles are harness labels, not
+authenticated producer identity. Each host command has its own new stream root
+and retained stream manifest; bind them to the outer command/ordinal and exact
+stdout/stderr/input hashes. This is not unchanged CI or an OS sandbox claim.
+
+```python
+from contextlib import contextmanager
+from hashlib import sha256
+import os
+from pathlib import Path
+from types import SimpleNamespace
+import uuid
+from knowledge_bridge import worker_client
+
+def install_retained_worker_streams(stream_root: Path, records: list) -> None:
+    stream_root.mkdir(parents=False, exist_ok=False)
+
+    @contextmanager
+    def retained_file(*args, **kwargs):
+        if args or kwargs:
+            raise ValueError('E_N3_TEMPFILE_SIGNATURE_CHANGED')
+        ordinal = len(records)
+        path = stream_root / (str(ordinal) + '-' + uuid.uuid4().hex + '.bin')
+        item = {'ordinal': ordinal, 'invocation': ordinal // 3,
+                'role': ('stdin', 'stdout', 'stderr')[ordinal % 3],
+                'path': str(path), 'closed_and_hashed': False}
+        records.append(item)
+        handle = path.open('x+b')
+        try:
+            yield handle
+        finally:
+            try:
+                handle.flush()
+                os.fsync(handle.fileno())
+            finally:
+                handle.close()
+            digest, count = sha256(), 0
+            with path.open('rb') as retained:
+                for block in iter(lambda: retained.read(65536), b''):
+                    digest.update(block)
+                    count += len(block)
+            item.update(bytes=count, sha256=digest.hexdigest(),
+                        closed_and_hashed=handle.closed)
+
+    worker_client.tempfile = SimpleNamespace(TemporaryFile=retained_file)
+```
+
+The coordinator must exclusively save records in a finally block even if the
+CLI raises SystemExit/ValueError or setup/spawn fails. Assert exactly three
+closed/hashed descriptors for each observed worker invocation, except a
+recorded partial stream-open failure, which cannot pass readiness. Independently
+decode the stdin/stdout when JSON is expected and compare the original worker
+result fields to the pack; stderr is retained as bytes, never causal authority.
+Test this adapter with real tiny Python stdlib child I/O before using the pinned
+worker: input/output/error bytes and exit statuses must survive context close,
+and deliberate output alteration/missing roles must fail the artifact checker.
+These are harness controls, not ranked-runtime proof.
+
+For the selected existing unittest fixtures, reuse N1's retained
+TemporaryDirectory context/cleanup pattern under this same run's fixture
+directory: cleanup/__exit__ retain the newly created directory rather than
+rmtree. Anonymous TemporaryFile handling is separate and is not supplied by
+N1's directory adapter. Keep any fixture/worker-subprocess cleanup differences
+explicit; never claim all third-party filesystem behavior is OS-contained.
+
+### N3-C - fresh-process verification, refusal and regression evidence
+
+- [ ] Reopen saved packs in a fresh host process with the actual
+  retrieval_v2.verify_pack(pack,doc,root,policy,task,WorkerClient(...)). It
+  reruns the real selected worker. Record exact equality/no new source drift.
+  This is the existing API, not an invented knowledge-verify CLI command.
+- [ ] In new copies, alter a required source and separately revoke required
+  access: named E_REQUIRED_STALE/E_REQUIRED_ACCESS_REVOKED, nonzero BLOCKED
+  result and no created pack. A command/permission/import failure is not a
+  correct safety refusal. Test optional stale exclusion while valid unrelated
+  required material survives; do not overwrite original source/index state.
+- [ ] Tiny authorized pack budget must refuse E_PACK_BUDGET with no truncated
+  mandatory material/no output. Unknown-vocabulary query must not invent a
+  vector/result. Graph-required no-worker control must still refuse even
+  though this separate runtime now exists; no global auto-selection occurs.
+- [ ] In a copied pack forge the embedding model identity and rehash its outer
+  digest; the actual verifier must reject it for a relevant inner identity/
+  replay cause. Missing/reordered source bytes and invented ready/semantic
+  flags must fail the harness oracle. Retain all bad copies and exact errors.
+- [ ] Run the same22selected host contracts plus the previously runtime-gated
+  RetrievalV2.test_actual_text_worker_incoming_replay_is_current_and_exact.
+  Run these six ActualOfflineRuntime tests against the real selected worker:
+  test_automatically_generated_vectors_rank_identifiers_with_real_semantica;
+  test_latent_and_hybrid_modes_are_deterministic_without_model_downloads;
+  test_oov_empty_input_and_unknown_mode_do_not_invent_vectors;
+  test_only_passed_authorized_corpus_changes_fitted_identity;
+  test_document_with_no_tokens_cannot_be_randomly_represented;
+  test_real_shacl_applies_predicate_domain_and_range.
+  Retain test IDs/counts/status/logs; a skipped required actual-runtime case
+  cannot count as proof. The existing hybrid numerical fixture is not a new
+  public hybrid search arm or learned-model run. Hash-seed/child-import cases,
+  prose cases, RealBenefit fixture execution, full discovery/CI and package
+  verifiers remain explicitly unrun unless separately scoped and approved.
+
+### N3-D - preservation, review and honest handoff
+
+- [ ] Compare every pre-existing repository source and retained N1/N2 artifact
+  identity before/after, not merely Git status. Product, companion, releases,
+  runtime definition files, CI and installed copies must remain unchanged.
+  Never regenerate historical packing lists or promote capability flags.
+- [ ] Preserve every raw command, worker stream, receipt, failed variant and
+  runtime; rollback means stop selecting the new absolute worker path and
+  retain it for diagnosis, not uninstall/delete data. Stop only the operation's
+  own worker processes if timeout handling requires it; never a broad kill.
+- [ ] Request one fresh read-only Fable reviewer of actual source bindings,
+  numerical/runtime proof, equal-scope metric denominators, negative causes,
+  preservation and claims. Parent reruns key verifiers. If a product defect
+  is found, stop and replan; do not repair product behavior under N3 authority.
+- [ ] Update existing plan/resume/state and the N3 report with exact hashes and
+  separate statuses: INSTALLATION_OBSERVED, WORKER_RETRIEVAL_OBSERVED,
+  CASE_QUALITY_MEASURED or CASE_FAILED/BLOCKED, SEMANTIC_TRUTH_UNVERIFIED.
+  Only mark bounded N3 complete when actual positive worker control and all
+  required safety/replay/preservation checks pass. Poor task retrieval remains
+  visible and blocks a recommendation to rely on it for those tasks. Learned
+  embeddings, real-project coding benefit, full CI, native fence, final paired
+  packages and installed readiness remain separate unqualified gates.
+
+Global stop conditions: new authority/scope, Windows access denial, unresolved
+dependency/ABI/pin/source drift, unauthorized deletion, foreign writer lock,
+missing original evidence, fabricated backend, or three failed correction
+attempts on the same host-only harness-validation cause. The latter ceiling
+does not authorize more runtime environments, package resolution/install tries
+or replacement task-quality runs; setup has the one-cycle limit above. Record
+precise failures and never bypass a gate.
+There is no promise of zero defects; isolation, observable controls and honest
+stop conditions protect the existing skill while uncertainty is tested.
+
+### N3 requirement-to-proof map
+
+| Requirement | Owner / exact proof | Closure boundary |
+| --- | --- | --- |
+| N3-R01 authority | N3-A retained human approval includes install, test-only selection and installer-owned new transient cleanup | No setup command before approval and reviewed plan |
+| N3-R02 isolation | N3-A new absolute venv, sys.prefix/base_prefix, pyvenv.cfg, original package/source identities | No user/global package change or installed-skill selection |
+| N3-R03 pinned identity | N3-A actual package versions/direct_url VCS revision, executable digest and WorkerClient check | No metadata-only or caller-declared runtime qualification |
+| N3-R04 real operation | N3-A finite numerical/SHACL/lineage positive control and actual public retrieval | Handshake alone cannot pass |
+| N3-R05 task discovery | N3-B frozen four queries and source obligations, required_units=[] ranking-only arms, raw ranked references/scores and independent file/byte metrics | Mandatory inclusion never enters discovery numerator |
+| N3-R06 fair/reportable limits | N3-B identical four-source access/corpus/caps and retained locator payloads | Node ranking vs literal units disclosed; no general superiority claim |
+| N3-R07 current evidence | N3-C new-process verify_pack rerun with real WorkerClient, original source closure and exact pack identity | No cached packet treated as fresh proof |
+| N3-R08 safety | N3-C named stale/access/budget/OOV/no-worker and rehashed inner-forgery negatives, no created blocked packs | Unrelated transport/import error cannot pass |
+| N3-R09 nonregression | N3-C same22 contracts plus one actual replay and six actual-runtime cases; exact IDs/no critical skips | Not full CI, learned evaluation or model benefit |
+| N3-R10 preservation/handoff | N3-D source and N1/N2 inventories, unchanged product/installed files, independent read-only review and parent verifier | No native/release/installed qualification or commit/push |
+
+Execution must report each requirement separately as observed, failed, blocked
+or unverified. Planned test names, source inspection and review approval are
+not executed evidence. This map adds no new milestone or authority.
+
+### N3 planning review corrections (no runtime execution)
+
+Initial read-only review required operational clarification before setup:
+one environment/one resolution-install cycle rather than ambiguous multiple
+attempts; explicit pip cache/index; absolute/hash-bound requirements; a concrete
+retained TemporaryFile adapter distinct from retained directory handling; and
+calling dry-run non-installing, never read-only. These corrections are now in
+the plan. The reviewer returned SHIP for plan acceptance only, with no remaining
+blocking finding. They are planning fixes, not observed installation, retrieval
+or qualification results.
+
+Final planning checkpoint: the exact reviewed plan snapshot is retained as
+private N3-Reviewed-Plan-cdf1cd7f.md, SHA-256
+cdf1cd7fa28cbee40d603572929f2b2adf0d71bd7ccab6aec66ca2a35a2a5c9f.
+It is an immutable evidence copy, not a second governor/plan store. This latest
+status/review annotation does not change the reviewed execution scope. Parent
+source, CLI/API, dependency and preservation checks agree with the bounded
+review. Original preflight N3-Plan-Preflight-becaf8a26b6f4df3a79dc73dd51491b3.json
+SHA-25615c1d40fa648b7111ce6f91de65c2f8c889b676da9169a5967a691d3bcedd2cf
+is retained but superseded: final verification found a transcribed worker.py
+hash error in that receipt, not a product-source change. The corrected measured
+N3-Plan-Preflight-corrected-20261018.json SHA-256
+c993e852d52a4d4933c2422c4d248279bac2e8a07de169a127b4d6ab658f8c9e
+binds all five fresh source hashes,528retained baseline files and525unchanged
+outside three planning docs. This parent evidence correction does not change
+the reviewed runtime plan or create new runtime/review qualification.
+
+Only the pending human N3 installation/activation/installer-owned-new-transient
+cleanup decision now blocks execution. If approved, execute N3-A through N3-D
+within this exact one-environment/one-setup-cycle scope without re-asking for
+the same milestone. If not approved, retain this ready plan and do not install,
+activate, build the new harness or repeat already closed N1/N2/host discovery.
+No actual N3 worker/runtime test, dependency resolution, download or installation
+has run. No new commit/push, product/package/installed change or qualification
+activation occurred.
+
+### N3 execution authorization - 2026-10-19
+
+AUTH: user approved "N3 isolated setup/tests" and explicitly listed N3-A through
+N3-D. Follow-up cleanup decision: "Allow cleanup of new installer-owned temporary
+files only (Recommended)". This closes the pending install/test-only-selection
+and new-installer-transient exception, not a commit/push or installed-skill gate.
+Execute the reviewed scope; do not ask for the same milestone again.
+
+INTENT: create only private N3 harness/evidence and one isolated environment;
+observe real retrieval if setup works. Product source, dependencies, packages,
+installed copies and all pre-existing data remain unchanged. Existing three
+dirty Fable planning files are preserved. Baseline HEAD is0584a89.
+
+Execution ledger: N3-A in progress; N3-B/C await successful setup/positive control;
+N3-D preservation/review follows observation. Ruling: retain all evidence and use
+this existing Fable ledger rather than Superpowers' additional workspace/plan,
+automatic commits or deletion lifecycle, because the approved plan explicitly
+forbids competing governance, commits and removal of existing records. Cost if
+wrong: less automatic bookkeeping; explicit retained receipts replace it.
+
+N3-A execution checkpoint: private harness controls20/20 and existing selected
+contracts22/22 passed. Original N2 obligations/questions and four source files
+are frozen for N3; no canary or target-code execution. One py.exe venv command
+started the launcher but its pinned Python3.12 child was denied access (exit101),
+no venv exists, zero resolution/install commands. Retain the same empty run
+n3-retrieval-9ec6fb1db36444acba2945896e8b8d17 and original Setup-Receipt hash
+0b1e5fde9b8899474c21d46796b72e6dd2184676baa20abdb1a23f74df061dfd.
+The normal-host handoff must not create another run or retry any started setup.
+N3-B/C actual-runtime tests and quality metrics are BLOCKED, not passed; their
+full orchestration is not yet implemented. N3-D independent execution review is
+pending after the first reviewer hit capacity; one same-role retry requested.
+Evidence/status: docs/fable/evidence/retrieval-runtime-20261018/report.md.
+
+Ruling: the one-shot installer stop is preserved; a normal-host continuation is
+only allowed after proving the pinned Python child never started, the venv is
+absent and no resolution/install started. Launcher exit101 is distinct from a
+Python-run failure. Cost if wrong: unintended second setup; the exact retained
+diagnostic and no-environment/no-install guards refuse ambiguous cases.
+Ruling: do not execute broad discovery/model/native tests despite a generic
+testing instruction, because the approved N3 test allowlist excludes them.
+Cost if wrong: unknown broader regressions; report this exact coverage limit.
+
+Final parent checkpoint:21/21 controls after an additional exactPython3.12.10
+pin falsifier passed RED-to-GREEN. Identity is checked before resolution and
+again with numerical imports; no changed setup path was executed. Both fresh
+read-only reviewer attempts failed from selected-model capacity; no review
+verdict exists and no model was silently substituted. Retain Independent-Review
+in the same run. Host N3-A entrypoint is parent-checked/hash-bound only. B/C
+orchestration/actual-runtime observations and D independent review remain open.
+
+### N3-A host resolution failure and bounded amendment — 2026-10-19
+
+Host receipt f556ab5071892b5ae1d4daf0765fd5b74433aa76496b0998da871808f471571e
+and all six logs are verified. The existing isolatedPython3.12.10 environment
+was created and identity passed. The single permitted resolver started, then
+Git clone refused the224-character .git path with '$GIT_DIR' too big. No install
+command started; no numerical imports or worker retrieval ran. The previous
+agent-access blocker is no longer the normal-host blocker.
+
+Root cause reproduced read-only: installedGit2.53.0.windows.1 passes its length
+gate at220characters (then refuses a nonexistent repo) but rejects221and224;
+process-local core.longpaths=true still rejects224. Exact upstream setup.c
+atv2.53.0.windows.1 lines1021-1022 checks PATH_MAX minus40. The coordinator's
+deep installer TEMP layout was defective; no credential/pin/user error is shown.
+Evidence: same run Host-Resolution-Diagnosis.json and latest N3 report.
+
+N3-A2 PROPOSED, NOT APPROVED: keep the same venv, all helpers and receipts;
+add one short exclusively owned installer workspace under
+C:\Users\sakth\Documents\Codex\n3-install-<new8hex>, one recovery helper and
+offline path/ownership/no-repeat regressions. No system config, ACL, archive
+substitution, dependency pin or installed-copy change. Exactly one additional
+resolver is proposed, and at most the original still-unused install after
+validated resolution, followed by original N3-A positive checks. Preserve all
+raw outputs under new exclusive names. Installer-only NEW transient cleanup
+must explicitly cover the new owned workspace; old data are never removed.
+
+Options: no-build hold; minimal one-letter temp inside existing run (Git dir211,
+only9chars headroom); recommended short owned workspace (substantial headroom,
+same venv/pins and provenance). Source guard and real boundary probes agree on
+the failure; no runtime evidence proves the fix or dependency availability.
+Weak link: remaining dependencies/ABI and installed-path behavior. Cheapest
+falsifier: offline UTF-8 path-budget guard before the single new resolver;
+stop on any mismatch/failure, no second retry or unpinning. Rollback: stop
+selecting the new workspace and retain every file and prior checkpoint.
+
+Approval for this retry/layout amendment is required because the original
+one-resolution limit is now consumed. This is not a new approval for all N3
+or a waiver of N3-B/C/D, review, release or installation gates. Do not rerun the
+old one-shot host script, create another venv, or implement/run recovery yet.
+
+### N3-A2 approved execution — 2026-10-19
+
+AUTH: user replied "Approve bounded N3-A2 recovery (Recommended)" to the exact
+short-workspace/one-additional-resolver amendment. Keep the existing venv and
+all prior helpers/receipts. Scope includes successor private helper, retained
+offline path/ownership/no-repeat checks, one short owned installer workspace,
+one additional resolver and at most the original still-unused install after
+validation. New installer-owned transient cleanup only; all old data retained.
+
+INTENT: prevent the observed Git224>220path failure by rejecting predicted
+UTF-8 Git paths above160bytes before invoking pip and using the approved short
+installer workspace C:\Users\sakth\Documents\Codex\n3-install-ef149e14\tmp.
+The workspace is created exclusively once and bound to this run/receipt; it is
+not another Python environment. Old helper062b298d and hostreceiptf556ab50 stay
+unchanged. If agent cannot start the existing venv, retain a precise result and
+hand off the same reserved recovery before its resolver starts. Do not spend a
+second resolver or ask for this already-approved amendment again.
+
+N3-A2 checkpoint: successor and16retainedcontrols built, RED-to-GREEN; original
+21controls and22hostcontracts pass fresh. Predicted .git path123UTF-8bytes,
+97headroom, enforced cap160. No new resolution/install has started. Agent could
+reserve recovery-a2 but approved short-root creation was denied; adjusted normal
+New-Item diagnostic recorded actual AccessDenied. Stop directory retries here;
+normal-host continuation may create that same exact approved root once without
+another approval, not another workspace/env. Existing one-shot scripts unchanged.
+
+Parent found/fixed an initial successor early-error receipt gap with two new
+controls plus a missing/aliased-temp guard; first code snapshot11cc57df and null
+receipt observation are retained. First exception was not captured; subsequent
+directory denial is separate observed evidence, not reconstructed causation.
+Current successor eba239e5 preserves pre-creation errors and binds the controlled
+host handoff to source/receipt/denial identity and no prior child/resolver/install.
+
+Native Fable reviewer again failed at selected-model capacity; one attempt this
+amendment, no substitute, no independent pass. Parent-only handoff guards pass.
+Normal-host command and exact traces are in latest N3 report. Review, actual
+runtime and full N3 completion remain UNVERIFIED. TWINS: old installer-temp
+construction remains only in the preserved original helper; successor overrides
+TEMP/TMP for approved installer commands. No production source was changed.
+
+### N3-A2 host result and bounded offline diagnosis — 2026-10-19
+
+Receipt e857e7299fbd8279d2abf832bc57d79a34aa58e200ab8ccc85b8d8140b1340b5
+confirms identity and the one additional resolver exited0. No installation
+started. Reading pip's saved UTF-8 report with the controller's defaultcp1252
+failed at byte29148. Pinned local pip install.py writes this report explicitly
+as UTF-8. This is our private helper defect, not a user command/API-key error.
+
+Read-only UTF-8 revalidation also exposed a second independent blocker: all50
+approved package versions match, but Windows resolves53packages. Extra packages
+are colorama0.4.6 (loguru/tqdm Windows markers), tzdata2026.5 (pandas Windows
+marker), win32-setctime1.2.0 (loguru Windows marker). The unchanged strict
+validator rejects the additions. Do not bypass it or silently change the lock.
+
+INTENT: inside approved N3 diagnostic scope, add a private read-only UTF-8 report
+auditor and RED-to-GREEN controls, bind existing receipt/report/helper hashes,
+verify logs and preserve all old artifacts. No resolver, install, venv creation,
+new workspace, pin change or production edit is authorized by this correction.
+Update this same plan/evidence/state; propose a Windows-specific pin amendment
+only after the actual saved report and parent dependency markers are verified.
+
+Options: stop with retained evidence; recommended separately approved private
+Windows overlay preserving all50pins plus the3observed exact dependencies and
+reusing the saved resolution; rejected ignoring dependencies/using no-deps or
+relaxing validation. No third resolver is currently approved or required to
+inspect the saved report. The unused original install remains conditional on
+validating a dependency scope approved by the user. No whole-N3 success claim.
+
+N3-A2 diagnostic outcome:7/7newofflinecontrols passed after RED7/0; saved report
+read and unchanged validator refuses the3extras. Diagnosisebc12741 retained in
+same run; all4hostlogs/Results hashes match, no install directory or installed
+package beyond originalpip25.0.1 exists. Original helpers left unchanged. Twin
+search found the same defaultencoding pattern for Installation.json and stream
+manifests; a future successor must handle all externalJSON explicitly asUTF-8.
+Broader21/22suites and CI were not rerun for this private auditor-only correction.
+
+N3-A3 PROPOSED, NOT APPROVED: a private Windows overlay adds ONLY
+colorama==0.4.6, tzdata==2026.5, win32-setctime==1.2.0. Original50pins/source
+revision/lock/source files remain unchanged. Reuse saved resolution92fca79b,
+same venv/shortroot, all receipts; no third dry-run resolver. Implement/test an
+install-only successor with explicitUTF-8 and exclusive unused-install claim;
+at most originaloneactualinstall if the exact53package scope/provenance checks
+pass, then original pipcheck/imports/status/positive retrieval controls. Preserve
+all olddata; only approved installer-owned NEW transient cleanup. No globalGit/
+ACL/skill/package-release/model/native/commit/push action. On further mismatch,
+stop, retain evidence and return to user. Exact definition/limits in latest N3
+report; this proposed dependency expansion requires separate approval.
+
+### N3-A3 approved install-only execution — 2026-10-19
+
+AUTH: "Approve N3-A3 private Windows overlay and guarded continuation
+(Recommended)". The exact approved additions are colorama0.4.6, tzdata2026.5,
+win32-setctime1.2.0. All50originalpins/source revision, same venv/shortworkspace,
+saved report and old evidence remain intact. No extra dry-run resolver/newenv/
+olddata deletion/globalconfig/model/native/commit/push/installedskill action.
+
+The completed native read-only review ships the preceding diagnosis/proposal
+only, not installation/runtime. Its install gates are adopted: complete53-row
+validation before exclusive install claim; exact saved Start.json bindings;
+explicitUTF-8 at every externalJSON boundary; full preinstall venv inventory;
+unambiguous consumed-resolver versus auditor/no-resolver evidence fields.
+
+INTENT: create only private recovery-a3 overlay, installer/evidence/tests and
+guarded successor. Derive a complete install input from saved approved53rows,
+binding52archiveURLs/hashes and exactSemantica VCS revision; no --no-deps or
+acceptance relaxation. Use no existing pip cache writes. Retain full venv bytes
+inventory before selection/after attempted execution, plus repository hashes.
+Identity must pass in the existing interpreter before any exclusive install
+claim. One actual install only; no resend after ambiguous/failed start. A known
+agent process-start denial may hand off the same untouched environment before
+install claim, not authorize another install. Scope/identity drift stops work.
+
+Execution order: test guards RED-to-GREEN; prepare/hash all private inputs and
+baseline; rerun previous7/21/22offline checks; obtain fresh final-code review;
+attempt existing-interpreter identity and originalunusedinstall if accessible;
+pipcheck/numericalimports/workerstatus/realpositive retrieval; inspect exact
+receipts and preservation. If host launch is denied, retain exact result and
+provide a sealed one-time normal-PowerShell continuation under this approval.
+N3-B/C evaluation and N3-D final review do not become complete automatically.
+
+N3-A3 pre-execution checkpoint:17controls pass (RED16toGREEN16, early-preflight
+masking RED1toGREEN17). Prior7/21/22checks pass fresh; actual offline53row/Start
+preflight passes, generating52wheelhashrefs plus pinnedVCS. Preview fullvenv
+inventory861files107directories12049845bytes. No prepared/identity/install claim
+yet. Final native code review failed remotecompaction/workspacecredits, then
+same-role retry failed selected-model capacity. No substitute, no pass. Retain
+Independent-Code-Review.json; no further retry at this checkpoint.
+
+Ruling: continue already-approved isolated work on parent-verified controls,
+explicitly marking independent code review UNAVAILABLE rather than passed.
+Prepare immutable inputs/baselines and attempt existinginterpreteridentity;
+only a valid sameenv identity and complete unchanged preflight can reserve the
+originalunusedinstall. This does not close N3-D/release/installedskill gates.
+
+N3-A3 actual agent observation: preparation and full preflight passed. The venv
+launcher started (pid44544), exited103 with exact stderr "No Python at" pointing
+to its original WindowsApps base alias, and emptystdout. This is NOTWinError5
+and the existing narrow host guard correctly refused. No install claim/command
+was created. Entire861file/107directory baseline and repo inventory are unchanged.
+Retain receiptee02b50e and sealedoldsuccessore719eda7/Prepared.json untouched.
+
+Primary CPythonv3.12.10 PC/launcher.c defines RC_NO_PYTHON103 and reports this
+message when GetFileAttributesW cannot see the configured base executable,
+before invoke_child. Agent cannot see that alias. Normalhost accessibility is
+not established anew; priorhost3.12.10 identity succeeded. No path/ACL/env repair.
+
+INTENT: necessary bounded N3-A3 correction, not new install authority: add a
+small sealed host-only adapter that recognizes ONLY this hash-bound103receipt,
+exactcommand/error/emptystdout and unchanged fullenv/source/input baseline.
+Keep original installer, Prepared and failed receipt unchanged. Adapt only the
+handoff predicate; originalfull53preflight, identity, exclusiveunusedinstall,
+hash checks and runtime checks execute unchanged. No third resolver or agent
+identity retry. Ordinary errors, changed evidence/env or prior install/hostclaim
+remain refused. Tests must fail before adapter and pass after; normal-host
+one-time command stays within existing N3-A3 approval. Native review unavailable.
+
+### N3-A observed working; continue approved N3-B/C — 2026-10-19
+
+Host receipt7e3a4605c2892e1aaad5082ab52e11a2ea6b644ffb13d2790e6006b0d8e8598e
+matches; all6commands exited0,12output hashes/Result records verified. All53
+installation rows match saved versions/origins/archive hashes/VCS revision;
+pipcheck and numericalimports passed. Both retained workerinvocations match
+publicstatus/positive stdout; retry ranks first, SHACLconforms, lineageverified.
+No preexistingvenvfile changed; repository unchanged duringrun. Originalinstall
+allowance consumed. Never rerun setup, select anotherenvironment or use old
+empty-venv guards. Semantictruth/learnedquality/fullN3 remain unverified.
+
+INTENT: execute remaining already-approved N3-B/C/D, no new scopeapproval:
+private evaluation harness/tests/evidence inside same N3run; preserve frozen4
+sourcefiles, Oracle/source-map, oldartifacts, same installedruntime and product.
+Reuse original retained WorkerClient descriptor adapter/publicCLI. Prepare new
+index and literal measurements without worker execution; record that Python
+projectconstruction has0worker calls. Host then runs frozen lexical/LSA versus
+literal arms, independent required-unit delivery, fresh-process verify_pack,
+named safety negatives and exact29selectedtestcases. No installer/download,
+model/provider/native action, copied-target execution, productfix or Git action.
+
+Mechanism/verification detail: separate discovery(required_units=[]) from
+mandatory arms in everycase/mode; explicitfrozen bounds/queries/access, opened
+bytes and outerpack identity. Literal locator uses same sources, retains both
+natural-language and assistederrorphrase probes; no semantic superiority claim.
+Each invocation gets an exclusive new directory, streams and no output resend.
+Fresh API verifier is a new host process, not a fictional CLI. Mutate only new
+source/pack copies for stale/access/budget/OOV/no-worker/forgery refusals; require
+named semanticcause, no outputpack. Preserve unrelatedvalidsource delivery.
+
+Run only approved22hostcontracts+1actual replay+6ActualOfflineRuntime methods,
+retaining fixture directories and realworkerstreams. No broad discovery or
+targetproject tests. Preflight binds currentinstalled posthostmanifest and
+alreadyobservedreceipt/source/oracle hashes, not prior pip-only environment.
+No further agentPython3.12 launch attempt: previousalias failure remains known;
+prepare a one-time normal-host evaluation entrypoint if access is still absent.
+Write falsifiers first; independentread-only review requested at handoff, with
+no pass assumed. Productdefect stops/replans; quality misses remain visible.
+
+Progress:14oracle+7coordinator+21originalharness+22hostcontracts pass fresh;
+allredfixtures retained. Publicindex/literalbaseline and8no-workerpublicpacks/
+8freshverifiers observed; index4sources52nodes170edges,0constructionworker.
+Questions/caps/sourceidentities unchanged. Prepared SHAae96299c169076491dd238898e512448bdf6aaea0cd26daf6160cb146573d992
+binds runnerf935c051/contracts1970c7e0 and inputs. Ranked/safety/exact29runtime
+evaluation unrun; freshreview requested, no passassumed. Hostentrypoint
+-ValidateOnly passed. See sameevidencereport/currentresume for receipts and
+measured literalmisses. No setup/product/model/native/Git/release/installskill.
+
+Freshread-onlyreview returnedFIX-FIRST for evaluatorbinding/exact29allowlist/
+OOVsafetybasis and separatelyforgedsemanticflag. Accepted, withinN3harnessscope;
+no productfix/newmechanism. Retain sealedoldsource/Prepared/output. Successor
+contracts-v2(515bd5e3), evaluator-v2(259e569d), newevaluation-bc-v2-20261019 root;
+sameinstalledenv/frozenexam, no resolution/install/model/native/Git.20v2oracle
+controls REDbefore/GREENafter plus7v2coordinator controls green; actualoldfresh
+verifier counterexamples reproduced, newexperimentvalidator refuses. Preserve
+diagnosticfalse-start logs. Obtainfreshv2review, prepare newindex/inputseals and
+one-timev2hosthandoff; oldhostentrypoint superseded, do notrun. Actualquality/
+worker-dependent safety/exact29runtime tests and N3-D stillunrun.
+
+Secondreview acceptedpriorfixes and foundemptyrankedclassification gap. Same
+approvedscope v3successor keeps alloldsource/records: classifyemptyrankedfailed,
+retain/replaybutexclude fromsafetybasis; separateliteralbaselinelabel; finite
+boundedscorechecks; explicitqualityfailures.25v3oracle+7coordinator+21existing
+harness+22hostcontracts=75selectedchecks green. Prepared0d7a883a sealsv3runner
+0f0c37e5/contracts d0bc0e9d in evaluation-bc-v3-20261019; public4sourceindex
+52nodes170edges/0worker. Do notrunoldentrypoints. Freshfinalv3review/preflight
+pending; no actualranked/safety/29runtime/N3-D completion claimed.
+
+Finalv3 nativecodereview SHIP_FOR_APPROVED_HOST_HANDOFF_ONLY, nocritical/
+importantfinding. Configuredhost -ValidateOnly actuallyexited0;2v3literalpacks/
+2freshverifiers pass. ExtraWindowsPowerShell5.1 -File diagnostic refusedbyagent
+scriptsdisabledpolicy, retained/no policychange/retry; notnormalhostresult.
+Parentfinalread-only Pythoncontroller preflight separate, noPSsecuritybypass.
+Only Run-N3-Evaluation-v3-20261019.ps1 (d11a168a) with Prepared0d7a883a iscurrent.
+Alreadyapproved normalhostrun remainsnext; noinstall/download/model/native/
+Git/product/installedskill changes. ActualB/C/N3-D remainsunrun. Readreport.
+
+### Host preflight preservation discrepancy — diagnose only, 2026-10-19
+
+User ran currentv3 once. It stopped in --inspect at
+E_EVAL_ORIGINAL_EVIDENCE_CHANGED before --run/hostclaim. Do not rerun evaluation.
+Current agent filehash comparison: fourprojectfiles and all454priorN1/N2files
+equal originalBefore; strictscans reportnoerrors/nolinks. Normalhostdiscrepancy
+not reproduced here. Differentvisiblepaths/content/context or a transientchange
+remain hypotheses, not causes. No baseline replacement/ignore/requalification.
+
+Options: genericerroronly cannot isolate cause; rebuildingbaseline could hide
+realchanges and is rejected; recommended smallest step is one additive
+read-only diagnostic under sameN3scope, binding immutablePrepared/Before/source,
+enumerating only thosefourprotectedroots, retaining exactadded/missing/modified
+paths/hashfacts and access/link observations separately on agent and host.
+No worker/publicevaluation/install/resolver/process/security/Git/native/model
+call. Tests must distinguish additions/deletions/edits from identicalviews,
+and incompleteenumeration from a validno-difference observation. Keep allfiles.
+Freshread-onlyreview before hostdiagnostichandoff. Cheapestfalsifier: exacthost
+diff. Pivot: any changedhistoricalbyte needs source/provenance reconciliation;
+anycontext-onlyviewdifference needs reviewedinventorydesign, not a relaxedguard.
+Neitherfinding authorizes another native/ranked evaluation or baseline rewrite.
+
+Diagnostic reviewFIX-FIRST accepted: remove secondunsafe rglob, addexternal
+hashbinding, distinguish diagnosticnondeletion from missingoriginalcause, make
+visiblemismatch nonzero. Successorv2(7399be39) and sealedlauncher(d9c26b8d),
+11controlsREDbefore/GREENafter includingrealprivatejunctionno-targetread,
+4actualPowerShellgatecontrols pass. Same4protectedroots/newreceipts only; all
+oldcode/data/linkfixtures retained. Newfinalreview requested before one normal
+hostdiagnostic. Noevalretry/rebaseline/product/runtime/Git/securitychange.
+
+Finaldiagnosticreview SHIP_FOR_ONE_READ_ONLY_HOST_OBSERVATION; parent11controls+
+4gatechecks pass, code7399/launcherd9c26 pinsunchanged. Normalhostcause notsolved;
+only nextallowedaction is externallyhashchecked launcher to recordexacthostdiff.
+No N3retry/baselinerewrite for any diagnosticstatus. Read latestreport/resume.
+
+### Approved narrow evidence read grant and local checkpoint - 2026-10-19
+
+AUTH: user requested "COMMIT EVERYTHING" with no file/data deletion, then
+explicitly selected "Grant normal-account read access to the 19 folders/38
+files; keep all checks (Recommended)". This replaces the earlier no-ACL-change
+boundary ONLY for these exact targets and this normal account. It authorizes
+neither push nor N3 evaluation retry, code disabling, exclusions or rebaseline.
+
+Observed host diagnostic b7b0b4e39282a7b998fb168e3cd0f1aa333e2d5674f322a8ef38cca401bd4d5c
+contains 19 PermissionErrors and 38 unobserved baseline paths; project4/N2-82
+match. Agent readback confirms all38files currently exist and hash-match.
+All19folders have protected DACLs owned by CodexSandboxOffline, with only
+owner/SYSTEM/Administrators access. Both parents inherit normal-user access.
+N1 retained tempfile.mkdtemp folders; Python3.14 creates them with0o700 and
+protected Windows owner-only ACLs. N3's rglob inventory suppresses scan errors.
+This explains the current cross-account observation difference and strongly
+supports the old preflight-cause inference; original failed inventory was not
+retained, so exclusive historical causation is not claimed.
+
+INTENT: save original57ACL descriptors and38hashes, then add normal account
+SAKTHI\\sakth (SID suffix1001) an explicit non-inheritable read/list/traverse
+rule on19folders and read-only rules on38files. Preserve every old ACE, owner,
+group and inheritance-protection flag. No Everyone/Users grant, write/delete
+permission, file execution grant, recursive ACL reset, deletion or bypass.
+Before.json under private permission-read-grant-20261019 retains all descriptors
+and target/file/doc identities; hash4894b3826f7107b1de83e1ae6efd21b5044bd68316e3b0f04278729f94f3327a.
+
+Done: exact57target allowlist/no-reparse validation, unchanged old descriptors
+before mutation, intended vs actual descriptor equality after mutation, all
+original458protectedfile hashes unchanged, sealed N3 inputs retained, no N3
+claim/receipt created. Direct normal-host read remains separately UNVERIFIED
+unless actually observed; static ACL proof must not be called a host read.
+Record partial effects on any exception; never replay blindly or delete files.
+Recovery reference is the retained original descriptors, not automatic removal
+of permissions or data. Run no diagnostic/evaluation and keep retryfalse.
+
+Then reconcile the existing four Fable records, validate their exact staged
+bytes and all source preservation, and commit all pending repository changes
+locally as a WIP evidence checkpoint. Private runtime/helpers/raw receipts stay
+outside Git as previously specified. No push/CI/release/install qualification.
+
+ACL execution checkpoint: the first Set-Acl attempt refused SeSecurityPrivilege
+before any target was changed. After.json retains0applied and all57old descriptors/
+38hashes still match. Stop that attempt; never rerun it or overwrite its outcome.
+PowerShell7.6.5 primary source shows full-section copy plus a fallback comparing
+audit protection against access protection; actual target has audit=false and
+access=true, so it still requests Audit. No privilege/elevation/ownership change.
+Review a separate Access-only successor using fresh DirectorySecurity/FileSecurity
+and SetSecurityDescriptorSddlForm(expected, AccessControlSections.Access), then
+FileSystemAclExtensions.SetAccessControl. Kernel DACL authorization still applies;
+no audit/owner/group section or privilege APIs may be invoked. Same57allowlisted
+targets, exact old/new descriptors and hashes, no new grant rights or authority.
+If the revised method refuses, retain it and stop; commit accurate partial state.
+
+Access-only result: first directory read ACE applied; exact-text guard stopped
+because Windows set AI (DiscretionaryAclAutoInherited,1024). Its two children
+also gained AI and reordered the SAME three inherited Allow ACEs; no rights,
+owner/group/protected state or38file bytes changed. After-AccessOnly.json retained.
+Microsoft documents this resource-manager normalization. Native reviewer SHIP
+for a separate bounded continuation: require all57raw descriptors equal that
+retained partial state, skip the completed directory, and apply remaining56once.
+Use an exact multiset of complete binary AccessAllowed ACEs (duplicate counts
+matter), exact owner/group/protected/other control flags, and only AI0-to-1.
+Reject Deny/object/callback/opaque/null/empty DACL, ACE additions/removals/rights/
+inheritance changes or AI removal. SACL is not read with privilege or written.
+Original strict comparator reproduces3expected failures among14controls. First
+semantic control run16/17 exposed a swallowed false result in a PowerShell array
+expression; preserved unchanged. V2 throws to its outer refusal handler and all
+17controls pass, including write/deny/missingACE/protection/owner/group/AI removal.
+Prepared-Normalized.json binds exact known partial state/next expected ACLs;
+all old source/receipts/claims remain immutable. Any new difference stops work.
+
+### Final permission checkpoint - partial, no fourth write attempt
+
+The normalized continuation added3grants before its raw pre-write guard stopped
+at "Concurrent ACL change". Combined with the first directory, current verified
+total is4of57 (2directories,2files);53remain (17directories,36files). Setting the
+second parent's DACL normalized its children's inheritance metadata before the
+child raw-SDDL check. The post-write semantic validator was correct; the remaining
+pre-write raw comparison still failed to account for the parent's own effects.
+Do not relabel this as a completed permission repair or external interference.
+
+After-Normalized.json SHA256 ffc984df4a75234c1d12b5872b9a75ad73fc1274b7958135cad58da7e0a341c0
+and Checkpoint-Partial-20261019.json SHA256 4febc0bfd6978abcaf7ee4cd10cb5f3869b5ff9eab85128f84afe299a84aea6f
+retain the exact partial state. All57current descriptors match the saved outcome;
+all old access semantics/owners/protection are preserved and all38filehashes match.
+No further ACL writes after three stopped write cycles. Fable/Superpowers require
+architecture discussion before another correction. User said CONTINUE; perform
+read-only verification and the already-approved local commit, not a fourth trial.
+
+Architecture options for discussion only: hold this safe partial state (no further
+progress); recommended smallest successor processes pending36files before17parent
+directories, verifies known raw state before the operation and semantic invariants
+after every own write/final hierarchy check; stronger propagation-aware journal
+refreshes every affected child after each parent write but adds complexity. Neither
+successor is implemented or executed here. Test parent-induced child normalization
+and hostile rights/owner/inheritance drift before selecting another write sequence.
+Existing4grants must never be replayed. Any unexpected access difference stops.
+
+Commit authority is local only: all four pending repository Fable records, including
+the retained N3 history and latest honest status. No source code or important detail
+is removed/disabled/excluded; private helpers/runtime/receipts stay retained outside
+Git. A new commit changes HEAD while the old N3 evaluator pins0584a89; do not change
+that guard, rerun old scripts or rebaseline. A reviewed exact-commit continuation
+and explicit N3 retry authorization remain separate. No push, release or install.
