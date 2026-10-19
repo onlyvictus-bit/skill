@@ -634,3 +634,29 @@ Local checkpoint contains only the four pending Fable records. Private receipts,
 helpers and installed runtime remain outside Git. Commit changesHEAD, so original
 N3's0584a89 basis guard must still refuse; a reviewed exact-commit continuation
 plus separate retry approval is needed. No push, release/package/install change.
+
+## Current checkpoint - all57read grants verified, 2026-10-19
+
+User approved the bounded files-first53grant correction, with no deletion, push,
+installation or N3evaluation. Native Sol independently reviewed the exact frozen
+helper/inputs and returned SHIP for53grants only.23controls pass (oldorder fails
+2sequencingchecks);2actual readonly preflight falsifiers refuse drift/bad hash.
+
+Executed once:36pending files first, then17pending sibling directories;4earlier
+grants skipped.53intent/outcome pairs retained.57/57finaldescriptors and38/38file
+hashes verify. All oldowner/group/protection/ACEsemantics retained.458protected+
+1015preexistingN3+525unrelatedrepositoryfiles hash-match;25olderprivateACL artifacts
+and2outerparent descriptors unchanged. No file/data deletion or weakened check.
+
+Private successor: permission-read-grant-20261019/files-first-20261019/.
+Receipt.json SHA7ecfc174be19ec2faf1512eb2c6e399715c820b087363807b7a251dfce575c26.
+Verification-After.json SHAcff8099a9908d8398a2795b9cb46b42ddecf865ea0c4e6c30ff41ecd0157b4fc.
+Earlier attempts, claims, descriptors, tests and baseline bytes are retained.
+Do not invoke the completed grant helper again; state/claim guards refuse replay.
+
+Normal-account runtime readback is still UNVERIFIED; agent ACL verification is
+not a normal-host read. N3-B/C/29runtime tests/N3-D remain unrun; retryfalse.
+HEAD remains4f5885656d07bb938560a17451b372bc1ea94da1, new4Fableedits uncommitted.
+No push/newcommit/install/qualification activation. Next prepare/review normal-
+host readback and exact-current-commit N3 continuation, then obtain separate
+evaluationretry authority. Do not rerun oldN3 command or bypass0584a89HEADguard.

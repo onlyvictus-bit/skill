@@ -1982,3 +1982,74 @@ is removed/disabled/excluded; private helpers/runtime/receipts stay retained out
 Git. A new commit changes HEAD while the old N3 evaluator pins0584a89; do not change
 that guard, rerun old scripts or rebaseline. A reviewed exact-commit continuation
 and explicit N3 retry authorization remain separate. No push, release or install.
+
+### Approved files-first correction - 2026-10-19
+
+AUTH: the current user requests completion of the remaining36files then17parent
+folders with the same strict permission/content checks and explicitly excludes
+deletion, push, installation and N3 evaluation. This approves the bounded53grant
+successor following the three stopped cycles; it does not approve another commit.
+Basis HEAD4f5885656d07bb938560a17451b372bc1ea94da1 is clean. Fresh read-only
+verification confirms57raw descriptors equal After-Normalized.json and38hashes
+match;4already-complete targets must never be replayed.
+
+INTENT: replace parent-first scheduling only. Freeze all57raw starting descriptors,
+skip4completed targets, apply pending36files before17sibling directories. Preserve
+exact SID/rights/explicit noninheritance, owner/group/protection, old ACE multiset,
+38contenthashes and AI0-to-1-only normalization. Fresh DACL-only .NET persistence;
+no Set-Acl, owner/SACL/privilege operations, policy changes or recursive resets.
+
+Options: holding preserves partial access but makes no progress; files-first is
+the smallest complete correction; a propagation-aware scheduler adds unnecessary
+state for this flat19-parent hierarchy. Weak link: unexpected backend normalization
+or concurrent access change. Cheapest falsifier: retained parent-first ordering
+regression followed by files-first execution; any unsupported ACL drift stops.
+
+Tasks and proof: (1) reproduce old-order failure and add sequencing/descriptor
+refusal controls; (2) prepare a sealed exact allowlist/order and check all current
+raw state, reparse/hardlink safety, HEAD and preserved-source hashes; (3) execute
+once with exclusive claim/durable per-target intent and outcome,36files then17dirs;
+(4) verify all57semantic descriptors/38hashes plus458protected and1015preexisting
+N3files and525unrelated repository files, then independent read-only review.
+Stop on any unrecognized state; no automatic repeat, rollback, deletion or grant
+removal. Original descriptors remain the recovery reference. All fixtures retained.
+
+Fable is the sole governing ledger. Superpowers supplies test-first, inline
+execution and fresh-review checks, not a competing plan store. Reuse the existing
+isolated development checkout/private evidence; no new worktree, dependency setup,
+automatic commit/cleanup or installed-copy replacement. User preservation rules
+override skill cleanup defaults. No worker or full product suite is run for this
+permission-only task: broader verification is baseline-compared byte preservation,
+not a new claim that existing unfinished native/product tests are green.
+
+Done means53new exact grants and57totalverified targets with no content loss or
+extra authority. Agent readback proves ACL state, not normal-account runtime reads.
+Normal-host read remains UNVERIFIED unless actually observed. The old N3 runner
+still pins0584a89; do not bypass it, overwrite baselines or rerun evaluation. A
+reviewed exact-commit continuation and separate evaluation authorization remain.
+
+Execution result: COMPLETE_FOR_APPROVED_ACL_SCOPE, normal-host read UNVERIFIED.
+Native Sol review SHIP preceded the one files-first attempt. Old natural-order
+test reproduced2orderingfailures; successor23/23controls and2actualpreflight
+drift/hash refusal probes pass. Initial newhelper preflight caught a PowerShell
+array-expression grouping defect at the final countgate before anyACLwrite;
+corrected grouping then passed458protected+1015oldN3+525unrelatedrepo hashes.
+No baseline or expected count was changed to pass. All old artifacts retained.
+
+Exactly36file then17directory DACL-only writes completed, each with durable
+intent and verified outcome;4completed targets skipped. Final57descriptors,
+38hashes and oldowner/group/protection/ACEsemantics verify.25priorprivateACL
+artifacts and2outertemp-parent descriptors remain byte/raw-identical. No content
+deleted or code hidden, no new qualification flag, N3retry, install, commit/push.
+Receipt files-first-20261019/Receipt.json SHA256
+7ecfc174be19ec2faf1512eb2c6e399715c820b087363807b7a251dfce575c26;
+fresh Verification-After.json SHA256
+cff8099a9908d8398a2795b9cb46b42ddecf865ea0c4e6c30ff41ecd0157b4fc.
+
+TWINS: the earlier parent-first/raw child-gate attempts remain historical,
+stopped, with claims intact. No other target tree or production permission code
+was changed. Current helper retains the raw prewrite guard; scheduling, not a
+relaxed guard, fixes self-induced pending-child metadata drift. Verdict VERIFIED
+WITH CAVEATS for ACL scope only; this is not N3 or whole-skill readiness.
+Next: reviewed normal-host readback and exact-current-commit N3 continuation;
+old evaluator/diagnostic remain stopped. New Fable record edits uncommitted.

@@ -1,3 +1,52 @@
+# Current checkpoint - all57read grants verified; N3 remains stopped, 2026-10-19
+
+**VERIFIED WITH CAVEATS for the approved permission correction only.** The user
+approved finishing36files then17parentfolders with strict existing checks and
+no deletion, push, installation or N3evaluation. Those53grants are complete.
+This section supersedes historical statuses and commands retained below.
+
+| Check | Observed result |
+| --- | --- |
+| New grants, in order |36file read grants, then17folder list/read/traverse grants|
+| Previously completed grants |4skipped; not replayed|
+| Final target permissions |57/57verified:38files and19folders|
+| File content |38/38originalhashes unchanged|
+| Authority preserved |Old ACEs, owners, groups and protection retained; no new write/delete/ownership/ACL-change rights|
+| Regression and refusal checks |23/23controls;2/2real readonly preflight drift/hash refusal probes|
+| Broader byte preservation |458project/N1/N2+1015priorN3+525unrelatedrepositoryfiles match|
+| Historical ACL evidence |25privateartifacts unchanged;2outerparent descriptors unchanged|
+| Independent native review |SHIP for the exact bounded53grant operation before execution|
+| Normal-account actual reads |UNVERIFIED; not substituted by agent ACL inspection|
+| N3evaluation/29runtime tests/N3-D |Not run; evaluationretry remains false|
+
+The first offline ordering test failed for the old natural order; the corrected
+files-first order passes without relaxing the raw prewrite check. A newhelper
+PowerShell grouping bug was caught by its final preservation-count gate before
+ACLwrites, fixed, and full baseline checks then passed. All predecessors remain.
+
+Exact evidence, retained outside Git under
+`permission-read-grant-20261019/files-first-20261019/`:
+
+- Prepared-Files-First.json SHA256 `34ca1617b912dfb0b1b97cd1b1a31ea192a6540544585076102d1dc317d3dd0d`.
+- Receipt.json SHA256 `7ecfc174be19ec2faf1512eb2c6e399715c820b087363807b7a251dfce575c26`.
+- Verification-After.json SHA256 `cff8099a9908d8398a2795b9cb46b42ddecf865ea0c4e6c30ff41ecd0157b4fc`.
+- Controls-RED/GREEN.json, Adversarial-Preflight.json, Review-Before-Execution.md,
+  create-new Execution-Claim and53durableIntent/Outcome pairs.
+
+INTENT achieved: scheduling changed, permission/content safeguards did not weaken.
+No files/data deleted, no code disabled/hidden, no preservation source excluded,
+no global configuration/security-policy changes, no worker/model/API/nativeBeads
+call, install, newcommit or push. HEAD remains4f5885656d07bb938560a17451b372bc1ea94da1;
+the four updated Fable records remain uncommitted. Private helpers/runtime stay
+outside Git. No package, installedcopy or qualification metadata changed.
+
+**Next boundary:** normal-account readback and reviewed exact-current-commit N3
+continuation, with separate evaluationretry approval. The old evaluator still
+pins0584a89 and must not be rerun or bypassed. Successful ACL state does not prove
+retrievalquality, embeddingquality or whole-skill readiness.
+
+---
+
 # Current N3 checkpoint - ACL partial4/57; local commit authorized, 2026-10-19
 
 **Current status: ACL_PARTIAL_4_OF_57_STOP_FOR_ARCHITECTURE_REVIEW.** N3-A's
