@@ -850,3 +850,34 @@ the postcommit dirty-Fable allowance with a RED/GREEN regression covering all4
 documents, and corrected current-versus-historical/publication record claims.
 This is one parent correction, not a second independent SHIP. Postcommit guard
 count is29, successor21; neither full postbinding result is claimed here.
+
+## RESUME HERE - bounded N3 COMPLETE WITH CAVEATS, 2026-10-20
+
+Source commit0532d5b0f9e1d2bd1b65dc07f39de39bae257287 was actually exercised
+by normal-account Context Run. Receipt ed368a54870e1a1a5075b47a3cfdcb045bf9561022454f8c056d360c836ee1d1;
+Prepared4f68aaf85c4b6e2c44ecf371eb9aee980db62e527ed82b5a36b918c11974d987.
+N3-A positive/setup,24B/Ccomparison arms,25fresh replay processes,5named no-pack
+refusals,5rehashed inner-forgery refusals and29exact runtime tests are observed.
+No skips/errors. Parent checked7,086unit references,123streams/41worker calls,
+full17,273runtime identities and original source/evidence preservation. One fresh
+native actual-results reviewer returned SHIP FOR BOUNDED N3 ONLY. Its reporting
+caveats are recorded in the current top of retrieval-runtime-20261018/report.md.
+
+Critical interpretation: lexical and LSA both6/7file-obligation hits and3/4complete
+discovery cases, both miss workflow on approval. Both have identical ranking
+orders, so no LSA superiority. Mandatory7/7is explicit-source delivery and NOT
+search success. Coverage/semantic_truth remainUNVERIFIED. No learned embedding,
+real-project coding benefit, fullCI/packages/native fence/installed readiness.
+
+No more N3commands are needed or authorized; Context attempt is CONSUMED_COMPLETE,
+old484attempt CONSUMED_FAILED. Keep every marker/receipt/bad variant and original
+byte. No old command, permission/trust change, reset, deletion or rerun.
+The current four Fable changes only document reviewed results. User "COMMIT"
+authorizes their local publication; resolve its identity from Git, separately
+from executed source0532d5b. Push still requires separate authority. Do not edit sealed
+Prepared/helpers to match dirty docs, and do not infer a new runtime approval.
+
+Next: present a bounded real-project acceptance/use plan for the existing offline
+workflow with mandatory sources and actual tests, plus an honest release/install
+gap map. That scope is proposed, not approved or started. Preserve native/fence
+WIP as unqualified; do not invent another fence mechanism to finish N3.

@@ -2548,3 +2548,42 @@ pass only; no second independent SHIP claimed. Guard suite grows from28to29.
 Postcommit21successor+29guard verification and exact binding remain required.
 Reviewer declined host execution, postcommit proof, general public CLI repair,
 full package/CI health and retrieval/release readiness. No scope is broadened.
+
+### N3-D actual-result closure - 2026-10-20
+
+Approved N3-A-D is complete WITH CAVEATS as a bounded local evaluation, not a
+release/install/native/semantic qualification. Executed source0532d5b0f9e1d2bd1b65dc07f39de39bae257287;
+Prepared4f68aaf85c4b6e2c44ecf371eb9aee980db62e527ed82b5a36b918c11974d987;
+Receipt ed368a54870e1a1a5075b47a3cfdcb045bf9561022454f8c056d360c836ee1d1.
+Both parent saved-byte audit and one fresh native actual-results reviewer pass
+the bounded evidence. Report's current top section maps the full bundle, hashes,
+limits, numerical misses and retained artifacts. Old snapshots above stay history.
+
+| Requirement | Observed closure |
+| --- | --- |
+|N3-R01 authority|Original N3-A-D approval and bounded successor approvals retained; no new outward action|
+|N3-R02 isolation|Existing absolute venv/no user site;17,273runtime files match; no installed-copy promotion|
+|N3-R03 pinned identity|Python3.12.10 probe,53pins, Semantica0.7.0/pinned revision and retained worker outputs|
+|N3-R04 real operation|Historical positive plus16actual lexical/LSA arm workers, finite scores/SHACL and fresh replays|
+|N3-R05 discovery|24arms; both graph modes6/7required file hits; approval/workflow miss retained; mandatory excluded|
+|N3-R06 comparable limits|Same4sources/52nodes,5results,0hops; literal units vs graph node closure disclosed; no LSA superiority|
+|N3-R07 current evidence|25fresh verifier processes,17worker-backed/8literal; exact primary request/response byte replay|
+|N3-R08 safety|5named no-pack refusals,5rehashed forgeries, optional-stale exclusion preserves required work|
+|N3-R09 nonregression|Exact29approved IDs,0errors/failures/skips; not fullCI/learned embeddings|
+|N3-R10 preservation/handoff|Parent full saved-byte audit, fresh independent SHIP for this scope, current4Fable records updated|
+
+Readiness labels: INSTALLATION_OBSERVED; WORKER_RETRIEVAL_OBSERVED;
+CASE_QUALITY_MEASURED_WITH_DISCOVERY_MISS; SEMANTIC_TRUTH_UNVERIFIED.
+No algorithm/ranking/public CLI/skill code changed during N3-D. Poor discovery
+blocks sole-search reliance on the affected task, not truthful experiment closure.
+The actual Git child-context defect is absent in this normal-host run; it is not
+proof of every future environment. All N3one-shot commands are now consumed and
+must not be reissued. Independent review's reporting caveats are incorporated;
+no second review or extra runtime execution is requested. No files were deleted.
+
+These four documentation updates were reviewed before publication. The user
+subsequently authorized their local commit with "COMMIT"; no push/install/new
+runtime or qualification activation is included. Existing release/package/native
+gates remain unresolved. Propose separately a bounded real-project coding trial
+with explicit mandatory sources/tests and measured task outcome before advising
+large-project reliance; do not silently start that trial or a new fence mechanism.

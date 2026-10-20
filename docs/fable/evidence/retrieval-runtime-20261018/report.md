@@ -1,4 +1,134 @@
-# Current checkpoint - child-context repair; failed attempt retained (2026-10-20)
+# Current result - bounded N3 complete, VERIFIED WITH CAVEATS (2026-10-20)
+
+N3-A isolated setup/positive, N3-B24comparison arms, N3-Cfresh replay/safety/
+29selected tests and N3-Dactual-results review are complete within their approved
+local scope. The child Git-context/empty-JSON harness failure is absent in the
+corrected normal-host run. No evaluation was repeated during this result review.
+This is NOT whole-skill, installed-copy, release, native-fence or semantic truth
+qualification. No production skill code, package or capability is changed here.
+
+## Exact source and retained evidence bundle
+
+Executed source commit:0532d5b0f9e1d2bd1b65dc07f39de39bae257287. The tree was
+clean during parent and independent audits. These four documentation updates
+are subsequent to that execution; their separate publication is identified by
+Git and does not retroactively change the executed tree. The user subsequently
+authorized their local commit with "COMMIT"; no push was authorized.
+The old484d2ca failure and all earlier records below remain preserved history.
+
+Private bundle is evaluation-context-20261020 under the existing n3-retrieval run.
+Do not present Receipt-host.json alone as authenticated proof: commit, account,
+Prepared and probe bindings are in adjacent records, dispatches and captured
+Start/Result/Streams bytes. Local hashes establish consistency, not authenticity.
+
+| Artifact relative to the output bundle | SHA-256 |
+| --- | --- |
+| Receipt-host.json |ed368a54870e1a1a5075b47a3cfdcb045bf9561022454f8c056d360c836ee1d1|
+| Prepared.json |4f68aaf85c4b6e2c44ecf371eb9aee980db62e527ed82b5a36b918c11974d987|
+| Context-Receipt.json |defda72b2944852638778ff97a2bfd8fbddf5bac2fa875bad49362c94690cd0c|
+| Probe-Receipt.json |638fd33112be890ee7be2b37089bd2c114cb95be0018d3d50d7ffc2e2b9e27e8|
+| host-claim/Intent.json |e117ef3ef4296165e12f6e8e996419859c53de37c64589660da81bca4df5ff06|
+| runtime-tests/Tests.json |16894a23bbfb701a7092af8b79cae71f0a08a8caf1b52c6adee96d4d0186be93|
+| runtime-tests/stderr.log |87f0550f2f21e4f265a1f3814a89d001998a809aa465ccf983c1083b9fcf221a|
+
+host-claim contains the durable intent; the terminal success is the top-level
+Receipt-host.json. No host-claim/Result.json is required by this coordinator.
+The one evaluation attempt is consumed. Neither Prepare nor Run may be repeated.
+
+## Observed operation and safety
+
+- Real normal-account child-context and Python3.12.10 identity passed before
+  claim. Existing selected environment has53pinned packages and17,273files;
+  parent rechecked the full saved runtime identity without running the worker.
+-24arm commands have distinct retained child processes and exit0;16are worker-
+  backed lexical/LSA and8literal/no-worker. The21host controls/full-chain passed.
+-25fresh verifier processes passed:16primary graph worker replays,8literal
+  no-worker replays and1optional-stale worker replay. Original/primary replay
+  worker stdin/stdout/stderr bytes match for all16pairs.
+-61stream manifests retain123role/ordinal/size/hash-checked records,41worker
+  invocations. Parent independently checked7,086source-unit references, ranges,
+  source hashes, unit hashes and UTF-8text across24packs. All matched.
+- Required changed source refused E_REQUIRED_STALE; revoked access refused
+  E_REQUIRED_ACCESS_REVOKED; tiny budget refused E_PACK_BUDGET; absent selected
+  worker refused E_GRAPH_RUNTIME_UNAVAILABLE; unknown vocabulary refused
+  E_WORKER_FAILED/E_QUERY_NO_LEXICAL_SUPPORT. No blocked evidence pack was created.
+- Optional stale report was excluded while required partition survived and
+  replayed. Five rehashed model/missing/reordered/false-coverage/false-semantic
+  packets were rejected with relevant inner causes, not unrelated import errors.
+- Exactly29approved test IDs passed,0errors/failures/skips, retained stderr:
+  'Ran29tests in33.001s / OK'. This is NOT full discovery or unchanged CI.
+
+## Measured retrieval quality - incomplete discovery remains visible
+
+Discovery tasks/packs have required_units=[]; mandatory delivery is excluded
+from every discovery numerator. These are authored source-file obligations,
+not calibrated semantic truth. Ranked modes choose5nodes then reopen closure.
+
+| Question | Natural-language literal | Lexical discovery | LSA discovery |
+| --- | --- | --- | --- |
+| Source freshness |0/2|2/2|2/2|
+| UTF-8 splitting |0/1|1/1|1/1|
+| Request/approval binding |0/2|1/2, misses workflow|1/2, misses workflow|
+| Resume basis |0/2|2/2|2/2|
+| Authored source-case total |0/7|6/7|6/7|
+
+Both graph modes fully satisfy3/4source-file checklists and include7extraneous
+source-case hits across four queries. Both return the same ordered top-five
+node IDs on every query; scores differ but no LSA ranking advantage was observed.
+Lexical uses737dimensions and LSA51, fitted on the same52documents/737features.
+Separate assisted exact-literal probes hit5/7; natural-language substring search
+is a deliberately weak baseline, not proof of general graph superiority.
+
+Each graph mode reopens386logical units/22,007UTF-8bytes across discovery;
+serialized packs total260,476bytes lexical/260,451LSA. Literal discovery packs
+total22,236bytes despite zero source hits. These are logical reopen/serialization
+counts, not total disk IO, context tokens, execution latency or model cost.
+Mandatory arms deliver7/7in each mode but do not improve search rankings. They
+prove explicit-source delivery, not discovery. `quality_failed_arms=[]` means
+no empty-result/runtime-failed arms; it does NOT mean no relevance/coverage misses.
+
+## N3-D parent verification and independent result review
+
+One fresh native fable_sol_reviewer returned SHIP for bounded N3 actual results,
+with no Critical findings. Important reporting obligations are fulfilled here:
+keep the discovery miss prominent, bind the whole unauthenticated bundle, and
+update the existing Fable records. Review is not whole-skill acceptance.
+
+Private n3-d-review-20261020/Parent-Audit.json:
+39f7688bbdc94067e2884641bc10c964ee3b8c20cc1dbc6e5e591869a5664883.
+Private Parent-Adversarial.json:
+8c995e681b7126a4afbe81660310b71c5948f2c7a582f74482d6e5fd99d96bc7.
+In-memory changed-unit/false-coverage/false-semantic packs and an incorrect
+external Prepared seal were rejected. Parent ran no worker/evaluation again.
+The first parent audit falsely sorted order-preserving metric IDs; that checker
+and its failed log remain retained. Corrected audit compares exact pack order;
+no evidence/metric was repaired or relabelled to pass.
+
+Preservation before these documentation writes:525product files,4coding files,
+454priorN1/N2files,1,015originalN3paths,3index files and allruntime files match.
+Independent audit also checked2,002Before-inventory files: only the four approved
+Fable records differ from that OLD baseline and match this run's Prepared.
+All historical helpers/receipts/releases remain. No install/promotion occurred;
+no new installed-copy smoke or hash inventory is claimed.
+
+Statuses: INSTALLATION_OBSERVED; WORKER_RETRIEVAL_OBSERVED;
+CASE_QUALITY_MEASURED_WITH_APPROVAL_WORKFLOW_DISCOVERY_MISS;
+SEMANTIC_TRUTH_UNVERIFIED. native_execution=false means no native Beads/fence,
+NOT no Python execution. Raw numerical fixture subprocess JSON is not retained
+separately for all six runtime tests; their exact test IDs/assertions/logs are.
+Request/response numerical evidence exists for actual retrieval/replay workers.
+
+N3 completion permits evaluation use only: always state mandatory relevant
+sources and reopen cited bytes; do not rely on autonomous discovery alone for
+approval-binding work. Real-project coding benefit, learned embeddings, full
+CI/packages, native fences/merges and installed/release readiness remain separate.
+Next proposed scope is a bounded real-project acceptance/use workflow, not a
+new memory engine or native fence. No new milestone, commit or push is authorized
+by this closure. Do not rerun any consumed N3 command or change its guardedHEAD.
+
+---
+
+# Historical checkpoint - child-context repair; failed attempt retained (2026-10-20)
 
 The484d2ca normal-host Prepare passed; parent independently verified Prepared
 a50729c1. The subsequent approved Run passed15controls/full-chain and the real
