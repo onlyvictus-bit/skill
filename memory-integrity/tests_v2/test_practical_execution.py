@@ -30,6 +30,13 @@ from tests_v2.test_practical_lease_contract import packet
 
 class ExecutionDiagnostics(unittest.TestCase):
     def setUp(self):
+        # LEGACY_MODEL_ONLY: every backend/controller transport is a test double.
+        for target in ('hybrid_bridge.release_profile.require_native_execution_enabled',
+                       'complete_read_v2.release_profile.require_native_execution_enabled',
+                       'hybrid_bridge.practical_race_controller.require_native_execution_enabled'):
+            policy = patch(target)
+            policy.start()
+            self.addCleanup(policy.stop)
         self.db=ledger.connect(':memory:')
         self.request=LeaseGuardedTitleRequest.from_value(packet())
         self.backend=backend_module.LeaseScratchBackend(selected())
@@ -205,7 +212,7 @@ class ExecutionDiagnostics(unittest.TestCase):
 
     def test_reopened_read_only_connection_preserves_exact_event_without_replay(self):
         self.fail_process()
-        retained=ROOT.parent.parent/'build-validation/retained-temp'
+        retained=Path(tempfile.gettempdir())
         root=Path(tempfile.mkdtemp(prefix='execution-reopen-',dir=retained))
         path=root/'cm.sqlite'
         copy_db=sqlite3.connect(path)

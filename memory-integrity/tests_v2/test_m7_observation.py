@@ -22,6 +22,10 @@ from hybrid_bridge import native
 
 class NativeObservationTests(unittest.TestCase):
     def setUp(self):
+        # LEGACY_MODEL_ONLY; _capture_process replies below are controlled fakes.
+        policy = mock.patch('hybrid_bridge.native_observation.require_native_execution_enabled')
+        policy.start()
+        self.addCleanup(policy.stop)
         self.tmp = tempfile.TemporaryDirectory(prefix="mi-m7-observe-")
         self.addCleanup(self.tmp.cleanup)
         self.base = Path(self.tmp.name)
@@ -254,9 +258,14 @@ class NativeObservationTests(unittest.TestCase):
         first = subprocess.run(cmd,capture_output=True,text=True,encoding="utf-8",timeout=30)
         self.assertEqual(first.returncode,2,first.stderr)
         out = json.loads(first.stdout)
-        self.assertIn("E_NATIVE_EXE_HASH",out["blockers"][0])
-        saved = receipt.read_bytes()
-        self.assertEqual(json.loads(saved),out)
+        # A fresh public process has the real restrictive profile, not this
+        # class's model-only mock. The stronger profile refuses before hash
+        # observation and leaves no new native receipt. Historical hash checks
+        # are still asserted by the in-process fake-transport methods above.
+        self.assertIn("E_RELEASE_PROFILE_NATIVE_DISABLED",out["blockers"][0])
+        self.assertFalse(receipt.exists())
+        saved = b'Historical diagnostic retained by test; not new native proof.'
+        receipt.write_bytes(saved)
         second = subprocess.run(cmd,capture_output=True,text=True,encoding="utf-8",timeout=30)
         self.assertEqual(second.returncode,2,second.stderr)
         self.assertIn("E_NATIVE_RECEIPT_EXISTS",json.loads(second.stdout)["blockers"][0])

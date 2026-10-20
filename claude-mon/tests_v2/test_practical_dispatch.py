@@ -4,14 +4,14 @@ import sys
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from complete_read_v2 import ledger  # noqa: E402
 
-RETAINED_TEMP = (Path(__file__).resolve().parents[3] / "build-validation" /
-                 "retained-temp")
+RETAINED_TEMP = Path(tempfile.gettempdir())
 
 
 def binding(**changes):
@@ -48,7 +48,11 @@ def v2_binding(**changes):
 
 
 class PracticalDispatchTests(unittest.TestCase):
+    """LEGACY_MODEL_ONLY / POLICY_CHECK_TEST-MOCKED; never a native run."""
     def setUp(self):
+        policy = patch('complete_read_v2.release_profile.require_native_execution_enabled')
+        policy.start()
+        self.addCleanup(policy.stop)
         # Keep each local sqlite receipt after tests; no TemporaryDirectory cleanup.
         self.temp = Path(tempfile.mkdtemp(
             prefix="practical-dispatch-", dir=RETAINED_TEMP))

@@ -25,6 +25,8 @@ def run_shared_claim_protocol_pilot(*, bd_path, expected_executable_sha256,
                                     workspace, receipt, ledger_module,
                                     coordination_module, artifacts_module,
                                     runner=None, observer=None):
+    from .release_profile import require_native_execution_enabled
+    require_native_execution_enabled()
     bd_path = Path(bd_path).resolve()
     workspace = Path(workspace).resolve()
     receipt = Path(receipt).resolve()

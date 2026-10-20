@@ -74,6 +74,12 @@ def reassign_persisted_row(selection, request, **changes):
 
 class LeaseBackend(unittest.TestCase):
     def setUp(self):
+        # LEGACY_MODEL_ONLY / POLICY_CHECK_TEST-MOCKED. Transport is fabricated.
+        for target in ('hybrid_bridge.release_profile.require_native_execution_enabled',
+                       'complete_read_v2.release_profile.require_native_execution_enabled'):
+            policy = patch(target)
+            policy.start()
+            self.addCleanup(policy.stop)
         self.assertTrue((ROOT/'scripts/hybrid_bridge/practical_lease_backend.py').is_file(),
                         'sealed lease-bound successor backend is missing')
         self.mod = importlib.import_module('hybrid_bridge.practical_lease_backend')

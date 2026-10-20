@@ -87,6 +87,8 @@ class PracticalBackend:
         return False
 
     def _run_cli(self, argv: list[str], input_bytes: bytes, timeout: int, cwd: str) -> dict[str, Any]:
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         self._validate_native_boundary()
         completed = subprocess.run(
             argv, input=input_bytes, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -118,6 +120,8 @@ class PracticalBackend:
             raise PracticalContractError("E_PRACTICAL_DOLT_HASH")
 
     def _invoke_rows(self, sql: str) -> list[dict[str, Any]]:
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         if not isinstance(sql, str) or not sql:
             raise PracticalContractError("E_PRACTICAL_SQL")
         argv = [

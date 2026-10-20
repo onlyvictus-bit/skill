@@ -40,6 +40,7 @@ import time
 import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from .release_profile import require_native_execution_enabled
 
 ENGINE_SYNTHETIC = 'synthetic-dolt-engine'
 ENGINE_BEADS = 'real-beads-backed'
@@ -311,6 +312,7 @@ def run_schedule(schedule, *, confirm_native_execution=False):
     authorization. With confirmation it drives `_LiveDriver`, whose methods
     are implemented but have never run against a live server.
     """
+    require_native_execution_enabled()
     if not confirm_native_execution is True:
         raise ValueError('E_HARNESS_NATIVE_CONFIRM: pass confirm_native_execution=True '
                          'with separate execution authorization to run natively')
@@ -570,6 +572,7 @@ class _LiveDriver:
     # -- structural preflight, no side effects ---------------------------
 
     def preflight(self):
+        require_native_execution_enabled()
         from .practical_lease_backend import DOLT_PIN
         selection = self.schedule['requests']['selection']
         evidence = verify_engine(self.schedule['engine'], selection['scratch_root'],
@@ -617,6 +620,7 @@ class _LiveDriver:
         return env
 
     def start_server(self):
+        require_native_execution_enabled()
         argv = self._server_argv()
         handle = self.log_dir / 'sql-server.log'
         # The sink is closed immediately: the child keeps its own inherited
@@ -687,6 +691,7 @@ class _LiveDriver:
 
     def _invoke(self, argv):
         """Bounded capture. No shell, no unbounded output, no replay."""
+        require_native_execution_enabled()
         result = subprocess.run(argv, cwd=self.schedule['requests']['selection']['scratch_root'],
                                 env=self._environment(), stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE, timeout=DRIVER_TIMEOUT_SECONDS,
@@ -910,6 +915,7 @@ class _LiveDriver:
         from the validated request inside the sealed backend, so no caller SQL
         is ever accepted and the paused batch is genuinely the batch that runs.
         """
+        require_native_execution_enabled()
         from .practical_lease_sql import experiment_guarded_title_sql
         if getattr(self, 'alice_request', None) is not None:
             raise ValueError('E_HARNESS_ALICE_ALREADY_STARTED: uncertain dispatch is never repeated')

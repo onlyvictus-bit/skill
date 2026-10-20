@@ -10,14 +10,14 @@ import sys
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from complete_read_v2 import ledger  # noqa: E402
 
-RETAINED_TEMP = (Path(__file__).resolve().parents[3] / "build-validation" /
-                 "retained-temp")
+RETAINED_TEMP = Path(tempfile.gettempdir())
 
 
 def binding(**changes):
@@ -54,7 +54,11 @@ class Readback:
 
 
 class PracticalJournalTests(unittest.TestCase):
+    """LEGACY_MODEL_ONLY / POLICY_CHECK_TEST-MOCKED; no native transport."""
     def setUp(self):
+        policy = patch('complete_read_v2.release_profile.require_native_execution_enabled')
+        policy.start()
+        self.addCleanup(policy.stop)
         # Keep unique local evidence after a run; this test never deletes it.
         self.temp = Path(tempfile.mkdtemp(
             prefix="practical-journal-", dir=RETAINED_TEMP))

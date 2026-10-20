@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "scope": "AUTHORED_CODING_FIXTURE_NOT_GENERAL_QUALITY",
+  "large_source": {"id":"long_notes", "path":"long_notes.txt", "bytes":262144, "prefix":"தமிழ் source boundary\n", "fill":"x", "suffix":"\nEND-OF-FIXTURE\n"},
+  "cases": [
+    {"id":"freshness", "query":"What code rejects stale captured input before processing?", "expected_sources":["rules","pipeline","client"]},
+    {"id":"unicode", "query":"Which function preserves Tamil Unicode checkpoint identity?", "expected_sources":["storage","test_project"]},
+    {"id":"approval", "query":"What blocks revoked captured input?", "expected_sources":["pipeline","decision"]},
+    {"id":"resume", "query":"Where is mismatched checkpoint source digest refused?", "expected_sources":["storage"]}
+  ]
+}

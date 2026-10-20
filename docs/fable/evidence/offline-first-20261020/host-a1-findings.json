@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "status": "PARTIAL_OR_FAILED_NO_AUTOMATIC_RETRY",
+  "receipt_relative_path": ".github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\Receipt.json",
+  "receipt_sha256": "01934889c0a87314f14fcc8971b503d92f7d535ad52911c964bc389d2569f79d",
+  "prepared_sha256": "7ce4922f4879a0e258f23c65ef8239dd30f2173a216acd30476bf093780ea4c4",
+  "runtime": {
+    "executable": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+    "version": [
+      3,
+      12
+    ]
+  },
+  "suites": [
+    {
+      "pattern": "test_native_containment.py",
+      "tests_run": 3,
+      "skipped": [],
+      "receipt_sha256": "65e2baff6dd21e9bb4025b412bafc90ca3d8a2008191d43c9fc0fcf5656dd58d",
+      "log_sha256": "4d79de7354107c22d9d0b5182d522b20ea6fead48a80fb49d371f0bd78ea37d4",
+      "command": {
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\retained_unittest.py",
+          "--package-root",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+          "--pattern",
+          "test_native_containment.py",
+          "--output-dir",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\test-native-containment"
+        ],
+        "containment": {
+          "capture_complete": true,
+          "capture_errors": [],
+          "containment_method": "windows-job-kill-on-close",
+          "containment_note": "job closed on return; OS terminates any stragglers",
+          "exit_code": 0,
+          "kill_path_used": false,
+          "output_limit_exceeded": false,
+          "process_id": 11980,
+          "timed_out": false,
+          "tree_contained": true
+        },
+        "execution": "EXITED",
+        "exit_code": 0,
+        "failure": null,
+        "stderr": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-native-containment\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "stdout": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-native-containment\\stdout.log",
+          "sha256": "67fb03d5d13008e800b1733b53256a9b50e3afc2cc83e070ac59aa524b630af5",
+          "size": 1032
+        }
+      }
+    },
+    {
+      "pattern": "test_native_paths.py",
+      "tests_run": 2,
+      "skipped": [],
+      "receipt_sha256": "e1863d0db9d36e5f98d0a6ea1d4c8e11411f88a7701db691d9b6d2f791593d03",
+      "log_sha256": "086d1e92f036561f5d43ba63bfb3488d4bed43f6324dd862323b203eafbaa096",
+      "command": {
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\retained_unittest.py",
+          "--package-root",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+          "--pattern",
+          "test_native_paths.py",
+          "--output-dir",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\test-native-paths"
+        ],
+        "containment": {
+          "capture_complete": true,
+          "capture_errors": [],
+          "containment_method": "windows-job-kill-on-close",
+          "containment_note": "job closed on return; OS terminates any stragglers",
+          "exit_code": 0,
+          "kill_path_used": false,
+          "output_limit_exceeded": false,
+          "process_id": 31432,
+          "timed_out": false,
+          "tree_contained": true
+        },
+        "execution": "EXITED",
+        "exit_code": 0,
+        "failure": null,
+        "stderr": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-native-paths\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "stdout": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-native-paths\\stdout.log",
+          "sha256": "6c78c06638debf6e990e6ddbbf55987978ce8ff747679a0eb19094b526147c0d",
+          "size": 886
+        }
+      }
+    },
+    {
+      "pattern": "test_offline_release_profile.py",
+      "tests_run": 16,
+      "skipped": [],
+      "receipt_sha256": "cc38ea9fe01afe6aaa8fb74019b8fbfa76889785baf2917f45199357d0f435c3",
+      "log_sha256": "c864e84522c6457944f52b7d5baaf90f60853b55b51340ea130f3f9ffa394292",
+      "command": {
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\retained_unittest.py",
+          "--package-root",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+          "--pattern",
+          "test_offline_release_profile.py",
+          "--output-dir",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\test-offline-release-profile"
+        ],
+        "containment": {
+          "capture_complete": true,
+          "capture_errors": [],
+          "containment_method": "windows-job-kill-on-close",
+          "containment_note": "job closed on return; OS terminates any stragglers",
+          "exit_code": 0,
+          "kill_path_used": false,
+          "output_limit_exceeded": false,
+          "process_id": 10348,
+          "timed_out": false,
+          "tree_contained": true
+        },
+        "execution": "EXITED",
+        "exit_code": 0,
+        "failure": null,
+        "stderr": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-offline-release-profile\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "stdout": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-offline-release-profile\\stdout.log",
+          "sha256": "d9173a5395ab510061aeabcfa5b0baaee27175ca86cda88f1b22ff3e597158e5",
+          "size": 3263
+        }
+      }
+    },
+    {
+      "pattern": "test_knowledge_process_lifecycle.py",
+      "tests_run": 6,
+      "skipped": [],
+      "receipt_sha256": "200de15db7d4a626bf3ec598d6c42de1edf112b0b41154b77d632063340f0afd",
+      "log_sha256": "997c2004af7f2d7146e80619cb74f57977c8ff101d87e5287b324d595a1a205c",
+      "command": {
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\retained_unittest.py",
+          "--package-root",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+          "--pattern",
+          "test_knowledge_process_lifecycle.py",
+          "--output-dir",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\test-knowledge-process-lifecycle"
+        ],
+        "containment": {
+          "capture_complete": true,
+          "capture_errors": [],
+          "containment_method": "windows-job-kill-on-close",
+          "containment_note": "job closed on return; OS terminates any stragglers",
+          "exit_code": 0,
+          "kill_path_used": false,
+          "output_limit_exceeded": false,
+          "process_id": 4412,
+          "timed_out": false,
+          "tree_contained": true
+        },
+        "execution": "EXITED",
+        "exit_code": 0,
+        "failure": null,
+        "stderr": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-knowledge-process-lifecycle\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "stdout": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-knowledge-process-lifecycle\\stdout.log",
+          "sha256": "756990bbbbca62c5c39b45a7b271d88b8341ebc6e9f6525b742bfe19158c4bad",
+          "size": 1776
+        }
+      }
+    },
+    {
+      "pattern": "test_knowledge_distributed.py",
+      "tests_run": 9,
+      "skipped": [
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped",
+          "POSIX pinned runtime required"
+        ]
+      ],
+      "receipt_sha256": "937b5448ef912dd772a0b62f6a4f48782b67d3c2746cbddf7ca07b3c432e43cc",
+      "log_sha256": "2d500d5eff95baae5f7bd0571f3a7abca0d938592ca4d09325077f295eae4439",
+      "command": {
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\retained_unittest.py",
+          "--package-root",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity",
+          "--pattern",
+          "test_knowledge_distributed.py",
+          "--output-dir",
+          "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\test-knowledge-distributed"
+        ],
+        "containment": {
+          "capture_complete": true,
+          "capture_errors": [],
+          "containment_method": "windows-job-kill-on-close",
+          "containment_note": "job closed on return; OS terminates any stragglers",
+          "exit_code": 0,
+          "kill_path_used": false,
+          "output_limit_exceeded": false,
+          "process_id": 35632,
+          "timed_out": false,
+          "tree_contained": true
+        },
+        "execution": "EXITED",
+        "exit_code": 0,
+        "failure": null,
+        "stderr": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-knowledge-distributed\\stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "stdout": {
+          "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-first-20261020\\host-validation-20261020-a1\\commands\\test-knowledge-distributed\\stdout.log",
+          "sha256": "d13663d305519e3316fb5e8e2f86af550aa26f5001b74273c6a810fd53d73ec1",
+          "size": 2379
+        }
+      }
+    }
+  ],
+  "parent_independently_verified_five_receipts_five_logs_ten_command_streams": true,
+  "read_only_inventory_difference": {
+    "claude-mon": {
+      "added": {},
+      "missing": {},
+      "modified": {}
+    },
+    "memory-integrity": {
+      "added": {
+        "%SystemDrive%/ProgramData/Microsoft/Windows/Caches/cversions.2.db": "05afdd55b3678d0b95d3b0cd5f103d812a5f34957a12a98952f3a0df37f4f2f7",
+        "%SystemDrive%/ProgramData/Microsoft/Windows/Caches/{6AF0698E-D558-4F6E-9B3C-3716689AF493}.2.ver0x0000000000000001.db": "ddbedcf11d78f9e71df2f3ae4b44404dec17335ebaee20c752e0874126611981",
+        "%SystemDrive%/ProgramData/Microsoft/Windows/Caches/{6AF0698E-D558-4F6E-9B3C-3716689AF493}.2.ver0x0000000000000002.db": "ddbedcf11d78f9e71df2f3ae4b44404dec17335ebaee20c752e0874126611981",
+        "%SystemDrive%/ProgramData/Microsoft/Windows/Caches/{DDF571F2-BE98-426D-8288-1A9A39C3FDA2}.2.ver0x0000000000000001.db": "738eb0ccafefd1646d9fff98d23d998b51e4c4a8409ef0e423842eaa1ba2dd6b",
+        "%SystemDrive%/ProgramData/Microsoft/Windows/Caches/{DDF571F2-BE98-426D-8288-1A9A39C3FDA2}.2.ver0x0000000000000002.db": "738eb0ccafefd1646d9fff98d23d998b51e4c4a8409ef0e423842eaa1ba2dd6b",
+        "%SystemDrive%/ProgramData/Microsoft/Windows/Caches/{FDC62402-85C5-4A90-A9ED-B164461304D2}.2.ver0x0000000000000001.db": "483cdcdfa21796ccd47d54a7676c6afab888657ff88daebc44cfe4896fa349d2"
+      },
+      "missing": {},
+      "modified": {}
+    }
+  },
+  "not_run": [
+    "test_knowledge_advanced.py",
+    "test_knowledge_completion.py",
+    "portable24arm_ranked_acceptance"
+  ],
+  "causal_status": "OMITTED_WINDOWS_ENVIRONMENT_OR_CWD_HYPOTHESIS_NOT_PROVEN_WRITER_ATTRIBUTION",
+  "whole_skill_ready": false,
+  "native_execution": false,
+  "files_deleted_or_moved": false,
+  "retry_authorized": false,
+  "private_evidence_bytes_in_git": false
+}

@@ -953,6 +953,10 @@ class DatetimeAssumptionTests(unittest.TestCase):
         self.assertIn('HEARTBEAT_NOT_DERIVED', codes(verify.judge_evidence(evidence)))
 
 
+from model_policy import legacy_model_policy
+
+
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled')
 class ConfirmationRefusalTests(unittest.TestCase):
     def test_run_schedule_refuses_without_explicit_confirmation(self):
         for value in (False, None, 0, '', 'true', 1):
@@ -1071,6 +1075,7 @@ def live_driver(tmp, *, spawn=None, engine=controller.ENGINE_SYNTHETIC):
     return driver
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled')
 class LiveDriverTransportTests(unittest.TestCase):
     def setUp(self):
         FakePopen.instances = []
@@ -1520,6 +1525,7 @@ def readback_packets():
     ]
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled')
 class DriverWiringTests(unittest.TestCase):
     """Real _LiveDriver methods behind fake process and SQL boundaries."""
 
@@ -1805,6 +1811,9 @@ def _pinned_backend():
     return LeaseScratchBackend(selected())
 
 
+@legacy_model_policy('hybrid_bridge.release_profile.require_native_execution_enabled',
+                     'hybrid_bridge.practical_race_controller.require_native_execution_enabled',
+                     'complete_read_v2.release_profile.require_native_execution_enabled')
 class RealContractTests(unittest.TestCase):
     """Contracts taken from the real components, not from a mock's shape."""
 
@@ -1983,6 +1992,9 @@ class SecondRoundVerifierCaseTests(unittest.TestCase):
         self.assertIn('STALE_BACKEND_SUCCESS_RECORD', codes(result))
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled',
+                     'hybrid_bridge.release_profile.require_native_execution_enabled',
+                     'complete_read_v2.release_profile.require_native_execution_enabled')
 class RealComponentIntegrationTests(unittest.TestCase):
     """Component integration with scripted authority, clock and snapshots.
 

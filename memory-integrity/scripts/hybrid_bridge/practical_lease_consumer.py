@@ -217,6 +217,8 @@ class LeaseNativeConsumer:
         return self._dispatch_title(value, pause_seconds=pause_seconds)
 
     def _dispatch_title(self, value, *, pause_seconds) -> dict[str, Any]:
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         request = self._request(value)
         self._current_prerequisite(request)
         try:
@@ -250,6 +252,8 @@ class LeaseNativeConsumer:
 
     def reconcile_lease_title(self, value) -> dict[str, Any]:
         """Read-only recovery: it cannot acquire a winner token or replay SQL."""
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         if isinstance(value, LeaseReassignRequest) or (
                 isinstance(value, Mapping) and value.get('action') == 'reassign_title_lease'):
             request = self._reassign_request(value)
@@ -266,6 +270,8 @@ class LeaseNativeConsumer:
 
     def dispatch_reassign_title(self, value) -> dict[str, Any]:
         """Transfer dispatch at most once; a loser/retry can only read back."""
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         request = self._reassign_request(value)
         # The transferor prerequisite is the same currency shape as a title:
         # assignee, holder, grant, pointer and store must all be current

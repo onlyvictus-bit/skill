@@ -5,6 +5,7 @@ import tempfile
 import unittest
 
 from tests_v2 import test_practical_race_harness as h
+from model_policy import legacy_model_policy
 
 controller = h.controller
 verify = h.verify
@@ -49,6 +50,7 @@ class RefusalCausationRegressionTests(unittest.TestCase):
         self.assertNotEqual(driver.resume_alice({'process': None})['refusal']['by'], 'fence')
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled')
 class NamespacePropagationRegressionTests(unittest.TestCase):
     minted = 'c0dec0de-2026-4017-8017-000000000017'
 
@@ -117,6 +119,7 @@ class NamespacePropagationRegressionTests(unittest.TestCase):
         self.assertTrue(all(sql.startswith('SELECT') for sql in calls))
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled')
 class OperationPropagationRegressionTests(unittest.TestCase):
     def test_actual_alice_request_identity_reaches_schedule_and_barrier(self):
         driver = h.live_driver(Path(tempfile.mkdtemp(prefix='operation-retained-')))
@@ -148,6 +151,7 @@ class OperationPropagationRegressionTests(unittest.TestCase):
                 self.assertNotEqual(controller._refusal_from_alice(outcome)['by'], 'fence')
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled')
 class ObservationContractRegressionTests(unittest.TestCase):
     physical = ['issues', 'leases', 'dependencies', 'mi_practical_v2_grants',
                 'mi_practical_v2_grant_history', 'mi_practical_v2_current_grants',
@@ -229,6 +233,9 @@ class SharedTransferInvariantRegressionTests(unittest.TestCase):
                 self.assertNotEqual(result['verdict'], verify.PASSED)
 
 
+@legacy_model_policy('hybrid_bridge.practical_race_controller.require_native_execution_enabled',
+                     'hybrid_bridge.release_profile.require_native_execution_enabled',
+                     'complete_read_v2.release_profile.require_native_execution_enabled')
 class FullSequenceOfflineTests(unittest.TestCase):
     """Actual connected orchestration, with only native boundaries modeled."""
 

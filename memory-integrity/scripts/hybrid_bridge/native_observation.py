@@ -20,6 +20,7 @@ import subprocess
 import threading
 
 from . import graph
+from .release_profile import require_native_execution_enabled
 from .native import NativeContractError
 
 COMMIT = "c1c4b642ac1c08d8c828007a1c2f96e47e43ef7c"
@@ -334,6 +335,7 @@ def _capture_process(args, *, cwd, env, timeout, shell=False):
 
 
 def _command(exe,root,beads,kind,observations,expected_digest):
+    require_native_execution_enabled()
     if kind not in READ_COMMANDS:
         _fail("E_NATIVE_READ_COMMAND", kind)
     if _sha(_ordinary(exe).read_bytes())!=expected_digest.lower():
@@ -495,6 +497,7 @@ def _export(raw,expected_count,project,prefix):
 
 
 def observe(selection):
+    require_native_execution_enabled()
     observations = []
     out = {"schema_version":1,"ok":False,"overall":"BLOCKED_NATIVE_OBSERVATION",
            "active":False,"native_beads_qualified":False,"database_write_performed":False,

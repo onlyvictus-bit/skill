@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import hashlib
 import json
+from .release_profile import require_native_execution_enabled
 
 
 class NativeQualificationError(RuntimeError):
@@ -144,6 +145,7 @@ class SharedNativeClaimAdapter:
         self.qualification_evidence_refs = tuple(self.authorization["evidence_refs"])
 
     def _run(self, args, *, readonly):
+        require_native_execution_enabled()
         from . import native_observation as observation
         from .native_pilot import _capture_record, build_env
         exe, root, beads, _db, _metadata = observation._selection(self.selection)
@@ -158,6 +160,7 @@ class SharedNativeClaimAdapter:
         return result["stdout"].decode("utf-8", errors="strict"), evidence
 
     def execute(self, operation_id, command):
+        require_native_execution_enabled()
         if operation_id != self.operation_id:
             raise NativeQualificationError("E_SHARED_AUTH_BINDING: operation_id")
         expected = {
@@ -172,6 +175,7 @@ class SharedNativeClaimAdapter:
         return evidence
 
     def readback(self, command):
+        require_native_execution_enabled()
         from .native_pilot import _parse_issue
         expected = {
             "kind": "claim",
@@ -335,6 +339,8 @@ class CMCoordinationJournal:
         return None
 
     def append(self, kind, operation_id, payload):
+        if not isinstance(payload, dict) or payload.get('evidence_class') != 'TEST_ONLY':
+            require_native_execution_enabled()
         if not isinstance(operation_id,str) or not operation_id.strip():
             raise NativeContractError("E_NATIVE_OPERATION_ID: nonempty operation identity required")
         if kind not in ("NATIVE_INTENT", "NATIVE_OUTCOME", "NATIVE_UNKNOWN", "NATIVE_RECONCILED",
@@ -496,6 +502,7 @@ def coordinate_native_operation(journal, adapter, operation_id, work_item_id, co
     mutation again. Recovery must use reconcile_native_operation and backend
     readback only.
     """
+    require_native_execution_enabled()
     if not isinstance(journal, CMCoordinationJournal):
         raise NativeContractError("E_NATIVE_CM_JOURNAL_REQUIRED")
     if not isinstance(operation_id, str) or not operation_id.strip() or \
@@ -555,6 +562,7 @@ def coordinate_guarded_native_operation(coordination_module, db, journal, adapte
     Callers provide observed context, not a pre-approved guard result. A
     blocked/invalid CM guard raises before the native intent is appended.
     """
+    require_native_execution_enabled()
     guard_fn = getattr(coordination_module, "guard", None)
     if not callable(guard_fn):
         raise NativeContractError("E_NATIVE_COORDINATION_MODULE")
@@ -565,6 +573,7 @@ def coordinate_guarded_native_operation(coordination_module, db, journal, adapte
 
 def reconcile_native_operation(journal, adapter, operation_id, work_item_id, command):
     """Resolve uncertain native delivery by readback only, never by retrying."""
+    require_native_execution_enabled()
     if not isinstance(journal, CMCoordinationJournal):
         raise NativeContractError("E_NATIVE_CM_JOURNAL_REQUIRED")
     qualification = _qualified_native_adapter(adapter)

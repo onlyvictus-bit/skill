@@ -1,6 +1,13 @@
 {
   "engine": "memory-integrity",
   "engine_version": "2.0.0-m12",
+  "active_release_profile": {
+    "id": "offline-first-v1",
+    "native_subprocesses_enabled": false,
+    "native_mutations_enabled": false,
+    "live_provider_enabled": false
+  },
+  "active_content_manifest": "tests_v2/OFFLINE1-CONTENT.json",
   "schema_version": 2,
   "entrypoint": "scripts/memory_integrity_v2.py",
   "commands": [

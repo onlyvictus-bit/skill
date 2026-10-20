@@ -881,3 +881,95 @@ Next: present a bounded real-project acceptance/use plan for the existing offlin
 workflow with mandatory sources and actual tests, plus an honest release/install
 gap map. That scope is proposed, not approved or started. Preserve native/fence
 WIP as unqualified; do not invent another fence mechanism to finish N3.
+
+## RESUME HERE - offline-first release design review, 2026-10-20
+
+The user requested the three-package offline-first finishing route and explicitly
+selected Fable Method, Brainstorming, Writing Plans and Executing Plans. Existing
+N1/N2/N3 work is carried forward; no old N3 Prepare/Run or installer is reusable.
+Current source/publication basis: c398be73e9e5eaa14de9e870c7787f53605afd6f,
+development/r5-practical-fence-wip-20261014. Planning started with a clean tree.
+
+Read offline-first-release-design-20261020.md and
+offline-first-release-plan-20261020.md in this folder. They contain the exact
+supported profile, preservation rules, owning files/interfaces, negative controls,
+three work-package exits and separate commit/push/install gates. They are draft
+planning only. A fresh read-only builder check is requested; the actual disposition
+will be appended to the plan. The human must review the full design/plan before
+product changes, per the explicitly named skills. Inline execution is already the
+requested method; do not repeat that question or restart requirements discovery.
+
+No package source, dependency, runtime, archive, content manifest, capability or
+installed skill was changed during planning. Only the two proposed documents and
+existing Fable plan/resume/state advance. No test/worker/model/native command,
+commit/push or deletion occurred. Existing versions and historical qualification
+facts must not be overwritten to simplify the status. Installer target remains
+a later decision, after a verified matching pair; inspected OpenCode has m11.
+
+First execution after full-design approval is Task1 profile boundary, then Task2
+causal lifecycle regression and repair, Task3 portable acceptance, Tasks4-5 paired
+release and verification. Task6 installation needs its separate app/path approval.
+Do not infer fullCI/native/installed readiness from N3 or a published checkpoint.
+
+Builder check observed FIX_FIRST/3important questions; parent recorded proposed
+answers in both documents: retain ALL local output (no ephemeral deletion),
+block ALL Beads/Dolt subprocesses including readback/reconciliation, and include
+distributed-local only with mandatory runtime regression proof. Clean hosted
+ephemeral cleanup is separately approved later; no local wrapper is called
+unchanged CI. No second independent approval of the corrected documents exists.
+
+## RESUME HERE - approved offline-first local implementation, 2026-10-20
+
+The user's post-design review/continue instruction authorizes local Tasks1-5;
+do not ask again or restart planning. HEAD remains c398be7; no commit/push/install
+authority. Current active task is profile/lifecycle repair, not native fencing.
+Read the offline-first plan execution checkpoint and
+`../evidence/offline-first-20261020/progress.md` for retained RED/GREEN identities.
+Initial profile checks MI9/CM4 and3 lifecycle controls pass; none is whole-release
+qualification. Review compatibility and remaining entrypoints before declaring
+Task1 done; finish lifecycle edge cases and actual runtime before Task2 done.
+Private retained output moved to ignored `.github/run-artifacts/offline-first-20261020`
+after Windows denied the proposed sibling output path. Do not change permissions.
+Preserve all historical/N3/installed bytes and native experiments. No old N3
+command, prior-data deletion, new dependency, native/model call, commit/push or install.
+
+### Latest continuation - offline-first source checks, 2026-10-20
+
+SUPERSEDED: Read offline-first-checkpoint-20261020.md FIRST. Host-a1 has now run
+and failed preservation after5 passing suites. It is consumed, not ready to run.
+The new checkpoint/host-a1-findings.json retain36run35pass1skip, exact6cache
+additions/hashes, causal hypothesis and next steps. Do not retry or delete caches.
+
+Read progress.md and the offline-first plan checkpoint; do not restart the
+proposal or repeat approved Tasks1-5 approval. The user explicitly permits only
+new test-owned temporary cleanup in fresh retained workspaces. Source, historical
+receipts and installed copies remain protected. HEAD is still c398be7, dirty local
+implementation, not an exact published release. No commit or push authority.
+
+Current evidence: profile MI16/CM5, lifecycle6, observation19, pilot model9,
+race model132, offline-sequence27 and portable harness16 pass. Current no-worker
+public acceptance: acceptance-core-physical-guard/Receipt.json, SHA
+69cd535b60060351c5bf93cdd20ab87e47e134eede11ec1eca72014032a5c18e;
+11 checks/8 literal arms, PASS_CORE_ONLY_RUNTIME_UNVERIFIED. This does not prove
+ranked retrieval or the actual two-worker Windows fix. Native operations disabled.
+
+MI broad run684 (2 preservation methods explicitly excluded) has626 passes,
+54 skips,1 expected failure,1 descendant-capture failure and2 Windows short-form
+errors. Do not erase/skip those outcomes. Companion v2 has212 passes/1 missing
+successor-content error; companion legacy21 passes. MI legacy17 pass/4 are blocked
+by the retained runner's no-socket hook against their loopback fake HTTP server;
+these are test-environment refusals, not four demonstrated product defects.
+
+Task4 started: identical portable release_content consumers in both packages,
+active OFFLINE1 pointer, preservation and CI integration,6 fixture regressions
+pass. OFFLINE1 manifests deliberately NOT generated yet; do not fall back to or
+overwrite old R4 lists. Finalm13 instructions/metadata, paired builder/verifier,
+archives, clean-extraction/full CI and installation are still pending.
+
+New host continuation: .github/scripts/offline_host_validation.py plus
+retained_unittest.py. First review found incomplete Prepared contract, lexical
+output aliases and descendant timeout ownership; parent correction8 regressions
+pass, fresh re-review pending. It now uses strict complete input schema, final-path
+parent checks, existing generic owned-tree capture and real containment/short-path
+tests FIRST before numerical tests. No selected runtime or old N3 command ran.
+Do not issue a host command until re-review and final input sealing are complete.

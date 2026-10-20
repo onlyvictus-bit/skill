@@ -44,6 +44,10 @@ class PilotHelpers(unittest.TestCase):
                     native_pilot.issue_id(raw)
 
 
+from model_policy import legacy_model_policy
+
+
+@legacy_model_policy('hybrid_bridge.native_pilot.require_native_execution_enabled')
 class PilotAdapter(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix="mi-pilot-test-")
@@ -109,6 +113,10 @@ class PilotAdapter(unittest.TestCase):
         self.assertEqual(len(self.adapter.selection_digest), 64)
 
 
+@legacy_model_policy('hybrid_bridge.release_profile.require_native_execution_enabled',
+                     'hybrid_bridge.native_pilot.require_native_execution_enabled',
+                     'hybrid_bridge.native.require_native_execution_enabled',
+                     'complete_read_v2.release_profile.require_native_execution_enabled')
 class DisposablePilotWorkflow(unittest.TestCase):
     def test_end_to_end_interruption_recovery_issues_claim_once(self):
         tmp = tempfile.TemporaryDirectory(prefix="mi-native-pilot-flow-")

@@ -120,6 +120,10 @@ def event(db,kind,work_item_id=None,detail="",**kwargs):
     # must not edit rows inside BEGIN and then ask us to seal that new state.
     if isinstance(kind,str) and kind.startswith("PRACTICAL_NATIVE_"):
         raise LedgerError("E_PRACTICAL_EVENT: practical native journal events require its protected API")
+    if isinstance(kind,str) and kind.startswith("NATIVE_") and \
+            (kwargs.get('identity') or {}).get('native_evidence_class') != 'TEST_ONLY':
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
     if db.in_transaction:
         raise LedgerError("E_EVENT_TRANSACTION: generic events require their own verified transaction")
     _begin(db)
@@ -394,6 +398,8 @@ def _practical_reader(registration, db):
 
 def reserve_practical_native_intent(db, binding):
     """Atomically reserve one durable native operation; only the winner can dispatch."""
+    from .release_profile import require_native_execution_enabled
+    require_native_execution_enabled()
     binding=_practical_binding(binding)
     if db.in_transaction:
         raise LedgerError("E_PRACTICAL_TRANSACTION: reservation requires its own transaction")
@@ -435,6 +441,8 @@ def consume_practical_native_dispatch(db, binding, reservation):
     opaque reservation and the persisted event together prevent a reopened or
     second backend object from issuing another dispatch for the same intent.
     """
+    from .release_profile import require_native_execution_enabled
+    require_native_execution_enabled()
     binding=_practical_binding(binding)
     if db.in_transaction:
         raise LedgerError("E_PRACTICAL_TRANSACTION: dispatch consumption requires its own transaction")
@@ -502,6 +510,8 @@ def complete_practical_native_readback(db, binding, reader_registration, reserva
     ``reservation=None`` is recovery-only: a newly opened protected consumer
     may read the already-stored intent, but no new dispatch capability is made.
     """
+    from .release_profile import require_native_execution_enabled
+    require_native_execution_enabled()
     binding=_practical_binding(binding); reader=_practical_reader(reader_registration,db)
     if reservation is not None: _practical_owner(reservation,db,binding)
     if db.in_transaction:

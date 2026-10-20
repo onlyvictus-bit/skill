@@ -113,6 +113,12 @@ def process_result(row):
 
 class LeaseConsumerTests(unittest.TestCase):
     def setUp(self):
+        # LEGACY_MODEL_ONLY / POLICY_CHECK_TEST-MOCKED; fixed subprocess doubles.
+        for target in ('hybrid_bridge.release_profile.require_native_execution_enabled',
+                       'complete_read_v2.release_profile.require_native_execution_enabled'):
+            policy = patch(target)
+            policy.start()
+            self.addCleanup(policy.stop)
         # Keep unique local evidence after a run; this test never deletes it.
         self.temp = Path(tempfile.mkdtemp(prefix="practical-consumer-"))
         self.db = ledger.connect(self.temp / "cm.sqlite")
@@ -408,6 +414,12 @@ def xfer_packet(operation_id='op-xfer-1', **changes):
 
 class LeaseReassignConsumerTests(unittest.TestCase):
     def setUp(self):
+        # Preserve historical model laws, not current-profile reachability.
+        for target in ('hybrid_bridge.release_profile.require_native_execution_enabled',
+                       'complete_read_v2.release_profile.require_native_execution_enabled'):
+            policy = patch(target)
+            policy.start()
+            self.addCleanup(policy.stop)
         self.temp = Path(tempfile.mkdtemp(prefix="practical-reassign-"))
         self.db = ledger.connect(self.temp / "cm.sqlite")
         ledger.create_work_item(self.db, "cm-work-17", "task", "source")

@@ -68,14 +68,15 @@ jobs:
       - name: content manifests match tree
         shell: python
         run: |
-          import hashlib, json, pathlib
+          import hashlib, importlib.util, json, pathlib
           for pkg in ("memory-integrity", "claude-mon"):
               root = pathlib.Path(pkg)
-              names = sorted(p.name for p in (root / "tests_v2").glob("*-CONTENT.json"))
-              assert names, pkg
-              name = {"R4-CONTENT.json", "R3-CONTENT.json", "R2-CONTENT.json"} & set(names)
-              name = sorted(name, reverse=True)[0]
-              manifest = json.loads((root / "tests_v2" / name).read_text())
+              module = "integrity_v2" if pkg == "memory-integrity" else "complete_read_v2"
+              spec = importlib.util.spec_from_file_location("content_"+module, root / "scripts" / module / "release_content.py")
+              consumer = importlib.util.module_from_spec(spec)
+              spec.loader.exec_module(consumer)
+              name = pathlib.Path(consumer.selected_name(root)).name
+              manifest = consumer.verify_content(root)
               actual = {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                         for p in root.rglob("*") if p.is_file()
                         and "__pycache__" not in p.parts and p.suffix != ".pyc"

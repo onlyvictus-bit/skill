@@ -46,6 +46,8 @@ def _refusal_source(exc):
 
 
 def run(spec_path):
+    from .release_profile import require_native_execution_enabled
+    require_native_execution_enabled()
     from complete_read_v2 import ledger
     from .practical_lease_backend import LeaseScratchBackend
     from .practical_lease_consumer import LeaseNativeConsumer

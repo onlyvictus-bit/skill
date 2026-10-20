@@ -2587,3 +2587,41 @@ runtime or qualification activation is included. Existing release/package/native
 gates remain unresolved. Propose separately a bounded real-project coding trial
 with explicit mandatory sources/tests and measured task outcome before advising
 large-project reliance; do not silently start that trial or a new fence mechanism.
+
+### Offline-first successor release - proposed design, 2026-10-20
+
+The user now requested finishing the narrow offline-first release in three work
+packages: existing-core blockers/use, matching verified delivery, and separately
+approved installed use. N3-A-D remains COMPLETE_WITH_CAVEATS; do not repeat it.
+Source/publication basis is c398be73e9e5eaa14de9e870c7787f53605afd6f on the
+existing development branch. Before these planning edits the tree was clean.
+
+Canonical continuation documents in this same Fable store:
+- [Full proposed design](offline-first-release-design-20261020.md)
+- [Proposed inline implementation plan](offline-first-release-plan-20261020.md)
+
+These documents are draft design/planning, not a completed release or product
+change. The explicitly requested Brainstorming/Writing Plans skills require
+human review of the full description before inline implementation. The user
+already selected executing-plans; do not ask for the execution method again.
+One fresh read-only builder check is requested; record its actual result, not
+an assumed pass. Separate installation/commit/push/outward gates still apply.
+
+The proposal preserves the existing engines, native WIP, historical capability
+facts and R3/R4/knowledge-v2 archives. It recommends a tested restrictive active
+profile, a demonstrated worker-lifetime repair (not error suppression), a portable
+coding/source fixture and new successor manifests/ZIPs. The existing builder
+rewrites R4-CONTENT and prior ZIP paths, so do not run it unchanged for this work.
+Current CI evidence: run39396331789 fails all8jobs at content preservation;
+run39396331869 has source/package mismatch and Windows3.12 distributed-local
+WinError32 with1failure/5errors. Those are observations, not a confirmed root
+cause or permission to skip tests. No native/worker/model/test command, dependency
+change, commit, push or installed-copy replacement ran during this planning step.
+
+Builder check returned FIX_FIRST with3important questions. The design/plan now
+state the parent's proposed answers: no local deletion even of ephemeral outputs;
+retained extraction and nondeleting handle probes, with hosted cleanup separately
+gated; ALL Beads/Dolt subprocesses disabled and native UNKNOWN remains frozen;
+distributed-local retained as an included mode with a mandatory runtime regression
+gate, no silent descope. This is one parent clarification, not a second reviewer
+SHIP or product completion. Human full-design/plan review remains the next gate.

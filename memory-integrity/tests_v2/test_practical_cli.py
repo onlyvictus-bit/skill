@@ -57,11 +57,10 @@ def lease_request(**changes):
 
 class PracticalCLI(unittest.TestCase):
     def setUp(self):
-        # The retained location is deliberate (run dirs stay for inspection);
-        # only its pre-existence was host-provided. Ensure it so a fresh
-        # CI checkout behaves like a lived-in tree.
-        retained_base = ROOT.parent.parent / 'build-validation' / 'retained-temp'
-        retained_base.mkdir(parents=True, exist_ok=True)
+        # Retain the fixture, but respect the selected test-owned temp root.
+        # A hard-coded sibling can exist yet reject mkdir; Windows tempfile
+        # then repeatedly retries PermissionError as a possible name collision.
+        retained_base = Path(tempfile.gettempdir())
         retained = Path(tempfile.mkdtemp(prefix='practical-cli-retained-',
                                          dir=str(retained_base)))
         self.selection_file = retained / 'selection.json'
@@ -192,6 +191,10 @@ class PracticalCLI(unittest.TestCase):
         path.open.assert_called_once_with('rb')
         path.open.return_value.__enter__.return_value.read.assert_called_once_with(
             practical_cli.MAX_INPUT_BYTES + 1)
+
+    def test_fixture_is_scoped_to_selected_temporary_root(self):
+        self.assertTrue(self.selection_file.parent.resolve().is_relative_to(
+            Path(tempfile.gettempdir()).resolve()))
 
 
 if __name__ == '__main__':

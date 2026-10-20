@@ -194,6 +194,8 @@ class LeaseScratchBackend:
         return binding
 
     def _invoke(self, sql, *, timeout=TIMEOUT_SECONDS):
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         from .practical_execution import capture_transport, ObservedRows
         if type(self) is not LeaseScratchBackend:
             raise PracticalContractError('E_MI2_BACKEND_TYPE')
@@ -274,6 +276,8 @@ class LeaseScratchBackend:
         protected action, so the title, paused-title and transfer dispatches
         share this body rather than three drifting copies.
         """
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         from complete_read_v2 import ledger
         binding = self.intent_binding(request)
         # Refuse bogus capability and unsafe path before consuming the attempt.
@@ -339,6 +343,8 @@ class LeaseScratchBackend:
     def execute_reassign_title(self, value, *, cm_db, reservation):
         """Ownership-transfer dispatch: same winner/consumption/readback shape
         as title dispatch, but through the reassign batch and receipt."""
+        from .release_profile import require_native_execution_enabled
+        require_native_execution_enabled()
         from complete_read_v2 import ledger
         if type(self) is not LeaseScratchBackend:
             raise PracticalContractError('E_MI2_BACKEND_TYPE')

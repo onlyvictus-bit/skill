@@ -9,6 +9,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -75,6 +76,12 @@ class QualifiedAdapterFixture:
 
 class NativeJournalTests(unittest.TestCase):
     def setUp(self):
+        # LEGACY_MODEL_ONLY / POLICY_CHECK_TEST-MOCKED, never active-profile proof.
+        for target in ('hybrid_bridge.native.require_native_execution_enabled',
+                       'complete_read_v2.release_profile.require_native_execution_enabled'):
+            policy = patch(target)
+            policy.start()
+            self.addCleanup(policy.stop)
         self.tmp = tempfile.TemporaryDirectory(prefix="mi-m7-journal-")
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
@@ -211,6 +218,12 @@ class NativeJournalTests(unittest.TestCase):
 
 class GuardDerivationTests(unittest.TestCase):
     def setUp(self):
+        # QualifiedAdapterFixture has no process transport. Preserve old model laws.
+        for target in ('hybrid_bridge.native.require_native_execution_enabled',
+                       'complete_read_v2.release_profile.require_native_execution_enabled'):
+            policy = patch(target)
+            policy.start()
+            self.addCleanup(policy.stop)
         self.tmp = tempfile.TemporaryDirectory(prefix="mi-m7-guard-")
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)

@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 
 from . import native
+from .release_profile import require_native_execution_enabled
 from . import native_observation as observation
 
 ACTOR = "memory-integrity-pilot"
@@ -113,10 +114,12 @@ class PilotNativeAdapter:
         self._runner = runner or self._default_runner
 
     def _default_runner(self, argv, cwd, env):
+        require_native_execution_enabled()
         return observation._capture_process(
             argv, cwd=str(cwd), env=env, timeout=observation.TIMEOUT_SECONDS, shell=False)
 
     def _run(self, args, readonly):
+        require_native_execution_enabled()
         exe, root, beads, _db, _metadata = observation._selection(self.selection)
         argv = [str(exe), "--sandbox", "--actor", ACTOR, "--json"]
         if readonly:
@@ -129,6 +132,7 @@ class PilotNativeAdapter:
         return result["stdout"].decode("utf-8", errors="strict"), evidence
 
     def execute(self, operation_id, command):
+        require_native_execution_enabled()
         del operation_id
         if not isinstance(command, dict) or command.get("kind") != "claim":
             raise native.NativeContractError("E_PILOT_OPERATION: only claim is qualified")
@@ -140,6 +144,7 @@ class PilotNativeAdapter:
         return evidence
 
     def readback(self, command):
+        require_native_execution_enabled()
         if not isinstance(command, dict) or command.get("kind") != "claim":
             raise native.NativeContractError("E_PILOT_OPERATION")
         task_id = command.get("native_task_id")
@@ -183,6 +188,8 @@ def run_disposable_pilot(*, bd_path, expected_executable_sha256, workspace, rece
     NativeBeadsAdapter, never authorizes shared/project writes, and never
     retries an uncertain claim.
     """
+    from .release_profile import require_native_execution_enabled
+    require_native_execution_enabled()
     bd_path = Path(bd_path).resolve()
     workspace = Path(workspace).resolve()
     receipt = Path(receipt).resolve()

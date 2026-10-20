@@ -4,6 +4,7 @@ import math
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import threading
 import time
@@ -35,15 +36,25 @@ def validate_reply(reply, lane, sequence, lease, request_digest):
 class _Session:
     def __init__(self, python, lane, lease, deadline):
         self.lane, self.lease, self.deadline, self.sequence = lane, lease, deadline, 0
-        self.directory = tempfile.TemporaryDirectory()
-        self.output = open(Path(self.directory.name) / 'output', 'w+b')
-        self.reader = open(Path(self.directory.name) / 'output', 'rb')
-        self.errors = tempfile.TemporaryFile()
+        self.directory = self.output = self.reader = self.errors = None
+        self.process = self.writer = None
+        self._stop_attempted = self._stopped = self._closed = False
         self.offset = 0
         env = {k: v for k, v in os.environ.items() if k.upper() in {'PATH', 'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP', 'LANG', 'LC_ALL'}}
         env.update(PYTHONDONTWRITEBYTECODE='1', PYTHONNOUSERSITE='1', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1')
-        self.process = subprocess.Popen([str(python), '-B', str(Path(__file__).with_name('distributed_worker.py'))],
-                                        stdin=subprocess.PIPE, stdout=self.output, stderr=self.errors, env=env)
+        try:
+            self.directory = tempfile.TemporaryDirectory()
+            self.output = open(Path(self.directory.name) / 'output', 'w+b')
+            self.reader = open(Path(self.directory.name) / 'output', 'rb')
+            self.errors = tempfile.TemporaryFile()
+            self.process = subprocess.Popen([str(python), '-B', str(Path(__file__).with_name('distributed_worker.py'))],
+                                            stdin=subprocess.PIPE, stdout=self.output, stderr=self.errors, env=env)
+        except BaseException as original:
+            try:
+                self.close()
+            except Exception as cleanup:
+                original.add_note('E_DISTRIBUTED_CONSTRUCTION_CLEANUP: ' + repr(cleanup))
+            raise
 
     def request(self, op, payload):
         request = {'schema_version': 1, 'lane': self.lane, 'sequence': self.sequence,
@@ -55,17 +66,20 @@ class _Session:
         def write():
             try:
                 self.process.stdin.write(raw); self.process.stdin.flush()
-            except (BrokenPipeError, OSError) as exc:
+            except (OSError, ValueError) as exc:
                 write_errors.append(exc)
             finally:
                 written.set()
         # Pipe writes can block before reading starts; the same overall deadline
         # bounds them. Killing the child in finally releases a blocked writer.
-        writer = threading.Thread(target=write, daemon=True)
-        writer.start()
+        self.writer = threading.Thread(target=write, daemon=True)
+        self.writer.start()
         while not written.wait(.005):
             if time.monotonic() > self.deadline:
                 raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT')
+        self.writer.join(timeout=max(0, self.deadline - time.monotonic()))
+        if self.writer.is_alive():
+            raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT')
         if write_errors:
             raise ValueError('E_DISTRIBUTED_WORKER: terminated') from write_errors[0]
         while True:
@@ -89,17 +103,45 @@ class _Session:
                 raise ValueError('E_DISTRIBUTED_WORKER: terminated before response')
             time.sleep(.005)
 
+    def stop(self):
+        """Reap only our child and writer before disposing any owned handles."""
+        if self._stop_attempted:
+            if not self._stopped:
+                raise ValueError('E_DISTRIBUTED_STOP_INCOMPLETE')
+            return
+        self._stop_attempted = True
+        if self.process is not None:
+            if self.process.poll() is None:
+                self.process.kill()
+            self.process.wait(timeout=5)
+        if self.writer is not None:
+            self.writer.join(timeout=5)
+            if self.writer.is_alive():
+                raise ValueError('E_DISTRIBUTED_WRITER_STILL_ALIVE')
+        self._stopped = True
+
     def close(self):
-        if self.process.poll() is None:
-            self.process.kill()
-        self.process.wait(timeout=5)
-        if self.process.stdin:
-            try:
-                self.process.stdin.close()
-            except OSError:
-                pass
-        self.reader.close(); self.output.close(); self.errors.close()
-        self.directory.cleanup()
+        if self._closed:
+            return
+        self.stop()
+        failures = []
+        streams = [self.reader, self.output, self.errors,
+                   self.process.stdin if self.process is not None else None]
+        for stream in streams:
+            if stream is not None:
+                try:
+                    stream.close()
+                except Exception as exc:
+                    failures.append(exc)
+        # Do not remove a directory while one of its handles failed to close.
+        if failures:
+            error = ValueError('E_DISTRIBUTED_STREAM_CLEANUP')
+            for failure in failures:
+                error.add_note(repr(failure))
+            raise error from failures[0]
+        if self.directory is not None:
+            self.directory.cleanup()
+        self._closed = True
 
 
 class DistributedClient:
@@ -206,7 +248,27 @@ class DistributedClient:
                                     'fit_digest': fit_digest, 'shard_digests': shards,
                                     'semantic_truth': 'UNVERIFIED', 'provider_calls': 0}}
         finally:
+            original, cleanup_errors = sys.exception(), []
+            # A sibling may have inherited an owned handle. Stop the entire
+            # owned process set before closing handles/removing directories.
             for session in sessions:
-                session.close()
+                try:
+                    session.stop()
+                except Exception as exc:
+                    cleanup_errors.append(exc)
+            for session in sessions:
+                try:
+                    session.close()
+                except Exception as exc:
+                    cleanup_errors.append(exc)
             self.execution_proof['workers_after_close'] = [{'pid': s.process.pid, 'alive': s.process.poll() is None} for s in sessions]
+            if cleanup_errors:
+                if original is not None:
+                    for error in cleanup_errors:
+                        original.add_note('E_DISTRIBUTED_CLEANUP: ' + repr(error))
+                else:
+                    error = ValueError('E_DISTRIBUTED_CLEANUP')
+                    for failure in cleanup_errors:
+                        error.add_note(repr(failure))
+                    raise error from cleanup_errors[0]
 

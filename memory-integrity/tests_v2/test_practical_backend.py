@@ -210,6 +210,11 @@ class PracticalSqlTests(unittest.TestCase):
 
 class PracticalBackendTests(unittest.TestCase):
     def setUp(self):
+        # LEGACY_MODEL_ONLY: RecordingRunner never starts a native process.
+        from unittest.mock import patch
+        policy = patch('hybrid_bridge.release_profile.require_native_execution_enabled')
+        policy.start()
+        self.addCleanup(policy.stop)
         self.selected = practical_contract.PracticalSelection.from_value(SELECTION)
         self.runner = RecordingRunner()
         self.backend = practical_backend.PracticalBackend(self.selected, runner=self.runner)

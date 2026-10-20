@@ -3,8 +3,11 @@ import hashlib
 import json
 from pathlib import Path
 import unittest
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from integrity_v2.release_content import selected_name, verify_content
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
@@ -18,9 +21,9 @@ class Preservation(unittest.TestCase):
         self.assertEqual(sha(current[:row["bytes"]]), row["sha256"])
 
     def test_release_exact_content_and_declared_changes(self):
-        name = next(n for n in ("R4-CONTENT.json", "R3-CONTENT.json", "R2-CONTENT.json")
-                    if (ROOT / ("tests_v2/" + n)).is_file())
-        manifest = json.loads((ROOT / "tests_v2" / name).read_text(encoding="utf-8"))
+        selected = selected_name(ROOT)
+        name = Path(selected).name
+        manifest = verify_content(ROOT)
         baseline = json.loads((ROOT / "tests_v2" / "baseline-r1.json").read_text(encoding="utf-8"))
         actual = {p.relative_to(ROOT).as_posix():sha(p.read_bytes()) for p in ROOT.rglob("*")
                   if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
