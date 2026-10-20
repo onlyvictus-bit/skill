@@ -41,3 +41,16 @@ the seal. Use one new output; stop/share first failure, no automatic retry.
   regressions are not a complete packaging implementation or whole-change review.
 - Installed workflow and fresh AI-session use. No user data or installed skill
   was removed/replaced to obtain these bounded results.
+
+## Cache diagnostic — UNAVAILABLE_NOT_PASSED
+
+Fresh native Fable Sol reviewer cache_probe_review failed to start because this
+workspace is out of credits. No review findings or verdict exist. Earlier SHIP
+reviews do NOT cover the new diagnostic. Parent observed10 focused/75 repository
+harness controls pass and an actual agent diagnostic stop on selected3.12 exit103
+after3.14 startup; no cache reproduction/product fix is claimed. Exact evidence
+and preservation: cache-cause-investigation.md.
+
+Fresh bounded read-only review of .github/scripts/cache_cause_probe.py and its
+test remains required before a normal-account scratch handoff. No host command
+issued, review gate waived, old attempt retried or qualification activated.

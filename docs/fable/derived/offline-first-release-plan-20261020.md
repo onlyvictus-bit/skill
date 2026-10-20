@@ -374,3 +374,43 @@ CM unchanged. No advanced/completion/24arm acceptance ran. Cache attribution and
 minimum env/cwd correction require a controlled scratch regression; no deletion,
 old command retry or changed baseline. User approved saving this local WIP commit,
 not pushing or another host attempt. Final release/installation remain pending.
+
+### Cache-cause investigation, continued from6361868 (approved local Tasks1-5)
+
+Current request explicitly asks for a controlled scratch regression BEFORE a
+production correction. No consumed host/N3 run will be repeated. Six existing
+cache files/receipts remain immutable. This is investigation, not qualification.
+
+Plan: (1) revalidate the six-file difference and receipt identities; (2) compare
+both actual env/cwd builders, including transitive single/model/parser launches;
+(3) create one small retained diagnostic with fixed startup/handshake/shard arms
+in separate NEW owned cwd directories; compare filtered3.14 control and selected
+3.12 startup in two distinct cwd locations; (4) record exact streams/file hashes
+and source preservation after each arm; (5) infer only what reproduced, then
+write the regression and minimum owning-boundary correction if justified.
+
+Alternatives: no-build would preserve the known failure but not explain it;
+restoring a broad inherited environment could leak credentials or change global
+cache destinations and is rejected; the selected approach keeps the existing
+filter unchanged and varies only controlled launch context, so all newly created
+relative cache output stays in retained scratch. No global variable, ACL, trust,
+dependency, cache removal or old baseline change. Do not redirect SystemDrive to
+a fabricated drive or mutate system-wide ProgramData as a control.
+
+Done for investigation: independently review the bounded diagnostic; at least
+one actually observed source of cache creation OR a truthful non-reproduction/
+host-blocked result, with both launch boundaries covered and all previous files
+unchanged. Existing-source probe execution is not a repaired-product acceptance
+run. A new full successor host evaluation still needs separate authority.
+
+Ruling: reuse the current checkout and docs/fable as sole authority, executing
+inline. Do not create a second skill workspace or follow automatic cleanup/commit
+defaults; they conflict with the user's explicit preservation/approval rules.
+
+Investigation checkpoint:10 focused/75 repository harness controls pass. Real
+scratch echo children confirm inherited cwd/filter on both boundaries, but actual
+selected3.12 startup is agent-blocked (exit103); no cache-cause RED observed.
+All source/cache/old host evidence preserved. Independent review could not start
+(workspace credits), NOT_PASSED. Hold new normal-host diagnostic handoff for fresh
+review; no production correction/full-host retry. Resume/evidence (docs/fable-relative):
+evidence/offline-first-20261020/cache-cause-investigation.md.

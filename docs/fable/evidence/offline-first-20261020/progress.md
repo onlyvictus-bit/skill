@@ -189,3 +189,30 @@ exact paths, hashes, scope, retained artifacts and ordered resume instructions.
 Old host-a1 and N3 commands must not rerun. No baseline/guard weakening or deletion.
 User authorized LOCAL checkpoint commit only to preserve work before token limit;
 no push, code-fix/new host attempt, package rebuild or installed-copy action here.
+
+## Cache investigation after6361868 — partial, product unchanged
+
+Exact coverage/hashes/results: cache-cause-investigation.md. Real authored scratch
+subprocesses through both unchanged boundaries confirm inherited cwd/7-key filter,
+NOT cache causation. New diagnostic has startup/handshake/shard-EOF arms, owned
+new cwd/temp, preserved streams, cache-inclusive inventories and external hashes.
+RED6 missing-helper controls (not cache RED), focused10/10, repository harness75/75
+pass. Scoped retained runner, not full source/CI. One NEW agent attempt passed
+3.14 control then selected3.12 exited103 (WindowsApps base unavailable), stopping
+before startup-b/single/shard. Receipt SHA9f2849ae8eddb8740b944a0fde5948cc4f87894d35c1f904b31b8e243cc48dcc.
+No new caches observed; full MI204/CM115 hashes unchanged, including original6 DBs
+and67 existing bytecode files. Original-policy comparison still6 added DBs only,
+0 modified/missing; CM0. Old host receipt/Prepared/launcher match, never rerun.
+
+Fresh independent review could not start (workspace credits): NOT_PASSED. No
+normal-host handoff issued. Next bounded read-only review of2 diagnostic files,
+then one separately sealed normal-account scratch diagnostic if cleared. No
+production correction until actual symptom RED, no repeated blocked agent call,
+baseline weakening, file deletion, install, commit/push or qualification. Local
+WIP retained. Full successor host attempt still needs separate authority.
+
+User now authorized "COMMIT it": one local checkpoint, no push/review waiver.
+Fresh precommit repository harness75/75 passed, tests-933fa601575e497a96d3d102ecd461b3,
+log9f59514f6ed6ca35ff5c5155ac7a83dde7187cdc982939f3018b3e9b9018793f.
+Earlier uncommitted status is historical; this commit's parent is6361868.
+Next review/normal-account scratch observation remain held, not silently approved.

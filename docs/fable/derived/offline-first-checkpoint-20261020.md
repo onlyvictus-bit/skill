@@ -142,3 +142,34 @@ Commit hygiene note: staged diff has3 whitespace-only new-blank-line-at-EOF
 warnings in retained_unittest.py and both new release_content.py files. Their
 tested/frozen bytes were deliberately retained for this WIP checkpoint; no
 runtime correction or test claim depends on removing those blank lines.
+
+## Continuation from6361868: diagnostic built, cause unproven
+
+Read ../evidence/offline-first-20261020/cache-cause-investigation.md for the latest
+position. Six original documents read1,289/1,289 lines; pasted transcript1,717/1,717.
+Both source boundaries inherit cwd and omit SystemDrive. Real authored scratch
+subprocesses confirm context, NOT Windows cache cause. New cache diagnostic and
+10 controls built; repository harness75/75 passes. Product workers unchanged.
+
+A NEW agent scratch diagnostic passed3.14 startup, then stopped selected3.12
+exit103 (WindowsApps base invisible). No new caches in those arms; startup-b/
+actual single/shard arms NOT RUN. All MI204/CM115 file hashes incl6 DBs and67
+existing bytecode files match diagnostic Prepared. Old host artifacts unchanged.
+
+Independent reviewer cache_probe_review could not start (workspace credits),
+UNAVAILABLE_NOT_PASSED. No normal-host handoff issued or review gate waived. Next:
+fresh bounded read-only review of cache_cause_probe.py + test, THEN one sealed
+normal-account SCRATCH diagnostic if cleared. No blocked-agent/old host/N3 retry,
+baseline replacement, deletion, install, product correction, commit/push or
+qualification activation. Local WIP; HEAD6361868 unchanged. Final release/use
+remain pending. Continue from these results, not from completed work.
+
+## Superseding save authorization: local WIP checkpoint
+
+User: "COMMIT it". Save these eight diagnostic/test/Fable files locally; no push,
+review waiver or new runtime authority. The earlier uncommitted/HEAD6361868 text
+describes the precommit state. This checkpoint's parent is6361868; resolve current
+HEAD with git log. Fresh precommit repository harness75/75 passed (private receipt
+tests-933fa601575e497a96d3d102ecd461b3; exact log hash in investigation report).
+Resume with the held independent diagnostic review; do not restart completed work
+or old host/N3 commands. Cache-cause proof/product fix/release remain pending.
