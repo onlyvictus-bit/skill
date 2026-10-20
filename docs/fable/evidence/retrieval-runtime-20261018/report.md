@@ -1,4 +1,98 @@
-# CURRENT CHECKPOINT - NOT SAFE TO FREEZE OR RUN
+# Current checkpoint - child-context repair; failed attempt retained (2026-10-20)
+
+The484d2ca normal-host Prepare passed; parent independently verified Prepared
+a50729c1. The subsequent approved Run passed15controls/full-chain and the real
+Python3.12.10 probe, consumed one durable evaluation claim, then STOPPED before
+the first retrieval CLI. Receipt d4da3f8f records0measured arms, no29runtime suite
+and preservation_passed=true. Repeating the command was refused. Preserve it.
+
+Root cause: installer environment scrubbing removed USERPROFILE and hid existing
+user Git configuration from the new child gate. Git's ownership refusal caused
+empty stdout; invoke then masked the useful error with JSONDecodeError. No new
+trust exception, ownership/ACL/config or install is needed or authorized.
+
+User now authorizes bounded repair/necessary local commits. The portable fix,
+14regressions and sanitized observations are recorded in child-context-repair.md
+and child-context-observations.json beside this report. Agent real read-only Git
+comparison: old scrubbed context128, new validated-profile adapter0/correctHEAD;
+actual captured failure decodes as original process failure, not JSON error.
+These are agent/offline observations, NOT a corrected normal-host evaluation.
+
+Repository contracts33, eval selftests10 and measurement contracts25 pass.
+Private successor20/21controls pass precommit; one clone test intentionally fails
+the uncommitted-file scope. Four new added-source-policy tests pass after4RED
+failures. Full source/package suites are NOT rerun under no-deletion: existing
+tests explicitly unlink/cleanup. No package bytes/manifests are regenerated.
+
+Native read-only review returned FIX_FIRST:0Critical/2Important. One parent
+correction makes the postcommit guard require a clean tree (RED for all4Fable
+paths, GREEN after repair) and fixes transition-state record claims. No second
+independent SHIP is claimed; general public CLI integration and host/runtime/
+package/release results were explicitly not judged by that review.
+
+Next: authorized exact-scope local commit; bind a NEW private successor to its
+actual resultingSHA and four explicitly pinned added files. Rerun all
+21successor+29guard controls,
+original preservation and external seals before new host Prepare/one approved
+evaluation. No old command, ignoredHEAD, reset, deletion, push or qualification.
+Private postcommit HANDOFF/proof must hold exact hashes without another Fable
+edit movingHEAD. Whole-skill/semantic/native/release/install readiness is false.
+Prior report sections below are historical snapshots, not current run authority.
+
+---
+
+# Historical correction - offline verified, normal-host preparation pending
+
+This supersedes the old checkpoint below without erasing it. HEAD remains
+484d2ca83f5bed71c0f163e8614add2cedbe976b. The three old private WIP hashes
+still match the checkpoint. The separate 484d2ca successor implements the
+three FIX_FIRST findings in one parent RED/GREEN correction pass:
+
+| Finding | Correction / observed evidence | Remaining observation |
+| --- | --- | --- |
+| Output alias could receive first write | Canonical/no-reparse full-chain check and held Windows directory handles precede writes; actual fresh junction is rejected and single-component rename is blocked | Full chain cannot be opened by agent at C:\Users\sakth; normal-host full-chain control must pass |
+| Claim consumed before host Python probe | One retained existing-interpreter identity probe before claim; failed probe/no-claim/no-repeat and caller-seeded JSON refusal tested; immediate durable intent after claim | Actual normal-account interpreter launch still unobserved |
+| Mutable Prepared/input selfhashes | External Prepared SHA required; captured hardened reads; fixed helper/input scopes; operation-specific child dispatch seals; coedit/hardlink/input substitutions rejected | Real Prepared not created; host clone and external parent verification pending |
+
+Final offline controls:15 correction+24 rebound-guard+25 existing measurement
+contracts =64 passing,0errors/skips. Retained initial correction run had9failures,
+0errors; later experimental failures include metadata-only handles permitting
+a fresh fixture rename and full-chain access denied in agent context. None is
+deleted or counted as success. No full-chain pass is inferred from component
+tests. No new worker/model/native Beads process or evaluation attempt has run.
+
+Private successor root is the existing n3-retrieval-9ec6fb1db36444acba2945896e8b8d17.
+Files: Evaluate-N3-484d2ca-20261020.py, Test-N3-484d2ca-20261020.py,
+Run-N3-484d2ca-20261020.ps1, continuation-484d2ca-20261020/continuation.py.
+Original guard is copied with only EXPECTED_HEAD rebound; its24tests unchanged.
+Existing normal readback receipt0f8b5963 is still historical a6ee520 evidence,
+not relabelled as a readback of484d2ca. base.HEAD remains0584a89. Product code,
+old helper/Prepared/Before/index/runtime/source/evidence bytes are preserved.
+
+Next host handoff is PREPARATION ONLY: hash-check the frozen new launcher and
+run -Mode Prepare once, nonadministrator normal account. It first runs15controls
+and an actual full-chain/rename control, then full runtime/input preflight and
+one new input-only clone. It prints Prepared path/SHA; starts NO worker, Python
+probe, claim or retrieval. Do not run Mode Run yet. Parent must independently
+check the saved Prepared and host-control receipt, then supply the exact external
+seal for the separate Run handoff under existing approval. Do not rerun failed
+commands, reset markers, weaken checks, change ACLs or run any old evaluator.
+
+Original FIX_FIRST review plus this one parent TDD pass is the review trail;
+no second independent SHIP is claimed. Deferred minors remain: old test digest
+annotation, old native_execution label ambiguity, old7runnercontrols' limited
+coverage. Hard-abort/receipt failure stays UNKNOWN/no retry despite new durable
+intent. No real OS-interruption or process/network sandbox qualification.
+
+N3-B/C24arm quality/replay/safety/exact29runtime tests and N3-D remain unobserved.
+No native/semantic/full-skill/release/install/fullCI label is activated. No
+commit, push, deletion, install, download, security change or installed-copy
+replacement this turn. Four Fable edits remain uncommitted. Final measured
+hashes, receipts and resume command belong to private HANDOFF.md/final proof.
+
+---
+
+# Historical checkpoint - NOT SAFE TO FREEZE OR RUN (before correction)
 
 User requested a local Git checkpoint before the usage limit, with completed
 work and exact resume instructions. Stop further build/evaluation now. The

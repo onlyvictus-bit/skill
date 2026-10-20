@@ -2351,3 +2351,200 @@ Verification before commit: rerun9new+25oldcontracts+7oldrunnercontrols, JSON
 parse/diff check, exact4stagedpaths/no deletions and committed blob identity.
 Current WIP code and its failing-review state are retained without modification.
 No push/installation/qualification activation. This is a resume checkpoint only.
+
+## Approved correction pass resumed from 484d2ca - 2026-10-20
+
+AUTH: "Continue from commit 484d2ca ... Verify the saved private artifact
+hashes, fix the three review blockers with regression tests, and bind a separate
+successor ... Do not run the old N3 commands, delete files or bypass guards."
+Verified exactHEAD484d2ca83f5bed71c0f163e8614add2cedbe976b/clean checkout and
+all3privateWIP hashes above. No correction previously existed; resume the one
+consolidated parent RED/GREEN pass from the completed FIX_FIRST review.
+
+INTENT: current WIP permits preclaim root aliasing, claims before actualhost
+probe, and trusts mutable Prepared/selfhashes. The approved successor must
+refuse all3 before query/evaluation effects and preserve the original evidence.
+
+Private surfaces: Evaluate-N3-484d2ca-20261020.py,
+Test-N3-484d2ca-20261020.py, Run-N3-484d2ca-20261020.ps1 at the original run;
+continuation-484d2ca-20261020/continuation.py is a separate mechanical guard
+copy pinned to484d2ca. New outputs only in evaluation-484d2ca-20261020/.
+The old3WIP artifacts/guards/receipts/Before/Prepared/runtime/index are immutable.
+Original normalaccount receipt0f8b5963 remains labelled observed at a6ee520;
+current484d2ca ancestry/4doc-only delta/525product identities are independently
+checked. No new normal-account readback claim is manufactured by rebinding.
+
+Decision: retain input-only clone, existing runtime and full old measurement
+ladder; hold is safe but makes no progress, editing old guards is rejected.
+Use native directory handles with read/write sharing but no delete sharing to
+hold verified output ancestors while writes occur, in addition to no-reparse
+checks. They change no ACL/privilege/trust configuration. Microsoft CreateFileW
+documents directory handles and the delete/rename sharing rule:
+https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew
+This is pathname protection, not an OS sandbox or authenticated producer.
+
+Correction tasks and done evidence:
+- [ ] RED controls: root/ancestor junction refusal before marker; attempted
+  root rename while pinned; failed hostprobe leaves no evalclaim and refuses
+  repeat; successful synthetic probe precedes durable attempt intent; wrong
+  Prepared/external seal and input+selfhash coedit; hardlinked/postread replaced
+  input; child dispatch/input substitution; wrongaccount and stalecommit.
+- [ ] Implement directory pin before any output/probe/claim write; one retained
+  normalhost interpreter probe BEFORE hostclaim; immediate fsynced intent after
+  exclusive claim. Hardabort/receipt-write failure stays UNKNOWN/no retry.
+- [ ] CLI requires externally supplied Prepared SHA for inspect/run; child
+  environment carries that exact SHA plus a parent-created per-operation packet
+  hash. Parse verified captured bytes; verify original immutable input-map scope,
+  helper/doc/index/runtime-manifest/host-receipt pins and relevant child inputs.
+  Prepared includes launcher hash, so external seal must be supplied AFTER
+  preparation, not embedded into a circular launcher/Prepared hash dependency.
+- [ ] GREEN full relevant offline controls, actual pathname/junction/rename
+  probes, original input/source preservation and exact clone identity. Keep
+  tests/fixtures/results retained. No second independent SHIP claim: completed
+  review's one parent correction pass is verified by its regression tests.
+- [ ] Update4Fable records before final sealing, then prepare new clone/Prepared
+  and hashchecked normalhost command under existing N3 approval. Agent's saved
+  exit103 is not retried or turned into a host verdict. Actual N3-B/C/29tests
+  and N3-D remain unobserved until real normalhost execution and result review.
+
+Rulings: keep existing isolated development checkout/singleFableledger and
+inline execution; no new worktree/install/environment/commit/push/delete.
+Fresh fixture junctions and attempted renames are confined to new retained
+test directories only, never original outputs. Recheck target hashes before
+edits; stage nothing. Stop on preservation/scope contradiction, not by weakening
+checks. Parent directory pins require no elevated or backup privilege enabling.
+
+### Correction outcome and host preparation boundary - 2026-10-20
+
+The ONE parent correction pass implements all3 reviewed blockers in the separate
+484d2ca successor. First new controls were RED (9failures/0errors); final focused
+controls15/15, rebound readback guard24/24 and existing measurement contracts25/25
+are GREEN with0errors/skips. These64 are offline controls, NOT the29runtime tests.
+Every fresh fixture, junction, failed run and old artifact remains retained.
+
+Final: fixed preclaim root aliasing - actual root junction/noncanonical path
+controls RED->GREEN; full existing directory chain is checked and held open with
+read-only Windows handles BEFORE output/probe/claim writes. An actual fresh
+single-component rename control passes. Metadata-only access0 did NOT block
+rename in a retained failed experiment; GENERIC_READ is the tested component
+mechanism. No backup privilege, ACL change, ancestor skip or security bypass.
+
+Final: fixed claim-before-host-probe - failed synthetic probe leaves no claim,
+cannot repeat, and public-run ordering control passes. A successful real normal-
+account existing-Python identity probe must precede evaluation claim. A caller-
+seeded success JSON is insufficient: the same process must retain the successful
+probe digest. Claim immediately records a create-new fsynced intent, not success.
+Hard abort/receipt-write failure remains UNKNOWN/no automatic replay.
+
+Final: fixed mutable Prepared/selfhash trust - external Prepared SHA is required
+by inspect/run and propagated to children with a per-operation dispatch hash.
+Captured verified JSON/inputs use the existing single-link/no-reparse/open-handle/
+postread reader. Controls reject Prepared+input coedit, hardlinks and substituted
+operation inputs. The valid-dispatch and exact original-input clone component
+controls pass. Readback guard tests cover postread pathname replacement. Helper,
+doc, index, original-input-map, historical host-receipt and runtime-manifest pins
+are checked; original base.HEAD remains0584a89 and old artifacts are unchanged.
+
+Ruling: actual full-chain GENERIC_READ opening is denied to this sandbox account
+at C:\Users\sakth (WinError5). Component controls use an explicitly limited fresh
+fixture; they do not prove normal-host full-chain access. DO NOT weaken/skip the
+ancestor or change ACLs. Cost if wrong: host preparation may stop safely. Hand
+off preparation ONLY in normal nonadministrator PowerShell, requiring15controls
+plus a real full-chain/rename control there; then full input/runtime preflight,
+one new input-only clone and printed Prepared SHA. No worker/probe/claim/query
+runs in Prepare mode. Real evaluation directory/Prepared remain ABSENT now.
+
+Ruling: external Prepared seal is obtained in two stages, avoiding a circular
+launcher/Prepared dependency. First freeze coordinator/test/launcher hashes and
+request only -Mode Prepare. Inspect the saved host-control receipt and captured
+Prepared against the original pins independently. Only then provide the distinct
+-Mode Run -PreparedSha256 <verifiedSHA> handoff under existing N3 authority.
+Do not supply Run yet, infer a pass, or use a self-reported seal without checking.
+Cost if wrong: an incorrect handoff is held, not silently authorized.
+
+The original completed FIX_FIRST review remains the review evidence; TDD verifies
+this consolidated fix pass. No second independent SHIP claim. Deferred minors:
+old fixture digest annotation; old native_execution label ambiguity (no native
+Beads, not no Python); old7runnercontrols do not exercise successor gates. Runtime
+results/N3-D, real subprocess containment, semantic benefit and whole-skill/native/
+release/install/fullCI readiness remain UNVERIFIED. No second engine/plan ledger,
+commit/push, original-file deletion or installed-copy change occurred.
+
+Resume here: use current484d2ca-bound private HANDOFF.md and final proof, verify
+frozen hashes/HEAD, request ONE normal-host Prepare only. Never run old N3/WIP
+commands. Future commits change HEAD and require another explicit successor;
+these4Fable updates are intentionally uncommitted until separately authorized.
+
+## Approved child-context repair and local Git checkpoint - 2026-10-20
+
+AUTH: user said "COMMIT WHAT NEED TO SEND TO GIT WHAT YOU FOUND TO SOLVE ISSUE"
+and "DO REMAINING NEEDED WORK TO FIND AND SOLVE REMAINING ROOTCAUSE" after the
+bounded successor/one-fresh-attempt proposal. This approves that local repair,
+tests, evidence, new successor binding and local commits, not push or new trust,
+ACL/owner/global configuration, installs, deletion or qualification activation.
+The prior484d2ca attempt remains CONSUMED_FAILED; never reset/reuse its markers.
+
+INTENT: installer-only environment scrubbing drops existing user Git context,
+and invoke parses empty stdout after a failed child. The required behavior is
+the SAME validated existing profile for child Git reads, a real child-context
+preflight BEFORE claim, and structured original exit/stream diagnostics before
+JSON parsing. No ownership/trust check is skipped and no new exception is added.
+
+Scope: .github/scripts/n3_child_transport.py and its .github/tests regression;
+this existing plan/resume/report/state plus child-context repair evidence. Keep
+all skill/companion code, packages/manifests, Semantica and installer unchanged.
+Use a separate private coordinator/guard/test/launcher successor after the local
+commit exists. Raw private environments/logs are not copied to public Git.
+Only a sanitized factual failure summary and reviewed reusable repair belong
+in Git. Scope inventory and all old hashes must be checked before staging.
+
+Decision (Deep Plan under Fable): hold/no-build preserves safety but cannot
+finish N3; validated existing USERPROFILE propagation plus preclaim child read
+is the smallest adequate route; a new normal-owned checkout is a larger identity
+migration and is rejected for this bounded repair. Evidence families: captured
+normal-host stderr/result; source environment/parse logic; paired real read-only
+Git environment experiment (agent context); official Git config semantics.
+The first two explain one failure and are not independent successful trials.
+Weak link: normal-host downstream retrieval still unobserved. Cheapest falsifier:
+the exact intended child context fails Git read before claim. Pivot/stop on any
+needed trust/permission change, unexpected committed file, preservation mismatch
+or3same-issue failed repair cycles. No invented success probabilities.
+
+Implementation order and acceptance gates (existing Fable ledger only):
+- [ ] Preserve/recheck failed receipt d4da3f8f, Prepareda50729c1 and old helpers.
+- [ ] RED: missing/mismatched/unsafe profile and secret/config inheritance;
+  nonzero+empty/malformed stdout, timeout/start failure, stream/hash substitution;
+  valid success AND valid structured refusal remain distinguishable.
+- [ ] GREEN: portable transport module adds only a validated inherited profile,
+  preserves offline restrictions, binds retained streams, reports original
+  failure and refuses malformed output; no global installer/env changes.
+- [ ] Wire separate successor: same-env child Git/identity/readback before
+  Python probe and evaluation claim; failed context is retained/no-auto-repeat.
+  Before claim require both same-process successful probes, not caller JSON.
+- [ ] Baseline-compared repository suites and native read-only Git comparison;
+  fresh native whole-change review; ONE parent RED/GREEN fix pass if needed.
+- [ ] Publish accurate diagnosis/results/resume locally with exact staged scope,
+  no deletions/secrets; verify commit blobs/tree. No push.
+- [ ] Bind NEW guard/output/launcher/Prepared to actual resulting commit; verify
+  original529file baseline plus explicitly pinned added files, never broaden
+  arbitrary paths. Preparation/external seal precede the ONE approved new host
+  evaluation. Normal-account execution remains human-only when sandbox refuses.
+
+Rulings: user-approved description is sufficient; no repeated brainstorming
+interview. Reuse current isolated development checkout and this Fable ledger,
+not a second Superpowers workspace/plan. All scratch/results retained: user
+no-deletion overrides skill cleanup defaults. Local commit changesHEAD; old
+commands stay retired, all old files unchanged. The postcommit source scope
+must explicitly enumerate added transport/test/evidence paths and hashes,
+while525existing product hashes remain unchanged. Cost if wrong: handoff holds.
+No native/provider/model calls or environment substitution. One native read-only
+reviewer is required by executing-plans; no external AI consultation is included.
+
+Reviewed checkpoint disposition: initial native Sol review FIX_FIRST,0Critical/
+2Important. Parent accepts both: inherited dirty-Fable allowance now refuses
+every dirty path (new test RED for all4Fable documents, GREEN after repair),
+and records now separate historical/current/publication states. One correction
+pass only; no second independent SHIP claimed. Guard suite grows from28to29.
+Postcommit21successor+29guard verification and exact binding remain required.
+Reviewer declined host execution, postcommit proof, general public CLI repair,
+full package/CI health and retrieval/release readiness. No scope is broadened.

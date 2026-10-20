@@ -762,3 +762,91 @@ Only after actual24arms/replay/safety/exact29tests can N3-D review occur.
 No file deletion, credential/API/model/native Beads/ACL/global change, push,
 release/install qualification or installed-copy replacement is authorized.
 No claim that this checkpoint completes N3 or the full skill.
+
+## RESUME HERE - 484d2ca correction, normal-host Prepare only (2026-10-20)
+
+Latest user approved resuming from484d2ca and fixing the3review blockers, with
+no old command/deletion/guard bypass. Exact HEAD remains
+484d2ca83f5bed71c0f163e8614add2cedbe976b. Three retained WIP hashes verified.
+One consolidated parent RED/GREEN pass built a separate successor; old helpers,
+receipts, questions, base.HEAD0584a89, index, runtime and product code unchanged.
+15new+24reboundguard+25measurement controls pass (64;0errors/skips). Do not
+confuse these with the unrun29runtime tests or independent N3-D result review.
+
+Private root: C:/Users/sakth/Documents/Codex/2026-10-02/ad/work/R5-practical-fence-20261013/build-validation/n3-retrieval-9ec6fb1db36444acba2945896e8b8d17/
+Current files: Evaluate-N3-484d2ca-20261020.py,
+Test-N3-484d2ca-20261020.py, Run-N3-484d2ca-20261020.ps1,
+continuation-484d2ca-20261020/continuation.py. Consult private HANDOFF.md and
+final verification proof for measured identities. No new commit/push this turn.
+
+Implemented: alias/canonical checks and held ancestor handles BEFORE writes;
+one actual normal-host interpreter probe BEFORE evaluation claim; fsynced claim
+intent; external Prepared seal through launcher/controller/child; hardened
+captured input reads and per-operation child input/argv dispatch hashes.
+Actual root-junction and fresh component-rename controls pass. Agent FULLCHAIN
+open at C:\Users\sakth is Access Denied; do not skip it or change permissions.
+The metadata-only0access experiment failed to block rename; retained, not used.
+
+Ruling: existing authority continues but next handoff must be Prepare ONLY in
+normal nonadministrator PowerShell. Requires15controls PLUS actual fullchain
+rename control, then full original input/runtime identity check. It creates
+evaluation-484d2ca-20261020 with input-only clone and prints Prepared SHA; NO
+worker/interpreter probe/claim/query/evaluation is started by that mode.
+Real successor output/Prepared/claim are absent now. Share host-control receipt
+and Prepared path/hash; parent independently checks them before issuing a
+separate -Mode Run -PreparedSha256 <verifiedSHA> command. Do not supply Run yet.
+
+No rerun of old N3 or failed helpers, no marker reset, no baseline replacement.
+No install/newruntime/download/API/learned-model/native Beads/ACL/security/Git
+mutation or deletion. Current4Fable edits remain uncommitted; future commit
+would changeHEAD and requires explicit successor rebind, not guard bypass.
+The historical normalaccount receipt0f8b5963 remains a6ee520 evidence only.
+
+Review evidence is the completed FIX_FIRST review plus this one parent TDD
+correction; no fresh independent SHIP claimed. Deferred minors and rulings are
+in the last plan section and report. Actual fullchainhost/interpreter/24arms/
+replay/safety/29tests/N3-D and whole-skill benefit remain UNVERIFIED. All failed
+fixtures and original data retained. Completion here is offline repair only.
+
+## RESUME HERE - child-context repair and authorized local checkpoint
+
+User authorized "COMMIT WHAT NEED TO SEND TO GIT WHAT YOU FOUND TO SOLVE ISSUE"
+and remaining root-cause work. Commit only the4Fable records plus4new declared
+transport/test/evidence files; no push. All old private artifacts stay local.
+The old484d2ca attempt is CONSUMED_FAILED:15hostcontrols/realchain and Python
+identity PASSED, first child Git gate FAILED,0arms/29tests NOT RUN. Receipt
+d4da3f8fe1bfec62b9a0c91bc76460000043296ab48f7ae7b9a9e64cf7f73525 retained.
+Do not repeat its Prepare/Run, remove markers, add trust or change permissions.
+
+Build/evidence: see child-context-repair.md/child-context-observations.json in
+the existing retrieval-runtime evidence folder and LAST plan section. Portable
+.github/scripts/n3_child_transport.py and14regressions repair profile discovery
+and nonzero/empty child-output diagnostics. Actual agent Git comparison old128/
+new0, no config/index write. Repository33+evals10+measurement25 controls pass.
+Private20/21successor controls pass before commit; exact clone test correctly
+refuses uncommitted new source. Four new source-scope tests GREEN after4RED.
+Full package suites not rerun under no-deletion; do not claim fullCI/29runtime.
+
+After containing commit: read actual resultingSHA, verify exact8paths/0deletions,
+and rebind only NEW private files Evaluate-N3-Context-20261020.py,
+Test-N3-Context-20261020.py, Run-N3-Context-20261020.ps1 and
+continuation-context-20261020/continuation.py. Guard must explicitly pin the
+four added public paths/hashes and original529tracked set,525old product hashes.
+No arbitrary allowlist expansion. Freeze guard/core/tests/launcher; rerun full
+21successor+29guard controls and preservation. If blocked, retain/report failure.
+
+Postcommit exact hashes belong to private HANDOFF/proof, NOT an extra Fable edit
+that shiftsHEAD again. Normal-host Prepare/external Prepared parent verification
+must precede the ONE approved new Run. New Run checks real child Git context
+BEFORE existing-Python probe/claim. Failed preclaim context is retained/no retry.
+Old source helpers, failed evidence and release packages stay unchanged.
+
+N3-D cannot be completed before actual24arms/replay/safety/29runtime observations.
+No learned model, API/provider/nativeBeads, installation, newenvironment, deletion,
+ACL/trust/global setting, package/installed-skill replacement or push included.
+
+Fresh native review returned FIX_FIRST (0Critical,2Important). Parent corrected
+the postcommit dirty-Fable allowance with a RED/GREEN regression covering all4
+documents, and corrected current-versus-historical/publication record claims.
+This is one parent correction, not a second independent SHIP. Postcommit guard
+count is29, successor21; neither full postbinding result is claimed here.
