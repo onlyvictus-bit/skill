@@ -27,6 +27,119 @@ KEYS = {'PATH','SYSTEMROOT','WINDIR','TEMP','TMP','LANG','LC_ALL'}
 SCRIPT_NAMES = ('cache_cause_probe.py','offline_release_acceptance.py','offline_host_validation.py')
 FLAGS = {'PYTHONDONTWRITEBYTECODE':'1','PYTHONNOUSERSITE':'1',
          'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1'}
+HISTORY = {
+    'Host-Prepared-20261020-a1.json':'7ce4922f4879a0e258f23c65ef8239dd30f2173a216acd30476bf093780ea4c4',
+    'host-validation-20261020-a1/Inputs.json':'7ce4922f4879a0e258f23c65ef8239dd30f2173a216acd30476bf093780ea4c4',
+    'host-validation-20261020-a1/Receipt.json':'01934889c0a87314f14fcc8971b503d92f7d535ad52911c964bc389d2569f79d',
+    'Run-Offline-Host-20261020.ps1':'f57a03a8ba028495301705509723a6c284fa3d550d70e025f0bfad4fc66fd0f7',
+    'cache-cause-6361868-20261020/Prepared.json':'cbb3f474019f510c7ba577246bcfc62a1f9bac7c909f3f6380f54135ed8bb114',
+    'cache-cause-6361868-20261020/agent-attempt/Receipt.json':'9f2849ae8eddb8740b944a0fde5948cc4f87894d35c1f904b31b8e243cc48dcc',
+    'tests-5342bdbb9f75472bbdb14477f8ac6a34/Receipt.json':'39fb2f75f31861cefd043c9bd4245a5f3d76e1ae2ea316f0c6cb47e5de35d076',
+    'tests-5342bdbb9f75472bbdb14477f8ac6a34/unittest.log':'665b5e75cabe62673bb744f290d1aaa2f5f0161dccf7e936a54fc1c3c5d17396',
+    'tests-2ca0023a9e4a47fabad475ca2489d15c/Receipt.json':'491329b5b9bfd756f340d7f20833f189039c34cb648d09332dde795be2a18533',
+    'tests-2ca0023a9e4a47fabad475ca2489d15c/unittest.log':'e0b846fa47fe0d098daf68b7386c687eb2ae5da7c24eefc469e07ea99176ec12',
+    'tests-933fa601575e497a96d3d102ecd461b3/Receipt.json':'2bd7493f39b5b72f8b4a9e4ba5eac2257cd279eaaaa658c49a1fb4bce9aedc8c',
+    'tests-933fa601575e497a96d3d102ecd461b3/unittest.log':'9f59514f6ed6ca35ff5c5155ac7a83dde7187cdc982939f3018b3e9b9018793f',
+}
+
+
+def required_historical():
+    root = ROOT/'.github/run-artifacts/offline-first-20261020'
+    return {str(root/name):digest for name,digest in HISTORY.items()}
+
+
+def verify_artifacts(rows):
+    require(isinstance(rows,dict),'E_PROBE_PRIOR_CHANGED')
+    for name,row in rows.items():
+        path = ordinary_chain(name)
+        require(isinstance(row,dict) and set(row) == {'path','size','sha256'} and
+                row['path'] == name and path.is_file() and path.stat().st_nlink == 1 and
+                stream_record(path) == row,'E_PROBE_PRIOR_CHANGED: '+name)
+
+
+def configuration(worker):
+    config = ordinary_chain(Path(worker).parent.parent/'pyvenv.cfg')
+    require(config.is_file() and config.stat().st_nlink == 1,'E_PROBE_VENV_CONFIGURATION')
+    fields = {}
+    for line in config.read_text(encoding='utf-8').splitlines():
+        if not line.strip() or line.lstrip().startswith('#'):
+            continue
+        key,separator,value = line.partition('=')
+        key,value = key.strip(),value.strip()
+        require(separator and key and key not in fields,'E_PROBE_VENV_CONFIGURATION')
+        fields[key] = value
+    require({'home','version','executable','include-system-site-packages'} <= fields.keys() and
+            fields['include-system-site-packages'] == 'false' and
+            re.fullmatch(r'3\.12\.[0-9]+',fields['version']) and
+            Path(fields['executable']).is_absolute() and Path(fields['home']).is_absolute(),
+            'E_PROBE_VENV_CONFIGURATION')
+    return config,fields
+
+
+def runtime_binding(worker):
+    worker = Path(worker).absolute()
+    if worker == Path(sys.executable) and not (worker.parent.parent/'pyvenv.cfg').exists():
+        return {'kind':'CONTROLLER','config':None,'version':list(sys.version_info[:3]),
+                'prefix':sys.prefix,'base_path':str(worker),'base_file':stream_record(worker),
+                'base_binary_authentication':'HASH_BOUND'}
+    config,fields = configuration(worker)
+    # An AppExecAlias may be invisible under this SID. This is explicitly a
+    # cache-cause-only diagnostic; do NOT call the unknown base authenticated.
+    try:
+        base_file = stream_record(Path(fields['executable']).resolve(strict=True))
+    except (OSError,RuntimeError):
+        base_file = None
+    return {'kind':'SELECTED_VENV','config':stream_record(config),
+            'version':[int(v) for v in fields['version'].split('.')],
+            'prefix':str(worker.parent.parent),'base_path':fields['executable'],'base_file':base_file,
+            'base_binary_authentication':'HASH_BOUND' if base_file else 'UNVERIFIED_CACHE_CAUSE_ONLY'}
+
+
+def verify_runtime_binding(worker,binding):
+    require(isinstance(binding,dict) and set(binding) == {'kind','config','version','prefix','base_path',
+            'base_file','base_binary_authentication'},'E_PROBE_RUNTIME_CHANGED')
+    if binding['kind'] == 'CONTROLLER':
+        require(Path(worker) == Path(sys.executable) and binding == runtime_binding(worker),
+                'E_PROBE_RUNTIME_CHANGED')
+        return
+    require(binding['kind'] == 'SELECTED_VENV' and isinstance(binding['config'],dict),
+            'E_PROBE_RUNTIME_CHANGED')
+    config,fields = configuration(worker)
+    require(stream_record(config) == binding['config'] and
+            binding['version'] == [int(v) for v in fields['version'].split('.')] and
+            binding['base_path'] == fields['executable'] and
+            binding['prefix'] == str(Path(worker).parent.parent),'E_PROBE_RUNTIME_CHANGED')
+    if binding['base_file'] is None:
+        require(binding['base_binary_authentication'] == 'UNVERIFIED_CACHE_CAUSE_ONLY',
+                'E_PROBE_RUNTIME_CHANGED')
+    else:
+        require(binding['base_binary_authentication'] == 'HASH_BOUND' and
+                stream_record(Path(fields['executable']).resolve(strict=True)) == binding['base_file'],
+                'E_PROBE_RUNTIME_CHANGED')
+
+
+def startup_identity(completed,worker,binding,cwd):
+    require(completed is not None and completed.returncode == 0,'E_PROBE_STARTUP_IDENTITY')
+    try:
+        value = json.loads(completed.stdout.decode('utf-8'))
+        require(isinstance(value,dict) and set(value) == {'version','executable','base_executable',
+                'prefix','base_prefix','cwd'} and isinstance(value['version'],list) and
+                len(value['version']) == 3 and all(type(v) is int for v in value['version']) and
+                value['version'] == binding['version'] and
+                all(isinstance(value[k],str) and Path(value[k]).is_absolute()
+                    for k in ('executable','base_executable','prefix','base_prefix','cwd')) and
+                Path(value['executable']).resolve(strict=True) == Path(worker).resolve(strict=True) and
+                Path(value['prefix']).resolve(strict=True) == Path(binding['prefix']).resolve(strict=True) and
+                Path(value['cwd']).resolve(strict=True) == Path(cwd).resolve(strict=True),
+                'E_PROBE_STARTUP_IDENTITY')
+        if binding['base_file'] is not None:
+            require(Path(value['base_executable']).resolve(strict=True) ==
+                    Path(binding['base_file']['path']).resolve(strict=True),'E_PROBE_STARTUP_IDENTITY')
+        # base_prefix/base_executable are in-arm observations. With an unreadable
+        # AppExecAlias they are NOT claims of prelaunch base-binary authentication.
+        return {k:value[k] for k in ('version','executable','base_executable','prefix','base_prefix')}
+    except (ValueError,UnicodeError,OSError,TypeError,KeyError) as exc:
+        raise ValueError('E_PROBE_STARTUP_IDENTITY: malformed/mismatched retained stdout') from exc
 
 
 def inventory(path):
@@ -75,12 +188,17 @@ def filtered_context(source,scratch):
     return env
 
 
-def basis(worker):
+def basis(worker,historical=False):
     worker = Path(worker).absolute()
     require(worker.is_file(),'E_PROBE_EXECUTABLE')
-    return {'schema_version':1,'scope':'CACHE_CAUSE_SCRATCH_NOT_QUALIFICATION',
+    prior = {name:stream_record(name) for name in required_historical()} if historical else {}
+    require(all(row['sha256'] == required_historical()[name] for name,row in prior.items()),
+            'E_PROBE_PRIOR_CHANGED')
+    return {'schema_version':2,'scope':'CACHE_CAUSE_SCRATCH_NOT_QUALIFICATION',
             'root':str(ROOT),'controller':stream_record(sys.executable),
             'worker':stream_record(worker),'source_boundaries':source_filter_inventory(),
+            'runtime_bindings':{'controller':runtime_binding(sys.executable),'worker':runtime_binding(worker)},
+            'historical_artifacts':prior,
             'scripts':{name:sha((ROOT/'.github/scripts'/name).read_bytes()) for name in SCRIPT_NAMES},
             'protected_packages':{pkg:inventory(ROOT/pkg) for pkg in PACKAGES},
             'arms':list(ARM_NAMES),'producer_authentication':False,'whole_skill_ready':False,
@@ -90,9 +208,9 @@ def basis(worker):
 def verify_basis(value):
     expected = {'schema_version','scope','root','controller','worker','source_boundaries','scripts',
                 'protected_packages','arms','producer_authentication','whole_skill_ready',
-                'native_execution','model_inference'}
+                'native_execution','model_inference','runtime_bindings','historical_artifacts'}
     require(isinstance(value,dict) and set(value) == expected and
-            type(value['schema_version']) is int and value['schema_version'] == 1 and
+            type(value['schema_version']) is int and value['schema_version'] == 2 and
             value['scope'] == 'CACHE_CAUSE_SCRATCH_NOT_QUALIFICATION' and value['root'] == str(ROOT) and
             value['arms'] == list(ARM_NAMES) and all(value[k] is False for k in
                 ('producer_authentication','whole_skill_ready','native_execution','model_inference')),
@@ -108,6 +226,11 @@ def verify_basis(value):
         require(isinstance(row,dict) and set(row) == {'path','size','sha256'} and
                 isinstance(row['path'],str) and Path(row['path']).is_absolute() and
                 Path(row['path']).is_file() and stream_record(row['path']) == row,'E_PROBE_EXECUTABLE_CHANGED')
+    require(isinstance(value['runtime_bindings'],dict) and
+            set(value['runtime_bindings']) == {'controller','worker'},'E_PROBE_RUNTIME_CHANGED')
+    for name in ('controller','worker'):
+        verify_runtime_binding(value[name]['path'],value['runtime_bindings'][name])
+    verify_artifacts(value['historical_artifacts'])
     require(value['controller']['path'] == sys.executable,'E_PROBE_CONTROLLER_CHANGED')
     require(value['scripts'] == {n:sha((ROOT/'.github/scripts'/n).read_bytes()) for n in SCRIPT_NAMES}
             and value['source_boundaries'] == source_filter_inventory(),'E_PROBE_HELPER_CHANGED')
@@ -140,6 +263,11 @@ def classify(rows):
     if not all(n in by_name and by_name[n].get('exit_code') == 0 for n in required):
         return 'DIAGNOSTIC_PARTIAL_OR_NONREPRODUCING'
     a,b,control = (by_name[n] for n in ('startup-a','startup-b','startup-control'))
+    identities = [by_name[n].get('runtime_identity') for n in required]
+    if not (all(isinstance(v,dict) for v in identities) and
+            identities[0].get('version',[])[:2] == [3,14] and
+            identities[1].get('version',[])[:2] == [3,12] and identities[1] == identities[2]):
+        return 'DIAGNOSTIC_PARTIAL_OR_NONREPRODUCING'
     found = cache_paths(a['created'])
     if (found and found == cache_paths(b['created']) and not cache_paths(control['created']) and
             len({by_name[n]['cwd'] for n in required}) == 3):
@@ -158,6 +286,8 @@ def child(boundary,worker,scratch):
     class RetainedDirectory:
         def __init__(self,*args,**kwargs):
             self.name = tempfile.mkdtemp(*args,**kwargs)
+        def __enter__(self): return self.name
+        def __exit__(self,*args): pass
         def cleanup(self): pass
     def retained_file(*args,**kwargs):
         fd,_ = tempfile.mkstemp(dir=temporary,prefix='stream-')
@@ -183,7 +313,9 @@ def child(boundary,worker,scratch):
                 time.sleep(.01)
             code = session.process.wait(timeout=5)
             require(code == 0,'E_PROBE_SHARD_STARTUP_EXIT: '+str(code))
-            print(json.dumps({'boundary':boundary,'exit_code':code,'runtime_identity_before_eof':True}))
+            print(json.dumps({'boundary':boundary,'exit_code':code,
+                              'worker_startup_completed_before_eof_exit':True,
+                              'identity_contents_observed':False}))
         finally:
             session.close()
 
@@ -193,21 +325,36 @@ def execute(prepared,expected,output):
     require(prepared.is_file() and prepared.stat().st_nlink == 1 and
             sha(prepared.read_bytes()) == expected,'E_PROBE_EXTERNAL_HASH')
     doc = read(prepared)
+    known = required_historical()
+    require(isinstance(doc,dict) and isinstance(doc.get('historical_artifacts'),dict) and
+            set(doc['historical_artifacts']) == set(known) and
+            all(isinstance(v,dict) and v.get('sha256') == known[n]
+                for n,v in doc['historical_artifacts'].items()),'E_PROBE_HISTORICAL_SET')
     verify_basis(doc) # Refuse before creating any output or consuming the scratch attempt.
+    require(doc['runtime_bindings']['controller']['version'][:2] == [3,14] and
+            doc['runtime_bindings']['worker']['kind'] == 'SELECTED_VENV' and
+            doc['runtime_bindings']['worker']['version'][:2] == [3,12],'E_PROBE_SELECTED_RUNTIME')
     output = new_probe_output(output)
     receipt = {'scope':doc['scope'],'prepared':stream_record(prepared),'arms':[],
                'status':'DIAGNOSTIC_PARTIAL_OR_NONREPRODUCING','failure':None,
                'producer_authentication':False,'whole_skill_ready':False,'native_execution':False,
                'model_inference':False,'preservation_observed':False,
+               'base_binary_authentication':doc['runtime_bindings']['worker']['base_binary_authentication'],
+               'historical_artifacts_checked':len(known),
                'limitations':['No precise Windows DLL/cache-service writer attribution.',
                               'No full retrieval, host-a1 retry or repaired-product qualification.',
+                              'An unreadable AppExecAlias base is not exact-binary authenticated.',
+                              'Only explicitly enumerated old artifacts are content-hash checked.',
                               'Existing boundaries unchanged; only stream cleanup is instrumented.']}
     try:
         from offline_host_validation import capture_owned
         controller,worker = (doc[n]['path'] for n in ('controller','worker'))
-        startup = 'import json,os,sys;print(json.dumps({"python":sys.version,"cwd":os.getcwd()}))'
+        startup = ('import json,os,sys;print(json.dumps({"version":list(sys.version_info[:3]),'
+                   '"executable":sys.executable,"base_executable":sys._base_executable,'
+                   '"prefix":sys.prefix,"base_prefix":sys.base_prefix,"cwd":os.getcwd()}))')
         for name in ARM_NAMES:
             verify_basis(doc)
+            print(name+': RUNNING (scratch diagnostic only)',flush=True)
             root = output/name
             root.mkdir(exist_ok=False)
             cwd = root/'cwd'
@@ -226,11 +373,16 @@ def execute(prepared,expected,output):
                    'temp_created':inventory(temp),'exit_code':completed.returncode if completed else None,
                    'command':command,'source_preservation':False}
             receipt['arms'].append(row)
+            if name.startswith('startup-'):
+                selected = 'controller' if name == 'startup-control' else 'worker'
+                row['runtime_identity'] = startup_identity(completed,doc[selected]['path'],
+                                                           doc['runtime_bindings'][selected],cwd)
             verify_basis(doc)
             row['source_preservation'] = True
             save(root/'Arm.json',row)
             require(completed is not None and completed.returncode == 0,
                     'E_PROBE_ARM_EXIT: '+name+'; inspect retained stderr/Command.json')
+            print(name+': OBSERVED',flush=True)
         receipt['status'] = classify(receipt['arms'])
     except Exception:
         receipt['failure'] = traceback.format_exc()
@@ -264,7 +416,7 @@ def main():
     arm.add_argument('--scratch',type=Path,required=True)
     args = parser.parse_args()
     if args.mode == 'prepare':
-        value = basis(args.worker)
+        value = basis(args.worker,historical=True)
         verify_basis(value)
         output = new_probe_output(args.output)
         save(output/'Prepared.json',value)

@@ -47,8 +47,10 @@ class _Session:
             self.output = open(Path(self.directory.name) / 'output', 'w+b')
             self.reader = open(Path(self.directory.name) / 'output', 'rb')
             self.errors = tempfile.TemporaryFile()
-            self.process = subprocess.Popen([str(python), '-B', str(Path(__file__).with_name('distributed_worker.py'))],
-                                            stdin=subprocess.PIPE, stdout=self.output, stderr=self.errors, env=env)
+            # The already-owned directory also contains relative startup caches.
+            self.process = subprocess.Popen([str(python), '-B', str(Path(__file__).absolute().with_name('distributed_worker.py'))],
+                                            stdin=subprocess.PIPE, stdout=self.output, stderr=self.errors, env=env,
+                                            cwd=self.directory.name)
         except BaseException as original:
             try:
                 self.close()

@@ -216,3 +216,41 @@ Fresh precommit repository harness75/75 passed, tests-933fa601575e497a96d3d102ec
 log9f59514f6ed6ca35ff5c5155ac7a83dde7187cdc982939f3018b3e9b9018793f.
 Earlier uncommitted status is historical; this commit's parent is6361868.
 Next review/normal-account scratch observation remain held, not silently approved.
+
+## Review completed; corrected diagnostic and new host handoff pending observation
+
+New user request approves finishing existing local work groups and a PowerShell
+path if needed. Fresh reviewer now returned FIX_FIRST, not unavailable. Parent
+reproduced5 failures and fixed cfg/base/startup identity and12 prior-artifact
+bindings; shard wording narrowed. Final repository harness81/81 passes,0 skips/
+errors/exclusions. No product worker correction or new3.12 execution in agent.
+Cache-cause-only identity is explicit for unreadable AppExecAlias; not exact-base
+authentication or qualification. Exact evidence/rulings/seals are in
+cache-cause-review-correction-20261020.md. New schema2 Prepared freezes metadata
+without launching worker. New normal PowerShell launcher created, AST and read-only
+chain primitive pass. Agent -File VerifyOnly refused by execution policy; no
+bypass. Normal user command must VerifyOnly then execute new scratch only on
+success. normal-attempt absent, old attempts closed. No commit/push/install.
+
+##2026-10-21: source cwd correction verified; local checkpoint authorized
+
+Normal user scratch now consumed:5arms, repeated4cache paths in3.12 startups and
+both unchanged production boundaries;3.14 control0. Parent actual receipt/hash,
+commands/streams/cache checks and limited unreadable shard directory are recorded
+in cache-cwd-correction-20261020.md. No DLL writer/exact-base authentication claim.
+
+Built minimal owned cwd at both launches, benchmark path continuity and named
+cleanup-error precedence. Three failure-first stages retained; final6controls
+pass. Fresh native final-diff review SHIP for SOURCE only, no Important/Critical.
+Repository81/81 and lifecycle6/6 pass. Complete final MI692run:633pass,1fail,
+3errors,54skips,1expected,0exclusions (taskkill capture,2shortpaths,missingOFFLINE1).
+CMv2213run212pass1missingOFFLINE1error; CMlegacy21pass; MIlegacy17pass4wrapper
+loopback bind errors. Raw logs/receipts retain all exact names/reasons. No full-
+green source/extracted/runtime/CI claim. An interrupted prior full-run log stays.
+
+Post-edit package comparison has exactly3 declared source changes +1 added test,
+316 unchanged old hashes,0 missing;6 original caches/12 old artifacts unchanged.
+User requested local commit after checks. Save13 scoped source/test/Fable files,
+parent a9ae630; no push. Next separate NEW clean-source normal-host successor,
+actual3.12 cleanup/integrated gates, final paired packaging/full extraction/CI and
+separately approved target installation. Old cache/N3/host launchers stay closed.

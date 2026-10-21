@@ -414,3 +414,97 @@ All source/cache/old host evidence preserved. Independent review could not start
 (workspace credits), NOT_PASSED. Hold new normal-host diagnostic handoff for fresh
 review; no production correction/full-host retry. Resume/evidence (docs/fable-relative):
 evidence/offline-first-20261020/cache-cause-investigation.md.
+
+### Approved continuation froma9ae630: finish existing four work groups
+
+User requested "finish this above required, if needed, give file path to run in
+power shell" and selected Brainstorming/Writing Plans/Executing Plans. Reuse this
+approved design/plan, existing checkout and progress ledger; no second governor,
+workspace deletion or ceremonial redesign. Execute inline. No new commit/push,
+dependency/permission change or installed-copy replacement is inferred. Task6's
+target-app/paths and replacement approval remain explicit later gates.
+
+- [x] A: Fresh bounded read-only review of cache_cause_probe.py + test. Preserve
+  review findings; fix Important/Critical harness defects with observed RED/GREEN
+  and all repository harness controls. Unavailable review stays NOT_PASSED.
+- [ ] B: If cleared, prepare one NEW externally sealed normal-account scratch
+  launcher and output root, not old N3/host-a1/agent attempts. Validate helper,
+  controller, runtime and package identities before launch. Keep original pins,
+  filters, caches, receipts and false qualification flags. Command runs startup
+  controls and the existing single/shard startup boundaries; no full retrieval,
+  install, learned-model/API/native operation, global configuration or cleanup.
+- [ ] C: Inspect the actual scratch receipt. Only observed causal evidence may
+  drive the smallest shared env/cwd correction; first add the symptom RED and
+  both launch-boundary regressions. Non-reproduction reopens investigation, not
+  silent promotion of a hypothesis or a broad environment inheritance change.
+- [ ] D: Prepare separate clean-source successor/full-host inputs after correction
+  and review; observe advanced/completion/24-arm/preservation gates. Do not weaken
+  exclusions, erase discovery misses or recycle consumed seals/markers.
+- [ ] E: Finish existing Tasks4–5 on final source bytes: paired m13 instructions/
+  capabilities/contract, new OFFLINE1 lists, builder/verifier, ZIPs and full clean
+  source/extracted checks/review. Publishing/exact-commit CI needs separate push
+  approval. Keep all historical releases/experiments and native profile disabled.
+- [ ] F: After package success, separately settle app/installed target and approve
+  replacement; observe save/fresh-session reopening/retrieval/stale refusal.
+
+Immediate deliverable for this turn is A/B. B requires the user's normal account
+because the agent cannot start the existing WindowsApps base Python. Do not
+repeat that same failed agent probe. Continue C–F after the necessary receipts,
+not by claiming a multi-stage release from green harness controls.
+
+A completed with FIX_FIRST review and parent RED/GREEN corrections, repository
+harness81/81. Choose the reviewer's cache-cause-only identity boundary: exact cfg,
+expected prefix and matched in-arm3.12 identities, no exact-base/numerical claim.
+B inputs/launcher prepared; agent -File VerifyOnly blocked by script policy, no
+bypass. Normal-account block runs VerifyOnly before new scratch, stopping any
+error. No normal-attempt directory yet. Exact hashes, limitations and rulings:
+evidence/offline-first-20261020/cache-cause-review-correction-20261020.md.
+
+### C: actual normal-account observation; bounded cwd correction
+
+User ran the new sealed scratch diagnostic once, then requested "after complete
+check commit it". Its consumed receipt SHAa1a37f4a1128bc2d5be42bd2a11ac758e844e3a4746630e32f2add2e1141f6dc
+reports five arms and no failure. Direct parent readback recomputes the status:
+RELATIVE_CACHE_WRITE_REPEATED_IN_DISTINCT_STARTUP_CWDS. All319 protected file
+hashes and12 named historical artifacts still match. Three generation1 database
+contents match original caches; cversions differs; generation2 files did not
+reproduce. This does NOT identify the Windows writer or prove SystemDrive omission
+causality. Runtime base authentication remains UNVERIFIED_CACHE_CAUSE_ONLY.
+
+INTENT: contain relative startup side effects by explicit, process-owned cwd at
+both real launch boundaries. Keep the existing environment whitelist unchanged.
+The no-build option retains known package contamination. Broad environment
+restoration changes trust/cache destinations and is rejected. Use one new owned
+temporary directory in worker_client._process; reuse the existing owned session
+directory in distributed_retrieval._Session. Preserve absolute script/executable
+selection without resolving a venv symlink. Do not change source selection,
+evidence guards, native profile, old manifests/packages or any original cache.
+
+Verification before commit: retain actual command/stream/arm hashes; add real
+stdlib subprocess regressions for BOTH boundaries and observe pre-fix RED;
+verify relative fixture writes leave caller source unchanged, distinct owned cwd
+per launch, unchanged environment restrictions, payload/path continuity and
+existing lifecycle/error behavior. These authored controls are NOT numerical
+3.12 retrieval proof. Run focused/lifecycle/repository and broad retained suites,
+report all remaining failures/skips explicitly, obtain bounded source-diff review,
+and verify preservation excluding only declared source edits/new tests. Commit
+only completed source/tests/Fable records locally. No push/install or full-host
+success is inferred; new selected-runtime acceptance needs its separate reviewed
+successor, not a retry of the now-consumed cache/N3/host command.
+
+Required compatibility correction discovered in the recurrence search and
+independently confirmed by review: the benchmark is the only _process arguments
+caller. Its companion/output CLI values may be relative; resolve those against
+the caller before changing child cwd. Manifest is already absolute; preserve the
+explicit worker requirement. A real dispatch/companion handshake plus authored
+argv/report child must reproduce the regression before this two-path correction.
+This runs no learned model and adds no capability or new authority.
+
+C source correction completed through independent bounded SHIP review on2026-10-21.
+The final six controls cover cwd isolation, caller-relative path continuity and
+cleanup failure precedence; each missing behavior has retained pre-fix RED.
+The real3.12 corrected-candidate cleanup and integrated acceptance are NOT done.
+B is now consumed/observed, not a runnable instruction. Continue at D after the
+local source checkpoint and separate new-host authority. Do not repeat B/N3/a1,
+replace old seals or interpret a source-only SHIP as release readiness. Exact
+evidence/current broad outcomes: evidence/offline-first-20261020/cache-cwd-correction-20261020.md.

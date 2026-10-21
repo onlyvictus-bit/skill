@@ -1,5 +1,11 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+Latest continuation is the2026-10-21 section at the END and
+../evidence/offline-first-20261020/cache-cwd-correction-20261020.md.
+Earlier "normal-attempt absent"/"await scratch receipt" sections are history,
+NOT instructions to rerun consumed launchers. Local checkpoint parent a9ae630;
+resolve the newest fix(knowledge) commit on this development branch with git log.
+
 This is a continuity/source checkpoint, NOT a final release. Pre-checkpoint HEAD
 c398be73e9e5eaa14de9e870c7787f53605afd6f, branch
 development/r5-practical-fence-wip-20261014. User: "COMMIT WHATS FIND,DISCOVERED,
@@ -173,3 +179,59 @@ HEAD with git log. Fresh precommit repository harness75/75 passed (private recei
 tests-933fa601575e497a96d3d102ecd461b3; exact log hash in investigation report).
 Resume with the held independent diagnostic review; do not restart completed work
 or old host/N3 commands. Cache-cause proof/product fix/release remain pending.
+
+## Latest: review findings corrected; new normal-account scratch handoff
+
+Read ../evidence/offline-first-20261020/cache-cause-review-correction-20261020.md.
+Independent review now completed FIX_FIRST; parent reproduced5 failures, fixed
+runtime cfg/startup identity/prior receipt binding, suite81/81 green. No second
+review/SHIP or whole-skill qualification claimed. Schema2 binds launcher/cfg and
+12 prior artifacts. Unreadable Store base is UNVERIFIED_CACHE_CAUSE_ONLY; matching
+in-arm3.12 identity is not exact-base authentication or numerical proof.
+
+New handoff cache-cause-a9ae630-20261020-v2/Prepared.json SHA89f8796dfe0ed54b35d3401fc9194d13f62566b8a9ac83b5ff59e843be5fb4cd;
+Run-Cache-Cause-Normal.ps1 SHA906f6a5b7c6eb50df82db55fa068b9b11053df7ac6926f3e99e5b2a3e7dd38a8,
+under .github/run-artifacts/offline-first-20261020/. Agent -File VerifyOnly refused
+by script-execution policy; no bypass, worker or normal-attempt. Static syntax/
+read-only chain checks pass, not host execution. Supply user one hash-checked
+normal-account block: VerifyOnly then NEW scratch only if verification succeeds.
+On ANY policy/access/hash/error stop/share, no retries, security changes or old
+commands. Product correction awaits that causal receipt. Final paired packages,
+full tests/exact CI/publish/installed smoke remain pending. HEADa9ae630; local
+diagnostic/test/docs fixes uncommitted, no push. All original caches/receipts kept.
+
+##2026-10-21: cache observation checked; corrected source checkpoint
+
+User's new normal-account scratch run completed5 arms, receipt
+a1a37f4a1128bc2d5be42bd2a11ac758e844e3a4746630e32f2add2e1141f6dc.
+Four relative caches repeat in both3.12 startups and both actual worker boundaries;
+3.14 control0. This is not exact reproduction of all6 old files or Windows-writer
+attribution. See cache-cwd-correction-20261020.md for limits/hashes/readback coverage.
+
+Built: owned explicit cwd in _process and _Session; benchmark companion/output
+paths stay caller-relative in meaning; primary worker errors survive cwd cleanup
+failures. Unchanged env filter, native-disabled profile and old manifests. Six
+real authored-child controls have observed RED/GREEN. Native reviewer first
+FIX_FIRST, then fresh bounded final-diff SHIP; no Important/Critical remains in
+the SOURCE correction. Actual selected3.12 corrected cleanup still unverified.
+
+User "after complete check commit it" authorizes this LOCAL source/tests/Fable
+checkpoint, parent a9ae630. No push/install/deletion/security change. No raw private
+receipt/cache/venv upload. Earlier uncommitted status describes pre-checkpoint
+history; verify HEAD/tree rather than copying an old commit seal. Broad retained
+outcomes and any remaining failures are recorded in the linked report, not hidden.
+
+NEXT: separately approve/prepare a NEW clean-source host successor bound to this
+checkpoint and existing selected runtime. Keep the contaminated source tree and
+all caches; do not remove/move them or weaken preservation. Prove real corrected
+startup/cache cleanup, advanced/completion and24-arm ranked retrieval/preservation.
+Do NOT rerun the consumed cache/N3/a1 commands or edit their guards/Prepared data.
+Then finalize matching m13 pair, new content lists/ZIPs/extraction tests, exact CI
+and separately approved publication/installation/smoke. No toolchain/model install
+is needed for this cwd source correction. whole_skill_ready remains false.
+
+Final source verification: MI692run633pass1fail3errors54skips1expected (no excluded
+test); CM213run212pass1missing-manifest error; CMlegacy21/21; MIlegacy17pass4
+loopback-fixture wrapper refusals. Exact case names, receipts/hashes, source hashes
+and bounded SHIP review are in cache-cwd-correction-20261020.md. Focused6/6,
+lifecycle6/6, repository81/81 are green, not a replacement for those open gates.

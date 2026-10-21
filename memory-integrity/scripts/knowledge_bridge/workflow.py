@@ -66,8 +66,8 @@ def dispatch(args):
         if models is None or not args.worker_python:raise ValueError('E_MODEL_BENCHMARK_EXPLICIT_RUNTIMES')
         from .worker_client import _process
         return _process(models.python,Path(__file__).with_name('model_benchmark.py'),{},1800,models.executable_digest,
-                        ('--manifest',models.manifest,'--claude-mon-root',args.claude_mon_root,'--worker-python',args.worker_python,
-                         '--output',args.output,'--model-timeout',models.timeout))
+                        ('--manifest',models.manifest,'--claude-mon-root',Path(args.claude_mon_root).absolute(),'--worker-python',args.worker_python,
+                         '--output',Path(args.output).absolute(),'--model-timeout',models.timeout))
     if args.command in ('knowledge-project','knowledge-refresh'):
         from . import impact
         return impact.build(args.project_root,c.read(args.source_map),args.index_dir,args.claude_mon_root,worker(args),c.read(args.test_receipt) if args.test_receipt else None,language_parser=model_worker(args))

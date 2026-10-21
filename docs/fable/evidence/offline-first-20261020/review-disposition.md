@@ -54,3 +54,45 @@ and preservation: cache-cause-investigation.md.
 Fresh bounded read-only review of .github/scripts/cache_cause_probe.py and its
 test remains required before a normal-account scratch handoff. No host command
 issued, review gate waived, old attempt retried or qualification activated.
+
+## Superseding completed cache-diagnostic review and fix pass
+
+cache_probe_review now completed at a9ae630, FIX_FIRST. Accepted Important gaps:
+venv cfg/runtime/startup identity binding and external historical-artifact
+preservation; narrower shard identity wording also accepted. Parent reproduced
+5 failures, corrected all, then observed81/81 repository harness tests pass.
+New in-arm identity checks require3.14 control and matching3.12 worker/prefixes.
+Unreadable Store base remains UNVERIFIED_CACHE_CAUSE_ONLY, not authentication.
+Twelve named historical artifacts are checked pre/post. No second independent
+review or SHIP of corrected bytes is claimed; final release review remains open.
+
+New launcher seals all prerequisites before import; static parse and read-only
+full-chain primitive pass. Actual agent -File VerifyOnly was refused by execution
+policy, not bypassed; no child/normal attempt ran. User normal-account block must
+VerifyOnly first, then new scratch only on success. Exact review disposition,
+regressions, seals, rulings and limits:cache-cause-review-correction-20261020.md.
+
+##2026-10-21: bounded worker-cwd correction — SHIP, not release
+
+Actual normal-account scratch receipt a1a37f4a...1f6dc now exists and is consumed.
+Five arms succeeded; startup and both inherited-cwd boundaries repeated four
+relative DBs, not all six historical DB files. Parent checked319 protected hashes
+before changes,12 historical artifacts, all5 arm/command records,10 outer streams
+and16 reported cache-file hashes. One retained shard stream directory is unreadable
+from agent; no full scratch-content verification or permission bypass claimed.
+
+First production review FIX_FIRST found relative benchmark paths and cleanup
+error precedence. Parent independently reproduced both with authored real-child
+RED controls, corrected them and observed6/6 GREEN. Fresh cache_cwd_final_review
+read the final diff and returned SHIP with no Important/Critical source finding.
+Original cwd RED2fail, path RED1fail and cleanup RED3fail remain retained. Latest
+focused6/6 rerun agrees. No numerical/model/native operation was part of review.
+
+Bounded accepted scope: worker-owned cwd at both real launch boundaries, caller-
+relative benchmark path continuity, unchanged environment whitelist and preserved
+primary failure on cwd-cleanup errors. NOT accepted as complete: actual selected
+3.12 cleanup, advanced/completion/24-arm integrated candidate, exact-base identity,
+final manifests/packages/extraction/CI/installation. Broad retained results and
+all exact artifact identities are in cache-cwd-correction-20261020.md; failures
+remain visible. Local commit authorized by "after complete check commit it";
+no push or security/install authority inferred.

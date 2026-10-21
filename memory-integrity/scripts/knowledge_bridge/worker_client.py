@@ -1,4 +1,5 @@
 """Explicit local worker executable, bounded JSON files, timeout, no retries."""
+from contextlib import contextmanager
 import os
 import math
 import signal
@@ -9,16 +10,38 @@ import time
 from . import BRIDGE_VERSION,SEMANTICA_VERSION,SEMANTICA_REVISION
 from . import contracts as c
 
+@contextmanager
+def _working_directory():
+    directory = tempfile.TemporaryDirectory(prefix='mi-worker-')
+    try:
+        yield directory.name
+    except BaseException as original:
+        try:
+            directory.cleanup()
+        except Exception as cleanup:
+            original.add_note('E_WORKER_CWD_CLEANUP: '+repr(cleanup))
+        raise
+    else:
+        try:
+            directory.cleanup()
+        except Exception as cleanup:
+            raise ValueError('E_WORKER_CWD_CLEANUP') from cleanup
+
 def _process(python, script, payload, timeout, executable_digest, arguments=()):
+    # Preserve caller-relative selection and venv launch paths before changing
+    # child cwd. Do not resolve a venv executable symlink to its base Python.
+    python, script = Path(python).absolute(), Path(script).absolute()
     if c.digest(Path(python).read_bytes()) != executable_digest:
         raise ValueError('E_WORKER_EXECUTABLE_DRIFT')
     raw = c.canonical(payload)
     if len(raw) > c.MAX_MESSAGE: raise ValueError('E_MESSAGE_LIMIT')
     env = {k:v for k,v in os.environ.items() if k.upper() in {'PATH','SYSTEMROOT','WINDIR','TEMP','TMP','LANG','LC_ALL'}}
     env.update(PYTHONDONTWRITEBYTECODE='1', PYTHONNOUSERSITE='1', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1')
-    with tempfile.TemporaryFile() as inp, tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
+    # Runtime startup may write relative OS caches; never use caller source cwd.
+    with _working_directory() as directory, \
+            tempfile.TemporaryFile() as inp, tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
         inp.write(raw); inp.seek(0)
-        process = subprocess.Popen([str(python),'-B',str(script),*map(str,arguments)], stdin=inp, stdout=out, stderr=err, env=env,
+        process = subprocess.Popen([str(python),'-B',str(script),*map(str,arguments)], stdin=inp, stdout=out, stderr=err, env=env, cwd=directory,
                                    start_new_session=os.name=='posix')
         started = time.monotonic()
         try:
@@ -31,6 +54,8 @@ def _process(python, script, payload, timeout, executable_digest, arguments=()):
             if len(response) > c.MAX_MESSAGE or os.fstat(err.fileno()).st_size > 65536:
                 raise ValueError('E_WORKER_OUTPUT_LIMIT')
             result = c.loads(response)
+            if process.returncode != 0 or result.get('ok') is not True:
+                raise ValueError('E_WORKER_FAILED: '+str(result.get('error','unknown')))
         finally:
             if process.poll() is None:
                 if os.name=='posix':
@@ -40,8 +65,6 @@ def _process(python, script, payload, timeout, executable_digest, arguments=()):
                     subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=5)
                 if process.poll() is None:process.kill()
             process.wait(timeout=5)
-    if process.returncode != 0 or result.get('ok') is not True:
-        raise ValueError('E_WORKER_FAILED: '+str(result.get('error','unknown')))
     return result
 
 
