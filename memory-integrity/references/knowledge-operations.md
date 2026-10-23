@@ -4,6 +4,16 @@ The explicit projection/vector commands below are the project-1 compatibility ro
 
 All commands use `scripts/memory_integrity_workflow.py` and an explicit `--claude-mon-root`. Existing commands and historical releases remain valid. No automatic background index or worker installation occurs.
 
+Knowledge workers now default to **120 seconds per invocation**, including fresh
+evidence replay. A measured cold community worker needed41.906seconds, mainly
+loading dependencies;30seconds was insufficient in that observation. This is a
+bounded deadline, not a mandatory wait: completed workers return immediately.
+`--worker-timeout` controls knowledge commands; `--knowledge-worker-timeout`
+controls knowledge replay in `offline-run`/`verify`. Explicit smaller budgets
+remain supported; the existing maximum120seconds, shared distributed deadline,
+termination and evidence-refusal checks are unchanged. Native experimental
+qualification is not enabled by this setting.
+
 1. Create an isolated Python 3.12 environment outside the skill. From this repository install `python -m pip install -r semantica-runtime/requirements-lock.txt`. If needed create it with `python3.12 -m venv /absolute/runtime`; use that environment's absolute Python path below. The lock pins Semantica to an immutable Git revision and pyshacl. It is deliberately substantial; Semantica core imports require its core dependencies.
 2. Write a source map, explicit reviewed projection, current policy and independent task contract using [bridge contracts](knowledge-contract.md).
 3. Check the selected environment: `python scripts/memory_integrity_workflow.py knowledge-status --claude-mon-root /absolute/claude-mon --worker-python /absolute/runtime/bin/python` (Windows: `Scripts/python.exe`). Without a worker, readiness is DEGRADED/BLOCKED for graph-required tasks.

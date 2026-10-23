@@ -1382,3 +1382,108 @@ copying adds no required proof for publication; expanding into W/AFTER execution
 would exceed the present request. Preserve old HEAD-bound seals and require a
 reviewed exact-commit continuation before a future runtime run. No guard bypass,
 ACL/trust change, install, deletion, package rebuild, model/native call or PR.
+
+## ET - user-requested extended-time, per-file diagnosis (2026-10-23)
+
+AUTH: user asks to remove the30second limit for measurement, add per-action/file
+timing and return an actual result table. This is a NEW diagnostic, not a retry
+of old W/N3/Gate1. The earlier immutable30second W contract remains unchanged.
+INTENT: observe completion or an honest unfinished state with120seconds selected
+through the existing supported WorkerClient API for BOTH search and replay.
+Production default30 and maximum120 remain unchanged. An unbounded hung process
+is not required: outer child watchdog180seconds, whole diagnostic900seconds.
+No per-phase budget restart. No unsupported timeout override or hidden retry.
+
+ET1: add failure-first per-file/time-table controls; reuse the existing hash-bound
+phase observer on an exclusive Git-b71b75b package copy. Add a separate small
+file read/hash/path-lookup logger and retain START/END, UTC/monotonic times,
+PID/thread, bytes, exact paths and unfinished spans. No protocol stdout logging.
+All new helpers/tests are .github diagnostic-only; live package bytes stay fixed.
+
+ET2: fixed community/single then vector/distributed-local cases based on the
+three-source Completion fixture that exposed the failures; querywork, required
+worker/U000001, original result semantics and fresh verification preserved.
+Use public retrieval CLI and fresh-process verify_pack. Time fixture creation,
+index build, public retrieval, selected units/unique sources, replay, shutdown
+and existing cleanup. A failed case is retained as failed, not retried or called
+a success; unexpected input/provenance/preservation error stops the diagnostic.
+
+ET3: focused and relevant broader controller checks, fresh native read-only
+review, exact-commit/runtime/helper seals and a single normal-host command if
+the existing selected interpreter remains unavailable to the agent. Verify its
+identity BEFORE consuming the workload attempt. No install/substitution/ACL or
+Git write. Retain every old cache/attempt and fresh outputs; only existing
+worker-owned NEW temporary housekeeping stays within prior approval.
+
+Scope difference: this new timing experiment measures an isolated copy and its
+explicit source/helper/runtime/old-receipt bindings, not the old W whole-archive
+BEFORE/workload/AFTER qualification. It neither restarts COPY-H1 nor asserts a
+new whole-archive preservation verdict. Check every pinned live package input
+and the six existing source-cache files before/after; keep all old histories
+read-only and unmodified. Record any unreadable required input as blocked.
+
+Completion: actual table if runtime executed; otherwise a tested/sealed host
+handoff with runtime result UNKNOWN, never fabricated durations. A120second
+timeout means completion time >120/unknown, not exactly120. Inclusive nested
+and parallel times are not summed as wall-clock total. File lookup is declared
+path validation, not a fabricated whole-disk search measurement. No learned
+model/provider/native backend, release/installation/commit/push or permission
+changes. Any later fix or release scope decision stays separate.
+
+ET current observation:26focused/312broader controller checks PASS;3fresh review
+blockers reproduced RED and closed by same-seat native re-review. New isolated
+Prepared/source copy and hash-checked normal-account launcher frozen; final
+review SHIP covers one timing run only. Actual selected3.12 timing remains UNRUN.
+Read ../evidence/offline-first-20261020/extended-timing-20261023.md for hashes,
+retained test evidence and exact resume. Do not edit frozen helpers, rerun any
+old command, restart H1, or equate timing observation with a worker fix/Gate1.
+
+ET ACTUAL normal run now consumed: both initial/fresh replays PASS; receipt
+b4bf001140ad6d4c486f4674bd7b82cf3c0ea23879e1c7bf994000c11822f569.
+Cold comparable community worker41.906s, Semantica27.453/numerical12.234imports;
+community replay6.189s outer, vector10.331/replay12.548s outer. Final result
+review accepts bounded evidence WITH8derived startup PID-join gaps caveated,
+not a complete startup trace, historic cause proof, permanent repair or Gate1.
+No rerun/build to obtain already saved measurements; preserve all frozen bytes.
+Next smallest budget/cold-start handling and Gate1 continuation need reviewed
+scope through this existing plan, not another copying or timing-system redesign.
+
+## TB - approved bounded default-budget correction (2026-10-23)
+
+AUTH: "changes the30s to suitable time greater than loading package time and
+close the issue". INTENT: change knowledge WorkerClient/DistributedClient and
+public retrieval/offline-run/fresh verify defaults to the existing supported
+120seconds, consistently including the programmatic preflight fallback.
+Measured first worker41.906s and successful120s search/replay are the basis.
+Keep explicit shorter overrides, positive/max120 validation, shared deadline,
+kill/reap/error propagation and all source/access/evidence checks unchanged.
+No-build leaves known cold calls failing. Recommend the simplest default-only
+correction; lazy imports/persistent workers would be a separate unnecessary
+architecture change here. No new model/runtime/install/native/Git action.
+Add failure-first clock-driven delayed-worker/CLI/replay regression controls,
+run the relevant source suites and review actual diff. Preserve consumed timing
+source, hashes and logs unchanged: their old live-source seals become historical
+after this approved change; never rebind/rerun their guards. Update source-use
+instructions; historical manifests/releases stay untouched until release work.
+Close the inadequate default-budget defect when code/tests/review pass. Do not
+close historical intermittent WinError32, Gate1, release or installation by this
+change. Any unavailable current selected-runtime execution is stated separately.
+
+TB observed: default120 applied in4files/5literal substitutions plus usage docs;
+7focused GREEN after6RED. All broader suites completed, not all green: MI700
+has1containment failure/3errors/54skips/1xfail; CM213 has1missingmanifest error;
+legacyMI21 has4loopbackHTTP errors under no-network wrapper. Preserve named
+failures; no unrelated fixes or test weakening. Default-budget SOURCE defect
+closed; remaining Gate1/release/install/WinError32 not closed. Native final
+review unavailable from credits, parent diff/caller/test review recorded in
+timeout-budget-correction-20261023.md. No rerun of consumed timing/oldsource seals.
+
+TB publication AUTH2026-10-23: user "push to git with details and everythin,
+so30sec error was solved". Commit/push completed17-path source/tests/evidence
+checkpoint only to existing development branch; no force/main/release/install.
+Exact file identities/added-line credential scan/staged scope and remote ref
+must be checked. Seven timeout controls pass; broader release/host/historical
+pin checks are not allgreen and must be reported, not silently weakened. Keep
+private run-artifacts/caches/copies/selectedenvironment/oldpackages local. See
+timeout-publication-20261023.md. After verified publication, continue separate
+Gate1/release qualification; no further timeout-default rebuild is required.

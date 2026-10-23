@@ -132,7 +132,7 @@ class ModelClient:
                         {'text':text,'path':path},self.timeout,self.executable_digest)
 
 class WorkerClient:
-    def __init__(self,python,timeout=30,expected_revision=SEMANTICA_REVISION,model_client=None):
+    def __init__(self,python,timeout=120,expected_revision=SEMANTICA_REVISION,model_client=None):
         self.python=Path(python)
         # venv launchers commonly are symlinks; resolving the launch path would
         # discard the venv selection. Only an explicitly selected executable

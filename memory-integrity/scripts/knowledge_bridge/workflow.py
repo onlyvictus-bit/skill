@@ -19,7 +19,7 @@ def register(sub):
     for name in ('knowledge-status','knowledge-index','knowledge-project','knowledge-refresh','knowledge-impact','knowledge-retrieve','knowledge-test','knowledge-admit','knowledge-check-admission','knowledge-benchmark','knowledge-audit','knowledge-syntax','knowledge-process','knowledge-model-benchmark'):
         p=sub.add_parser(name)
         p.add_argument('--claude-mon-root',required=True)
-        p.add_argument('--worker-python');p.add_argument('--worker-timeout',type=float,default=30)
+        p.add_argument('--worker-python');p.add_argument('--worker-timeout',type=float,default=120)
         p.add_argument('--model-python');p.add_argument('--model-manifest');p.add_argument('--model-timeout',type=float,default=120)
         if name=='knowledge-status': continue
         if name in ('knowledge-benchmark','knowledge-model-benchmark'):
@@ -173,7 +173,7 @@ def preflight(args,run=None):
     model_python=getattr(args,'knowledge_model_python',None);manifest=getattr(args,'knowledge_model_manifest',None)
     if bool(model_python)!=bool(manifest):raise ValueError('E_LOCAL_MODEL_EXPLICIT_SELECTION')
     models=ModelClient(model_python,manifest,timeout=getattr(args,'knowledge_model_timeout',120)) if model_python else None
-    replay=WorkerClient(executable,timeout=getattr(args,'knowledge_worker_timeout',30),model_client=models) if executable else None
+    replay=WorkerClient(executable,timeout=getattr(args,'knowledge_worker_timeout',120),model_client=models) if executable else None
     pack=c.read(path);retrieval.verify_pack(pack,doc,args.knowledge_root,policy,task,replay)
     return pack
 

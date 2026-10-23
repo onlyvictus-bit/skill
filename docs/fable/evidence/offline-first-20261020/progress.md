@@ -1,5 +1,57 @@
 # Offline-first local build progress
 
+## Authorized publication -2026-10-23
+
+User requests commit/push of all completed timing/default-budget work,17source/
+test/instruction/evidence/Fable paths only, existing development branch. No raw
+private copies/logs/caches/environment/old ZIP upload or installed-skill change.
+Read timeout-publication-20261023.md for actual scope and named current red
+controller/source/host/release checks. Seven timeout tests PASS; don't promise
+green CI or call publication whole-skill qualification. Verify remote exact
+commit; do not force or repeat an uncertain write. Earlier no-Git text is history.
+
+## Latest approved timeout correction - 2026-10-23
+
+Default knowledge-worker budget changed30->120 consistently in4productionfiles
+(5literal replacements); direct,distributed,CLI andfresh replay/fallback covered.
+7focused tests GREEN after6RED assertions. Deadline/max/explicitshorter/kill/
+evidence checks unchanged. The default-budget defect is closed in source.
+Broader700MI/213CM/21legacy checks finished WITH separately named containment,
+Windows-short-path, missingrelease-manifest and network-wrapper blockers;54
+conditional skips/1xfail retained. See timeout-budget-correction-20261023.md.
+Final independent review unavailable from workspace credits, not passed.
+No new install, runtime/model/native run, old attempt retry, deletion or Git write.
+Gate1/release/install and historical intermittent WinError32 remain separate.
+
+## Latest ET ACTUAL result - 2026-10-23
+
+User normal run completed, receipt b4bf001140ad6d4c486f4674bd7b82cf3c0ea23879e1c7bf994000c11822f569.
+Community initial/replay PASS43.769/6.189s; vector two-worker initial/replay
+PASS10.331/12.548s; overall81.874s. First community worker41.906s is dominated by
+Semantica27.453 and numerical imports12.234; original30default unchanged.
+Parent verified hashes,10streams,2packs, all protected input/copy bindings.
+Result reviewer accepted bounded evidence WITH startup telemetry caveat:
+8derived PID-join rows UNFINISHED because Windows launcher !=interpreter;
+raw phase spans closed. File-in-use error not reproduced, not proven fixed.
+No old run or current consumed launcher should be repeated. Timings/explanation
+saved in latest extended-timing-20261023.md section; no new timing build needed.
+Gate1/permanent repair/release/install still incomplete; no Git write/cleanup.
+
+## Latest ET continuation - 2026-10-23, measured runtime still pending
+
+Extended diagnostic built using existing approved ET plan, no production edits.
+26focused and312broader controller checks PASS, no skips/errors/exclusions.
+Fresh review's3blockers were retained RED then corrected: fixture timing,
+thread/import-readiness table coverage, exact6cache names/known hashes.
+Final native same-seat SHIP covers only one normal-account measurement.
+New Prepared/source copy and Run-Extended-Timing.ps1 are sealed under
+.github/run-artifacts/extended-worker-timing-20261023. Read extended-timing-20261023.md
+for full hashes and one-shot resume. No worker/Runtime-Preflight/Attempt exists.
+Existing selected3.12 unavailable from agent account; actual timings unknown.
+Do NOT repeat old W/N3/Gate1/H1 or claim either cause/fix/Gate1/release/install.
+Latest Git HEAD b71b75b; current diagnostic/Fable changes local, uncommitted.
+No new publication authorization; earlier commit/push checkpoint below is history.
+
 ## Current publication checkpoint - 2026-10-23
 
 Normal H1 VerifyBefore succeeded. Saved Bundle.json13247059bytes SHA256

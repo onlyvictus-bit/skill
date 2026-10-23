@@ -147,7 +147,7 @@ class _Session:
 
 
 class DistributedClient:
-    def __init__(self, python, timeout=30):
+    def __init__(self, python, timeout=120):
         checked = WorkerClient(python, timeout=timeout)
         self.python, self.timeout = checked.python, checked.timeout
         self.executable_digest = checked.executable_digest

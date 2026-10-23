@@ -280,7 +280,7 @@ def main():
         for key in ("knowledge-index","knowledge-root","knowledge-policy","knowledge-task"):
             command.add_argument("--"+key)
         command.add_argument("--knowledge-worker-python")
-        command.add_argument("--knowledge-worker-timeout",type=float,default=30)
+        command.add_argument("--knowledge-worker-timeout",type=float,default=120)
         command.add_argument("--knowledge-model-python")
         command.add_argument("--knowledge-model-manifest")
         command.add_argument("--knowledge-model-timeout",type=float,default=120)

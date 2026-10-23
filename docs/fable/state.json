@@ -17,9 +17,9 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "OFFLINE-FIRST-COPY-H1-BEFORE_READBACK_CLOSED_PUBLICATION_CHECKPOINT",
+  "current_task": "OFFLINE-FIRST-DEFAULT-TIMEOUT-120_COMPLETED_PUBLICATION_CHECKPOINT",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
-  "next_action": "User requested commit and push it: publish this completed source/evidence checkpoint only on development/r5-practical-fence-wip-20261014, not main. Normal VerifyBefore succeeded; Bundle13247059bytes SHA0def61c9a3d9a54bc0ec465c154a110e6ab924049c42fb93c004bb158ef86770 and exact48799-object union independently checked. The demonstrated historical BEFORE copy/readback blocker is CLOSED by the approved copy workaround; do not repeat it. W and fresh AFTER have not run; worker timeout/lock causes remain unknown and Gate1/release/install remain incomplete. Committing changes HEAD: old sealed runtime handoffs remain historical and must NOT be rerun or bypassed; any future W continuation needs reviewed exact-commit rebinding. No W/AFTER execution, deletion, install, ACL/trust change, package or qualification action in this checkpoint. Read publication-checkpoint-20261023.md and latest Copy-H1-Progress.md.",
+  "next_action": "User explicitly requests push with allcompleted details. Publish this17-file timing/default120 source/test/evidence checkpoint only to existing development branch and verify exact GitHubref before claimingPUSHED.7focused PASS; fullMI700/CM213/legacy21 and post-changecontroller312 retain named errors/skips in timeout-publication-20261023.md. No greenCI/release/install/WinError32fix claim. Keep private artifacts/caches/environment/oldpackages local, never rerun or rebind historical consumed diagnostic pins nowdifferent from changedsource. After verifiedpublication continue separate integrated Gate1/release/install work, not another timeout rebuild. No force/mainmerge/PR/newruntime/deletion/ACL action authorized. Gitremote/retainedpublicationreceipt determines actualpublication, not this prewritten checkpoint.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
   "worker_diagnosis_proposal": {
     "date": "2026-10-22",

@@ -1,5 +1,77 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+## Authorized publication checkpoint -120second default, 2026-10-23
+
+User explicitly requested push with details/everything. Publish this containing
+17-file completed timing/default-budget source checkpoint on the existing
+development branch only; verify exact remote identity before claiming PUSHED.
+Read ../evidence/offline-first-20261020/timeout-publication-20261023.md first.
+The inadequate30second default is corrected to120 across all five defaults;
+7targeted tests pass. Known broader source/legacy and post-change controller
+errors/skips are retained and named, not hidden as green CI. Historical diagnostic
+pins intentionally no longer match changed live source; DO NOT relax/rerun them.
+Keep raw caches/receipts/environments/handoffs/releases/installed copies local.
+No default timeout rebuild or further timing experiment is needed. Next remains
+integrated qualification/release/install work, not a claim that pushing completes
+Gate1 or permanently fixes WinError32. Earlier no-Git-authority text below is
+history superseded only by this explicit publication authorization.
+
+## Latest TB correction - default120 source defect resolved, 2026-10-23
+
+User explicitly approved changing30seconds after measured loading exceeded it.
+Exactly5default literals in4production files now select120 across direct/single,
+distributed, public retrieval and offline-run/verify/fallback replay. No new
+engine, timer reset, retry, max-budget increase or cleanup/acceptance change.
+7/7new tests PASS including50s simulated startup and explicit30timeout refusal.
+Read ../evidence/offline-first-20261020/timeout-budget-correction-20261023.md.
+FullMI700:641pass/1fail/3errors/54skips/1xfail; CM213:212pass/1manifesterror;
+legacyMI21:17pass/4network-wrapper errors. Exact named blockers retained in report.
+Independent final review unavailable from credits, NOT passed. Parent reviewed
+the literal diff and all caller paths. Close the default-budget SOURCE defect,
+not WinError32/Gate1/release/install. No new selected3.12 run/commit/push/install.
+Old consumed timing inputs still describe pre-edit bytes; NEVER rerun/rebind
+their guards. Continue remaining integrated/release work, not timeout diagnosis.
+
+## Latest actual result - ET normal run consumed and reviewed, 2026-10-23
+
+EXTENDED TIMING HAS RUN. Do NOT follow earlier pending-host instructions below
+or run Run-Extended-Timing.ps1 again. Preserve its Attempt/Prepared/source and
+all previous evidence. Read the latest section in extended-timing-20261023.md.
+Receipt b4bf001140ad6d4c486f4674bd7b82cf3c0ea23879e1c7bf994000c11822f569.
+Both community/single and vector/two-worker initial+fresh replay PASS. Whole
+wall81.874s; community outer43.769/worker41.906s, mainly Semantica27.453 and
+numerical imports12.234s. Fresh community outer6.189s; vector outer10.331s,
+fresh replay12.548s. All streams/packs/protected inputs independently checked.
+Actual native result review SHIP AS BOUNDED EVIDENCE WITH CAVEATS:417table rows
+include8derived startup-gap UNFINISHED due Windows launcher/interpreter PID
+joins; raw worker phases closed and usable. Do not treat receipt's complete
+boolean as complete startup telemetry. Earlier historical WinError32 did not
+reproduce; not proven repaired. Exact historical timeout phase unproven.
+The requested measurement is complete with caveats, not Gate1/release/install.
+No new timing rerun/build justified. Next review smallest runtime-budget/cold-
+start handling and Gate1 continuation in existing plan. No production fix,
+commit/push, install, ACL/trust or old-data deletion performed in this readback.
+
+## Latest continuation - extended timing diagnostic (2026-10-23)
+
+Current published/source checkpoint b71b75b77b8e9432eb9d51c0828825e3e344ce12.
+User requested per-action/file timing beyond30seconds. ET section of the existing
+release plan selects supported120seconds for both retrieval and fresh replay,
+production default unchanged. Read ../evidence/offline-first-20261020/extended-timing-20261023.md.
+New .github diagnostic-only helpers and tests:26focused/312broader PASS with
+no skips/exclusions/errors. Actual selected Python3.12 numerical workload UNRUN;
+base interpreter unavailable from agent account. Three fresh review blockers
+were reproduced RED, repaired and independently re-reviewed. SHIP for ONE new
+normal-account run only, not a worker-fix/Gate1 result. Prepared93a11df4... and
+Run-Extended-Timing.ps1 external SHA65f44d4d215694083d262a1e807c8c9eceb2ac790d0ec0c45fcf21549f23d29c
+are in .github/run-artifacts/extended-worker-timing-20261023. VerifyOnly/parser/
+input seals pass; Attempt and Runtime-Preflight absent. NEXT user normal non-admin
+PowerShell runs only that new hash-checked command once, then inspect Receipt and
+Timings table. Do not edit frozen helper/source or repeat a failed run. No current commit/push authority.
+Do not repeat H1 copying or run any old W/N3/Gate1 command. H1 BEFORE blocker stays
+closed; worker causes/Gate1/release/install remain incomplete. Earlier sections
+are retained historical observations, not instructions to repeat completed work.
+
 ## Current checkpoint - 2026-10-23 publication, BEFORE blocker closed
 
 Normal-account VerifyBefore SUCCEEDED. The saved BEFORE/Bundle.json is
