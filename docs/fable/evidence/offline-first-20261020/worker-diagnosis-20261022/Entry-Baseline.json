@@ -1,0 +1,22 @@
+{
+  "scope": "W1_W3_ENTRY_BASELINE_NOT_QUALIFICATION",
+  "head": "923de16c91a9ef4381e7ac975e3a3780f42a4bf5",
+  "files": {
+    ".github/scripts/retained_unittest.py": "4aba6fe49641f86dcb548219f0c6efc8bbd2fbaa4e32f5be40703a1cee18453b",
+    ".github/scripts/gate1_ordered_diagnostic.py": "1797c2fb1753704fb675e5d37388b37a3b267f9c8debb6f77647cfafaee506ca",
+    "memory-integrity/scripts/knowledge_bridge/offline_engine.py": "be64a19e65289f36327eeaf832cdcca757970bbce36fa94860c0f7f082ea4ea7",
+    "docs/fable/state.json": "01d720881832ef31e89d445571a6f69d348d611b5c5823dfe7207888a3d6b3f7",
+    "docs/fable/derived/offline-first-release-design-20261020.md": "9e15f4e5b30d45077f3c92fb77d8f201a8bd2a880085f6aa27c201a2e7283a90",
+    "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py": "f84371cf78bcd596a594e76c9f649d3e1d2790829f280049b28b5e690f85ff62",
+    "docs/fable/derived/offline-first-checkpoint-20261020.md": "bee8194bcac664fe4b2e5eaf60d581486ef62f67c319886126d0adbc823769ae",
+    "memory-integrity/scripts/knowledge_bridge/worker_client.py": "75b017e23f9334ac748d4293f1975cf3e2b1eefc039347885cd1f324d8f0b099",
+    "memory-integrity/scripts/knowledge_bridge/distributed_worker.py": "5d05e78e3917ef031fcb076e49bccd6b148e6f16dbba9c24e635b7d401faee00",
+    "docs/fable/evidence/offline-first-20261020/progress.md": "ac6c90b5e0bde1942a512780221005bbdb6b1bcc92d99171f26f167933b22531",
+    "memory-integrity/scripts/knowledge_bridge/advanced_retrieval.py": "4fad12c689b545922eaaaf38edcb28d9442466ea312665911949ebd0c092f0a6",
+    "docs/fable/derived/offline-first-release-plan-20261020.md": "135235465ac546289ae292942ac15845a92bf0bf9a558153a87fab3744d7ba73",
+    "memory-integrity/tests_v2/test_knowledge_worker_cwd.py": "393855d5236ff5620af3f0ff478f79bcbf497c535d104af7140b3fe8bcf864eb",
+    ".github/scripts/gate1_ordered_runner.py": "23f67d1ddaa543071857a773a2917df86967a9d14a5d600408763f6f2a8c81b8",
+    ".github/tests/test_gate1_ordered_diagnostic.py": "db76d612c85b201cd698a10f55f1b86218b4523c1a906fe589f83c2bcf66d44e",
+    "memory-integrity/scripts/knowledge_bridge/worker.py": "6ae67511cefef46bf1c80541bb1ceb0252f4649c03cbcd9f1422c5c51bbe108c"
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "scope": "COPY_H1_LOCAL_CONTROLLER_VERIFICATION_NOT_FULL_PRESERVATION_CYCLE",
+  "head": "923de16c91a9ef4381e7ac975e3a3780f42a4bf5",
+  "receipts": {
+    "red-reader-a": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-reader-a\\Receipt.json",
+        "size": 2540,
+        "sha256": "bd3187a09b091465754c3afb8e9bea5c991a338e5d4f08bd635ce0339d997e7b"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_archive_copy_h1.py",
+        "tests_run": 19,
+        "failures": [
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_added_original_is_detected",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_altered_copy_cannot_pass_even_with_original_intact",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_changed_original_is_detected_despite_intact_before",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_existing_destination_is_not_overwritten",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_interruption_retains_partial_output_cannot_be_accepted_or_reused",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_invalid_timing_mapping_and_completion_are_refused_even_when_rehashed",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_linked_destination_is_refused",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_manifest_has_exact_mapping_verified_batch_and_request_times",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_midcopy_mutation_retains_partial_output_without_complete_manifest",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_missing_copy_is_refused_and_retained_elsewhere",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_missing_original_is_detected_without_deleting_it",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_outside_scratch_link_exception_is_refused",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_redirected_destination_is_rejected_before_any_outside_write",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_strict_authoritative_reader_still_refuses_linked_input",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_trusted_input_alias_cannot_be_presented_as_scratch_data",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_two_historical_names_produce_independent_single_link_files",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_unchanged_fresh_original_samples_pass_without_qualification",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_unlisted_linked_scratch_file_is_refused",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_wrong_session_and_phase_copies_are_refused"
+        ],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 19,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-reader-a\\unittest.log",
+        "log_sha256": "58147b4a9d79f80145304944a4a701a3bb20456bd0150edb122bb606f2dced41"
+      }
+    },
+    "green-reader-a": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-reader-a\\Receipt.json",
+        "size": 467,
+        "sha256": "d43d92f67f60fd4037c37618a42cb80db37243f357f02b781c4e47bd00b90957"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_archive_copy_h1.py",
+        "tests_run": 19,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 19,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-reader-a\\unittest.log",
+        "log_sha256": "bdfb1f6f2fecac502818fd4ae641bd92d3fffd407926555ea44c36a72a105452"
+      }
+    },
+    "red-controller-a": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-controller-a\\Receipt.json",
+        "size": 1334,
+        "sha256": "31d36bba181aad07ecfee219b7f7e770b7b4b5e527f638ae482f40c97443837c"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_worker_copy_h1.py",
+        "tests_run": 8,
+        "failures": [
+          "test_worker_copy_h1.CopyH1ControllerTests.test_edited_rehashed_bundle_must_be_derived_from_actual_copy_bytes",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_mandatory_reader_still_propagates_access_failure",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_missing_before_stops_without_a_workload_claim",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_old_controller_globals_and_paths_never_change",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_original_failure_history_change_is_not_silently_rebaselined",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_pending_workload_remains_not_preserved_and_unqualified",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_valid_before_uses_new_session_root_and_uppercase_phase_only",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_workload_bound_to_different_before_is_rejected"
+        ],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 8,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-controller-a\\unittest.log",
+        "log_sha256": "10cdaf415897e2c922f44d3a91173433734707ada6e3056dd9df48e5f88e024e"
+      }
+    },
+    "green-controller-a": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-controller-a\\Receipt.json",
+        "size": 468,
+        "sha256": "7091561693c11ca080f65e55c548f6e0416611a987f44e9ce06698957f1e65bc"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_worker_copy_h1.py",
+        "tests_run": 8,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 8,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-controller-a\\unittest.log",
+        "log_sha256": "1de16423fdf39416bdf053ce410e41937b84d977480936201a56e27d08e7c763"
+      }
+    },
+    "controller-green-a": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\controller-green-a\\Receipt.json",
+        "size": 459,
+        "sha256": "6b53e7f7ea76e5e0be49e1df91a42e2c7dd0e8dbeb5e85ab67904c0fed735568"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_*.py",
+        "tests_run": 280,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 280,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\controller-green-a\\unittest.log",
+        "log_sha256": "04874a236c01c5295cb27ecad24e8de0892b41bf9a8ef21a6201b05e7a3af6d9"
+      }
+    },
+    "red-real-input-binding": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-real-input-binding\\Receipt.json",
+        "size": 830,
+        "sha256": "f6ebafe74543e0d6610592902ba8a24de2a75a1617a31ca162f8331e1175d28b"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_worker_copy_h1.py",
+        "tests_run": 11,
+        "failures": [
+          "test_worker_copy_h1.CopyH1ControllerTests.test_real_input_ids_and_failed_history_survive_serialization_exactly",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_recorded_scope_cannot_disagree_with_policy_or_hide_omissions",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_scope_entry_cannot_reclassify_an_unknown_link_as_known_fixture"
+        ],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 11,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-real-input-binding\\unittest.log",
+        "log_sha256": "52932d2e1dfcefefd175304743409d9adc81655e458d95d39e5f86c7f275776c"
+      }
+    },
+    "red-review-scope": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-review-scope\\Receipt.json",
+        "size": 820,
+        "sha256": "b37ecbffbc1232be0bb363ebfff42f79a3a9cc2d9da20d1637f0bcf11f277894"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_archive_copy_h1.py",
+        "tests_run": 22,
+        "failures": [
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_allowed_path_replaced_by_single_link_file_is_refused",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_invalid_protected_identity_cannot_disable_trusted_alias_check",
+          "test_archive_copy_h1.HistoricalHardlinkTests.test_same_inode_change_before_before_capture_is_not_rebaselined"
+        ],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 22,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\red-review-scope\\unittest.log",
+        "log_sha256": "e3a450a29afeae1b66b2fc8cced4b57fb499175e51005378b57190efb138517f"
+      }
+    },
+    "green-review-scope": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-review-scope\\Receipt.json",
+        "size": 471,
+        "sha256": "fbc26b6d22419b562dbae63a822d597dd408a438477bbf1d155f8b176b4f6d75"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_archive_copy_h1.py",
+        "tests_run": 22,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 22,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-review-scope\\unittest.log",
+        "log_sha256": "45baf5765b609d68a3761bddc4022c873c60f60330a627c579c483485180a0c0"
+      }
+    },
+    "green-real-input-binding-a": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-real-input-binding-a\\Receipt.json",
+        "size": 834,
+        "sha256": "d0150beaa928792ee2194daa60037d5d8af95482bfefedc5ba4e0d7c40ea924d"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_worker_copy_h1.py",
+        "tests_run": 11,
+        "failures": [],
+        "errors": [
+          "test_worker_copy_h1.CopyH1ControllerTests.test_real_input_ids_and_failed_history_survive_serialization_exactly",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_recorded_scope_cannot_disagree_with_policy_or_hide_omissions",
+          "test_worker_copy_h1.CopyH1ControllerTests.test_scope_entry_cannot_reclassify_an_unknown_link_as_known_fixture"
+        ],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 11,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-real-input-binding-a\\unittest.log",
+        "log_sha256": "6a8c9eff6d3f0520605b385aa71c4430adabc8aeaaab1bf5d9c42488055109ab"
+      }
+    },
+    "green-real-input-binding-b": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-real-input-binding-b\\Receipt.json",
+        "size": 599,
+        "sha256": "758fe4461a7590482e583be119777faa5d3323e76dd159f411de7aff437dc4ea"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_worker_copy_h1.py",
+        "tests_run": 11,
+        "failures": [
+          "test_worker_copy_h1.CopyH1ControllerTests.test_scope_entry_cannot_reclassify_an_unknown_link_as_known_fixture"
+        ],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 11,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-real-input-binding-b\\unittest.log",
+        "log_sha256": "3824e4740d59e883b861a4666346c6e2509aeeecc973e7ed8811e0cac783d7a6"
+      }
+    },
+    "green-real-input-binding-final": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-real-input-binding-final\\Receipt.json",
+        "size": 482,
+        "sha256": "e5027fe0055b2026d64a73a4740cddf14a016f7c9c4bb2c9794b988b077b569d"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_worker_copy_h1.py",
+        "tests_run": 11,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 11,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\green-real-input-binding-final\\unittest.log",
+        "log_sha256": "edde079fa06a8a91157c02a68e21bbde259740666ca118486b505c3c547f4d95"
+      }
+    },
+    "controller-final": {
+      "record": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\controller-final\\Receipt.json",
+        "size": 457,
+        "sha256": "516e1b2cb1925f1bf521b4f9b7ec9b0ca7c1b5521b696fce896de763e51b12ad"
+      },
+      "result": {
+        "scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI",
+        "pattern": "test_*.py",
+        "tests_run": 286,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "expected_failures": [],
+        "interrupted": false,
+        "discovered": 286,
+        "excluded": [],
+        "log": "C:\\Users\\sakth\\Documents\\Codex\\copy-h1-tests-20261022\\controller-final\\unittest.log",
+        "log_sha256": "28907238dd230a5c09d41ed0e85d52e1d3c559ba6523debee9b81f981e81e183"
+      }
+    }
+  },
+  "artifacts": {
+    "config": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\w-h1-20261022-80b78d91\\Input-Seal.json",
+      "size": 18024,
+      "sha256": "623a78c6a9226527b24b418cc70bf55377b6607e9de331488d88ced298b02b8a"
+    },
+    "policy": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\w-h1-20261022-80b78d91\\Historical-Data-Policy-exact.json",
+      "size": 38256,
+      "sha256": "ee6b4123a9b51674e1f384168ec77430e9a6557c845415d70308afce236432ea"
+    },
+    "entry": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\w-h1-20261022-80b78d91\\Protected-Entry-exact.json",
+      "size": 167692,
+      "sha256": "71603a96edc8bd4126626c86b9dec958c145de8338f1cce41aa7b5a3a23838fc"
+    },
+    "launcher": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\Run-Worker-Copy-H1.ps1",
+      "size": 3221,
+      "sha256": "d55041051df653bcba17783f56d30d7a7c4e6bec47457da949a055913de43ec0"
+    },
+    "old_failure": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\w-copy-20261022-7b7f219a\\CopyBefore-Failure.json",
+      "size": 2741,
+      "sha256": "cff96876b74a8b9b45ff574b53bc6b8e88762dac010bbabcf4f71d5711d119ce"
+    }
+  },
+  "actual_fresh_before_exists": false,
+  "actual_workload_exists": false,
+  "selected_worker_started": false,
+  "historical_copy_cycle_started": false,
+  "old_attempt_rerun": false,
+  "automatic_cleanup_added": false,
+  "permissions_changed": false,
+  "git_mutation": false,
+  "native_execution": false,
+  "whole_skill_ready": false,
+  "gate1_complete": false,
+  "independent_review": "SHIP_NATIVE_READ_ONLY_REVIEW_CODE_AND_FIRST_NORMAL_BEFORE_ONLY_SEE_COPY_H1_REVIEW",
+  "limitations": [
+    "Retained scoped local controller suite, not unchanged full CI or selected-runtime qualification.",
+    "Real BEFORE/AFTER cooperating-account cycle is still unexecuted.",
+    "Hashes and sampled before/after agreement do not authenticate producer or prove continuous immutability.",
+    "Earlier rounded unsealed inputs retained but not selected by Input-Seal."
+  ]
+}

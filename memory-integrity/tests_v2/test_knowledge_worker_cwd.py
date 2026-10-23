@@ -126,8 +126,14 @@ class WorkerCwd(unittest.TestCase):
             parent=Path.cwd()
             os.chdir(caller)
             try:
+                try:
+                    companion_argument=os.path.relpath(companion,caller)
+                except ValueError:
+                    # A relative path across Windows drives does not exist.
+                    # Keep the actual companion and still test relative output.
+                    companion_argument=str(companion)
                 args=parser.parse_args(['knowledge-model-benchmark',
-                    '--claude-mon-root',os.path.relpath(companion,caller),
+                    '--claude-mon-root',companion_argument,
                     '--model-python',sys.executable,'--model-manifest','manifest.json',
                     '--worker-python',sys.executable,'--output','report.json'])
                 with patch.object(workflow,'__file__',str(caller/'workflow.py')):
@@ -140,6 +146,15 @@ class WorkerCwd(unittest.TestCase):
                                  'TEST_ONLY authored argv report')
             finally:
                 os.chdir(parent)
+
+    def test_benchmark_cross_drive_temp_keeps_companion_and_relative_output(self):
+        # Windows CI supplied the real different-volume failure. Emulate only
+        # that unavailable filesystem relationship; dispatch/engine/child stay real.
+        with patch.object(os.path,'relpath',side_effect=ValueError('different Windows mounts')):
+            try:
+                self.test_benchmark_dispatch_keeps_caller_relative_companion_and_report()
+            except ValueError as error:
+                self.fail('Cross-drive temp must keep an absolute companion, not abort: '+str(error))
 
     def cleanup_failure(self, script_text, timeout=5):
         """Only cleanup fails artificially; real owned child/streams still run."""

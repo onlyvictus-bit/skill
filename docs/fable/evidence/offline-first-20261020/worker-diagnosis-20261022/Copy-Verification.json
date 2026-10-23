@@ -1,0 +1,67 @@
+{
+  "before_exists": false,
+  "before_failure_exists": false,
+  "config": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\w-copy-20261022-7b7f219a\\Input-Seal.json",
+    "sha256": "6cb2c070072e98dc5000ed7e3b4805da74b44b4fdd6cb293f637d2a5a5bb6288",
+    "size": 15037
+  },
+  "launcher": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\Run-Worker-Copy.ps1",
+    "sha256": "530ce879665b11ed486162acfa8676d5b1475e706565c6dfa30d758072613e2c",
+    "size": 2586
+  },
+  "new_roles_verified": 33,
+  "old_roles_verified": 27,
+  "results": [
+    {
+      "errors": [],
+      "excluded": [],
+      "expected_failures": [],
+      "failures": [],
+      "log_hash_match": true,
+      "log_sha256": "889947357461b86325d4d77e48807a982b8e09b927dcc93ee052dea1ec4ca094",
+      "name": "c1-review-final",
+      "receipt": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\w-copy-tests-20261022\\c1-review-final\\Receipt.json",
+        "sha256": "82ec58c2852722f171b83a4fb6e154ad18f32fa1a5c9034bd138d430585919fc",
+        "size": 473
+      },
+      "skips": [],
+      "tests": 26
+    },
+    {
+      "errors": [],
+      "excluded": [],
+      "expected_failures": [],
+      "failures": [],
+      "log_hash_match": true,
+      "log_sha256": "cdab453edda54da5ee4b1dd97384dcbe7ded56cac3a272d20b7d75725b013b80",
+      "name": "c2-final",
+      "receipt": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\w-copy-tests-20261022\\c2-final\\Receipt.json",
+        "sha256": "b9d1b0d3aaa8a0d73e84e0bafc4b1a1d285c0ada9c103db5d35e2c1d824bffd1",
+        "size": 466
+      },
+      "skips": [],
+      "tests": 15
+    },
+    {
+      "errors": [],
+      "excluded": [],
+      "expected_failures": [],
+      "failures": [],
+      "log_hash_match": true,
+      "log_sha256": "7063ec83d1b1dc75ddbf44deeb101cabb78ef6308018bad7c37dd52a2e1ad632",
+      "name": "controller-final-v2",
+      "receipt": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\w-copy-tests-20261022\\controller-final-v2\\Receipt.json",
+        "sha256": "4576fbc5591b5e84383be31ff153b8070b92fac5892dcd1c5ad8a723103195f7",
+        "size": 459
+      },
+      "skips": [],
+      "tests": 253
+    }
+  ],
+  "run_exists": false
+}

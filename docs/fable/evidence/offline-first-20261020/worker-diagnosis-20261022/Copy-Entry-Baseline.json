@@ -1,0 +1,19 @@
+{
+  "captured": "2026-10-22T10:45:29.3992705Z",
+  "head": "923de16c91a9ef4381e7ac975e3a3780f42a4bf5",
+  "branch": "development/r5-practical-fence-wip-20261014",
+  "scope": "W_COPY_EDIT_TARGETS_AND_PROTECTED_HELPERS_NOT_ARCHIVE_INVENTORY",
+  "dirty_tree_preserved": true,
+  "sha256": {
+    "docs/fable/state.json": "77b62d0bd279351147857a3ffc96b4f63cb311b681436e9e418fb3ae469d2868",
+    "docs/fable/derived/offline-first-release-plan-20261020.md": "95df8bd4a30c1abcb15d67d5c5f16ce0571ff20eb4a45ab4f81715d6f09b33e8",
+    "docs/fable/derived/offline-first-release-design-20261020.md": "2f8bce3c69acc3fbd5b31a6e4f28183f49d0bbb478be0d59829ea7f608082127",
+    "docs/fable/derived/offline-first-checkpoint-20261020.md": "a05f0e1afa56eb0cdb8c34ae0e7c2cf7d5f3af8c2bf0d54eefa780e6dcba5eef",
+    "docs/fable/evidence/offline-first-20261020/progress.md": "37ba95bbd0a462aa7c25724a122a4629d0a3061b3e363bc4bb028300fa063f15",
+    ".github/scripts/worker_timing_lifetime_diagnostic.py": "7e67e131c752c1f7c947e899d8a3cd8853cf070730ca2b4e089aeeb66752aa8c",
+    ".github/scripts/worker_diagnostic_events.py": "5e7d30538b296acb763972e6553e927309c7c8319a2670a651920f7c793a6a88",
+    ".github/scripts/worker_lock_probe.py": "f3ddae8615797bb9a3e453f222d987ef2fe369cf97c82dfca57344d9caff5979",
+    ".github/scripts/gate1_validation.py": "f9b7ef54039756b3d8a95051b05a93e920518c970e6deb1c987bc5bb0aeed22e",
+    ".github/scripts/retained_unittest.py": "4aba6fe49641f86dcb548219f0c6efc8bbd2fbaa4e32f5be40703a1cee18453b"
+  }
+}
