@@ -1,0 +1,43 @@
+{
+    "scope":  "HISTORICAL_SC3_PRECHECK_EVIDENCE_ONLY",
+    "recorded_utc":  "2026-10-27T16:30:06.2126748Z",
+    "checkout_base_commit":  "f63f62496f82fb479e352bdd9c90accf9f869e8b",
+    "evaluated_source_commit":  "a38297dd797eeecd25e41ab0af1df4e3db8fa984",
+    "run_receipt_sha256":  "beab04ef2dde95a01cc25ed21eedf6ff79c3e50c2aceacaf2cd2f74dc4fc76d2",
+    "run_contract_sha256":  "f4d945d7b6b98ac736feb4eff7047bd512aa450f4ffa6c00837885ed068cf21a",
+    "successful_steps":  [
+                             {
+                                 "step":  1,
+                                 "name":  "preclaim-identity",
+                                 "status":  "PASS",
+                                 "stdout_sha256":  "52eebefd4370aca202f3199c64e24a39290d62c3988e36953bf0bdb3b4962939",
+                                 "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                             },
+                             {
+                                 "step":  2,
+                                 "name":  "preclaim-dependencies",
+                                 "status":  "PASS",
+                                 "stdout_sha256":  "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+                                 "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                             },
+                             {
+                                 "step":  3,
+                                 "name":  "discover-ownership",
+                                 "status":  "PASS",
+                                 "stdout_sha256":  "beb4d1cf4c9dde586b8de91dabf3d5275b525fc8bd541006be352d07c008acd1",
+                                 "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                             }
+                         ],
+    "python_version":  [
+                           3,
+                           12,
+                           10
+                       ],
+    "dependency_count":  53,
+    "discovered_ownership_tests":  17,
+    "step_4_status":  "FAILED",
+    "step_4_error":  "E_OWNED_BOOTSTRAP_BASE_EXECUTABLE",
+    "stage_complete":  false,
+    "repair_code_included_in_this_commit":  false,
+    "note":  "Historical result summary only. No rerun, raw private logs, repair source, or completion claim."
+}
