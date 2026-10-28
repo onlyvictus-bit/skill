@@ -38,6 +38,8 @@ class _Session:
         self.lane, self.lease, self.deadline, self.sequence = lane, lease, deadline, 0
         self.directory = self.output = self.reader = self.errors = None
         self.process = self.writer = None
+        self._tree = None
+        self._windows_owned = False
         self._stop_attempted = self._stopped = self._closed = False
         self.offset = 0
         env = {k: v for k, v in os.environ.items() if k.upper() in {'PATH', 'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP', 'LANG', 'LC_ALL'}}
@@ -48,10 +50,24 @@ class _Session:
             self.reader = open(Path(self.directory.name) / 'output', 'rb')
             self.errors = tempfile.TemporaryFile()
             # The already-owned directory also contains relative startup caches.
-            self.process = subprocess.Popen([str(python), '-B', str(Path(__file__).absolute().with_name('distributed_worker.py'))],
-                                            stdin=subprocess.PIPE, stdout=self.output, stderr=self.errors, env=env,
-                                            cwd=self.directory.name)
+            args = [str(python), '-B', str(Path(__file__).absolute().with_name('distributed_worker.py'))]
+            options = dict(stdin=subprocess.PIPE, stdout=self.output, stderr=self.errors,
+                           env=env, cwd=self.directory.name)
+            if os.name == 'nt':
+                from .windows_owned_process import launch_current
+                self._tree = launch_current(subprocess.Popen, python, Path(args[2]),
+                                            deadline=deadline, **options)
+                self.process = self._tree.process
+                self._windows_owned = True
+            else:
+                self.process = subprocess.Popen(args, **options)
         except BaseException as original:
+            if getattr(original, 'owned_cleanup_complete', None) is False:
+                self._tree = original.owned_process_owner
+                self.process = getattr(self._tree, 'process', None)
+                self._windows_owned = True
+                self._retain_resources(original)
+                raise
             try:
                 self.close()
             except Exception as cleanup:
@@ -64,26 +80,39 @@ class _Session:
         raw = c.canonical(request) + b'\n'
         if len(raw) > c.MAX_MESSAGE:
             raise ValueError('E_DISTRIBUTED_MESSAGE_LIMIT')
-        written, write_errors = threading.Event(), []
-        def write():
+        if getattr(self, '_windows_owned', False):
+            from .windows_writer import SynchronousWriter, WriterDeadline
+            self.writer = SynchronousWriter(self.process.stdin)
             try:
-                self.process.stdin.write(raw); self.process.stdin.flush()
-            except (OSError, ValueError) as exc:
-                write_errors.append(exc)
-            finally:
-                written.set()
-        # Pipe writes can block before reading starts; the same overall deadline
-        # bounds them. Killing the child in finally releases a blocked writer.
-        self.writer = threading.Thread(target=write, daemon=True)
-        self.writer.start()
-        while not written.wait(.005):
-            if time.monotonic() > self.deadline:
+                self.writer.start(raw, self.deadline)
+                while not self.writer.done.wait(.005):
+                    if time.monotonic() > self.deadline:
+                        raise WriterDeadline('E_WRITER_REQUEST_DEADLINE')
+                outcome = self.writer.join(self.deadline)
+            except WriterDeadline as error:
+                raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT') from error
+            if outcome.error is not None:
+                raise ValueError('E_DISTRIBUTED_WORKER: terminated') from outcome.error
+        else:
+            written, write_errors = threading.Event(), []
+            def write():
+                try:
+                    self.process.stdin.write(raw); self.process.stdin.flush()
+                except (OSError, ValueError) as exc:
+                    write_errors.append(exc)
+                finally:
+                    written.set()
+            # Preserve the POSIX path. Native Windows cancellation is separate.
+            self.writer = threading.Thread(target=write, daemon=True)
+            self.writer.start()
+            while not written.wait(.005):
+                if time.monotonic() > self.deadline:
+                    raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT')
+            self.writer.join(timeout=max(0, self.deadline - time.monotonic()))
+            if self.writer.is_alive():
                 raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT')
-        self.writer.join(timeout=max(0, self.deadline - time.monotonic()))
-        if self.writer.is_alive():
-            raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT')
-        if write_errors:
-            raise ValueError('E_DISTRIBUTED_WORKER: terminated') from write_errors[0]
+            if write_errors:
+                raise ValueError('E_DISTRIBUTED_WORKER: terminated') from write_errors[0]
         while True:
             if time.monotonic() > self.deadline:
                 raise ValueError('E_DISTRIBUTED_WORKER_TIMEOUT')
@@ -106,12 +135,22 @@ class _Session:
             time.sleep(.005)
 
     def stop(self):
-        """Reap only our child and writer before disposing any owned handles."""
+        """Reap our owned tree and writer before disposing any output handles."""
         if self._stop_attempted:
             if not self._stopped:
                 raise ValueError('E_DISTRIBUTED_STOP_INCOMPLETE')
             return
         self._stop_attempted = True
+        if getattr(self, '_windows_owned', False):
+            self._stop_owned(time.monotonic() + 5)
+            self._stopped = True
+            return
+        if getattr(self, '_tree', None) is not None:
+            from .windows_job import stop
+            stop(self.process, self._tree, self.writer,
+                 graceful=time.monotonic() < self.deadline)
+            self._stopped = True
+            return
         if self.process is not None:
             if self.process.poll() is None:
                 self.process.kill()
@@ -122,17 +161,73 @@ class _Session:
                 raise ValueError('E_DISTRIBUTED_WRITER_STILL_ALIVE')
         self._stopped = True
 
+    def _stop_owned(self, until):
+        """Independent cancel, process exit and writer join share ONE allowance."""
+        failures = []
+        active_writer = self.writer is not None and self.writer.is_alive()
+        if active_writer:
+            try:
+                self.writer.request_cancel(until)
+            except Exception as error:
+                failures.append(error)
+        tree_stopped = False
+        graceful = not active_writer and not failures and time.monotonic() < self.deadline
+        if graceful:
+            try:
+                if self.writer is not None:
+                    self.writer.join(until)
+                    self.writer.close_stream()
+                elif self.process.stdin is not None:
+                    self.process.stdin.close()
+                self._tree.wait(until)
+                tree_stopped = True
+            except Exception as error:
+                failures.append(error)
+        if not tree_stopped:
+            try:
+                self._tree.stop(until)
+                tree_stopped = True
+            except Exception as error:
+                failures.append(error)
+        # A cancellation or process-stop error cannot abandon the other owner.
+        if self.writer is not None:
+            try:
+                if active_writer:
+                    self.writer.cancel_and_join(until)
+                elif not self.writer.has_joined:
+                    self.writer.join(until)
+            except Exception as error:
+                failures.append(error)
+        if tree_stopped:
+            try:
+                self._tree.release()
+            except Exception as error:
+                failures.append(error)
+        if failures:
+            for secondary in failures[1:]:
+                failures[0].add_note('E_DISTRIBUTED_STOP_CLEANUP: ' + repr(secondary))
+            raise failures[0]
+
     def close(self):
         if self._closed:
             return
-        self.stop()
+        try:
+            self.stop()
+        except BaseException as error:
+            if getattr(self, '_windows_owned', False):
+                self._retain_resources(error)
+            raise
         failures = []
-        streams = [self.reader, self.output, self.errors,
-                   self.process.stdin if self.process is not None else None]
-        for stream in streams:
-            if stream is not None:
+        streams = [self.reader, self.output, self.errors]
+        closers = [stream.close for stream in streams if stream is not None]
+        if getattr(self, '_windows_owned', False) and self.writer is not None:
+            closers.append(self.writer.close_stream)
+        elif self.process is not None and self.process.stdin is not None:
+            closers.append(self.process.stdin.close)
+        for close in closers:
+            if close is not None:
                 try:
-                    stream.close()
+                    close()
                 except Exception as exc:
                     failures.append(exc)
         # Do not remove a directory while one of its handles failed to close.
@@ -140,10 +235,20 @@ class _Session:
             error = ValueError('E_DISTRIBUTED_STREAM_CLEANUP')
             for failure in failures:
                 error.add_note(repr(failure))
+            if getattr(self, '_windows_owned', False):
+                self._retain_resources(error)
             raise error from failures[0]
         if self.directory is not None:
             self.directory.cleanup()
         self._closed = True
+
+    def _retain_resources(self, error):
+        """Fail closed: a later TemporaryDirectory finalizer must not erase debt."""
+        finalizer = getattr(self.directory, '_finalizer', None)
+        if finalizer is not None:
+            finalizer.detach()
+        error.add_note('E_DISTRIBUTED_RESOURCES_RETAINED: ' +
+                       str(getattr(self.directory, 'name', None)))
 
 
 class DistributedClient:

@@ -1,5 +1,895 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+## ACTUAL D2 FAILED — consumed command; no retry or D3,2026-10-28
+
+Supersedes every ready/root-absent/runtime-unrun statement below. User executed
+the exact D2 block once. Receipt107774bytes SHA
+bcbecdbb360261f9992031ea348a13954d2840b7e78b67a10cb3b8022e205651;
+full62line unitlog9270bytes SHA
+fce389ada08e922a07c3509c5587e6dd513d47377b68858cc9c8322098193443.
+38run10.874s:36PASS/1FAIL/1ERROR,0skips/exclusions/interruption; no timeout,
+capture error or truncation. All21new SR4 regressions passed. Identity and
+53dependency checks passed; actualchild basealias/loadedStoreimage/venv roles
+matched the expected frame. The old base-role mismatch is not this failure.
+
+The two ORIGINAL17 outcomes must not be hidden:
+
+- Nested test226 read `int('')`: writer creates/truncates nested.pid before
+  complete bytes; _wait_file observes existence only. Confirmed fixture race.
+- Tree test71–73: owner.stop returned, native_exit_proved=true, but independent
+  process-handle wait returned258. Root is independently pinned and signalled;
+  child ORgrandchild was nonsignalled. The loop did not log which. Do not name
+  the child specifically or infer both survived/permanent orphaning.
+
+Main independently verified636copiedsourcefiles,38discovery/log IDs and order,
+all4Commandrecords/8streams, unitreceipt/log, helper/contract/current protected
+guards and receipt-bound root-only positive startup frame. That one-root frame
+does not qualify the failing descendant tree. Postcheck reported nofailure;
+allownership/fullstage/Gate1/release/install/preservation flags remainedfalse.
+Private tree.json/nested.pid reads denied1003; no ACL/account/copy bypass.
+
+Independent actual-result judge: FIX-FIRST. Inner Job membership/native proof
+was insufficient for at least one authored descendant in this observed run.
+Alias/broker boundary is a hypothesis, not proven. Official nested-Job PID and
+accounting contracts include child jobs; don't claim generic nested omission.
+The failingcase ledger/image/membership and per-role waits were not persisted.
+
+Read the new proposal at END of the SAME release plan before implementation.
+Recommend a new one-shot per-role membership/identity/stop diagnostic and an
+explicitly approved atomic readiness-fixture correction/refreeze. Original
+assertions and historical17bytes/oldcopies remain controls; no silent test
+weakening. No new diagnostic built/run, no production/test code edited by this
+result review. New approval is for the changed diagnostic/frozen-fixture scope,
+not reapproval of old work or permission to rerun consumed D2. D3 stays blocked.
+Retained observation: .github/run-artifacts/sr4/D2-Failed-Observation.json.
+
+## ISSUED NEXT — SR4-D2 exact reviewed host command; runtime UNRUN2026-10-28
+
+Supersedes final-review-pending and old candidate hashes below. Native read-only
+final review: SHIP EXACT ONE new D2 ownership/startup observation, no Critical/
+Important. NOT D3/fullstage/Gate1/release/install/preservation clearance.
+Use the exact .github/run-artifacts/sr4/SR4-D2-Command.txt block once in normal
+non-admin1001 PowerShell. SHA476e012fe1a923d8309dab15e75c1e5966f9889916c75405d9fee36f842dc3e5.
+Helper final SHA d845e1077617d2042f0bd2367e700927aeb4310721957469bc9e30c3e36d117e.
+Final Inputs expected281611bytes SHA319d71ed8ebcbc324651237213691b79a9f1d76bc0064ae235d484d8b401c3f3.
+Reviewer independently rebuilt that exact read-only contract;38IDs match all
+logged IDs/order, exact3sourcepins/original17/oldSC3 records and proposedblock
+checked. Final22/22helper controls handoff-final-04, log905cf89c4d2b58aa03c146b4b20bcfc1da530c2a22d4ef98f9d80ed4d4be1ff9.
+Only helper self-description changed after priorcandidate; D1bytes unchanged.
+
+Normalroot C:/Users/sakth/Documents/Codex/sr4-owned-20261027 is still ABSENT.
+No actual Prepare/Run/selected312 was executed by agent/reviewer. This block
+creates sealed inputs, rechecks them, then consumes ONE ownership-only attempt.
+On failure stop/share console and run/Receipt.json; do not retry/alterguards.
+After actual observation parent must review rawreceipt/streams/fullunitlog/
+childframe/protectedsource/runtime and exact38cases BEFORE any D3handoff.
+Then D3 retains all74original+21new/fullpublic/freshORIGINAL BEFORE-AFTER and
+the existing no-ACL cooperating-copy preservation method. No reapproval needed
+inside user-approved D1–D3. No oldattempt retry/install/ACL/Git/delete/budgetchange.
+Low nonblocking test caveat retained: typed ctypes/int inequality is type-driven;
+real productionDuplicateHandle and other native controls were inspected. Do not
+change frozen tests just to strengthen that assertion mid-handoff; re-review
+would be required. All stage/Gate1/release/install/preservation claims false.
+
+## LATEST — SR4 controller repair verified; final review pending2026-10-28
+
+The approved D1–D3 range remains active. Resume, do not restart or re-approve.
+Native implementation was interrupted by workspace credits; parent preserved
+its partial files and completed the local correction. Parent owns D1/D2 now;
+the old implementation worker was explicitly told not to edit concurrently.
+
+Parent direct observations in .github/run-artifacts/sr4:
+
+- parent-d1-green-08:38/38 ownership/startup PASS (17original+21new), no skips;
+  log SHA d1f84f5ab04e2afaed68d02c046aa2ef453c107841f48de7a5561001a3cb8b1f.
+- handoff-green-03:22/22 new verifier guard tests PASS.
+- parent-knowledge-final-01:273run,0failures/0errors/54existing runtime skips;
+  log ab4e18fc9a5b305b929b655f24238a5896e46f6219c4c918c5c109b57e1b4cc8.
+- parent-controller-final-01:514run,0failures/12old diagnostic/API/pin errors,
+  0skips; NOTGREENCI. Log e0c0a947048f5f7e7b157b3bbd6121a479dec9679621cb32f572a28ef456ac46.
+
+D1 candidate owner d9f8cf4a..., bootstrap a7fa933c..., newtests1cf10aa1... .
+Exact old17test SHA00c837f5... and frozen SC/DATA/SR3 helper seals unchanged.
+Only three D1 live files differ from the approved SR3 baseline; all other old
+repair inputs remain sealed. Native root handle is duplicated before resume;
+failed native calls/debts and actual resume state are preserved. Assigned but
+not resumed cleanup is separate; known exited native handles use a fresh empty
+Job check rather than trusting a stale PID snapshot. Bounds are observed RED/
+GREEN, not inferred from comments. No budget or identity-check relaxation.
+
+NEW D2 shutdown_startup_successor.py now binds627a382 source plus11exactdeltas,
+38exactIDs and the consumed SC3 critical records/4commands/8streams/sourcecopy.
+Read-only candidate build passed; real fresh636file source-copy check passed.
+This D2 scope is ownership/startup ONLY; full private-history preservation is
+explicitly false and remains D3 with fresh ORIGINAL BEFORE/AFTER/copy cooperation.
+New native Sol final review is RUNNING; no final clearance/command issued yet.
+No D2 normal root, Prepare, Run, selected312, old retry, install, ACL/security,
+Git or original deletion. Stage/Gate1/release/install remain false. Finish exact
+review/seals, then one normal D2 observation; only its observed pass allows D3.
+
+## CURRENT — SR4-D1–D3 approved; controller failure-first repair2026-10-27
+
+AUTH: user said "aprove" to the full bounded SR4-D1/D2/D3 description. Do not
+repeat approval within that range. Existing worktree/plan reused; no install,
+ACL/Git/old-data deletion or old consumed command retry. SC3 failure, its source
+copy, all old helpers/contracts/markers/receipts remain immutable.
+INTENT: separate base/image roles with strict identity gating and structured
+failure evidence; pin root after Job assignment BEFORE resume; state-specific
+bounded cleanup with native exit proof. All17original ownership and74original
+full controls retained, added regression IDs/counts explicitly bound.
+First D1 writes live windows_owned_process.py/windows_owned_bootstrap.py plus
+new test_knowledge_windows_owned_startup.py only after observed RED. Original
+17-case test file is unchanged. Retained output .github/run-artifacts/sr4,
+Baseline.json records dirtytarget hashes, immutable failed source controls,
+budgets and observable done gates. Preferred externalshortfolder creation was
+denied; existing-parent sandbox capability was granted for new repository SR4
+outputs, NOT an OS ACL edit. All old artifacts remain untouched.
+Controller3.14 stdlib tests only now, not selected3.12. Parent later prepares
+NEW D2 ownership-only helper after source stabilizes and independentreview.
+D2 normal observation must pass before D3 full controls/public/newBEFORE-AFTER.
+No stage/Gate1/release/install completion claim follows from approval or TDD.
+
+## CURRENT — SC3 CONSUMED FAILED: bootstrap base-role check2026-10-27
+
+Do NOT repeat SC3-Run-Command.txt or oldSR3. User ran reviewed block ONCE.
+Receipt10011bytes SHAbeab04ef2dde95a01cc25ed21eedf6ff79c3e50c2aceacaf2cd2f74dc4fc76d2.
+RunClaim152bytesa96e942bba5adcc6204030965a11d467966a8e296ce47d02076634b0b00003f2;
+RuntimeInputs1283822bytesf4d945d7b6b98ac736feb4eff7047bd512aa450f4ffa6c00837885ed068cf21a;
+RunFailure1250bytesc908bdc4b9be2fa2964f47ba2e90757ff03add9c2cfabe4b12140ff5aab486f0.
+Parent bound actual4commandrecords/8streams/contract/copiedsource/unitreceipt+
+log31b890a700844cabbd0636cadf7735610b1c70a2f632a2380a28c94be705eaa8.
+Identity/dependencies/discovery exit0; ownership exit1, NOTtimeout/captureloss.
+17tests in3.424s,0failures/9errorrecords/0skips/exclusions. All9maintraces:
+E_OWNED_BOOTSTRAP_BASE_EXECUTABLE. Remaining6groups/public/AFTER NOTRUN.
+
+Code windows_owned_process.py:334 sets expected.base_executable=image. Bootstrap
+checks this strictly against sys._base_executable before opening workgate.
+Successful selected312 parent probe already distinguishes actualStoreimage
+package/python3.12.exe from userWindowsAppsbasealias/python.exe. Approved old
+gate1_image_successor also deliberately checks these roles separately. Thus
+the new equality assumption is suspect and the exact failingpredicate proven.
+Child's exact basevalue was NOTserialized in failure; do not invent it or assume
+parent and directchild values equal. Existing retained ownedtree fixture read
+denied in1003; no ACL/readcopy bypass or new runtime attempted.
+
+Secondary startupcleanup notes show WinError31/5 and E_OWNED_EXIT_UNKNOWN. Root
+ledger currently begins after ready; fastbootstrapexit is a testable lifetime
+gap hypothesis, NOT confirmed exactcause of those nativeerrors. Preserve them.
+SC2 noACL BEFORE sample remains valid; it is not AFTER/fullstageproof.
+
+New bounded SR4 proposal in SAME plan: observe exact childidentity roles first;
+separate loadedimage/base/venv checks without allowing arbitraryaliases;
+failure-first pre-work/fast-exit native-root ownership regression and only a
+cause-supported repair; freshreview/newsealednormal successor plus original
+AFTER. Approval pending before new product/diagnostic behavior or workload;
+this is NOT another oldcommandretry. No source/helper/test code changed now.
+Independent cause/design audit FINAL FIX-FIRST: separate attestedparent base
+role from pinnedloadedimage; tokenbound expected/observed mismatch frame;
+rootledger tied to Popen/pinnednativehandle AFTERassignment BEFOREresume;
+explicit assigned-not-resumed vs resumed cleanup; retain trulyunknownPID errors.
+Missingchildvalue and exactWinErrorcall remainunknown, not fixed by diagnosis.
+Existing plan SR4-D1/D2/D3 refined: controller RED/GREEN first, ONE reviewed
+selected312 ownership-only successor, then full originalcontrols+newregressions/
+public method+newBEFORE/AFTER only after ownershipsuccess. No skips or removed
+oldcases. Approval pending for this changed security/startup contract; no old
+Runretry/newruntime approved by review alone. Stage/Gate1/release/install
+and historicalC2cause remainfalse; selected312 DID run this failed17case group.
+
+## CURRENT — actual normal BEFORE verified; ONE reviewed runtime ready2026-10-27
+
+Supersedes pendingreadback/Bundleabsent below. User ran exact VerifyBefore ONCE;
+SC_BEFORE_VERIFIED_NO_WORKLOAD. Actual BEFORE/Bundle.json3092807bytes
+SHA29fba89ef123eb5c4e9df957f0bbfacad58328301787658dfc42a95356a81019,
+ordinarysinglelink. VerifyBeforeClaim161bytes
+b7b9a11ed7a30c4e3f5f07f28034db63cb650521ae19b70e439e0bd567d372b4.
+Parent independently derived ALL bundle fields from sealed childrequest+4root
+copy manifests; exact union,nooverlap,7345files/94513658bytes across4roots.
+Actual normal frozen phase reread copiedbytes/mappings/readableoriginals,
+rechecked unresolvedpartition/directauthority/oldpositivehistory before exclusive
+Bundle publication. NoFailure. Fresh parent directauthority still unchanged.
+Source-reader did not simulate normalcontext or rerun merge/visibility guards.
+NoACL copy-based BEFORE accessblocker is now closed for these evidence roots.
+
+Next candidate SC3-Run-Command.txt
+SHA8f64b8490972e048fe6e0b649d71f8b40f5a9a40004ee7d6e175d2d734c22bf0
+in existing sr3-copy-development:14rolepins including actualBundle, exactnormal
+1001/nonadmin, absentRunClaim/Failure/RuntimeInputs/run, ONE Run mode only.
+Parse0/onePythoncall, actualSID1003 outerrefusal beforePython/claim, inmemory
+wrongBundleSHA and privately simulated consumedclaim refusal all observed.
+Same independent read-only reviewer FINAL SHIP exactactualBundle+runtime
+namespace+fullblock. ISSUE ONCE normalnonadmin Run-only, then review actual
+contract/receipt/74exactcounts/rawcaptures/discoveries/orderedpublic before
+any AFTER handoff. Review did not execute anyrealphase/selected312 and does
+not clear retry/AFTER/finalqualification. No code/helper/test changes.
+Do not repeat Before/Inspect/Bind/Copy/VerifyBefore/oldSR3. User SC1-SC3 approval
+still covers ONE fresh runtime, not permission/install/Git/olddata deletion.
+
+Runtime is existing selected312:17ownership+18writer+12shutdown+7session+
+6lifecycle+7cwd+7budget=74controls, then unchanged publicordered initial/replay/
+negativelease.120default/90public/60lifecycle/600ordered/5shutdown unchanged.
+Successful runtime remains SC_WORKLOAD_OBSERVED_PENDING_AFTER, stage and
+preservationfalse; ORIGINAL AFTER/copy/readback/comparison/rawresultreview
+remain mandatory before focusedstage. Run/AFTER/Final absent now. Priorfocused
+21/DATA12/copy106 pass; broader492/0FAIL/12oldAPI+pinERRORS NOTGREEN, notrerun.
+Stage/Gate1/release/install/producer/historicalC2cause remain false.
+
+## CURRENT — BEFORE copies complete; normal byte readback pending2026-10-27
+
+Supersedes copy-running status below. Actual CopyBefore ran ONCE and completed
+exit0, SC_COPIES_REQUIRE_NORMAL_READBACK. Outer BEFORE/reader-copy/Copies.json
+1283bytes SHA f9a38306ee2e4bf351e5d824932e92d486e736668de596cf8bcf223cf78d3b7b.
+Four aggregate-bound per-root manifests are complete. Restricted cleanup-repair
+DATA:1240requested directory targets,7436manifest objects,4396file mappings,
+33362733bytes. Other3roots have no denied targets; their readable originals
+are NOT omitted and must be rechecked directly by the normal verifier.
+Parent independently ran actual session/lineage/outer/H1manifest/mapping/
+coverage validators and direct_authority equality; all pass. Copy code itself
+read back destination bytes and checked repeated original content/identity/
+permission observations before publishing. No copy failure exists. Per-root
+batch UTC wall span257.759s is copy/check time, not worker/import/CPU timing.
+
+Normal copied-byte readback is still PENDING, not inferred from the reader's
+success. BEFORE/Bundle.json and VerifyBefore claim/failure remain absent.
+Next inert command SC2-Verify-Before-Command.txt SHA45a860e33fff4e6670a470ce87014e61a30a50c282519e6dd7b58961849c8089
+pins13roles, requires exact normal1001/nonadmin, refusesexistingoutputs and
+calls ONLY VerifyBefore with c912...childconfig and f9a383...outercopy seal.
+Observed parse0/onePythoncall, actualSID1003 refusal beforePython/claim and
+inmemorywrongouterseal refusal. SAME independent reviewer FINAL SHIP exact
+normal VerifyBefore-only block; actual4manifests valid, no inventory overlap,
+manifest-only timing/stack/1339CR3 positive baselines satisfied. Issue full block
+ONCE in normal non-admin shell, then review actual Bundle before any Run.
+No runtime clearance and no consumed preparation/copy may repeat.
+After normal readback, original positive history guards must also pass before
+Bundle is published. User SC1-SC3 authorization remains; no approval re-ask.
+Actual selected31274controls/publicmethod, ORIGINAL AFTER and finalreview are
+later mandatory observations. No source/helper/test change, ACL/install/Git/
+delete/budget change or retry. Prior492controller0FAIL12old errors NOTGREEN;
+stage/Gate1/release/install/producer/historicalC2cause remain false.
+
+## CURRENT — normal BindPolicy verified; BEFORE source copy running2026-10-27
+
+User executed reviewed normal block once, status SC_POLICY_BOUND_INPUTS_ONLY_
+NO_COPY_OR_RUNTIME. Actual Policy-Inputs.json822007bytes
+SHAc91235f95b135a1e170893513d3105095fb5dd39feef268eb3b2fec3c4cd3180;
+BEFORE/Policy-Request.json1227544bytes
+SHAcd5ce65e48f7a604fb577279e9dea3ab8e8c30bfbddf907c1ab222f5c6b476ff.
+BindClaim159bytes SHAa0395aa162c8ac7d9ffa94e9f6de4b2f62fb692d3f608066371e0875a8773946.
+Parent matched raw records and real session/lineage/require_policy/sealed request/
+DATA validators: initialInputs49f19a..., initialRequestc81c2d..., Proposaldce8...
+remain unchanged; readable objects and1240denied directories unchanged, all4
+allowlists EMPTY,1379protectedIDs. Frozen helper/DATA and HEADf63 unchanged.
+
+Actualchild/exactCopyBefore review returned FINAL SHIP for ONE existing non-admin
+SID1003 copy with c912...config/cd5...request seals. Parent rechecked8frozen roles,
+SID/non-admin and absent CopyClaim/Failure/output/Bundle, then started exact
+CopyBefore ONCE. New exclusive CopyBefore-Claim exists, reader-copy is being
+authored. Do not start a second copy or any normal verifier while it runs.
+New destination
+BEFORE/reader-copy outside originals; no old folder used as output. Source
+reader copies only exact unresolved DATA into exclusive single-link new paths,
+checks source hashes/physical IDs/permissions before/after and complete coverage.
+No copied code executes. Actual copy byte/mapping readback MUST then run in
+normal account; verified BEFORE/Bundle is absent until old positive inventory
+guards also pass. No selected312 or workload now. User SC1-SC3 approval remains
+valid; do not repeat Before, InspectBefore, BindPolicy or old consumed commands.
+Stage/Gate1/release/install remain false. Retained baseline SC2-Copy-Before.json.
+NEXT: await owned copy completion, review actual aggregate/per-root manifests and
+unchanged pins. Only then issue separately reviewed normal VerifyBefore with
+actual external Copies.json seal. Failure stops without retries/deletion/ACL
+changes. No Bundle may publish until normal byte-readback and positive guards.
+
+## CURRENT — actual BEFORE/inspection pass; ONE normal BindPolicy ready2026-10-27
+
+Supersedes root-absent/Before-unrun status below. User ran the exact sealed
+Before-only command successfully; no selected312/tests/copy ran. Parent matched
+Inputs.json596109bytes SHA49f19acc752bb0b97594db194873c1f3f994212edca3dc7ba1af50021094b21a
+and BEFORE/Request.json1227544bytes
+SHAc81c2d9b095c108893dee9fe0b10ce625462d3b736e2a41c3782eca5aac70e42.
+Actual config/request validation, source627/live10/budgets/groups and complete
+1379protected-path/identity derivation pass. Three roots fully readable; cleanup-
+repair root2432readable objects and1240explicit unresolved DIRECTORY obligations.
+No denied input is treated as empty/success. Before attempt is consumed.
+
+Same independent reviewer inspected actual artifacts and source-reader path:
+SHIP ONE InspectBefore with those exact external seals, no copy/bind/runtime
+clearance inferred. Existing SID1003 metadata traversal could reach all requested
+subtrees; original read access and inherited Modify on successor destination
+exist without ACL change. Parent executed frozen InspectBefore once, exit0.
+Actual Policy-Proposal.json225555bytes
+SHAdce8bda736214950bc69e63d585027a750982789ae4ca69e9062f66bbd78b1c5
+passes request/root/protectedIDs validation. All FOUR allowlists EMPTY: no
+hardlink exception requested. policy_approved=false/producer_authentication=false.
+Initial Inputs/Request hashes unchanged; no inspection failure/copy/runtime.
+Claim-to-proposalmtime97.865s is approximate wall time, not monotonic profiling.
+
+NEXT: issue only ONE normal non-admin input binding. Actual proposal and exact
+block received substantive SHIP before reviewer-credit interruption; user then
+continued, SAME reviewer resumed and returned FINAL narrow SHIP. No Critical/
+Important for this input-only action. Inert review text SC2-Bind-Command.txt SHA
+4cc4e3c7f96744647d32d5d0b19e2646ee14ebbd3fc7dd6c382f24bf6dcc85ae
+pins controller/helper/DATA/Inputs/Request/proposal. It calls frozen BindPolicy
+only, no evidence copy or worker. Parse0; deliberately wrong proposal seal
+refused before Python; actual SID1003 refused before binding Claim, so intended
+normal binding remains unused. No source/helper/code change occurred. The next
+normal output must be reviewed before source-reader CopyBefore; copied-byte
+readback and selected312/AFTER/final review remain incomplete. Do NOT rerun
+Before or InspectBefore. All stage/Gate1/release/install flags remain false.
+
+Binding does not change original Inputs/Request/proposal, grant permissions,
+allow new hardlinks, copy data or start selected312. External seals are not atomic
+against hostile concurrent writers; child-file/lineage review is still mandatory
+before copy. Both hashes printed by normal binding must be shared/read back.
+On failure preserve output, never retry/reset markers or weaken old guards.
+
+## LATEST — SC1 reviewed; ONE sealed normal BEFORE-only command2026-10-27
+
+Supersedes implementation-approval-pending statements below. User "start"
+approved SC1-SC3, then explicitly "Approve the exact transition" for checkout
+f63f62496f82fb479e352bdd9c90accf9f869e8b (single parent a38297d, four exact
+C1-only additions). NEW helper proves this exact transition; evaluated source
+remains original627-file a38297d plus ten approved repair/control bytes. Old
+SR3 source guard and all consumed helpers/inputs/claims remain unchanged.
+
+NEW shutdown_copy_data.py, shutdown_copy_verification.py, matching tests and
+Run-Shutdown-Copy.ps1 implement staged no-ACL preservation. BEFORE normal scan
+records readable objects and unresolved denied data only. Source-reader policy
+inspection proposes exact hardlink paths/identity/content/permission, checked
+against the complete authority-derived source/runtime/helper/protected/C1 ID
+set. No auto-whitelist: external proposal seal and normal BindPolicy produce
+immutable child Policy-Inputs/Policy-Request; initial Inputs/Request stay fixed.
+Copy requires the reviewed child. Known older positive history guards pass
+before verified BEFORE publication. Runtime result is provisional until fresh
+ORIGINAL AFTER and raw-result review. Only two named history DATA expressions
+are adapted; no general source/runtime read override exists.
+
+Observed:21coordinator PASS including actual627-file input-only source proof;
+12DATA PASS;106copy-regression PASS,0errors/skips. Review findings received
+failure-first regressions before correction. Latest short-path controller492run
+has0FAIL12ERROR0SKIP:4old membership diagnostic/private-API errors+8old source/
+HEAD pins. First long-path491run2FAIL24ERROR retained; unchanged timing23/gate23
+pass at shorter test output. No failed test skipped or old guard repinned.
+Independent exact-hash review SHIP for ONE normal BEFORE-only input action,
+no Critical/Important in that layer; not copy/runtime/stage clearance. Parse0,
+PS7VerifyOnly PASS, actual SID1003 and wrong helper seal refuse before Python.
+New normal session
+C:/Users/sakth/Documents/Codex/sr3-copy-20261027-4a52cd8d remains ABSENT. No real
+BEFORE request/copy/selected3.12/workload/AFTER occurred. One existing-access
+agent read/hash of the exact denied fixture succeeded; full current coverage
+and normal-copy readback are still UNVERIFIED. No ACL operation was made.
+
+NEXT: issue ONLY new normal non-admin BEFORE input
+preparation. Review its actual Inputs/Request before source-reader inspection,
+policy seal/bind/copy/readback. Do not run old Run-Shutdown-Repair.ps1 or any
+old consumed diagnostic, and do not run selected3.12 from agent. Remaining74
+selected-runtime controls+ordered method+fresh AFTER/final review are approved
+scope but unobserved; stage/Gate1/release/install flags remain false.
+
+BEFORE-only launcher SHA5554f4b3d45514262f2e497636642e435f2c535f9249957fdede7073c45ea7e1.
+Coordinator234dd24e90a33feeee9fbacd5e75f03b2099c8393b7be86d3d9f994d99946cd3;
+DATA4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299.
+Use existing pinned PS7, VerifyOnly then one Before invocation. Actual Inputs/
+Request must be reviewed before a source-reader, bind or copy command. A
+successful request is not runtime proof; preserve failures and never retry.
+
+## CORRECTION — reuse verified no-ACL copy route for new SR3 evidence2026-10-27
+
+The user's correction supersedes the permission-repair recommendation below.
+An existing cooperating-account copy/readback mechanism already solved the old
+BEFORE access blocker. Fresh parent reads verified old Copies.json39851134bytes
+SHA956f2c50c5c7290a45f4788f0470a649fa52d735a1d80146492ff3ec33e67951,
+46010copied objects/27208file mappings; BEFORE Bundle13247059bytes
+SHA0def61c9a3d9a54bc0ec465c154a110e6ab924049c42fb93c004bb158ef86770,
+48799merged objects. Neither covers cleanup-repair-20261023/audit-emwso553.
+Old BEFORE copy/readback success is observed; old full workload/AFTER is NOT.
+
+SR3 history() has no copy integration: it directly inventories four newer roots.
+The missing adaptation is in evidence verification, not shutdown/package code.
+Read existing plan/design's SR3-COPY section. User selects no-permission-change
+route: fresh denied-data copies from a reader already able to open originals,
+normal-account complete hash/mapping readback, new provisional runtime result,
+fresh ORIGINALS-based AFTER and full comparison. Existing live-source/runtime/
+helper/protected guards stay direct. No ACL change, permission request, old-copy
+substitution, historical baseline replacement, copied-code execution or skip.
+
+Current Run-Shutdown-Repair.ps1 is consumed; keep its Claim/Failure unchanged.
+No new copy or runtime was run by this correction. Detailed bounded adaptation
+is planned, not implemented; approval of the explicit successor preservation
+boundary precedes code. Do not re-ask user to choose ACL repair. Old W/H1 commands
+also remain consumed/historical, not commands to rerun for newer evidence.
+Actual selected3.12/focused stage/Gate1/release/install remain unverified.
+
+## STOP — SR3 preparation consumed; retained-fixture ACL conflict2026-10-27
+
+Supersedes the ready-to-run handoff immediately below. User ran the exact sealed
+SR3 command once. Seals/account checks passed; input preparation failed BEFORE
+selected3.12 identity, tests, retrieval or workload claim. Failure is WinError5
+while mandatory history() traverses cleanup-repair-20261023/baseline-mi/
+retained-temp/audit-emwso553. This is not a new writer/shutdown/package failure.
+
+sr3-prepare/Claim.json93bytes SHAb47f548be8ed3cba3a7e50efc4c5b564b1073002b6e72faa2a987046410d173f;
+Failure.json1989bytes SHA779800f964182b9a68a10f67299160151a5e03507cbe18a0c4e06ea4549d4c48.
+Parent read both exact files. SR3-Inputs.json and sr3-normal remain ABSENT.
+NEVER rerun Run-Shutdown-Repair.ps1, remove its claim, or issue an invented suffix.
+
+Read-only ACL evidence: denied fixture owner SAKTHI/CodexSandboxOffline SID1003,
+inheritance protected, only OWNER RIGHTS/SYSTEM/Administrators FullControl; no
+normal SID1001 entry. Parent directories allow normal account, but their grants
+cannot inherit into this protected child. All330direct directories in this one
+retained-temp parent have the same protected owner/system/admin-only descriptor;
+0descriptor read errors. No recursive/all-history access census is claimed.
+Test source creates audit-* with TemporaryDirectory; retained runner uses
+tempfile.mkdtemp; local Python314 tempfile calls mkdir(mode0700). The captured
+ACL explains the normal-account denial directly. Normal-account handoff alone
+does not solve these sandbox-owned retained-fixture permissions.
+
+Next requires separate user authority for narrowly scoped read-only evidence
+access changes, with exact-target/ACL/content baselines, OR an explicit change
+to preservation design. No ACL edit, blanket grant/reset, admin rerun, skipped
+history, source change or retry was taken. Existing code/controller-native proof
+remains; actual selected3.12/focused stage/Gate1/release/install remain unverified.
+
+## LATEST — SR3 repair implemented/reviewed; selected3.12 confirmation pending2026-10-27
+
+Supersedes the unwired/in-progress implementation text below. Approved SR3 now
+integrates the exact reviewed SR2 synchronous writer cancellation with direct
+current-image Windows process ownership. Suspended Job assignment precedes
+resume; identity/venv/Job bootstrap gates authored work. Complete membership
+ledger and independently pinned native handles prove exits. Cancellation and
+process stop share ONE existing5s cleanup deadline. Failures retain resource
+debt/output and original errors; default120/public90/watchdog60 are unchanged.
+
+Parent Python3.14 observations: owner17/17, session7/7, combined12/12 and new
+handoff16/16 PASS. Final knowledge252run198PASS54existingSKIP0fail/error.
+Final controller459run0fail11errors0skip/exclusion:7historical source-pin records
+and4frozen old membership probe/private-API incompatibilities. NOT green CI;
+old diagnostics/pins were not repinned or weakened. Native fault/child/grandchild,
+nested-Job and unrelated-process controls passed; this is NOT selected3.12 proof.
+Independent exact-hash native/code review and final handoff review both SHIP
+the bounded candidate/ONE fresh normal-account verification WITH runtime caveats.
+
+Use ONLY new .github/scripts/Run-Shutdown-Repair.ps1, launcher SHA
+010305e3a8e75ad62c4b6fe4ef527203e31dabea16ca88f87f2c476c9944109b,
+helper SHA f224d215d0eb8ac898ac6a185cb388d1aa45b627765a006ae266455b800aff69.
+Existing PS7 shell SHA362a356ce7f0940ec74f73a8fc2c990a2cc24a38a11c90bbd8eca947110ad139;
+rehash BOTH shell and launcher before VerifyOnly and again before ONE actual
+normal non-admin invocation. No policy bypass or administrator launch.
+Actual PS7 parse/VerifyOnly and wrong-agent-SID refusal passed before Python.
+SR3-Inputs.json, sr3-prepare and sr3-normal remain ABSENT at parent handoff.
+
+New helper pins10source/7support/6oldcontract seals, mandatory full old/private
+histories and protected-source checks. It prepares only exclusive new inputs,
+then proves selected3.12 identity/53dependencies before and after74ownership/
+writer/lifecycle controls plus unchanged ordered4mode initial/replay/lease
+refusals. All selected-runtime groups use selected worker, not controller.
+Agent private traversal remains denied; this guard is mandatory in normal account,
+not waived. On any failure retain output, stop, share receipt; NO automatic retry.
+
+New runtime result: cleanup-shutdown-repair-20261026/sr3-normal/Receipt.json;
+preparation failure: sr3-prepare/Failure.json. Read actual raw results/preservation
+before claiming focused-stage completion. Selected3.12/stage/Gate1/release/install
+remain UNVERIFIED/false; historical C2's exact exception remains unproved.
+Do not restart SR1/SR2 or any consumed C1/C2/CR3/stack/TC1/MP1 command. No install,
+ACL/security/Git action or old-data deletion. See existing cleanup-repair report's
+latest SR3 section for hashes, RED/GREEN evidence and exact nonpass accounting.
+
+## CURRENT — MP1 consumed; bounded shutdown repair authorized2026-10-26
+
+User said "start fixing , i will give some more idea for this fix". Read the
+existing plan's SR section. MP1 runtime is now CONSUMED, not unrun: Receipt9846
+SHA0a61222897b210c2500a5c461b7bacc5f00e296b4d2f5678a51f82b256c488d7;
+all6 captured stream hashes matched. Complete child capture EXITED1, not timeout.
+Actual root/relay exited but launcher35012/child19464 and writer survived stop.
+Job-list/association transition caused observer rejection; lifetime total check
+caused secondary cleanup noise. Exact original C2 cause/pipe holder remain unknown.
+
+SR1 saved-data reporting correction is complete:19focused, independent SHIP;
+use Saved-Evidence-exact.json, NOT the retained faulty rounded initial export.
+SR2 isolated windows_writer.py is now controller-native VERIFIED WITH CAVEATS:
+meaningful final18RED/2fail ->18/18GREEN, ResourceWarning-as-error, fresh exact-
+hash read-only SHIP_CANDIDATE_WITH_CAVEATS. It cancels a real blocked writer while
+its reader stays alive, with atomic startup/retirement ownership and bounded
+native/Python join. Final cancel0.000198s, exit/join0.000181s; not selected3.12 proof.
+Writer72dde9c3... /testsf3f89b80... remain UNWIRED to retrieval. Final knowledge
+228run174PASS/54SKIP/0fail/error; controller443run0fail/7exact baseline pin errors,
+NOT green CI. All9Before old controls matched. Exact evidence/Run-Inputs lives in
+cleanup-shutdown-repair-20261026/writer-handoff-green; no old retry/deletion/Git.
+
+SR3 is now APPROVED by user "WE ALREDY DISCUSSED ABOUT SOLUTION FOR THIS, USE ALL
+REQUIRED SKILL AND SOLVE THE ISSUE". Do not ask that design approval again. Read
+the plan's appended SR3 approved implementation detail. Worker.py creates its
+DistributedClient inside the selected runtime; use CURRENT native loaded image,
+explicit original venv context, suspended Job assignment and pre-work bootstrap
+identity/ownership gate. New native owner/bootstrap, parent cancellation wiring
+and NEW normal-account verifier are in progress. Initial parent unit contracts
+RED3->GREEN3 and retention RED4/1->GREEN4 are NOT native proof. SR3-Before.json
+records the dirty baseline. Normal-account identity+Job ownership proof precedes
+combined shutdown/public replay. No selected3.12 was started by agent; no package
+install, permission bypass, timeout increase or qualification.
+Current stage/Gate1/release/install remain incomplete. All historical UNRUN
+instructions below MUST NOT be executed again. Do not restart completed SR1/SR2.
+
+## Historical — MP1 Inputs verified; runtime handoff before consumed run
+
+Preparation is CONSUMED. NEVER rerun Run-Cleanup-Membership-Prepare.ps1. Actual
+Inputs175926bytes SHA457fc256b81f52572695b787344cd5778f3bd06bdc14939b5416508ceeacf5a4
+read back exactly. Parent verified18keys/all7false/source629/helper/probe/TC1Input/
+TC1Receipt/HEAD/budgets. TC1 full666inventory and old private guard remain denied
+in agent context, HOST-PREPARED only; full normal-context before/after checks are
+mandatory and unchanged. No inaccessible-file waiver, permission or copy workaround.
+
+New Run-Cleanup-Membership.ps1 (3154bytes) SHA
+0738e9510cb114ae7617d296bd06794e018ac280c61d420a2c58f768e9eb5562 pins exact
+returned Inputs and unchanged reviewed helper/probe/TChelper/controller. Parent
+PS7parse0/VerifyOnly/wrong-contract seal/actualwrongSID refusal PASS before Python
+or output. Exact sealed PS7 -File route VerifyOnly and actual account refusal also
+observed. Fresh independent read-only review returned SHIP_WITH_CAVEATS for these
+exact bytes, no Critical/Important finding. Independent source629/629 comparison
+and retained34/424receipt/log hash checks agree; seven historical errors remain.
+No selected
+Python3.12, membership fixture, normal-membership output or claim started by agent.
+NEXT: one new normal non-admin runtime witness; NOT preparation,
+TC1/stack/CR3/C2 retry, source/budget change or qualification. Return actual receipt
+and probe outputs. Rootcause/fix/stage/Gate1/release/install remain unverified/false.
+Use the same sealed existing PS7 outer route: hash shell362a356c and new runtime
+launcher0738e951 before VerifyOnly; check child exit; rehash BOTH immediately before
+ONE actual invocation; check exit. Preserve/share any failure, no retry or fallback.
+
+## Historical — MP1 reviewed INPUT-ONLY handoff cleared2026-10-26
+
+Resume ONLY the new externally sealed MP1 INPUT-ONLY preparation in a normal,
+non-admin account. Final exact launcher review is SHIP_WITH_CAVEATS; no new
+approval is needed within this approved MP1 scope. Do not run old commands.
+Worker is STOPPED, final probe7598e119/native tests1fa1db1f stable. Same reviewer
+resumed after user CONTINUE and closed all7 code findings: CODE SHIP only. Native
+credit interruptions are not clearance. Parent freshly observed34/34PASS with
+ResourceWarning-as-error; final424broader0fail/7exact historical pin errors,
+0skips/exclusions/interruption, not green. Previous33/423 belonged to older bytes.
+Focused logd6f0106d63c4c51ab13030a9259b2ee3894d64016df01d773fcf082fca212fae;
+broad0208ada6a31b04f8e4c6a208a6f43e922a98f1bcec0e88dc2691e33dc7fa5a1a.
+
+New Run-Cleanup-Membership-Prepare.ps1 (2673 bytes) SHA
+5272ae81108b70ffbb110c8f37e5b3e358436547cf130216d95e87c24cbc7956 pins
+coordinator2c87f117/probe7598e119/unchangedTC helper883ec3cd/controllercce21c0e.
+Parent PS7.6.5 parse0/VerifyOnlyPASS; wrong hash and actual SID1003 refuse before
+Python/output. PS5 parse0; actual -File loading DENIED by agent script policy.
+No bypass or policy change. Use only the reviewed existing PS7 route: absolute
+C:/Users/sakth/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe,
+SHA362a356ce7f0940ec74f73a8fc2c990a2cc24a38a11c90bbd8eca947110ad139.
+Outer block hashes shell AND launcher before VerifyOnly, checks child exit,
+rehashes BOTH before ONE actual -File invocation, then checks exit again. Parent
+observed exact PS5 pasted-command -> sealed PS7 route: VerifyOnlyPASS, actual
+agent SID refusal before Python/output. This is not direct PS5 script loading.
+MP1 root/Inputs/runtime launcher remain ABSENT; no preparation or host attempt run.
+Full consumed-history private inventory still WinError5 in agent; normal-context
+preparation checks remain mandatory. Return actual Inputs path/size/SHA before
+any runtime launcher freeze. No old command, new source overlay, install, Git,
+security change or deletion. Rootcause/fix/stage/Gate1/release/install stay false.
+
+## Historical — TC1 consumed; MP1 review continuation2026-10-25
+
+Do NOT rerun timing/preparation/stack/CR3/C2 commands. TC1 Receipt91344bytes SHA
+6d58fc03166bf752bfa60d2a8f8b4b6b724d1cc5c8132c75018f0372c4bd9b11 is
+TIMING_TIMEOUT_NOT_FIXED; normal-context named preservation verified. Timings.json
+SHA3b6f26b37c3a745c1e2d0834d53900d7b13ef445cc4a75aefb98c75a531cdc8b.
+Writer join4.953s is within failed stop5.047s. Child13920 completed60.016s wait
+after inner termination. Returned job PID values were NOT logged. Store/alias
+escape remains a hypothesis. Cumulative TotalProcesses is not live membership;
+fixture buffered stdin.close after failed stop causes the secondary hang.
+
+User CONTINUE from fresh FIX-FIRST review authorizes MP1 focused native membership
+witness/guard tests/bounded fixture-only emergency cleanup and reviewed input-only
+handoff. Read existing plan's MP1 section. No live MI source change or old retry.
+RC2 correction is cause-supported only; RC3 selected-runtime lifecycle/ordered
+proof stays separate. No reinstall, timeout increase, ACL/trust, Git or deletion.
+
+MP1 parent observed25/25 focused controller/native PASS and415broader0fail/7exact
+historical pin errors, not green. Timing regression23/23PASS. Native worker and
+reviewer resumed same seats after explicit user CONTINUE; credit errors were not
+clearance. Final native review of b04b8003 returns FIX-FIRST: borrowed/double-close
+ownership; native handle errors after saved success; ignored emergency errors;
+lost actual writer on unexpected request failure; thread-ID reuse guard; hidden
+10second marker bound; stale LastError. Forced-prestop control is not actual job
+survivor evidence. Parent reproduced9 acceptance failures, then23/23 guard GREEN;
+native safety corrections and same-seat re-review remain pending. Read report's
+MP1 final-review section. Selected runtime and all product/stage flags stay false.
+Run-Cleanup-Membership-Prepare.ps1 remains FREEZE_AFTER_REVIEW, MP1 root absent.
+DO NOT run or issue it until native tests/broader evidence/final review/seals pass.
+
+## Historical — TC1 prepared; exact runtime handoff cleared2026-10-24
+
+Preparation is CONSUMED: Inputs85251bytes SHA
+cf45dfde1fae5d2bb5f601a8d54c4fa68e62d5db35e3248ffe9bdfecf9476d62.
+Parent verified15key schema/629source/12cases/support/helper/budgets and unchanged
+CR C1/runtime/protected/history checks. Old CR3 and old stack private inventories
+remain HOST-PREPARED only (fresh agent WinError5); full normal-context before/after
+guards remain mandatory. Never rerun preparation or old stack/CR3/C2 commands.
+
+New .github/scripts/Run-Cleanup-Timing.ps13472bytes SHA
+3b049895ebd0af70cd1e1c25811bea4a63d7d35db92766a84532304a0b2b1aa2.
+Parent observed0PS parse errors/VerifyOnlyPASS/wrong-contract seal refusal/actual
+wrong-account refusal before Python/output. Fresh native exact-handoff review
+SHIP after same-seat retry of initially credit-interrupted review. Actual verdict
+obtained; initial infrastructure failure was not treated as clearance.
+NEXT: externally hash-check ONLY new runtime launcher; VerifyOnly then ONE normal
+non-admin timing diagnostic. Return Receipt.json/Timings.md/Timings.json and stacks
+if created; retain failure, no retry/guard change. Normal-timing currently ABSENT.
+No selected runtime or timing attempt started by agent. Rootcause/fix/stage/Gate1
+remain UNVERIFIED. Existing23guards/390controller evidence is retained prior proof,
+not freshly rerun; helper883ec3cd/observer00ee0acf/source/Inputs remain unchanged.
+
+## Historical — TC1 timing implemented; input-only handoff2026-10-24
+
+User approved TC1 process/stage timing. New cleanup_timing_observer.py and
+cleanup_timing_diagnostic.py reuse the unchanged logger and creation-time probe,
+instrument ONLY a new copy of3frozen inputs, and prove inverse AST equality.
+No live MI source/test bytes changed. Final23guardsPASS, including actual C314
+instrumented12case lifecycle run. Broad controller390run0fail7errors, exact
+historical error list equal prior367; NOT green. Source/release/install remain
+unqualified and the original selected3.12 blocked-cleanup error remains UNKNOWN.
+
+Fresh native reviewer cleared code and final exact INPUT-ONLY seal. New
+.github/scripts/Run-Cleanup-Timing-Prepare.ps1 SHA
+9101c4d21730687d416a93f4b727cf2d05773e11067713a39b60268c819ac6d0.
+Parent observed0PS parse errors and VerifyOnly PASS, no Python or attempt.
+NEXT: exactly one normal non-admin input preparation; review returned
+.github/run-artifacts/cleanup-process-timing-20261024/Inputs.json path/size/SHA,
+then freeze/review a new timing-runtime launcher. ROOT/Inputs/normal-timing are
+currently ABSENT. The private-history guard is still mandatory, not waived.
+
+Do NOT rerun consumed stack/prepare/CR3/C2/N3/old timing commands. Preparation
+does not run selected3.12, tests, retrieval or timing. No installs, permissions,
+Git write, deletion, baseline/pin weakening or deadline changes. TC1 actual
+measurement and RC2/RC3 proof remain incomplete. Read cleanup-repair-20261023.md
+latest TC1 section for hashes, local timing scope, guard/review evidence.
+
+## Historical — stack consumed, timing proposal before approval2026-10-24
+
+Do NOT rerun stack/prepare/CR3/C2/N3/old timing launchers. New stack Receipt8462
+SHA c803e2fa4010837398be9448a44013181040f4eb576105c6d4e3e29449189b8a,
+stack3108 SHA6fcc64771d6df416fe2e8671c1a9e2e7dd3d29c383fb4dafc047aa109fceea0f:
+TIMEOUT_STACK_CAPTURED_NOT_FIXED, protectionverified. At10s writer is in write/
+flush; main is fixture stdin.close. FirstcasePASS/secondincomplete; no suite
+receipt/outcomes. Root blocked frame identified, original preceding error UNKNOWN.
+
+User asks process/stage time like previous issue/package-install check. Current
+recorded coordinator wall74.648245s includes validation/capture/protection; no
+per-stage timers. Old27.453Semantica/12.234numerical values are import/LOAD time,
+not INSTALL. Current failure fixture uses stdlib and deliberately waits60 without
+readingstdin; no installer invoked by that call path. Do not rule out all startup
+environment effects or fabricate per-process durations. TC1 plan now proposes
+existing logger + new exact-copy timing adapter + original-error-before-close,
+same budgets and retained pins. Approval before instrumentation/new host run.
+No new production/timing code or install; stage/Gate1/release/install false.
+
+## LATEST — one reviewed/frozen normal stack diagnostic; UNRUN2026-10-24
+
+Do NOT rerun input preparation. User Inputs189744bytes SHA
+ead95373d25ee2750a10c52e4e2bbf7cf3cabb087166b00df2533458bec27075 verified;
+exact1339entry map,12case IDs,stack10/watchdog60 and false readiness/auth flags.
+Parent verified readable C1/runtime/protection,627/629source copies and8streams.
+Private scratch is HOST-VERIFIED only; full guard stays mandatory in normal
+diagnostic context before output/claim and after capture, no waiver/ACL change.
+
+Fresh native final seal review SHIP for ONE stack-only diagnostic. NEW
+Run-Cleanup-Lifetime-Diagnostic.ps1 SHA
+ffabc697263406c7598d1f59d2f718bfa65b6486d82f631fe096c67bf2e6df86.
+Helper remainsb03c008a5e590888aa70ea43a38dffc4efaa90b2563336ec2403ff86c2f22031.
+Parent actual VerifyOnly PASS,0PS parser errors; normal-stack absent. Next outer
+hash gate, VerifyOnly then invoke ONCE in normal non-admin PowerShell. Return
+normal-stack/Receipt.json and tests/Slow-Stack.log. No old CR3/C2/N3 or prepare
+retry, marker deletion, guard/policy bypass. Timeout captured is NOT_FIXED;
+rootcause/fix/stage not complete.13guards/broad367not rerun,7pin errors retained.
+
+## CURRENT — CR3 consumed; blocked-writer root-cause diagnosis approved2026-10-24
+
+Do NOT rerun Run-Cleanup-Repair.ps1. Actual failed Receipt168066bytes SHA
+d214498c4e7ff2b613ebb933c4174e7c19a3125dc60350c34c1c5491d456c9d7 is retained.
+Selected identity/dependencies PASS; all4original-control modesPASS, so historical
+cleanup failure not reproduced. Repaired lifetime case1PASS, case2 blocked-real-
+pipe-writer started then outer60second TIMEOUT. No lifetime unit receipt/outcomes,
+no repaired-ordered call. All8streams,627/629source copies and named protection
+were independently verified. Exact blocked frame/cause UNKNOWN, not guessed.
+
+User now requests Deep Plan to find root cause/fix/complete this stage. Existing
+plan's RC1–RC3 records target, distinct options, evidence families, falsifier,
+pivot and completion gates. Next RC1 reuses existing --stack-after10, unchanged
+60watchdog and same12cases against verified frozen source, NEW sealed output;
+no production edit until observed cause. Selected runtime remains host-only;
+do not substituteC314 or repeat old commands. Stage/Gate1/release/install false.
+
+RC1 code now built,13guardsPASS including real C314 stack-smoke; controller367
+same7pin errors,0fail/skip/exclusion, NOTgreen. No MI source/test changes. New
+mandatory full failed-attempt inventory is unreadable to agent at control-tests/
+retained-temp/mi-worker-9rtyb1xz (WinError5). No skip/ACL/owner workaround. Normal
+INPUT-ONLY prepare is required first; separate prepare launcher under review,
+runtime launcher remains FREEZE. No new Inputs/root/diagnostic attempt exists.
+Next seal/issue ONLY reviewed input preparation, inspect returned Inputs, then
+separately freeze one new stack diagnostic. Root cause still UNKNOWN; no fix yet.
+
+Superseding preparation status: fresh review NARROW CLEARANCE for INPUT-ONLY
+prepare. Run-Cleanup-Lifetime-Prepare.ps1 frozen SHA
+b0eabad1fe626c76c47c9d2bb9d1d73940657c11accbaf0a4a4986fc4d563931;
+helper SHAb03c008a5e590888aa70ea43a38dffc4efaa90b2563336ec2403ff86c2f22031.
+Parent actual VerifyOnly PASS,0PS parse errors, ROOT absent. Issue ONLY this
+new outer-hash-checked prepare command in normal non-admin PowerShell. Return
+printed Inputs path/size/hash; no selected3.12/test/diagnostic claim is started.
+Do not precreate/retry/delete/bypass guards. Runtime launcher remains FREEZE.
+
+## CURRENT — reviewed/frozen CR3 normal-account handoff; runtime UNRUN2026-10-24
+
+Do not restart the repair or old commands. All3review findings corrected with
+observed RED/GREEN; fresh reviewer cleared code for this one focused handoff.
+Final12shutdown/error controls (7real-process+5API fault injections) and11helper
+guards PASS. FullMI712 retains baseline700's exact1fail3error54skip1xfail lists;
+controller353 retains7pin errors. Broader suites are NOT green.
+
+New Runtime-Inputs.json211348bytes SHA18b1d93425f0f52965b94ed7349acf11042065348aafc26b8152ce7c6b595838.
+Helper SHA8bc851bfbc59848b1730bbd141987c4fff80156a5f5adc23467e7f706fbafc2f.
+NEW Run-Cleanup-Repair.ps1 SHAc9fb41897545625f3b152315fcef276b5afe343a75ac478183d7d8cf11086c59.
+Parent observed zeroPS parse errors, actual -VerifyOnly success and full input
+verification:627C1 files,15old records,4protected roots,12runtime roles,exact3
+replacement paths. normal-comparison output absent; no numerical attempt ran.
+Fresh independent final exact-seal rereview also returned NARROW CLEARANCE:
+no mismatch/blocker; code, contract, launcher, original inventories and runtime
+records agree. This clears issuing only the new focused command, not its result.
+
+NEXT: outer-hash-check ONLY this new launcher in NORMAL NON-ADMIN PowerShell,
+VerifyOnly then invoke ONCE. Preserve/share normal-comparison/Receipt.json and
+console; stop on any failure, no retry/removal/guard or execution-policy bypass.
+Old N3/C1/C2 remain consumed/read-only. CR1–CR3 scope already approved. Actual
+selected3.12 outcome and historical C2cause UNKNOWN; Gate1/release/install false.
+Full evidence/seals: ../evidence/offline-first-20261020/cleanup-repair-20261023.md.
+
+## LATEST — review findings cleared; CR3 seals pending2026-10-24
+
+Continue the already approved CR1–CR3, not old C1/C2. Three concrete review
+findings now have retained RED/GREEN: original error masked by handle closure,
+unrelated/misplaced failure accepted as negative control, and post-output setup
+escaping final receipt. Current focused12lifecycle/error and11handoff guards
+PASS. Broad suites still not green; baseline700 matches earlier706 failure/
+error/skip/xfail lists. Fresh controller353 has same7pin errors; fresh full-MI
+712 has1fail3errors54skips1xfail, exact same non-pass lists as baseline700;
+parent verified receipt/log and no exclusions/interruption. Same reviewer has
+cleared corrections: SHIP for sealing, no Critical/Important finding. Contract/launcher remain
+UNFROZEN and numerical CR3 UNRUN; selected3.12 agent launch remains unavailable.
+Read cleanup-repair-20261023.md for exact evidence. Do not issue a placeholder
+launcher or infer Gate1/release/install qualification. No Git/security/install
+or old-data deletion action authorized or performed.
+
+## LATEST — approved CR1 reproduced; CR2 lifecycle correction under review2026-10-23
+
+User approved CR1–CR3 with `approve`, then continued. The next older section's
+"approval pending/no implementation" status is HISTORICAL, superseded here.
+Real stdlib two-PID controls reproduced the launcher/interpreter exit gap;
+both originally RED. Windows-only suspended-start owned-job + orderlyEOF/
+forced native-handle exit waiting implemented.7native,6lifecycle,7cwd,7budget,
+5handoff-guard controls PASS. Existing default120 unchanged. Full suites NOT
+green: fullMI706run1fail3error54skip1xfail; controller343run7errors. Full names
+and retained hashes in ../evidence/offline-first-20261020/cleanup-repair-20261023.md.
+
+Actual selected3.12 still cannot start from agent (WindowsApps base unavailable).
+Fresh final reviewer requested. New CR3 helper/launcher are built but NOT frozen
+or issued; no selected-runtime comparison ran. Finish review, fix important
+findings with regressions, seal new inputs and provide ONE normal-account
+command. Do not execute old N3/C1/C2 or mutate their contracts/attempts.
+Historical C2 cleanup OS cause/holder still unknown. Gate1/release/install false.
+No commit/push, install, deletion, permissions/trust change was performed.
+
+## Latest — targeted cleanup repair description awaiting approval, 2026-10-23
+
+User requested SOLVE THAT ERROR with Fable Method and Brainstorming. No
+implementation yet: read the existing design's new "C2 cleanup repair
+description" and proposed CR1/CR2/CR3 in the existing plan. Already saved
+extended-timing sidecars show launcher44836->actual47924 and27764->actual8088;
+current stop waits only launcher, so actual-interpreter exit needs verification.
+This is a concrete lead, NOT proof of the hidden original C2cleanup exception
+or permanent orphan. Parent verified4raw event hashes, old timing Receipt,
+Timings.json, and Git diff showing only timeout-default change since that trace.
+Proposed cause-first repair keeps120defaults/deadlines, all old inputs/claims,
+error visibility, and exact ownership; no new engine or permissions workaround.
+Brainstorming requires approval of this full description before new code;
+fresh native builder-check returned "nothing important left". This clears
+design clarity only, not implementation or runtime proof. No new runtime or
+old command ran. Next is approval of this bounded description before CR1.
+
+## CURRENT — C2 consumed; distributed vector cleanup blocks Gate1, 2026-10-23
+
+Do NOT run Run-Gate1-Current-Runtime.ps1 again. The normal-account C2 attempt
+was executed and stopped honestly. Receipt at
+C:/Users/sakth/Documents/Codex/gate1-current-a38297d-20261023-c2/Receipt.json,
+11165bytes, SHA4424beb7298567755735500144eae66b6a43ea7192446c554ea5f559a14b0c07.
+Parent verified its exact hash, all10command streams, each executed group's
+case IDs/order/counts/log hashes, plus fresh pinned C1/source/protected checks.
+
+Groups0/1/2 passed3/2/16cases. Group3 ran all198:184PASS,1FAIL,13known permitted
+skips,0errors/exclusions/incomplete cases. Total executed219cases:205PASS,
+1FAIL,13SKIP. Only failure is public advanced vector/distributed-local INITIAL
+retrieval at test_knowledge_completion.py:51, with
+E_WORKER_FAILED: ValueError: E_DISTRIBUTED_CLEANUP. It is not a current timeout:
+suite child exited1, timed_out=false, capture_complete=true, no overflow or
+capture errors. Community/global/DRIFT subtests have no recorded failures.
+CM group4,24acceptance arms and C3 did NOT run. All remain incomplete.
+
+The cleanup wrapper's cause/notes are lost by worker.py's type+str serializer.
+This receipt does NOT establish WinError32, a particular filename, PID/holder,
+antivirus or ACL root cause. Preserve that uncertainty. Agent read access to
+retained normal-account scratch subdirectories was denied; no permission/copy
+workaround or inaccessible-file skip was attempted. This later access limit
+is separate from the already observed normal-account cleanup failure.
+
+NEXT: investigate that one cleanup failure using existing diagnostic formatter
+and process-lifetime tooling, retaining the exact ordered context/default120.
+No blind full C2 rerun, timeout increase, arbitrary sleep or ignored cleanup.
+A fresh workload needs a separately reviewed/sealed successor; do not edit the
+consumed source, launcher, contract, output or claim. No repair is claimed yet.
+Read actual-result section in gate1-current-runtime-20261023.md for evidence.
+
+## Historical — C2 prepared before its now-consumed normal-account run
+
+Do not rerun C1. Its successful normal-account Receipt SHA is
+f0a8b97b49122ad2dc86c5b7adeb4c38e84d97cc774afa80e8debba0d8e30b14;
+Prepared SHA is98bfd5870d3d4032cd250dc268a99a3a791b61787081a539f9f4eb2f3818a75d.
+Parent verified627source files,344protected files,53dependency metadata versions,
+Python3.12.10 and120defaults. Independent C1 observation review accepted with
+caveats: no numerical workload, no C3 cleanup or authenticated-producer proof.
+
+Read ../evidence/offline-first-20261020/gate1-current-runtime-20261023.md next.
+C2 helper/launcher/tests are local, uncommitted.11focused tests PASS after
+2demonstrated RED failures were corrected. Fresh broad controller343run has
+0failures/16error records/0skips:6known historical pin records plus10WinError5
+scratch-creation errors in old timing tests. It is NOT green CI.
+
+C2 input-only discovery completed224tests:3/2/16/198/5. Contract SHA
+6cb6cb39d6b3e2a702b0e2b63cba6a97b44f250fb4c396463bc62f5cd2113c15.
+New .github/scripts/Run-Gate1-Current-Runtime.ps1 external SHA
+69544835b9bf37acfa88d3900db332473141c90b73e01134cb1dcdc1e8d1b14d.
+It uses C1's unchanged source and a separate C2 output. No old launcher,
+baseline replacement, source overlay, install or Git write. Parent external
+input check and launcher VerifyOnly passed. Actual sandbox-account invocation
+correctly refused BEFORE output/failure marker; normal C2 attempt remains UNUSED.
+
+Fresh independent final exact-pin review accepts this C2 handoff WITH CAVEATS;
+all5discovery records/streams/ID lists and seals checked, no numerical run.
+NEXT: one normal non-admin PowerShell invocation
+of ONLY this new C2 launcher: VerifyOnly then run. Review its receipt before C3.
+Normal output: C:/Users/sakth/Documents/Codex/gate1-current-a38297d-20261023-c2.
+C2 five groups/24initial+fresh-replay arms and C3 actual shutdown/handle checks
+remain UNRUN. Preserve every old attempt and stop on any failure. This does
+not qualify whole Gate1, release, installed use or the entire historical archive.
+
+## Historical C1 preparation position — superseded by actual result above
+
+User approved three sequential Gate1 items, "1 by 1 at a time". Exact source
+basis remains published a38297dd797eeecd25e41ab0af1df4e3db8fa984. No Git write.
+Read ../evidence/offline-first-20261020/gate1-current-source-20261023.md first.
+New helper/launcher/tests implement STEP1 ONLY. Parent observed20/20 focused
+PASS including a real627-file commit extraction. Full controller332run has
+0failures/6historical source-pin error records,0skips/exclusions/xfails; not green.
+Independent FIX-FIRST review's archive-prefix/empty-directory/finalization and
+pre-copy evidence findings are reproduced and corrected by parent RED/GREEN.
+No second independent review or actual selected-runtime pass is claimed.
+
+New .github/scripts/Run-Gate1-Current-Source.ps1 external SHA
+712dd7cd96d70121d89d77fcbf72671e6311cd0ec4d106d4785e7e3d152b83a8.
+Contract .github/run-artifacts/gate1-current-20261023/C1-Contract.json external SHA
+116835e0a0f79dc907512c0275404bac210c7128484580ceebf865e0ec6d5dbb.
+Parent verified all627committed records,12runtime/helper/history pins,53versions,
+helper/contract seals and0PowerShell parse errors. Actual WindowsPowerShell5
+script loading was BLOCKED by agent execution policy; do not change it or claim
+VerifyOnly executed. Direct Python coordinator refused non-normal SID before
+creating output/failure marker. Intended normal-account C1 attempt is UNUSED.
+
+NEXT: one normal non-admin PowerShell invocation of ONLY this new hash-checked
+C1 launcher: VerifyOnly then run; inspect exact Receipt/Prepared before C2.
+New output is C:/Users/sakth/Documents/Codex/gate1-current-a38297d-20261023-c1.
+No old command, retries, source overlays, install, ACL/trust/security change or
+deletion. C1 verifies source/env/defaults, not numerical retrieval. C2's five
+groups/24arms and C3 shutdown/preservation remain UNRUN. Current static group
+count224 includes new7budget tests; old acceptance's explicit60 must not be
+misrepresented as default120 coverage. Historical archives remain untouched;
+C1's package/cache/release snapshots are not an archive-wide qualification.
+On failure retain files/markers/console/receipt; no silent guard relaxation.
+
 ## Authorized publication checkpoint -120second default, 2026-10-23
 
 User explicitly requested push with details/everything. Publish this containing

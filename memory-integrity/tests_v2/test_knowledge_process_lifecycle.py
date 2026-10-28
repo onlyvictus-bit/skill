@@ -89,7 +89,9 @@ class ProcessLifecycle(unittest.TestCase):
         with patch.object(d, 'open', side_effect=track, create=True), \
                 patch.object(d.subprocess, 'Popen', side_effect=OSError('PROCESS_CREATE_FAILED')):
             with self.assertRaisesRegex(OSError, 'PROCESS_CREATE_FAILED'):
-                d._Session(sys.executable, 0, 'a'*64, 1)
+                # Reach the intended Popen failure rather than the new startup
+                # deadline refusal; retain all original error/close assertions.
+                d._Session(sys.executable, 0, 'a'*64, time.monotonic()+5)
         try:
             self.assertGreaterEqual(len(opened), 2)
             self.assertTrue(all(stream.closed for stream in opened),

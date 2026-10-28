@@ -611,3 +611,381 @@ manifest, cannot overwrite output and is retained. No cleanup is implemented.
 This is sampled content/identity/ACL agreement, not atomic snapshots, continuous
 immutability, original-run provenance, native qualification or a worker repair.
 Real user/reader cooperation remains a separate observed execution requirement.
+
+## C2 cleanup repair description — proposed 2026-10-23, code not built
+
+User request: SOLVE THAT ERROR, using Fable Method and Brainstorming. This is a
+bounded bug repair in the existing Python implementation, not a new memory
+engine, runtime install or release. Brainstorming requires approval of this
+specific description before new product/diagnostic implementation. Earlier
+C1/C2 execution authority does not authorize rerunning the consumed C2 attempt.
+
+### New primary evidence and remaining uncertainty
+
+The failed C2 receipt remains
+4424beb7298567755735500144eae66b6a43ea7192446c554ea5f559a14b0c07:
+only initial vector/distributed-local retrieval fails with E_DISTRIBUTED_CLEANUP.
+Its short public error does not identify the underlying exception or file holder.
+
+Existing earlier extended-timing Receipt (NOT rerun) still hashes to
+b4bf001140ad6d4c486f4674bd7b82cf3c0ea23879e1c7bf994000c11822f569;
+Timings.json SHA036ad2857df4c64c61a5e80cad089c16d5e3084fc71211233cfcbf33c7a8e88d.
+Its raw vector-distributed-local/events records show:
+
+- coordinator43060 spawned shard-launcher44836; actual distributed-worker entry
+  PID47924 records parent44836;
+- same coordinator spawned shard-launcher27764; actual worker8088 records
+  parent27764;
+- _Session.stop snapshots name only44836/27764 and returncode1 after killing
+  those launchers; no real-interpreter exit/wait is recorded by that method.
+
+Thus distinct launcher/interpreter PIDs are OBSERVED, not a guess. Current
+_Session.stop kills/waits only process returned by Popen, joins its writer and
+then permits stream/directory cleanup. This leaves an unverified descendant-
+exit boundary. The old successful instrumented run does not prove the precise
+cause of the later C2 failure. Its passing cleanup cannot be relabelled a
+reproduction. Do not infer that every launcher kill leaves a persistent orphan.
+
+Microsoft's Job Objects documentation says jobs can manage associated process
+groups and child processes; terminating a job and closing a KILL_ON_JOB_CLOSE
+job are available mechanisms, but an outer job that closes after the command
+does not establish inner-resource shutdown ordering.
+https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects
+CPython main's venvlauncher.c is explanatory only, NOT exact selected3.12.10
+binary proof; it starts a child, assigns a job and waits on that child. In
+particular it can already kill children on launcher death, so permanent orphan
+claims would be unsupported. The observed gap may be asynchronous termination
+versus resource cleanup, not absent termination.
+https://github.com/python/cpython/blob/main/PC/venvlauncher.c
+
+### Recommended mechanism and alternatives
+
+No-build: preserve negative result; Gate1 remains incomplete.
+Choose the smallest adequate route: first reproduce the launcher/interpreter
+lifetime boundary with a controlled, stdlib-only test, retaining evidence;
+capture original cleanup causes with the already-existing bounded formatter.
+If that confirms the hypothesis, repair the owned shutdown ordering, not search
+logic. On completed idle sessions prefer orderly stdin EOF and bounded waiting
+for actual shutdown. On cancellation/blocked writer, use explicit owned-tree
+termination/waiting; never a global Python kill, PID-only sweep of unrelated
+processes or a close that can block forever. A failed shutdown must remain an
+error, preserve the original failure and avoid claiming resources are closed.
+
+Implementation must select/reuse existing process ownership primitives where
+adequate; no unreviewed taskkill fallback can become proof of full termination.
+Any required Windows Job enhancement must fail closed if ownership/termination
+cannot be established, validate nested-job behavior and demonstrate all owned
+descendants have stopped before cleanup. Merely waiting for the launcher or
+closing a job handle is not sufficient evidence. Do not expand this into a
+general process supervisor or silently change POSIX behavior.
+
+Stronger alternatives held outside the default repair: redesign all workers
+as a persistent service, or disable Windows distributed mode in the release.
+Both change public scope/architecture and require a separate explicit decision.
+Increasing timeouts, sleeping, changing ACLs or suppressing cleanup errors are
+rejected: none proves correct resource lifetime.
+
+### Declared scope and acceptance
+
+Existing approved Fable records remain the only plan store. Expected code
+surfaces after approval: knowledge_bridge/distributed_retrieval.py, narrowly
+necessary worker_client.py/error-reporting helper if needed, matching lifecycle
+regressions, and one new cleanup continuation helper/launcher/input folder.
+Single-worker shutdown is audited for the same defect; change it only if an
+equivalent failing regression justifies it. No frozen C1source/C2contract or old
+launcher is edited. Any materially larger ownership redesign returns to user.
+
+1. Failure-first controlled launcher/descendant fixture must expose the bad
+   lifetime or locked-resource boundary. Independently verify actual process
+   exit/handle state, not only mock calls or `_stopped=True`. No historical code
+   execution, old data removal, new environment, downloads or numerical model.
+2. Tests cover success, timeout, blocked writer, partial creation, failure to
+   close, cancellation and repeated close. Original errors remain primary;
+   cleanup errors remain visible. Preserve default120 and current bounded
+   shutdown allowances. No new arbitrary sleeps, deadline resets or retries.
+3. Capture full bounded cleanup cause/notes in diagnostic evidence without
+   polluting stdout protocol or trusting unauthenticated labels. Compare before/
+   after pinned inputs; retain old receipts/caches and every failed attempt.
+4. Focused and relevant broader regressions plus independent code review precede
+   a sealed normal-account handoff. The test cleanup exception remains only
+   newly owned temporary resources; no new automatic evidence/copy deletion.
+5. One fresh observed selected3.12 initial/replay and ordered public-method
+   comparison must pass before claiming this runtime defect resolved. If the
+   historical failure is not reproduced/cause captured, report that limitation;
+   a green unrelated fixture is not a historical root-cause proof.
+6. Only after focused repair proof may a separately reviewed current-source
+   Gate1 continuation address remaining groups/24arms/C3. Never reuse C2's
+   consumed command or edit an old baseline. Entire Gate1/release/install stay
+   false until their own criteria are observed.
+
+Weakest link: historical C2 cause is absent from its serialized reply. Cheapest
+falsifier: actual process-lifetime/locked-resource probe plus bounded exception
+chain capture with the same selected runtime. If it refutes the launcher
+hypothesis, stop that repair and use the captured cause instead; do not add
+another speculative fix. No implementation or new workload is approved merely
+because this proposed description was written.
+
+### Superseding actual evidence and MP1 boundary2026-10-25
+
+TC1 is now consumed, not unrun: Receipt6d58fc03...91344bytes; Timings3b6f26b3...
+records primary E_DISTRIBUTED_WRITER_STILL_ALIVE,4.953join inside5.047failedstop.
+Child13920 completed60.016s after inner job termination. This is process/pipe
+lifetime evidence, NOT package install/data preparation or exact Store-rootcause.
+Return values for job PID membership are missing. Fresh FIX-FIRST review identifies
+two independent defects: lifetime TotalProcesses vs current handles, and fixture
+buffered close while writer lives. Neither alone proves which reader survived.
+
+User CONTINUE from that review approves MP1 focused four-role membership witness,
+not speculative production repair. Existing629-file frozen source remains read-
+only. New fixture/helper pins native creation identities and job memberships,
+records stop before emergency cleanup, and never promotes cancellation cleanup
+to production success. See same plan's MP1 checklist. Selected runtime/venv is
+unchanged; controller tests are not selected3.12 proof. New private output only.
+
+API evidence: Microsoft JOBOBJECT_BASIC_ACCOUNTING_INFORMATION defines total as
+cumulative, active as current; Nested Jobs says children inherit job chains and
+breakaway stops at a restrictive ancestor. CPython3.12.10 PC/launcher.c duplicates
+stdio and creates its child before unchecked assignment to its inner job. That
+is explanatory code, not binary proof of the installed Store activation boundary.
+CancelSynchronousIo requests cancellation but does not await completion; exact
+writer join and exact process-handle exit remain separate required observations.
+
+https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_accounting_information
+https://learn.microsoft.com/en-us/windows/win32/procthread/nested-jobs
+https://github.com/python/cpython/blob/v3.12.10/PC/launcher.c
+https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelsynchronousio
+
+No-build leaves the decisive value unknown. Recommended focused witness falsifies
+the ownership hypothesis before cause-supported RC2. Conditional stronger repair
+(direct-image with all existing runtime pins re-proved, or overlapped named-pipe
+transport) remains a design decision, not implicitly built. If final child is
+inside yet survives termination, stop incremental Job fixes. If outside, establish
+actual-image ownership; writer cancellation alone cannot qualify a leaked child.
+
+MP1 diagnostic acceptance constraints, corrected after final-review2026-10-25:
+the Session Popen root handle is borrowed, never closed by the probe; locally
+opened handles have one owner and one close, including failed birth checks.
+Writer cancellation requires a post-OpenThread same-object/live/native-ID/owner/
+unsignalled/birth check. Failure to bind a live writer prohibits buffered close.
+Required emergency writer/process/stream/root/job results must all succeed with
+no errors, and native handle finalization precedes a usable Probe.json. Native
+close failure retains Probe-error and cannot become accepted coordinator success.
+Successful native calls do not present stale LastError as an OS failure. Marker
+readiness reuses the existing Session deadline under the unchanged outer watchdog;
+there is no extra10second budget. These are diagnostic safeguards, not RC2 fixes.
+
+### SR accepted repair direction2026-10-26
+
+User "start fixing" authorizes local bounded continuation of the reviewed repair.
+New attachment292e9d78 requires two independent demonstrations: cancel the blocked
+writer while the reader is still alive; stop every owned worker while no writer
+is involved. Only then combine them. Emergency kill+cancel is not either isolated
+proof. Existing synchronous transport is tried first; overlapped named-pipe I/O
+is a conditional fallback, not a new package or an implicit selected-runtime swap.
+
+Consumed MP1 files are immutable. SR1 adds a pure saved-evidence interpreter,
+not a modification of old helper/probe/launcher/contract. Stable pre-write
+membership consistency and post-termination observations have different meanings:
+historical IsProcessInJob association may outlive the live PID list, and job-empty
+may precede native handle signalling. Keep raw transition data; never claim a
+usable fresh probe or authenticated historical producer from derived evidence.
+Full-read failure, malformed data, redirected input or changed sealed streams
+must refuse, not skip. Derivation always leaves stage/Gate1/readiness false.
+
+SR2 owns a single dedicated writer thread and its duplicated native thread handle.
+Stopping marks a monotonic closing state, cancels pending synchronous I/O under
+the existing caller deadline, observes completion and joins before stream disposal.
+Cancellation request/ERROR_NOT_FOUND are not completion; no failed request resend.
+This is initially an isolated candidate, not a silent production integration.
+Startup ownership remains separately verified on the actual selected chain before
+work; source-only self-enrollment cannot claim coverage of pre-bootstrap or
+unregistered descendants. Parent-PID scanning is not a lifetime ownership proof.
+
+SR2 implementation observation2026-10-26: cancellation-only candidate now passes
+18real/native/fault controls and exact-hash independent review. It is NOT wired
+into retrieval. Raw/unbuffered stdin is required so close cannot reflush a cancelled
+buffer. One locked handle-ownership state machine arbitrates PENDING_WORKER between
+ACCEPTED_CONTROLLER and RETIRING_WORKER; Event readiness never transfers ownership.
+A late/unaccepted duplicate self-retires, while controller cleanup Python-joins
+before touching any failed-retirement handle. Native exit is marked true only
+after actual WaitForSingleObject; a no-handle pre-I/O cleanup remains false.
+Start deadlines include conversion/publication; failed requests are never resent.
+1168 can require another cancellation request under the same absolute deadline.
+See SR2 superseding observation in the existing plan for RED/GREEN and timings.
+
+SR3 process launch is a separate design gate: propose direct launch of the EXACT
+already-pinned loaded image with original venv context freshly re-proved, suspended
+Job assignment before resume, and actual nested-worker native-exit observations.
+Do not substitute a new runtime, infer equivalence from hashes alone or accept
+source-only self-enrollment as pre-bootstrap coverage. CPython3.12.10 getpath.py's
+__PYVENV_LAUNCHER__ behavior is explanatory, not an installed-binary observation.
+This altered launch contract requires design approval before implementation;
+no new launch code/normal-host command was built or issued at this checkpoint.
+
+Superseding SR3 approval2026-10-26: user now explicitly requests implementation
+of the discussed complete shutdown solution. The existing plan's appended SR3
+approved implementation detail is authority; earlier pending-approval sentences
+are historical. Native image is derived from the CURRENT selected interpreter
+because worker.py:153 calls DistributedClient(sys.executable) in that process.
+Require requested executable identity to match current sys.executable, preserve
+venv context, create suspended/assign Job/resume, and gate authored script work
+on actual Popen-root PID/native-image/prefix/Job verification. No guessed/runtime
+substitution. A membership ledger must compare cumulative births to cumulative
+observations, not current live handles; every required native exit remains an
+independent proof, with observation gaps failing closed. Writer cancellation and
+process exit share ONE existing5s cleanup allowance; each owner is attempted even
+if the other fails. Failed shutdown retains resources/directory explicitly rather
+than scheduling a later TemporaryDirectory finalizer to erase unresolved debt.
+Actual selected3.12 behavior remains a separately observed normal-account gate.
+
+### SR3 current implementation2026-10-27 — approved design now built
+
+Supersedes historical proposed/unwired statements. windows_owned_process.py and
+windows_owned_bootstrap.py launch the current exact native image with explicitly
+bound selected sys.executable/venv context. Job assignment precedes resume;
+bootstrap PID/image/prefix/ownership attestation and an atomic parent-go gate
+precede authored work under the original request deadline. CPython consuming
+__PYVENV_LAUNCHER__ is expected; verify its executable/prefix effect rather than
+requiring the consumed environment variable. Original script sibling imports and
+SystemExit codes remain intact. Different runtime/image/context refuses work.
+
+Job completion notifications, complete live-PID lists and pinned native handles
+feed a lifetime ledger. A lifetime birth count is not compared only to currently
+live handles; separately queried active/list snapshots need not be atomic. Final
+empty list/active0 AND every owned pinned handle signalled are required. Unknown
+or unpinnable membership remains an error; still attempt owned Job termination.
+No unrelated process scan/kill becomes fallback proof. Nested-job and independent
+child/grandchild exit controls observe actual Windows process handles.
+
+The integrated SR2 raw synchronous writer cancels on its actual native thread
+handle and proves native exit plus Python join. Process stop and cancellation
+attempt both sides even when one fails, sharing ONE existing5s absolute deadline.
+Output/directory cleanup follows only proven ownership and writer shutdown. Setup,
+close and retirement debt stays visible; unresolved TemporaryDirectory finalizers
+are detached to retain evidence instead of later auto-deleting it. POSIX paths,
+default120 and public successful result schema remain unchanged.
+
+Observed controller-native and independent exact-hash review support this code;
+selected3.12 remains unobserved. The new reviewed one-shot verifier must recheck
+all mandatory histories and runtime identity/dependencies in normal account,
+run74controls and the unchanged ordered public initial/replay/negative-lease
+method, then verify preservation before focused-stage completion. The verifier
+always keeps Gate1/release/install and historical-C2-cause flags false. No package
+reinstall, timeout increase or historical-input repinning is part of this design.
+
+## SR3-COPY — proposed bounded adaptation of existing no-ACL copy design2026-10-27
+
+User explicitly corrects the missed working precedent and selects its approach:
+do not change old permissions. New evidence coverage, not old H1 command reuse,
+is required. Old H1 BEFORE/readback is freshly hash-verified; a full old AFTER
+cycle is unobserved. Current SR3 preparation failed before selected-runtime work
+because history() performs direct full traversal under the normal account.
+
+Done: complete exact-scope fresh ORIGINAL-based BEFORE and AFTER evidence maps,
+normal-account copy-byte/mapping readback, unchanged authoritative direct checks,
+all74selected-runtime controls and original ordered public method, then final
+sample comparison and raw-result review. Runtime alone cannot close this gate.
+No ACL write, extra privilege, install, shutdown-code change, historical command
+retry, deletion or baseline replacement. Existing consumed SR3 files remain fixed.
+
+Reuse archive_copy_snapshot.py and archive_copy_h1.py's closed data-read/copy/
+coverage/phase validation where their contracts fit; worker_copy_h1.py is a
+precedent, not an executable new-SR3 coordinator. Its root/session, old workload
+and56hardlink policy are historical and must not be rebound or broadened in place.
+Introduce one narrowly scoped new coordinator/test set and separately sealed
+launchers/inputs only after approval. Destination is a NEW ordinary readable
+workspace outside original history/source roots and outside sampled coverage;
+check normal-account readback without ACL normalization. Copied artifacts are
+always inert DATA, even when a historical filename ends in .py or .ps1.
+
+1. Freeze exact four data roots currently named by SR3 HISTORY_ROOTS: cleanup-
+   repair-20261023, cleanup-process-timing-20261024, cleanup-lifetime-stack-
+   20261024, cleanup-membership-20261025. Freeze source/runtime/helper/code seals,
+   positive prior inventory expectations and consumed SR3 Claim/Failure hashes.
+   Normal reader observes readable originals and explicit denied subtrees for
+   BEFORE; denied is UNRESOLVED, not empty/success. Source/runtime/authoritative
+   helper/protected-source checks remain direct and block if unreadable. Do not
+   widen into an unrestricted repository/archive inventory or catch all errors.
+2. Existing-access source reader handles only the sealed exact denied requests;
+   freshly enumerate/read originals and exclusively copy their bytes into new
+   readable locations, preserving originals and their ACLs. Record original
+   root-relative paths, sizes, hashes, identities and permission digests using
+   existing primitive contracts. Re-read/re-enumerate to detect source changes.
+   Neither account readable means BLOCKED; no escalation/elevation fallback.
+   Reject unsafe links/redirects, escapes, overlap, aliases, partial captures and
+   replaced paths. Any regular-hardlink historical-data exception needs exact
+   current path/identity/origin policy; old56paths never become wildcard approval.
+3. Normal account verifies every copy byte and complete one-to-one mapping,
+   disjoint coverage and directory closure, no extras/omissions, source/root/
+   session/phase/nonce seals and copy completion. Merge direct-readable originals
+   with verified denied-data records. Derive expected per-root inventory shapes
+   from that full map and compare known older positive baselines; do not replace
+   them with a new first observation. Bind verified BEFORE to this successor.
+4. New reviewed/sealed runtime phase executes unchanged current-source74controls
+   and original ordered public initial/replay/negative-lease method under selected
+   Python3.12. Preserve direct source/runtime/dependency/helper/protected checks
+   before/after and readable-original checks at required middle boundaries.
+   Restricted original data is explicitly pending fresh AFTER sampling: no
+   stale copy presented as a fresh original read. Output stays provisional with
+   preservation=false/stage_complete=false until final AFTER acceptance. Never
+   loosen an old guard through generic path substitution or caller-injected code.
+5. After child/thread/stream completion, repeat normal scan/source-reader capture/
+   normal byte verification against ORIGINALS, not BEFORE copies. Bind AFTER to
+   fresh phase/nonce, exact BEFORE seal and retained provisional workload receipt.
+   Compare complete original-path/content/identity/permission evidence under
+   existing policy. Added, removed, changed, unreadable, stale or incomplete data
+   blocks. Changed visibility/partition requires investigation, not silent scope
+   expansion. Failures/partial outputs stay retained and no workload retry follows.
+6. Separate final report only after successful AFTER, mandatory direct guards and
+   independent review; retain provisional result unchanged. Focused-stage true
+   requires actual74controls and original ordered method PASS plus preservation.
+   Gate1/release/install/producer authentication/historical C2 cause remain false.
+
+This adapts evidence sampling boundaries, not the repair logic. It proves byte/
+identity/permission agreement at two observed samples, not an atomic snapshot,
+continuous immutability, cryptographic producer authentication or original-run
+provenance. Hash-equivalent copies are not additional independent witnesses.
+
+Required failure-first checks: both readers denied; no BEFORE/no workload;
+normal copy readability; wrong root/session/phase/old H1 map; altered, missing,
+extra or partial copy; new/changed/removed ORIGINAL after BEFORE despite intact
+old copy; protected source/runtime check never redirected; unknown linked data;
+fresh AFTER bound to actual workload; no completion before AFTER; original bytes/
+ACLs unchanged; no repeated phase/overwrite or auto retry. Real cross-account
+new-root observation is mandatory; synthetic tests cannot prove its feasibility.
+
+User has selected the no-ACL mechanism. This description is the concrete NEW-SR3
+adaptation approval gate, not a request to approve the shutdown solution again.
+No helper/launcher/new-copy/runtime is built or run by writing this description.
+
+### SC approved implementation refinement2026-10-27
+
+User "start" approved SC1-SC3. User separately "Approve the exact transition"
+allows NEW verifier-only validation of checkout f63f62496f82fb479e352bdd9c90accf9f869e8b,
+its sole a38297d parent and exactly four fixed C1 additions/modes/blob hashes.
+Evaluation archive stays pinned to a38297d627files plus ten approved repair
+bytes. Old helpers/guards are not repinned and Git state is not modified.
+
+Policy discovery/binding precedes any copy: strict normal BEFORE Inputs/Request
+are immutable. Their sealed authority includes live physical identities derived
+from all627source paths, all protected-root files, complete original C1 inventory,
+runtime/controller/helper/support records, old mandatory inputs and consumed
+Claim/Failure, exact checkout additions and checked copy primitives. Existing-
+access source reader inspects only sealed unresolved subtrees and emits an
+UNAPPROVED exact-path historical-DATA policy proposal. It rejects protected
+identity links, non-retained-temp link paths, redirects and unstable reads.
+After explicit external proposal hash review, normal BindPolicy rechecks all
+direct authority and unchanged readable/unresolved partition, then creates NEW
+Policy-Inputs.json and BEFORE/Policy-Request.json without rewriting initial
+Inputs/Request. Child config seals base files/proposal; every subsequent phase
+checks this lineage. Copy refuses base/unbound policies even if allowlist empty.
+
+Normal verified BEFORE additionally executes existing positive inventory guards
+through a closed exact-code SR3 reuse, adapting ONLY four-root DATA inventory and
+its one known CR3 subinventory. Mandatory original source/runtime/protected/C1
+checks remain direct. Runtime stages reuse exact original74tests/public method
+and all budgets, publish preservation=false/stage_complete=false, and wait for
+fresh original AFTER sampling. Finalization rechecks raw command/stream/test/
+discovery/ordered-call/runtime metadata records and complete sample comparison.
+No copied code is executed as historical data; qualified source is independently
+reconstructed from the fixed Git tree plus exact approved deltas.

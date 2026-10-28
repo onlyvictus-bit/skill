@@ -1487,3 +1487,1284 @@ pin checks are not allgreen and must be reported, not silently weakened. Keep
 private run-artifacts/caches/copies/selectedenvironment/oldpackages local. See
 timeout-publication-20261023.md. After verified publication, continue separate
 Gate1/release qualification; no further timeout-default rebuild is required.
+
+## G1-CURRENT — approved sequential continuation, 2026-10-23
+
+Authority: user "complete this 1 by 1 at a time" and the three named source,
+integrated-runtime, and shutdown/preservation items. Published source basis is
+a38297dd797eeecd25e41ab0af1df4e3db8fa984. Existing branch/checkout reused;
+production packages stay unchanged. No commit/push/install/download/ACL/trust,
+native backend, learned model, old-data deletion, or old-command retry included.
+Fable remains the only plan/ledger; no new Superpowers worktree or plan store.
+
+Recommended: a separate sealed coordinator and exclusive retained workspace.
+No-build/old launchers fail their valid historical pins; rewriting those pins
+would lose historical meaning. A new runtime/framework is unnecessary. Weak
+link: Store Python is account-dependent; an unavailable selected interpreter
+means a normal-account handoff, never substitution or an invented pass.
+
+Scope now: new .github/scripts/gate1_current_preflight.py and corresponding
+.github/tests/test_gate1_current_preflight.py; private contract/launcher/new
+workspace; existing Fable plan/checkpoint/state plus a concise evidence report.
+No edits to old helper/launcher/input/receipt files or production packages.
+
+- [x] G1-C1: failure-first source-copy and runtime-validation controls; independent
+  review; external hash seals; verify exact committed file/blob set, clean
+  extraction with no overlays, existing controller/venv/config/loaded image and
+  53 approved dependency versions. Produce Prepared.json and a retained receipt
+  only after actual normal-account observations and before/after protected
+  package/cache/release comparisons. No retrieval or numerical workload here.
+- [ ] G1-C2: only after C1 result review, separately seal the same continuation's
+  runtime phase: discover exact five group IDs (static current expectation224,
+  not the old217); run all groups and24 initial/fresh-replay comparison arms.
+  Preserve explicit conditional skip accounting, no exclusions/hidden failures.
+  New harness must exercise omitted/default120 in both initial and fresh replay;
+  old acceptance/cleanup helpers' explicit60 is not proof of that default.
+- [ ] G1-C3: review actual owned-worker/tree/stream/cleanup and protected-data
+  evidence; report scope and every blocked/unreadable historical path honestly.
+  No claim that C1's source/env snapshot is an archive-wide preservation proof.
+  All three items must be observed before Gate1 completion is considered.
+
+Interface C1 -> C2/C3: exact Prepared path/hash, source commit, complete source
+manifest, runtime records, input records, and current run ID. No newest-file
+selection. Failure retains partial output and cannot create an accepted success
+receipt; existing destination means stop, not automatic retry. Source/package
+maps and old receipt pins are rechecked after the identity-only child commands.
+
+Verification: retained_unittest.py with --test-dir .github/tests and the new
+test pattern, then relevant existing image/source/capture tests. Fresh reviewer
+must attack archive traversal/collision, overwrite/redirect/link handling,
+dependency/image/context mismatch, child-error handling and false completion.
+Stop on inaccessible mandatory inputs; use one exact externally hash-checked
+normal-PowerShell C1 command if required. C2/C3 remain unrun until C1 passes.
+
+Ruling: user preservation/approval boundaries override skill auto-commit,
+cleanup and competing workspace defaults. Copies/logs remain retained; no Git
+write. Cost: C1 alone is explicitly partial, not an installed/release verdict.
+
+C1 actual normal result verified2026-10-23: Receipt f0a8b97b49122ad2dc86c5b7adeb4c38e84d97cc774afa80e8debba0d8e30b14,
+Prepared98bfd5870d3d4032cd250dc268a99a3a791b61787081a539f9f4eb2f3818a75d.
+Parent checked full627file clean copy, fixed inputs,344protected files and all
+6streams; independent read-only review accepts C1 WITH CAVEATS: metadata is not
+numerical retrieval or C3 handle proof. Never run C1 again.
+
+### C2 execution detail (same approved continuation, not a new product plan)
+
+Scope: add .github/scripts/gate1_current_runtime.py, matching
+.github/tests/test_gate1_current_runtime.py and Run-Gate1-Current-Runtime.ps1;
+new sealed C2 input artifacts and exclusive sibling C2 output. C1 helper,
+launcher, contract, source and results remain unchanged. Existing Fable records
+are updated; no production change or Git write.
+
+Interfaces: successful externally pinned C1 Receipt AND Prepared -> fresh
+source/runtime/input/preservation check -> five exact discovered ID lists ->
+normal-account preclaim interpreter/context check -> one workload claim ->
+five original suite groups ->24initial/fresh-replay acceptance comparisons ->
+final preserved-input comparison -> result PENDING_C3_AND_REVIEW, not Gate1.
+
+Use the original C1 suite recorder and strict per-case/aggregate accounting;
+only explicit optional-parser/model/POSIX skips may be accepted. No exclusion,
+new skip, expected failure, assertion or oracle change. Controller stays3.14,
+numerical workers selected3.12 as before. Outer watchdogs retain1200per suite,
+2400acceptance and180per acceptance child; worker default120 never restarts.
+
+Create ONE new acceptance-helper copy outside C1, with only3exact adaptations:
+omit explicit60in WorkerClient replay; omit --worker-timeout60for initial
+search; bind fixture lookup to the unchanged C1 fixture directory. Preserve
+all assertions/refusals, generator __file__ hash and fresh replay invocation.
+Validate its receipt using that exact adapted producer helper, not the old
+generator's validator. Test that both initial and replay select default120.
+
+Failure-first controls: bad/missing/unsuccessful C1 binding; missing/reordered
+or duplicate IDs; excluded/failed/errored/interrupted cases; unexpected skips;
+failed/incomplete capture before JSON; altered adaptation/source; partial24arm
+set; wrong default or fixture lookup. Obtain fresh final review; fix findings
+with observed RED/GREEN. No selected-worker workload while preparing/testing
+the coordinator. If normal account is required, freeze one hash-checked C2
+command; stop and retain any failed attempt, no automatic retry.
+
+Coverage caveat carried: original acceptance save/fresh-recall/resume uses the
+first mandatory LITERAL pack;24ranked/literal initial+replay comparisons remain
+separate. Do not imply ranked-pack save/resume was added. Retained suite temps
+are not real cleanup proof; actual worker shutdown/handle checks remain C3.
+
+C2 preparation observation2026-10-23:11focused tests PASS;2new tests first
+reproduced failed-command record loss and setup escaping receipt handling,
+then passed after the bounded correction. Input-only discovery is224tests,
+exact counts3/2/16/198/5. Adapter inverse restores original pinned bytes.
+Contract6cb6cb39d6b3e2a702b0e2b63cba6a97b44f250fb4c396463bc62f5cd2113c15.
+Launcher69544835b9bf37acfa88d3900db332473141c90b73e01134cb1dcdc1e8d1b14d.
+External input verification/VerifyOnly PASS; actual wrong-account refusal
+created neither C2 output nor failure marker. Numerical runtime is still UNRUN.
+Broad controller343run:0failures,16error records,0skips/exclusions/xfails.
+6historical source-pin records are unchanged;10newly observed WinError5 errors
+are old timing tests unable to create new retained scratch under this read-only
+agent profile. No ACL/old-test change. Full details and retained logs are in
+../evidence/offline-first-20261020/gate1-current-runtime-20261023.md.
+
+C2 ACTUAL NORMAL RESULT2026-10-23: attempt consumed; do not rerun. Receipt
+4424beb7298567755735500144eae66b6a43ea7192446c554ea5f559a14b0c07 verified.
+3groups pass21cases; knowledge group198has184PASS/1FAIL/13allowedSKIP/0errors.
+Only failure is public vector/distributed-local initial retrieval cleanup,
+E_WORKER_FAILED: ValueError: E_DISTRIBUTED_CLEANUP. Community/global/DRIFT
+subtests did not fail. No current worker/suite timeout is reported. The actual
+underlying cleanup exception is omitted by worker.py's public error serializer;
+do not relabel it as proven WinError32 or a proven remaining-handle owner.
+CM group,24acceptance comparisons and C3 were not reached. Receipt and fresh
+readback confirm pinned preservation; no whole archive/cleanup qualification.
+Next bounded investigation must capture original cause/notes and lifetime in
+a separately reviewed successor using existing diagnostic machinery, not
+another blind gate run or speculative production change. All old inputs stay
+immutable. Gate1 remains incomplete; no new workload was run after the failure.
+
+### Proposed narrow cleanup repair — design approval pending2026-10-23
+
+User now requests SOLVE THAT ERROR with Brainstorming. The full bounded repair
+description is in offline-first-release-design-20261020.md, "C2 cleanup repair
+description". New read-only evidence from existing timing sidecars establishes
+launcher/interpreter PID differences44836->47924 and27764->8088; it does not
+establish the missing original C2 cleanup exception or a permanent orphan.
+
+- [ ] CR1, pending description approval: controlled failure-first lifetime/
+  handle reproduction and original cleanup-cause capture, no old-command retry.
+- [ ] CR2: only a cause-supported owned shutdown fix, default120 and bounded
+  cleanup unchanged; focused/broader regressions, twin audit, fresh review.
+- [ ] CR3: one reviewed sealed fresh normal-account focused comparison; honest
+  result, then decide current-source Gate1 continuation. No implied full pass.
+
+No product code, new test harness or workload was created by this proposal.
+No commit/push/install/delete/ACL/trust/native/model action is included. The
+description must be approved before implementation per the requested skill.
+
+Fresh native read-only builder-check completed: "nothing important left".
+No material unanswered planning question was returned. This is design clarity
+review, not implementation/root-cause/runtime verification or user approval.
+
+### Approved CR implementation checklist (same plan/ledger)
+
+AUTH: user said "approve" to the full bounded shutdown repair and fresh
+verification description. CR1–CR3 local work is approved; no commit/push,
+install, original-file deletion, ACL/trust change or old-command retry.
+Native inline execution is retained. Existing worktree on development branch,
+existing Fable plan/ledger and retained artifacts override skill defaults for
+a second worktree/plan store, auto-commit and deletion. Current source base
+a38297d; old C1/C2 inputs remain immutable controls, not editable destinations.
+
+Goal: demonstrate correct real-worker exit before resource cleanup, retain
+cleanup causes and verify the repair without loosening default120 or refusals.
+Tech stack: existing Python3.14 stdlib tests/controller, selected3.12 for final
+normal-account numerical observation, existing Windows APIs only if needed.
+
+CR1 Files: create tests_v2/test_knowledge_windows_shutdown.py. Its actual two-
+PID stdlib relay holds the owned output until stdinEOF. Observe pinned native
+process handle after _Session.stop, not a mock `_stopped` label. Cases: idle
+completion and expired-deadline cancellation. Run via retained_unittest.py with
+new exclusive .github/run-artifacts/cleanup-repair-20261023/red-lifetime output.
+Expected RED: real descendant remains alive under old immediate-launcher kill.
+Record old source/receipt hashes before implementation, preserve every fixture.
+
+CR2 Files: distributed_retrieval.py _Session start/stop/close; a narrow Windows
+owned-tree helper if cancellation reproduction requires it; matching lifecycle
+tests. Preserve POSIX behavior, default120, bounded shutdown and original errors.
+Owned startup must not allow a pre-assignment descendant escape; forced stop
+must independently await all owned processes, not just request termination.
+No live-process PID-only broad sweep. Setup/partial failures close only owned
+resources and cannot turn a failed shutdown into success. Add cause-reporting
+only at the necessary existing diagnostic boundary. Run focus, lifecycle/cwd,
+timeout/distributed regressions and full relevant suites; record all red/skip.
+
+CR3 Files: one new reviewed helper/launcher and exact input contract. Reuse
+existing error-chain formatter, capture and original ordered public test;
+new folder/new source, never old C2 command/claim. Seal baseline and corrected
+source/runtime/fixtures; compare original retained C1/C2/evidence inventories.
+Only fresh selected-runtime initial/replay observations may close runtime issue;
+no full Gate1/24arm/packaging/install inference. Stop on failure, no auto retry.
+
+Review focus: asynchronous launcher/child exit, blocked stdin writer, partial
+startup/ownership failure, nested Windows jobs, and close errors after valid
+computation. Each must have a real/control failure case or be explicitly blocked.
+Pre-flight interfaces: CR1 calls actual _Session, CR2 must preserve that API;
+CR3 pins exact corrected bytes rather than repinning consumed C1/C2 contracts.
+Self-review: scope matches design; process primitive details are builder calls
+only within the bounded owned-worker contract. Material redesign returns to user.
+
+CR progress2026-10-23: approved CR1 lifetime reproduction DONE (2 real RED
+failures, then green). CR2 implementation now has7native PASS, plus existing
+6lifecycle/7cwd/7budget PASS. CR3 guard tests5PASS; actual selected3.12 remains
+blocked in agent by unavailable WindowsApps base, not substituted. A fresh
+native final review is running. No new runtime contract/launcher is frozen yet.
+Detailed evidence/failures: ../evidence/offline-first-20261020/cleanup-repair-20261023.md.
+
+Ruling: add a Windows-only suspended-start owned Job helper — forced cancellation
+reproduction proves orderly EOF alone insufficient; old post-Popen assignment
+has a pre-assignment escape race. Cost if wrong: fail-closed Windows refusal;
+actual selected-runtime nested-job comparison still required before closure.
+Ruling: await pinned native member handles as well as job active-count zero —
+one real cancellation control caught the counter reaching zero before actual
+exit signal. Reject unobserved/born-during-stop members rather than guessing.
+Ruling: no blanket broad-suite green label — current fullMI706has1failure,
+3errors,54skips,1xfail; controller343has7errors. Preserve all named results.
+Ruling: use a NEW exact committed-source baseline control for comparison, NOT
+C1's committed_source live-equality guard after intentional edits. The guard
+correctly refuses changed live code; it remains unchanged. New Git archive is
+validated against immutable C1tree/manifest before testing, old copy untouched.
+
+CR continuation2026-10-24: native final reviewer returned concrete FIX-FIRST
+findings. Parent reproduced three original-cause masking failures; three
+negative-control false acceptances; and two post-output setup receipt-loss
+subcases. Each correction now GREEN. Final focused12lifecycle/error and11helper
+controls PASS; the five added native-API fault injections are not extra real
+numerical observations. Same review seat is checking corrections before sealing.
+Baseline700 and earlier repaired706 have identical1failure/3error/54skip/1xfail
+lists with verified logs. Fresh controller353 still has7same exact pin errors;
+no guards/baselines loosened. Fresh full-MI pending. Approved CR3 remains one
+new sealed normal-account comparison only, not old C2 retry or Gate1 completion.
+
+Final correction review2026-10-24: SHIP for sealing only, no Critical/Important
+findings. Parent independently verified fresh712 full-MI result and log hash:
+653PASS/1FAIL/3ERROR/54SKIP/1XFAIL, no exclusions/interruption. All non-pass lists
+equal baseline700 exactly. Final12shutdown/error and11helper guards PASS.
+Proceed to exclusive new Runtime-Inputs contract and exact launcher seals;
+actual selected3.12 comparison remains UNRUN, Gate1/release/install false.
+
+CR3 handoff frozen2026-10-24 after correction clearance. Input-only contract
+211348bytes SHA18b1d93425f0f52965b94ed7349acf11042065348aafc26b8152ce7c6b595838;
+launcher SHAc9fb41897545625f3b152315fcef276b5afe343a75ac478183d7d8cf11086c59.
+Parent actual VerifyOnly and complete input verification PASS. One new normal-
+account focused comparison remains UNRUN; do not rerun preparation/old C2 or
+replace this input contract. Read current checkpoint and report for exact seals.
+Only raw-result/preservation review can close CR3; wholeGate1 stays incomplete.
+
+## CR3 root-cause continuation — Deep Plan2026-10-24
+
+AUTH: user requests Deep Plan "TO FIND ROOT CAUSE AND FIX THIS ISSUE TO MAKE
+THIS STAGE COMPLETE" after the consumed CR3 failure. This authorizes bounded
+local diagnosis, cause-supported correction and verification of this same stage;
+not an old-command retry, broader Gate1/release/install or an outward Git action.
+Fable remains the only plan/ledger. Inline implementation and one native read-
+only review are retained; no new worktree, competing plan or external AI call.
+
+TARGET: complete CR3 with observed selected3.12 all12 lifecycle cases plus the
+repaired ordered public initial/replay/lease-refusal cases and pinned protection.
+Surrounding system must remain healthy against recorded baseline; existing full
+MI712/controller353 non-pass evidence must remain visible. Historical C2 cause
+is not automatically established by a new corrected pass. Gate1 stays separate.
+
+EVIDENCE: failed normal Receipt168066bytes SHAd214498c4e7ff2b613ebb933c4174e7c19a3125dc60350c34c1c5491d456c9d7;
+outer repaired-lifetime TIMEOUT,60second watchdog, complete contained capture;
+internal log first casePASS, blocked-real-pipe case started with no completion.
+No unit receipt/Case-Outcomes was finalized. All4control modesPASS, historical
+cleanup failure not reproduced; repaired-ordered UNRUN. Parent verified8streams,
+both627/629source copies and current pinned inputs. Those command/log/receipt
+signals are ONE runtime evidence family, not three independent witnesses.
+
+OPTIONS: no-build retains failed state but cannot close CR3; simplest adequate
+route reuses existing retained_unittest --stack-after10 and owned capture with
+unchanged60watchdog in a separately sealed output; stronger hybrid adds broader
+process/handle tracing only if the stack witness is inconclusive. Reject timeout
+increase, skip, suppressed cleanup or speculative production rewrite. Prefer
+existing mechanisms; new glue must not become another process framework.
+
+RECOMMENDATION: obtain main/writer stacks in the selected runtime before fixing.
+Constraints lens: frozen source/history stay read-only; no selected3.12 substitute.
+Cost/outside-view lens: C314 real-process controls passed while selected3.12
+stalled, so another C314-only pass cannot close the gap. Pre-mortem: teardown
+may obscure the active exception; stack capture must precede the same watchdog
+and survive timeout. Source inspection is a second evidence family for candidate
+mechanisms, not runtime proof. Weak link is still the unobserved blocked frame.
+CHEAPEST TEST: existing stack-after10, same12 unmodified cases and watchdog60,
+new exclusive output, no retrieval/control repeat. PIVOT: no useful stack ->
+review one bounded stronger observation; fixture frame -> reproduce/fix fixture;
+production shutdown frame -> reproduce/fix only that path. Stop on unreadable
+required pins, preservation mismatch or3evidence-changing failed diagnostic cycles.
+CONFIDENCE: medium in diagnostic choice, low in a particular root-cause claim.
+
+- [ ] RC1: new .github diagnostic helper, matching guard tests, new sealed input
+  and normal-account launcher. Reuse current CR3 pins, old complete failure
+  inventory, existing selected identity/capture/runner; add only --stack-after10.
+  Retain timeout/failed test honestly; never label a captured stack a fixed stage.
+  Fresh native review, then one new normal-account diagnostic if agent cannot
+  start the already-known unavailable selected runtime. No old workload retry.
+- [ ] RC2: after observed cause, failing regression then minimal correction in
+  the evidenced test-fixture or shutdown surface. Preserve error visibility,
+  process ownership, deadlines, no skip and unrelated changes. Material redesign
+  returns to the user. Run focused/broader regression, twin search and review.
+- [ ] RC3: reviewed separate exact corrected-source proof of all12 selected-runtime
+  lifecycle tests and ordered initial/replay/refusal, compare raw results and
+  all pinned inputs before marking this stage complete. Do not reuse consumed
+  CR3 or diagnostic claims. Report any unreproduced historical cause explicitly.
+
+INTENT RC1: current watchdog loses the blocked operation; requested diagnostic
+retains timed thread stacks without changing the tested source or budgets.
+Rollback: leave new retained diagnostics unused and preserve old source/attempts;
+no automatic delete/rebaseline. Completion of RC1 alone is partial, not CR3 done.
+
+RC1 observation:13new diagnostic guardsPASS including actual C314 existing-
+runner stack dump; broad controller367has same7exact source-pin errors,0fail/
+skip/exclusion. No MI source/test bytes changed. Parent full old-attempt walk
+BLOCKED WinError5 at control-tests/retained-temp/mi-worker-9rtyb1xz. This reopens
+the preparation placement decision, not the observed lifecycle cause: do NOT
+waive full inventory or change permissions. Add only a separate sealed normal-
+account INPUT-ONLY preparation launcher. It invokes controller --prepare, never
+selected3.12/tests/workload claim. Old full inventory must be read successfully
+there before new Inputs are created; then review/hash that exact Inputs before
+freezing any runtime launcher. Current ROOT/Inputs/normal-stack remain absent.
+Independent review requested; final preparation seal pending. Rootcause/fix and
+stage closure remain unobserved, not inferred from13guards or preserved receipt.
+
+RC1 input-only handoff2026-10-24: fresh independent review NARROW CLEARANCE for
+preparation only. Frozen prepare launcher SHAb0eabad1fe626c76c47c9d2bb9d1d73940657c11accbaf0a4a4986fc4d563931;
+helper SHAb03c008a5e590888aa70ea43a38dffc4efaa90b2563336ec2403ff86c2f22031.
+Parent actual VerifyOnly PASS and0PS parse errors. ROOT absent; runtime remains
+FREEZE. Next normal input-only preparation, then exact returned Inputs review;
+neither that code clearance nor preparation can close RC1/RC2/RC3 runtime gates.
+
+RC1 host preparation observed and diagnostic frozen2026-10-24: Inputs189744bytes
+SHAead95373d25ee2750a10c52e4e2bbf7cf3cabb087166b00df2533458bec27075,
+1339entries. Parent verified exact16key schema/roles/cases/budgets/falseflags,
+C1/runtime/protection,627/629source copies and8streams. Private scratch remains
+host-verified only; full normal-context guard is unchanged before/after workload.
+Fresh independent final seal review SHIP for ONE stack-only normal diagnostic.
+Only2launcher literals changed. Final runtime launcher SHA
+ffabc697263406c7598d1f59d2f718bfa65b6486d82f631fe096c67bf2e6df86;
+parent actual VerifyOnly PASS,0PS parser errors. No normal-stack/diagnostic claim
+exists. Next new normal-account command, no reprepare/old retry. RC1 actual stack,
+RC2 cause-supported repair andRC3 stage proof remain incomplete, not inferred.
+
+### TC1 approved — process/stage timing after captured wait2026-10-24
+
+User asks timing of each process/stage as in previous issue and whether package
+installation is involved. Actual stack attempt is consumed: Receiptc803e2fa...
+and stack6fcc6477... show writerwrite/mainfixtureclose blocked at10seconds,
+outer60watchdog; original exception still hidden. Coordinator receipt interval
+74.648245seconds is aggregate including checks/capture, not per-stage timing.
+Prior27.453Semantica/12.234numerical seconds are imports, NOT installs. Current
+blocked fixture is stdlib-only and deliberately not readingstdin; no install
+invocation appears. Do not confuse a metadata probe with installing packages.
+
+No-build uses current stack only, cannot supply missing durations. Recommend
+smallest timing-only adapter around existing bounded per-process logger in a NEW
+diagnostic copy, with reversible/exact observation delta, rather than new logger
+or whole-call profiler. Stronger whole-call profiling is a fallback only if the
+targeted witness cannot identify the blocker; it perturbs timing more heavily.
+
+TC1 scope after approval: existing timing logger reused unchanged where adequate;
+new diagnostic glue/test/contract/launcher and existing Fable records only. Any
+needed source overlays apply ONLY to new copies, exact original/hash/inverse
+checked. Never repin an old observer or run old timing/stack/CR3/C2 commands.
+Capture UTC/monotonic START/END, process CPU (not exclusive thread CPU), PID plus
+creation identity, PPID/actual launcher-child links, thread, outcome/error/notes,
+bytes when measured. No payload-content logging, protocol stdout or held loghandle.
+Measure startup/module readiness; declared imports; fixture creation/child ready;
+serialization; pipe write and flush separately; request/deadline; job membership,
+terminate/wait; writer join; stream close/fixture finally. Capture sys.exception
+BEFORE close to retain the actual original cause. No poll-event flood or inferred
+direct launcherPID=interpreterPID join (the previous renderer's known limitation).
+
+Done: actual table with durations or explicit unfinished/unknown/lower-bound
+spans, correct process lineage, preserved original exception, no clock-overlap
+double counting, no observer-error promotion to pass, and full named protection.
+Unchanged0.1fixture deadline/5shutdown allowance/60outerwatchdog/120production
+default. No package reinstall, dependency/environment change or test skip. Native
+review and focused/regression guards precede one separately sealed host run.
+Any readable-evidence limit is retained; no whole-private-archive claim or ACL
+workaround. TC1 does not qualify a fix or complete CR3; RC2/RC3 remain separate.
+TC1 APPROVED2026-10-24: user said "aprove, add timing show code in all part
+and stage and segment". Execute TC1 inline, with a fresh native read-only review
+before host handoff. No second approval inside this timing-only scope.
+INTENT: add observation-only AST wrappers to a NEW diagnostic source copy;
+preserve the original AST after removing wrappers, assertion values, all12cases
+and0.1/5/60/120 budgets. Reuse the existing logger and process-creation probe.
+Record original exceptions before fixture close, separately time write/flush,
+and render exact code locations with completed/unfinished spans. Baseline HEAD
+a38297d, dirty CR/Fable work retained; logger0b234e49 unchanged. Existing parent
+stack Inputs/receipt/source and all consumed attempts remain immutable.
+
+TC1 implementation observation2026-10-24:23focusedPASS (includes actual C314
+12case instrumented copy);390broader0fail7exact historical pin errors, no skips,
+not green. Retained REDs close new observer ownership/lineage/alias/coverage gaps;
+fresh native final review and exact final preparation seal both SHIP. Observer
+00ee0acf/helper883ec3cd/tests ef7b71f7 frozen; no MI source/test changes.
+New Run-Cleanup-Timing-Prepare.ps1 SHA
+9101c4d21730687d416a93f4b727cf2d05773e11067713a39b60268c819ac6d0;
+parent0PS parse errors/VerifyOnlyPASS. ROOT/Inputs/normal-timing absent. NEXT ONLY
+normal non-admin INPUT-ONLY preparation, then exact returned Inputs review and
+new runtime freeze/review; not another approval request inside approved TC1.
+No selected3.12/timing workload yet. Process-category MAX values are not totals;
+unfinished spans unknown, original error may remain NOT_REPRODUCED. Report latest
+cleanup-repair-20261023.md contains hashes/raw paths/caveats. TC1 actual observation,
+RC2 cause-supported fix andRC3 proof still incomplete; no stage/Gate1 qualification.
+
+TC1 host preparation observed2026-10-24: user returned Inputs85251bytes SHA
+cf45dfde1fae5d2bb5f601a8d54c4fa68e62d5db35e3248ffe9bdfecf9476d62.
+Parent independently verified exact15key schema, helper/3support records,629file
+frozen source,12case IDs,0.1/5/60/120budgets, prior stack Inputs/Receipt records,
+HEAD and unchanged CR verification of C1/runtime/protected/history. Full old CR3
+walk still WinError5 at mi-worker-9rtyb1xz; full stack walk also denied at
+owned-shutdown-proof-112v6tbq. These two private inventories remain HOST-PREPARED,
+not independently agent-compared; normal-context full checks stay mandatory.
+Inputs now EXISTS; preparation is consumed and MUST NOT be rerun. Normal-timing
+remains absent. INTENT next: add only a new Run-Cleanup-Timing.ps1 sealed to exact
+returned Inputs/reviewed helper/support/controller; retain normal non-admin SID,
+no existing output, no retries and unchanged coordinator guards. No new runtime
+logic/source overlay/budget/test change; parser, VerifyOnly, wrong-seal refusal
+and fresh native exact-handoff review before issuing one timed host command.
+
+TC1 runtime handoff observation2026-10-24: new launcher3472bytes SHA
+3b049895ebd0af70cd1e1c25811bea4a63d7d35db92766a84532304a0b2b1aa2;
+parent parser0errors/VerifyOnly/wrong-contract seal/actual wrong-account refusal
+PASS, all before Python/output. First review credit-interrupted, not clearance;
+same-seat retry after user continuation returned SHIP for exact launcher +ONE
+normal-account diagnostic. Final source/helper/observer/Inputs hashes unchanged.
+NEXT only new external-hash-checked runtime command, no reprepare. Normal-timing
+absent; actual TC1 measurement/rootcause/fix/stage proof still incomplete. Read
+latest report/checkpoint for normal-context private-inventory caveats and resume.
+
+### MP1 — approved FIX-FIRST review continuation2026-10-25
+
+Authority: user pasted shutdown cause review and said CONTINUE FROM WHERE YOU
+LEFT. MP1 is its smallest next step, not conditional production redesign.
+INTENT: one focused stdlib fixture records actual returned job membership and
+creation-bound handle states before changing live MI behavior. Old TC1 is consumed.
+No-build cannot answer membership; another full12-case timing run repeats the
+known failure. Choose focused witness; stronger direct-image/overlapped transport
+redesign stays conditional. Weakest link is selected-runtime reproduction.
+Cheapest falsifier: IsProcessInJob of final blocked child BEFORE writing. If inside
+yet survives termination, stop incremental ownership fixes and return to design.
+
+Files: NEW .github/scripts/cleanup_membership_probe.py (native fixture/witness),
+cleanup_membership_diagnostic.py (existing sealed-guard composition), matching
+.github/tests/test_cleanup_membership.py, Run-Cleanup-Membership-Prepare.ps1.
+Existing design/checkpoint/report/state/this plan remain the sole plan store.
+New private root .github/run-artifacts/cleanup-membership-20261025. Same selected
+venv, oversized request/.1deadline/5shutdown/60outer watchdog; no install/Git/ACL,
+old-command retry, timeout increase, deletion or broad PID kill. Baseline HEAD
+a38297d and dirty CR/TC1 work retained; expected new files absent before editing.
+
+- [x] MP1-A tests first: complete four-role/creation-bound chain; current member
+  count vs ActiveProcesses; lifetime TotalProcesses not treated as live count;
+  outside/inside-survivor/pipe-only/inconclusive classification; emergency cleanup
+  preserves original failure. Retain RED then GREEN.
+- [x] MP1-B implement pinning of exact root/relay/nested-launcher/final-child native handles before
+  oversized write; validate markers/parent/creation links. Record job PID list,
+  total/active, per-role IsProcessInJob/signalled state before/after actual job
+  termination and after stop. Record exact writer native identity and stop time.
+  Observation failures cannot become usable classification or product success.
+- [x] MP1-C implement emergency fixture cleanup AFTER measurement terminating only already
+  pinned creation-bound fixture handles, cancels exact local dedicated writer
+  using CancelSynchronousIo, then bounded join. Separate emergency5s budget is NOT
+  extra product shutdown time. Never close buffered stdin while writer lives;
+  preserve original stop error and retain files. No emergency success promotion.
+- [x] MP1-D reuse unchanged TC1/CR/C1/runtime/history guards plus exact new helper
+  pins and full consumed TC1 inventory. Normal-account INPUT-ONLY preparation if
+  private history unreadable; no waiver. Runtime stays UNFROZEN until actual Inputs
+  review. No source overlay, numerical retrieval, or current-source qualification.
+- [x] MP1-E focused controller/native controls, related broader regression, fresh
+  independent read-only review, seals/PS parse/VerifyOnly/wrong-seal-account guards.
+  Local completion is tested/reviewed witness + input-only handoff, NOT actual
+  membership proof, RC2 fix, RC3 lifecycle/ordered proof, Gate1/release/install.
+
+After actual witness: outside child -> exact-runtime ownership repair and bounded
+writer cancellation; all inside but survivor -> stronger design decision; all dead
+writer alive -> pipe cancellation/handle ownership; no failure -> inconclusive.
+Rollback leaves new unused artifacts retained; never revert user edits or repin
+old contracts. Three evidence-changing failed cycles stop for reassessment.
+
+MP1 corrective verification2026-10-25: initial25focusedPASS/415broader with7same
+historical pin errors did NOT clear final review. Seven native safety findings
+required correction, plus omitted resource-proof acceptance fields. Parent RED
+9finalization and6resource-proof subtests precede their23/23GREEN. Native fault
+controls now cover borrowed-root identity failure, local single-close, rejected
+thread close error preservation, partial request losing the real blocked writer,
+and close failure becoming an error receipt. Parent final33/33PASS with ResourceWarning
+as error (23contracts+10native/fault cases), log12815af19929f2a52a9e00ff69b99d8eaf96b4196372450585c6cd3dcf9d63b2.
+This checks MP1 implementation only: selected topology has NOT run; B/C actual
+normal-runtime observations remain pending. Final broader/review/seals pending;
+preparation still FREEZE and MP1 root absent. No host attempt has been consumed.
+
+Superseding stable MP1 observation2026-10-26: final probe7598e119/native tests
+1fa1db1f, parent34/34focusedPASS including11native/fault cases;424broader0fail,
+7exact historical pin errors, no skips/exclusions/interruption, NOT green. Same
+reviewer CODE SHIP at exact bytes, no Critical/Important code findings. New
+input-only launcher5272ae81...2673bytes freezes helper2c87/probe7598/oldTC helper/
+controller only. PS7 parse0/VerifyOnly/wronghash/accountrefusalPASS; PS5parse0 but
+Fileload denied by agent script policy, no bypass. Separate exact input-only seal
+and PS7-route review SHIP_WITH_CAVEATS, no Critical/Important handoff finding.
+Use existing shell362a356c via absolute path, hash shell+launcher before VerifyOnly
+and rehash both immediately before ONE actualrun; stop on child nonzero. Exact
+PS5 command -> sealedPS7 File route observed VerifyOnlyPASS/wrongSID refusal,
+no Python/output. This is input-only preparation, not selected-runtime clearance.
+MP1 root/Inputs/runtime command absent. Local A/B/C implementation is complete,
+actual normal-runtime B/C observations and D preparation remain pending. Local E
+acceptance is complete WITH CAVEATS, not an actual membership result. Old TC1/
+stack/CR3/C2 commands stay consumed; no old command retry or runtime launcher yet.
+
+MP1 host preparation returned2026-10-26: Inputs175926bytes SHA
+457fc256b81f52572695b787344cd5778f3bd06bdc14939b5416508ceeacf5a4.
+Preparation is consumed; NEVER rerun it. Parent verified exact18key contract,
+all7false flags, source629/629, helper/probe/TC1input/TC1receipt/HEAD and budgets.
+Full666entry TC1 inventory walk is denied at normal-timing/tests/retained-temp/
+owned-shutdown-proof-470z594_; full old private guard also denied. Both remain
+HOST-PREPARED, not independently agent-compared, with mandatory normal-context
+before/after verification unchanged. No inaccessible-file waiver or ACL workaround.
+
+INTENT next within approved MP1: add only Run-Cleanup-Membership.ps1, sealed to
+these actual Inputs, reviewed helper2c87/probe7598/TChelper883e/controllercce2.
+Reuse existing launcher ancestry/hash/SID1001/nonadmin/exclusive-output pattern,
+invoke only existing coordinator --sha256; no source/budget/test/helper change.
+Observe PS parse/VerifyOnly, wrong-contract seal and actual wrong-account refusal
+before Python/output; fresh read-only exact-handoff review. Then issue ONE new
+normal-account native membership witness using sealed existing PS7 outer route.
+Runtime remains UNRUN until actual receipt. Rootcause/fix/stage/Gate1 stay false;
+no numerical retrieval, package install, Git/security change, deletion or retry.
+
+MP1 runtime handoff cleared2026-10-26: new launcher3154bytes SHA
+0738e9510cb114ae7617d296bd06794e018ac280c61d420a2c58f768e9eb5562;
+parent PS7 parse0/VerifyOnly/wrong-contract seal/actualwrongSID/sealedPS7 File
+route checks PASS before Python/output. Fresh native read-only final handoff
+review SHIP_WITH_CAVEATS, no Critical/Important finding; independently629/629source
+and retained34focused/424broader log/receipt hashes confirmed, seven historical
+errors unchanged. D preparation/input review complete WITH private-read caveats;
+full normal-context inventory checks remain mandatory before/after actual witness.
+NEXT ONE normal non-admin MP1 witness via shell362a356c+launcher0738e951 rehashed
+before VerifyOnly AND before actualcall, each child exit checked. Actual runtime,
+membership result, RC2/RC3/stage/Gate1/release/install still unobserved/incomplete.
+
+### SR — authorized shutdown repair continuation2026-10-26
+
+AUTH: user said "start fixing , i will give some more idea for this fix" after
+the three-reply assessment. This approves the bounded local repair sequence,
+not old-command retries, selected-runtime execution from the agent, installs,
+security/ACL changes, deletion, Git writes or qualification claims. Existing
+Fable artifacts remain the only plan store. Additional user ideas are evaluated
+against evidence, not blindly applied.
+
+Actual MP1 is CONSUMED. Receipt9846bytes SHA
+0a61222897b210c2500a5c461b7bacc5f00e296b4d2f5678a51f82b256c488d7
+and all6 bound streams were verified. Membership child EXITED1, not a watchdog
+timeout: capture_complete=true, timed_out=false. Incremental events pin the
+root44532->relay43800->launcher35012->child19464 chain. Launcher and child remain
+unsignalled after stop, writer remains alive, and primary stop error is
+E_DISTRIBUTED_WRITER_STILL_ALIVE. Emergency kill+cancel succeeds jointly; it does
+not prove cancel alone. Original historical C2 exception/pipe holder/escape
+mechanism remain unproven. Probe-error omits observation_errors; pre-terminate
+validation rejects a later historical-membership transition and prevents final
+classification. Lifetime TotalProcesses is not current live ownership.
+
+INTENT: replace timeout-as-cancellation assumptions with independent cancellation
+and ownership evidence, preserve failure visibility and existing0.1/5/60/120/90
+budgets. First correct interpretation without touching any sealed consumed file.
+No-build preserves failure; cancel-only leaves leaked children; stop-time parent
+PID scanning cannot prove complete lifetime ownership. Recommend a narrow
+two-axis repair, with startup ownership verified before work and dedicated writer
+cancellation. Overlapped transport remains a conditional redesign if synchronous
+cancellation cannot pass the independent reader-alive test.
+
+- [x] SR1: NEW .github/scripts/cleanup_shutdown_evidence.py and matching controller
+  tests: read saved MP1 JSON/streams only, reproduce the current validator's bad
+  transition, phase-aware reporting, distinguish complete nonzero capture from
+  incomplete capture, retain raw records/errors and all readiness flags false.
+  No overwrite/repin/re-execution of MP1 helper/launcher/Inputs/output.
+- [x] SR2 (isolated controller-native candidate only): NEW knowledge_bridge/windows_writer.py and matching native tests:
+  actual blocked synchronous writer, reader kept alive throughout cancellation;
+  thread-owned native handle, closing/done state, bounded cancel/join, partial
+  write/error handling, cancel races/1168, no stream close while writer lives.
+  Candidate is not wired into retrieval until this axis passes; controller3.14
+  evidence remains distinct from selected3.12. No extra shutdown budget.
+- [ ] SR3: cause-supported exact-runtime ownership mechanism, then integrate
+  cancellation and process exit separately; no stop-time ancestry sweep as full
+  ownership proof. Any mechanism that cannot cover startup/deep-descendant gaps
+  returns to design. New selected-runtime handoff only after focused/broader tests
+  and independent review; never retry consumed attempts. Public initial/replay
+  verification follows lifecycle proof; Gate1/release/install stay separate.
+
+Immediate declared writes: SR1/SR2 new modules/tests, one exclusive retained
+.github/run-artifacts/cleanup-shutdown-repair-20261026 root, and existing
+design/plan/checkpoint/report/state. Before.json records18 target/control hashes,
+HEADa38297d and dirty status; re-check each target before writing. Existing live
+distributed/job modules, all historical helpers/contracts/source copies and
+attempts remain unchanged during SR1/SR2. Existing broad baseline is424run with
+0failures/7historical error records, not green. Retained runner scopes any allowed
+test-owned temporary housekeeping; no old evidence deletion. Rollback means leave
+new candidates unused and retained, never revert unrelated user changes.
+
+Completion: meaningful RED->GREEN per axis; real reader-alive cancel and native
+handle exit observations; regression compared against recorded baseline; fresh
+read-only judge; explicit selected3.12 gap if unrun. Weak link: coverage of actual
+Store/venv ownership. Cheapest falsifier: expected actual interpreter has verified
+identity+membership before first request, then every required native handle exits.
+Three evidence-changing failed cycles on one problem require reassessment.
+
+SR1 observation2026-10-26: actual old-validator regression reproduced from saved
+JSON only; RED15run14fail ->GREEN15/15, then fresh FIX-FIRST2 found incomplete
+transition grammar and parent JS numeric round-trip in the first derived export.
+Additional meaningful RED19run10failure records ->GREEN19/19 with unchanged test
+expectations. Exact consumed-event grammar now rejects each deleted transition,
+ordering/result/error/emergency mismatches; malformed input never yields a gap.
+New Saved-Evidence-exact.json preserves all raw integer values; Python compared
+it byte-for-byte to CLI after CRLF->LF only and structurally to the actual
+function. Old rounded export is retained, marked faulty/superseded in report,
+state and Artifact-Status.json. No original MP1 bytes changed. Same fresh reviewer
+rechecked corrections and returned SHIP for SR1 only, no Critical/Important.
+
+Final focused19/19 log477b2578a78904a28276001169b4c3336de79deb0040fa10a53bda8c345c5c56.
+Final broader443run0fail/7exact historical errors/0skip/exclusions/interruption,
+logc0c83772e9a2ea30daafd8e315549c318a62eb1a70cb95703af3b8be79a1bf0a;
+not green. Existing lifecycle6/cwd7/budget7 controls PASS. SR1 is a read-only
+interpretation/reporting repair, not historical producer authentication, actual
+shutdown fix, native selected3.12 or stage completion. SR2 isolated tests first
+retain5RED failures for absent writer candidate; implementation/reader-alive
+native cancellation observation pending. All old commands remain consumed.
+
+### SR2 superseding observation — isolated writer axis verified2026-10-26
+
+INTENT: cancel the one synchronous stdin writer independently of reader death;
+never turn a cancellation request, readiness notification or cleanup debt into
+successful completion. New windows_writer.py remains UNWIRED to retrieval.
+Its real duplicated thread handle has one owner: startup acceptance and worker
+self-retirement compete atomically under the same lock. Late/unaccepted starts
+cannot write or expose a worker-owned handle to cancellation/native waiting.
+Unaccepted cleanup Python-joins first; no-handle pre-I/O outcomes explicitly say
+native_thread_exited=false. Accepted I/O requires actual native wait plus join
+before close. Raw unbuffered stdin is mandatory; buffered close cannot reflush.
+Only cancellation requests may repeat within ONE absolute deadline, never bytes.
+
+Observed RED->GREEN progression: initial5absent failures;8edge cases; Boolean
+write-count RED12/1 ->GREEN12; review startup RED15/4 ->GREEN15; failed retirement
+RED16/1 ->GREEN16; final ownership-handoff RED18/2 ->GREEN18/18, no errors, skips,
+exclusions, expected failures or interruption, ResourceWarning-as-error. These
+are different missing invariants, not repeated speculative production repairs.
+Final native read-only judge: SHIP_CANDIDATE_WITH_CAVEATS, no remaining blocker,
+exact writer72dde9c3a495f0326bf95a1eef25e2eb81ac1333921889a8e48656840f475d29,
+testsf3f89b80864a909abb704007db24503d475575365a79f02e64fef006cd969b62.
+
+Retained root remains cleanup-shutdown-repair-20261026. writer-handoff-green
+Receiptcb47fea0b22f6e39ffbd01b0abe19c124302af58a731a233e20e53e04e9e3fe8,
+logbf85c3f96b243e51ac663932c883d38218f9a0507e1f68f1228615ef1e6cddf2.
+Run-Inputs.json binds parent-observed exact controller/source/tests/runner hashes,
+receipts/logs and9unchanged Before controls; not producer authentication.
+Final broader knowledge228run174PASS/54SKIP/0fail/error, log
+e1615634bf25343859f19b51a5b978abe72e62686669b68b3cacd3b0a3d5855d.
+Final controller443run0fail/7exact baseline pin errors, log
+f86d6332d9ea4b3b6bb18439ba2805dea2025548df4a6105fc9ab2e19da854e2;
+NOT green CI. First broad443/23errors retained:16fresh-fixture access refusals
+were resolved using scoped tool grants, not code/check/ACL edits; no outputs
+were removed. Existing lifecycle6/cwd7/budget7 also freshly PASS.
+
+Single controlled real-pipe observation, reader ALIVE through native/Python join:
+blocked setup0.109043600s (includes deliberate0.1s test blockage), cancel request
+0.000198000s, exit/join check0.000181000s, reader-alive check0.000004700s.
+Separate forced1168/WriteFile-gap cancel+join0.012150400s. Inclusive values are not
+summed; these are controller3.14 observations, not selected3.12 or historical C2.
+
+SR3 remains incomplete. Actual process ownership, selected-runtime lifecycle and
+public initial/replay have not been repaired or qualified by the writer primitive.
+No selected3.12, old command, package install, evidence deletion or Git action ran.
+
+### SR3 launch-mechanism decision — design gate, not implementation authority
+
+No-build retains leaked workers; stop-time ancestry scans or source-only
+self-enrollment leave pre-bootstrap/deep-descendant gaps. Recommended next
+feasibility design: launch the EXACT already-pinned loaded interpreter image
+directly, preserve/re-prove the existing venv context and dependency identities,
+and assign it suspended to the owned Job before resume. This changes the launch
+contract, so obtain approval of this description before new launch code/handoff;
+the earlier SR sequence does not silently authorize a different runtime identity.
+It is NOT a new Python install, arbitrary same-hash executable or pin waiver.
+
+Primary-source support is explanatory only: CPython3.12.10 PC/launcher.c redirects
+venv launches; Modules/getpath.py consumes __PYVENV_LAUNCHER__ for executable/venv
+discovery. Windows nested jobs describe inherited restrictive Job chains.
+https://raw.githubusercontent.com/python/cpython/v3.12.10/PC/launcher.c
+https://raw.githubusercontent.com/python/cpython/v3.12.10/Modules/getpath.py
+https://learn.microsoft.com/en-us/windows/win32/procthread/nested-jobs
+
+Weak link: actual Store activation and exact venv equivalence are UNVERIFIED;
+source semantics are one evidence family, not installed-binary proof. Cheapest
+falsifier is one NEW reviewed normal-account identity/ownership-only witness,
+no writer/numerical workload: exact loaded image/file identity, version/prefix/
+base/venv, dependency metadata, nested child membership and independently pinned
+native exits. If any identity drifts or a required process is outside the Job,
+stop/re-plan; do not rebaseline, reinstall, add time or integrate the candidate.
+Only after that proof can combined shutdown and public initial/replay qualify
+the stage. Old private before/after preservation checks remain mandatory.
+
+### SR3 approved implementation detail2026-10-26
+
+AUTH: user said "WE ALREDY DISCUSSED ABOUT SOLUTION FOR THIS, USE ALL REQUIRED
+SKILL AND SOLVE THE ISSUE" in direct response to the SR3 design gate. This clears
+that launch-design gate and authorizes bounded local implementation/tests/review
+and a fresh sealed normal-account verification handoff. Do not ask again within
+this scope. It does not authorize selected3.12 agent execution, installs, old
+attempt retries, security/ACL edits, evidence deletion or Git writes.
+
+Code evidence: worker.py:153 creates DistributedClient(sys.executable) inside the
+already-selected worker. Therefore use its CURRENT native loaded image plus
+explicit original sys.executable/venv context; never guess another installation
+from PATH/registry or accept a different selected executable. A stdlib pre-work
+bootstrap must attest Popen-root PID/image/prefix/venv and Job membership before
+the authored worker script runs. Assignment precedes resume. If activation or
+identity differs, fail closed before request work, retain the failed observation.
+
+Declared surfaces: NEW windows_owned_process.py, windows_owned_bootstrap.py and
+test_knowledge_windows_owned_process.py; bounded distributed_retrieval.py wiring
+and matching lifecycle tests; NEW shutdown_repair_verification.py, its controller
+tests and Run-Shutdown-Repair.ps1; this existing Fable plan/design/checkpoint/state/
+report, and exclusive new SR3 evidence under cleanup-shutdown-repair-20261026.
+SR3-Before.json records current hashes/absent targets/dirty status before writes.
+Existing windows_job.py and all consumed helpers/launchers/contracts/copies remain
+immutable controls. SR2 writer bytes remain fixed unless a reproduced integration
+defect requires a separately recorded correction. Do not change POSIX behavior.
+
+- [ ] SR3a: failure-first current-image/direct Job ownership primitive; real root/
+  child/grandchild exits and unrelated-process survival without any writer;
+  actual-image/venv/selected-path mismatch refusals, partial startup and API-fault
+  cleanup, nested Jobs and membership churn. Pin native handles and observe exit;
+  do not mistake live lists/lifetime totals or Job-empty for all native exits.
+- [ ] SR3b: combine owned process stop and SR2 cancellation using raw stdin and
+  ONE existing5s cleanup deadline; preserve120default, original errors, no resend,
+  no close/delete while ownership or writer shutdown is incomplete. Focused tests,
+  relevant broader suites, exact nonpass comparison and fresh native final review.
+- [ ] SR3c: one NEW sealed normal-account verification; mandatory old/private
+  histories/source/runtime/preservation guards before/after. Identity first,
+  ownership-only/combined lifecycle controls before unchanged public ordered
+  initial+replay/lease refusals. Stop on failure and retain output, no automatic
+  retry. This may close focused cleanup stage only; Gate1/release/install stay false.
+
+Rollback: keep new candidates unused on failed feasibility, preserve failed output,
+and re-plan on actual outside-Job process/identity drift. No blind process sweep,
+timeout increase, package reinstall or silent check removal. An inaccessible
+required old input still needs the normal account; it is never skipped.
+
+### SR3 implementation/review observation2026-10-27 — same approved scope
+
+SR3a/b implementation is complete and independently exact-hash reviewed under
+controller Python3.14. Keep the acceptance boxes open until selected3.12 proves
+the same behavior. No repeated design approval is needed. Current-image owner,
+identity/venv bootstrap gate and SR2 writer cancellation are integrated. All
+owned exits need pinned native-handle proof in addition to final Job/list/ledger
+agreement; asynchronous accounting snapshots are not assumed atomic. Actual
+worker script sibling imports and SystemExit behavior are preserved. Ownership,
+cancellation and stream/constructor cleanup failures retain original errors,
+all-close debt and unresolved resources; no deferred auto-delete hides failure.
+
+Meaningful final reviews found and parent RED/GREEN closed assignment-failure
+root survival, proof-gap termination bypass, bootstrap exit-code/venv-env false
+refusals, close-error masking/debt loss, expired/unbounded gating/drain, failed
+startup/stream-retention debt, script sibling-import loss and non-atomic snapshot
+false refusal. No historical control, skip or larger timeout made these green.
+
+Final current-byte observations: owner17PASS, session7PASS, combined12PASS,
+handoff16PASS (real627file copy included); knowledge252run198PASS54existingSKIP,
+0fail/error. Final controller459run0fail11errors0skip/exclusion:7historical pins
+plus4old frozen membership diagnostic/private-API errors. Preserve all11 errors;
+neither broad-green nor full-native/release/install qualification is claimed.
+Independent final native/code clearance and exact helper/launcher seal review
+allow ONE fresh normal-account SR3 verification, not an old attempt retry.
+
+New verifier shutdown_repair_verification.py SHA
+f224d215d0eb8ac898ac6a185cb388d1aa45b627765a006ae266455b800aff69;
+Run-Shutdown-Repair.ps1 SHA
+010305e3a8e75ad62c4b6fe4ef527203e31dabea16ca88f87f2c476c9944109b.
+Literal10source/7support/6oldcontract pins plus mandatory old/private inventories
+are checked before preparation/workload and afterward. Old private traversal is
+still a normal-account obligation; no inaccessible input is skipped. Selected
+runtime identity/53dependency checks occur before and after workload. All7groups
+use selected worker:17owner+18writer+12shutdown+7session+6lifecycle+7cwd+7budget
+=74controls; then original public ordered4modes, replay and negative leases.
+No numerical success/source overlay or producer-authentication claim is added.
+
+Actual existing sealed PS7 parse/VerifyOnly and wrong-SID refusal pass before
+Python; SR3Inputs/preparation/normal output absent at handoff. Normal account
+will create SR3-Inputs.json and exclusive sr3-prepare/sr3-normal once. Stop and
+retain any failure; share Failure.json or Receipt.json, no retry. Only observed
+allpass/preservation may close focused cleanup stage; Gate1/release/install stay
+false. Existing public90/lifecycle60/default120/shared-cleanup5 unchanged.
+
+### SR3 actual preparation stop2026-10-27 — access decision required
+
+Normal account consumed the new preparation once at08:39:25Z. Mandatory full
+history traversal refused old audit-emwso553 WinError5; no selected3.12 identity,
+74controls, ordered public workload, SR3-Inputs or sr3-normal output was reached.
+Claim/Failure are retained. Old helper/launcher exact hashes still match. Do not
+reuse this consumed preparation or delete/rename its marker to force a retry.
+
+Read-only descriptor diagnosis establishes cross-account evidence ownership:
+fixture owner CodexSandboxOffline, protected DACL with only OWNER RIGHTS/SYSTEM/
+Administrators. Parent grants to normal user do not inherit. All330direct sibling
+fixture directories share this pattern; no complete recursive/history census.
+This contradicts the assumption that normal account can read every sandbox-
+created retained fixture. It does NOT refute shutdown code or establish a package
+problem. Existing runner/mkdtemp0700 behavior explains why test fixtures persist
+with a different access boundary from the parent evidence folder.
+
+Options now: no-build keeps stage blocked; recommended smallest route is an
+explicitly authorized read-only grant for normal account on exact affected old
+test-evidence targets, with saved before/after ACL/content/identity evidence and
+no owner/existing-ACE removal, write grant or global reset. Stronger alternative
+is a separately designed two-account read/verification workflow without changing
+old ACLs; that changes provenance/coordination and needs design approval. Simply
+skipping unreadable history would weaken the approved guard and is not accepted.
+Weak link: other protected descendants may also block normal traversal. Cheapest
+next check is read-only exact-scope ACL/access inventory before authoring any
+permission change. On any target/provenance uncertainty stop for scope decision.
+
+No permission repair or successor launcher is authorized merely by this failure.
+Ask separately before ACL changes; preserve consumed files and all runtime/code
+seals. A later authorized recovery needs a NEW reviewed/sealed preparation,
+never a rewritten old baseline, admin retry or broad permission command.
+
+### SR3-COPY correction2026-10-27 — selected no-ACL route; adaptation planned
+
+User identifies the already implemented/verified cooperating-account copy path.
+This supersedes the ACL-repair recommendation above. Freshly hashed old H1
+Copies.json39851134bytes956f2c50.../BEFOREBundle13247059bytes0def61c9... agree;
+46010copied objects/27208file mappings merged into48799objects. Both maps lack
+cleanup-repair-20261023/audit-emwso553; no old AFTER success is inferred. Current
+SR3 history() lacks the corresponding data-copy transport for its newer roots.
+Known failure remains normal preparation only, not a shutdown/package regression.
+
+INTENT: replace direct-only access to restricted HISTORICAL EVIDENCE DATA with
+complete, phase-bound fresh-original BEFORE/AFTER cooperation; preserve direct
+authoritative source/runtime/helper/protected checks and known history baselines.
+The existing design now contains full SR3-COPY description/acceptance. New helper
+implementation waits for approval of this precise preservation-boundary change;
+the user already selected no-ACL route, so do not ask them to choose ACL repair.
+Do not repeat approval of the existing worker-shutdown solution or old W copying.
+
+Compare: no-build/direct-only remains blocked; adapt existing staged exact-denied
+copy/readback (recommended) uses current tested primitives and read permissions;
+a persistent cross-account broker adds long-lived trust/lifecycle burden and is
+not needed for finite BEFORE/AFTER sampling. Reusing old map as current evidence,
+skipping denied paths and changing ACLs contradict coverage/user constraints.
+Weak link is actual fresh two-account access/readable destination for new roots,
+not package installation. Cheapest falsifier is one new exact denied fixture
+capture plus normal byte readback after input-only approval. If both readers
+cannot open it or normal cannot read the copy, STOP; no ACL/elevation fallback.
+
+Approved-range candidate, ONE requested approval for all local steps below:
+
+- [ ] SC1: new input-only copy adapter/tests, exact four history roots and old
+  positive-baseline comparison, consumed SR3 failure pins, fixed source/helper/
+  runtime identities. Preserve archive_copy_snapshot/archive_copy_h1/worker_copy_
+  h1 and consumed SR3 code unchanged. New closed coordinator/tests/launchers only;
+  no shutdown code changes. Reuse data-only primitive contracts, not old root/
+  session/workload or old56hardlink whitelist. Failure-first stale/phase/coverage/
+  source-drift/access/link/ACL-preservation tests and relevant regression check.
+  Record exact source baseline before editing; independent review before command.
+- [ ] SC2: separately sealed fresh BEFORE scan, existing-access data-reader copy,
+  normal-account full content/mapping readback. Exact inherited-access destination
+  outside all sampled roots; no ACL changes/deletes/overwrites. Direct source,
+  runtime and authoritative guards remain live. All requested coverage resolves
+  before any selected-runtime workload. Stop if either required reader fails.
+- [ ] SC3: new reviewed runtime phase, unchanged74controls+ordered4mode method,
+  original budgets and actual selected3.12. Result stays provisional and stage
+  false. Fresh ORIGINAL AFTER scan/copy/readback, same-run/BEFORE/workload binding,
+  complete maps/known-baseline checks and final independent raw-result review.
+  Final sampled preservation plus runtime observations may close focused stage
+  only; Gate1/release/install/producer/historical-C2-cause flags remain false.
+
+Required falsification: changed/removed/added ORIGINAL after BEFORE even if copy
+unchanged; tampered/missing/extra/partial copy; stale old-map/wrong-root/phase;
+denied both sides; no-BEFORE workload and no-AFTER finalization; direct source/
+runtime guards not routed through evidence reader; unexpected linked fixture;
+changed readable/unresolved partition; byte/identity/permission mutation; phase
+reuse and overwrite. Old9/8controls and actual historical baselines stay intact.
+Runtime capture uses fresh selected interpreter, no source execution from data
+copies. Completion is sampled agreement, not continuous/atomic/authenticated data.
+
+Rollback: retain new inactive candidate/failed outputs, preserve consumed attempt
+and old successful H1 copies unchanged. No deletion or reverting unrelated edits.
+No new copy, worker command, source edit or ACL operation ran during this plan.
+
+SC approval2026-10-27: user "start" approves SC1-SC3 as the named bounded range
+in the immediately preceding answer. No repeated approval for this adaptation.
+Execution uses Fable native Terra-high for new shutdown_copy_data.py/test data
+layer; parent owns shutdown_copy_verification.py/test coordinator, new launcher,
+verification and records. These NEW files were absent at baseline; old snapshot
+77c98066...,H1reader8e66fa51...,SR3helperf224d215... remain immutable. Current
+dirty source/HEADa38297d and prior459/11controller baseline are retained. New
+test output only sr3-copy-development; new normal session proposed fixed root
+Documents/Codex/sr3-copy-20261027-4a52cd8d (absent), session
+4a52cd8d336b40c29587dfb5ece35522. Record exact self/dependency seals before issuing
+any staged command. No selected3.12 from agent; actual cross-account BEFORE and
+AFTER remain human/reader cooperation gates, not synthetic-test claims.
+
+SC direct-authority amendment2026-10-27: current checkout independently observed
+f63f62496f82fb479e352bdd9c90accf9f869e8b, immediate child of pinned evaluated source
+a38297dd797eeecd25e41ab0af1df4e3db8fa984. Four A-only changes are existing C1
+launcher/preflight/test/report. Old SR3 source_basis correctly refuses E_SR3_HEAD;
+no actor/cause of this Git change is inferred. User explicitly answered
+"Approve the exact transition" to the precise async question retaining a382+
+approved repairs. NEW helper may verify ONLY that checkout SHA, single parent,
+exact four additions/modes/blob SHA256s and live byte agreement; then reconstruct
+the original627-file a382 tree with original10named deltas. Record both checkout
+and evaluated-source heads. Unknown SHA/parent/extra/missing/mode/blob refuses.
+No old constant/guard/contract or Git state changes. RED17run/2fail captured at
+coordinator-checkout-red-07 before implementation. This is the only new authority
+predicate; all other direct mandatory checks remain executable.
+
+SC1 execution2026-10-27: DATA layer12PASS; coordinator20PASS; broader copy106PASS,
+0nonpass. Retained RED20/3fail policy gaps then GREEN20 at sr3-copy-development/
+coordinator-policy-{red-08,green-06}; GREEN log4ba25cdae5493c014ced4c229ea21c3c9e5584449ca4b8187814ff9c2e7efee5.
+Copy-regression02 log9666e18493d17532d4a1c6e2f1ae15299097bfa06e1279029636e6f563affdb7.
+Review additionally requires complete authority-derived protected identity list
+and immutable strictRequest->unapprovedProposal->externally sealed normal
+PolicyInputs/PolicyRequest lineage before copy. Implemented with blocked base
+copy and direct-authority/readable-partition rechecks, no old56path reuse.
+New source-reader inspection does not copy, bind approval or start a worker.
+
+Current normal session remains absent. Finish full regression/final exact-hash
+review and launcher negative checks before issuing BEFORE-only normal command.
+SC2 requires actual complete original coverage/copied-byte readback; SC3 requires
+actual selected3.12 runtime plus fresh ORIGINAL AFTER and independent final
+raw-result review. Synthetic full phase fixture explicitly mocks workload and
+positive-history gates; it is NOT actual runtime/history qualification.
+
+SC1 boundary2026-10-27: final coordinator21PASS (real denied hardlink pair
+proposal/bind/copy/readback/ACL-preservation + protected-ID rejection); DATA12,
+copy106PASS. Full shorter controller492run0FAIL12ERROR0SKIP, log
+270736b1864cd23a2bf6a227517cafe700c5d8f578e11786d965937612442ce2.
+The12 are4old membership probe CurrentImageOwner.handle errors+8historical
+source/HEAD pin records. Initial491run2FAIL24ERROR retained; unchanged timing23
+and gate23 PASS from shorter test output remove long-cwd/scratch contaminants.
+No old test/source guard changed, skipped or relabelled green. Fresh parent
+21fixed source/control/old-input seals match, and new normal root remains absent.
+
+- [x] SC1 implementation/focused controls/final input-only native read-only review.
+- [ ] SC2 actual normal BEFORE request, reviewed policy/copy/byte-readback.
+- [ ] SC3 selected312 observation, fresh ORIGINAL AFTER and final result review.
+
+Independent final exact-hash SHIP: one normal non-admin BEFORE input action ONLY.
+Coordinator234dd24e90a33feeee9fbacd5e75f03b2099c8393b7be86d3d9f994d99946cd3,
+DATA4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299,
+launcher5554f4b3d45514262f2e497636642e435f2c535f9249957fdede7073c45ea7e1.
+PS7parse0/VerifyOnly/actualSID1003-refusal and wronghelperseal-refusal observed
+before Python. Outer command must hash existing PS7and launcher beforeVerifyOnly
+and again beforeone invocation; no automatic retry. Review actual Inputs and
+Request before separately sealed source-reader inspection. User range approval
+remains valid; next observation is human-account cooperation, not new design
+approval. Final stage/Gate1/release/install and all oldconsumed flags unchanged.
+
+SC2 actual BEFORE2026-10-27: user executed exact frozen normal command once.
+Inputs596109bytes49f19acc752bb0b97594db194873c1f3f994212edca3dc7ba1af50021094b21a;
+Request1227544bytesc81c2d9b095c108893dee9fe0b10ce625462d3b736e2a41c3782eca5aac70e42.
+Parent/independent actual validations pass;1379complete protectedIDs;1240denied
+directories retained. Independent read-only metadata traversal of exact denied
+coverage found1800directories/4396files,0errors/redirects/protectedhits/hardlinks;
+this is feasibility metadata only, NOT completed content inspection or copies.
+Narrow review SHIP one source-reader InspectBefore; parent started frozen exact
+helper with both external seals. Existing-access inspection Claim consumed;
+wait/review actual unapproved proposal, never repeat it. SC2 copy/readback and
+SC3 selected312/AFTER/final review remain incomplete. No old command or ACL edit.
+
+SC2 reader inspection completed once exit0. Proposal225555bytes SHA
+dce8bda736214950bc69e63d585027a750982789ae4ca69e9062f66bbd78b1c5;
+all4exact allowlistsEMPTY, each1379protectedIDs. Actual request/protected-policy
+validators pass and baseInputs/Request exacthashes unchanged. No evidence copy
+or worker ran. Approx claim-to-proposalmtime97.865s, not CPU/import profiling.
+Exact source-reader content inspection is now observed, not inferred from old
+H1 copies. Intended normal BindPolicy unused: wrongSID refuses beforeclaim;
+outer wrongproposalhash refuses beforePython. Inert exact handoff text retained
+SC2-Bind-Command.txt SHA4cc4e3c7f96744647d32d5d0b19e2646ee14ebbd3fc7dd6c382f24bf6dcc85ae,
+parse0/singlePythoncall. Await actualproposal/exactcommand narrow review before
+issuing. No implementation changes; historical/Before/Inspect consumed outputs
+fixed. Only after reviewed normal childbind output may source-reader copy start.
+
+SC2 binding handoff reviewed2026-10-27: actual proposal canonical/schema/session/
+root/request/protectedIDs validated,4EMPTYallowlists; fresh original direct
+authority equals sealedInputs. Independent substantive audit SHIP preceded a
+workspace-credit FINAL error. New user "continue from you left" resumed SAME
+reviewer, which finalized narrow SHIP for exact4cc4e3...block. No new code or
+repeated operational phase. Clearance ONLY ONE normal non-admin BindPolicy,
+not copy or runtime. Command pins6roleSHA256s, refusesexistingoutputs, calls
+one frozen Python314 mode. It rechecks normal context/directauthority/visibility
+and fresh scan, writes exclusive childRequest/Inputs. Confirm resulting actual
+childhashes and complete base/proposal/empty-policy lineage before copy review.
+Residual same-root hostile-concurrent-writer race is not atomic-proof; nothing
+may be called continuous/producerauthenticated. Existing before/inspection
+outputs remain fixed. Parent final unchanged rolehashes/HEAD and absent next
+phase outputs verified; normal action awaits human-account cooperation.
+
+SC2 normalBind observation2026-10-27: user ran reviewed block once successfully.
+ChildInputs822007bytesc91235f95b135a1e170893513d3105095fb5dd39feef268eb3b2fec3c4cd3180;
+childRequest1227544bytescd5ce65e48f7a604fb577279e9dea3ab8e8c30bfbddf907c1ab222f5c6b476ff.
+Parent actual frozen session/lineage/request/policy validators pass. Original
+Inputs/Request/proposal hashes unchanged, readable/unresolved partition stable,
+1240denied dirs/1379protectedIDs/0exceptions. CopyClaim/output/Bundle/run absent.
+Baseline in SC2-Copy-Before.json; native read-only actual-child/CopyBefore review
+requested before real source-reader copy. Next normal full-copy readback must
+execute old positive history guards before Bundle publication. No source or
+helper changes, ACL/install/Git/delete/retry or selected312 action.
+
+SC2 copyexecution boundary2026-10-27: SAME native read-only reviewer validated
+actual child canonical/config/lineage/root/policies/partition/directauthority
+and absent nextoutputs, returned FINAL SHIP ONE SID1003 nonadmin CopyBefore.
+Parent rechecked exact controller/helper/DATA/base/proposal/child8role hashes,
+SID/nonadmin and absent CopyClaim/Failure/reader-copy/Bundle, then started only
+CopyBefore once. ExclusiveClaim and new destination now exist; original data
+read/copy/readback/source-stability validation is running. No normal VerifyBefore
+or workload chained. Await actual result and separately review raw aggregate/
+perroot copies and unchanged inputs before handoff. On failure retain partial
+output/Claim/Failure, never delete/retry or change ACLs. SC2 is not complete until
+actual normal copiedbyte readback and historical positive guards publish Bundle.
+
+SC2 actual copycompletion2026-10-27: exact reviewed CopyBefore completed ONCE
+exit0. Outer1283bytes SHA f9a38306ee2e4bf351e5d824932e92d486e736668de596cf8bcf223cf78d3b7b.
+All4root manifests bind the sealed childRequest/policies/session/phase. Parent
+actual session/outer/H1manifest/mapping/coverage validators pass; directauthority
+unchanged.1240deniedtargets ->4396filecopies/33362733bytes; no linked exception.
+Three roots have0deniedtargets; normal-readable originals remain mandatory.
+Normal byte-readback and old positive history guards NOTYET observed; Bundle
+absent. No selected runtime. Inert VerifyBefore-only outerblock45a860e33fff4e6670a470ce87014e61a30a50c282519e6dd7b58961849c8089
+has13pins/exactnormalSID/nonadmin/absentoutputs, parse0/onePythoncall, realwrongSID
+refusal and inmemorywrongcopyseal refusal. SAME independent FINAL review SHIP
+ONE exact normal VerifyBefore block:4manifests valid, no merged overlap and
+manifest-only timing/stack/1339CR3 positive baselines satisfy. Actual normal
+bytes/readablepartition/directguards/positivegates remain required. Review the
+returned Bundle before separately sealing Run. No implementation/test/oldhistory
+changes; keep all consumed outputs. Runtime+freshORIGINAL AFTER/finalreview
+remain later gates; focusedstage/Gate1/release/install false.
+
+SC2 actual normalreadback2026-10-27: user consumed exact VerifyBefore once,
+status SC_BEFORE_VERIFIED_NO_WORKLOAD. Bundle3092807bytes
+29fba89ef123eb5c4e9df957f0bbfacad58328301787658dfc42a95356a81019 and
+VerifyClaim161bytesb7b9a11ed7a30c4e3f5f07f28034db63cb650521ae19b70e439e0bd567d372b4
+matched locally. Exact allfields derivation from sealedrequests+copyrecords
+passes;7345files/94513658bytes/nooverlap, directauthority unchanged. Normalbyte/
+visibility/oldpositivehistory gates precede exclusiveBundlepublication. NoACL
+BEFOREaccessblocker closed. SC2BeforeBundle observed, no qualification inferred.
+
+SC3 next candidate Run-only block8f64b8490972e048fe6e0b649d71f8b40f5a9a40004ee7d6e175d2d734c22bf0:
+14pins/exactnormalSID/nonadmin/absentRunoutputs; parse0/oneRunPythoncall,
+actualwrongSID beforePython and inmemorywrongBundle/consumedclaim refusal.
+Same read-only reviewer auditing actualBundle and runtime adaptation/finalblock.
+Selected312 remains unrun; noRunClaim/contract/run/AFTER/Final. Approved74controls
+and retainedpublicorderedmethod only; no oldcommandretry. SuccessfulRun must
+remain provisionalstage/preservationfalse until freshORIGINAL AFTER/copy/
+normalreadback/comparison/rawreview. No source/helper/test changes thisturn,
+no repeated suites or oldhistory mutations. Broader492/12knownerrors NOTGREEN.
+
+SC3 exact handoff FINAL read-only review2026-10-27: SHIP ONE full8f64b849...block
+normal1001/nonadmin Run-only. Actual canonicalBundle/disjointexact4root unions,
+all14seals/exclusiveoutput guards and source/runtime/history adaptation verified.
+Only exact4root DATAinventory+CR3DATAsubmanifest substituted; originalsource/
+runtime/dependency/protected/positivehistory guards remain. Executedsource627a382
++10deltas, exactf63transition only. Runtime74noskip/noexclusion controls then
+unchanged4modepublicinitial/replay/lease, identity/deps pre+post; provisional
+receipt forcedfalse pending ORIGINAL AFTER. No realphase/selected312 inreview.
+Issue ONCE; rawcontract/receipt/counts/streams/discovery/publicresult review
+before anyAftercommand. No retry/permission/package/Git/Gate1/release/install
+clearance. Detailed SC3-Handoff-Review.json retains observedchecks and caveats.
+
+### SC3 consumed failure and bounded SR4 proposal2026-10-27
+
+Actual SC3Receipt10011bytesbeab04ef2dde95a01cc25ed21eedf6ff79c3e50c2aceacaf2cd2f74dc4fc76d2
+is FAILED, not pendingAFTERsuccess.17ownership tests3.424s/9errorrecords; all
+maintraces bootstrapBASE_EXECUTABLE; no timeout/capturegap/skips/exclusions.
+Identity+53metadata dependencychecks passed. Remaining6groups/public/AFTER
+unreached. Parent verified all4rows/8streams/receipt/log/source/contract bindings.
+Consumedroot remains immutable; existing snapshot cannot be relabelled AFTER.
+
+TARGET: strict valid currentStore-image startup AND bounded proved shutdown on
+startupfailure, preserving budgets/ownership/identity and all old evidence.
+FACT: launch_current expectedbase=image. OBSERVED: basecheckrejects child;
+parent basealias and loadedStoreimage are different exactroles in passed probe.
+UNKNOWN: child's actualbasevalue absent from shortfailure output and private
+fixture unreadable1003; WinError31/5 cleanup exactnativefailure cause unknown.
+INFERENCE: roleconflation is likely blocker; rootpin-after-ready creates a
+potential earlyexit ledger gap. Neither inference is a completed repair.
+
+Options: no-build retains honestfailedstage; simple role-aware bootstrap and
+existing nativeledger correction is recommended AFTER causal controls; stronger
+persistent supervisor/broker redesign changesarchitecture and remains outside
+defaultscope. A one-lineblindbase substitution/removedidentitycheck is rejected:
+would assume missingchildvalue and leave failed-startcleanup proof unresolved.
+Reinstall/ACLchange/budgetincrease/sleeps/suppression do not address the evidence.
+Evidencefamilies: actualonehostrun (all9traces correlated), implementation+old
+roleawareprimary code, retainedtestcoverage. No independent runtime repetition.
+
+Approved SR4 scope: AUTH user said "aprove" to SR4-D1–D3 on2026-10-27.
+Approval supersedes earlier pending text; execute sequentially without another
+same-scope approval gate. No consequential outward operations included.
+- [ ] SR4-D1: controller-side deterministic/fault/native-stdlib RED/GREEN before
+  newselected312 observation. Separate expectedbase from actualimage using
+  attestedparent sys._base_executable, keep exact loadedimage/venv/prefix checks;
+  exclusively record bounded tokenbound expected/observed identity on failure,
+  and keep authoredwork gated. After suspendedprocess assignment but BEFORE
+  resume, pin root membership/creation/image through existing Popenhandle or
+  ownedduplicate. NEWrootnotifications idempotent; trulyunknownexit stillerror.
+  Track suspended-unassigned/assigned-not-resumed/resumed startupstates; native
+  stop/wait state-specific, same5s, no broadPIDkill. Fastidentityfailure must
+  preserve primaryerror plus named nativecleanupoperation evidence, and may not
+  claim success without signallednativehandles+emptyownedjob. RequiredREDs:
+  distinctvalidroles/wrongrole, earlyEXITwithoutNEW for pre-pinnedroot,
+  assigned-not-resumed failure/noauthoredwork, immediatebootstrapfailure,
+  unknownnonrootexit, releasebeforeproof and unrelatedprocesssurvival. Existing
+  SystemExit/import/deadline/membership/writer/session/lifecycle controls retained.
+  Expected surfaces windows_owned_process.py/windows_owned_bootstrap.py and
+  corresponding tests, newsuccessorhelper only as needed; no oldfrozen edits.
+- [ ] SR4-D2: independent exactsource/test/seal/output review, then ONE NEW
+  normal selected312 ownership/startup observation only (no retrieval), with
+  fullchildidentityframe and cleanupstate. All17originalownership IDs PLUS new
+  regression IDs must pass, zero failure/error/skip/exclusion. Discover/freeze
+  updated exactIDs/counts instead of deleting newcases or pretending total17.
+  Stop on failure; no retry or unknownrole allowance. Actualchildbase unequal
+  to attestedparent expectedbase reopens model before more changes.
+- [ ] SR4-D3: only after D2 resultreview, freshreviewed newsealedfull successor,
+  exactnewdelta contract/sourcecopy and new runtime session. Preserve ALL74
+  original controls PLUS addedregressions; new exactcounts/IDs explicitly bound,
+  unchanged retainedpublicmethod, originalBEFORE/AFTER content/identity/permission
+  samples, noACL copycooperation as needed, rawreview before focusedstage.
+  One new fullrun, no oldmarker/input/root retry or replacement. Gate1/release/
+  installation still separate; normalhost cooperation remains necessary.
+
+SAME independent read-only cause/design review FINAL FIX-FIRST endorses this
+smallestcomplete option, not identity-only patch. Primarycontract roleconflation
+confirmed; earlyexit ledger weakness visible, exactWinError31/5 call unknown.
+No code/probe/selectedruntime/copy/ACL operation in review. Review is design
+evidence, not approval or runtimeclearance. SC3-Cause-Design-Review.json retained.
+
+WEAKLINK: actual failingchildidentity value is unknown and cleanupcause not
+captured with nativecall context. CHEAPESTFALSIFIER: exactchildidentity evidence
+plus stdlib fast-exit ownership regression, no package reinstall. PIVOT: if
+these refute rolemismatch/latepin hypotheses, stop and use observedcause; no
+speculative repair. CONFIDENCE: high in failingpredicate and no-timeout result;
+medium in proposed mechanism until controls run. STOP: inaccessible mandatory
+evidence or unownedprocess requirement. No sourcecode edits/newtest/workload,
+runtime retry, install/Git/ACL/delete action authorized by writing this proposal.
+
+SR4 execution baseline2026-10-27: userapproval now authorizes the named local
+range, not oldRunretry. Before edits parent verified currentHEAD f63, dirtytree,
+live module/test hashes and exact matching failedrun/source old module copies.
+Baseline .github/run-artifacts/sr4/Baseline.json. D1 live two modules + newowned
+startup test are exclusive implementation surfaces; old17casefile/helpers/
+attempts untouched. Controller314 RED/GREEN/native stdlib controls precede D2
+helper freeze and fresh independentreview. No selected312 invocation from agent
+account. D2 ownership-only success before D3 fullrun. No OS ACL edits.
+
+SR4 controller observation2026-10-28: the interrupted native draft was retained
+and parent completed D1 corrections. Original17ownership source remains exact
+00c837f55f8527cefe361c5421155b2b8a4e51b177296506b9f249613eb223c4.
+Required new fault/native controls are21cases:38total focus PASS, no skips or
+exclusions, parent-d1-green-08. New D2 verifier22guard tests PASS. Relevant
+knowledge273run/0failure/0error/54runtime skips; fullcontroller514run/0failure/
+12old diagnostic/API/source-HEAD pin errors/0skips NOTGREEN. No old guards were
+edited to turn those errors green. Red and intermediate failed candidates are
+retained; their directory names are not success claims.
+
+D1 candidate exact three hashes are ownerd9f8cf4a2f72db3f320252617982f160e9646b8254860498e2e288eaed2c94e4,
+bootstrapa7fa933c35d919e6c730ff58b4634315b5afc05b2917d5c520ab5d5a990e086e,
+newtest1cf10aa195798ed4e10792a8bdbb4cb3b449c216524bbfa9858220abb91d8978.
+D2 candidate .github/scripts/shutdown_startup_successor.py binds all38IDs and
+627a382files+11revieweddeltas. Read-only contract and real636file extraction
+verification passed. Normal destination sr4-owned-20261027 remains ABSENT.
+No selected312/Prepare/Run. Exact outer block is a review candidate in
+.github/run-artifacts/sr4/SR4-D2-Command.txt; NOT ISSUED until native final review.
+D2 intentionally observes ownership/startup only; it verifies original source,
+runtime/protected inputs and consumed SC3 critical records directly, without
+reusing unreadable private archive data as a preservation verdict. D3 retains
+fresh ORIGINAL BEFORE/AFTER plus existing-access no-ACL copy cooperation for
+all required newer history. D1/D2 final independent acceptance is pending;
+checkboxes above stay open until that evidence arrives. User approval persists.
+
+SR4 final review2026-10-28: independent read-only native Sol SHIP exactD1andONE
+D2ownership/startup hostblock, noCritical/Important. D1checked above based on
+38focusPASS/original17bytes/21newcontrols/broader evidence and actualdiff review;
+it is not selected312runtime or completeworker-stage proof. D2 remains unchecked
+until the host observation is received and reviewed. D3 remains separate/full.
+Final helper self-description corrected only; final22guard PASS. Exact outer
+block SHA476e012fe1a923d8309dab15e75c1e5966f9889916c75405d9fee36f842dc3e5;
+helperd845e107...; expectedInputs319d71ed...281611bytes. Reviewer independently
+recomputed contract and all38loggedIDs/order/pins; normalroot absent, noactual
+phase/selected312 inreview. Low test-quality caveat: ctypesobject/int inequality
+does not prove numericdifference; realDuplicateHandle source is verified, so
+not a blocker for exactD2. No mid-handoff reseal for that cosmetic strengthening.
+Read finalcheckpoint for command/result gate. All fullqualification flags false.
+
+### SR4 actual D2 failure — reopened ownership design, approval pending2026-10-28
+
+User executed the ONE authorized exact D2 block. It is now consumed/failed;
+never retry it or proceed to D3. Actual38cases10.874s:36PASS/1FAIL/1ERROR,
+0skips/exclusions/interruption/timeout/captureloss. All21new regressions pass;
+actual selectedchild identity roles match. Original nested-fixture PID read is
+empty; original tree assertion independently observes WAIT_TIMEOUT258 after
+owner.stop/native_exit_proved=true. Child ORgrandchild is affected; the generic
+loop does not identify which. Main raw/source/stream checks and independent
+judge agree FIX-FIRST. D1 checkbox reopened: controller work remains observed,
+but its promised complete-descendant boundary is contradicted under selected312.
+There is no production-code change or test edit in this result review.
+
+TARGET: identify the precise descendant ownership/exit discontinuity and repair
+the independently confirmed readiness publication race without weakening native
+exit assertions or changing old evidence. A diagnostic's completion criterion
+is complete per-role evidence, NOT a passing stage label or an automatic retry.
+
+EVIDENCE: one normal-host runtime family (receipt/unitlog/4commands/8streams and
+its copies), implementation+fixture source, and independent Microsoft API
+contracts. The independent review shares the first two families, not a third
+runtime witness. Source/636files/38IDs/order/current protected guards verified;
+one-root positive frame does not prove descendants. Failingcase ledger and
+per-role membership/image/creation/wait data are UNKNOWN, not fabricated.
+
+| Option | Mechanism / main failure mode | Assessment |
+| --- | --- | --- |
+| No build | Preserve failed state and keep D3 disabled; exact cause remains unknown | Safe baseline, does not solve issue |
+| Bounded causal diagnostic plus atomic fixture publication | Observe exact role handles, membership and launch paths; repair only complete-marker publication with all assertions retained | Recommended smallest next milestone; may still return an inconclusive mechanism |
+| Controlled descendant supervisor plus explicit unsupported-profile fence | Route every supported descendant creation through a pre-assignment owner and refuse unproven paths | Potential later architecture; larger contract/maintenance cost and speculative before evidence |
+
+RECOMMENDATION: the bounded diagnostic. A larger supervisor or silently treating
+the independent wait failure as an allowed environment error is rejected now.
+Generic nested-job omission is not an explanation: Microsoft's nested Jobs/PID
+list/accounting contracts include child jobs. The current leading inference is
+a Store/venv alias/broker boundary outside the inner Job, not a confirmed fact.
+No package reinstall is supported by the passed identity/dependency/startup
+observations, and 10.874s was not a watchdog timeout.
+
+NEW proposed scope requiring approval (not a repeated D1–D3 approval request):
+
+- DR1: controller-only failure-first publication controls and a strictly test-
+  fixture-only atomic temporary-file/rename publisher correction. All original
+  17 test IDs/native assertions survive; old consumed copies/hash00c837f5... stay
+  immutable controls. Changing the LIVE previously frozen17file requires this
+  explicit authority and a new hash, not an in-place old guard/contract edit.
+- DR2: one NEW reviewed/sealed normal-account diagnostic session, not old D2.
+  Use a fresh source/output and stdlib-only root/child/grandchild fixtures. Keep
+  the original selected executable/Store image/venv bindings; compare the
+  sys.executable alias path and a same-pinned-image controlled launch where
+  identity can be preserved. No alternative interpreter or environment install.
+  Retain each role's PID, creation time, actual native image, executable/base
+  identity, exact inner IsProcessInJob, completion events, ledger, PID list and
+  accounting before/after stop. Record EVERY per-role native wait instead of
+  ending at the first failed loop assertion. Preserve 5s shutdown and60s watchdog;
+  no arbitrary sleeps, larger budgets or automatic retry. Exact-handle bounded
+  emergency cleanup is limited to proven freshly diagnostic-owned processes;
+  uncertain provenance/access is an error, never authority for a broad PID kill.
+  Record outer containment separately where safely observable; don't claim it
+  substitutes for inner ownership. No retrieval/model/native DB operation.
+- DR3: raw result review and causal recommendation. If a role is outside the
+  inner Job, return with evidence for an explicitly controlled launch/fence
+  architecture decision. If all roles are inside but native exit remains false
+  after owner success, repair only the demonstrated observation algorithm under
+  a separately reviewed implementation. Inconclusive means inconclusive, not
+  ownership passed. D3 full qualification is held until a new full ownership
+  successor actually passes every original assertion plus added controls.
+
+WEAK LINK: no failingcase per-role owner snapshot survives from this D2 run;
+the original proof artifact was written only after the failed assertion. The
+private marker read is SID-denied1003; no ACL/account workaround was attempted.
+CHEAPEST FALSIFIER: exact same-run per-role IsProcessInJob/creation/image and
+native waits, with a controlled same-image launch comparison. PIVOT: inner-
+member=true versus false selects observation-algorithm versus launch-boundary
+work; no reproduction does not select either. Feasibility must preserve exact
+handles and avoid unrelated processes. Outside-view evidence: controller314
+green did not predict this Store312 shape, so another opaque full suite has low
+information value. Pre-mortem: diagnostic-only all-pass labels or omitted roles
+would repeat the same false proof; require complete raw role records instead.
+CONFIDENCE: high in measured failure/race/proof contradiction; medium in the
+Store/alias mechanism hypothesis. No calibrated probabilities invented.
+
+STOP: no new diagnostic helper, fixture/source edit or selected runtime until
+this changed scope is approved. No oldattempt/baseline/input overwrite, reinstall,
+ACL/security/Git action, old-data deletion or unsupported blanket kill. Existing
+no-ACL cooperating-copy preservation remains the later full-stage requirement.
