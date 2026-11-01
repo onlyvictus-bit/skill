@@ -1,6 +1,495 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
-## ACTUAL D2 FAILED — consumed command; no retry or D3,2026-10-28
+## CURRENT - RP3 preparation observed SUCCESS; runtime pending, 2026-11-01
+
+Do NOT rerun RP3-Prepare-Command.ps1: this preparation is consumed. Parent
+freshly verified Inputs77769da9...135906bytes, BEFORERequest15086f76...2357236bytes,
+Diagnostics99a97258...2996bytes, statusINPUTS_PREPARED_PENDING_COPY, no Failure.
+53expected versions/680evaluated records/8history roots; cleanup-repair retains
+1240unresolved paths for existing-access cooperating BEFORE copies/readback.
+Other7roots have0unresolved paths. Recorded elapsed142.466s, finaldiagnostic
+publication outside interval. No selected3.12/sourcecopy/test/workload ran.
+RP2 remains COMPLETE; RP3 full integrated observation and ORIGINAL AFTER remain
+pending. See rp2-rp3-reuse-checkpoint-20261101/README.md and Observed-Result.json.
+User asks local Git checkpoint; use separate local checkpoint ref preserving
+active HEADfee69861/index and existing sealed inputs. No push/ACL/install/delete.
+
+## Historical issued preparation handoff - superseded by observed result
+
+## CURRENT - RP3 input-only normal handoff reviewed/issued, 2026-11-01
+
+Read ../evidence/offline-first-20261020/rp3-input-preparation-20261101.md.
+RP2 remains COMPLETE. New RP3 preparation9/9PASS plus nativeSHIP, outer
+RP3-Prepare-Command.ps1 SHA569137d48d50cbd6d969c15fb8f8109d8260eda2681472c0cf5f3c02caadf055.
+Normal root recursive-launch-rp3-20261101 remains ABSENT/UNRUN. Run only this
+externally hash-checked input-only command once under normal non-admin account;
+share Inputs/BEFORERequest path-size-SHA. All phases/history roots print times;
+deep causes retained. Fresh evidence copies/readback follow; no selected3.12,
+sourcecopy, test/workload or runtime command issued yet. No old retry/ACL/install/
+Gitwrite/deletion. Parent source680+oldpins checks and agent refusal observed.
+
+## RP2 accepted implementation record (continues below)
+
+## CURRENT - RP2 integration accepted; approved RP3 next, 2026-11-01
+
+Read ../evidence/offline-first-20261020/rp2-integration-acceptance-20261101.md.
+RP2 source integration COMPLETE after observed RED/GREEN and native SHIP.
+Final292knowledge cases:238PASS/54knownSKIP/0FAIL/ERROR;45unchanged compatibility:
+44PASS/1existing symlink-privilegeSKIP. Source/test seals and logs freshly checked.
+Accepted record .github/run-artifacts/recursive-integration-rp2-20261031/RP2-Accepted.json
+SHAfeb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369.
+Automatic guard is inside every owned root; parent Popen unchanged. Store family
+binding and exact conditional readonly Git are corrected. Existing budgets fixed.
+Next already-approved RP3: one new selected3.12 integrated proof with full stage
+timings/causes and fresh ORIGINAL BEFORE/AFTER via existing cooperating-copy method.
+RP3 command has not been built/issued or run here. No old command retry, reinstall,
+ACL/global/Git action or old-data deletion. Entire shutdown/Gate1/release remain
+unqualified until actual RP3 and its raw/preservation review complete.
+
+## Historical - RP1 actual proof accepted; approved RP2 next, 2026-10-31
+
+Read ../evidence/offline-first-20261020/rp1-actual-acceptance-20261031.md.
+RP1 scratch proof is COMPLETE: parent and independent native reviewer SHIP.
+Actual Receipt20800625...577473bytes;11commands exit0, original17 PASS17,
+matrix6PASS/36streams; two distinct root-child-grandchild chains all in inner
+Job, all native waits true, active0, cleanup complete without emergency kill.
+639source hashes and116direct evidence plus5complete embedded private records
+verified. No repeated PowerShell test/readback is needed. This audit attempt
+is consumed; preserve it unchanged. Production integration/RP3/full shutdown,
+Gate1/release/install remain incomplete. Continue already-approved RP2 with
+failure-first focused/broader checks and fresh review; no new scope approval.
+
+## Historical handoff state - superseded by actual acceptance above
+
+## CURRENT â€” expired-gate cause confirmed; audit successor under final review, 2026-10-31
+
+User supplied the pinned1706byte sidecar7c92170e and its companions: exact
+TimeoutError/E_OWNED_BOOTSTRAP_GO_DEADLINE, expected/observed identity equal,
+ready PID27140, final/go/authored marker absent, go.tmp present. This closes
+payload uncertainty. It does not prove the exact instruction at termination or
+historical C2 cause. Store smoke and original17 remain valid partial observations.
+
+Parent implemented NEW repository scratch recursive-launch-audit-20261029 with
+unchanged Store bootstrap/policy/probe. Dynamic classification checks body/token,
+identity/contract/ready/script/closed gate, exact17 source/log/capture and expired
+selected-clock deadline. Zero residue is allowed only with unchanged tests;
+final/tmp are alternatives, never both. Genuine/invalid failures remain fatal.
+Detailed timelines, raw sidecars/logs, exception chains/notes and native proofs
+are retained in accessible Diagnostics.json/md and the receipt. Per-file and
+postcheck failures accumulate without replacing the original error. Partial
+matrix logs survive unrelated invalid entries. Full raw originals remain retained.
+
+Final native review SHIP, including reporting-only final delta. Full local93run:
+92PASS,0fail/error,1known symlink skip. Final coordinator faults9/9PASS overlap
+that coverage. PowerShell final parse0errors/VerifyOnlyPASS; wrong-pin and agent
+account refusal observed before runtime. One complete handoff is now ready:
+.github/run-artifacts/recursive-launch-audit-20261029/RP1-Audit-Command.ps1,
+outer SHAc09a599985fad3f9458047bdbab539afdfa916d67eecf05068e90a001871b8e4.
+Launcher SHA8caba29baab247843a3b74805a13706bb3c21e3f10a730528edbd12bbb7b530f.
+Read evidence/offline-first-20261020/recursive-launch-audit-20261031.md.
+Issue ONE complete normal-account handoff; inspect actual raw result before RP2.
+Intended NEW normal root: C:/Users/sakth/Documents/Codex/recursive-launch-rp1-audit-20261029.
+No selected successor has run. RP1 complete/RP2 integration remain unverified;
+prior broad76PASS1accessERROR and one local symlink-unavailable skip remain.
+All consumed commands remain closed; no install, ACL/global/Git change or deletion.
+
+## HISTORICAL â€” Store-env native smoke and original17 PASS; collector stopped, 2026-10-29
+
+User executed the issued Store-env command. That attempt is now consumed; never
+rerun it. Run-Failure.json is135380bytes,
+SHA6017f1342c0debda5fccc3f9986abd5764cb4f65526c252f7df21863b53baab7.
+Parent verified all639copied source hashes and49of50evidence records:0mismatch;
+one original private test sidecar remains unreadable by the agent account.
+
+Actual selected3.12 Store metadata passed with exact LocalCache/local-packages
+USERBASE and user_siteFalse. Captured recursive smoke passed: root29620,
+child14144,grandchild12144 in the inner Job, total3, active0 after stop;
+all native/launcher waits true, native_exit_provedTrue, cleanup complete,
+no emergency termination. Unchanged original17 ran17PASS,0fail/error/skip,
+log SHAe02b92597968ff07d30e66cd25d086e9e93bc413f212027b39bf846c43df943b.
+
+Coordinator stopped afterward at collect_dispatch_failures: its broad
+*.failure.* scan treated an owned-bootstrap temporary publication as a
+recursive enter() failure and raised E_RP_RUNTIME_UNEXPECTED_ENTER_FAILURE.
+Exact retained path is run/tests-original17/retained-temp/sr3-expired-gate-mx6v_gyn/
+owned-bootstrap-7eda9d99ba3a7ee59351a97890038258cec20e82c281ac5d0e71c68e92ace407.failure.json.tmp-27140.
+Receipt binds1706bytes/SHA7c92170ea2d150de7409d53bcd3149454c3d9fe279364dd235d6fdb6eaa01650.
+Agent cannot read those bytes. The test intentionally expires startup, but the
+exact sidecar payload and unfinished-publication cause are UNVERIFIED.
+
+NEXT: normal-account DATA-ONLY readback of that pinned sidecar plus matching
+bootstrap contract/ready data and gate/marker existence. No selected runtime,
+new workload, retry, ACL change or package reinstall. Then decide a narrowly
+scoped collector correction with explicit negative-control provenance; never
+ignore all owned-bootstrap or .tmp failures. Matrix/final proof/AFTER metadata
+did not run; RP1 and RP2 integration remain incomplete. Earlier broader76PASS/
+1accessERROR caveat remains. Prior UNRUN notes below are historical.
+
+## HISTORICAL â€” Store-env correction reviewed/sealed before the consumed run
+
+Latest local work completed. NEW recursive-launch-store-env-20261029 scratch
+bootstrap035a8226/policyea17b5e/coordinator4e2be144. Final native review SHIP
+for exact launcher48a2e281 and outer
+4b10636d0dfb3834af489845ee6a0f6ad066fb7990138826e7283a1e74474e37.
+Parent/independent16sealVerifyOnlyPASS, bothparse0; malformedhash/agentSID1003
+refusedbeforePython. New normal recursive-launch-rp1-store-env-20261029 ABSENT.
+Concrete one-shot command ready for deliberate normal1001 non-admin user
+approval/execution. No selected successor run, no automatic retry of old flows.
+
+Current cause/fix evidence: exact Store-added USERBASE value is observed/validated
+in existing startup metadata BEFORE fixtures, bound into selected profile,
+preserved through descendants only with no-user-site1/siteFalse/exactpaths and
+identity/Job attestation. Wrong/unbound/duplicate/foreign values remain refused.
+Actual value still UNKNOWN until new selected metadata observation. No package,
+runtime/global/ACL or production change. Metadata4REDâ†’GREEN;policy5REDâ†’GREEN.
+Finalcombined60run59PASS0fail/error1knownsymlinkpermissionSKIP,18.178s; receipt
+60e25f853a6e91ff7f6537666871c989c7024f88f7444c2c52259bb338cf25a0.
+Positive prepare_launch/env/requestbinding and selected-entry attestation controls
+now cover the previously missed wiring. Earlier2fixturedefects retainedRED then
+corrected without changing implementation/oldassertions.
+
+Broader Windows run remains76PASS/1PermissionError reading newbootstrap failure
+JSON before recursive installroot. Thatfile laterread818bytes; unchangedstartup
+baseline21/21PASS. Cause of transient access/I/O event unknown, NOT broadgreen.
+Read recursive-launch-store-env-20261029.md for exactresult/failedoldattempt and
+newseals. Parent raw review of NEW actualreceipt is next beforeRP1 acceptance;
+RP2/fullstage/Gate1/release/install/preservation stillunqualified.
+
+## ACTUAL corrected RP1 FAILED â€” exact Store environment cause2026-10-29
+
+Do not rerun RP1-Corrected-Command.ps1. User ran it once; actual failure109583bytes
+SHA9f4b2ce33ea624386a64b3b85dafedd549051f4fc53b9a632d80871f8bdc175b at
+C:/Users/sakth/Documents/Codex/recursive-launch-rp1-corrected-20261029/Run-Failure.json.
+Parent verified39evidence records and639source hashes,0mismatch/readerror.
+Identity/deps/startup/two clock captures PASS. Early smoke stopped before first
+child at environment/E_RP1_ENV_STARTUP. Root stderr and sidecar agree; only
+unexpected recorded Python key is PYTHONUSERBASE. Remaining recursive budget
+109.475214s, so this refusal is not a timeout or slow package/data work.
+
+Tagged CPython3.12.10 PC/python_uwp.cpp220-223 inserts this key at Store startup.
+Its actual value was not recorded. Outer capture complete/notimedout and no
+postcheck/publication failure. Full three-role native cleanup proof is incomplete
+because child/grandchild readiness was never reached; do not call it successful
+cleanup. Original17/matrix/final proof/AFTER commands did NOT run. Old historical
+loststderr cause remains unproved; current environment cause is directly observed.
+
+Approved local corrective work continues in NEW recursive-launch-store-env-
+20261029/prototype only. Native design review SHIP B: extend existing selected
+startup metadata to bind exact Store USERBASE after matching its package-family
+LocalCache location; require user-siteFalse/NOUSERSITE1/exactpaths; preserve that
+value for children while rejecting changed/unbound values/duplicates/otherunsafe
+Python keys. Every selected generation attests the binding. No global env change,
+reinstall, ACL change, production integration or old-command retry. Failure-first
+metadata/profile controls observedRED then4/4GREEN; policy/contracts/build/review
+still in progress. New normal recursive-launch-rp1-store-env-20261029 staysABSENT;
+no new selected attempt has run or been authorized by merely creating this plan.
+
+## CURRENT â€” corrected RP1 reviewed/sealed; selected proof pending2026-10-29
+
+Supersedes pending-review text below: final native reviewer SHIP for EXACT
+corrected bootstrap1d6c87fc/coordinator22f59ce5, launcher d7f2e99e and outer
+db7cd1f29e00aa8a66b05faf69f6b1ef5fe1a2f5d85ae4d75b92e4b42ec88f65 in NEW
+recursive-launch-corrected-20261029. Parent FINAL40/40 focused+unchanged-contract
+checks and77/77Windows controls PASS,0fail/error/skip. FinalWindows receipt
+165050bytes dfbc6dc0d41cd58b3e2d5d7c8d8eea9a4a7a0b359ccd22f50a6fef0f56c762ba.
+Child loader failure publication added/verified without changing authored
+traceback semantics; retained REDs prove two regressions corrected. External
+15seals/parse0/wronghash/wrongSID prePython refusals observed. Normal destination
+still ABSENT; no selected3.12 proof was executed. Concrete new one-shot command
+is ready for deliberate user approval/execution. Review actual new receipt
+before RP1 acceptance/RP2. No old attempt retry or renewed automatic authority.
+
+User requested MAKE THIS RP1 SUCCESS and CONTINUE. Corrective local work uses
+NEW .github/run-artifacts/recursive-launch-corrected-20261029/prototype only.
+Consumed old RP1 and all source/runtime/evidence guards remain immutable.
+Normal readback completed: tree root ran with about9.6seconds of startup
+allowance. This refutes immediate startup expiry as the demonstrated cause of
+that failure; discarded original stderr still cannot be recovered.
+
+Two independently confirmed deadline defects are corrected in NEW scratch:
+Python3.14 QPC absolute deadlines cannot be passed as Python3.12 GetTickCount64
+deadlines; two actual selected calibration frames will conservatively map one
+shared120 budget. Root startup deadline bounds gate installation separately;
+it no longer replaces the recursive lifetime. No per-child120 reset.
+Pre-request/install failures retain bounded atomic stage/original-error records
+and root stderr. A fresh strict exact-three smoke precedes unchanged17 cases,
+compatibility matrix and final native ownership proof. Unexpected failure
+records fail the attempt; the matrix's one exact request-tamper refusal remains
+mandatory. Partial command/test logs and all5role markers remain bound.
+
+Parent observed exact corrected-core Windows77/77 PASS with0skip/failure:
+controller-windows-01/Receipt.json165050bytes SHAbe95cb3a9435c19abb904cbc99885742a94de6965f7d3b00bfa0eced904e4cd7.
+13focused controls PASS; unchanged25controller contracts PASS. These are3.14
+evidence, not selected3.12 success. Final corrected coordinator/handoff review
+and seals are pending; NEW normal recursive-launch-rp1-corrected-20261029 is
+ABSENT. Do not run any old command or claim RP1/RP2/full-stage completion.
+The old attempt's maxone is consumed; any concrete new normal-account proof is
+a distinct one-shot correction, no automatic retry. Production stays fixed.
+
+## ACTUAL RP1 FAILED â€” consumed; child startup cause still unproved2026-10-29
+
+Never rerun RP1-Runtime-Command.ps1. Actual Run-Failure.json and run/Receipt.json
+are identical95881bytes SHA63c315d3d8a6846642f7c2783d5329239e247897866987eb365293929ddf78f8.
+Parent verified all17 recorded evidence rows,4complete command captures and
+639copied source records. No timeout/capture loss/postcheck/publication error.
+Identity0.569s,dependencies1.688s,startup paths0.234s allPASS; original17group
+14.763s,17run15PASS2FAIL,0errors/skips/exclusions. Failures are nested-job missing
+native-ready marker and tree missing grandchild. Both fail before shutdown
+assertions. Matrix, dedicated descendants, final identity/dependencies did NOT run.
+
+Requests directory is empty; tree root readiness proves authored root ran.
+Localization: guarded descendant call failed before writing its first request.
+Exact exception was discarded by unchanged fixtures' stderr=DEVNULL. Root
+startup deadline narrowing is a hypothesis, not established cause. No package
+reinstall or test weakening is justified. RP2 conditional integration is blocked.
+
+Agent read of two retained fixture leaves denied: sr3-nested-job-w8m4fynk and
+sr3-owned-tree-3mm1_fl1 under normal root/run/tests-original17/retained-temp/.
+Next is a sealed normal1001 PowerShell-only readback of existing marker/contract
+files and timestamps in EXACTLY these two leaves, no recursion, Python/test/
+workload, file output, copy or ACL change. This applies the established existing-
+access cooperating reader approach to evidence data, not runtime substitution.
+Readback may narrow timing/phase but cannot recreate discarded stderr. Any new
+selected diagnostic/proof needs distinct bounded authority; approved RP1 maxone
+selected attempt is consumed, so it is not silently renewed by continuation.
+
+Readback final native review SHIP for exact PowerShell-only handoff. Script
+d03838913bb6482470b8ea720be47261fa0f6384aca9d1876cdd014c375d2345;
+outer a49a7dca4fd3084a09019fc24d576dbf798bb3dbeefc36fcf63f63839ef0e1f6
+under .github/run-artifacts/recursive-launch-20261028/.3controller checks PASS,
+both parse0/fourpinVerifyOnlyPASS; actual wrongagentSID refuses before private
+read. Issue only this readback outer in normal non-admin1001. It prints bounded
+JSON with existing file data/metadata; no Python/test/new selected attempt or
+file write. The consumed selected attempt is explicitly preserved. Inspect
+readback before any new diagnostic design/authority; never rerun old RP1.
+
+## ISSUED RP1 runtime handoff â€” exact native review SHIP2026-10-29
+
+Supersedes pending-review text below. Native reviewer cleared EXACT outer
+RP1-Runtime-Command.ps1 SHAb8e976981709d9475a5a6f2d57047ac01f019d2858f058c49bfa4e67a329a419
+under .github/run-artifacts/recursive-launch-20261028/ for ONE normal1001
+non-admin RP1 selected3.12 scratch proof. Inner launcher c52a50d2, successor
+ef59eee3 and prepared Inputs60b392e4 are immutable. Both PowerShell files parse0,
+VerifyOnly11pinsPASS. Native wronghash/foreignselector/wrongSID controls refuse
+beforePython. Final combined59run58PASS1known symlink-creation skip; focused11/11.
+Previous unchanged-core77/77Windows tests remain controller-only evidence.
+
+Normal root C:/Users/sakth/Documents/Codex/recursive-launch-rp1-20261029 still
+contains only Inputs.json. Selected proof/claim UNRUN. User runs externally
+hash-checked outer ONCE; it verifies then executes only the new successor.
+Phase elapsed seconds print on completion. On failure preserve/share root
+Run-Failure.json, partial run/Receipt.json if present, and console; no retry.
+Zero exit remains OBSERVED_PENDING_RAW_REVIEW. Parent verifies complete raw
+evidence before conditional RP2 integration; RP3 original BEFORE/AFTER copy
+preservation and full stage/Gate1/release/install remain separate. No repeat
+scope approval, production edit, reinstall, ACL/global/Git change or old deletion.
+
+## Latest RP1 â€” actual input preparation accepted; runtime handoff review2026-10-29
+
+User ran the input-only command once. Actual normal Inputs.json369408bytes,
+SHA60b392e49bd7a0de42847b92150dcb590c89806e4d4836a506f38072cbae6bfd
+at C:/Users/sakth/Documents/Codex/recursive-launch-rp1-20261029/Inputs.json.
+Parent verified bytes/hash, all14 bound file rows, current readable authority,
+627base files plus sealed repair composition637,53declared dependencies and
+all false qualification flags. Normal preparation observed the mandatory alias
+metadata; the agent did not repeat that denied original-path absence check.
+Only Inputs.json exists in the normal root; no selected RP1 attempt has run.
+
+Keep the consumed preparation code/launcher/Inputs fixed. A separate runtime
+successor recursive_runtime_verification.py closes final-review findings:
+closed selected startup environment before claim; retained postclaim mkdir/
+publication errors; exact17 IDs/log binding; complete6method/9pair/36stream
+matrix; Command/returned-stream/file agreement; Probe/Result/five marker binding;
+claim and all evidence rechecked AFTER. Partial publication advertises the
+complete root Run-Failure, never a truncated receipt. Phase times print on exit.
+Original17 assertions and all live production bytes stay unchanged.
+
+Observed controller evidence: initial fault checks5/5PASS; combined58run57PASS,
+1existing real-symlink-creation skip; subsequent bounded publication RED11run1FAIL
+then GREEN11/11. Scratch-core77/77Windows proof remains the prior unchanged-core
+receipt, not a selected3.12 result. Runtime successor ef59eee3, launcher c52a50d2,
+outer b8e97698 parse/hash verification PASS; exact final native handoff review is
+pending. Do not issue or execute until that review clears. RP1â€“RP3 remains
+approved; no new approval for the same range. RP2 waits for passing selected
+proof/raw review; RP3 retains fresh ORIGINAL cooperating-copy BEFORE/AFTER.
+
+## Latest RP1 â€” strict controller proof complete; normal input-only handoff2026-10-29
+
+RP1â€“RP3 remains approved. Read recursive-launch-rp1-20261029.md latest section.
+Current strict scratch bootstrap f6500cd3:77/77Windows checks PASS on exact639
+file copy controller-final-11, live originals unchanged. Receipt6f5afb4f43edaebf7852ddfb3b11ba539304f373a12ec210eb58f8eeede5975f.
+Actual agent Candidate stopped at the original Store alias directory's WinError5.
+Keep that metadata check; never skip, assume absent, or change permissions.
+
+Fresh native input-only review SHIP after controller isolation RED/GREEN.
+RP1-Prepare-Inputs.ps1 SHA97a4f2b0a207b604473d80c22a5cc12de0d248f505ed7d97e087221b2f79b92f;
+outer RP1-Prepare-Command.ps1 SHAb6ed010a546c515c94bb40a8a395dfcf50330a818c2da42ec3f2d91e0d06d3c1.
+Both are in .github/run-artifacts/recursive-launch-20261028/. Use ONLY this
+new INPUT-ONLY block in normal non-admin1001. No selected312 or workload runs.
+Expected new output: C:/Users/sakth/Documents/Codex/recursive-launch-rp1-20261029/Inputs.json.
+Root freshly absent; no normal preparation/attempt consumed. Stop on failure;
+do not retry/change guards. Share input path/size/SHA, then parent reviews bytes
+and full runtime coordinator before issuing ONE separate RP1 selected proof.
+Runtime Run/probe handoff NOT cleared or issued. RP2 integration waits for a
+passing selected proof/review; RP3 keeps original BEFORE/AFTER copy preservation.
+No install/ACL/Git/global changes, old deletion, production edits or stage claim.
+
+## RP1â€“RP3 APPROVED â€” scratch startup falsifiers active2026-10-29
+
+AUTH: user answered "Approve RP1â€“RP3 (Recommended)". No repeat approval gate
+inside this range. RP1 scratch/controller checks precede at most one fresh
+normal-account selected3.12 prototype proof. RP2 integration requires that
+proof and review to pass; RP3 is one distinct integrated qualification with
+fresh ORIGINAL BEFORE/AFTER cooperating-account copy preservation.
+Existing DR/old attempts are consumed. All live production code stays fixed
+during RP1. Baseline is .github/run-artifacts/recursive-launch-20261028/Baseline.json.
+Current native review requires startup/import shadow and missing/tampered
+recursive gate controls before positive-path implementation. No selected3.12
+execution from agent, install, permission/Git/global change, or old-data deletion.
+INTENT: select the exact native executable for every supported Python child
+while preserving selected-venv identity and public command behavior.
+Stage/Gate1/release/install remain false until their observed criteria pass.
+
+## ACTUAL DR COMPLETE â€” alias descendants outside Job; production fix pending2026-10-28
+
+DO NOT rerun DR-Diagnostic-Command.ps1. User executed it once. Actual receipt
+136045bytes SHA54782c5c8e81dc751b4a4630272b2c067ede4720a4123993d7ca27f379aa3e21;
+Inputs965ad98e. Parent and native actual-result judge verified all6Command/12
+streams, both Probe/stdout/receipt bindings,637copied source files,53dependencies
+and stable before/after identity. No main/postcheck failure, timeout or capture
+loss. Current direct source/runtime/protected/old critical guard check PASS.
+
+The paired witness now identifies the ownership failure boundary:
+- Alias: root32528 inside Job; child23492/launcher32148 and grandchild4908/
+  launcher16216 OUTSIDE. Stop proved only1root; all4descendant handles remained
+  nonsignalled until diagnostic emergency termination. Final cleanup complete.
+- Exact native image: root2356,child20564,grandchild45100 inside Job, accounting3,
+  proof records3, all independent immediate waits signalled. No emergency kill.
+Same selected3.12.10/venv/dependencies. This establishes the selected launch-route
+escape in this one paired fixture; no generic Windows/nested-job bug, exact OS
+activation cause or historical C2 cleanup cause is proved. Production ownership
+contract remains unsatisfied; all full-stage/Gate1/release/install flags false.
+
+Actual observation saved .github/run-artifacts/shutdown-descendant-20261028/
+Actual-Observation.json SHAee5038850b80a41d1e600dd5fa17e5a70304252ef19d8f779622fc4e8544723e.
+Native actual-result verdict FIX-FIRST, agrees with all above and no new runtime
+was executed by review. Read END of same release plan for proposed RP1â€“RP3:
+exact-native descendant executable override plus explicit sealed recursive
+pre-authored bootstrap, preserving existing sys.executable/venv/argv/protocol.
+Bare sitecustomize/root-only/fixture-only changes cannot qualify the repair.
+RP design/implementation needs new approval: approved DR1â€“DR3 explicitly ends
+with this evidence and architecture decision, excluding production redesign.
+Proposed RP1â€“RP3 includes controller checks plus at most ONE new normal312
+scratch proof in RP1 before integration, and ONE later integrated normal
+qualification in RP3. It explicitly compares argv/path0/__main__/__file__ and
+script/-c/-m/stdio/exit/exception semantics against the same-native CPython
+control. No controller-only clearance for selected feasibility or auto retries.
+No RP code, selected-runtime retry, environment/install/ACL/Git/delete change
+has been made. Existing no-ACL cooperating-copy preservation remains required
+for the later full qualification. Do not repeat completed DR or old D2 work.
+
+## ISSUED â€” exact reviewed DR command; normal diagnostic UNRUN2026-10-28
+
+Final native verdict SHIP for the EXACT sealed DR-Diagnostic-Command.ps1 ONCE
+from normal non-admin account1001. Reviewer independently rebuilt candidate
+361923bytes SHA965ad98ef311051c052ee87262bb6e35e580c8baec4a81a6ce9f7fabd267be8e,
+checked all six external file seals and both PowerShell parse trees (0errors),
+and confirmed normalroot absent. No source/schema/cleanup/launcher blocker left.
+Retained Final-Review.json records narrow clearance; Handoff-Seal-Checks.json
+retains parent static checks and expected wrong-account VerifyOnly refusal.
+
+Run ONLY .github/run-artifacts/shutdown-descendant-20261028/DR-Diagnostic-Command.ps1,
+SHA bdb9322f0357fd4073eb4400153349dd135b417ad3cb556c640cb2484d575fe8.
+It pins PowerShell362a356c and launcher
+d6a3eea98ba8fabb1dfe427cfb72cc085deac1bdef315799a4210f150abed6be,
+then VerifyOnly, recheck, one Prepare/Run diagnostic. Output root:
+C:/Users/sakth/Documents/Codex/shutdown-descendant-20261028.
+Normal VerifyOnly/Prepare/Run and actual selected312 remain UNRUN at issue.
+On either success/failure preserve console, run/Receipt.json and both arm reports;
+no automatic retry or guard edits. Parent actual-result review must follow.
+No old D2 retry, production ownership edit, D3/fullstage/Gate1/release/install or
+preservation qualification is cleared. User DR1â€“DR3 approval remains valid.
+
+### Final source review and retained observations
+
+User GO ON resumed the existing approved DR1â€“DR3 range. Same native reviewer
+resumed successfully; prior credit failure is historical. It found one final
+causal-evidence gap: repr(error) loses PEP678 cleanup notes added by the owner.
+Parent reproduced RED, added one deterministic bounded primary+notes formatter
+to the new probe catches only, then observed combined27/27 GREEN (16probe,
+11coordinator; no skips/errors/failures/exclusions). Source review cleared the
+corrected bytes; production ownership/bootstrap and old consumed inputs remain
+unchanged. All stage/ownership/Gate1/release/install claims remain false.
+
+Final probe636191503c191c44e0138d4a0ca551fcbd8c1c88fa40a03935501546d3ce5a9b;
+coordinator930af734b37114b933c76753c35fe5f8b4e50eb1f3ad83684c0b4f3112fc4be0.
+Candidate read-only direct guards PASS,361923bytes SHA
+965ad98ef311051c052ee87262bb6e35e580c8baec4a81a6ce9f7fabd267be8e.
+Launcher mechanically frozen d6a3eea98ba8fabb1dfe427cfb72cc085deac1bdef315799a4210f150abed6be;
+outer command DR-Diagnostic-Command.ps1 SHA
+bdb9322f0357fd4073eb4400153349dd135b417ad3cb556c640cb2484d575fe8.
+Both parse with0errors. Agent1003/nonadmin VerifyOnly correctly REFUSED before
+Python/output; normal VerifyOnly UNRUN. All outer/static seals rechecked;
+Handoff-Seal-Checks.json SHAce9ffab1cacfd6c1ef3c4d1340fc6a7e857bac56963aaf83fec5527a0aae147b.
+New normal root remains ABSENT at issue. Final exact-launcher clearance and issued
+command are recorded above. No new scope approval needed inside approved DR.
+
+## CURRENT â€” controller verified; final probe review unavailable; no command issued2026-10-28
+
+Resume final native probe/seal/launcher review only. Existing Sol reviewer cleared
+the atomic publisher correction and coordinator source/record/copy fixes, then
+stopped with workspace out of credits. FINAL PROBE REVIEW IS NOT_PASSED. Parent
+completed remaining bounded probe fixes and tests; do not treat the earlier
+eight-test draft as final clearance or issue a runtime command from this record.
+
+Latest parent probe15/15 PASS and coordinator11/11 PASS. These include actual
+controller314 alias/image fixtures and separate outer captures, exact entry/Popen
+PID binding, normalized sealed launcher intent despite CPython consumption,
+strict report/provenance/cleanup validation, exact independent launcher handles,
+immediate post-stop waits, one shared emergency5 deadline, retained close debt,
+and untrusted-handle refusal. Original17/startup21/atomic2 remain GREEN. Broader
+knowledge275run221PASS54existingSKIP,0fail/error. Real source copy637files verified.
+
+Read-only candidate build (all direct source/runtime/protected/old critical
+history guards) PASS:361923bytes, SHA
+0cabf116954056619fb3ebdb6fa0a2ddc5d1fa8f579cb2d0fd77f5d6d7c283fd.
+No newnormal root/Inputs/claim/runtime exists. New launcher stays deliberately
+FREEZE_AFTER_REVIEW, NOT issued. No selected312 from agent, oldD2retry, D3,
+production edit, install/ACL/Git/delete or budget increase. User authority for
+DR1â€“DR3 and exactfee->f63 transition remains valid; no repeat approval needed.
+See evidence/offline-first-20261020/shutdown-descendant-20261028.md and private
+.github/run-artifacts/shutdown-descendant-20261028/Candidate-Verification.json.
+
+### Approved scope and atomic correction
+
+AUTH: user "CONTINUE" approved the existing DR1â€“DR3 diagnostic and atomic
+readiness-publication correction; user separately said "Approve this exact
+checkpoint transition" for fee69861e1f94c54721e5eb773633f9b1d6f9fd3,
+the direct child of f63f624. Only the NEW verifier accepts that exact transition.
+Evaluated source remains a38297d plus sealed SR4 repair bytes and the explicitly
+approved test-fixture delta. Old helpers/contracts/source/consumed D2 unchanged.
+
+Parent observed real publisher RED: two failures exposed final nested.pid visible
+empty before the write completed. Only the generated publisher now writes a
+sibling pending file, closes it, then renames it to the final marker. Two GREEN
+controls verify invisibility until complete and byte-inverse restoration of exact
+00c837f5 original17 source. Original17 IDs and all native assertions retained.
+Independent native read-only review accepted this scoped fixture correction.
+Current fixture SHA0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994.
+Controller314 original17 and startup21 each PASS; selected312 remains UNRUN.
+Production owner d9f8cf4a and bootstrap a7fa933c hashes remain unchanged.
+
+New .github/scripts/shutdown_descendant_diagnostic.py and native probe are being
+tested/reviewed. Each launch arm must separately capture actual entry versus
+Popen launcher identity, exact creation/image/venv roles, non-draining pre-stop
+Job membership, ledger/accounting, and ALL independent post-stop waits. First
+arm incomplete cleanup stops the next. Exact native outer Store image is pinned
+separately and must match probe entry PID; any-Job admission precedes fixtures.
+No selected312, old D2 retry, production ownership edit, install/ACL/Git/delete,
+new timeout or D3 qualification is authorized by this diagnostic. Diagnostic
+classification remains NOT_FIXED/inconclusive; full stage/Gate1 flags false.
+
+## ACTUAL D2 FAILED â€” consumed command; no retry or D3,2026-10-28
 
 Supersedes every ready/root-absent/runtime-unrun statement below. User executed
 the exact D2 block once. Receipt107774bytes SHA
@@ -16,7 +505,7 @@ The two ORIGINAL17 outcomes must not be hidden:
 
 - Nested test226 read `int('')`: writer creates/truncates nested.pid before
   complete bytes; _wait_file observes existence only. Confirmed fixture race.
-- Tree test71–73: owner.stop returned, native_exit_proved=true, but independent
+- Tree test71â€“73: owner.stop returned, native_exit_proved=true, but independent
   process-handle wait returned258. Root is independently pinned and signalled;
   child ORgrandchild was nonsignalled. The loop did not log which. Do not name
   the child specifically or infer both survived/permanent orphaning.
@@ -43,7 +532,7 @@ result review. New approval is for the changed diagnostic/frozen-fixture scope,
 not reapproval of old work or permission to rerun consumed D2. D3 stays blocked.
 Retained observation: .github/run-artifacts/sr4/D2-Failed-Observation.json.
 
-## ISSUED NEXT — SR4-D2 exact reviewed host command; runtime UNRUN2026-10-28
+## ISSUED NEXT â€” SR4-D2 exact reviewed host command; runtime UNRUN2026-10-28
 
 Supersedes final-review-pending and old candidate hashes below. Native read-only
 final review: SHIP EXACT ONE new D2 ownership/startup observation, no Critical/
@@ -65,15 +554,15 @@ After actual observation parent must review rawreceipt/streams/fullunitlog/
 childframe/protectedsource/runtime and exact38cases BEFORE any D3handoff.
 Then D3 retains all74original+21new/fullpublic/freshORIGINAL BEFORE-AFTER and
 the existing no-ACL cooperating-copy preservation method. No reapproval needed
-inside user-approved D1–D3. No oldattempt retry/install/ACL/Git/delete/budgetchange.
+inside user-approved D1â€“D3. No oldattempt retry/install/ACL/Git/delete/budgetchange.
 Low nonblocking test caveat retained: typed ctypes/int inequality is type-driven;
 real productionDuplicateHandle and other native controls were inspected. Do not
 change frozen tests just to strengthen that assertion mid-handoff; re-review
 would be required. All stage/Gate1/release/install/preservation claims false.
 
-## LATEST — SR4 controller repair verified; final review pending2026-10-28
+## LATEST â€” SR4 controller repair verified; final review pending2026-10-28
 
-The approved D1–D3 range remains active. Resume, do not restart or re-approve.
+The approved D1â€“D3 range remains active. Resume, do not restart or re-approve.
 Native implementation was interrupted by workspace credits; parent preserved
 its partial files and completed the local correction. Parent owns D1/D2 now;
 the old implementation worker was explicitly told not to edit concurrently.
@@ -107,7 +596,7 @@ No D2 normal root, Prepare, Run, selected312, old retry, install, ACL/security,
 Git or original deletion. Stage/Gate1/release/install remain false. Finish exact
 review/seals, then one normal D2 observation; only its observed pass allows D3.
 
-## CURRENT — SR4-D1–D3 approved; controller failure-first repair2026-10-27
+## CURRENT â€” SR4-D1â€“D3 approved; controller failure-first repair2026-10-27
 
 AUTH: user said "aprove" to the full bounded SR4-D1/D2/D3 description. Do not
 repeat approval within that range. Existing worktree/plan reused; no install,
@@ -129,7 +618,7 @@ NEW D2 ownership-only helper after source stabilizes and independentreview.
 D2 normal observation must pass before D3 full controls/public/newBEFORE-AFTER.
 No stage/Gate1/release/install completion claim follows from approval or TDD.
 
-## CURRENT — SC3 CONSUMED FAILED: bootstrap base-role check2026-10-27
+## CURRENT â€” SC3 CONSUMED FAILED: bootstrap base-role check2026-10-27
 
 Do NOT repeat SC3-Run-Command.txt or oldSR3. User ran reviewed block ONCE.
 Receipt10011bytes SHAbeab04ef2dde95a01cc25ed21eedf6ff79c3e50c2aceacaf2cd2f74dc4fc76d2.
@@ -175,7 +664,7 @@ oldcases. Approval pending for this changed security/startup contract; no old
 Runretry/newruntime approved by review alone. Stage/Gate1/release/install
 and historicalC2cause remainfalse; selected312 DID run this failed17case group.
 
-## CURRENT — actual normal BEFORE verified; ONE reviewed runtime ready2026-10-27
+## CURRENT â€” actual normal BEFORE verified; ONE reviewed runtime ready2026-10-27
 
 Supersedes pendingreadback/Bundleabsent below. User ran exact VerifyBefore ONCE;
 SC_BEFORE_VERIFIED_NO_WORKLOAD. Actual BEFORE/Bundle.json3092807bytes
@@ -213,7 +702,7 @@ remain mandatory before focusedstage. Run/AFTER/Final absent now. Priorfocused
 21/DATA12/copy106 pass; broader492/0FAIL/12oldAPI+pinERRORS NOTGREEN, notrerun.
 Stage/Gate1/release/install/producer/historicalC2cause remain false.
 
-## CURRENT — BEFORE copies complete; normal byte readback pending2026-10-27
+## CURRENT â€” BEFORE copies complete; normal byte readback pending2026-10-27
 
 Supersedes copy-running status below. Actual CopyBefore ran ONCE and completed
 exit0, SC_COPIES_REQUIRE_NORMAL_READBACK. Outer BEFORE/reader-copy/Copies.json
@@ -246,7 +735,7 @@ later mandatory observations. No source/helper/test change, ACL/install/Git/
 delete/budget change or retry. Prior492controller0FAIL12old errors NOTGREEN;
 stage/Gate1/release/install/producer/historicalC2cause remain false.
 
-## CURRENT — normal BindPolicy verified; BEFORE source copy running2026-10-27
+## CURRENT â€” normal BindPolicy verified; BEFORE source copy running2026-10-27
 
 User executed reviewed normal block once, status SC_POLICY_BOUND_INPUTS_ONLY_
 NO_COPY_OR_RUNTIME. Actual Policy-Inputs.json822007bytes
@@ -278,7 +767,7 @@ unchanged pins. Only then issue separately reviewed normal VerifyBefore with
 actual external Copies.json seal. Failure stops without retries/deletion/ACL
 changes. No Bundle may publish until normal byte-readback and positive guards.
 
-## CURRENT — actual BEFORE/inspection pass; ONE normal BindPolicy ready2026-10-27
+## CURRENT â€” actual BEFORE/inspection pass; ONE normal BindPolicy ready2026-10-27
 
 Supersedes root-absent/Before-unrun status below. User ran the exact sealed
 Before-only command successfully; no selected312/tests/copy ran. Parent matched
@@ -321,7 +810,7 @@ against hostile concurrent writers; child-file/lineage review is still mandatory
 before copy. Both hashes printed by normal binding must be shared/read back.
 On failure preserve output, never retry/reset markers or weaken old guards.
 
-## LATEST — SC1 reviewed; ONE sealed normal BEFORE-only command2026-10-27
+## LATEST â€” SC1 reviewed; ONE sealed normal BEFORE-only command2026-10-27
 
 Supersedes implementation-approval-pending statements below. User "start"
 approved SC1-SC3, then explicitly "Approve the exact transition" for checkout
@@ -371,7 +860,7 @@ Use existing pinned PS7, VerifyOnly then one Before invocation. Actual Inputs/
 Request must be reviewed before a source-reader, bind or copy command. A
 successful request is not runtime proof; preserve failures and never retry.
 
-## CORRECTION — reuse verified no-ACL copy route for new SR3 evidence2026-10-27
+## CORRECTION â€” reuse verified no-ACL copy route for new SR3 evidence2026-10-27
 
 The user's correction supersedes the permission-repair recommendation below.
 An existing cooperating-account copy/readback mechanism already solved the old
@@ -398,7 +887,7 @@ boundary precedes code. Do not re-ask user to choose ACL repair. Old W/H1 comman
 also remain consumed/historical, not commands to rerun for newer evidence.
 Actual selected3.12/focused stage/Gate1/release/install remain unverified.
 
-## STOP — SR3 preparation consumed; retained-fixture ACL conflict2026-10-27
+## STOP â€” SR3 preparation consumed; retained-fixture ACL conflict2026-10-27
 
 Supersedes the ready-to-run handoff immediately below. User ran the exact sealed
 SR3 command once. Seals/account checks passed; input preparation failed BEFORE
@@ -428,7 +917,7 @@ to preservation design. No ACL edit, blanket grant/reset, admin rerun, skipped
 history, source change or retry was taken. Existing code/controller-native proof
 remains; actual selected3.12/focused stage/Gate1/release/install remain unverified.
 
-## LATEST — SR3 repair implemented/reviewed; selected3.12 confirmation pending2026-10-27
+## LATEST â€” SR3 repair implemented/reviewed; selected3.12 confirmation pending2026-10-27
 
 Supersedes the unwired/in-progress implementation text below. Approved SR3 now
 integrates the exact reviewed SR2 synchronous writer cancellation with direct
@@ -472,7 +961,7 @@ Do not restart SR1/SR2 or any consumed C1/C2/CR3/stack/TC1/MP1 command. No insta
 ACL/security/Git action or old-data deletion. See existing cleanup-repair report's
 latest SR3 section for hashes, RED/GREEN evidence and exact nonpass accounting.
 
-## CURRENT — MP1 consumed; bounded shutdown repair authorized2026-10-26
+## CURRENT â€” MP1 consumed; bounded shutdown repair authorized2026-10-26
 
 User said "start fixing , i will give some more idea for this fix". Read the
 existing plan's SR section. MP1 runtime is now CONSUMED, not unrun: Receipt9846
@@ -508,7 +997,7 @@ install, permission bypass, timeout increase or qualification.
 Current stage/Gate1/release/install remain incomplete. All historical UNRUN
 instructions below MUST NOT be executed again. Do not restart completed SR1/SR2.
 
-## Historical — MP1 Inputs verified; runtime handoff before consumed run
+## Historical â€” MP1 Inputs verified; runtime handoff before consumed run
 
 Preparation is CONSUMED. NEVER rerun Run-Cleanup-Membership-Prepare.ps1. Actual
 Inputs175926bytes SHA457fc256b81f52572695b787344cd5778f3bd06bdc14939b5416508ceeacf5a4
@@ -534,7 +1023,7 @@ Use the same sealed existing PS7 outer route: hash shell362a356c and new runtime
 launcher0738e951 before VerifyOnly; check child exit; rehash BOTH immediately before
 ONE actual invocation; check exit. Preserve/share any failure, no retry or fallback.
 
-## Historical — MP1 reviewed INPUT-ONLY handoff cleared2026-10-26
+## Historical â€” MP1 reviewed INPUT-ONLY handoff cleared2026-10-26
 
 Resume ONLY the new externally sealed MP1 INPUT-ONLY preparation in a normal,
 non-admin account. Final exact launcher review is SHIP_WITH_CAVEATS; no new
@@ -565,7 +1054,7 @@ preparation checks remain mandatory. Return actual Inputs path/size/SHA before
 any runtime launcher freeze. No old command, new source overlay, install, Git,
 security change or deletion. Rootcause/fix/stage/Gate1/release/install stay false.
 
-## Historical — TC1 consumed; MP1 review continuation2026-10-25
+## Historical â€” TC1 consumed; MP1 review continuation2026-10-25
 
 Do NOT rerun timing/preparation/stack/CR3/C2 commands. TC1 Receipt91344bytes SHA
 6d58fc03166bf752bfa60d2a8f8b4b6b724d1cc5c8132c75018f0372c4bd9b11 is
@@ -595,7 +1084,7 @@ MP1 final-review section. Selected runtime and all product/stage flags stay fals
 Run-Cleanup-Membership-Prepare.ps1 remains FREEZE_AFTER_REVIEW, MP1 root absent.
 DO NOT run or issue it until native tests/broader evidence/final review/seals pass.
 
-## Historical — TC1 prepared; exact runtime handoff cleared2026-10-24
+## Historical â€” TC1 prepared; exact runtime handoff cleared2026-10-24
 
 Preparation is CONSUMED: Inputs85251bytes SHA
 cf45dfde1fae5d2bb5f601a8d54c4fa68e62d5db35e3248ffe9bdfecf9476d62.
@@ -617,7 +1106,7 @@ No selected runtime or timing attempt started by agent. Rootcause/fix/stage/Gate
 remain UNVERIFIED. Existing23guards/390controller evidence is retained prior proof,
 not freshly rerun; helper883ec3cd/observer00ee0acf/source/Inputs remain unchanged.
 
-## Historical — TC1 timing implemented; input-only handoff2026-10-24
+## Historical â€” TC1 timing implemented; input-only handoff2026-10-24
 
 User approved TC1 process/stage timing. New cleanup_timing_observer.py and
 cleanup_timing_diagnostic.py reuse the unchanged logger and creation-time probe,
@@ -642,7 +1131,7 @@ Git write, deletion, baseline/pin weakening or deadline changes. TC1 actual
 measurement and RC2/RC3 proof remain incomplete. Read cleanup-repair-20261023.md
 latest TC1 section for hashes, local timing scope, guard/review evidence.
 
-## Historical — stack consumed, timing proposal before approval2026-10-24
+## Historical â€” stack consumed, timing proposal before approval2026-10-24
 
 Do NOT rerun stack/prepare/CR3/C2/N3/old timing launchers. New stack Receipt8462
 SHA c803e2fa4010837398be9448a44013181040f4eb576105c6d4e3e29449189b8a,
@@ -661,7 +1150,7 @@ existing logger + new exact-copy timing adapter + original-error-before-close,
 same budgets and retained pins. Approval before instrumentation/new host run.
 No new production/timing code or install; stage/Gate1/release/install false.
 
-## LATEST — one reviewed/frozen normal stack diagnostic; UNRUN2026-10-24
+## LATEST â€” one reviewed/frozen normal stack diagnostic; UNRUN2026-10-24
 
 Do NOT rerun input preparation. User Inputs189744bytes SHA
 ead95373d25ee2750a10c52e4e2bbf7cf3cabb087166b00df2533458bec27075 verified;
@@ -680,7 +1169,7 @@ normal-stack/Receipt.json and tests/Slow-Stack.log. No old CR3/C2/N3 or prepare
 retry, marker deletion, guard/policy bypass. Timeout captured is NOT_FIXED;
 rootcause/fix/stage not complete.13guards/broad367not rerun,7pin errors retained.
 
-## CURRENT — CR3 consumed; blocked-writer root-cause diagnosis approved2026-10-24
+## CURRENT â€” CR3 consumed; blocked-writer root-cause diagnosis approved2026-10-24
 
 Do NOT rerun Run-Cleanup-Repair.ps1. Actual failed Receipt168066bytes SHA
 d214498c4e7ff2b613ebb933c4174e7c19a3125dc60350c34c1c5491d456c9d7 is retained.
@@ -691,7 +1180,7 @@ no repaired-ordered call. All8streams,627/629source copies and named protection
 were independently verified. Exact blocked frame/cause UNKNOWN, not guessed.
 
 User now requests Deep Plan to find root cause/fix/complete this stage. Existing
-plan's RC1–RC3 records target, distinct options, evidence families, falsifier,
+plan's RC1â€“RC3 records target, distinct options, evidence families, falsifier,
 pivot and completion gates. Next RC1 reuses existing --stack-after10, unchanged
 60watchdog and same12cases against verified frozen source, NEW sealed output;
 no production edit until observed cause. Selected runtime remains host-only;
@@ -715,7 +1204,7 @@ new outer-hash-checked prepare command in normal non-admin PowerShell. Return
 printed Inputs path/size/hash; no selected3.12/test/diagnostic claim is started.
 Do not precreate/retry/delete/bypass guards. Runtime launcher remains FREEZE.
 
-## CURRENT — reviewed/frozen CR3 normal-account handoff; runtime UNRUN2026-10-24
+## CURRENT â€” reviewed/frozen CR3 normal-account handoff; runtime UNRUN2026-10-24
 
 Do not restart the repair or old commands. All3review findings corrected with
 observed RED/GREEN; fresh reviewer cleared code for this one focused handoff.
@@ -736,13 +1225,13 @@ records agree. This clears issuing only the new focused command, not its result.
 NEXT: outer-hash-check ONLY this new launcher in NORMAL NON-ADMIN PowerShell,
 VerifyOnly then invoke ONCE. Preserve/share normal-comparison/Receipt.json and
 console; stop on any failure, no retry/removal/guard or execution-policy bypass.
-Old N3/C1/C2 remain consumed/read-only. CR1–CR3 scope already approved. Actual
+Old N3/C1/C2 remain consumed/read-only. CR1â€“CR3 scope already approved. Actual
 selected3.12 outcome and historical C2cause UNKNOWN; Gate1/release/install false.
 Full evidence/seals: ../evidence/offline-first-20261020/cleanup-repair-20261023.md.
 
-## LATEST — review findings cleared; CR3 seals pending2026-10-24
+## LATEST â€” review findings cleared; CR3 seals pending2026-10-24
 
-Continue the already approved CR1–CR3, not old C1/C2. Three concrete review
+Continue the already approved CR1â€“CR3, not old C1/C2. Three concrete review
 findings now have retained RED/GREEN: original error masked by handle closure,
 unrelated/misplaced failure accepted as negative control, and post-output setup
 escaping final receipt. Current focused12lifecycle/error and11handoff guards
@@ -756,9 +1245,9 @@ Read cleanup-repair-20261023.md for exact evidence. Do not issue a placeholder
 launcher or infer Gate1/release/install qualification. No Git/security/install
 or old-data deletion action authorized or performed.
 
-## LATEST — approved CR1 reproduced; CR2 lifecycle correction under review2026-10-23
+## LATEST â€” approved CR1 reproduced; CR2 lifecycle correction under review2026-10-23
 
-User approved CR1–CR3 with `approve`, then continued. The next older section's
+User approved CR1â€“CR3 with `approve`, then continued. The next older section's
 "approval pending/no implementation" status is HISTORICAL, superseded here.
 Real stdlib two-PID controls reproduced the launcher/interpreter exit gap;
 both originally RED. Windows-only suspended-start owned-job + orderlyEOF/
@@ -775,7 +1264,7 @@ command. Do not execute old N3/C1/C2 or mutate their contracts/attempts.
 Historical C2 cleanup OS cause/holder still unknown. Gate1/release/install false.
 No commit/push, install, deletion, permissions/trust change was performed.
 
-## Latest — targeted cleanup repair description awaiting approval, 2026-10-23
+## Latest â€” targeted cleanup repair description awaiting approval, 2026-10-23
 
 User requested SOLVE THAT ERROR with Fable Method and Brainstorming. No
 implementation yet: read the existing design's new "C2 cleanup repair
@@ -792,7 +1281,7 @@ fresh native builder-check returned "nothing important left". This clears
 design clarity only, not implementation or runtime proof. No new runtime or
 old command ran. Next is approval of this bounded description before CR1.
 
-## CURRENT — C2 consumed; distributed vector cleanup blocks Gate1, 2026-10-23
+## CURRENT â€” C2 consumed; distributed vector cleanup blocks Gate1, 2026-10-23
 
 Do NOT run Run-Gate1-Current-Runtime.ps1 again. The normal-account C2 attempt
 was executed and stopped honestly. Receipt at
@@ -824,7 +1313,7 @@ A fresh workload needs a separately reviewed/sealed successor; do not edit the
 consumed source, launcher, contract, output or claim. No repair is claimed yet.
 Read actual-result section in gate1-current-runtime-20261023.md for evidence.
 
-## Historical — C2 prepared before its now-consumed normal-account run
+## Historical â€” C2 prepared before its now-consumed normal-account run
 
 Do not rerun C1. Its successful normal-account Receipt SHA is
 f0a8b97b49122ad2dc86c5b7adeb4c38e84d97cc774afa80e8debba0d8e30b14;
@@ -857,7 +1346,7 @@ C2 five groups/24initial+fresh-replay arms and C3 actual shutdown/handle checks
 remain UNRUN. Preserve every old attempt and stop on any failure. This does
 not qualify whole Gate1, release, installed use or the entire historical archive.
 
-## Historical C1 preparation position — superseded by actual result above
+## Historical C1 preparation position â€” superseded by actual result above
 
 User approved three sequential Gate1 items, "1 by 1 at a time". Exact source
 basis remains published a38297dd797eeecd25e41ab0af1df4e3db8fa984. No Git write.
@@ -1328,7 +1817,7 @@ G1-A or reproduce already retained failures. Finish review/seals, new normal-acc
 runtime proof, then parent raw-result/preservation review before marking Gate1 done.
 Final matching release/extracted tests/exact-release CI and installation are later.
 
-### Superseding Gate1 continuation — do not issue the draft command
+### Superseding Gate1 continuation â€” do not issue the draft command
 
 Read evidence/offline-first-20261020/gate1-review-corrections-20261021.md FIRST.
 First independent review FIX_FIRST7 findings; parent implemented corrections,
@@ -1352,7 +1841,7 @@ account input-only preparation, parent hash inspection, then new sealed runtime
 handoff/observation/result review. Current user already authorized bounded Gate1;
 do not ask the same scope again. Packages/CI/install/native flags remain unqualified.
 
-### Latest Gate1 handoff — reviewed, issued, actual runtime UNRUN
+### Latest Gate1 handoff â€” reviewed, issued, actual runtime UNRUN
 
 Supersedes the pending-review/FREEZE_AFTER_REVIEW statements immediately above.
 On new user CONTINUE, the SAME native reviewer resumed and cleared all seven
@@ -1383,7 +1872,7 @@ All changes local/uncommitted; HEAD remains923de16. No push/install/packages or
 native qualification. Final paired release/extraction/exact CI and installed
 smoke remain separate gates. Historical read-only Git ignore warnings retained.
 
-### Latest HOST RESULT — old Gate1 command CLOSED, image pin defect diagnosed
+### Latest HOST RESULT â€” old Gate1 command CLOSED, image pin defect diagnosed
 
 Supersedes the issued/unexecuted/root-absent status above. User ran the sealed
 normal block once. Readback, clean567-file source and exact Prepared69113081...
@@ -1411,7 +1900,7 @@ new normal-account attempt. Reuse clean source read-only after full verification
 No new worker/runtime during diagnosis, deletion, install, commit/push/native or
 release activation. HEAD923de16 unchanged; all local work remains uncommitted.
 
-### Latest approved successor — fixed/reviewed, normal-host command issued
+### Latest approved successor â€” fixed/reviewed, normal-host command issued
 
 Read evidence/offline-first-20261020/gate1-image-successor-20261021.md FIRST.
 New user explicitly authorized bounded correction/tests/review and ONE fresh
@@ -1445,7 +1934,7 @@ deletion/rename, baseline/HEAD change, installs, Git write or native operation.
 Gate1 remains OPEN until actual cleanup/217 outcomes/24 arms/full preservation
 and parent raw-result review. Exact release/extraction/CI/install remain later.
 
-### LATEST ACTUAL RESULT — one required public distributed cleanup subcase fails
+### LATEST ACTUAL RESULT â€” one required public distributed cleanup subcase fails
 
 Read evidence/offline-first-20261020/gate1-public-cleanup-failure-20261021.md
 FIRST, then private Gate1-Image-Host-Result-Review-20261021.json and Gate1-Pending.
@@ -1484,7 +1973,7 @@ and review; qualify corrected integrated candidate before closing Gate1.
 All data and negative receipts retained. Only campaign/diagnosis records changed
 this turn; HEAD923de16 unchanged, no commit/push/install/delete/native operation.
 
-### LATEST AUTHORIZATION — focused diagnostic approved; Gate1 not complete
+### LATEST AUTHORIZATION â€” focused diagnostic approved; Gate1 not complete
 
 User invoked Fable Judge and approved execution toward Gate1 with
 "check if this is correct and best to run and complete the gate 1(suite1,2,3,4)
@@ -1514,7 +2003,7 @@ remain unobserved. Nonreproduction/truncation/missing details are INCONCLUSIVE,
 never a fix. A draft launcher is deliberately unfrozen and must NOT be issued.
 Retain every negative result and new attempt; no automatic retry or old command.
 
-### CURRENT STOP — diagnostic guards built; normal input preparation next
+### CURRENT STOP â€” diagnostic guards built; normal input preparation next
 
 Read gate1-cleanup-diagnostic-20261021.md for the complete resumed code-review
 findings and retained failure/green matrix. Do NOT restart the old source prep,
@@ -1561,7 +2050,7 @@ Do not issue Run until parent verifies returned contract/preparation observation
 and a separate final Run handoff is reviewed. Existing approval covers the
 focused diagnostic after its controls, not any old command or automatic retry.
 
-### LATEST STOP — normal preparation verified; reviewed Run issued, diagnosis unrun
+### LATEST STOP â€” normal preparation verified; reviewed Run issued, diagnosis unrun
 
 User normal preparation SUCCEEDED; DO NOT run Prepare again. Saved contract
 86988bytes SHA4a773e562a0b0bf0af7cea57899696febd089471750d6a7707471a2287df2924;
@@ -1590,7 +2079,7 @@ complete217/24 qualification remain unobserved. HEAD923de16 unchanged; no Git
 write/install/security/existing-data deletion/native/model action. Existing
 authorization covers the focused diagnostic; no new approval question needed.
 
-### CURRENT STOP — actual focused diagnostic CLOSED; new ordered proposal needs approval
+### CURRENT STOP â€” actual focused diagnostic CLOSED; new ordered proposal needs approval
 
 User executed the reviewed focused command. DO NOT run that launcher or Prepare
 again. Actual Receipt.json9039bytes SHA
@@ -1628,7 +2117,7 @@ Current turn only inspected artifacts and wrote review/plan/status records.
 No product changes, installs, Git writes, security changes or old-data deletion.
 Gate1,217/24 qualification, final matching packages/CI/installation remain open.
 
-### LATEST CONTINUATION — ordered successor approved, inline O1/O2 build underway
+### LATEST CONTINUATION â€” ordered successor approved, inline O1/O2 build underway
 
 Supersedes the preceding pending-approval stop only. Latest user explicitly
 asked to check/run Gate1 using Fable Method and Executing Plans. Approved scope
@@ -1647,7 +2136,7 @@ sealed command if existing WindowsApps access still blocks this agent. Do not
 substitute Python, weaken history checks, change permissions, delete old files,
 commit/push/install, or turn qualification flags on. Original test stays intact.
 
-### Current position — ordered final review pending, no runtime attempt
+### Current position â€” ordered final review pending, no runtime attempt
 
 Read gate1-ordered-diagnostic-20261021.md and progress.md latest entries. Authored
 runner/driver and18focused controls,174fullpolicy pass without skips/exclusions.
@@ -1661,7 +2150,7 @@ ordsrc/order-successor-20261021 absent; normal-account attempt unused. No old
 command rerun. Existing O1..O4 authority covers the bounded successor, not Git,
 installation/security/deletion or automatic whole-Gate1/fix qualification.
 
-### LATEST HANDOFF — ordered v2 ready after one verified final-review fix
+### LATEST HANDOFF â€” ordered v2 ready after one verified final-review fix
 
 O1..O3 complete for harness only. Read gate1-ordered-final-review-20261021.md.
 Fresh review FIX-FIRST: ONE Important phase-interleaving gap,0Critical/0Minor.
@@ -1683,7 +2172,7 @@ and report cause pendingreview OR inconclusive OR harnessfailure honestly.
 Never mark fix/Gate1/release/install complete from this ordered-method result.
 Full217cases/fivegroups/24arms and final release/installed workflow remain open.
 
-### LATEST — V2 consumed by actual hash-typo failure; V3 pin/bootstrap repair built
+### LATEST â€” V2 consumed by actual hash-typo failure; V3 pin/bootstrap repair built
 
 Supersedes prior V2 unused/ready instructions. NEVER run V2 again. Actual7209byte
 receipt8aa9a351... matches; saved child stderr E_ORDERED_RETAINED_RUNNER_CHANGED
@@ -1704,7 +2193,7 @@ finish review/fixes/checks before issuing new externalhash/VerifyOnly/ONErun
 normal-account handoff. No old script rerun, marker deletion, rebaseline,
 security change, install/Git/API/model/native call or forced qualification.
 
-### V3 REVIEWED HANDOFF — 2026-10-22; actual normal run still UNUSED
+### V3 REVIEWED HANDOFF â€” 2026-10-22; actual normal run still UNUSED
 
 Supersedes ALL earlier V1/V2 ready or review-pending instructions. V2 stays
 consumed/closed; no reset, rerun, marker removal or baseline replacement.
@@ -1734,7 +2223,7 @@ matching release/clean-extraction/CI/installation are still pending. Qualificati
 flags remain false. No Git commit/push, production change, installation, security
 change, API/model/native backend or pre-existing data deletion in this repair.
 
-### V3 CONSUMED / ACCOUNTING REPAIR — 2026-10-22
+### V3 CONSUMED / ACCOUNTING REPAIR â€” 2026-10-22
 
 Supersedes earlier V3 UNUSED/ready commands. NEVER rerun any old launcher.
 Actual V3 receipt8538bytes SHA14c350e4fa63561ecf794cf1aa06e05f18d84fa779dd2d39789180d93901be28.
@@ -1771,7 +2260,7 @@ timeout and WinError32 handle-lifetime failure, then the existing remaining Gate
 checks. No lock-holder cause or timing repair is established here. Current user
 scope was issue-only; do not silently begin another runtime or production repair.
 
-### LATEST — W worker-diagnosis design ready for approval, NOT built — 2026-10-22
+### LATEST â€” W worker-diagnosis design ready for approval, NOT built â€” 2026-10-22
 
 Accounting A1..A3 remains CLOSED VERIFIED_WITH_CAVEATS and uncommitted. Do not
 rebuild it, re-run V3 or change old contracts/markers. HEAD remains923de16c.
@@ -1801,7 +2290,7 @@ approval. Ask once for W1..W3 isolated DIAGNOSIS scope before implementation.
 If approved, execute inline/native with fresh final code review; no re-choice of
 execution method. Production repair/full Gate1/release/CI/install remain later.
 
-### LATEST — W1 implemented under approval; fresh code review running
+### LATEST â€” W1 implemented under approval; fresh code review running
 
 Supersedes W's approval-pending/no-code status only. Current user explicitly
 APPROVE AND COMPLETE THE ISSUE and asked continuation. Approved W1-W3 scope is
@@ -1826,7 +2315,7 @@ install/model/native data/security/Git action or old-data deletion occurred.
 Full normal-account history readback remains mandatory. Continue from review,
 not from scratch; later cause-specific repair/full Gate1/release/install open.
 
-### LATEST — W1 reviewed FIX-FIRST, one correction pass tested; delta review pending
+### LATEST â€” W1 reviewed FIX-FIRST, one correction pass tested; delta review pending
 
 Read worker-diagnosis-20261022/Review-Corrections.md first. Initial fresh review
 found observer interference with _Session.close, under-capacity quota, incomplete
@@ -1864,7 +2353,7 @@ and persist snapshot errors plus reject nested observation_error. Read GATES.md
 and Review-Corrections.md for exact log/receipt hashes. Four code/test files
 frozen for same-seat delta review; W2 remains deliberately unfrozen meanwhile.
 
-### LATEST — W1 verified; W2 Prepare-only handoff frozen, not executed
+### LATEST â€” W1 verified; W2 Prepare-only handoff frozen, not executed
 
 Same independent seat final SHIP after corrections; parent observed final27/212
 tests and verified actual byte/log identities. Read Review-Corrections.md and
@@ -1884,7 +2373,7 @@ Run command issued yet. W1-W3 approved; do not ask approval again within scope.
 No old command, blanket retry, Git action, install/security/model/native write,
 old-file deletion or production fix. HEAD923de16c; accounting closed/unmodified.
 
-### LATEST — user normal Prepare BLOCKED on protected retained scratch ACL
+### LATEST â€” user normal Prepare BLOCKED on protected retained scratch ACL
 
 Do not repeat old Prepare/Run. Read worker-diagnosis-20261022/
 W2-Prepare-Access-Finding.md FIRST. Correct user command reached supplemental
@@ -1907,7 +2396,7 @@ takeown/reset, deny removal, evidence skip/baseline replacement or old-command
 retry. No repair script/code/security/Git mutation made. Accounting remains
 CLOSED; original worker causes UNKNOWN. Continue at this boundary, not scratch.
 
-### LATEST — user-requested one-file copy/read completed; no permission grant
+### LATEST â€” user-requested one-file copy/read completed; no permission grant
 
 User chose "make a copy of file and read that copy". Copied ONLY the303byte
 test substitute to C:/Users/sakth/Documents/Codex/w2-fixture-copy-20261022-4abc8938/

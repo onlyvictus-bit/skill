@@ -1,0 +1,361 @@
+"""RP1 scratch only: pre-authored trust, dispatch and recursive launch controls."""
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+import time
+import zipfile
+from unittest.mock import patch
+from types import SimpleNamespace
+
+REPO = Path(__file__).absolute().parents[2]
+PROTOTYPE = REPO/'.github/run-artifacts/recursive-launch-20261028/prototype'
+
+
+def module():
+    path = PROTOTYPE/'recursive_bootstrap.py'
+    spec = importlib.util.spec_from_file_location('rp1_bootstrap', path)
+    result = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(result)
+    return result
+
+
+class StartupAudit(unittest.TestCase):
+    def setUp(self):
+        self.b = module()
+
+    def test_pth_rejected_in_both_windows_venv_site_roots(self):
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            for folder in ('venv', 'venv/Lib/site-packages'):
+                site = root/folder
+                site.mkdir(parents=True, exist_ok=True)
+                (site/'unsafe.pth').write_text('import MUST_NOT_RUN\n')
+                with self.assertRaisesRegex(ValueError, 'STARTUP'):
+                    self.b.audit_site_roots([str(site)])
+
+    def test_all_customization_module_forms_rejected_case_insensitively(self):
+        with tempfile.TemporaryDirectory() as name:
+            for index, child in enumerate(('sitecustomize.py', 'UserCustomize.pyc',
+                                           'sitecustomize.pyd', 'sitecustomize')):
+                root = Path(name)/str(index)
+                root.mkdir()
+                path = root/child
+                path.mkdir() if '.' not in child else path.write_bytes(b'unsafe')
+                with self.assertRaisesRegex(ValueError, 'STARTUP'):
+                    self.b.audit_site_roots([str(root)])
+
+    def test_missing_search_roots_are_not_ignored(self):
+        with tempfile.TemporaryDirectory() as name:
+            with self.assertRaises((ValueError, FileNotFoundError)):
+                self.b.audit_site_roots([str(Path(name)/'missing')])
+
+    def test_reparse_attribute_rejected_before_directory_enumeration(self):
+        with patch.object(Path, 'lstat', return_value=SimpleNamespace(
+                st_mode=0o40700, st_file_attributes=0x400)):
+            with self.assertRaisesRegex(ValueError, 'E_RP_REPARSE'):
+                self.b.audit_site_roots([str(PROTOTYPE)])
+
+    def test_archive_absence_customizer_and_resource_bound(self):
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            self.assertIsNone(self.b.audit_archive(root/'absent.zip'))
+            archive = root/'custom.zip'
+            with zipfile.ZipFile(archive,'w') as stream:
+                stream.writestr('sitecustomize.py', 'raise RuntimeError("BAD")')
+            with self.assertRaisesRegex(ValueError, 'STARTUP_ARCHIVE'):
+                self.b.audit_archive(archive)
+            huge = root/'names.zip'
+            with zipfile.ZipFile(huge,'w') as stream:
+                stream.writestr('x'*8193, '')
+            with self.assertRaisesRegex(ValueError, 'ARCHIVE_BOUND'):
+                self.b.audit_archive(huge)
+
+    def test_pth_configuration_and_registry_entries_are_rejected(self):
+        with tempfile.TemporaryDirectory() as name:
+            path = Path(name)/'python312._pth'
+            path.write_text('UNTRUSTED')
+            with self.assertRaisesRegex(ValueError, 'STARTUP'):
+                self.b.audit_path_configuration([str(path)], [])
+            with self.assertRaisesRegex(ValueError, 'STARTUP'):
+                self.b.audit_path_configuration([], ['unexpected registry path'])
+
+    def test_precreation_registry_audit_uses_the_target_version(self):
+        import winreg
+        with patch.object(winreg, 'OpenKey', side_effect=FileNotFoundError) as opened:
+            self.assertEqual(self.b.registry_values([3,12]), [])
+        self.assertEqual(opened.call_count,4)
+        self.assertTrue(all('PythonCore\\3.12\\PythonPath' in call.args[1]
+                            for call in opened.call_args_list))
+
+    def test_unreadable_startup_paths_are_not_reported_absent(self):
+        with tempfile.TemporaryDirectory() as name:
+            candidate=Path(name)/'python._pth'
+            for archive in (False,True):
+                with self.subTest(archive=archive),patch.object(self.b.os,'lstat',
+                        side_effect=PermissionError('CONTROL_STARTUP_DENIED')),patch.object(Path,'lstat',
+                        side_effect=PermissionError('CONTROL_STARTUP_DENIED')):
+                    with self.assertRaisesRegex(PermissionError,'CONTROL_STARTUP_DENIED'):
+                        if archive:self.b.audit_archive(candidate)
+                        else:self.b.audit_path_configuration([str(candidate)],[])
+
+
+class GateAndDispatch(unittest.TestCase):
+    def setUp(self):
+        self.b = module()
+
+    def test_duplicate_unknown_and_nonfinite_request_refused(self):
+        for raw in (b'{"version":1,"version":1}', b'{"unknown":1}',
+                    b'{"version":NaN}', b'{} trailing', b'[]', '{}'.encode('utf-16')):
+            with self.subTest(raw=raw), self.assertRaises(ValueError):
+                self.b.decode_request(raw)
+
+    def test_literal_removes_cwd_before_path_resolved_imports(self):
+        code = self.b.loader_literal([str(PROTOTYPE)], str(PROTOTYPE/'bootstrap.py'), 'a'*64,
+                                     str(PROTOTYPE/'request.json'), 'b'*64)
+        self.assertLess(code.index('sys.path.pop(0)'), code.index('import hashlib'))
+        self.assertNotIn('run_path', code)
+
+    def test_missing_source_fails_before_authored_marker(self):
+        with tempfile.TemporaryDirectory() as name:
+            cwd = Path(name)
+            marker = cwd/'must-not-run'
+            env = {k:v for k,v in os.environ.items() if not k.upper().startswith('PYTHON')}
+            env['PYTHONNOUSERSITE'] = '1'
+            # Match this exact interpreter's no-user-site path, without creating a venv.
+            paths = json.loads(subprocess.check_output([sys.executable, '-B', '-c',
+                    'import sys,json;print(json.dumps(sys.path[1:]))'], env=env, cwd=cwd))
+            for shadow in ('sitecustomize.py','usercustomize.py','hashlib.py','json.py','pathlib.py'):
+                (cwd/shadow).write_text('open('+repr(str(marker))+',"w").write("BAD")')
+            code = self.b.loader_literal(paths, str(cwd/'absent.py'), 'a'*64,
+                                         str(cwd/'absent.json'), 'b'*64)
+            result = subprocess.run([sys.executable, '-B', '-c', code], env=env, cwd=cwd,
+                                    capture_output=True, timeout=10)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(result.stdout, b'')
+            self.assertIn(b'FileNotFoundError', result.stderr)
+            self.assertNotIn(b'E_RP_LOADER_PATHS', result.stderr)
+            self.assertFalse(marker.exists(), result.stderr.decode(errors='replace'))
+
+    def test_literal_rejects_invalid_values_before_generating_code(self):
+        for paths, bootstrap, digest in (([object()], str(PROTOTYPE/'x'), 'a'*64),
+                ([str(PROTOTYPE)], 'relative.py', 'a'*64),
+                ([str(PROTOTYPE)], str(PROTOTYPE/'x'), 'INVALID')):
+            with self.subTest(paths=paths), self.assertRaises(ValueError):
+                self.b.loader_literal(paths, bootstrap, digest, str(PROTOTYPE/'q'), 'b'*64)
+
+    def test_positive_trusted_source_loads_with_all_cwd_shadows_inert(self):
+        with tempfile.TemporaryDirectory() as name:
+            cwd = Path(name)
+            env = {k:v for k,v in os.environ.items() if not k.upper().startswith('PYTHON')}
+            env['PYTHONNOUSERSITE'] = '1'
+            paths = json.loads(subprocess.check_output([sys.executable,'-B','-c',
+                'import sys,json;print(json.dumps(sys.path[1:]))'], env=env,cwd=cwd))
+            marker = cwd/'shadow-must-not-run'
+            for shadow in ('sitecustomize.py','usercustomize.py','hashlib.py','json.py','pathlib.py','zipfile.py'):
+                (cwd/shadow).write_text('open('+repr(str(marker))+',"w").write("BAD")')
+            trusted = cwd/'sealed-source.txt'
+            raw = b'import json,pathlib,zipfile\ndef enter(p,d):\n print("TRUSTED_ENTER")\n'
+            trusted.write_bytes(raw)
+            code = self.b.loader_literal(paths,str(trusted),hashlib.sha256(raw).hexdigest(),
+                str(cwd/'request.json'),'b'*64)
+            result = subprocess.run([sys.executable,'-B','-c',code],env=env,cwd=cwd,capture_output=True,timeout=10)
+            self.assertEqual((result.returncode,result.stdout),(0,b'TRUSTED_ENTER\r\n'),result.stderr)
+            self.assertFalse(marker.exists())
+            trusted.write_bytes(raw+b'#TAMPER')
+            result = subprocess.run([sys.executable,'-B','-c',code],env=env,cwd=cwd,capture_output=True,timeout=10)
+            self.assertNotEqual(result.returncode,0)
+            self.assertIn(b'E_RP_LOADER_SOURCE',result.stderr)
+            self.assertEqual(result.stdout,b'')
+
+
+class PublicCompatibility(unittest.TestCase):
+    """Compare against the same native controller, not mocked command output."""
+    def setUp(self):
+        self.b = module()
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.cwd = Path(self.temporary.name)
+        # Match the selected worker's existing sanitized startup environment;
+        # controller launcher-only GIT_PAGER is outside that child contract.
+        self.env = {k:v for k,v in os.environ.items() if not k.upper().startswith(('PYTHON','GIT_'))}
+        self.env['PYTHONNOUSERSITE'] = '1'
+        self.profile = self.b.controller_profile(self.cwd, sys.executable, self.env)
+
+    def pair(self, args, *, stdin=None, exception=False):
+        control_env=dict(self.env,__PYVENV_LAUNCHER__=sys.executable)
+        control = subprocess.run([sys.executable, *args], env=control_env, cwd=self.cwd,
+                                 executable=self.profile['image'],
+                                 input=stdin, capture_output=True, timeout=10)
+        argv, options = self.b.prepare_launch([sys.executable, *args], self.profile,
+                                              {'env':self.env, 'cwd':str(self.cwd)})
+        guarded = subprocess.run(argv, **options, input=stdin, capture_output=True, timeout=10)
+        case = len(list(self.cwd.glob('case-*-control.stdout')))
+        for label,result in (('control',control),('guarded',guarded)):
+            for role in ('stdout','stderr'):
+                (self.cwd/f'case-{case}-{label}.{role}').write_bytes(getattr(result,role))
+        self.assertEqual(guarded.returncode, control.returncode, guarded.stderr)
+        self.assertEqual(guarded.stdout, control.stdout, guarded.stderr)
+        if exception:
+            self.assertEqual(self.without_trusted_frames(guarded.stderr),control.stderr)
+        else:
+            self.assertEqual(guarded.stderr,control.stderr)
+        return control, guarded
+
+    def without_trusted_frames(self, raw):
+        # Only documented loader/ns-enter and this sealed bootstrap's frames may
+        # differ. Authored frames, cause separator, messages and other stderr stay exact.
+        lines = raw.splitlines(keepends=True)
+        result = []; index = 0
+        while index < len(lines):
+            line = lines[index]
+            trusted = (line.startswith(b'  File "') and
+                       str(PROTOTYPE/'recursive_bootstrap.py').encode() in line)
+            next_frame=index+1
+            while next_frame<len(lines) and lines[next_frame].startswith(b'    '):
+                next_frame+=1
+            literal = (line==b'  File "<string>", line 20, in <module>\r\n' and
+                       next_frame<len(lines) and str(PROTOTYPE/'recursive_bootstrap.py').encode()
+                       in lines[next_frame] and b', in enter' in lines[next_frame])
+            if trusted or literal:
+                index += 1
+                while index < len(lines) and lines[index].startswith(b'    '):
+                    index += 1
+            else:
+                result.append(line); index += 1
+        return b''.join(result)
+
+    def observer(self):
+        return ('import sys,os,json,__main__;'
+                'print(json.dumps({"argv":sys.argv,"orig":sys.orig_argv,"path":sys.path,'
+                '"executable":sys.executable,"prefix":sys.prefix,"base":sys.base_prefix,'
+                '"flags":str(sys.flags),"cwd":os.getcwd(),"name":__name__,'
+                '"file":globals().get("__file__"),"package":__package__,'
+                '"spec":None if __spec__ is None else __spec__.name,'
+                '"main":__main__.__dict__ is globals(),'
+                '"leak":any(k.startswith("RP_") for k in globals())},ensure_ascii=True))')
+
+    def test_command_flags_arguments_and_main_are_identical(self):
+        for flags in (['-B'], ['-B','-u'], ['-B','-O'], ['-B','-OO']):
+            with self.subTest(flags=flags):
+                self.pair([*flags, '-c', self.observer(), 'தமிழ்', 'space here', 'quote"\\end\\'])
+
+    def test_script_arguments_module_and_sibling_imports_are_identical(self):
+        (self.cwd/'sibling.py').write_text('answer=17\n')
+        script = self.cwd/'script space.py'
+        script.write_text('import sibling;assert sibling.answer==17\n'+self.observer())
+        self.pair(['-B', 'script space.py', 'a', 'b'])
+        (self.cwd/'samplemod.py').write_text(self.observer())
+        self.pair(['-B','-m','samplemod','arg'])
+
+    def test_stdio_exit_and_exception_cause_preserved(self):
+        self.pair(['-B','-c','import sys;sys.stdout.buffer.write(sys.stdin.buffer.read());'
+                   'sys.stderr.write("stderr!");raise SystemExit(7)'], stdin=b'\x00bytes\xff\n')
+        control, guarded = self.pair(['-B','-c','try:\n raise KeyError("root")\n'
+                                      'except KeyError as e:\n raise ValueError("outer") from e'], exception=True)
+        for ending in (b'KeyError: \'root\'', b'ValueError: outer', b'direct cause'):
+            self.assertIn(ending, control.stderr)
+            self.assertIn(ending, guarded.stderr)
+
+    def test_recursive_popen_run_and_check_output_keep_public_arguments(self):
+        child = self.cwd/'child.py'
+        child.write_text('import subprocess,sys\n'
+                         'print(subprocess.check_output([sys.executable,"-B","-c",'
+                         '"import sys;print(sys.argv[1])","grandchild"],text=True).strip())\n')
+        self.pair(['-B',str(child)])
+
+    def test_existing_sanitized_env_can_disable_user_site(self):
+        normal=dict(self.env);normal.pop('PYTHONNOUSERSITE')
+        # Exercise the optional-user-site narrowing with an owned synthetic
+        # user base. The real account's private user-site is deliberately
+        # unreadable; the strict audit must keep refusing that configuration.
+        normal['PYTHONUSERBASE']=str(self.cwd/'test-owned-user-base')
+        work=self.cwd/'other-profile';work.mkdir()
+        profile=self.b.controller_profile(work,sys.executable,normal)
+        code='import site,sys;print(site.ENABLE_USER_SITE,sys.flags.no_user_site)'
+        args=[sys.executable,'-B','-c',code]
+        control=subprocess.run(args,env=self.env,cwd=self.cwd,capture_output=True,timeout=10)
+        argv,options=self.b.prepare_launch(args,profile,{'env':self.env,'cwd':str(self.cwd)})
+        actual=subprocess.run(argv,**options,capture_output=True,timeout=10)
+        self.assertEqual((actual.returncode,actual.stdout,actual.stderr),
+                         (control.returncode,control.stdout,control.stderr))
+
+    def test_native_git_probe_remains_available_under_the_python_guard(self):
+        git = Path(r'C:\Program Files\Git\cmd\git.exe')
+        self.profile['native_commands']['git'] = self.b.native_spec(git, REPO)
+        self.pair(['-B','-c','import subprocess;print(subprocess.check_output('
+                   '["git","--version"],text=True).strip())'])
+
+    def test_native_git_alias_config_and_env_refused_before_create(self):
+        git=Path(r'C:\Program Files\Git\cmd\git.exe')
+        spec=self.b.native_spec(git,REPO)
+        for argv,options in ((['git','-c','alias.run=!python bad.py','run'],{}),
+                (['git','--version'],{'env':dict(self.env,GIT_CONFIG_COUNT='1')})):
+            with self.subTest(argv=argv),self.assertRaisesRegex(ValueError,'GIT'):
+                self.b.route_native(argv,spec,options)
+
+    def test_native_git_accepts_existing_worker_env_without_home_variables(self):
+        self.profile['native_commands']['git']=self.b.native_spec(Path(r'C:\Program Files\Git\cmd\git.exe'),REPO)
+        self.pair(['-B','-c','import os,subprocess;clean={k:v for k,v in os.environ.items() '
+            'if k.upper() in {"PATH","SYSTEMROOT","WINDIR","TEMP","TMP"}};'
+            'os.environ.clear();os.environ.update(clean);'
+            'print(subprocess.check_output(["git","--version"],text=True).strip())'])
+
+    def test_actual_readonly_git_vectors_preserve_outputs(self):
+        git=Path(r'C:\Program Files\Git\cmd\git.exe')
+        spec=self.b.native_spec(git,REPO)
+        for tail in (['rev-parse','HEAD'],['status','--porcelain','--untracked-files=all'],
+                     ['symbolic-ref','--short','HEAD']):
+            argv=['git','-C',str(REPO),*tail]
+            routed,options=self.b.route_native(argv,spec,{'env':self.env,'cwd':str(self.cwd)})
+            control=subprocess.run(argv,env=self.env,cwd=self.cwd,capture_output=True,timeout=10)
+            result=subprocess.run(routed,**options,capture_output=True,timeout=10)
+            self.assertEqual((result.returncode,result.stdout,result.stderr),
+                             (control.returncode,control.stdout,control.stderr))
+
+    def test_new_root_gate_installs_before_the_authored_worker(self):
+        raw = json.dumps(self.profile).encode()
+        path = self.cwd/'profile.json'
+        path.write_bytes(raw)
+        source = ("import sys;sys.path.pop(0)\n"
+                  "import json\n"
+                  "ns={'__file__':"+repr(str(PROTOTYPE/'recursive_bootstrap.py'))+"}\n"
+                  "exec(compile(open(ns['__file__'],'rb').read(),ns['__file__'],'exec'),ns)\n"
+                  "p=json.load(open("+repr(str(path))+"))\n"
+                  "ns['install_root'](p,p['deadline'])\n"
+                  "import subprocess\n"
+                  "assert subprocess.Popen._rp1_guard\nprint('ROOT_GATED')\n")
+        result = subprocess.run([sys.executable,'-B','-c',source],env=self.env,cwd=self.cwd,
+                                capture_output=True,timeout=10)
+        self.assertEqual((result.returncode,result.stdout),(0,b'ROOT_GATED\r\n'),result.stderr)
+
+    def test_tampered_source_and_request_cannot_dispatch_authored_code(self):
+        marker = self.cwd/'must-not-run'
+        code = 'open('+repr(str(marker))+',"w").write("BAD")'
+        argv, options = self.b.prepare_launch([sys.executable,'-B','-c',code], self.profile,
+                                              {'env':self.env, 'cwd':str(self.cwd)})
+        # The request is externally bound in argv's literal, not self-authenticated.
+        requests = sorted((self.cwd/'requests').glob('*.json'))
+        self.assertEqual(len(requests), 1)
+        requests[0].write_text('{}')
+        result = subprocess.run(argv, **options, capture_output=True, timeout=10)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(marker.exists())
+
+    def test_unsupported_forms_fail_before_process_creation(self):
+        for args, options in ((['-S','-c','pass'],{}), (['-B','-c','pass'],{'shell':True}),
+                (['-W','ignore::unsafe.Category','-c','pass'],{}),
+                (['-B','-c','pass'],{'creationflags':0x01000000}),
+                (['-B','-c','pass'],{'env':dict(self.env,PYTHONPATH=str(self.cwd))})):
+            with self.subTest(args=args, options=options), self.assertRaises(ValueError):
+                self.b.prepare_launch([sys.executable,*args], self.profile,
+                    dict({'env':self.env,'cwd':str(self.cwd)},**options))
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -28,6 +28,8 @@ def runtime_identity():
     elif url.get('dir_info',{}).get('editable'):
         import semantica
         root=Path(semantica.__file__).resolve().parent.parent
+        bind_git=getattr(subprocess.Popen,'_rp_bind_runtime_git',None)
+        if bind_git is not None: bind_git(root)
         def git(*args):
             p=subprocess.run(['git','-C',str(root),*args],capture_output=True,text=True,timeout=10)
             if p.returncode!=0: raise ValueError('E_RUNTIME_SOURCE')

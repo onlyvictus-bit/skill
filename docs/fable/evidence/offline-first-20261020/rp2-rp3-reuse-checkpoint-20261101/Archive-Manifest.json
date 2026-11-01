@@ -1,0 +1,72 @@
+{
+  "scope": "ARCHIVE_ONLY_DO_NOT_EXECUTE_OR_RETRY_CONSUMED_COMMANDS",
+  "files": [
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp2-20261031/Before.json",
+      "snapshot_path": "archive/01-Before.json.snapshot",
+      "size": 1821,
+      "sha256": "6777badaa4bffcf49d58ace68bb28a2bd4257945587fc94b25ac54ce3aa257c8"
+    },
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp2-20261031/RP2-Accepted.json",
+      "snapshot_path": "archive/02-RP2-Accepted.json.snapshot",
+      "size": 16283,
+      "sha256": "feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369"
+    },
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp2-20261031/controls/test_promoted_recursive_contracts.py",
+      "snapshot_path": "archive/03-test_promoted_recursive_contracts.py.snapshot",
+      "size": 1895,
+      "sha256": "02265f81747ea4953102569e158e2a3eca56c8381305ebec4ab381c68e296a96"
+    },
+    {
+      "original_repository_path": ".github/tests/test_recursive_launch_bootstrap.py",
+      "snapshot_path": "archive/04-test_recursive_launch_bootstrap.py.snapshot",
+      "size": 20266,
+      "sha256": "4623e17fea30d13d712dc46942a873729519d6bb9dff14f93c404f8c0a03463e"
+    },
+    {
+      "original_repository_path": ".github/tests/test_recursive_launch_policy.py",
+      "snapshot_path": "archive/05-test_recursive_launch_policy.py.snapshot",
+      "size": 6156,
+      "sha256": "811505ca8a4157624409aea2ea862925d74ac8b557a19818ccf8bc730d7a5b94"
+    },
+    {
+      "original_repository_path": ".github/tests/test_recursive_corrected_core.py",
+      "snapshot_path": "archive/06-test_recursive_corrected_core.py.snapshot",
+      "size": 7054,
+      "sha256": "7313536c06e8156f6f3d20d5b3a8b88bcc4b944188bebb3f1fafe7699d68fffa"
+    },
+    {
+      "original_repository_path": ".github/tests/test_recursive_store_env_policy.py",
+      "snapshot_path": "archive/07-test_recursive_store_env_policy.py.snapshot",
+      "size": 4128,
+      "sha256": "05b5df2275e6219598dee74267ffc2248bac2e7b6c6302e2de929afaa4699eb2"
+    },
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp3-20261101/Source-Recipe.json",
+      "snapshot_path": "archive/08-Source-Recipe.json.snapshot",
+      "size": 236879,
+      "sha256": "644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec"
+    },
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp3-20261101/prototype/rp3_prepare.py",
+      "snapshot_path": "archive/09-rp3_prepare.py.snapshot",
+      "size": 11958,
+      "sha256": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9"
+    },
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp3-20261101/controls/test_rp3_prepare.py",
+      "snapshot_path": "archive/10-test_rp3_prepare.py.snapshot",
+      "size": 7532,
+      "sha256": "e3a055393181f7d6b3cf80b7ced654398bb30e9192410e4710c76229d59dd956"
+    },
+    {
+      "original_repository_path": ".github/run-artifacts/recursive-integration-rp3-20261101/RP3-Prepare-Command.ps1",
+      "snapshot_path": "archive/11-RP3-Prepare-Command.ps1.snapshot",
+      "size": 2794,
+      "sha256": "569137d48d50cbd6d969c15fb8f8109d8260eda2681472c0cf5f3c02caadf055"
+    }
+  ],
+  "raw_private_normal_outputs_in_git": false
+}

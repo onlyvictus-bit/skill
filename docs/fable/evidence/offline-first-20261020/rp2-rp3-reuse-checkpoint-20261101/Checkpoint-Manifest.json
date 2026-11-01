@@ -1,0 +1,170 @@
+{
+  "scope": "LOCAL_CHECKPOINT_SOURCE_AND_CURATED_PROOF_ONLY",
+  "parent": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "active_branch": "development/r5-practical-fence-wip-20261014",
+  "checkpoint_ref": "refs/heads/checkpoint/rp2-rp3-inputs-20261101",
+  "preserve_active_head_and_index": true,
+  "rp2_complete": true,
+  "rp3_preparation_complete": true,
+  "rp3_complete": false,
+  "push_authorized": false,
+  "files": [
+    {
+      "path": "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py",
+      "size": 19493,
+      "sha256": "83ec8f3fd11dba0a7eb9c94cc2c870eac7c98b7a34614893e97e53b8d3cbbc87"
+    },
+    {
+      "path": "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py",
+      "size": 35363,
+      "sha256": "4f18abc628ec48cb89f9381b747046208a0a9114dab6fb33639e6d441bc81139"
+    },
+    {
+      "path": "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py",
+      "size": 7553,
+      "sha256": "0726d49317cc813538ef42b2fb2bb5f4ee866dd9f74e31fe541dd58a666671de"
+    },
+    {
+      "path": "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py",
+      "size": 47516,
+      "sha256": "5d7576d225a55ddb0741de08e9151de3586e9256576364426717b99a7acfde52"
+    },
+    {
+      "path": "memory-integrity/scripts/knowledge_bridge/recursive_policy.py",
+      "size": 6554,
+      "sha256": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18"
+    },
+    {
+      "path": "memory-integrity/scripts/knowledge_bridge/worker.py",
+      "size": 15255,
+      "sha256": "3df908501c83c6d101d1bdb6b42198e4887a9162e0b389b8699374909c9a283a"
+    },
+    {
+      "path": "memory-integrity/tests_v2/test_knowledge_windows_owned_process.py",
+      "size": 25363,
+      "sha256": "0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994"
+    },
+    {
+      "path": "memory-integrity/tests_v2/test_knowledge_recursive_git.py",
+      "size": 6232,
+      "sha256": "2c34543cba7cf48d70552e7fe2bd5496beb0408fb1b4284bffe25a651adb4897"
+    },
+    {
+      "path": "memory-integrity/tests_v2/test_knowledge_recursive_integration.py",
+      "size": 10627,
+      "sha256": "82d3f3b279d6153bbadb82b82b7f0847d0712ec81555907d00b03036a2697ffd"
+    },
+    {
+      "path": "memory-integrity/tests_v2/test_knowledge_recursive_profile.py",
+      "size": 7033,
+      "sha256": "07e48ca7def0d173055f2863c2741cd904ff63725195a5e2285ae99f264ccefa"
+    },
+    {
+      "path": "memory-integrity/tests_v2/test_knowledge_windows_fixture_publication.py",
+      "size": 4503,
+      "sha256": "ae794a104ab3c87f472ba621b5d17cb03ebdf295b3b2432c58ddb72d4b0e06a5"
+    },
+    {
+      "path": "docs/fable/state.json",
+      "size": 89973,
+      "sha256": "0a05db0c74bf416b0d129f8895c5814c5e46a502517676b579830ed2c0b77540"
+    },
+    {
+      "path": "docs/fable/derived/offline-first-checkpoint-20261020.md",
+      "size": 161975,
+      "sha256": "b55927fa7b2fb932aa04c81628030a16e033145abaa717dfdf0758987f0c27e7"
+    },
+    {
+      "path": "docs/fable/derived/offline-first-release-plan-20261020.md",
+      "size": 231877,
+      "sha256": "5846c1f3512adc3fdd265cd5d711d4749c64e26fc6f11927d2ef18640183060f"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp1-actual-acceptance-20261031.md",
+      "size": 5103,
+      "sha256": "99f1ba63b48f27f02acf1927ddb109b62bfc2d3a94ab5fbf6eddc22efd449405"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-integration-acceptance-20261101.md",
+      "size": 5386,
+      "sha256": "74d81bf5f98477a72ec69a7048b144ef6388a53b18533542a81e13b23d23c156"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp3-input-preparation-20261101.md",
+      "size": 5686,
+      "sha256": "01df3ebef9e135806791eaaf3377875849d68dbc67e9dd92dd2557c6738bee06"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/01-Before.json.snapshot",
+      "size": 1821,
+      "sha256": "6777badaa4bffcf49d58ace68bb28a2bd4257945587fc94b25ac54ce3aa257c8"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/02-RP2-Accepted.json.snapshot",
+      "size": 16283,
+      "sha256": "feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/03-test_promoted_recursive_contracts.py.snapshot",
+      "size": 1895,
+      "sha256": "02265f81747ea4953102569e158e2a3eca56c8381305ebec4ab381c68e296a96"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/04-test_recursive_launch_bootstrap.py.snapshot",
+      "size": 20266,
+      "sha256": "4623e17fea30d13d712dc46942a873729519d6bb9dff14f93c404f8c0a03463e"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/05-test_recursive_launch_policy.py.snapshot",
+      "size": 6156,
+      "sha256": "811505ca8a4157624409aea2ea862925d74ac8b557a19818ccf8bc730d7a5b94"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/06-test_recursive_corrected_core.py.snapshot",
+      "size": 7054,
+      "sha256": "7313536c06e8156f6f3d20d5b3a8b88bcc4b944188bebb3f1fafe7699d68fffa"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/07-test_recursive_store_env_policy.py.snapshot",
+      "size": 4128,
+      "sha256": "05b5df2275e6219598dee74267ffc2248bac2e7b6c6302e2de929afaa4699eb2"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/08-Source-Recipe.json.snapshot",
+      "size": 236879,
+      "sha256": "644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/09-rp3_prepare.py.snapshot",
+      "size": 11958,
+      "sha256": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/10-test_rp3_prepare.py.snapshot",
+      "size": 7532,
+      "sha256": "e3a055393181f7d6b3cf80b7ced654398bb30e9192410e4710c76229d59dd956"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/11-RP3-Prepare-Command.ps1.snapshot",
+      "size": 2794,
+      "sha256": "569137d48d50cbd6d969c15fb8f8109d8260eda2681472c0cf5f3c02caadf055"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/Archive-Manifest.json",
+      "size": 3444,
+      "sha256": "5c03b5b17f7a0755faf6cabc9b62b69ce0269a321f9cda76893c0bd94827dfe8"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/Observed-Result.json",
+      "size": 5634,
+      "sha256": "78bedab4f17376b351a8e30a9b4d0976aeb097628481da3d2b2547a5022abc2e"
+    },
+    {
+      "path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/README.md",
+      "size": 2861,
+      "sha256": "7204afc3e517c48410620c12ea0594a024d451e460350d06a398f65556beb30b"
+    }
+  ],
+  "self_file": "Checkpoint-Manifest.json",
+  "authorization": "can we comit to git to save successfull details to reuse?"
+}

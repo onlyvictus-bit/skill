@@ -1,0 +1,39 @@
+& {
+    $ErrorActionPreference = 'Stop'
+    $rp3Identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $rp3Principal = [Security.Principal.WindowsPrincipal]::new($rp3Identity)
+    if ($rp3Identity.User.Value -cne 'S-1-5-21-2571509308-2482563067-4170768140-1001' -or
+        $rp3Principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        throw 'Use the normal non-admin account. Do not elevate or change permissions.'
+    }
+    $rp3Repo = 'C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git'
+    $rp3Phase = Join-Path $rp3Repo '.github\run-artifacts\recursive-integration-rp3-20261101'
+    $rp3Python = 'C:\Python314\python.exe'
+    $rp3Helper = Join-Path $rp3Phase 'prototype\rp3_prepare.py'
+    $rp3Output = 'C:\Users\sakth\Documents\Codex\recursive-launch-rp3-20261101'
+    $rp3Pins = @{
+        $rp3Python = 'cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b'
+        $rp3Helper = '017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9'
+        (Join-Path $rp3Phase 'Source-Recipe.json') = '644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec'
+        (Join-Path $rp3Repo '.github\run-artifacts\recursive-integration-rp2-20261031\RP2-Accepted.json') = 'feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369'
+        (Join-Path $rp3Repo '.github\scripts\gate1_current_preflight.py') = '5e1b06812949b72a8723844c4c1b7a8bde1b4fee645c43147e3352acb7696861'
+        (Join-Path $rp3Repo '.github\scripts\shutdown_copy_data.py') = '4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299'
+    }
+    foreach ($rp3Pin in $rp3Pins.GetEnumerator()) {
+        if ((Get-FileHash -LiteralPath $rp3Pin.Key -Algorithm SHA256).Hash.ToLowerInvariant() -cne $rp3Pin.Value) {
+            throw ('Sealed input changed. Stop; do not alter guards: ' + $rp3Pin.Key)
+        }
+    }
+    if (Test-Path -LiteralPath $rp3Output) {
+        throw 'This preparation already has output. Preserve it; do not retry.'
+    }
+    Write-Output 'RP3_PREPARATION_EXTERNAL_SEALS_MATCH_NO_SELECTED_RUNTIME_OR_ATTEMPT'
+    Write-Output 'INPUTS ONLY: original source/runtime metadata and fresh BEFORE evidence request.'
+    Write-Output 'No Python3.12, test, source copy, retrieval or workload starts. Existing-access evidence copies follow.'
+    Write-Output 'Every segment prints time; Diagnostics.json/Failure.json retain original causes. No install, ACL/Git write or deletion.'
+    & $rp3Python -B $rp3Helper
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Preparation stopped. Preserve/share output and Failure.json. Do not retry or change guards.'
+    }
+    Write-Output 'Share the printed Inputs.json and BEFORERequest.json path/size/SHA. RP3 runtime command is not issued by this preparation.'
+}

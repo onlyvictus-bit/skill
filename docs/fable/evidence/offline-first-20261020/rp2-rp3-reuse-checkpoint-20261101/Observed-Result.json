@@ -1,0 +1,177 @@
+{
+  "scope": "RP2_SUCCESS_RP3_PREPARATION_SUCCESS_RUNTIME_PENDING",
+  "rp2_complete": true,
+  "rp3_preparation_complete": true,
+  "rp3_complete": false,
+  "stage_complete": false,
+  "preservation": false,
+  "source_basis": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "actual_normal_outputs": {
+    "Inputs.json": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\recursive-launch-rp3-20261101\\Inputs.json",
+      "size": 135906,
+      "sha256": "77769da92ab1fae7375f86afdc651f770476803ec32f5f0dedcea10bd97ee346",
+      "links": 1
+    },
+    "BEFORERequest.json": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\recursive-launch-rp3-20261101\\BEFORERequest.json",
+      "size": 2357236,
+      "sha256": "15086f7604605d6793a5d9ff38dbd8395e56a5a6143535e94f28470b864be4bf",
+      "links": 1
+    },
+    "Diagnostics.json": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\recursive-launch-rp3-20261101\\Diagnostics.json",
+      "size": 2996,
+      "sha256": "99a97258a1ea6848c174a3df1e6d041e125f233a2b85e4223fe11d9501171232",
+      "links": 1
+    }
+  },
+  "dependencies_expected": 53,
+  "source_recipe_records": 680,
+  "history_coverage_roots": 8,
+  "history_counts": {
+    "cleanup-lifetime-stack-20261024": {
+      "objects": 43,
+      "unresolved_paths": 0
+    },
+    "cleanup-membership-20261025": {
+      "objects": 50,
+      "unresolved_paths": 0
+    },
+    "cleanup-process-timing-20261024": {
+      "objects": 726,
+      "unresolved_paths": 0
+    },
+    "cleanup-repair-20261023": {
+      "objects": 2432,
+      "unresolved_paths": 1240
+    },
+    "rp1-audit": {
+      "objects": 932,
+      "unresolved_paths": 0
+    },
+    "rp1-corrected": {
+      "objects": 740,
+      "unresolved_paths": 0
+    },
+    "rp1-original": {
+      "objects": 782,
+      "unresolved_paths": 0
+    },
+    "rp1-store": {
+      "objects": 825,
+      "unresolved_paths": 0
+    }
+  },
+  "preparation_timeline": [
+    {
+      "ended": 2149422.2809619,
+      "seconds": 0.001395499799400568,
+      "segment": "claim-publication",
+      "started": 2149422.2795664,
+      "started_utc": "2026-11-01T10:17:16.717462+00:00"
+    },
+    {
+      "ended": 2149423.9987781,
+      "seconds": 1.7176720001734793,
+      "segment": "source-before",
+      "started": 2149422.2811061,
+      "started_utc": "2026-11-01T10:17:16.719017+00:00"
+    },
+    {
+      "ended": 2149424.1757691,
+      "seconds": 0.17632139986380935,
+      "segment": "runtime-metadata-before",
+      "started": 2149423.9994477,
+      "started_utc": "2026-11-01T10:17:18.437342+00:00"
+    },
+    {
+      "ended": 2149425.5968536,
+      "seconds": 1.4208682999014854,
+      "segment": "protected-before",
+      "started": 2149424.1759853,
+      "started_utc": "2026-11-01T10:17:18.613901+00:00"
+    },
+    {
+      "ended": 2149425.6862182,
+      "seconds": 0.0891501996666193,
+      "segment": "history-load",
+      "started": 2149425.597068,
+      "started_utc": "2026-11-01T10:17:20.034977+00:00"
+    },
+    {
+      "ended": 2149466.703708,
+      "seconds": 41.01714470004663,
+      "segment": "history-cleanup-repair-20261023",
+      "started": 2149425.6865633,
+      "started_utc": "2026-11-01T10:17:20.124477+00:00"
+    },
+    {
+      "ended": 2149479.0938006,
+      "seconds": 12.389803900383413,
+      "segment": "history-cleanup-process-timing-20261024",
+      "started": 2149466.7039967,
+      "started_utc": "2026-11-01T10:18:01.141909+00:00"
+    },
+    {
+      "ended": 2149479.6606242,
+      "seconds": 0.5665341001003981,
+      "segment": "history-cleanup-lifetime-stack-20261024",
+      "started": 2149479.0940901,
+      "started_utc": "2026-11-01T10:18:13.532007+00:00"
+    },
+    {
+      "ended": 2149480.4363244,
+      "seconds": 0.7755040000192821,
+      "segment": "history-cleanup-membership-20261025",
+      "started": 2149479.6608204,
+      "started_utc": "2026-11-01T10:18:14.098740+00:00"
+    },
+    {
+      "ended": 2149491.4488285,
+      "seconds": 11.012257400434464,
+      "segment": "history-rp1-original",
+      "started": 2149480.4365711,
+      "started_utc": "2026-11-01T10:18:14.874487+00:00"
+    },
+    {
+      "ended": 2149500.0888492,
+      "seconds": 8.639817500021309,
+      "segment": "history-rp1-corrected",
+      "started": 2149491.4490317,
+      "started_utc": "2026-11-01T10:18:25.886949+00:00"
+    },
+    {
+      "ended": 2149510.1805192,
+      "seconds": 10.091438499744982,
+      "segment": "history-rp1-store",
+      "started": 2149500.0890807,
+      "started_utc": "2026-11-01T10:18:34.526993+00:00"
+    },
+    {
+      "ended": 2149522.2117079,
+      "seconds": 12.030908299610019,
+      "segment": "history-rp1-audit",
+      "started": 2149510.1807996,
+      "started_utc": "2026-11-01T10:18:44.618721+00:00"
+    },
+    {
+      "ended": 2149564.6891003,
+      "seconds": 40.63384580006823,
+      "segment": "authority-after",
+      "started": 2149524.0552545,
+      "started_utc": "2026-11-01T10:18:58.493172+00:00"
+    },
+    {
+      "ended": 2149564.7455798,
+      "seconds": 0.05628970032557845,
+      "segment": "input-publication",
+      "started": 2149564.6892901,
+      "started_utc": "2026-11-01T10:19:39.127207+00:00"
+    }
+  ],
+  "elapsed_seconds": 142.4660133998841,
+  "timed_segment_sum_seconds": 140.6189513001591,
+  "diagnostic_publication": "OUTSIDE_RECORDED_INTERVAL",
+  "next_required": "Cooperating BEFORE copies/readback; one new selected3.12 integrated run; fresh ORIGINAL AFTER and raw review. Do not retry preparation or old commands."
+}

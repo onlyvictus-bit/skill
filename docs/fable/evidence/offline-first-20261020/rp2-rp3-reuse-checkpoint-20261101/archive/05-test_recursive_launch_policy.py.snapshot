@@ -1,0 +1,130 @@
+"""RP1 pure command and environment policy controls; no selected runtime."""
+import hashlib
+import importlib.util
+from pathlib import Path
+import tempfile
+import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
+
+
+HERE = Path(__file__).absolute().parents[1]
+POLICY = HERE / 'run-artifacts' / 'recursive-launch-20261028' / 'prototype' / 'recursive_policy.py'
+SELECTED = r'C:\selected\venv\Scripts\python.exe'
+
+
+class RecursiveLaunchPolicy(unittest.TestCase):
+    def module(self):
+        self.assertTrue(POLICY.is_file(), 'RP1 recursive command policy is not implemented')
+        spec = importlib.util.spec_from_file_location('rp1_recursive_policy', POLICY)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    def test_actual_script_shape_preserves_flags_target_and_tail(self):
+        policy = self.module()
+        argv = [SELECTED, '-B', r'C:\source\worker.py', 'alpha', 'two words']
+        value = policy.parse_argv(argv, SELECTED)
+        self.assertEqual(value['mode'], 'script')
+        self.assertEqual(value['flags'], ['-B'])
+        self.assertEqual(value['target'], r'C:\source\worker.py')
+        self.assertEqual(value['tail'], ['alpha', 'two words'])
+        self.assertEqual(value['argv'], argv)
+
+    def test_c_and_module_shapes_are_explicit_and_preserve_original_argv(self):
+        policy = self.module()
+        command = [SELECTED, '-u', '-c', 'raise SystemExit(0)', 'arg0']
+        parsed = policy.parse_argv(command, SELECTED)
+        self.assertEqual((parsed['mode'], parsed['flags'], parsed['target'], parsed['tail']),
+                         ('c', ['-u'], 'raise SystemExit(0)', ['arg0']))
+        module = policy.parse_argv([SELECTED, '-OO', '-m', 'package.worker', 'x'], SELECTED)
+        self.assertEqual((module['mode'], module['flags'], module['target'], module['tail']),
+                         ('m', ['-OO'], 'package.worker', ['x']))
+
+    def test_ambiguous_or_prestartup_forms_are_refused_before_dispatch(self):
+        policy = self.module()
+        bad = [
+            'python -B child.py',
+            [r'C:\elsewhere\python.exe', 'child.py'],
+            [SELECTED, '-S', 'child.py'],
+            [SELECTED, '-X', 'dev', 'child.py'],
+            [SELECTED, '-W', 'error', 'child.py'],
+            [SELECTED, '-m', 'not-valid-name'],
+            [SELECTED, '-c'],
+            [SELECTED, 'bad\x00.py'],
+        ]
+        for argv in bad:
+            with self.subTest(argv=argv), self.assertRaisesRegex(ValueError, 'E_RP1_ARGV'):
+                policy.parse_argv(argv, SELECTED)
+
+    def test_utf16_command_line_limit_is_refused(self):
+        policy = self.module()
+        with self.assertRaisesRegex(ValueError, 'E_RP1_ARGV_LENGTH'):
+            policy.parse_argv([SELECTED, '-c', 'x' * 32768], SELECTED)
+
+    def test_environment_is_casefolded_exact_and_keeps_legitimate_sanitized_values(self):
+        policy = self.module()
+        value = policy.clean_env({'PATH': r'C:\Windows', 'TEMP': r'C:\temp',
+                                  'PYTHONDONTWRITEBYTECODE': '1',
+                                  'PYTHONNOUSERSITE': '1'}, SELECTED)
+        self.assertEqual(value['__PYVENV_LAUNCHER__'], SELECTED)
+        self.assertEqual(value['PATH'], r'C:\Windows')
+        self.assertEqual(value['PYTHONDONTWRITEBYTECODE'], '1')
+        self.assertEqual(value['PYTHONNOUSERSITE'], '1')
+
+    def test_environment_shadowing_foreign_selector_and_startup_overrides_are_refused(self):
+        policy = self.module()
+        bad = [
+            {'Path': 'one', 'PATH': 'two'},
+            {'PYTHONPATH': r'C:\attacker'},
+            {'pythonhome': r'C:\attacker'},
+            {'PYTHONINSPECT': '1'},
+            {'__PYVENV_LAUNCHER__': r'C:\other\python.exe'},
+            {'RP1_REQUEST': 'forged'},
+            {'A\x00B': 'value'},
+            {'A': 'value\x00'},
+        ]
+        for env in bad:
+            with self.subTest(env=env), self.assertRaisesRegex(ValueError, 'E_RP1_ENV'):
+                policy.clean_env(env, SELECTED)
+
+    def test_checked_read_binds_the_same_regular_single_link_bytes(self):
+        policy = self.module()
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            source = root / 'dispatch.py'
+            data = b'print("exact bytes")\n'
+            source.write_bytes(data)
+            self.assertEqual(policy.read_checked(source, hashlib.sha256(data).hexdigest(), 100), data)
+            with self.assertRaisesRegex(ValueError, 'E_RP1_SOURCE_DIGEST'):
+                policy.read_checked(source, '0' * 64, 100)
+            with self.assertRaisesRegex(ValueError, 'E_RP1_SOURCE_SIZE'):
+                policy.read_checked(source, hashlib.sha256(data).hexdigest(), len(data) - 1)
+
+    def test_checked_read_rejects_a_symlinked_source_or_parent(self):
+        policy = self.module()
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            target = root / 'target.py'
+            target.write_text('pass\n', encoding='utf-8')
+            linked = root / 'linked.py'
+            try:
+                linked.symlink_to(target)
+            except (NotImplementedError, OSError):
+                self.skipTest('symlink creation unavailable in this controller context')
+            with self.assertRaisesRegex(ValueError, 'E_RP1_SOURCE_PATH'):
+                policy.read_checked(linked, hashlib.sha256(target.read_bytes()).hexdigest(), 100)
+
+    def test_checked_read_rejects_the_windows_reparse_attribute_before_open(self):
+        policy=self.module()
+        info=SimpleNamespace(st_mode=0o100600,st_nlink=1,st_file_attributes=0x400)
+        with tempfile.TemporaryDirectory() as name:
+            source=Path(name)/'source.py';source.write_bytes(b'pass\n')
+            with patch.object(Path,'lstat',return_value=info),patch.object(Path,'open',
+                    side_effect=AssertionError('reparse source must never be opened')):
+                with self.assertRaisesRegex(ValueError,'E_RP1_SOURCE_PATH'):
+                    policy.read_checked(source,'a'*64,100)
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -2768,3 +2768,622 @@ STOP: no new diagnostic helper, fixture/source edit or selected runtime until
 this changed scope is approved. No oldattempt/baseline/input overwrite, reinstall,
 ACL/security/Git action, old-data deletion or unsupported blanket kill. Existing
 no-ACL cooperating-copy preservation remains the later full-stage requirement.
+
+### DR1–DR3 approved execution baseline2026-10-28
+
+AUTH: user said CONTINUE directly after the explicit narrow diagnostic plus
+atomic-fixture correction approval question. This approves DR1–DR3 described
+above, not an oldD2retry or a speculative production/supervisor redesign. Do
+not repeat approval inside this range. Separate exact-checkpoint question was
+answered "Approve this exact checkpoint transition": fee69861e1f94c54721e5eb773633f9b1d6f9fd3,
+direct child of f63. Read-only Git evidence shows saved repair/helpers/tests/
+failed-result campaign checkpoint, not an unreviewed new runtime. New verifier
+may pin ONLY that exact checkout; evaluated source remains627a382 plus sealed
+repair bytes and the explicitly approved fixture-only change. Old guards stay
+unchanged and may continue refusing newer HEADs legitimately.
+
+INTENT: replace only the incomplete nested-PID marker publication boundary with
+temporary-file/rename atomic publication; every original17ID/native assertion
+remains. Keep original00c837... bytes in immutable D2source as control. No
+production windows_owned_process/bootstrap changes are approved by this step.
+Build only a new bounded witness that reports per-role inner membership and
+native exit for alias versus same-pinned-image descendant launch paths, preserving
+all identities/budgets and fail-closed cleanup/provenance. No oldflow gets rerun.
+
+Baseline hashes/mtimes/currentdirty inventory were inspected before writes;
+record .github/run-artifacts/shutdown-descendant-20261028/Baseline.json. Parent
+owns live fixture publisher/new fixture tests/new coordinator and Fable context.
+Native Terra owns only new shutdown_descendant_probe.py/test counterpart and
+fresh retained probe outputs. Native Sol performs read-only architecture/final
+review. All actors preserve concurrent user changes and consumed attempts.
+
+DR observed checkpoint2026-10-28: parent now owns final probe/test sources after
+Terra's partial candidate. Atomic2/original17/startup21 PASS; knowledge275run
+221PASS54existingSKIP0fail/error; real637filecopy verified. New focused combined
+26/26 PASS (probe15 + coordinator11), including real controller314 alias/image
+fixtures and separate outer captures/PID binding. Original selected312 remains
+UNRUN; source owner/bootstrap unchanged d9f8/a7fa. All consumed history retained.
+
+Final independent probe/seal review NOT_PASSED: native reviewer returned workspace
+out of credits after clearing atomic correction and coordinator structure.
+Parent closed remaining bounded evidence/schema/cleanup issues with observed
+RED/GREEN; final new bytes still need native review. Candidate read-only authority
+build361923bytes SHA0cabf116954056619fb3ebdb6fa0a2ddc5d1fa8f579cb2d0fd77f5d6d7c283fd
+passed source/runtime/protected/oldD2 critical guards. Launcher stays deliberately
+FREEZE_AFTER_REVIEW; no command issued, no normalroot/claim/selected312 created.
+Next is final review then exactsealed ONE already-approved normal diagnostic;
+no repeat scope approval, no oldD2 retry, no D3 qualification or speculative
+production ownership edit. See shutdown-descendant-20261028.md report.
+
+DR final reviewed handoff2026-10-28 supersedes the unavailable-review statement:
+same native reviewer resumed, required and cleared bounded PEP678 note capture.
+Observed note RED then combined27/27 GREEN,16probe+11coordinator. Final candidate
+361923bytes SHA965ad98ef311051c052ee87262bb6e35e580c8baec4a81a6ce9f7fabd267be8e
+was independently rebuilt; six external seals and both actual PowerShell files
+verified,0parseerrors, normalroot absent. Verdict SHIP EXACT ONE new normal
+descendant diagnostic only. Issued DR-Diagnostic-Command.ps1
+SHAbdb9322f0357fd4073eb4400153349dd135b417ad3cb556c640cb2484d575fe8;
+launcher d6a3eea98ba8fabb1dfe427cfb72cc085deac1bdef315799a4210f150abed6be.
+Agent1003 VerifyOnly correctly refused before Python/output; normal VerifyOnly,
+Prepare/Run/selected312 remain UNRUN. Preserve actual output and then judge raw
+receipt/roles/source/protected/runtime before any new repair conclusion. No
+same-scope approval repeats, old retries, production edit or D3/fullstage claim.
+
+## DR actual result and proposed RP1–RP3 recursive launch repair2026-10-28
+
+DR1–DR3 evidence gathering is complete. Normal attempt consumed; NEVER rerun
+DR-Diagnostic-Command.ps1. Receipt136045bytes SHA
+54782c5c8e81dc751b4a4630272b2c067ede4720a4123993d7ca27f379aa3e21.
+Parent and independent native judge verified6command records/12streams, both
+Probe/stdout/main-report bindings,637source files,53dependency versions and
+matching before/after runtime identity except per-command cwd. Fresh read-only
+direct source/runtime/protected/old critical guards PASS. No workload rerun.
+
+Alias route: root32528 inside the exact inner Job; child23492 (launcher32148)
+and grandchild4908 (launcher16216) outside it. All four descendant interpreter/
+launcher handles were alive immediately after owner.stop. Job accounting and
+owner proof covered exactly1root. Diagnostic emergency cleanup reaped those
+four proven handles, and closed all resources without debt.
+Image route: root2356/child20564/grandchild45100 all inside the Job, accounting3,
+proof records3; every independent native wait signalled immediately after stop.
+No emergency termination. Both arms used the same native3.12.10/venv/deps.
+Native actual-result verdict FIX-FIRST: the selected venv-launch route crosses
+the inner ownership boundary. Exact internal Windows activation/broker cause,
+historical C2 exception and production repair remain UNPROVEN. One paired run
+is one runtime evidence family, not repeated or universal platform proof.
+
+TARGET: contain supported recursive Python descendants while preserving the
+existing venv-facing sys.executable, prefix, public protocol and process API
+semantics. A root-only change cannot meet this: launch_current already starts
+the native image, while unchanged original17 authored scripts call
+subprocess.Popen([sys.executable,...]) recursively.
+
+| Option | Mechanism and main failure mode | Decision |
+| --- | --- | --- |
+| No build | Keep the observed failure fenced and stage false | Honest fallback; does not complete shutdown repair |
+| Exact-native executable override plus explicit sealed recursive bootstrap | Owned-process guard routes supported Python creates to attested native image; every generation loads exact policy/config before dispatching authored code | Recommended bounded RP prototype; argv/env compatibility and bypass refusal must be demonstrated before integration |
+| General native launcher/broker or process-creation supervisor | Covers a broader native creation contract | Deferred; larger architecture and operational cost, not silently included |
+
+RECOMMENDATION: the second option, conditional on RP1 falsifiers. Preserve
+sys.executable as the selected venv path. Keep caller Python argv intact at the
+public API; use Popen.executable (or an equivalent proved owned-process creation
+boundary) to choose the exact attested native image, with existing venv selector
+restored per child. Bind the recursive request/policy/loader by exact path/hash,
+nonce and expected image/venv frame. An explicit trusted descendant bootstrap
+must install the same guard before dispatching script/-c/-m authored work.
+No reliance on a bare sitecustomize hook: missing, shadowed or disabled hooks
+cannot attest their own absence, and a late marker cannot undo authored work.
+
+This is an application-controlled Python launch contract, not an OS sandbox.
+Audit current worker, indexing/Git, test-evidence, benchmark, multiprocessing
+and pinned adapter creation paths before selecting the guard boundary. Existing
+legitimate native/Git behavior must remain supported and contained; do not
+silently replace it with a new refusal. Raw native creation outside a proved
+guard must be explicitly excluded/audited or trigger a stronger design decision.
+
+PROPOSED range requiring new approval (DR explicitly excluded production and
+supervisor redesign; no RP implementation is authorized just by this record):
+
+- RP1: implement only a new source-local scratch prototype and failure-first
+  tests for exact native routing plus explicit recursive pre-authored bootstrap.
+  Inventory actual command grammar first: script/-c/-m, existing flags/argv,
+  stdin/stdout/stderr, cwd, environment, exit codes and exceptions. Include
+  original17 unchanged native assertions against the prototype. Prove absence,
+  tamper, shadow, disabled startup and stripped/foreign environment cases cannot
+  produce their child must-not-run marker. Reject unsupported/breakaway launch
+  forms before CreateProcess. Do not patch the selected venv, .pth/site-packages,
+  registry, global environment, ACLs or an old frozen artifact.
+  Execution authority requested for this milestone is explicit: controller314
+  unit/failure checks first, then AT MOST ONE fresh normal non-admin SID1001
+  selected3.12 scratch-prototype observation under a NEW reviewed/sealed root
+  and command. No selected312 agent execution, old command or automatic retry.
+  Stop/preserve on failure. Controller-only GREEN cannot clear RP2 because it
+  did not reproduce the selected Store topology. The selected prototype result
+  must pass and receive raw-result review before live-source integration.
+- RP2: integrate only if RP1 and fresh native design/code review clear the same
+  contract. Expected source surfaces: windows_owned_process.py,
+  windows_owned_bootstrap.py, narrow new policy/descendant-bootstrap modules,
+  and only necessary environment propagation at distributed_retrieval.py or
+  worker_client.py. Keep public schemas, selected venv identity, original17
+  IDs/assertions and source controls. Run focused ownership/writer/lifecycle,
+  recursive grammar/refusal and broader relevant suites; retain all failures.
+- RP3: independently review and seal one fresh selected3.12 normal-account
+  qualification successor. Require all original ownership/writer/lifecycle and
+  startup assertions, unchanged ordered public initial/replay/lease controls,
+  actual inner Job membership/count3 and all independent root/child/grandchild
+  native waits, with no emergency process termination needed for success.
+  Use existing cooperating-account copy method for mandatory fresh ORIGINAL
+  BEFORE/AFTER preservation. Judge raw receipts before stage closure. No old
+  D2/DR command retry; stop on failure, preserve output, no automatic retry.
+
+Done requires launch/authored image identities and creations to agree with the
+approved native route in every supported generation, same selected venv and53
+dependency identities, nested-Job coverage, all original assertions intact and
+unsupported forms refused before child authored work. Default120/public90/
+lifecycle60/sharedshutdown5 stay fixed. No install/reinstall, runtime/cfg change,
+ACL/security/global mutation, Git write, old-data deletion or release inference.
+
+Mandatory RP1/RP2 compatibility matrix: compare guarded dispatch against an
+unguarded native CPython control with the SAME pinned image and existing venv
+selector, separately for script/-c/-m and each supported flag/argument form.
+Observe child-visible sys.argv (including argv0), sys.path[0], __main__ identity,
+__file__ presence/value, __package__/__spec__ where relevant, cwd, stdio bytes,
+return code and exception type/message/root-cause visibility. Do not infer
+compatibility from only loaded-image or prefix equality. Any additional trusted
+bootstrap traceback frame must be documented; no protocol/stdout pollution.
+Approval of RP1–RP3 requests two distinct normal selected-runtime attempts at
+most: ONE scratch proof in RP1, then ONE integrated qualification in RP3 after
+successful integration/review. Neither is a retry of a failed attempt. A failed
+prototype cannot be followed by integration or an automatic successor attempt.
+
+WEAK LINK: the native route works in one paired witness; recursive propagation
+and full argv/environment compatibility are not implemented or proved. CHEAPEST
+FALSIFIER: RP1 must-not-run markers for every missing/tampered/bypassed gate plus
+the unchanged original17 child/grandchild wait assertions. PIVOT: if any authored
+child runs without exact policy attestation, or a required existing creation API
+cannot be contained by the bounded guard, reject this prototype and return for
+the stronger native-boundary architecture rather than weakening tests.
+Confidence: supported repair direction, implementation feasibility unverified.
+
+Primary API sources: Python documents Popen.executable separately from argv at
+https://docs.python.org/3.12/library/subprocess.html#subprocess.Popen and site
+startup/disable behavior at https://docs.python.org/3.12/library/site.html.
+Windows Job child inheritance semantics:
+https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects.
+These explain candidate mechanics; they are not binary-level Windows cause
+proof or a substitute for selected-runtime qualification.
+
+### RP1–RP3 approval and RP1 execution2026-10-29
+
+AUTH: user answered "Approve RP1–RP3 (Recommended)" to the explicit range.
+The proposed range above is now approved with its conditional ordering and
+one RP1 / one RP3 maximum normal-account attempts. No re-approval inside it.
+RP1 live production/old histories remain immutable controls. Baseline saved
+exclusively under .github/run-artifacts/recursive-launch-20261028/Baseline.json.
+
+Required native review correction: normal CPython startup precedes a -c loader;
+so the loader alone is not the trust boundary. Compare (a) audited/sealed normal
+startup with a clean startup environment and sanitized loader imports, against
+(b) internal no-site startup followed by explicit site reconstruction. Prefer
+(a) only if startup-surface and must-not-run evidence prove its boundary; (b)
+changes sys.flags.no_site and3.12 prefix semantics and needs an equivalence proof.
+Do not pretend manually restored prefix alone preserves interpreter behavior.
+Before any authored dispatch, exact request/source/frame binding, recursive
+guard installation and supported command grammar must pass. Tests include cwd
+sitecustomize/usercustomize/hashlib/json shadows, startup path drift and .pth
+injection in synthetic test-owned directories, duplicate-case environment,
+missing/tampered requests, breakaway and unsupported flag refusal.
+
+Inventory observed in application sources: persistent distributed roots route
+through launch_current; WorkerClient has raw script+args Popen; benchmarks use
+-c; test_evidence uses script+args; worker/indexing conditionally require Git.
+No application multiprocessing/joblib/direct_winapi/os.spawn calls found.
+Installed adapter creation paths still require read-only inventory before
+integration; absence in application source does not prove absence in vendors.
+
+### RP1 implementation observation and input-only handoff2026-10-29
+
+Scratch only: recursive_policy.py, recursive_bootstrap.py, controller-copy
+helper, selected verifier/probe drafts and focused controls are local under
+.github/run-artifacts/recursive-launch-20261028/prototype. Production unchanged.
+Exact strict f6500cd3 module passed77Windows controls in controller-final-11;
+original17 assertions and source seals stay unchanged. Retain all earlier REDs,
+including the access-denial discovery and controller count6 baseline witness.
+
+Closed production profile: only _Session's distributed_worker.py roots receive
+the guard; current WorkerClient/taskkill executes outside it. Do not broaden
+installation without re-auditing native creation. RP1 stdlib fixtures are explicit
+test roots, not a generic OS sandbox claim.
+
+Agent Candidate mandatory Store alias metadata was denied. Normal input-only
+preparation is authorized within RP1, independently of the one runtime attempt.
+Same-seat native final review SHIP for the externally sealed INPUT-ONLY block
+after isolated-controller/env-shadow controls. No old/current runtime command
+may be inferred from it. Launcher97a4f2b0, outerb6ed010a are frozen; see latest
+recursive-launch-rp1-20261029.md. Normal root is absent and attempt unused.
+Observe Inputs.json from normal1001, parent review exact contents/hash, then
+finish the full runtime successor review/seals and issue one RP1 command.
+No new approval gate inside approved RP1–RP3; no auto retry, missing-input skip,
+installation, permission change, Git write, old-data deletion or qualification.
+
+### RP1 actual normal Inputs and final runtime review2026-10-29
+
+Input preparation is now observed, superseding root-absent statements above.
+Inputs369408bytes SHA60b392e49bd7a0de42847b92150dcb590c89806e4d4836a506f38072cbae6bfd
+verified directly by parent against current readable authority/14bound rows.
+No RP1 selected attempt; normal root contains only Inputs.json.
+
+Full handoff review found runtime evidence defects excluded from input-only
+clearance. Keep consumed preparation bytes immutable; use a separately sealed
+recursive_runtime_verification.py within the same approved RP1 milestone.
+Required corrections now implemented and controller tested: closed initial
+child environment before claim, retained postclaim mkdir/publication errors,
+exact original17 IDs/logs, six-method matrix/36rawstreams, Command/stream/Probe/
+marker/claim bindings and full evidence recheck AFTER. No weakened assertions,
+new selected attempt, expanded production guard or deadline increase.
+
+Focused fault RED/GREEN and combined58run57PASS1known link-fixture skip retained;
+last partial-publication regression GREEN11/11. Existing unchanged-core77Windows
+controller proof remains separate. Final runtime source ef59eee3; launcher
+c52a50d2; outer b8e97698. Exact final native review pending before issuance.
+On clearance issue this one normal-account scratch proof, then inspect actual
+raw results before conditional RP2 integration. RP3 fresh ORIGINAL BEFORE/AFTER
+cooperating-copy preservation remains mandatory and is not closed by RP1.
+
+Final exact native review SHIP2026-10-29: successor ef59eee3, launcher c52a50d2,
+outer b8e97698, prepared Inputs60b392e4. One normal-account RP1 scratch handoff
+is now issued; selected attempt remains unrun. Final59controller checks:
+58PASS,1known real-symlink fixture skip; focused11/11. Native VerifyOnly11pins,
+wronghash/foreignselector/wrongaccount controls observed beforePython. Review
+excludes RP2/RP3/Gate1 readiness; their already-approved conditional scope stays
+unchanged. Stop/preserve on failure and never retry a consumed command.
+
+### ACTUAL RP1 failure and existing-data readback2026-10-29
+
+User executed the reviewed command once. It is now consumed. Exact95881byte
+Run-Failure/runReceipt SHA63c315d3d8a6846642f7c2783d5329239e247897866987eb365293929ddf78f8
+matches parent raw readback.4complete captures; identity/dependency/startupPASS,
+original17 ran15PASS2FAIL in14.763s, no timeout/errors/skips/postcheck failure.
+Both failing cases lack a descendant-ready marker before shutdown assertions;
+remaining matrix/descendant/AFTER phases did not execute. Central requests empty.
+All17recorded artifacts and639copied source hashes verified. RP2 precondition
+is false; approved RP1 one-shot authority is not automatically renewed.
+
+Decision: report-only preserves an honest failure but cannot learn the cause.
+Smallest next observation is normal-account read-only access to the exact two
+already identified private fixture leaves; no recursive copy or permission
+change is needed to report their existing contracts/ready/go/marker metadata.
+Stronger alternative is a distinct exception-capturing selected diagnostic,
+requiring new explicit one-shot authority if the old data cannot distinguish
+the pre-request failure. Never rerun old command or change test assertions.
+
+Recommend existing-data readback first. Weak link: stderr=DEVNULL already lost
+the exact exception; marker timing may narrow phase but cannot recreate it.
+Cheapest falsifier: compare existing contract deadlines and marker/go metadata.
+Pivot: if that is inconclusive, prepare bounded atomic root-install/pre-request
+exception sidecars in a new scratch diagnostic, controller RED/GREEN and native
+review before requesting new selected-execution authority. Deadline narrowing
+is a hypothesis only; no production repair or package reinstall is justified.
+
+New PowerShell-only helper RP1-Read-Failed-Fixtures.ps1 d0383891 and outer
+RP1-Readback-Command.ps1 a49a7dca read exactly sr3-nested-job-w8m4fynk and
+sr3-owned-tree-3mm1_fl1 under the consumed run. No Python, test, output file,
+workload claim, old-file mutation, security/Git/install operation. Four consumed
+artifact pins, normal1001/non-admin, name/count/byte/link/UTF8/read-stability
+guards; numeric link count explicitly UNOBSERVED.3controller checks PASS;
+parse/VerifyOnlyPASS. Final read-only review pending before handoff.
+
+Final read-only review SHIP for exact d0383891 helper/a49a7dca outer. Native
+wrongagentSID refusal observed before private reads; consumed result hash stays
+63c315d3. This read-only handoff is issued without renewing runtime authority.
+Review its existing data first. It does not authorize Python, another selected
+process, a workload, RP2/source integration or any old command retry.
+
+### Corrected RP1 continuation — controller verified2026-10-29
+
+User MAKE THIS RP1 SUCCESS/CONTINUE authorizes local corrective implementation.
+Old selected proof63c315d3 remains consumed. Readback completed and refutes
+immediate startup expiry for the tree root; discarded original error unknown.
+Do not spend another selected attempt without a concrete reviewed fresh proof.
+
+Selected mechanism: smallest corrected scratch successor with calibrated shared
+clock deadline, independently bounded root installation and pre-authored failure
+retention. No-build leaves RP1 failed. A persistent worker/service or new Python
+environment is larger scope without evidence and is rejected. Weakest link:
+selected3.12 behavior remains unobserved. Cheapest falsifier: captured strict
+root-child-grandchild smoke first; stop on any failure before17/matrix. Pivot
+to its retained exact stage/cause if it fails; do not force clock hypothesis.
+
+- [x] Correct clock-domain and startup/lifetime split in NEW scratch only.
+- [x] Preserve exact loader/install/dispatch failures even before bootstrap entry.
+- [x] Bind original17/command partial logs, cumulative strict sidecars and both
+  descendant proofs' five raw markers. Retain original error if capture fails.
+- [x] Parent40/40 focused+unchanged compatibility and77/77 full Windows controls
+  pass. Exact original17 and original25 assertions unchanged; no skips/widening.
+- [x] External15pinVerifyOnly,0parse errors, wronghash/wrongSID refusal observed.
+- [ ] Final exact native review and separately approved concrete one-shot normal
+  corrected proof. No selected operation from agent1003; no old retry.
+- [ ] Parent raw receipt/result/stream/profile/source/native-wait review before
+  RP1 acceptance and conditional RP2 integration. RP3 remains separate.
+
+See recursive-launch-rp1-20261029.md latest corrective section for exact seals,
+receipts and retained REDs. Newnormal recursive-launch-rp1-corrected-20261029
+must remain absent until deliberate approved execution. Every qualification flag
+false. Original source/runtime/history permissions and bytes unchanged.
+
+Final exact native review completed SHIP: bootstrap1d6c87fc, coordinator22f59ce5,
+launcher d7f2e99e, outerdb7cd1f2. FINAL40/40+77/77 controller checks PASS and
+all15external seals/refusals verified. Review checkbox above is closed; only
+deliberate new one-shot user approval/execution and subsequent raw review remain
+before RP1 acceptance. Normal destination absent; selected3.12 remains UNRUN.
+
+### Corrected RP1 actual environment refusal and bounded successor2026-10-29
+
+User ran the reviewed corrected proof. It is now CONSUMED/FAILED, not UNRUN.
+Actual Run-Failure109583bytes SHA9f4b2ce33ea624386a64b3b85dafedd549051f4fc53b9a632d80871f8bdc175b.
+Five identity/dependency/startup/clock captures passed. Captured exact3 smoke
+failed before first child creation: retained stderr and dispatch sidecar agree
+stage environment/E_RP1_ENV_STARTUP, authored_child_startedFalse, about109.475s
+recursive budget left. Sole unexpected recorded Python key is PYTHONUSERBASE.
+Tagged CPython3.12.10 PC/python_uwp.cpp220-223 inserts this key when absent.
+Initial closed controller env forbids it, so this runtime-added key explains the
+current boundary failure. Its actual value and historical lost-stderr cause
+remain unobserved; do not invent either. Original17/matrix/finalproof unrun.
+
+Recommendation: fresh scratch successor, bind selected Store-generated USERBASE
+from the existing pre-workload startup metadata frame, validate its package-
+family normal LocalCache location, require no-user-site1/siteFalse/exactpaths,
+then preserve only that exact value through guarded descendants. Extend profile
+with optional controllerNone/selectedexact binding; ordinary clean_env remains
+strict by default. Reject changed value, duplicate casing, enabled user-site,
+missing no-user-site1 and every other unsupported Python key. Attest binding
+at every child entry. Preserve public env values and immutable original tests.
+
+No-build preserves a now-explained refusal. Blanket allowance or arbitrary
+stripping loses the refusal/value contract. Reinstall/newruntime/ACL changes
+cannot solve this policy mismatch. Weakest link: actual new selected value and
+recursive proof still need observation. Cheapest falsifier remains the early
+captured exact3 smoke; stop on failure and retain exact cause, no automatic retry.
+
+- [ ] New recursive-launch-store-env-20261029 prototype only; preserve consumed
+  source/helpers/contracts/receipts. No production integration in this step.
+- [ ] Failure-first policy/profile/startup metadata controls, unchanged contracts,
+  relevant ownership regression; exact reviewed fresh normal-account one-shot.
+- [ ] Parent actual raw review before RP1 acceptance and conditional RP2.
+
+One new selected proof requires concrete deliberate approval/execution after
+local correction/review; neither consumed command may be rerun. Default120,
+public90/watchdog60/shutdown5 and all full-stage/Gate1/release/install flags stay.
+
+Store-env final local observation: policy5RED→5PASS, metadata4RED→4PASS, final
+combined60run59PASS0fail/error1knownsymlinkpermissionSKIP. Two new positivewiring
+testfixture defects retainedRED and corrected; implementation unchanged to close
+them. Broader77run76PASS1accessERROR, unchangedstartupbaseline21/21PASS; keep
+access/I/Ocauseunknown and broadsuiteNOTgreen. No broad rerun/skip/ACL workaround.
+Exact native final review SHIP bootstrap035a8226/policyea17b5e/coordinator4e2be144,
+launcher48a2e281/outer4b10636d. VerifyOnly16sealsPASS, parse0, wronghash/wrongSID
+refusebeforePython, newnormalrootABSENT. Localbuild/reviewcheckboxes closed;
+deliberate one-shot userexecution and actualrawreview still pending beforeRP1.
+
+### Store-env actual result and collector follow-up, 2026-10-29
+
+Issued Store-env attempt consumed. Actual selected3.12 captured exact3 smoke
+and unchanged17tests PASS; Run-Failure6017f134 retains a subsequent collector
+stop. Parent639source/49evidencehashes matched;1private sidecar unreadable.
+Collector's broad *.failure.* scan misclassifies an owned-bootstrap temporary
+publication in intentional expired-gate test as recursive enter failure.
+Do not call the inaccessible payload verified or blanket-ignore those records.
+
+- [x] Verify actual receipt, available raw hashes, native3role shutdown/cleanup,
+  unchanged17PASS and exact failing collector branch; preserve consumed run.
+- [ ] DATA-ONLY normal-account hash-checked readback of sidecar7c92170e,
+  matching contract/ready, and go/authored-marker absence/presence.
+- [ ] Use actual payload to reproduce and narrowly repair classification in
+  new scratch only, with strict expected-negative provenance and unexpected/
+  incomplete/changed-record controls. Preserve old helpers and test assertions.
+- [ ] Review bounded continuation of remaining RP1 proof; no automatic old
+  workload retry. Matrix/finalproof/AFTERmetadata remain unrun; RP2 conditional.
+
+Cheapest falsifier is existing sidecar readback, not another selected run.
+No-build remains partial; blanket ignoring .tmp/owned failure records rejected;
+larger failure framework unnecessary. If the readback reveals an unexpected
+cause, address that evidence before proposing a collector acceptance exception.
+
+### Approved collector correction and complete failure reporting, 2026-10-29
+
+User supplied normal readback:1706byte sidecar7c92170e is exact TimeoutError /
+E_OWNED_BOOTSTRAP_GO_DEADLINE; expected and observed identity match. Contract
+45384434 and ready60f28631 bind same token,PID27140 and script. Final failure/go/
+authored marker absent; go.tmp present. This closes unknown payload, not exact
+instruction at termination. User now requires comprehensive segment/cause logs
+in one handoff, not a PowerShell command for every small test.
+
+Within approved RP1 scope create NEW recursive-launch-audit-20261029 scratch;
+reuse Store-env bootstrap/policy/probe bytes unchanged. Parent owns runtime
+orchestration/reporting; native worker owns a bounded failure-audit module and
+its tests. Preserve every consumed artifact. No production/Git/ACL/install edit.
+
+1. Reproduce collector false refusal, then accept only the expected expired-gate
+   negative control with exact body/token/identity/contract/ready/script/marker,
+   source/test outcome and count binding. A final publication or its PID-bound
+   temporary predecessor can both represent this expected error; reject both
+   together, wrong schema and any unbound/malformed record. Retain each state.
+2. Capture candidate raw text/hash and related bounded records BEFORE validation.
+   Retain errors independently; never let later validation erase primary cause.
+   Unexpected recursive and matrix failures keep their strict rejection rules.
+3. Add bounded structured phase/substage timelines, original exception chains
+   and notes, command exit/containment, relevant stdout/stderr/log excerpts,
+   PID/cleanup/identity summaries, unreadable paths and capture incompleteness.
+   Whole receipt plus a concise diagnostic summary must carry enough accessible
+   evidence to avoid another manual private-file read. No credentials/env dump.
+4. Controller-only focused negative controls and unchanged compatibility tests,
+   fresh native review, exact external seals, one normal-account full RP1 run.
+   Same120/90/60/5 budgets. No retry, success fabrication or skip. Actual raw
+   review required before RP2. Prior broad76PASS/1accessERROR remains caveated.
+
+No-build leaves a now-explained verifier defect. Chosen smallest adequate fix
+is strict expected-negative classification plus evidence-first reporting.
+Blanket ignoring .tmp or replacing the test is rejected; a general telemetry
+framework is unnecessary. Weakest link is unseen selected-path behavior in
+the remaining matrix/final phases; cheapest falsifier is complete local fault
+coverage followed by the single fully logged selected qualification.
+
+2026-10-31 review clarification: repository scratch is
+.github/run-artifacts/recursive-launch-audit-20261029/prototype; the separate
+normal-account execution root is C:/Users/sakth/Documents/Codex/recursive-launch-rp1-audit-20261029.
+Retained dates in these fixed names are identities, not a claim of execution.
+Classifier requires selected-clock deadline between conservative upper-start
+and lower-end bounds of the completed original17 command, using existing clock
+calibration; no timeouts/deadlines are enlarged. Reviewer found missing expiry
+and independent top-folder retention checks; both corrected and tested locally.
+All qualification flags must remain false at aggregate validation. Missing
+required artifacts fail; optional Intent.json absence alone is permitted.
+
+Final2026-10-31: local93run92PASS1knownskip0errors/failures; reporting-only final
+coordinator delta9/9PASS. Exact native SHIP for coordinator9b650a93,
+launcher8caba29b, outerc09a5999. Final parse/VerifyOnlyPASS; normal root ABSENT.
+Next is ONE full selected normal-account observation then raw review. RP1 actual
+completion/RP2 integration remain pending; no renewed scope approval is needed.
+
+
+### RP1 actual acceptance and approved RP2 continuation, 2026-10-31
+
+RP1 complete after actual parent raw review and fresh native reviewer SHIP.
+Evidence: rp1-actual-acceptance-20261031.md. Receipt20800625...; all11commands
+exit0,17/17ownership,6/6matrix/36streams, two fresh3role native waits/cleanup.
+639source and116direct+5embedded private evidence hashes independently checked.
+Five private originals remain agent-unreadable; full normal-captured bytes are
+verified, not falsely described as fresh agent reads. No new workload/retry.
+
+Next approved RP2: inspect concrete profile/startup integration seams, record
+minimal mapping, then integrate proved recursive guard in owned startup while
+keeping selected identity, budgets, public API and original17 assertions. Retain
+failure-first tests, focused ownership/writer/lifecycle and broader regressions;
+fresh review before one new RP3 integrated qualification. Existing authorization
+covers RP2; no ceremony approval. Full shutdown/Gate1/release/install stay false.
+
+
+### RP2 concrete integration mapping, 2026-10-31
+
+INTENT: make every launch_current-owned root install the proved recursive guard
+by default after its existing identity/Job/ready-go/deadline gate and before any
+authored worker code. Parent processes retain their own unmodified Popen. An
+optional/off guard limited to _Session was rejected: it would leave unchanged
+original17 direct-owner calls exercising the old Store descendant escape.
+
+Scope: new knowledge_bridge/recursive_bootstrap.py and recursive_policy.py,
+windows_owned_process.py contract/source seals, windows_owned_bootstrap.py
+post-go installer, and only necessary shared deadline propagation in Windows
+_Session. Existing call shapes remain valid; an optional recursive_deadline
+keyword defaults to an independent120-second budget. _Session supplies its
+existing shared request deadline unchanged, so two sessions cannot reset it.
+The existing startup deadline bounds startup/install only. No extra interpreter
+probe is used: construct runtime profile in the attested child from actualimage,
+venv/startup paths excluding bootstrap path0, exact Store USERBASE observation
+and sealed adjacent source. All normal startup/audit/refusal checks still apply.
+
+No-build leaves live source unfixed. Chosen route promotes the observed bounded
+owned-root guard; a new generic process service/global interception would enlarge
+scope and is rejected. Weak link is profile construction outside the scratch
+harness. Cheapest falsifier is a real unchanged direct owner call that can still
+create an unsupported/unattested child or changes argv/stdio/exception behavior.
+Refuse integration if it requires weakening identity/startup or original tests.
+
+TDD: add new integration controls, retain observed RED on current production
+behavior, implement, then original17 plus Windows writer/lifecycle/startup,
+recursive compatibility/refusal and broader knowledge tests. Existing tests and
+all consumed prototypes/normal outputs remain immutable. Baseline is retained
+in .github/run-artifacts/recursive-integration-rp2-20261031/Before.json.
+Fresh design/code review and parent observations precede RP2 completion/RP3.
+
+
+### RP2 review corrections, 2026-11-01
+
+Fresh native review found Store binding and conditional editable-Git gaps.
+Store roots must require USERBASE/no-site and bind its exact observed value
+to Local/AppData/Packages/<attested alias family>/LocalCache/local-packages.
+Derive Local from the already-attested base alias, without a probe or env change.
+Normal non-Store roots retain absence; generic USERBASE allowance is rejected.
+
+Preserve worker.runtime_identity's existing editable Semantica branch using the
+accepted native_spec/route_native, with one necessary worker.py hook before its
+existing rev-parse/status calls. Bind only the exact existing PATH git.exe and
+resolved Semantica root; binding is idempotent for that pair and rejects rebinding.
+Only those two read-only vectors are available to OWNED_RUNTIME. Check the shared
+recursive clock/deadline before/after binding/routing and immediately before create.
+Ordinary parent Popen has no binder and keeps its existing behavior. The source
+package is trusted application code; this is not an OS sandbox.
+
+No-build would regress an inventoried conditional path. Chosen bounded binding
+reuses proved controls; a general native command allowlist is rejected. RED
+controls precede fixes, then final relevant regressions and independent re-review.
+Native-Git-Before.json pins worker.py before this required integration seam.
+
+
+### RP2 acceptance, 2026-11-01
+
+Native final review SHIP after Store missing/location and editable Git findings
+were reproduced RED and closed. Final292knowledge:238PASS54knownSKIP0FAIL/ERROR;
+45immutable compatibility:44PASS1knownsymlinkSKIP0FAIL/ERROR. Original17 and
+WorkerClient baseline bytes unchanged. RP2-Accepted.json SHA feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369
+pins all9 code/test records and final receipts. See rp2-integration-acceptance-20261101.md.
+RP2 complete; RP3 selected integrated qualification and fresh ORIGINAL BEFORE/AFTER
+remain unrun. Existing RP1-RP3 approval continues; no duplicate approval needed.
+
+
+### RP3 bounded preparation mapping, 2026-11-01
+
+RP2 native SHIP closes the conditional gate; existing RP1-RP3 approval applies.
+First prepare new normal-account Inputs and fresh ORIGINAL BEFORE data request,
+without selected Python3.12, test execution, source extraction or workload claim.
+New helper lives under recursive-integration-rp3-20261101/prototype; old helpers
+and every consumed command/input remain immutable. Reuse checked C1 and existing
+shutdown_copy_data SnapshotSet; keep inaccessible evidence explicit for the
+cooperating existing-access reader, while authoritative code/runtime must remain
+directly readable and exact. No permission/security change or inaccessible skip.
+
+Source-Recipe.json 236879bytes SHA644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec
+binds exact fee69861 HEAD tree675 records plus10 approved overlays (9 RP2 records
+and the previously approved original17 atomic-marker fixture),680 evaluated files.
+Parent observed zero live-authority mismatches. This is a recipe, not a copied
+source/normal preparation or selected-runtime observation. Original17/WorkerClient
+are not being repaired again. All retained sources remain unchanged.
+
+Preparation seals RP2 acceptance/source recipe, original runtime/lock metadata,
+current protected packages/caches and declared consumed receipt/history coverage;
+records phase/root timing and full bounded original exception chains. Fresh data
+coverage includes the4 cleanup roots and4 consumed RP1 normal roots. Any further
+required history must be explicit; no archive-wide claim. Prepare in one unique
+normal destination; existing claim/output means consumed, retain and stop.
+
+Review/test input guard/source/digest/overwrite and denied-data handling in the
+controller, then issue one sealed input-only handoff if normal account is required.
+After current ORIGINAL BEFORE copies/readback, freeze one full RP3 selected run
+with identity/dependencies, complete ownership/lifecycle/public initial+replay,
+segments/causes/raw bytes and actual tree exit. Then fresh ORIGINAL AFTER copies
+and parent raw comparison. Runtime command is not frozen by input preparation.
+No old retry, install, ACL/global/Git write, original deletion or budget increase.
+
+
+RP3 prep final2026-11-01:9/9controller controls PASS, source680+6olderpins
+observed, actual wrong-agent refusal leaves ROOTabsent. Fresh nativeSHIP for
+helper017a4072/outer569137d4,0PowerShell parseerrors. One normal input-only
+preparation issued; actual Inputs/BEFORERequest and cooperating copy/readback
+remain pending. No selected runtime command frozen or issued. Existing approval
+continues; no repeated milestone scope question. See rp3-input-preparation-20261101.md.
+
+
+### RP3 actual preparation and authorized local checkpoint, 2026-11-01
+
+Normal input preparation SUCCEEDED and is CONSUMED. Parent verified3output
+hashes/sizes/bindings, source680,53versions,8roots and0failure marker. Cleanup-
+repair retains1240unresolved paths; cooperating BEFORE copy/readback remains.
+Runtime/sourcecopy/test/workload unrun; fullRP3/AFTER/stage remain incomplete.
+AUTH: user asks "can we comit to git to save successfull details to reuse?"
+Save approved source/tests and curated status/hash/archive evidence using an
+isolated Git index and separate local checkpoint/rp2-rp3-inputs-20261101 ref.
+Preserve active development HEADfee69861 and its index; a normal active-branch
+commit would invalidate prepared exactHEAD guards. No raw private request/data/
+caches/binaries, unrelated dirty files or push. Verify each committed blob and
+ref, unchanged activeHEAD/index and prepared-file seals. This is checkpoint
+storage, not RP3/runtime qualification or a baseline change.

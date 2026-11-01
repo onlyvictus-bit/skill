@@ -1,0 +1,73 @@
+"""Store-Python startup policy controls; no selected runtime is started."""
+import importlib.util
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import unittest
+
+ROOT = Path(__file__).absolute().parents[2]
+POLICY = ROOT / '.github/run-artifacts/recursive-launch-store-env-20261029/prototype/recursive_policy.py'
+SELECTED = r'C:\selected\Scripts\python.exe'
+BASE = r'C:\Users\normal\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages'
+
+
+def load_policy():
+    spec = importlib.util.spec_from_file_location('recursive_store_env_policy', POLICY)
+    value = importlib.util.module_from_spec(spec); spec.loader.exec_module(value); return value
+
+
+class StoreEnvironmentPolicy(unittest.TestCase):
+    def setUp(self): self.policy = load_policy()
+
+    def assert_startup_refused(self, env, *, bound=BASE):
+        with self.assertRaisesRegex(ValueError, '^E_RP1_ENV_STARTUP$'):
+            self.policy.clean_env(env, SELECTED, store_userbase=bound)
+
+    def test_default_contract_remains_strict_for_userbase(self):
+        with self.assertRaisesRegex(ValueError, '^E_RP1_ENV_STARTUP$'):
+            self.policy.clean_env({'PYTHONNOUSERSITE': '1', 'PYTHONUSERBASE': BASE}, SELECTED)
+
+    def test_exact_bound_userbase_is_preserved_with_no_user_site(self):
+        env = {'PYTHONUSERBASE': BASE, 'PYTHONNOUSERSITE': '1', 'PYTHONDONTWRITEBYTECODE': '1', 'Path': 'kept'}
+        original = dict(env); result = self.policy.clean_env(env, SELECTED, store_userbase=BASE)
+        self.assertEqual(env, original)
+        self.assertEqual(result['PYTHONUSERBASE'], BASE)
+        self.assertEqual(result['PYTHONNOUSERSITE'], '1')
+        self.assertEqual(result['Path'], 'kept')
+        self.assertEqual(result['__PYVENV_LAUNCHER__'], SELECTED)
+
+    def test_userbase_requires_exact_bound_value_and_enabled_no_user_site(self):
+        self.assert_startup_refused({'PYTHONNOUSERSITE': '1', 'PYTHONUSERBASE': BASE + r'\changed'})
+        self.assert_startup_refused({'PYTHONUSERBASE': BASE})
+        self.assert_startup_refused({'PYTHONNOUSERSITE': '0', 'PYTHONUSERBASE': BASE})
+        self.assert_startup_refused({'PYTHONNOUSERSITE': '1', 'PYTHONUSERBASE': BASE}, bound=None)
+
+    def test_rejects_bad_bound_case_shadow_and_other_python_startup_keys(self):
+        for bound in ('', 'relative', 'x' * 4097, 'C:\\bad\x00path'):
+            self.assert_startup_refused({'PYTHONNOUSERSITE': '1', 'PYTHONUSERBASE': BASE}, bound=bound)
+        for env in ({'PYTHONNOUSERSITE': '1', 'pythonNoUserSite': '1'},
+                    {'PYTHONNOUSERSITE': '1', 'PYTHONUSERBASE': BASE, 'pythonUSERbase': BASE}):
+            with self.assertRaisesRegex(ValueError, '^E_RP1_ENV_DUPLICATE$'):
+                self.policy.clean_env(env, SELECTED, store_userbase=BASE)
+        for key in ('PYTHONHOME', 'PYTHONPATH', 'PYTHONINSPECT', 'PYTHONSTARTUP', 'PYTHONSAFEPATH'):
+            self.assert_startup_refused({'PYTHONNOUSERSITE': '1', key: BASE})
+
+    def test_native_controller_and_clean_policy_env_match_exactly(self):
+        self.assertEqual(sys.version_info[:2], (3, 14))
+        source = {k: v for k, v in os.environ.items() if not k.upper().startswith('PYTHON')
+                  and k.upper() != '__PYVENV_LAUNCHER__'}
+        source.update(PYTHONNOUSERSITE='1', PYTHONUSERBASE=BASE)
+        cleaned = self.policy.clean_env(source, sys.executable, store_userbase=BASE)
+        code = ("import json,os,site;print(json.dumps({'PYTHONUSERBASE':os.environ.get('PYTHONUSERBASE'),"
+                "'PYTHONNOUSERSITE':os.environ.get('PYTHONNOUSERSITE'),'site.ENABLE_USER_SITE':site.ENABLE_USER_SITE},sort_keys=True))")
+        def observe(env):
+            return json.loads(subprocess.run([sys.executable, '-B', '-c', code], env=env, check=True,
+                text=True, capture_output=True, timeout=10).stdout)
+        control, observed = observe(source), observe(cleaned)
+        self.assertEqual(observed, control)
+        self.assertEqual(observed, {'PYTHONNOUSERSITE': '1', 'PYTHONUSERBASE': BASE, 'site.ENABLE_USER_SITE': False})
+
+
+if __name__ == '__main__': unittest.main()

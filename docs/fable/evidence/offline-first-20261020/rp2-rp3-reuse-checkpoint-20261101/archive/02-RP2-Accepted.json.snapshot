@@ -1,0 +1,323 @@
+{
+  "scope": "RP2_SOURCE_INTEGRATION_ACCEPTED_CONTROLLER_ONLY",
+  "date": "2026-11-01",
+  "head": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "sources": {
+    "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\distributed_retrieval.py",
+      "size": 19493,
+      "sha256": "83ec8f3fd11dba0a7eb9c94cc2c870eac7c98b7a34614893e97e53b8d3cbbc87"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_process.py",
+      "size": 35363,
+      "sha256": "4f18abc628ec48cb89f9381b747046208a0a9114dab6fb33639e6d441bc81139"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_bootstrap.py",
+      "size": 7553,
+      "sha256": "0726d49317cc813538ef42b2fb2bb5f4ee866dd9f74e31fe541dd58a666671de"
+    },
+    "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\recursive_bootstrap.py",
+      "size": 47516,
+      "sha256": "5d7576d225a55ddb0741de08e9151de3586e9256576364426717b99a7acfde52"
+    },
+    "memory-integrity/scripts/knowledge_bridge/recursive_policy.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\recursive_policy.py",
+      "size": 6554,
+      "sha256": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18"
+    },
+    "memory-integrity/scripts/knowledge_bridge/worker.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\worker.py",
+      "size": 15255,
+      "sha256": "3df908501c83c6d101d1bdb6b42198e4887a9162e0b389b8699374909c9a283a"
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_integration.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_knowledge_recursive_integration.py",
+      "size": 10627,
+      "sha256": "82d3f3b279d6153bbadb82b82b7f0847d0712ec81555907d00b03036a2697ffd"
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_profile.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_knowledge_recursive_profile.py",
+      "size": 7033,
+      "sha256": "07e48ca7def0d173055f2863c2741cd904ff63725195a5e2285ae99f264ccefa"
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\tests_v2\\test_knowledge_recursive_git.py",
+      "size": 6232,
+      "sha256": "2c34543cba7cf48d70552e7fe2bd5496beb0408fb1b4284bffe25a651adb4897"
+    }
+  },
+  "checks": {
+    "knowledge-final-02": {
+      "receipt": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp2-20261031\\knowledge-final-02\\Receipt.json",
+        "size": 9958,
+        "sha256": "5bca00975b24fae872fa10c6602815bff3b1fb2ece7e5735b01efc8912f7a321"
+      },
+      "log": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp2-20261031\\knowledge-final-02\\unittest.log",
+        "size": 53227,
+        "sha256": "08576a4a8cb269bd0a8af3a967f2d4b325f6051518b044ac6bee7aab4ef22198"
+      },
+      "tests_run": 292,
+      "passed": 238,
+      "skipped": [
+        [
+          "test_knowledge_advanced.AdvancedRetrieval.test_all_three_real_adapters_return_only_authored_paths",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_advanced.AdvancedRetrieval.test_global_report_findings_bind_exact_source_node_text",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_benefit.RealBenefit.test_real_case_runs_regressions_and_preserves_fair_direct_baseline",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_bridge.Runtime.test_actual_lineage_contains_recursive_premise",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_bridge.Runtime.test_expired_private_nodes_absent_before_runtime",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_bridge.Runtime.test_nonaxis_real_query_replay_and_worker_timeout",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_bridge.Runtime.test_real_semantica_two_hop_vectors_lineage_shacl",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_bridge.Runtime.test_runtime_visit_budget",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_bridge.Runtime.test_wrong_runtime_pin_refused",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_completion.ProtectedAdmission.test_criterion_missing_test_and_forged_admission_are_refused",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_completion.ProtectedAdmission.test_public_task_relative_admission_and_stale_rejection",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_completion.RemainingPublicContract.test_public_advanced_modes_source_closure_and_replay",
+          "explicit pinned runtime required"
+        ],
+        [
+          "test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants",
+          "POSIX process-group observation required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_exact_score_ties_choose_canonical_global_seed",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_killed_owner_blocks_without_partial_pack",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_prepared_shared_vectors_are_used_by_both_actual_shards",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_real_cross_partition_paths_reverse_and_global_limits",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_real_two_worker_result_equals_single_worker",
+          "pinned runtime required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped",
+          "POSIX pinned runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work",
+          "direct per-model signal timeout is POSIX-only"
+        ],
+        [
+          "test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts",
+          "explicit actual model and worker runtimes not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_retrieval_v2.RetrievalV2.test_actual_text_worker_incoming_replay_is_current_and_exact",
+          "explicit pinned Semantica runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_audit_requires_protected_run_map",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_changed_pack_refused_before_new_run_state",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_copied_map_uses_verified_original_run_directory",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_current_acl_revoke_staleness_and_missing_receipt_block",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_pack_reaches_actual_serialized_request_and_sidecar",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_detects_reversed_retrieved_proposition",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_does_not_blame_source_for_unretrieved_unit",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_matching_structured_proposition_passes",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_resume_without_pack_is_a_downgrade",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_unrelated_execution_task_blocks_before_state",
+          "explicit pinned runtime not selected"
+        ],
+        [
+          "test_knowledge_workflow.RuntimeWorkflow.test_unrelated_plain_run_cannot_satisfy_graph_required_verifier",
+          "explicit pinned runtime not selected"
+        ]
+      ],
+      "seconds": 105.342
+    },
+    "compatibility-final-02": {
+      "receipt": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp2-20261031\\compatibility-final-02\\Receipt.json",
+        "size": 800,
+        "sha256": "064ad8413a1b5294d899fd375062abff44963cfd487760e8a73926d4677ed8ee"
+      },
+      "log": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp2-20261031\\compatibility-final-02\\unittest.log",
+        "size": 8876,
+        "sha256": "0862ad428aad78934d46ed9293401ec73e2888429c8b191f711915e88fa1d9bd"
+      },
+      "tests_run": 45,
+      "passed": 44,
+      "skipped": [
+        [
+          "rp2_unchanged_test_recursive_launch_policy.RecursiveLaunchPolicy.test_checked_read_rejects_a_symlinked_source_or_parent",
+          "symlink creation unavailable in this controller context"
+        ]
+      ],
+      "seconds": 20.496
+    }
+  },
+  "original17_and_worker_client_unchanged": true,
+  "rp1_receipt": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\recursive-launch-rp1-audit-20261029\\run\\Receipt.json",
+    "size": 577473,
+    "sha256": "20800625e5f4bf72b19c1591b213e94704a48e05e173d93f9f89ff8b4fd76794"
+  },
+  "native_review": "SHIP_AFTER_STORE_AND_EDITABLE_GIT_RED_GREEN",
+  "rp2_complete": true,
+  "rp3_selected_integrated_observed": false,
+  "stage_complete": false,
+  "gate1_complete": false,
+  "release_ready": false,
+  "installed": false,
+  "historical_c2_cause_proven": false,
+  "producer_authentication": false
+}

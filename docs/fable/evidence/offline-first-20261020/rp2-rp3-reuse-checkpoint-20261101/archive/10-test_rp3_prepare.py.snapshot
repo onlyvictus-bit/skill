@@ -1,0 +1,137 @@
+"""RP3 preparation guards and diagnostics; no selected runtime or real inputs run."""
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import tempfile
+from types import SimpleNamespace
+import unittest
+from unittest.mock import patch
+
+HELPER = Path(__file__).absolute().parents[1]/'prototype/rp3_prepare.py'
+
+
+class PreparationGuards(unittest.TestCase):
+    def helper(self):
+        self.assertTrue(HELPER.is_file(), 'RP3 preparation coordinator is absent')
+        spec = importlib.util.spec_from_file_location('rp3_prepare_control', HELPER)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    def test_wrong_code_digest_refuses_before_module_execution(self):
+        helper = self.helper()
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name); marker = root/'must-not-execute'
+            code = root/'candidate.py'
+            code.write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("bad")\n')
+            with self.assertRaisesRegex(ValueError, 'SEAL'):
+                helper.checked_module(code, '0'*64)
+            self.assertFalse(marker.exists())
+
+    def test_duplicate_json_keys_are_rejected(self):
+        helper = self.helper()
+        with tempfile.TemporaryDirectory() as name:
+            path = Path(name)/'input.json'
+            path.write_bytes(b'{"value":1,"value":2}')
+            with self.assertRaisesRegex(ValueError, 'DUPLICATE'):
+                helper.read_json(path)
+
+    def test_wrong_account_refuses_before_any_output(self):
+        helper = self.helper()
+        with tempfile.TemporaryDirectory() as name:
+            output = Path(name)/'output'
+            def refused(): raise ValueError('CONTROL_WRONG_ACCOUNT')
+            with self.assertRaisesRegex(ValueError, 'CONTROL_WRONG_ACCOUNT'):
+                helper.prepare(c1=SimpleNamespace(normal_account=refused), data=object(), root=output)
+            self.assertFalse(output.exists())
+
+    def test_existing_output_is_not_overwritten(self):
+        helper = self.helper()
+        with tempfile.TemporaryDirectory() as name:
+            output = Path(name)/'existing'; output.mkdir()
+            marker = output/'keep'; marker.write_bytes(b'unchanged')
+            with patch.object(helper, 'exact_normal_account'), self.assertRaisesRegex(ValueError, 'EXISTS'):
+                helper.prepare(c1=SimpleNamespace(normal_account=lambda:None), data=object(), root=output)
+            self.assertEqual(marker.read_bytes(), b'unchanged')
+            self.assertEqual([p.name for p in output.iterdir()], ['keep'])
+
+    def test_authority_denial_keeps_phase_cause_and_no_success_inputs(self):
+        helper = self.helper()
+        with tempfile.TemporaryDirectory() as name:
+            output = Path(name)/'output'
+            with patch.object(helper, 'exact_normal_account'), \
+                    patch.object(helper, 'source_recipe', side_effect=PermissionError('CONTROL_AUTHORITY_DENIED')):
+                with self.assertRaisesRegex(PermissionError, 'CONTROL_AUTHORITY_DENIED'):
+                    helper.prepare(c1=SimpleNamespace(normal_account=lambda:None), data=object(), root=output)
+            detail = json.loads((output/'Failure.json').read_text())
+            self.assertIn('CONTROL_AUTHORITY_DENIED', detail['traceback'])
+            self.assertEqual(detail['failed_segment'], 'source-before')
+            self.assertFalse(detail['selected_runtime_started'])
+            self.assertFalse((output/'Inputs.json').exists())
+            self.assertTrue((output/'Diagnostics.json').exists())
+
+    def test_checkpoint_drift_is_not_accepted(self):
+        helper = self.helper()
+        fake = SimpleNamespace(git=lambda *args:b'0'*40)
+        with self.assertRaisesRegex(ValueError, 'HEAD'):
+            helper.source_recipe(fake)
+
+    def fake_dependencies(self):
+        c1 = SimpleNamespace(normal_account=lambda:None, fixed_inputs=lambda:{'controller':'fixture'},
+            dependency_versions=lambda:{'fixture':'1'}, protected=lambda:{'source':'fixture-hash'})
+        class Snapshot:
+            def __init__(self, roots, session):
+                self.contexts = {'fixture':SimpleNamespace(scan=lambda *args:{'unresolved':['private-folder']})}
+            def scan(self, phase):
+                return {'phase':phase, 'roots':{'fixture':self.contexts['fixture'].scan()},
+                        'producer_authentication':False}
+            def verify_readable(self, request):
+                assert request['roots']['fixture']['unresolved'] == ['private-folder']
+        return c1, SimpleNamespace(SnapshotSet=Snapshot)
+
+    def test_preparation_preserves_denied_request_without_starting_runtime(self):
+        helper = self.helper(); c1,data = self.fake_dependencies()
+        with tempfile.TemporaryDirectory() as name:
+            output = Path(name)/'output'
+            with patch.object(helper,'exact_normal_account'), \
+                    patch.object(helper,'source_recipe',return_value={'source':'fixture'}):
+                result = helper.prepare(c1=c1,data=data,root=output)
+            self.assertFalse(result['selected_runtime_started'])
+            inputs = json.loads((output/'Inputs.json').read_text())
+            request = json.loads((output/'BEFORERequest.json').read_text())
+            self.assertEqual(request['roots']['fixture']['unresolved'], ['private-folder'])
+            for key in ('selected_runtime_started','stage_complete','runtime_command_issued'):
+                self.assertIs(inputs[key],False)
+            self.assertFalse((output/'Failure.json').exists())
+
+    def test_authority_drift_keeps_failure_and_cannot_publish_inputs(self):
+        helper = self.helper(); c1,data = self.fake_dependencies()
+        with tempfile.TemporaryDirectory() as name:
+            output = Path(name)/'output'
+            with patch.object(helper,'exact_normal_account'), \
+                    patch.object(helper,'source_recipe',side_effect=[{'source':'before'},{'source':'changed'}]):
+                with self.assertRaisesRegex(ValueError,'AUTHORITY_CHANGED'):
+                    helper.prepare(c1=c1,data=data,root=output)
+            failure = json.loads((output/'Failure.json').read_text())
+            self.assertEqual(failure['failed_segment'],'authority-after')
+            self.assertFalse((output/'Inputs.json').exists())
+
+    def test_claim_write_failure_keeps_original_cause_and_segment(self):
+        helper = self.helper(); c1,data = self.fake_dependencies()
+        real_save = helper.save
+        def fail_claim(path,value):
+            if Path(path).name == 'PrepClaim.json':
+                raise OSError('CONTROL_CLAIM_WRITE_FAILURE')
+            return real_save(path,value)
+        with tempfile.TemporaryDirectory() as name:
+            output = Path(name)/'output'
+            with patch.object(helper,'exact_normal_account'), patch.object(helper,'save',side_effect=fail_claim), \
+                    patch.object(helper,'source_recipe') as source:
+                with self.assertRaisesRegex(OSError,'CONTROL_CLAIM_WRITE_FAILURE'):
+                    helper.prepare(c1=c1,data=data,root=output)
+                source.assert_not_called()
+            failure = json.loads((output/'Failure.json').read_text())
+            self.assertEqual(failure['failed_segment'],'claim-publication')
+            self.assertIn('CONTROL_CLAIM_WRITE_FAILURE',failure['traceback'])
+            self.assertFalse((output/'Inputs.json').exists())

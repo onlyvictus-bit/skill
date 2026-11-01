@@ -1,0 +1,42 @@
+"""Apply immutable RP1 controller assertions to the promoted RP2 modules.
+
+This wrapper is retained integration evidence, not a package/runtime dependency.
+Only the implementation location changes; original assertions are hash-bound.
+"""
+import hashlib
+import importlib.util
+from pathlib import Path
+import unittest
+
+REPO = Path(__file__).absolute().parents[4]
+PRODUCT = REPO / 'memory-integrity/scripts/knowledge_bridge'
+
+
+def original(name, expected):
+    path = REPO / '.github/tests' / name
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != expected:
+        raise ValueError('E_RP2_ORIGINAL_CONTRACT_CHANGED: ' + name)
+    spec = importlib.util.spec_from_file_location('rp2_unchanged_' + path.stem, path)
+    module = importlib.util.module_from_spec(spec)
+    exec(compile(raw, str(path), 'exec'), module.__dict__)
+    return module
+
+
+def load_tests(loader, tests, pattern):
+    bootstrap = original('test_recursive_launch_bootstrap.py',
+        '4623e17fea30d13d712dc46942a873729519d6bb9dff14f93c404f8c0a03463e')
+    bootstrap.PROTOTYPE = PRODUCT
+    policy = original('test_recursive_launch_policy.py',
+        '811505ca8a4157624409aea2ea862925d74ac8b557a19818ccf8bc730d7a5b94')
+    policy.POLICY = PRODUCT / 'recursive_policy.py'
+    corrected = original('test_recursive_corrected_core.py',
+        '7313536c06e8156f6f3d20d5b3a8b88bcc4b944188bebb3f1fafe7699d68fffa')
+    corrected.PROTOTYPE = PRODUCT
+    store = original('test_recursive_store_env_policy.py',
+        '05b5df2275e6219598dee74267ffc2248bac2e7b6c6302e2de929afaa4699eb2')
+    store.POLICY = PRODUCT / 'recursive_policy.py'
+    return unittest.TestSuite(loader.loadTestsFromTestCase(case) for case in (
+        bootstrap.StartupAudit, bootstrap.GateAndDispatch,
+        bootstrap.PublicCompatibility, policy.RecursiveLaunchPolicy,
+        corrected.CorrectedRecursiveCore, store.StoreEnvironmentPolicy))

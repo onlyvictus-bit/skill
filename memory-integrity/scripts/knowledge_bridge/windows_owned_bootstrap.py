@@ -2,10 +2,12 @@
 import argparse
 import ctypes
 from ctypes import wintypes as w
+import hashlib
 import json
 import os
 from pathlib import Path
 import runpy
+import stat
 import sys
 import time
 
@@ -77,6 +79,34 @@ def _fail(path, token, code, detail, expected=None, observed=None):
         pass
 
 
+def _bound_module(row):
+    """Execute exactly the parent's bounded source seal, without a path import."""
+    if type(row) is not dict or set(row) != {'path', 'size', 'sha256', 'links'}:
+        raise ValueError('E_OWNED_RECURSIVE_SOURCE_SCHEMA')
+    path = Path(row['path'])
+    if (not path.is_absolute() or type(row['size']) is not int or not 0 <= row['size'] <= 262144 or
+            type(row['links']) is not int or row['links'] != 1 or type(row['sha256']) is not str or
+            len(row['sha256']) != 64 or any(c not in '0123456789abcdef' for c in row['sha256'])):
+        raise ValueError('E_OWNED_RECURSIVE_SOURCE_SCHEMA')
+    for item in (path, *path.parents):
+        info = item.lstat()
+        if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+            raise ValueError('E_OWNED_RECURSIVE_SOURCE_PATH')
+    before = path.stat()
+    if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1:
+        raise ValueError('E_OWNED_RECURSIVE_SOURCE_TYPE')
+    with path.open('rb') as stream:
+        opened = os.fstat(stream.fileno())
+        if (opened.st_dev, opened.st_ino, opened.st_nlink) != (before.st_dev, before.st_ino, 1):
+            raise ValueError('E_OWNED_RECURSIVE_SOURCE_IDENTITY')
+        raw = stream.read(262145)
+    if len(raw) != row['size'] or hashlib.sha256(raw).hexdigest() != row['sha256']:
+        raise ValueError('E_OWNED_RECURSIVE_SOURCE_DIGEST')
+    namespace = {'__name__': 'owned_recursive_bootstrap', '__file__': str(path)}
+    exec(compile(raw, str(path), 'exec'), namespace)
+    return namespace
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--contract", required=True)
@@ -119,6 +149,15 @@ def main(argv=None):
     except BaseException as error:
         _fail(args.failure, token, type(error).__name__, error, expected, observed)
         return 71
+    # Install in the attested child only. Keep the trusted bootstrap path until
+    # all installer imports finish; authored sibling modules are not startup code.
+    try:
+        recursive = contract['recursive']
+        module = _bound_module(recursive['bootstrap'])
+        module['install_owned_root'](recursive, contract['deadline'])
+    except BaseException as error:
+        _fail(args.failure, token, type(error).__name__, error, expected, observed)
+        raise  # Full original cause/notes go to the existing retained stderr.
     # From this boundary onward it is the authored worker, not the bootstrap.
     # Preserve SystemExit (including a normal zero exit) and worker exceptions.
     sys.argv = [script]

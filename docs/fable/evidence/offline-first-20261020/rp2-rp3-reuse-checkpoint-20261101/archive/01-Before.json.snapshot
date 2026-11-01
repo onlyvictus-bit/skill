@@ -1,0 +1,45 @@
+{
+  "scope": "RP2_LOCAL_SOURCE_INTEGRATION_BASELINE",
+  "head": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "tracked_dirty": [
+    " M docs/fable/derived/offline-first-checkpoint-20261020.md",
+    " M docs/fable/derived/offline-first-release-plan-20261020.md",
+    " M docs/fable/state.json",
+    " M memory-integrity/tests_v2/test_knowledge_windows_owned_process.py"
+  ],
+  "edit_targets": {
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "exists": true,
+      "size": 33662,
+      "sha256": "d9f8cf4a2f72db3f320252617982f160e9646b8254860498e2e288eaed2c94e4"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": {
+      "exists": true,
+      "size": 5411,
+      "sha256": "a7fa933c35d919e6c730ff58b4634315b5afc05b2917d5c520ab5d5a990e086e"
+    },
+    "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py": {
+      "exists": true,
+      "size": 19464,
+      "sha256": "423dd7eec705fe8f209336d6fc7aaba41b51d637ce2871a188578427c2906f32"
+    },
+    "memory-integrity/scripts/knowledge_bridge/worker_client.py": {
+      "exists": true,
+      "size": 9604,
+      "sha256": "f4aa277aa5ba3ce9c6a84b4fe01a9d88b8339b633aa68b297d6551693bed54c0"
+    },
+    "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py": {
+      "exists": false
+    },
+    "memory-integrity/scripts/knowledge_bridge/recursive_policy.py": {
+      "exists": false
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_owned_process.py": {
+      "exists": true,
+      "size": 25363,
+      "sha256": "0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994"
+    }
+  },
+  "rp1_accepted_receipt_sha256": "20800625e5f4bf72b19c1591b213e94704a48e05e173d93f9f89ff8b4fd76794",
+  "selected_runtime_executed": false
+}

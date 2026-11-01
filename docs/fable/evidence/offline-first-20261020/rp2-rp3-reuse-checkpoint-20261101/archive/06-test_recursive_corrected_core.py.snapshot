@@ -1,0 +1,115 @@
+"""Controller-only deadline and retained pre-request cause checks."""
+import importlib.util
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import time
+import unittest
+from unittest.mock import patch
+
+PROTOTYPE = Path(__file__).absolute().parents[1] / 'run-artifacts/recursive-launch-corrected-20261029/prototype'
+
+
+def module():
+    path = PROTOTYPE / 'recursive_bootstrap.py'
+    spec = importlib.util.spec_from_file_location('rp1_corrected_bootstrap', path)
+    result = importlib.util.module_from_spec(spec); spec.loader.exec_module(result)
+    return result
+
+
+class CorrectedRecursiveCore(unittest.TestCase):
+    def setUp(self):
+        self.b = module(); temporary = tempfile.TemporaryDirectory(prefix='rp1-corrected-controller-')
+        self.addCleanup(temporary.cleanup); self.root = Path(temporary.name)
+        self.env = {k: v for k, v in os.environ.items() if not k.upper().startswith(('PYTHON', 'GIT_'))}
+        self.env['PYTHONNOUSERSITE'] = '1'
+        self.profile = self.b.controller_profile(self.root, sys.executable, self.env)
+
+    def guarded(self):
+        original = subprocess.Popen; self.b.install(self.profile)
+        self.addCleanup(setattr, subprocess, 'Popen', original)
+
+    def dispatch(self, env=None):
+        return subprocess.Popen([sys.executable, '-B', '-c', 'raise AssertionError("MUST_NOT_RUN")'],
+            cwd=self.root, env=self.env if env is None else env)
+
+    def test_root_startup_bounds_installation_without_replacing_recursive_deadline(self):
+        lifetime = self.profile['deadline']
+        with patch.object(self.b, 'attest') as attest, patch.object(self.b, 'policy'), patch.object(self.b, 'install') as install:
+            with self.assertRaisesRegex(ValueError, 'STARTUP_DEADLINE'):
+                self.b.install_root(self.profile, time.monotonic() - .001)
+            attest.assert_not_called(); install.assert_not_called()
+        captured = {}; startup = time.monotonic() + 2
+        with patch.object(self.b, 'attest'), patch.object(self.b, 'policy'), \
+                patch.object(self.b, 'install', side_effect=lambda p: captured.setdefault('profile', p)):
+            self.b.install_root(self.profile, startup)
+        self.assertEqual(captured['profile']['deadline'], lifetime)
+        self.assertLess(startup, captured['profile']['deadline'])
+
+    def test_mismatched_clock_is_refused_in_attest_and_audit(self):
+        profile = dict(self.profile, deadline_clock='CONTROL_WRONG_CLOCK')
+        for call in (lambda: self.b.attest(profile), lambda: self.b.audit(profile, self.root)):
+            with self.assertRaisesRegex(ValueError, 'DEADLINE_CLOCK'): call()
+
+    def test_pre_request_failure_retains_exact_stage_and_primary_without_env_secret(self):
+        self.guarded()
+        with patch.object(self.b, 'policy', side_effect=ValueError('CONTROL_PRIMARY_POLICY')):
+            with self.assertRaisesRegex(ValueError, 'CONTROL_PRIMARY_POLICY'):
+                self.dispatch(dict(self.env, API_TOKEN='very-secret-value'))
+        rows = list((self.root / 'requests').glob('rp1-dispatch-*.failure.json'))
+        self.assertEqual(len(rows), 1); raw = rows[0].read_bytes(); self.assertLessEqual(len(raw), 8192)
+        detail = json.loads(raw)
+        self.assertEqual((detail['phase'], detail['stage'], detail['authored_child_started']), ('dispatch', 'policy-source', False))
+        self.assertEqual(detail['error'], 'CONTROL_PRIMARY_POLICY')
+        self.assertIn('API_TOKEN', detail['environment_keys']); self.assertNotIn(b'very-secret-value', raw)
+        self.assertEqual(len(detail['argv_digest']), 64)
+        self.assertIsNone(detail['startup_deadline'])
+        self.assertFalse(list((self.root / 'requests').glob('????????????????????????????????.json')))
+
+    def test_missing_central_directory_falls_back_and_publication_failure_keeps_primary(self):
+        self.profile['requests'] = str(self.root / 'absent'); self.guarded()
+        with patch.object(self.b, 'policy', side_effect=ValueError('CONTROL_FALLBACK_PRIMARY')):
+            with self.assertRaisesRegex(ValueError, 'CONTROL_FALLBACK_PRIMARY'): self.dispatch()
+        rows = list(self.root.glob('rp1-dispatch-*.failure.json')); self.assertEqual(len(rows), 1)
+        self.assertEqual(json.loads(rows[0].read_bytes())['stage'], 'policy-source')
+        with patch.object(self.b, 'policy', side_effect=ValueError('CONTROL_PUBLICATION_PRIMARY')), \
+                patch.object(self.b, '_publish_failure', side_effect=PermissionError('CONTROL_PUBLICATION_DENIED')):
+            with self.assertRaisesRegex(ValueError, 'CONTROL_PUBLICATION_PRIMARY') as raised: self.dispatch()
+        self.assertTrue(any('CONTROL_PUBLICATION_DENIED' in note for note in raised.exception.__notes__))
+
+    def test_loader_failures_before_bootstrap_enter_retain_exact_cause(self):
+        source = self.root / 'sealed.py'; valid = b'def enter(p,d):\n raise AssertionError("MUST_NOT_ENTER")\n'
+        variants = [('loader-path0', valid, '', "import sys;sys.path[0]='UNEXPECTED'\n"),
+                    ('loader-source', valid, 'a'*64, ''),
+                    ('loader-exec', b'raise RuntimeError("CONTROL_COMPILE_EXEC")\n', '', '')]
+        for index, (stage, raw, digest, prefix) in enumerate(variants):
+            with self.subTest(stage=stage):
+                source.write_bytes(raw)
+                nonce = ('%032x' % (index+1)); request = self.root / 'requests' / (nonce + '.json')
+                code = self.b.loader_literal(self.profile['paths'], str(source),
+                    digest or hashlib.sha256(raw).hexdigest(), str(request), 'b'*64)
+                result = subprocess.run([sys.executable, '-B', '-c', prefix + code], env=self.env,
+                    cwd=self.root, capture_output=True, timeout=10)
+                self.assertNotEqual(result.returncode, 0); self.assertEqual(result.stdout, b'')
+                path = request.parent / ('rp1-loader-' + nonce + '.failure.json')
+                detail = json.loads(path.read_bytes()); self.b.validate_loader_failure_record(detail)
+                self.assertEqual(detail['stage'], stage); self.assertFalse(detail['authored_child_started'])
+                self.assertNotIn('MUST_NOT_ENTER', detail['error'])
+                self.assertIn(detail['error'].encode(), result.stderr)
+                self.assertFalse(list(request.parent.glob('*.failure.pending')))
+
+    def test_unavailable_cwd_keeps_primary_and_uses_central_failure_directory(self):
+        self.guarded()
+        with patch.object(self.b.os, 'getcwd', side_effect=FileNotFoundError('CONTROL_CWD_MISSING')):
+            with self.assertRaisesRegex(FileNotFoundError, 'CONTROL_CWD_MISSING'):
+                subprocess.Popen([sys.executable, '-B', '-c', 'pass'], env=self.env)
+        rows = list((self.root / 'requests').glob('rp1-dispatch-*.failure.json'))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(json.loads(rows[0].read_bytes())['error'], 'CONTROL_CWD_MISSING')
+
+
+if __name__ == '__main__': unittest.main()
