@@ -1,0 +1,124 @@
+test_changed_envelope_root_session_authority_refused (test_ready_envelopes.Envelopes.test_changed_envelope_root_session_authority_refused) ... ok
+test_failure_record_prevents_ready_publication (test_ready_envelopes.Envelopes.test_failure_record_prevents_ready_publication) ... ok
+test_missing_or_failed_diagnostics_never_reaches_copy_validator (test_ready_envelopes.Envelopes.test_missing_or_failed_diagnostics_never_reaches_copy_validator) ... ok
+test_nonempty_policy_count_forgery_and_missing_root_refused (test_ready_envelopes.Envelopes.test_nonempty_policy_count_forgery_and_missing_root_refused) ... ok
+test_successful_preparation_and_empty_policies (test_ready_envelopes.Envelopes.test_successful_preparation_and_empty_policies) ... ok
+test_actual_family_has_new_root_and_twelve_fixed_groups (test_ready_factory.FactoryControls.test_actual_family_has_new_root_and_twelve_fixed_groups) ... ok
+test_budget_increase_refused (test_ready_factory.FactoryControls.test_budget_increase_refused) ... ok
+test_exact_successor_config (test_ready_factory.FactoryControls.test_exact_successor_config) ... ok
+test_old_helper_digest_change_refused (test_ready_factory.FactoryControls.test_old_helper_digest_change_refused) ... ok
+test_old_normal_root_refused (test_ready_factory.FactoryControls.test_old_normal_root_refused) ... ok
+test_old_session_refused (test_ready_factory.FactoryControls.test_old_session_refused) ... ok
+test_other_head_refused (test_ready_factory.FactoryControls.test_other_head_refused) ... ok
+test_policy_exceptions_refused (test_ready_factory.FactoryControls.test_policy_exceptions_refused) ... ok
+test_restoring_raw_internal_reopen_is_refused_before_it_can_use_old_root (test_ready_factory.FactoryControls.test_restoring_raw_internal_reopen_is_refused_before_it_can_use_old_root) ... ok
+test_runtime_budget_dictionary_mutation_is_refused (test_ready_factory.FactoryControls.test_runtime_budget_dictionary_mutation_is_refused) ... ok
+test_source_acceptance_rebinding_refused (test_ready_factory.FactoryControls.test_source_acceptance_rebinding_refused) ... ok
+test_unknown_helper_refused (test_ready_factory.FactoryControls.test_unknown_helper_refused) ... ok
+test_full_publication_order_and_stage_envelope (test_ready_hooks.HookControls.test_full_publication_order_and_stage_envelope) ... normal-before-copy-readback: RUNNING (RP3 full continuation)
+normal-before-copy-readback: 0.002 seconds
+selected-integrated-runtime: RUNNING (RP3 full continuation)
+selected-integrated-runtime: 0.019 seconds
+raw-runtime-review: RUNNING (RP3 full continuation)
+raw-runtime-review: 0.021 seconds
+fresh-original-after-request: RUNNING (RP3 full continuation)
+fresh-original-after-request: 0.047 seconds
+await-existing-reader-after-copy: RUNNING (RP3 full continuation)
+await-existing-reader-after-copy: 0.033 seconds
+normal-after-readback-and-comparison: RUNNING (RP3 full continuation)
+normal-after-readback-and-comparison: 0.017 seconds
+final-raw-runtime-review: RUNNING (RP3 full continuation)
+final-raw-runtime-review: 0.008 seconds
+{"status": "RP2_RP3_FOCUSED_STAGE_COMPLETE_NOT_GATE1", "rp2_complete": true, "rp3_complete": true, "stage_complete": true, "preservation": true, "gate1_complete": false, "release_ready": false, "installed": false, "historical_c2_cause_proven": false, "producer_authentication": false, "session": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "workload": {"path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\hook-test-scratch\\tmpaypcvne7\\Workload.json", "size": 153, "sha256": "eb77f9b954ea48ea8dd194843a30f3f66e7c603602cac153463d6f7f2a6e2fa4", "links": 1}, "before": {"path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\hook-test-scratch\\tmpaypcvne7\\Before-Bundle.json", "size": 4, "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f", "links": 1}, "after": {"path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\hook-test-scratch\\tmpaypcvne7\\After-Bundle.json", "size": 4, "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f", "links": 1}, "reader_result": {"path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\hook-test-scratch\\tmpaypcvne7\\After-Copy-Result.json", "size": 1078, "sha256": "022d82bea6f1c779f08c672332cbf873d2970b2e521167fdf38ae823846140b3", "links": 1}, "timeline": [{"segment": "normal-before-copy-readback", "started_utc": "2026-11-02T13:46:16.740197+00:00", "started": 2248367.5448865, "ended": 2248367.5467991, "seconds": 0.0019125998951494694}, {"segment": "selected-integrated-runtime", "started_utc": "2026-11-02T13:46:16.742181+00:00", "started": 2248367.5468675, "ended": 2248367.5661408, "seconds": 0.0192732997238636}, {"segment": "raw-runtime-review", "started_utc": "2026-11-02T13:46:16.761814+00:00", "started": 2248367.566502, "ended": 2248367.5872157, "seconds": 0.020713699981570244}, {"segment": "fresh-original-after-request", "started_utc": "2026-11-02T13:46:16.782599+00:00", "started": 2248367.5872855, "ended": 2248367.6339254, "seconds": 0.04663990018889308}, {"segment": "await-existing-reader-after-copy", "started_utc": "2026-11-02T13:46:16.831043+00:00", "started": 2248367.6357309, "ended": 2248367.669224, "seconds": 0.03349310019984841}, {"segment": "normal-after-readback-and-comparison", "started_utc": "2026-11-02T13:46:16.864632+00:00", "started": 2248367.6693205, "ended": 2248367.6860519, "seconds": 0.016731400042772293}, {"segment": "final-raw-runtime-review", "started_utc": "2026-11-02T13:46:16.881429+00:00", "started": 2248367.6861158, "ended": 2248367.6937925, "seconds": 0.007676700130105019}]}
+ok
+test_inner_stage_file_is_not_success_when_history_hook_fails (test_ready_hooks.HookControls.test_inner_stage_file_is_not_success_when_history_hook_fails) ... normal-before-copy-readback: RUNNING (RP3 full continuation)
+normal-before-copy-readback: 0.002 seconds
+selected-integrated-runtime: RUNNING (RP3 full continuation)
+selected-integrated-runtime: 0.019 seconds
+raw-runtime-review: RUNNING (RP3 full continuation)
+raw-runtime-review: 0.023 seconds
+fresh-original-after-request: RUNNING (RP3 full continuation)
+fresh-original-after-request: 0.057 seconds
+await-existing-reader-after-copy: RUNNING (RP3 full continuation)
+await-existing-reader-after-copy: 0.030 seconds
+normal-after-readback-and-comparison: RUNNING (RP3 full continuation)
+normal-after-readback-and-comparison: 0.018 seconds
+final-raw-runtime-review: RUNNING (RP3 full continuation)
+final-raw-runtime-review: 0.008 seconds
+{"status": "RP3_STOP_NO_RETRY", "session": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "failed_segment": null, "failure": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 169, in run_all\n    p.save(ROOT/'Stage-Result.json',result);print(json.dumps(result),flush=True);return 0\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 290, in p_save\n    need(history_before is not None and before==history_before==after,'NAMED_HISTORY_CHANGED')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 18, in need\n    if not value:raise ValueError('E_READY_RP3_WORKFLOW_'+code)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: E_READY_RP3_WORKFLOW_NAMED_HISTORY_CHANGED\n", "timeline": [{"segment": "normal-before-copy-readback", "started_utc": "2026-11-02T13:46:17.063620+00:00", "started": 2248367.8683114, "ended": 2248367.8702312, "seconds": 0.0019197999499738216}, {"segment": "selected-integrated-runtime", "started_utc": "2026-11-02T13:46:17.065602+00:00", "started": 2248367.8702881, "ended": 2248367.8887981, "seconds": 0.018509999848902225}, {"segment": "raw-runtime-review", "started_utc": "2026-11-02T13:46:17.084560+00:00", "started": 2248367.8892525, "ended": 2248367.9118524, "seconds": 0.022599899675697088}, {"segment": "fresh-original-after-request", "started_utc": "2026-11-02T13:46:17.107285+00:00", "started": 2248367.9119765, "ended": 2248367.9689095, "seconds": 0.0569330002181232}, {"segment": "await-existing-reader-after-copy", "started_utc": "2026-11-02T13:46:17.166422+00:00", "started": 2248367.9711146, "ended": 2248368.0010803, "seconds": 0.02996570011600852}, {"segment": "normal-after-readback-and-comparison", "started_utc": "2026-11-02T13:46:17.196490+00:00", "started": 2248368.0011822, "ended": 2248368.0192662, "seconds": 0.01808399986475706}, {"segment": "final-raw-runtime-review", "started_utc": "2026-11-02T13:46:17.214683+00:00", "started": 2248368.0193775, "ended": 2248368.0276679, "seconds": 0.008290400262922049}], "selected_runtime_started": false, "stage_complete": false, "gate1_complete": false, "release_ready": false, "installed": false, "producer_authentication": false, "preservation": false, "historical_c2_cause_proven": false}
+ok
+test_normal_json_read_waits_for_after_envelope_before_opening_inner (test_ready_hooks.HookControls.test_normal_json_read_waits_for_after_envelope_before_opening_inner) ... ok
+test_outer_workload_failure_cannot_complete_stage (test_ready_hooks.HookControls.test_outer_workload_failure_cannot_complete_stage) ... normal-before-copy-readback: RUNNING (RP3 full continuation)
+normal-before-copy-readback: 0.001 seconds
+selected-integrated-runtime: RUNNING (RP3 full continuation)
+selected-integrated-runtime: 0.020 seconds
+{"status": "RP3_STOP_NO_RETRY", "session": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "failed_segment": "selected-integrated-runtime", "failure": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 148, in run_all\n    segment('selected-integrated-runtime',lambda:invoke_runtime(runtime,p,c.INPUTS_SHA,before['sha256'],copy_inputs_sha256))\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 125, in segment\n    try:return action()\n               ~~~~~~^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 148, in <lambda>\n    segment('selected-integrated-runtime',lambda:invoke_runtime(runtime,p,c.INPUTS_SHA,before['sha256'],copy_inputs_sha256))\n                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 60, in invoke_runtime\n    code=runtime.run(inputs_sha,before_sha,COPY_SHA,copy_inputs_sha256)\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\controls\\test_ready_hooks.py\", line 64, in run\n    try:runtime.save(root/'Workload.json',{'status':'RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER','source_manifest_sha256':'a'*64})\n        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 273, in t_save\n    outer(f.root/'Workload-Envelope.json','WORKLOAD',_workload_records(f))\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 255, in outer\n    atomic_publish(types.SimpleNamespace(ordinary=p.ordinary,save=raw_p_save),path,value);return value\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 125, in atomic_publish\n    prep.save(temporary,value)  # Close complete bytes before making the marker visible.\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\controls\\test_ready_hooks.py\", line 28, in save\n    if self.fail_prefix and path.name.startswith(self.fail_prefix):raise OSError('CONTROL_SECONDARY_OR_OUTER_WRITE')\n                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: CONTROL_SECONDARY_OR_OUTER_WRITE\n", "timeline": [{"segment": "normal-before-copy-readback", "started_utc": "2026-11-02T13:46:17.370462+00:00", "started": 2248368.1751533, "ended": 2248368.1765955, "seconds": 0.0014422000385820866}, {"segment": "selected-integrated-runtime", "started_utc": "2026-11-02T13:46:17.371971+00:00", "started": 2248368.1766583, "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 125, in segment\n    try:return action()\n               ~~~~~~^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 148, in <lambda>\n    segment('selected-integrated-runtime',lambda:invoke_runtime(runtime,p,c.INPUTS_SHA,before['sha256'],copy_inputs_sha256))\n                                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\rp3_finish.py\", line 60, in invoke_runtime\n    code=runtime.run(inputs_sha,before_sha,COPY_SHA,copy_inputs_sha256)\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\controls\\test_ready_hooks.py\", line 64, in run\n    try:runtime.save(root/'Workload.json',{'status':'RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER','source_manifest_sha256':'a'*64})\n        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 273, in t_save\n    outer(f.root/'Workload-Envelope.json','WORKLOAD',_workload_records(f))\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 255, in outer\n    atomic_publish(types.SimpleNamespace(ordinary=p.ordinary,save=raw_p_save),path,value);return value\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\prototype\\ready_workflow.py\", line 125, in atomic_publish\n    prep.save(temporary,value)  # Close complete bytes before making the marker visible.\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\controls\\test_ready_hooks.py\", line 28, in save\n    if self.fail_prefix and path.name.startswith(self.fail_prefix):raise OSError('CONTROL_SECONDARY_OR_OUTER_WRITE')\n                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: CONTROL_SECONDARY_OR_OUTER_WRITE\n", "ended": 2248368.1962573, "seconds": 0.019598999992012978}], "selected_runtime_started": false, "stage_complete": false, "gate1_complete": false, "release_ready": false, "installed": false, "producer_authentication": false, "preservation": false, "historical_c2_cause_proven": false}
+ok
+test_reader_failure_never_publishes_after_envelope (test_ready_hooks.HookControls.test_reader_failure_never_publishes_after_envelope) ... ok
+test_secondary_failure_publication_preserves_original_protocol_error (test_ready_hooks.HookControls.test_secondary_failure_publication_preserves_original_protocol_error) ... normal-before-copy-readback: RUNNING (RP3 full continuation)
+normal-before-copy-readback: 0.001 seconds
+selected-integrated-runtime: RUNNING (RP3 full continuation)
+selected-integrated-runtime: 0.018 seconds
+raw-runtime-review: RUNNING (RP3 full continuation)
+raw-runtime-review: 0.022 seconds
+fresh-original-after-request: RUNNING (RP3 full continuation)
+fresh-original-after-request: 0.059 seconds
+await-existing-reader-after-copy: RUNNING (RP3 full continuation)
+await-existing-reader-after-copy: 0.030 seconds
+normal-after-readback-and-comparison: RUNNING (RP3 full continuation)
+normal-after-readback-and-comparison: 0.017 seconds
+final-raw-runtime-review: RUNNING (RP3 full continuation)
+final-raw-runtime-review: 0.008 seconds
+ok
+test_controller_and_baseline_drift_refused (test_ready_source.SourceControls.test_controller_and_baseline_drift_refused) ... ok
+test_exact_archive_and_current_source (test_ready_source.SourceControls.test_exact_archive_and_current_source) ... ok
+test_extra_overlay_and_wrong_acceptance_path_refused (test_ready_source.SourceControls.test_extra_overlay_and_wrong_acceptance_path_refused) ... ok
+test_head_archive_and_live_drift (test_ready_source.SourceControls.test_head_archive_and_live_drift) ... ok
+test_prototype_rebinding_refused (test_ready_source.SourceControls.test_prototype_rebinding_refused) ... ok
+test_absolute_deadline_does_not_reset_after_preparation (test_ready_workflow.WorkflowControls.test_absolute_deadline_does_not_reset_after_preparation) ... ok
+test_atomic_marker_stays_hidden_while_json_is_incomplete (test_ready_workflow.WorkflowControls.test_atomic_marker_stays_hidden_while_json_is_incomplete) ... ok
+test_diagnostics_failure_after_inputs_never_publishes_preparation_ready (test_ready_workflow.WorkflowControls.test_diagnostics_failure_after_inputs_never_publishes_preparation_ready) ... ok
+test_expired_extended_or_rebound_service_refused (test_ready_workflow.WorkflowControls.test_expired_extended_or_rebound_service_refused) ... ok
+test_extra_service_fields_and_invalid_pid_are_refused (test_ready_workflow.WorkflowControls.test_extra_service_fields_and_invalid_pid_are_refused) ... ok
+test_inner_reader_ready_from_other_pid_is_refused (test_ready_workflow.WorkflowControls.test_inner_reader_ready_from_other_pid_is_refused) ... ok
+test_missing_or_other_process_claim_is_refused (test_ready_workflow.WorkflowControls.test_missing_or_other_process_claim_is_refused) ... ok
+test_readiness_requires_validator_success_after_prepare_return (test_ready_workflow.WorkflowControls.test_readiness_requires_validator_success_after_prepare_return) ... ok
+test_wrong_normal_account_cannot_create_claim_or_start_preparation (test_ready_workflow.WorkflowControls.test_wrong_normal_account_cannot_create_claim_or_start_preparation) ... ok
+test_after_copy_reads_normal_request_but_creates_only_reader_after (test_routed_copy.Behavior.test_after_copy_reads_normal_request_but_creates_only_reader_after) ... ok
+test_before_copy_uses_reader_paths_and_keeps_normal_inputs_readonly (test_routed_copy.Behavior.test_before_copy_uses_reader_paths_and_keeps_normal_inputs_readonly) ... copy-original-authority-before: RUNNING (RP3 evidence DATA only)
+copy-original-authority-before: 0.000 seconds
+copy-protected-identities: RUNNING (RP3 evidence DATA only)
+copy-protected-identities: 0.000 seconds
+copy-validate-reviewed-policy: RUNNING (RP3 evidence DATA only)
+copy-validate-reviewed-policy: 0.000 seconds
+copy-bind-exact-data-policy: RUNNING (RP3 evidence DATA only)
+copy-bind-exact-data-policy: 0.001 seconds
+copy-original-authority-after: RUNNING (RP3 evidence DATA only)
+copy-original-authority-after: 0.000 seconds
+ok
+test_normal_readback_merges_reader_data_and_writes_only_normal_bundle (test_routed_copy.Behavior.test_normal_readback_merges_reader_data_and_writes_only_normal_bundle) ... ok
+test_same_inspection_old_reader_write_is_refused_new_reader_write_succeeds (test_routed_copy.Behavior.test_same_inspection_old_reader_write_is_refused_new_reader_write_succeeds) ... inspect-original-authority-before: RUNNING (RP3 evidence DATA only)
+inspect-original-authority-before: 0.000 seconds
+inspect-protected-identities: RUNNING (RP3 evidence DATA only)
+inspect-protected-identities: 0.000 seconds
+inspect-requested-original-data: RUNNING (RP3 evidence DATA only)
+inspect-requested-original-data: 0.000 seconds
+inspect-original-authority-after: RUNNING (RP3 evidence DATA only)
+inspect-original-authority-after: 0.000 seconds
+ok
+test_both_transport_roles_exchange_real_files_without_peer_writes (test_routed_protocol.Protocol.test_both_transport_roles_exchange_real_files_without_peer_writes) ... {"accepted": {"links": 1, "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\protocol-scratch\\tmpsb2m0j90\\normal-channel\\Transport-Accepted.json", "sha256": "dd54b68084aa605752d9a04f96f1133fb9011f466c1b920ea66dc79f34fcff9e", "size": 989}, "normal_pid": 18784, "reader_pid": 123, "seed": {"links": 1, "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\protocol-scratch\\tmpsb2m0j90\\reader\\Transport-Seed.json", "sha256": "7e8fbf6291d4cda95c9d87f1bf0e43fea17b86900abd7b3fd35cbfd21cd8ddcf", "size": 530}, "status": "CROSS_ACCOUNT_READBACK_OBSERVED_NO_PEER_WRITES"}
+ok
+test_hardlinked_transport_file_is_not_accepted (test_routed_protocol.Protocol.test_hardlinked_transport_file_is_not_accepted) ... ok
+test_normal_can_read_reader_ack_and_only_publish_normal_records (test_routed_protocol.Protocol.test_normal_can_read_reader_ack_and_only_publish_normal_records) ... ok
+test_normal_cannot_write_reader_root_or_coord (test_routed_protocol.Protocol.test_normal_cannot_write_reader_root_or_coord) ... ok
+test_original_write_error_keeps_operation_and_actor_notes (test_routed_protocol.Protocol.test_original_write_error_keeps_operation_and_actor_notes) ... ok
+test_reader_cannot_write_normal_root_or_channel (test_routed_protocol.Protocol.test_reader_cannot_write_normal_root_or_channel) ... ok
+test_seed_record_drift_and_wrong_identity_fail_closed (test_routed_protocol.Protocol.test_seed_record_drift_and_wrong_identity_fail_closed) ... ok
+test_sibling_prefix_and_parent_escape_refused (test_routed_protocol.Protocol.test_sibling_prefix_and_parent_escape_refused) ... ok
+test_wrong_ack_session_pid_hash_or_path_stops_before_preparation (test_routed_protocol.Protocol.test_wrong_ack_session_pid_hash_or_path_stops_before_preparation) ... ok
+test_wrong_role_refused_before_writer_is_installed (test_routed_protocol.Protocol.test_wrong_role_refused_before_writer_is_installed) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 12.145s
+
+OK

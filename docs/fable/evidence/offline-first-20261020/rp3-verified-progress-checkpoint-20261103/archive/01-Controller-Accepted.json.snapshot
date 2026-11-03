@@ -1,0 +1,42 @@
+{
+  "status": "SOURCE_AND_CONTROLLER_ACCEPTED_SELECTED_RUNTIME_UNVERIFIED",
+  "files": {
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py": {
+      "size": 24613,
+      "sha256": "755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "size": 37610,
+      "sha256": "0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": {
+      "size": 8547,
+      "sha256": "7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af"
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py": {
+      "size": 18970,
+      "sha256": "ba742402974a03d74d1619fddc1e4df6a8d4f768805b59f43bb268ea41bd285c"
+    }
+  },
+  "head": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "focused": {
+    "run": 32,
+    "passed": 32,
+    "log_sha256": "3ad6bdda25e5de0984a015100d3a5052a2b5f9051beb4acf6ab9793693ec7566"
+  },
+  "broader": {
+    "run": 324,
+    "passed": 270,
+    "skipped": 54,
+    "failures": 0,
+    "errors": 0,
+    "log_sha256": "bfca88d5b82be4f6f401b0a3c960c8fff9b1f86e97b2ef9e5b96d67f7f33b127"
+  },
+  "native_review": "SHIP_FROZEN_SOURCE_CANDIDATE_ONLY",
+  "retention_days": 3,
+  "selected_runtime_started_this_repair": false,
+  "actual_default_cache_creation_verified": false,
+  "stage_complete": false,
+  "gate1_complete": false,
+  "preservation": false
+}

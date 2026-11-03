@@ -1,0 +1,368 @@
+"""One RP3 integrated observation; success remains pending fresh ORIGINAL AFTER."""
+from contextlib import contextmanager
+from datetime import datetime,timezone
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+import subprocess
+import sys
+import time
+import traceback
+import types
+
+PHASE=Path(__file__).absolute().parents[1]
+REPO=PHASE.parents[2]
+ROOT=Path(r'C:\Users\sakth\Documents\Codex\recursive-launch-rp3-20261101')
+READER_ROOT=PHASE/'reader-outbox'  # Exact session child is assigned and checked by the sealed factory.
+COPY_SHA='d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b'
+BOUND_SHA='7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264'
+BUDGETS={'default':120,'public':90,'watchdog':600,'lifecycle_watchdog':60,'cleanup':5}
+GROUPS=(('ownership','test_knowledge_windows_owned_process.py'),('writer','test_knowledge_windows_writer.py'),
+    ('combined-shutdown','test_knowledge_windows_shutdown.py'),('combined-session','test_knowledge_windows_session.py'),
+    ('lifecycle','test_knowledge_process_lifecycle.py'),('cwd','test_knowledge_worker_cwd.py'),
+    ('budget','test_knowledge_timeout_budget.py'),('recursive-git','test_knowledge_recursive_git.py'),
+    ('recursive-integration','test_knowledge_recursive_integration.py'),('recursive-profile','test_knowledge_recursive_profile.py'))
+FLAGS={'stage_complete':False,'preservation':False,'gate1_complete':False,'release_ready':False,
+    'installed':False,'producer_authentication':False,'historical_c2_cause_proven':False}
+DISCOVERY="""import json,sys,unittest
+root,pattern=sys.argv[1:];sys.path.insert(0,root)
+suite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)
+def walk(x):
+ for y in x:
+  if isinstance(y,unittest.TestSuite):yield from walk(y)
+  else:yield y.id()
+print(json.dumps(list(walk(suite)),ensure_ascii=True))
+"""
+
+
+def require(value,code):
+    if not value:raise ValueError('E_RP3_RUNTIME_'+code)
+
+
+def ordinary(path):
+    path=Path(path).absolute()
+    for part in (path,*path.parents):
+        info=part.lstat();require(not stat.S_ISLNK(info.st_mode) and
+            not getattr(info,'st_file_attributes',0)&0x400,'REDIRECT:'+str(part))
+    return path
+
+
+def digest(raw):return hashlib.sha256(raw).hexdigest()
+
+
+def safe_bytes(path,limit=32*1024*1024):
+    path=ordinary(path);before=path.stat()
+    require(stat.S_ISREG(before.st_mode) and before.st_nlink==1,'INPUT_TYPE:'+str(path))
+    with path.open('rb') as stream:
+        opened=os.fstat(stream.fileno());raw=stream.read(limit+1);ended=os.fstat(stream.fileno())
+    after=ordinary(path).stat();key=lambda row:(row.st_dev,row.st_ino,row.st_nlink,row.st_size,row.st_mtime_ns)
+    require(len(raw)<=limit and key(before)==key(opened)==key(ended)==key(after),'INPUT_CHANGED:'+str(path))
+    return raw
+
+
+def json_unique(raw,label):
+    def pairs(items):
+        result={}
+        for key,value in items:require(key not in result,'JSON_DUPLICATE_KEY:'+label);result[key]=value
+        return result
+    def constant(value):raise ValueError('E_RP3_RUNTIME_JSON_CONSTANT:'+label+':'+value)
+    return json.loads(raw.decode('utf-8'),object_pairs_hook=pairs,parse_constant=constant)
+
+
+def read_json(path,label):return json_unique(safe_bytes(path),label)
+def wire(value):return (json.dumps(value,sort_keys=True,ensure_ascii=True,allow_nan=False)+'\n').encode()
+def predicted_record(path,value):
+    raw=wire(value);return {'path':str(Path(path).absolute()),'size':len(raw),'sha256':digest(raw),'links':1}
+
+
+def save(path,value):
+    path=Path(path);ordinary(path.parent)
+    with path.open('xb') as stream:stream.write(wire(value))
+
+
+def load_module(path,seal,name):
+    raw=safe_bytes(path);require(digest(raw)==seal,'HELPER_SEAL:'+str(path))
+    module=types.ModuleType(name);module.__file__=str(Path(path).absolute())
+    exec(compile(raw,module.__file__,'exec'),module.__dict__);return module
+
+
+def source_module(source,manifest,name):
+    rel='.github/scripts/'+name+'.py';require(rel in manifest,'SOURCE_HELPER_MISSING:'+name)
+    path=Path(source)/rel;raw=safe_bytes(path);require(digest(raw)==manifest[rel],'SOURCE_HELPER_DRIFT:'+name)
+    folder=str(path.parent)
+    if folder not in sys.path:sys.path.insert(0,folder)
+    module=types.ModuleType('rp3_source_'+name);module.__file__=str(path)
+    exec(compile(raw,str(path),'exec'),module.__dict__);return module
+
+
+def groups():return [{'label':a,'pattern':b,'timeout':BUDGETS['lifecycle_watchdog']} for a,b in GROUPS]
+def labels():
+    result=['preclaim-identity','preclaim-dependencies']
+    for name,_ in GROUPS:result+=['discover-'+name,'command-'+name]
+    return result+['ordered-public','postclaim-identity','postclaim-dependencies']
+
+
+class Timeline:
+    def __init__(self):self.rows=[];self.failed=None
+    @contextmanager
+    def segment(self,name):
+        row={'segment':name,'started_utc':datetime.now(timezone.utc).isoformat(),'started':time.monotonic()}
+        self.rows.append(row);print(name+': RUNNING (RP3 selected runtime; not Gate1)',flush=True)
+        try:yield
+        except BaseException:self.failed=self.failed or name;row['traceback']=traceback.format_exc();raise
+        finally:
+            row['ended']=time.monotonic();row['seconds']=row['ended']-row['started']
+            print(name+': %.3f seconds'%row['seconds'],flush=True)
+
+
+def source_tree(c1,prep):
+    require(c1.git('rev-parse','HEAD').decode().strip()==prep.HEAD,'HEAD_CHANGED');tree={}
+    for row in c1.git('ls-tree','-rz',prep.HEAD).split(b'\0'):
+        if not row:continue
+        meta,name=row.split(b'\t',1);mode,kind,blob=meta.split();name=name.decode()
+        require(mode==b'100644' and kind==b'blob' and name not in tree,'TREE_MEMBER:'+name);tree[name]=blob.decode()
+    return tree
+
+
+def extract(context):
+    prep,c1=context['prep'],context['c1'];recipe=prep.read_json(PHASE/'Source-Recipe.json',prep.RECIPE_SHA)
+    require(context['inputs']['source']==prep.source_recipe(c1),'INPUT_SOURCE_CHANGED')
+    require(recipe['head']==prep.HEAD and recipe['evaluated_manifest']==context['inputs']['source']['evaluated_manifest'],'RECIPE_BINDING')
+    tree=source_tree(c1,prep);rows=c1.archive_rows(c1.git('archive','--format=zip',prep.HEAD),tree)
+    base={name:digest(raw) for name,raw in rows.items()}
+    require(base==recipe['base_manifest'] and tree==recipe['base_tree'],'ARCHIVE_RECIPE')
+    overlay=recipe['approved_overlay'];require(recipe['evaluated_manifest']==dict(base,**overlay),'OVERLAY_SET')
+    out=ROOT/'Source';require(not os.path.lexists(out),'SOURCE_EXISTS');out.mkdir();ordinary(out)
+    for name,raw in rows.items():
+        path=out/name;path.parent.mkdir(parents=True,exist_ok=True);ordinary(path.parent)
+        with path.open('xb') as stream:stream.write(raw)
+    manifest=dict(base)
+    for name,expected in overlay.items():
+        require(not Path(name).is_absolute() and '..' not in Path(name).parts,'OVERLAY_PATH')
+        raw=prep.read_bytes(REPO/name);require(digest(raw)==expected,'OVERLAY_CHANGED:'+name)
+        path=out/name;path.parent.mkdir(parents=True,exist_ok=True);ordinary(path.parent)
+        if name in base:
+            info=ordinary(path).stat();require(stat.S_ISREG(info.st_mode) and info.st_nlink==1,'OVERLAY_TYPE:'+name)
+            with path.open('r+b') as stream:stream.truncate(0);stream.write(raw)
+        else:
+            require(not os.path.lexists(path),'OVERLAY_NEW_EXISTS:'+name)
+            with path.open('xb') as stream:stream.write(raw)
+        manifest[name]=expected
+    require(manifest==recipe['evaluated_manifest'],'FINAL_MANIFEST');c1.verify_source(out,manifest)
+    return out,manifest,prep.record(PHASE/'Source-Recipe.json')
+
+
+def environment(c2,temp):
+    env=c2.environment(temp);env.update(PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
+    for key in ('PYTHONPATH','PYTHONHOME','MODEL_PYTHON','KNOWLEDGE_MODEL_MANIFEST','MEMORY_INTEGRITY_WORKER_DIAGNOSTICS'):env.pop(key,None)
+    return env
+
+
+def exact_stream(prep,row):
+    require(isinstance(row,dict) and set(row)=={'path','size','sha256'},'STREAM_SCHEMA')
+    actual=prep.record(Path(row['path']));require({k:v for k,v in actual.items() if k!='links'}==row,'STREAM_RECORD')
+
+
+def validate_capture(sr3,prep,completed,row):
+    sr3.validate_capture(completed,row,exits=(0,))
+    for key in ('stdout','stderr'):exact_stream(prep,row[key])
+
+
+def validate_suite(sr3,prep,receipt,ids,pattern):
+    require(isinstance(ids,(tuple,list)) and ids and len(ids)==len(set(ids)) and all(isinstance(x,str) and x for x in ids),'DISCOVERY_IDS:'+pattern)
+    sr3.validate_suite(receipt,ids)
+    require(receipt.get('pattern')==pattern and prep.record(Path(receipt['log']))['sha256']==receipt['log_sha256'],'SUITE_LOG:'+pattern)
+
+
+def assert_bound(copied,context,source=None,manifest=None):
+    copied.direct_authority(context)
+    if source is not None:require(manifest is not None,'PARTIAL_SOURCE');context['c1'].verify_source(source,manifest)
+
+
+def runtime_modules(source,manifest):
+    return {name:source_module(source,manifest,name) for name in ('offline_host_validation','gate1_current_runtime',
+        'gate1_validation','shutdown_repair_verification','gate1_ordered_runner','gate1_ordered_diagnostic')}
+
+
+def validate_budgets(value):require(value==BUDGETS and all(type(x) is int and x>0 for x in value.values()),'BUDGETS')
+
+
+def dependency_probe(names):
+    return "import importlib.metadata as m,json,site;d=m.distribution('semantica');u=json.loads(d.read_text('direct_url.json') or '{}');print(json.dumps({'versions':{n:m.version(n) for n in "+repr(sorted(names))+"},'revision':u.get('vcs_info',{}).get('commit_id'),'user_site':site.ENABLE_USER_SITE}))"
+
+
+def validate_artifacts(workload,receipt,context):
+    prep,c1=context['prep'],context['c1'];w,r=workload,receipt
+    require(w.get('scope')=='RP3_INTEGRATED_WORKLOAD_V1' and w.get('status')=='RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER' and
+        w.get('session')==prep.SESSION and w.get('head')==prep.HEAD and w.get('inputs')==prep.record(ROOT/'Inputs.json') and
+        w.get('before_bundle')==prep.record(ROOT/'Before-Bundle.json') and w.get('failure') is None and
+        w.get('postcheck_failure') is None and w.get('selected_runtime_started') is True and
+        all(w.get(k) is False for k in FLAGS),'WORKLOAD_BINDING')
+    require(w['receipt']==prep.record(ROOT/'run/Receipt.json'),'WORKLOAD_RECEIPT')
+    require(w.get('copy_inputs')==context['copy_inputs_record']==prep.record(READER_ROOT/'Copy-Inputs.json'),'WORKLOAD_COPY_INPUTS')
+    require(all(r.get(k)==w[k] for k in ('scope','status','session','head','inputs','copy_inputs','before_bundle','failure','postcheck_failure','selected_runtime_started')) and
+        all(r.get(k) is False for k in FLAGS),'RECEIPT_BINDING');validate_budgets(r['budgets'])
+    require(w['command_count']==len(r['commands']) and w['group_count']==len(r['groups']),'WORKLOAD_COUNTS')
+    src=r['source'];require(isinstance(src,dict) and set(src)=={'root','manifest','recipe'} and Path(src['root'])==ROOT/'Source' and
+        src['recipe']==prep.record(PHASE/'Source-Recipe.json') and digest(wire(src['manifest']))==w['source_manifest_sha256'] and
+        src['manifest']==context['inputs']['source']['evaluated_manifest'],'SOURCE_RECORD')
+    source=Path(src['root']);c1.verify_source(source,src['manifest']);mods=runtime_modules(source,src['manifest']);sr3=mods['shutdown_repair_verification'];g=mods['gate1_validation']
+    require([row.get('label') for row in r['commands']]==labels(),'COMMAND_ORDER')
+    commands={row['label']:row for row in r['commands']}
+    for row in r['commands']:
+        label=row['label'];folder=ROOT/'run/commands'/label
+        require(type(row.get('elapsed_seconds')) in (int,float) and row['elapsed_seconds']>=0,'COMMAND_TIME')
+        raw=prep.read_json(folder/'Command.json');expected={k:v for k,v in row.items() if k not in ('label','elapsed_seconds')}
+        require(raw==expected and row['stdout']['path']==str(folder/'stdout.log') and row['stderr']['path']==str(folder/'stderr.log'),'COMMAND_RAW_BINDING:'+label)
+        validate_capture(sr3,prep,subprocess.CompletedProcess(row['argv'],row['exit_code']),row)
+    env=environment(mods['gate1_current_runtime'],ROOT/'run/temp')
+    for label in ('preclaim-identity','postclaim-identity'):
+        row=commands[label];require(row['argv']==list(map(str,[g.WORKER,'-B','-c',g.runtime_probe()])),'IDENTITY_ARGV')
+        c1.validate_runtime(json_unique(safe_bytes(row['stdout']['path']),label),env,ROOT/'run/commands'/label)
+    probe=dependency_probe(context['inputs']['dependency_versions'])
+    for label in ('preclaim-dependencies','postclaim-dependencies'):
+        row=commands[label];require(row['argv']==list(map(str,[g.WORKER,'-B','-c',probe])),'DEPENDENCY_ARGV')
+        c1.validate_dependencies(json_unique(safe_bytes(row['stdout']['path']),label),context['inputs']['dependency_versions'])
+    require(len(r['groups'])==len(groups()),'GROUP_COUNT')
+    for got,want in zip(r['groups'],groups()):
+        label,pattern=want['label'],want['pattern'];folder=ROOT/'run'/('tests-'+label);case_path=ROOT/'run'/('group-'+label+'-Discovery.json')
+        require(set(got)=={'label','pattern','timeout','ids','receipt','cases'} and all(got[k]==want[k] for k in want),'GROUP_SCHEMA')
+        require(got['cases']==prep.record(case_path) and got['receipt']==prep.record(folder/'Receipt.json'),'GROUP_PATHS')
+        cases=prep.read_json(case_path,got['cases']['sha256']);unit=prep.read_json(folder/'Receipt.json',got['receipt']['sha256'])
+        require(cases=={'label':label,'pattern':pattern,'ids':got['ids']},'CASE_RECORD')
+        discovery,execution=commands['discover-'+label],commands['command-'+label]
+        require(discovery['argv']==list(map(str,[g.WORKER,'-B','-c',DISCOVERY,source/'memory-integrity',pattern])),'DISCOVERY_ARGV')
+        require(json_unique(safe_bytes(discovery['stdout']['path']),'saved-discovery')==got['ids'],'DISCOVERY_CASE_BINDING')
+        require(execution['argv']==list(map(str,[g.WORKER,'-B',source/'.github/scripts/retained_unittest.py','--package-root',source/'memory-integrity','--pattern',pattern,'--output-dir',folder])),'EXECUTION_ARGV')
+        for command in (discovery,execution):
+            intent=prep.read_json(ROOT/'run/commands'/command['label']/'Intent.json')
+            require(intent=={'argv':command['argv'],'timeout_seconds':BUDGETS['lifecycle_watchdog']},'LIFECYCLE_TIMEOUT')
+        validate_suite(sr3,prep,unit,got['ids'],pattern)
+    ordered=r['ordered'];od=ROOT/'run/ordered'
+    require(isinstance(ordered,dict) and set(ordered)=={'state','receipt','outcomes','calls'} and
+        ordered['receipt']==prep.record(od/'Receipt.json') and ordered['outcomes']==prep.record(od/'Ordered-Outcomes.json'),'ORDERED_RECORDS')
+    require(commands['ordered-public']['argv']==list(map(str,[g.WORKER,'-B',source/'.github/scripts/gate1_ordered_runner.py','--package-root',source/'memory-integrity','--pattern','test_knowledge_completion.py','--output-dir',od])),'ORDERED_ARGV')
+    intent=prep.read_json(ROOT/'run/commands/ordered-public/Intent.json')
+    require(intent=={'argv':commands['ordered-public']['argv'],'timeout_seconds':BUDGETS['watchdog']},'ORDERED_TIMEOUT')
+    report=prep.read_json(od/'Ordered-Outcomes.json',ordered['outcomes']['sha256']);unit=prep.read_json(od/'Receipt.json',ordered['receipt']['sha256'])
+    calls=od/'Ordered-Calls';require(ordered['calls']=={'root':str(calls),'manifest':c1.source_manifest(calls)},'ORDERED_CALLS')
+    mods['gate1_ordered_diagnostic'].verify_calls(report,od);mods['gate1_ordered_diagnostic'].validate_unit_receipt(unit,0,report)
+    state=sr3.validate_ordered(report,unit,mods['gate1_ordered_runner']);require(state==ordered['state']==w['ordered_state'],'ORDERED_STATE')
+    copy_path=PHASE/'prototype/rp3_copy.py';require(context['copy_inputs']['helper']==prep.record(copy_path) and
+        context['copy_inputs']['helper']['sha256']==COPY_SHA,'COPY_HELPER_DRIFT')
+    copied=load_module(copy_path,COPY_SHA,'rp3_copy_validate');assert_bound(copied,context,source,src['manifest'])
+    return w
+
+
+def validate_workload(workload_record,context):
+    require(not os.path.lexists(ROOT/'Runtime-Validation-Failure.json'),'RAW_VALIDATION_PREVIOUSLY_FAILED')
+    prep=context['prep'];require(workload_record==prep.record(ROOT/'Workload.json'),'WORKLOAD_RECORD')
+    workload=prep.read_json(ROOT/'Workload.json',workload_record['sha256'])
+    require(workload['receipt']==prep.record(ROOT/'run/Receipt.json'),'WORKLOAD_RECEIPT')
+    return validate_artifacts(workload,prep.read_json(ROOT/'run/Receipt.json',workload['receipt']['sha256']),context)
+
+
+def run(inputs_sha256,before_sha256,copy_helper_sha256,copy_inputs_sha256):
+    require(copy_helper_sha256==COPY_SHA,'COPY_EXTERNAL_SEAL')
+    original=load_module(PHASE/'prototype/rp3_copy.py',COPY_SHA,'rp3_copy_runtime')
+    adapter=load_module(PHASE/'prototype/rp3_bound_copy.py',BOUND_SHA,'rp3_runtime_bound_copy')
+    copied=adapter.bind(original,copy_inputs_sha256)
+    context=copied.complete_before(inputs_sha256,before_sha256,normal_required=True);prep,c1=context['prep'],context['c1']
+    inputs,before=prep.record(ROOT/'Inputs.json'),prep.record(ROOT/'Before-Bundle.json')
+    require(inputs['sha256']==inputs_sha256 and before['sha256']==before_sha256,'EXTERNAL_BINDING')
+    for name in ('Run-Claim.json','Runtime-Failure.json','Runtime-Validation-Failure.json','Workload.json','Source','run'):
+        require(not os.path.lexists(ROOT/name),'ATTEMPT_CONSUMED:'+name)
+    save(ROOT/'Run-Claim.json',{'scope':'RP3_INTEGRATED_WORKLOAD_V1','session':prep.SESSION,'head':prep.HEAD,
+        'inputs':inputs,'before_bundle':before,'selected_runtime_started':False,**FLAGS})
+    timeline=Timeline();r={'scope':'RP3_INTEGRATED_WORKLOAD_V1','status':'PARTIAL_OR_FAILED_NO_RETRY','session':prep.SESSION,
+        'head':prep.HEAD,'inputs':inputs,'copy_inputs':context['copy_inputs_record'],'before_bundle':before,'started_utc':datetime.now(timezone.utc).isoformat(),
+        'commands':[],'groups':[],'ordered':None,'source':None,'budgets':dict(BUDGETS),'failure':None,
+        'postcheck_failure':None,'selected_runtime_started':False,**FLAGS};source=manifest=None;runroot=ROOT/'run'
+    try:
+        runroot.mkdir();ordinary(runroot);(runroot/'commands').mkdir();temp=runroot/'temp';temp.mkdir()
+        with timeline.segment('source-extraction'):source,manifest,recipe=extract(context)
+        with timeline.segment('runtime-helper-seals'):
+            mods=runtime_modules(source,manifest);host,c2,g,sr3=(mods[k] for k in ('offline_host_validation','gate1_current_runtime','gate1_validation','shutdown_repair_verification'))
+            require(str(g.WORKER) in context['inputs']['fixed_inputs'],'FIXED_WORKER');env=environment(c2,temp)
+        def capture(label,argv,timeout):
+            target=runroot/'commands'/label;target.mkdir();started=time.monotonic()
+            done,row=host.capture_owned(list(map(str,argv)),target,target,env,timeout)
+            row=dict(row,label=label,elapsed_seconds=time.monotonic()-started);r['commands'].append(row)
+            try:validate_capture(sr3,prep,done,row)
+            except Exception as error:
+                error.add_note('RP3 segment='+label+' exit='+str(row.get('exit_code'))+' timeout='+str(timeout))
+                for stream_name in ('stderr','stdout'):
+                    path=target/(stream_name+'.log')
+                    if path.exists():
+                        raw=safe_bytes(path)
+                        error.add_note('RP3 '+stream_name+' tail (full bytes/hash in Command.json):\n'+raw[-16384:].decode('utf-8','replace'))
+                raise
+            return done
+        with timeline.segment('preclaim-identity'):
+            r['selected_runtime_started']=True;result=capture('preclaim-identity',[g.WORKER,'-B','-c',g.runtime_probe()],30)
+            c1.validate_runtime(json_unique(result.stdout,'preclaim-identity'),env,runroot/'commands/preclaim-identity')
+        probe=dependency_probe(context['inputs']['dependency_versions'])
+        with timeline.segment('preclaim-dependencies'):
+            result=capture('preclaim-dependencies',[g.WORKER,'-B','-c',probe],30)
+            c1.validate_dependencies(json_unique(result.stdout,'preclaim-dependencies'),context['inputs']['dependency_versions'])
+            assert_bound(copied,context,source,manifest)
+        r['source']={'root':str(source),'manifest':manifest,'recipe':recipe}
+        for spec in groups():
+            label,pattern,timeout=spec['label'],spec['pattern'],spec['timeout']
+            with timeline.segment('discover-'+label):
+                result=capture('discover-'+label,[g.WORKER,'-B','-c',DISCOVERY,source/'memory-integrity',pattern],timeout)
+                ids=sr3.validate_discovery(json_unique(result.stdout,'discover-'+label),pattern)
+            folder=runroot/('tests-'+label)
+            with timeline.segment('command-'+label):
+                capture('command-'+label,[g.WORKER,'-B',source/'.github/scripts/retained_unittest.py','--package-root',source/'memory-integrity','--pattern',pattern,'--output-dir',folder],timeout)
+                unit=read_json(folder/'Receipt.json','suite-'+label);validate_suite(sr3,prep,unit,ids,pattern)
+                cases=runroot/('group-'+label+'-Discovery.json');save(cases,{'label':label,'pattern':pattern,'ids':list(ids)})
+                r['groups'].append({**spec,'ids':list(ids),'receipt':prep.record(folder/'Receipt.json'),'cases':prep.record(cases)})
+                assert_bound(copied,context,source,manifest)
+        with timeline.segment('ordered-public'):
+            od=runroot/'ordered';capture('ordered-public',[g.WORKER,'-B',source/'.github/scripts/gate1_ordered_runner.py',
+                '--package-root',source/'memory-integrity','--pattern','test_knowledge_completion.py','--output-dir',od],BUDGETS['watchdog'])
+            report=read_json(od/'Ordered-Outcomes.json','ordered-outcomes');unit=read_json(od/'Receipt.json','ordered-receipt')
+            mods['gate1_ordered_diagnostic'].verify_calls(report,od);mods['gate1_ordered_diagnostic'].validate_unit_receipt(unit,0,report)
+            state=sr3.validate_ordered(report,unit,mods['gate1_ordered_runner']);calls=od/'Ordered-Calls'
+            r['ordered']={'state':state,'receipt':prep.record(od/'Receipt.json'),'outcomes':prep.record(od/'Ordered-Outcomes.json'),
+                'calls':{'root':str(calls),'manifest':c1.source_manifest(calls)}};assert_bound(copied,context,source,manifest)
+        with timeline.segment('postclaim-identity'):
+            result=capture('postclaim-identity',[g.WORKER,'-B','-c',g.runtime_probe()],30)
+            c1.validate_runtime(json_unique(result.stdout,'postclaim-identity'),env,runroot/'commands/postclaim-identity')
+        with timeline.segment('postclaim-dependencies'):
+            result=capture('postclaim-dependencies',[g.WORKER,'-B','-c',probe],30)
+            c1.validate_dependencies(json_unique(result.stdout,'postclaim-dependencies'),context['inputs']['dependency_versions'])
+            assert_bound(copied,context,source,manifest)
+        r['status']='RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER'
+    except BaseException:r['failure']=traceback.format_exc()
+    finally:
+        try:assert_bound(copied,context,source,manifest)
+        except BaseException:r['postcheck_failure']=traceback.format_exc();r['status']='PARTIAL_OR_FAILED_NO_RETRY'
+        r['timeline']=timeline.rows;r['finished_utc']=datetime.now(timezone.utc).isoformat();r['failed_segment']=timeline.failed
+        if runroot.exists():save(runroot/'Receipt.json',r)
+        else:save(ROOT/'Runtime-Failure.json',r)
+    if r['status']=='RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER':
+        workload={'scope':r['scope'],'status':r['status'],'session':prep.SESSION,'head':prep.HEAD,'inputs':inputs,
+            'copy_inputs':context['copy_inputs_record'],'before_bundle':before,'receipt':prep.record(runroot/'Receipt.json'),'failure':None,'postcheck_failure':None,
+            'selected_runtime_started':True,**FLAGS,'command_count':len(r['commands']),'group_count':len(r['groups']),
+            'ordered_state':r['ordered']['state'],'source_manifest_sha256':digest(wire(manifest))}
+        try:
+            validate_artifacts(workload,r,context);save(ROOT/'Workload.json',workload)
+        except BaseException:
+            save(ROOT/'Runtime-Validation-Failure.json',{'failure':traceback.format_exc(),**FLAGS});raise
+    print(json.dumps({'status':r['status'],'receipt':prep.record(runroot/'Receipt.json' if runroot.exists() else ROOT/'Runtime-Failure.json'),
+        'failure':r['failure'],'postcheck_failure':r['postcheck_failure'],**FLAGS}),flush=True)
+    return 0 if r['status']=='RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER' else 1
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    for name in ('inputs','before','copy','copy-inputs'):parser.add_argument('--'+name+'-sha256',required=True)
+    args=parser.parse_args()
+    for value in (args.inputs_sha256,args.before_sha256,args.copy_sha256,args.copy_inputs_sha256):
+        require(len(value)==64 and all(c in '0123456789abcdef' for c in value),'EXTERNAL_SHA256')
+    raise SystemExit(run(args.inputs_sha256,args.before_sha256,args.copy_sha256,args.copy_inputs_sha256))

@@ -3387,3 +3387,243 @@ commit would invalidate prepared exactHEAD guards. No raw private request/data/
 caches/binaries, unrelated dirty files or push. Verify each committed blob and
 ref, unchanged activeHEAD/index and prepared-file seals. This is checkpoint
 storage, not RP3/runtime qualification or a baseline change.
+
+
+### Approved RP3 completion continuation, 2026-11-01
+
+AUTH: user says "complete it, make it complete rp2 and rp3". RP2 remains
+accepted; no repeat of its controller campaign. INTENT: new rp3_copy.py reuses
+sealed SnapshotSet DATA policy/copy/readback, new rp3_runtime.py validates one
+actual integrated selected3.12 observation, rp3_finish.py coordinates and
+requires fresh ORIGINAL AFTER before completion. Existing reader access only;
+no ACL/install/Git/source edits or consumed-command retry. All new code stays
+in the current RP3 phase; old preparation/Inputs/Request and authority remain
+sealed. Focused failure-first coordinator controls plus fresh native review
+precede normal execution. Every segment/cause/command is retained.
+No-build leaves RP3 incomplete; reuse of strict existing copy/capture primitives
+is recommended. A new environment or relaxed guards would not prove this stage.
+Done requires complete BEFORE coverage, exact680-file evaluated source, actual
+selected identity/dependency/group/public initial+replay/native-exit evidence,
+and fresh original AFTER content/identity/ACL comparison plus raw review.
+
+
+### RP3 cooperating BEFORE copies and one-shot completion handoff, 2026-11-01
+
+Existing-access inspection/copy SUCCEEDED:1240directorytargets,4396files,
+7436objects,33362733bytes;0hardlinkexceptions. CopyInputs7c18bb40... and
+Copiesfdeacbb0... frozen; original Inputs77769.../Request15086... unchanged.
+New controller35/35 PASS after review fixes: separate external DATApolicy seal,
+workload-bound BEFOREbaseline, every later CopyInputs reopen pinned using new
+private sealedadapter, child cause retained in correct runtime segment. Native
+explicit SHIP received; later reviewer final credits error is retained honestly.
+New outer29pins a9c8a92b...,0parseerrors,VerifyOnlyPASS,wronghashrefusalPASS;
+locale-sensitive date reparse caught beforePython and corrected via typedcast.
+Reader session29980 waiting through20:58:24IST; one normalaccount command
+performs BEFOREreadback,actualselected3.12 groups91authoredcases+publicordered
+initial/replay,then fresh ORIGINALAFTERcopy/readback/comparison. All stages/
+causes timed and retained. No normalclaim/runtime started at issuance. RP3
+completion remains conditional on actualobserved result and parent raw review.
+No duplicate approval required inside approved RP1-RP3. Preserve activeHEADfee
+and allolddata. No Gitwrite,install,ACL change,timeoutincrease,originaldelete
+or oldretry. See rp3-completion-handoff-20261101.md for exact resume/seals.
+
+
+### Approved READY read-only/copy repair with 3-day managed-copy retention
+
+AUTH: user requests strictly read-only READY access, copy fallback into a specific
+folder based on existing copy code, and explicitly selects "3 நாட்கள்". This is
+a narrow exception to no-deletion for NEW managed READY copies only. No deletion
+of originals, failed attempts, source, caches, receipts or old evidence is allowed.
+RP3 original attempt is consumed: BEFORE readback passed, selected3.12 ownership
+17/17 and writer18/18 passed, shutdown11PASS/1startupERROR opening .ready.json.
+Runtime Receipt5dc1bea4... preserves the cause; no old command is rerun.
+
+INTENT: explicit GENERIC_READ source handles, read-sharing without write access,
+exact native error codes; on access/sharing failure only, a current-token copy
+pre-created by the parent and read using its already-open read-only handle. Child
+publishes only into that exact empty single-link file; framed size/hash/token and
+actual native PID/image/Job checks remain mandatory. Bad JSON/identity/link/data
+never falls back. Permission errors are not relabelled a proven ACL/lock cause.
+
+Reuse archive_copy_h1/read_file principles: source preserved, independent copy,
+file identity/link/type/size/hash checks, explicit source-to-copy mapping. Existing
+offline SnapshotSet is inert evidence machinery, not live-worker authority; do
+not execute copied data or bypass native attestation. Parent resolves one user
+cache root via Windows known folders and sends exact path to child. Proposed
+normal root is C:/Users/sakth/AppData/Local/MemoryIntegrity/ready-copies-v1.
+
+Deletion eligibility requires an accepted read, successful startup, and actual
+native worker-tree exit; expires3days after both read/exit complete. Cleanup on
+subsequent application starts deletes only the exact managed single-link payload
+by verified file handle inside that root; metadata/audit stays, failed/unaccepted
+copies stay. No global scheduler/service or permission/attribute change. If app
+is not running, expiry cleanup occurs at the next startup after3days.
+
+No-build leaves RP3 failed; another chmod/read-only attribute does not grant read
+access. Recommend parent-owned copy with existing read-only first path. A pipe
+transport is a stronger redesign held outside this focused repair. Weak link:
+selectedStore3.12 access behavior remains unobserved until one separately sealed
+new source/runtime proof. Cheapest falsifier is real native exclusive-sharing
+denial plus read-only fallback, token/hash/reparse drift, and expiry guards in
+controller tests. Keep120/90/60/5 and existing ordered600 bounds.
+
+Files: new windows_ready_copy.py and test_knowledge_windows_ready_copy.py; bounded
+changes windows_owned_process.py/bootstrap.py; existing Fable plan/design/state
+and evidence. First failing focused tests, minimal integration, Windows/lifecycle
+and knowledge regressions, read-only review, then a fresh sealed successor. Any
+source/runtime recipe is NEW; old680recipe/launcher/receipts remain immutable.
+
+
+### READY-copy implementation observation and native final review
+
+Final exact-source32focusedPASS; broader324run270PASS54unchanged runtime-dependent
+SKIP,0FAIL/ERROR in108.667s. Native Fable reviewer first FIX-FIRST for expiry
+bound/scan/audit/error propagation, then explicit SHIP after retained RED/GREEN
+corrections. All32 focused cases are included in broader total. Controller uses
+isolated managed cache and PYTHONNOUSERSITE=1 because agent1003 cannot create
+normal user's LocalAppData path. Three-day time arithmetic is simulated; actual
+Store3.12/default-cache access/fullRP3/ORIGINAL AFTER remain UNVERIFIED.
+
+Expiry implementation: due-date queue bounded to128 scanned entries and64
+reserved deletion attempts, cooperative0.1s check (not native-I/O preemption).
+Permanent receipts never scanned; interrupted/invalid queue data preserved in
+retained quarantine; unsafe active-queue traversal fails explicitly. Verified
+exclusive payload handle plus durable DELETE_INTENT precede removal; outcome/
+error envelope precedes metadata archival. Only new empty queue-day directories
+are removed as housekeeping. Locked/unsafe payloads stay retained with causes.
+No global scheduler; cleanup waits for a later app start after3days.
+
+Candidate source hashes: ready_copy755df303..., owner0ff54944..., bootstrap
+7f85872a..., testsba742402.... Source-Candidate/Controller-Accepted and read-only
+Independent-Review are under existing RP3 ready-copy-repair evidence phase. Read
+rp3-ready-copy-repair-20261101.md for actual failing selected run and exact proofs.
+Old680recipe/runtime/RP2Acceptance/failedreceipt remain unchanged; HEADfee69861,
+indexempty. No selected runtime/oldcommand retry, install, ACL/Gitwrite or olddata
+removal. A NEW sealed normal-account combined BEFORE/run/ORIGINAL AFTER successor
+is still required before any full RP3 success statement; no successor issued here.
+
+
+### Approved RP3 READY-copy successor continuation2026-11-02
+
+User asks COMPLETED? OR CONTINUE; prepare one NEW normal integrated workflow.
+Code/controller acceptance frozen, no production edits. New private phase
+rp3-ready-20261102, absent normal root Codex/rp3-ready-20261102. Reuse five
+predecessor helpers BYTE-FOR-BYTE through one exact-name/path/SHA factory; every
+copy.modules/runtime.load_module/finish.modules reopen must stay configured.
+New validator binds exactfee69861 base+historical RP2 overlay+ONLY four newly
+accepted READY-copy deltas; exact682manifest, no arbitrary dirty source.
+
+Test/implement/review: preparation publishes immutable Preparation-Ready only
+after prepare returns success (binds Inputs/Request/success Diagnostics and no
+Failure). Existing-access reader waits for this, then existing structural policy
+validation PLUS exact8roots/allowed{} allroots and durable Zero-Exception-
+Accepted; exceptions stop, no discretion or policy_approved rewrite. New outer
+Reader/Workload/AFTER/Stage envelopes bind factory/config/helpers, recipe, source
+acceptance and exact inner artifacts. Original JSON never edited after publish.
+
+One normal command: fresh prep, cooperating BEFORE copies/readback, selected3.12
+old10groups+READY32+owned-startup in fixed12group order, original public initial/
+replay, fresh ORIGINAL AFTER, comparison and raw review. Original120/90/60/5/600
+budgets and ONE absolute3600s reader coordination deadline remain fixed. Every
+stage prints elapsed time and retains original errors/commands/native waits.
+No old-command retry, selected runtime in agent, ACL/install/global/Gitwrite or
+original deletion. Existing8root sample coverage; prior failed RP3 receipt/log
+additionally pinned before/after with ordinary type/link/size/hash/fileidentity,
+not a whole failed-temp-root/archive qualification. Failing controls before
+implementation, same controller tests GREEN then fresh read-only handoff review.
+
+
+RP3 successor finalhandoff2026-11-02:37controllerPASS; strictsamePID/claim, exact
+actualruntimebudgets, atomicpublication, normalAFTER-before-inner-read, direct
+hookFSM faulttests, sealed in-memory entry bootstrap cleared by nativeSHIP.
+Live Reader37260/session58287 expires13:56:30IST; outer210eeacf... final exact
+review SHIP, VerifyOnly/parsepass. One normalworkflow issued; root/selectedruntime
+unrun. Fullstage completion pendingactualresult+parentrawreview, no oldretry.
+
+### Approved RP3 fresh reader-session reissue, 2026-11-02
+
+AUTH: user "I NEED TO TEST THIS NOW" within approved RP1-RP3 continuation.
+Old reader expired at08:26:30UTC before normal preparation. Normal output absent;
+no selected runtime or workload claim. Preserve expired service/claim/failure and
+old outer. Do not reset deadlines or edit old guards. Use fresh sibling phase
+rp3-ready-20261102-b, fresh normal root/session; copy exactly the reviewed helpers
+with only factory root/contract and source contract literal bindings updated.
+Keep 682-source recipe, accepted bytes, 12groups, budgets and history fixed.
+Verify new family/source bindings and normal refusal, then fresh native read-only
+handoff review. Launch one existing-access DATA reader; freeze one new normal
+command inside original3600second window. No product tests rerun just for expiry,
+no install/ACL/Git/original deletion. Full RP3 pending real run and raw AFTER review.
+No-build leaves test blocked. Chosen fresh sealed session avoids old-output reuse;
+changing expiry logic/longer window is outside this bounded reissue.
+
+Fresh -b finalnativeSHIP;37metadata controlsPASS; actualPS7VerifyOnlyPASS.
+Reader21032/session24359 expires14:17:24UTC. One new outer59ad944c issued;
+actualselectedruntime/Stage/AFTERpending. No new scope approval required.
+
+### Approved RP3 explicit actor output routing repair, 2026-11-02
+
+AUTH: user invokes fable-method to SOLVE THE ISSUE after confirmed reader write
+refusal. Current -b normalprep129.374s completed; reader failed InspectBefore-Claim
+create, no CopyInputs/RunClaim/selected3.12. Preserve all -b files/claims/failures.
+INTENT: code sends reader writes into normal ROOT; required handoff lets each
+account write only its own outputs; approved no-ACL copy design uses separate
+readable copies and exact source-to-copy/hash/BEFORE-AFTER verification.
+
+Decision: explicit NORMAL_ROOT(short) and READER_ROOT(privatephase/outbox/session),
+normal-only channel for preflight. Existing SnapshotSet accepts output path and
+remains unchanged. No-build stays blocked. Shared-parent crosswrites still depend
+on inherited token permissions and add path-length risk; generic path wrappers or
+normal import rewrite records and obscure authority. Choose explicit two-root
+routing with exact sealedpath/session/hash/PID/readiness validation.
+
+Scope NEW .github/run-artifacts/rp3-routed-20261102/prototype9helpers, focused
+controller tests/config/manifest/outer; existing Fable ledger/evidence. Product
+source682recipe/default120/public90/lifecycle60/shutdown5/ordered600 unchanged.
+Native design review FIX-FIRST endorsed architecture, required these gates:
+- [ ] Failure-first reader-only output tests; route copy/bound/runtime/finish
+      record references explicitly, no reader ROOT writes or normal outbox writes.
+- [ ] Bind distinct canonical normal/outbox/channel paths and new session. Reuse
+      copy primitives unchanged; independently require zero exception policy.
+- [ ] Cheap two-account ping/ack preflight before expensive preparation; atomic
+      publication, exactrecords, no new timeout/reset or native worker workload.
+- [ ] Verify source/recipe/helper/history seals and focused/broader controllers;
+      wrongactor/root/session/PID/link/hash/afterworkload/stalebefore/fault controls.
+- [ ] Native read-only finalreview and externally sealed ONE normal command with
+      sameabsolute3600sec reader lifetime; preserve all partial/failure outputs.
+- [ ] Observe actualnormal preflight then full selected3.12 integration and fresh
+      original AFTER. Parent rawreadback before fullRP3 complete, all broader gates
+      separate. No auto retry/ACL/installation/global/Git/deletion/oldcommand.
+
+### Approved continuation: fresh unused reader session, 2026-11-03
+
+User CONTINUE resumes approved RP3 dual-root repair. Yesterday's reviewed routed
+session expired before normal channel/root/preparation/selected runtime existed.
+Keep its claim/service/failure/outer immutable. Reuse exact two-root workflow and
+six unchanged helpers; fresh phase/root/channel/session and three literal contract
+bindings only. Same682source/12groups/51controller proof and budget120/90/60/5/
+600/3600 retained. Verify today's registry/source/config bindings, native exact
+reissue/outer review; launch existing-access DATA reader only at freeze. One new
+normal-account command runs cheap ping/ack before expensiveprep and original
+integrated3.12 plus freshoriginalAFTER. No product reimplementation, old selected
+attempt retry, new runtime/install/ACL/Git/original deletion. FullRP3 stillfalse.
+
+Nov3 reissue12registryPASS; nativeSHIP; live43132/tool47343 until17:59:19IST;
+oneouter15a4feec issued. Actualnormalpreflight/fullRP3pending, notcomplete.
+
+### Authorized reusable Git checkpoint, 2026-11-03
+
+AUTH: user said "IF NOT COMMIT IT TO LATER USE, VERIFY IF ITS ALREDY COMMITED OR NOT".
+Read-only Git comparison confirms RP2 localcheckpointe801c358 already saves8of12
+current evaluated overlay files. READYrepair4files differ/are absent. Save a new
+local checkpoint child ofe801 on checkpoint/rp3-verified-progress-20261103,
+using isolatedindex/commit-tree/CASnewref so activefeeHEAD/index and sealedattempts
+retainmeaning. Scope: exact4READYsource/tests, currentFableledger+selectedreports,
+curated byte-exact snapshots of sourceacceptance/testreceipts/logs, routed9helpers/
+7controls, preparation+realpreflight records and currentfailedpolicycause. Raw
+privatehistory/venv/cache/datacopies/binaries/unrelateddirtyfiles remainlocal.
+No-build losesunsavedprogress; activebranchcommit changes frozenHEADguards;
+choose existing separatecheckpoint pattern. No source behavior change or fix of
+consumedschemahelper. Preserve actualpolicy4fields versusverifier3 mismatch as
+UNRESOLVED, fullRP3false. Verify candidate12overlayhashes, receipts/loghashes,
+exactisolatedindex/tree/blobscope andref; commit only after concrete review.
+No push, runtime workload, ACL/security change, reset, deletion or old retry.

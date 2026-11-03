@@ -1,0 +1,71 @@
+"""Success publication and zero-exception acceptance precede copy authority."""
+import copy
+import hashlib
+import importlib.util
+from pathlib import Path
+import tempfile
+import unittest
+PHASE=Path(__file__).absolute().parents[1]
+FLAGS=('selected_runtime_started','stage_complete','gate1_complete','release_ready','installed','producer_authentication','preservation','historical_c2_cause_proven')
+NAMES=('rp3_bound_copy.py','rp3_copy.py','rp3_finish.py','rp3_prepare.py','rp3_runtime.py','ready_source.py','ready_envelopes.py','ready_factory.py','ready_workflow.py')
+
+class Prep:
+    def __init__(self,root):self.root=root;self.values={}
+    def require(self,value,code):
+        if not value:raise ValueError(code)
+    def record(self,path):return {'path':str(path),'size':7,'sha256':hashlib.sha256(str(path).encode()).hexdigest(),'links':1}
+    def read_json(self,path,*args):
+        if str(path) not in self.values:raise ValueError('MISSING_JSON')
+        return copy.deepcopy(self.values[str(path)])
+    def history_roots(self):return {'history'+str(i):self.root/str(i) for i in range(8)}
+
+class Copied:
+    calls=0
+    def validate_proposal(self,data,proposal,request,protected,roots,session):
+        self.calls+=1
+        if proposal['request_sha256']!=data['request_sha256']:raise ValueError('REQUEST_DIGEST')
+        return proposal['roots']
+
+class Envelopes(unittest.TestCase):
+    def setUp(self):
+        path=PHASE/'prototype/ready_envelopes.py';self.assertTrue(path.exists(),'missing successor envelope validator')
+        s=importlib.util.spec_from_file_location('ready_envelope_tests',path);self.m=importlib.util.module_from_spec(s);s.loader.exec_module(self.m)
+        scratch=PHASE/'envelope-test-scratch';scratch.mkdir(exist_ok=True)
+        self.root=Path(tempfile.mkdtemp(dir=scratch));self.p=Prep(self.root);phase=self.root/'phase'
+        self.c={'scope':'RP3_READY_COPY_SUCCESSOR_V1','root':str(self.root),'reader_root':str(self.root),'session':'a'*32,'head':'f'*40,'phase':str(phase),'recipe':self.p.record(phase/'Source-Recipe.json'),'baseline_recipe':self.p.record(phase/'baseline.json'),'accepted':self.p.record(phase/'accepted.json')}
+        self.a={'factory':self.p.record(phase/'prototype/ready_factory.py'),'config':dict(self.p.record(phase/'Successor-Contract.json'),sha256='810c681b8a799ce1d81e0902e92ae003e7bb6a376fc54d521eccdfa65f014dae'),'manifest':self.p.record(phase/'Authority-Manifest.json'),'helpers':{n:self.p.record(phase/'prototype'/n) for n in NAMES},'recipe':self.c['recipe'],'accepted':self.c['accepted'],'evaluated_manifest':{str(i):'a'*64 for i in range(682)}}
+        self.flags={k:False for k in FLAGS};self.request={'phase':'BEFORE'}
+        source={k:self.p.record(phase/(k+'.json')) for k in ('accepted','before','rp1_receipt')}
+        source.update(recipe=self.c['recipe'],baseline_recipe=self.c['baseline_recipe'],ready_copy_acceptance=self.c['accepted'],evaluated_manifest=self.a['evaluated_manifest'],older_pins={})
+        self.p.values[str(self.root/'Inputs.json')]={'scope':'RP3_INPUT_PREPARATION_ONLY','session':self.c['session'],'head':self.c['head'],'output':str(self.root),'source':source,'before_request':self.p.record(self.root/'BEFORERequest.json'),'helper':self.p.record(phase/'prototype/rp3_prepare.py'),'runtime_command_issued':False,**self.flags}
+        self.p.values[str(self.root/'BEFORERequest.json')]=self.request
+        self.p.values[str(self.root/'Diagnostics.json')]={'status':'INPUTS_PREPARED_PENDING_COPY','failed_segment':None,**self.flags}
+        self.p.values[str(self.root/'Protected-Identities.json')]={'source':[11,12]}
+        self.proposal={'scope':'SR3_COPY_POLICY_PROPOSAL_V1','session':self.c['session'],'request_sha256':'a'*64,'origin':'CURRENT_REQUESTED_HISTORICAL_DATA_READ_NOT_AUTHENTICATED','producer_authentication':False,'policy_approved':False,'roots':{k:{'root':str(v),'protected_identities':[[11,12]],'allowed':{}} for k,v in self.p.history_roots().items()}}
+        self.p.values[str(self.root/'Policy-Proposal.json')]=self.proposal
+        self.p.values[str(self.root/'InspectBefore-Result.json')]={'status':'RP3_POLICY_PROPOSAL_REQUIRES_EXTERNAL_REVIEW_NO_COPY','session':self.c['session'],'proposal':self.p.record(self.root/'Policy-Proposal.json'),'identities':self.p.record(self.root/'Protected-Identities.json'),'hardlink_data_exceptions':0,'timeline':[],**self.flags}
+    def prepare(self):return self.m.preparation(self.p,self.c,self.a)
+    def zero(self,copied=None):return self.m.zero_exception(copied or Copied(),{'prep':self.p,'data':{'request_sha256':'a'*64},'request':self.request},self.c,self.a,self.prepare())
+    def test_successful_preparation_and_empty_policies(self):
+        p=self.prepare();self.assertEqual(p['kind'],'PREPARATION');self.assertEqual(self.zero()['kind'],'ZERO_EXCEPTION')
+    def test_missing_or_failed_diagnostics_never_reaches_copy_validator(self):
+        copied=Copied();del self.p.values[str(self.root/'Diagnostics.json')]
+        with self.assertRaises(ValueError):self.zero(copied)
+        self.assertEqual(copied.calls,0)
+    def test_failure_record_prevents_ready_publication(self):
+        (self.root/'Failure.json').write_text('retained')
+        with self.assertRaises(ValueError):self.prepare()
+    def test_nonempty_policy_count_forgery_and_missing_root_refused(self):
+        original=copy.deepcopy(self.proposal)
+        for change in (lambda v:v['roots']['history0'].update(allowed={'forged':0}),lambda v:v['roots'].pop('history0'),lambda v:v.update(policy_approved=True)):
+            self.p.values[str(self.root/'Policy-Proposal.json')]=copy.deepcopy(original);change(self.p.values[str(self.root/'Policy-Proposal.json')])
+            with self.assertRaises(ValueError):self.zero()
+    def test_changed_envelope_root_session_authority_refused(self):
+        p=self.prepare()
+        for field,value in (('root','old-root'),('session','old-session'),('extra',True)):
+            v=copy.deepcopy(p);v[field]=value
+            with self.assertRaises(ValueError):self.m.check(v,'PREPARATION',self.c,self.a,p['records'])
+        v=copy.deepcopy(p);v['authorities']['config']['sha256']='b'*64
+        with self.assertRaises(ValueError):self.m.check(v,'PREPARATION',self.c,self.a,p['records'])
+
+if __name__=='__main__':unittest.main()

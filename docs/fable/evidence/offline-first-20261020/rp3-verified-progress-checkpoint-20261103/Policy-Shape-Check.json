@@ -1,0 +1,121 @@
+{
+  "helper_not_fixed_this_checkpoint": true,
+  "inspected_roots": [
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "cleanup-lifetime-stack-20261024",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "cleanup-membership-20261025",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "cleanup-process-timing-20261024",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "cleanup-repair-20261023",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "rp1-audit",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "rp1-corrected",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "rp1-original",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    },
+    {
+      "actual_keys": [
+        "allowed",
+        "protected_identities",
+        "root",
+        "scope"
+      ],
+      "allowed_count": 0,
+      "protected_identities_match": true,
+      "root_label": "rp1-store",
+      "root_matches": true,
+      "scope": "W_COPY_H1_EXACT_HISTORICAL_CONTENT"
+    }
+  ],
+  "proposal": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\reader-outbox\\c37d1b7d50ef410a8acbda912f13d2ef\\Policy-Proposal.json",
+    "sha256": "998898154d5502da369e473601670b8cc46fe479be59e9fa7fa58d6ce2524d38",
+    "size": 256568
+  },
+  "security_exceptions_requested": false,
+  "status": "GENUINE_PRODUCER_FOUR_FIELDS_VERIFIER_THREE_FIELDS_UNRESOLVED",
+  "verifier_expected_keys": [
+    "root",
+    "protected_identities",
+    "allowed"
+  ]
+}

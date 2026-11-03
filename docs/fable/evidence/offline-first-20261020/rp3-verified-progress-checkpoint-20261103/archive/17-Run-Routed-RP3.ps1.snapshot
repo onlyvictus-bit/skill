@@ -1,0 +1,80 @@
+[CmdletBinding()]
+param([switch]$VerifyOnly)
+$ErrorActionPreference = 'Stop'
+if ($PSVersionTable.PSVersion.Major -lt 7) { throw 'Use the pinned existing PowerShell7 launcher; no policy change.' }
+$ReadyPhase = 'C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\rp3-routed-20261103'
+$ReadyRoot = 'C:\Users\sakth\Documents\Codex\rp3-routed-20261103'
+$ReadyController = 'C:\Python314\python.exe'
+$ReadyWorkflow = Join-Path $ReadyPhase 'prototype\ready_workflow.py'
+$ReadyManifestPath = Join-Path $ReadyPhase 'Authority-Manifest.json'
+$ReadyManifestSha = '9fc4eb40222d5dc7e68ee36178fcec5e1f491d103baf92dc4a7f91e25eeb6348'
+$ReadyServiceSha = '90a6e4f6649dfaae265af3881a53c64904b64fabd893331f1822719133f77e77'
+$ReadyBootstrap = @'
+import hashlib,os,stat,sys
+from pathlib import Path
+p=Path(sys.argv[1]).absolute();expected=sys.argv[2];arguments=sys.argv[3:]
+for part in (p,*p.parents):
+    row=part.lstat()
+    if stat.S_ISLNK(row.st_mode) or getattr(row,'st_file_attributes',0)&0x400:raise ValueError('E_READY_BOOTSTRAP_REDIRECT')
+before=p.stat()
+if not stat.S_ISREG(before.st_mode) or before.st_nlink!=1:raise ValueError('E_READY_BOOTSTRAP_TYPE')
+with p.open('rb') as stream:
+    opened=os.fstat(stream.fileno());raw=stream.read(262145);ended=os.fstat(stream.fileno())
+key=lambda row:(row.st_dev,row.st_ino,row.st_nlink,row.st_size,row.st_mtime_ns)
+if len(raw)>262144 or key(before)!=key(opened) or key(opened)!=key(ended) or key(ended)!=key(p.stat()):raise ValueError('E_READY_BOOTSTRAP_SOURCE_CHANGED')
+if hashlib.sha256(raw).hexdigest()!=expected:raise ValueError('E_READY_BOOTSTRAP_SOURCE_SHA')
+sys.argv=[str(p),*arguments]
+exec(compile(raw,str(p),'exec'),{'__name__':'__main__','__file__':str(p),'__builtins__':__builtins__})
+'@
+function Assert-ReadyFile([string]$Path, [string]$Expected, [long]$Length = -1) {
+    $ReadyItem = Get-Item -LiteralPath $Path -Force
+    if ($ReadyItem.PSIsContainer -or ($ReadyItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) { throw ('Unsafe sealed file: ' + $Path) }
+    if ($Length -ge 0 -and $ReadyItem.Length -ne $Length) { throw ('Sealed size changed: ' + $Path) }
+    if ((Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $Expected) { throw ('Sealed bytes changed: ' + $Path) }
+}
+Assert-ReadyFile $ReadyController 'cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b'
+Assert-ReadyFile $ReadyManifestPath $ReadyManifestSha
+$ReadyManifest = Get-Content -LiteralPath $ReadyManifestPath -Raw | ConvertFrom-Json -AsHashtable
+if ($ReadyManifest.scope -cne 'RP3_READY_FACTORY_MANIFEST_V1' -or $ReadyManifest.helpers.Count -ne 9) { throw 'Wrong successor manifest.' }
+foreach ($ReadyRow in $ReadyManifest.helpers.Values) { Assert-ReadyFile $ReadyRow.path $ReadyRow.sha256 $ReadyRow.size }
+foreach ($ReadyKey in @('config','recipe','accepted')) {
+    $ReadyRow = $ReadyManifest[$ReadyKey]
+    Assert-ReadyFile $ReadyRow.path $ReadyRow.sha256 $ReadyRow.size
+}
+$ReadyConfig = Get-Content -LiteralPath $ReadyManifest.config.path -Raw | ConvertFrom-Json -AsHashtable
+foreach ($ReadyKey in @('baseline_recipe','consumed_receipt','consumed_shutdown_log')) {
+    $ReadyRow = $ReadyConfig[$ReadyKey]
+    Assert-ReadyFile $ReadyRow.path $ReadyRow.sha256 $ReadyRow.size
+}
+if ((Test-Path -LiteralPath $ReadyRoot) -or (Test-Path -LiteralPath $ReadyConfig.normal_channel)) { throw 'This successor normal output/channel already exists. Preserve it; no retry.' }
+$ReadyServicePath = Join-Path $ReadyPhase 'coord\Reader-Service-Ready.json'
+Assert-ReadyFile $ReadyServicePath $ReadyServiceSha
+$ReadyService = Get-Content -LiteralPath $ReadyServicePath -Raw | ConvertFrom-Json -AsHashtable
+if ($ReadyService.scope -cne 'RP3_READY_READER_SERVICE_V1' -or $ReadyService.session -cne $ReadyConfig.session -or
+    $ReadyService.authorities.manifest.sha256 -cne $ReadyManifestSha -or
+    ([DateTimeOffset]$ReadyService.expires_utc) -le [DateTimeOffset]::UtcNow) {
+    throw 'The cooperating reader is changed or expired. Stop before preparation.'
+}
+$ReadyClaimPath = Join-Path $ReadyPhase 'coord\Reader-Service-Claim.json'
+Assert-ReadyFile $ReadyClaimPath $ReadyService.claim.sha256 $ReadyService.claim.size
+$ReadyClaim = Get-Content -LiteralPath $ReadyClaimPath -Raw | ConvertFrom-Json -AsHashtable
+$ReadySeedPath = Join-Path $ReadyConfig.reader_root 'Transport-Seed.json'
+if ($ReadyClaim.session -cne $ReadyConfig.session -or $ReadyClaim.pid -ne $ReadyService.pid -or $ReadyClaim.seed.path -cne $ReadySeedPath) { throw 'Reader claim/seed binding changed.' }
+Assert-ReadyFile $ReadySeedPath $ReadyClaim.seed.sha256 $ReadyClaim.seed.size
+if ($VerifyOnly) { Write-Output 'ROUTED_RP3_EXTERNAL_SEALS_MATCH_NO_PYTHON_OR_ATTEMPT'; return }
+$ReadyIdentity = [Security.Principal.WindowsIdentity]::GetCurrent()
+$ReadyPrincipal = [Security.Principal.WindowsPrincipal]::new($ReadyIdentity)
+if ($ReadyIdentity.User.Value -cne 'S-1-5-21-2571509308-2482563067-4170768140-1001' -or
+    $ReadyPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    throw 'Use the normal non-admin account; no elevation or permission change.'
+}
+Write-Output 'ONE NEW routed full RP3 workflow: fresh preparation, cooperating BEFORE copies/readback, selected3.12, fresh ORIGINAL AFTER and comparison.'
+Write-Output 'First: cheap actual normal/reader ping-ack readback. Each actor writes only its own root; failure stops BEFORE expensive preparation.'
+Write-Output 'Exact682-file source, old10 lifecycle/recursive groups plus READY-copy and owned-startup groups; every discovered case is mandatory.'
+Write-Output 'Default120/public90/lifecycle60/shutdown5/ordered600 unchanged. One absolute3600-second reader window, no reset or automatic retry.'
+Write-Output 'READY access is read-only; current-token managed copy fallback. Only NEW accepted/exited copies may expire after3days at later app startup.'
+Write-Output 'Every segment prints elapsed time. Full original errors/stdout/stderr/native waits and immutable source/reader/workload/AFTER envelopes are retained.'
+Write-Output 'No install/download, ACL/global/Git change, original deletion, old command or historical attempt retry.'
+& $ReadyController -I -B -c $ReadyBootstrap $ReadyWorkflow $ReadyManifest.helpers['ready_workflow.py'].sha256 --mode Normal --manifest-sha256 $ReadyManifestSha
+if ($LASTEXITCODE -ne 0) { throw 'New RP3 stopped. Preserve console, normal-channel/Normal-Workflow-Failure.json, reader-outbox, and Completion-Diagnostics/run receipt. Do not retry or change guards.' }
+Write-Output 'Share the printed Stage-Envelope.json and Stage-Result.json records. Parent raw review follows; Gate1/release/install remain separate.'

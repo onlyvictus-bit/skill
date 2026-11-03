@@ -29,9 +29,10 @@ _BOOTSTRAP_FAILURE_BYTES, _BOOTSTRAP_DETAIL_CHARS, _BOOTSTRAP_FIELD_CHARS = 4096
 _IDENTITY_FIELDS = ("image", "sys_executable", "prefix", "base_prefix", "base_executable", "launcher")
 
 
-def _bootstrap_json(path, role):
-    with path.open('rb') as stream:
-        raw = stream.read(_BOOTSTRAP_FAILURE_BYTES + 1)
+def _bootstrap_json(path, role, raw=None):
+    if raw is None:
+        with path.open('rb') as stream:
+            raw = stream.read(_BOOTSTRAP_FAILURE_BYTES + 1)
     if len(raw) > _BOOTSTRAP_FAILURE_BYTES:
         raise ValueError('E_OWNED_BOOTSTRAP_' + role + '_SIZE')
     def unique(pairs):
@@ -219,6 +220,7 @@ class CurrentImageOwner:
     def __init__(self, job, process, paths, expected):
         self._job, self.process, self._paths, self._expected = job, process, paths, expected
         self._records, self._by_pid, self._gap = {}, {}, None
+        self._ready_copy = None
         self.proof = {"startup": {"expected": expected, "paths": {k: str(v) for k, v in paths.items()},
                                   "state": "suspended-unassigned"},
                       "membership": {"events": [], "records": []}, "termination": {}, "released": False}
@@ -301,7 +303,8 @@ class CurrentImageOwner:
     def accounting(self):
         return self._job.accounting()
     def verify_bootstrap(self, until):
-        while not self._paths["ready"].exists():
+        ready_copy = getattr(self, '_ready_copy', None)
+        while not (ready_copy.ready() if ready_copy is not None else self._paths["ready"].exists()):
             if self._paths["failure"].exists():
                 failure = _bootstrap_json(self._paths['failure'], 'FAILURE')
                 if not isinstance(failure, dict) or set(failure) not in ({"token", "code", "detail"}, {"token", "code", "detail", "identity"}):
@@ -329,7 +332,8 @@ class CurrentImageOwner:
             if self.process.poll() is not None: raise ValueError("E_OWNED_BOOTSTRAP_EXITED")
             if _left(until) <= 0: raise TimeoutError("E_OWNED_BOOTSTRAP_DEADLINE")
             time.sleep(min(.005, _left(until)))
-        observed = _bootstrap_json(self._paths['ready'], 'READY')
+        raw = ready_copy.read_ready() if ready_copy is not None else None
+        observed = _bootstrap_json(self._paths['ready'], 'READY', raw)
         if not isinstance(observed, dict) or set(observed) != set(_IDENTITY_FIELDS) | {'token', 'pid', 'in_any_job'}:
             raise ValueError('E_OWNED_BOOTSTRAP_READY_SHAPE')
         if observed.get("token") != self._expected["token"] or observed.get("pid") != self.process.pid: raise ValueError("E_OWNED_BOOTSTRAP_ROOT_IDENTITY")
@@ -339,7 +343,12 @@ class CurrentImageOwner:
         pids, _ = self._observe(until)
         if self.process.pid not in pids or self._by_pid[self.process.pid]["image"] != self._expected["image"]: raise ValueError("E_OWNED_ROOT_IMAGE")
         self.proof["startup"]["observed"] = observed
+        if ready_copy is not None:
+            self.proof['startup']['ready_read'] = dict(ready_copy.observation)
+            self.proof['startup']['ready_copy_cleanup'] = ready_copy.cleanup_observation
     def open_gate(self, until):
+        ready_copy = getattr(self, '_ready_copy', None)
+        if ready_copy is not None: ready_copy.accept(self.proof['startup']['observed'])
         temporary = self._paths['go'].with_suffix('.go.tmp')
         with open(temporary, 'x', encoding='utf-8') as stream:
             stream.write(self._expected['token']); stream.flush(); os.fsync(stream.fileno())
@@ -483,6 +492,15 @@ class CurrentImageOwner:
         except Exception as error:
             if first is None: first = error
             else: first.add_note('E_OWNED_JOB_RELEASE: ' + repr(error) + '; notes=' + repr(getattr(error, '__notes__', [])))
+        ready_copy = getattr(self, '_ready_copy', None)
+        if ready_copy is not None:
+            try:
+                ready_copy.finish(native_exit_proved=True,
+                    startup_completed=self.proof.get('startup', {}).get('go_opened') is True,
+                    release_complete=first is None)
+            except Exception as error:
+                if first is None: first = error
+                else: first.add_note('E_OWNED_READY_COPY_RELEASE: ' + repr(error))
         if first: raise first
         self.proof["released"] = True
     def abort_unassigned(self, until):
@@ -568,14 +586,25 @@ def launch_current(popen, python, script, *, deadline, stdin, stdout, stderr, en
     # an environment variable that no longer exists in the Python child.
     expected = _startup_expected(token, image)
     expected["sys_executable"] = selected
-    with open(paths["contract"], "x", encoding="utf-8") as stream: json.dump({"token":token,"deadline":deadline,"expected":expected,"script":script_path,"recursive":recursive}, stream, sort_keys=True, separators=(",",":")); stream.flush(); os.fsync(stream.fileno())
-    job = process = owner = None
+    job = process = owner = ready_copy = None
     assigned = False
     try:
-        job = _Job(); args = [image,"-B",str(Path(__file__).with_name("windows_owned_bootstrap.py")),"--contract",str(paths["contract"]),"--ready",str(paths["ready"]),"--go",str(paths["go"]),"--failure",str(paths["failure"]),"--script",script_path]
+        # Establish the owner first. A Job setup failure must remain the primary
+        # error, without touching the READY cache or acquiring its handles.
+        job = _Job()
+        from .windows_ready_copy import ReadyCopy
+        ready_copy = ReadyCopy(paths['ready'], token)
+        transport = {'version': 1, 'copy': ready_copy.contract(),
+                     'module': _source_record(Path(__file__).with_name('windows_ready_copy.py'))}
+        with open(paths["contract"], "x", encoding="utf-8") as stream:
+            json.dump({"token":token,"deadline":deadline,"expected":expected,"script":script_path,
+                       "recursive":recursive,"ready_copy":transport}, stream, sort_keys=True, separators=(",",":"))
+            stream.flush(); os.fsync(stream.fileno())
+        args = [image,"-B",str(Path(__file__).with_name("windows_owned_bootstrap.py")),"--contract",str(paths["contract"]),"--ready",str(paths["ready"]),"--go",str(paths["go"]),"--failure",str(paths["failure"]),"--script",script_path]
         if _left(deadline) <= 0: raise TimeoutError('E_OWNED_START_DEADLINE')
         process = popen(args, stdin=stdin, stdout=stdout, stderr=stderr, env=child_env, cwd=str(cwd_path), bufsize=0, close_fds=True, creationflags=_CREATE_SUSPENDED|_CREATE_NO_WINDOW)
         owner = CurrentImageOwner(job, process, paths, expected)
+        owner._ready_copy = ready_copy
         job.check(job.api.AssignProcessToJobObject(job.handle, process._handle))
         assigned = True
         owner.assigned_root()
@@ -600,8 +629,19 @@ def launch_current(popen, python, script, *, deadline, stdin, stdout, stderr, en
                 process.stdin.close()
             if job is not None and job._handle_debt:
                 original.owned_job_debt = job
-            complete = getattr(original, 'owned_job_debt', None) is None
+            complete = (getattr(original, 'owned_job_debt', None) is None and
+                        getattr(original, 'owned_ready_native', None) is None)
         except Exception as cleanup:
             original.add_note("E_OWNED_START_CLEANUP: " + repr(cleanup) + '; notes=' + repr(getattr(cleanup, '__notes__', [])))
             if job is not None: original.owned_job_debt = job
+        pending_copy = ready_copy or getattr(original, 'owned_ready_copy_debt', None)
+        if pending_copy is not None:
+            try: pending_copy.close()
+            except Exception as cleanup:
+                original.add_note('E_OWNED_READY_COPY_CLEANUP: ' + repr(cleanup))
+                original.owned_ready_copy_debt = pending_copy
+                complete = False
+            if pending_copy.native.handles:
+                original.owned_ready_copy_debt = pending_copy
+                complete = False
         raise _failure(original, owner, complete, cleanup_until)

@@ -1,0 +1,323 @@
+"""RP3 fresh ORIGINAL evidence copies; sealed authority remains directly read."""
+from contextlib import contextmanager
+from datetime import datetime, timezone
+import argparse
+import copy
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+import time
+import traceback
+import types
+
+PHASE = Path(__file__).absolute().parents[1]
+REPO = PHASE.parents[2]
+ROOT = Path(r'C:\Users\sakth\Documents\Codex\recursive-launch-rp3-20261101')
+READER_ROOT=PHASE/'reader-outbox'  # Exact session child is assigned and checked by the sealed factory.
+PREP_SHA = '017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9'
+INPUTS_SHA = '77769da92ab1fae7375f86afdc651f770476803ec32f5f0dedcea10bd97ee346'
+REQUEST_SHA = '15086f7604605d6793a5d9ff38dbd8395e56a5a6143535e94f28470b864be4bf'
+_MODULES = None
+
+
+def require(value, code):
+    if not value: raise ValueError('E_RP3_COPY_'+code)
+
+
+def modules():
+    global _MODULES
+    if _MODULES is None:
+        path=PHASE/'prototype/rp3_prepare.py'
+        for part in (path,*path.parents):
+            info=part.lstat()
+            require(not stat.S_ISLNK(info.st_mode) and not getattr(info,'st_file_attributes',0)&0x400,'REDIRECT')
+        require(path.stat().st_nlink==1,'CODE_LINK')
+        raw=path.read_bytes();require(hashlib.sha256(raw).hexdigest()==PREP_SHA,'PREP_SEAL')
+        prep=types.ModuleType('rp3_copy_preparation');prep.__file__=str(path)
+        exec(compile(raw,str(path),'exec'),prep.__dict__)
+        c1=prep.checked_module(REPO/'.github/scripts/gate1_current_preflight.py',prep.C1_SHA)
+        data=prep.checked_module(REPO/'.github/scripts/shutdown_copy_data.py',prep.DATA_SHA)
+        data._primitives()  # Validate all three immutable primitive seals before use.
+        _MODULES=(prep,c1,data)
+    return _MODULES
+
+
+def base(inputs_sha256=INPUTS_SHA):
+    prep,c1,data=modules()
+    require(inputs_sha256==INPUTS_SHA,'EXTERNAL_INPUTS')
+    inputs=prep.read_json(ROOT/'Inputs.json',INPUTS_SHA)
+    request=prep.read_json(ROOT/'BEFORERequest.json',REQUEST_SHA)
+    require(inputs['scope']=='RP3_INPUT_PREPARATION_ONLY' and inputs['session']==prep.SESSION and
+            inputs['head']==prep.HEAD and inputs['output']==str(ROOT) and
+            inputs['history_roots']=={k:str(v) for k,v in prep.history_roots().items()} and
+            inputs['before_request']==prep.record(ROOT/'BEFORERequest.json') and
+            inputs['helper']==prep.record(PHASE/'prototype/rp3_prepare.py') and
+            all(inputs[k] is False for k in prep.FLAGS) and inputs['runtime_command_issued'] is False,
+            'BASE_BINDING')
+    require(not os.path.lexists(ROOT/'Failure.json'),'PREPARATION_FAILED')
+    snapshot=data.SnapshotSet(prep.history_roots(),prep.SESSION)
+    snapshot._validate(request)
+    require(request['phase']=='BEFORE','BASE_PHASE')
+    return {'prep':prep,'c1':c1,'data':data,'inputs':inputs,'request':request,'snapshot':snapshot}
+
+
+def direct_authority(context):
+    p,c1,i=context['prep'],context['c1'],context['inputs']
+    require(p.source_recipe(c1)==i['source'] and c1.fixed_inputs()==i['fixed_inputs'] and
+            c1.dependency_versions()==i['dependency_versions'] and c1.protected()==i['protected'],
+            'ORIGINAL_AUTHORITY_CHANGED')
+
+
+def protected_identities(context):
+    p,i=context['prep'],context['inputs'];paths=set()
+    for folder,manifest in i['protected'].items(): paths.update(Path(folder)/name for name in manifest)
+    paths.update(REPO/name for name in i['source']['evaluated_manifest'])
+    paths.update(Path(name) for name in i['fixed_inputs'])
+    paths.update((Path(__file__).absolute(),PHASE/'prototype/rp3_prepare.py',ROOT/'Inputs.json',ROOT/'BEFORERequest.json'))
+    paths.update(REPO/'.github/scripts'/name for name in ('shutdown_copy_data.py',*context['data'].PINNED_PRIMITIVES))
+    identities={}
+    for path in sorted(paths,key=str):
+        info=p.ordinary(path).stat()
+        require(stat.S_ISREG(info.st_mode) and info.st_nlink==1,'PROTECTED_TYPE')
+        identities[str(path)]=[info.st_dev,info.st_ino]
+    return identities
+
+
+def validate_proposal(data,proposal,request,protected,roots,session):
+    strict=data.SnapshotSet(roots,session);strict._validate(request)
+    require(isinstance(proposal,dict) and set(proposal)=={'scope','session','request_sha256','roots',
+            'origin','producer_authentication','policy_approved'} and
+            proposal['scope']=='SR3_COPY_POLICY_PROPOSAL_V1' and proposal['session']==session and
+            proposal['request_sha256']==data.digest(request) and request['phase']=='BEFORE' and
+            proposal['origin']=='CURRENT_REQUESTED_HISTORICAL_DATA_READ_NOT_AUTHENTICATED' and
+            proposal['producer_authentication'] is False and proposal['policy_approved'] is False and
+            set(proposal['roots'])==set(roots),'POLICY_CONTEXT')
+    for label,policy in proposal['roots'].items():
+        require(policy['root']==str(roots[label]) and policy['protected_identities']==sorted(protected),'POLICY_PROTECTED')
+        for name in policy['allowed']:
+            require(any(target=='.' or name==target or name.startswith(target+'/')
+                    for target in request['roots'][label]['unresolved']),'POLICY_COVERAGE')
+    data.SnapshotSet(roots,session,proposal['roots'])
+    return proposal['roots']
+
+
+def rebind_request(data,request,policies):
+    value=copy.deepcopy(request)
+    require(set(value['roots'])==set(policies),'POLICY_ROOTS')
+    for label in value['roots']: value['roots'][label]['policy_sha256']=data.digest(policies[label])
+    return value
+
+
+class Timeline:
+    def __init__(self): self.rows=[];self.failed=None
+    @contextmanager
+    def segment(self,name):
+        row={'segment':name,'started_utc':datetime.now(timezone.utc).isoformat(),'started':time.monotonic()}
+        self.rows.append(row);print(name+': RUNNING (RP3 evidence DATA only)',flush=True)
+        try: yield
+        except BaseException:
+            self.failed=self.failed or name;row['traceback']=traceback.format_exc();raise
+        finally:
+            row['ended']=time.monotonic();row['seconds']=row['ended']-row['started']
+            print(name+': %.3f seconds'%row['seconds'],flush=True)
+
+
+def inspect_before_policies():
+    """Publish discovery only; a separate external SHA review must bind it."""
+    context=base();p=context['prep'];timeline=Timeline()
+    for name in ('InspectBefore-Claim.json','InspectBefore-Failure.json','Policy-Proposal.json','Protected-Identities.json','InspectBefore-Result.json'):
+        require(not os.path.lexists(READER_ROOT/name),'INSPECTION_CONSUMED')
+    p.save(READER_ROOT/'InspectBefore-Claim.json',{'scope':'RP3_POLICY_DISCOVERY_ONLY','session':p.SESSION,**p.FLAGS})
+    try:
+        with timeline.segment('inspect-original-authority-before'):direct_authority(context)
+        with timeline.segment('inspect-protected-identities'):
+            identities=protected_identities(context);protected=[list(x) for x in sorted({tuple(x) for x in identities.values()})]
+        with timeline.segment('inspect-requested-original-data'):
+            proposal=context['snapshot'].inspect_denied_policies(context['request'],protected)
+            validate_proposal(context['data'],proposal,context['request'],protected,context['snapshot'].roots,p.SESSION)
+        with timeline.segment('inspect-original-authority-after'):
+            direct_authority(context);require(protected_identities(context)==identities,'PROTECTED_IDENTITIES_CHANGED')
+        p.save(READER_ROOT/'Policy-Proposal.json',proposal);p.save(READER_ROOT/'Protected-Identities.json',identities)
+        result={'status':'RP3_POLICY_PROPOSAL_REQUIRES_EXTERNAL_REVIEW_NO_COPY','session':p.SESSION,
+            'proposal':p.record(READER_ROOT/'Policy-Proposal.json'),'identities':p.record(READER_ROOT/'Protected-Identities.json'),
+            'hardlink_data_exceptions':sum(len(x['allowed']) for x in proposal['roots'].values()),
+            'timeline':timeline.rows,**p.FLAGS}
+        p.save(READER_ROOT/'InspectBefore-Result.json',result)
+        return result
+    except BaseException:
+        p.save(READER_ROOT/'InspectBefore-Failure.json',{'traceback':traceback.format_exc(),'timeline':timeline.rows,
+            'failed_segment':timeline.failed,**p.FLAGS});raise
+
+
+def make_before_copies(proposal_sha256):
+    """Existing-access reader only; creates fresh single-link inert data copies."""
+    context=base();p,d=context['prep'],context['data'];timeline=Timeline()
+    proposal=p.read_json(READER_ROOT/'Policy-Proposal.json',proposal_sha256)
+    inspected=p.read_json(READER_ROOT/'InspectBefore-Result.json')
+    require(inspected['status']=='RP3_POLICY_PROPOSAL_REQUIRES_EXTERNAL_REVIEW_NO_COPY' and
+            inspected['session']==p.SESSION and inspected['proposal']==p.record(READER_ROOT/'Policy-Proposal.json') and
+            inspected['identities']==p.record(READER_ROOT/'Protected-Identities.json'),'INSPECT_BINDING')
+    for name in ('CopyBefore-Claim.json','CopyBefore-Failure.json','Copy-Inputs.json','BEFORE'):
+        require(not os.path.lexists(READER_ROOT/name),'COPY_BEFORE_CONSUMED')
+    p.save(READER_ROOT/'CopyBefore-Claim.json',{'scope':'RP3_EXISTING_ACCESS_COPY_ONLY','session':p.SESSION,
+        'externally_reviewed_proposal_sha256':proposal_sha256,**p.FLAGS})
+    try:
+        with timeline.segment('copy-original-authority-before'):direct_authority(context)
+        with timeline.segment('copy-protected-identities'):
+            identities=protected_identities(context)
+            require(identities==p.read_json(READER_ROOT/'Protected-Identities.json'),'PROTECTED_IDENTITIES_CHANGED')
+            protected=[list(x) for x in sorted({tuple(x) for x in identities.values()})]
+        with timeline.segment('copy-validate-reviewed-policy'):
+            policies=validate_proposal(d,proposal,context['request'],protected,context['snapshot'].roots,p.SESSION)
+        with timeline.segment('copy-bind-exact-data-policy'):
+            request=rebind_request(d,context['request'],policies)
+            snapshot=d.SnapshotSet(context['snapshot'].roots,p.SESSION,policies);snapshot._validate(request)
+            (READER_ROOT/'BEFORE').mkdir();p.save(READER_ROOT/'BEFORE/Policy-Request.json',request)
+        for label,ctx in snapshot.contexts.items():
+            original=ctx.copy_denied
+            def timed(*a,_original=original,_label=label,**kw):
+                with timeline.segment('copy-'+_label):return _original(*a,**kw)
+            ctx.copy_denied=timed
+        snapshot.copy_denied(request,READER_ROOT/'BEFORE/reader-copy')
+        with timeline.segment('copy-original-authority-after'):
+            direct_authority(context)
+            require(protected_identities(context)==identities,'PROTECTED_IDENTITIES_CHANGED')
+        copies=p.record(READER_ROOT/'BEFORE/reader-copy/Copies.json')
+        config={'scope':'RP3_COPY_INPUTS_ONLY_NO_SELECTED_RUNTIME','session':p.SESSION,
+            'inputs':p.record(ROOT/'Inputs.json'),'base_request':p.record(ROOT/'BEFORERequest.json'),
+            'proposal':p.record(READER_ROOT/'Policy-Proposal.json'),'request':p.record(READER_ROOT/'BEFORE/Policy-Request.json'),
+            'copies':copies,'helper':p.record(__file__),'policies':policies,
+            'protected_identity_paths':identities,**p.FLAGS}
+        p.save(READER_ROOT/'Copy-Inputs.json',config)
+        p.save(READER_ROOT/'CopyBefore-Diagnostics.json',{'status':'COPIES_CREATED_PENDING_NORMAL_READBACK',
+            'timeline':timeline.rows,'failed_segment':None,**p.FLAGS})
+        return {'status':'RP3_FRESH_COPIES_CREATED_PENDING_NORMAL_READBACK','inputs':p.record(READER_ROOT/'Copy-Inputs.json'),
+            'copies':copies,'hardlink_data_exceptions':sum(len(x['allowed']) for x in policies.values()),**p.FLAGS}
+    except BaseException:
+        p.save(READER_ROOT/'CopyBefore-Failure.json',{'status':'COPY_FAILED_NO_RETRY','timeline':timeline.rows,
+            'failed_segment':timeline.failed,'traceback':traceback.format_exc(),**p.FLAGS})
+        raise
+
+
+def copy_context(copy_inputs_sha256=None):
+    context=base();p,d=context['prep'],context['data']
+    value=p.read_json(READER_ROOT/'Copy-Inputs.json',copy_inputs_sha256)
+    require(value['scope']=='RP3_COPY_INPUTS_ONLY_NO_SELECTED_RUNTIME' and value['session']==p.SESSION and
+            value['inputs']==p.record(ROOT/'Inputs.json') and value['base_request']==p.record(ROOT/'BEFORERequest.json') and
+            value['helper']==p.record(__file__) and all(value[k] is False for k in p.FLAGS), 'COPY_INPUT_BINDING')
+    for key,name in (('proposal','Policy-Proposal.json'),('request','BEFORE/Policy-Request.json'),('copies','BEFORE/reader-copy/Copies.json')):
+        require(value[key]==p.record(READER_ROOT/name),'COPY_FILE_BINDING')
+    protected=[list(x) for x in sorted({tuple(x) for x in value['protected_identity_paths'].values()})]
+    policies=validate_proposal(d,p.read_json(READER_ROOT/'Policy-Proposal.json'),context['request'],protected,context['snapshot'].roots,p.SESSION)
+    require(value['policies']==policies,'POLICY_DRIFT')
+    request=p.read_json(READER_ROOT/'BEFORE/Policy-Request.json')
+    require(request==rebind_request(d,context['request'],policies),'REBOUND_REQUEST')
+    snapshot=d.SnapshotSet(context['snapshot'].roots,p.SESSION,policies)
+    snapshot._copies(request,READER_ROOT/'BEFORE/reader-copy',value['copies']['sha256'])
+    context.update(copy_inputs=value,base_request=context['request'],request=request,snapshot=snapshot)
+    return context
+
+
+def verify_before(copy_inputs_sha256,copies_sha256):
+    context=copy_context(copy_inputs_sha256);p=context['prep'];p.exact_normal_account(context['c1'])
+    require(copies_sha256==context['copy_inputs']['copies']['sha256'],'EXTERNAL_COPIES')
+    for name in ('VerifyBefore-Claim.json','VerifyBefore-Failure.json','Before-Bundle.json'):
+        require(not os.path.lexists(ROOT/name),'READBACK_CONSUMED')
+    p.save(ROOT/'VerifyBefore-Claim.json',{'scope':'RP3_NORMAL_BEFORE_READBACK','session':p.SESSION,**p.FLAGS})
+    try:
+        direct_authority(context)
+        require(protected_identities(context)==context['copy_inputs']['protected_identity_paths'],'PROTECTED_IDENTITIES_CHANGED')
+        context['data'].SnapshotSet(context['snapshot'].roots,p.SESSION).verify_readable(context['base_request'])
+        bundle=context['snapshot'].merge(context['request'],READER_ROOT/'BEFORE/reader-copy',copies_sha256)
+        direct_authority(context)
+        p.save(ROOT/'Before-Bundle.json',bundle)
+        return p.record(ROOT/'Before-Bundle.json')
+    except BaseException:
+        p.save(ROOT/'VerifyBefore-Failure.json',{'traceback':traceback.format_exc(),**p.FLAGS});raise
+
+
+def complete_before(inputs_sha256,bundle_sha256,*,normal_required=True):
+    require(inputs_sha256==INPUTS_SHA,'EXTERNAL_INPUTS')
+    context=copy_context();p=context['prep']
+    if normal_required:p.exact_normal_account(context['c1'])
+    direct_authority(context)
+    require(protected_identities(context)==context['copy_inputs']['protected_identity_paths'],'PROTECTED_IDENTITIES_CHANGED')
+    bundle=p.read_json(ROOT/'Before-Bundle.json',bundle_sha256)
+    context['snapshot'].verify_bundle(bundle,context['request'],READER_ROOT/'BEFORE/reader-copy',context['copy_inputs']['copies']['sha256'])
+    context['bundle']=bundle
+    return context
+
+
+def validate_workload_binding(prep,root,workload_record,session,head):
+    require(workload_record==prep.record(root/'Workload.json'),'WORKLOAD_BINDING')
+    workload=prep.read_json(root/'Workload.json',workload_record['sha256'])
+    require(workload.get('scope')=='RP3_INTEGRATED_WORKLOAD_V1' and
+            workload.get('status')=='RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER' and
+            workload.get('session')==session and workload.get('head')==head and
+            workload.get('failure') is None and workload.get('postcheck_failure') is None and
+            workload.get('selected_runtime_started') is True and
+            all(workload.get(k) is False for k in prep.FLAGS if k!='selected_runtime_started'),
+            'WORKLOAD_NOT_PASSED')
+    require(workload.get('before_bundle')==prep.record(root/'Before-Bundle.json'),'WORKLOAD_BEFORE_CHANGED')
+    require(workload.get('inputs')==prep.record(root/'Inputs.json') and
+            workload.get('receipt')==prep.record(root/'run/Receipt.json'),'WORKLOAD_RAW_BINDING')
+    receipt=prep.read_json(root/'run/Receipt.json',workload['receipt']['sha256'])
+    require(all(receipt.get(k)==workload[k] for k in ('status','session','head','inputs','before_bundle',
+            'failure','postcheck_failure','selected_runtime_started')) and
+            all(receipt.get(k) is False for k in prep.FLAGS if k!='selected_runtime_started'),
+            'WORKLOAD_RECEIPT_BINDING')
+    return workload
+
+
+def after(workload_record):
+    context=copy_context();p=context['prep'];p.exact_normal_account(context['c1'])
+    workload=validate_workload_binding(p,ROOT,workload_record,p.SESSION,p.HEAD)
+    require(not os.path.lexists(ROOT/'After-Request.json'),'AFTER_CONSUMED')
+    before=p.read_json(ROOT/'Before-Bundle.json',workload['before_bundle']['sha256'])
+    direct_authority(context)
+    request=context['snapshot'].scan('AFTER',{'before':before,'workload_sha256':workload_record['sha256']})
+    direct_authority(context)
+    p.save(ROOT/'After-Request.json',request)
+    return p.record(ROOT/'After-Request.json')
+
+
+def make_after_copies(request_sha256):
+    context=copy_context();p=context['prep'];request=p.read_json(ROOT/'After-Request.json',request_sha256)
+    workload=validate_workload_binding(p,ROOT,p.record(ROOT/'Workload.json'),p.SESSION,p.HEAD)
+    require(request['phase']=='AFTER','AFTER_PHASE');context['snapshot']._validate(request)
+    require(request['binding']=={'before_sha256':context['data'].digest(p.read_json(ROOT/'Before-Bundle.json',workload['before_bundle']['sha256'])),
+            'workload_sha256':p.record(ROOT/'Workload.json')['sha256']},'AFTER_BINDING')
+    require(not os.path.lexists(READER_ROOT/'AFTER'),'AFTER_COPY_CONSUMED')
+    (READER_ROOT/'AFTER').mkdir();context['snapshot'].copy_denied(request,READER_ROOT/'AFTER/reader-copy')
+    return p.record(READER_ROOT/'AFTER/reader-copy/Copies.json')
+
+
+def finalize(workload_record,after_copies_sha256):
+    context=copy_context();p=context['prep'];p.exact_normal_account(context['c1'])
+    workload=validate_workload_binding(p,ROOT,workload_record,p.SESSION,p.HEAD)
+    require(not os.path.lexists(ROOT/'After-Bundle.json'),'FINALIZE_CONSUMED')
+    before=p.read_json(ROOT/'Before-Bundle.json',workload['before_bundle']['sha256']);request=p.read_json(ROOT/'After-Request.json')
+    require(request['binding']=={'before_sha256':context['data'].digest(before),
+            'workload_sha256':workload_record['sha256']},'AFTER_BINDING')
+    direct_authority(context)
+    require(protected_identities(context)==context['copy_inputs']['protected_identity_paths'],'PROTECTED_IDENTITIES_CHANGED')
+    after_bundle=context['snapshot'].merge(request,READER_ROOT/'AFTER/reader-copy',after_copies_sha256)
+    result=context['snapshot'].compare(before,after_bundle)
+    direct_authority(context);p.save(ROOT/'After-Bundle.json',after_bundle)
+    return result
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--mode',choices=('InspectBefore','CopyBefore','CopyAfter'),required=True)
+    parser.add_argument('--request-sha256')
+    parser.add_argument('--proposal-sha256')
+    args=parser.parse_args()
+    require((args.mode=='InspectBefore' and args.request_sha256 is None and args.proposal_sha256 is None) or
+            (args.mode=='CopyBefore' and args.request_sha256 is None and isinstance(args.proposal_sha256,str) and len(args.proposal_sha256)==64) or
+            (args.mode=='CopyAfter' and args.proposal_sha256 is None and isinstance(args.request_sha256,str) and len(args.request_sha256)==64),'ARGUMENTS')
+    result=(inspect_before_policies() if args.mode=='InspectBefore' else
+            make_before_copies(args.proposal_sha256) if args.mode=='CopyBefore' else make_after_copies(args.request_sha256))
+    print(json.dumps(result,sort_keys=True))

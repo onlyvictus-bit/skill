@@ -1,0 +1,193 @@
+"""One normal RP3 run and cooperating reader; never rerun a consumed phase."""
+from datetime import datetime,timezone,timedelta
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+import time
+import traceback
+import types
+
+PHASE=Path(__file__).absolute().parents[1]
+ROOT=Path(r'C:\Users\sakth\Documents\Codex\recursive-launch-rp3-20261101')
+READER_ROOT=PHASE/'reader-outbox'  # Exact session child is assigned and checked by the sealed factory.
+PREP_SHA='017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9'
+COPY_SHA='d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b'
+BOUND_SHA='7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264'
+READER_WAIT=3600  # Coordination only; no worker, shutdown or watchdog budget changes.
+
+
+def require(value,code):
+    if not value:raise ValueError('E_RP3_FINISH_'+code)
+
+
+def modules(runtime_sha256,copy_inputs_sha256):
+    path=PHASE/'prototype/rp3_prepare.py'
+    for part in (path,*path.parents):
+        info=part.lstat();require(not stat.S_ISLNK(info.st_mode) and
+            not getattr(info,'st_file_attributes',0)&0x400,'REDIRECT')
+    require(path.stat().st_nlink==1,'CODE_LINK')
+    raw=path.read_bytes();require(hashlib.sha256(raw).hexdigest()==PREP_SHA,'PREP_SEAL')
+    prep=types.ModuleType('rp3_finish_preparation');prep.__file__=str(path)
+    exec(compile(raw,str(path),'exec'),prep.__dict__)
+    original=prep.checked_module(PHASE/'prototype/rp3_copy.py',COPY_SHA)
+    adapter=prep.checked_module(PHASE/'prototype/rp3_bound_copy.py',BOUND_SHA)
+    copied=adapter.bind(original,copy_inputs_sha256)
+    runtime=prep.checked_module(PHASE/'prototype/rp3_runtime.py',runtime_sha256)
+    return prep,copied,runtime
+
+
+def completion(workload,preservation):
+    require(isinstance(workload,dict) and workload.get('status')=='RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER','WORKLOAD')
+    require(isinstance(preservation,dict) and preservation.get('status')=='CONTENT_MATCH_AT_BEFORE_AFTER_SAMPLES' and
+        preservation.get('producer_authentication') is False,'PRESERVATION')
+    return {'status':'RP2_RP3_FOCUSED_STAGE_COMPLETE_NOT_GATE1','rp2_complete':True,'rp3_complete':True,
+        'stage_complete':True,'preservation':True,'gate1_complete':False,'release_ready':False,
+        'installed':False,'historical_c2_cause_proven':False,'producer_authentication':False}
+
+
+def validate_reader_result(value,session,workload,request,copies):
+    require(isinstance(value,dict) and value.get('status')=='RP3_FRESH_AFTER_COPIES_READY' and
+        value.get('session')==session and value.get('workload')==workload and
+        value.get('request')==request and value.get('copies')==copies and value.get('failure') is None,
+        'READER_BINDING')
+    return copies
+
+
+def invoke_runtime(runtime,prep,inputs_sha,before_sha,copy_inputs_sha256):
+    code=runtime.run(inputs_sha,before_sha,COPY_SHA,copy_inputs_sha256)
+    if type(code) is not int or code!=0:
+        path=ROOT/'run/Receipt.json' if (ROOT/'run/Receipt.json').exists() else ROOT/'Runtime-Failure.json'
+        detail=prep.read_json(path) if path.exists() else {}
+        require(False,'RUNTIME_FAILED: '+str(detail.get('failure'))+'\n'+str(detail.get('postcheck_failure')))
+
+
+def reader_watch(runtime_sha256,copy_inputs_sha256):
+    """Current reader's existing access only; one fresh AFTER copy, no workload."""
+    p,c,runtime=modules(runtime_sha256,copy_inputs_sha256);context=c.copy_context(copy_inputs_sha256)
+    for name in ('Reader-Claim.json','Reader-Ready.json','After-Copy-Result.json'):
+        require(not os.path.lexists(READER_ROOT/name),'READER_CONSUMED')
+    p.save(READER_ROOT/'Reader-Claim.json',{'scope':'ONE_EXISTING_ACCESS_AFTER_COPY','session':p.SESSION,'pid':os.getpid(),**p.FLAGS})
+    expires=datetime.now(timezone.utc)+timedelta(seconds=READER_WAIT)
+    ready={'scope':'RP3_EXISTING_ACCESS_READER_READY','session':p.SESSION,'pid':os.getpid(),
+        'expires_utc':expires.isoformat(),'copy_inputs':p.record(READER_ROOT/'Copy-Inputs.json'),
+        'copy_helper':p.record(PHASE/'prototype/rp3_copy.py'),
+        'runtime_helper':p.record(PHASE/'prototype/rp3_runtime.py'),
+        'finish_helper':p.record(__file__),**p.FLAGS}
+    p.save(READER_ROOT/'Reader-Ready.json',ready)
+    print(json.dumps({'status':'RP3_EXISTING_READER_WAITING_NO_SELECTED_RUNTIME','ready':p.record(READER_ROOT/'Reader-Ready.json'),
+        'expires_utc':ready['expires_utc']}),flush=True)
+    try:
+        until=time.monotonic()+READER_WAIT
+        while not os.path.lexists(ROOT/'After-Copy-Needed.json'):
+            require(time.monotonic()<until,'READER_COORDINATION_EXPIRED')
+            if os.path.lexists(ROOT/'RunAll-Failure.json'):raise ValueError('E_RP3_FINISH_NORMAL_RUN_FAILED_NO_AFTER_COPY')
+            time.sleep(.25)
+        need=p.read_json(ROOT/'After-Copy-Needed.json')
+        require(need['session']==p.SESSION and need['ready']==p.record(READER_ROOT/'Reader-Ready.json') and
+            need['workload']==p.record(ROOT/'Workload.json') and need['request']==p.record(ROOT/'After-Request.json') and
+            need['copy_helper']==ready['copy_helper'] and need['runtime_helper']==ready['runtime_helper'] and
+            p.record(__file__)==ready['finish_helper'],'READER_REQUEST_BINDING')
+        runtime.validate_workload(need['workload'],context)
+        c.direct_authority(context)
+        print('fresh-original-after-copy: RUNNING (existing reader; no selected runtime)',flush=True)
+        started=time.monotonic();copies=c.make_after_copies(need['request']['sha256'])
+        c.direct_authority(context)
+        result={'status':'RP3_FRESH_AFTER_COPIES_READY','session':p.SESSION,'workload':need['workload'],
+            'request':need['request'],'copies':copies,'failure':None,'seconds':time.monotonic()-started,**p.FLAGS}
+        p.save(READER_ROOT/'After-Copy-Result.json',result);print(json.dumps(result),flush=True)
+        return 0
+    except BaseException:
+        failure={'status':'RP3_AFTER_READER_FAILED_NO_RETRY','session':p.SESSION,'failure':traceback.format_exc(),**p.FLAGS}
+        p.save(READER_ROOT/'After-Copy-Result.json',failure);print(json.dumps(failure),flush=True);return 1
+
+
+def run_all(runtime_sha256,copy_inputs_sha256,copies_sha256,reader_ready_sha256):
+    p,c,runtime=modules(runtime_sha256,copy_inputs_sha256);context=c.copy_context(copy_inputs_sha256)
+    p.exact_normal_account(context['c1'])  # Wrong account must create no aggregate/workload claim.
+    ready=p.read_json(READER_ROOT/'Reader-Ready.json',reader_ready_sha256)
+    require(ready['scope']=='RP3_EXISTING_ACCESS_READER_READY' and ready['session']==p.SESSION and
+        datetime.fromisoformat(ready['expires_utc'])>datetime.now(timezone.utc) and
+        ready['copy_inputs']==p.record(READER_ROOT/'Copy-Inputs.json') and
+        ready['copy_helper']==p.record(PHASE/'prototype/rp3_copy.py') and
+        ready['runtime_helper']==p.record(PHASE/'prototype/rp3_runtime.py') and
+        ready['finish_helper']==p.record(__file__),'READER_NOT_READY')
+    for name in ('RunAll-Claim.json','RunAll-Failure.json','Stage-Result.json','run','Workload.json','Before-Bundle.json'):
+        require(not os.path.lexists(ROOT/name),'NORMAL_RUN_CONSUMED')
+    p.save(ROOT/'RunAll-Claim.json',{'scope':'ONE_RP3_NORMAL_INTEGRATED_RUN','session':p.SESSION,**p.FLAGS})
+    timeline=[];failed=None
+    def segment(name,action):
+        nonlocal failed
+        row={'segment':name,'started_utc':datetime.now(timezone.utc).isoformat(),'started':time.monotonic()};timeline.append(row)
+        print(name+': RUNNING (RP3 full continuation)',flush=True)
+        try:return action()
+        except BaseException:
+            failed=failed or name;row['traceback']=traceback.format_exc();raise
+        finally:
+            row['ended']=time.monotonic();row['seconds']=row['ended']-row['started']
+            print(name+': %.3f seconds'%row['seconds'],flush=True)
+    def publish_diagnostics(status,failure=None):
+        path=ROOT/'run/Receipt.json';receipt=p.read_json(path) if path.exists() else None
+        value={'scope':'RP3_FULL_CONTINUATION_DIAGNOSTICS','status':status,'session':p.SESSION,
+            'failed_segment':failed,'failure':failure,'timeline':timeline,'runtime':receipt,
+            'own_publication_timing':'OUTSIDE_RECORDED_INTERVAL'}
+        p.save(ROOT/'Completion-Diagnostics.json',value)
+        lines=['# RP3 completion diagnostics','',status,'','| Segment | Seconds |','|---|---:|']
+        lines.extend('| '+row['segment']+' | %.6f |'%row['seconds'] for row in timeline)
+        if receipt:
+            lines+=['','## Selected command durations','','| Command | Seconds | Exit |','|---|---:|---:|']
+            lines.extend('| '+row['label']+' | %.6f | '%row['elapsed_seconds']+str(row['exit_code'])+' |' for row in receipt['commands'])
+            lines+=['','Full raw stdout/stderr and native containment observations are retained under run/commands.']
+        if failure:lines+=['','## Original failure chain','','```text',failure,'```']
+        raw=('\n'.join(lines)+'\n').encode('utf-8')
+        with (ROOT/'Completion-Diagnostics.md').open('xb') as stream:stream.write(raw)
+    try:
+        before=segment('normal-before-copy-readback',lambda:c.verify_before(copy_inputs_sha256,copies_sha256))
+        segment('selected-integrated-runtime',lambda:invoke_runtime(runtime,p,c.INPUTS_SHA,before['sha256'],copy_inputs_sha256))
+        workload_record=p.record(ROOT/'Workload.json')
+        workload=segment('raw-runtime-review',lambda:runtime.validate_workload(workload_record,context))
+        after_request=segment('fresh-original-after-request',lambda:c.after(workload_record))
+        p.save(ROOT/'After-Copy-Needed.json',{'session':p.SESSION,'ready':p.record(READER_ROOT/'Reader-Ready.json'),
+            'workload':workload_record,'request':after_request,'copy_helper':ready['copy_helper'],
+            'runtime_helper':ready['runtime_helper']})
+        def await_reader():
+            until=min(time.monotonic()+READER_WAIT,time.monotonic()+max(0,(datetime.fromisoformat(ready['expires_utc'])-datetime.now(timezone.utc)).total_seconds()))
+            while not os.path.lexists(READER_ROOT/'After-Copy-Result.json'):
+                require(time.monotonic()<until,'AFTER_COPY_COORDINATION_EXPIRED');time.sleep(.25)
+            result=p.read_json(READER_ROOT/'After-Copy-Result.json')
+            require(result.get('failure') is None,'AFTER_COPY_FAILED: '+str(result.get('failure')))
+            return validate_reader_result(result,p.SESSION,workload_record,after_request,p.record(READER_ROOT/'AFTER/reader-copy/Copies.json'))
+        copies=segment('await-existing-reader-after-copy',await_reader)
+        preservation=segment('normal-after-readback-and-comparison',lambda:c.finalize(workload_record,copies['sha256']))
+        segment('final-raw-runtime-review',lambda:runtime.validate_workload(workload_record,context))
+        result=completion(workload,preservation)
+        result.update(session=p.SESSION,workload=workload_record,before=before,after=p.record(ROOT/'After-Bundle.json'),
+            reader_result=p.record(READER_ROOT/'After-Copy-Result.json'),timeline=timeline)
+        publish_diagnostics(result['status'])
+        p.save(ROOT/'Stage-Result.json',result);print(json.dumps(result),flush=True);return 0
+    except BaseException:
+        failure={'status':'RP3_STOP_NO_RETRY','session':p.SESSION,'failed_segment':failed,
+            'failure':traceback.format_exc(),'timeline':timeline,**p.FLAGS}
+        path=ROOT/'run/Receipt.json'
+        if path.exists():failure['selected_runtime_started']=p.read_json(path).get('selected_runtime_started',False)
+        if not os.path.lexists(ROOT/'Completion-Diagnostics.json'):
+            try:publish_diagnostics(failure['status'],failure['failure'])
+            except Exception as error:failure['diagnostic_publication_failure']=repr(error)
+        p.save(ROOT/'RunAll-Failure.json',failure);print(json.dumps(failure),flush=True);return 1
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--mode',choices=('Reader','Run'),required=True)
+    parser.add_argument('--runtime-sha256',required=True);parser.add_argument('--copy-inputs-sha256',required=True)
+    parser.add_argument('--copies-sha256');parser.add_argument('--reader-ready-sha256')
+    a=parser.parse_args()
+    for value in (a.runtime_sha256,a.copy_inputs_sha256):
+        require(len(value)==64 and all(x in '0123456789abcdef' for x in value),'ARGUMENTS')
+    require((a.mode=='Reader' and a.copies_sha256 is None and a.reader_ready_sha256 is None) or
+        (a.mode=='Run' and all(isinstance(v,str) and len(v)==64 and all(x in '0123456789abcdef' for x in v)
+            for v in (a.copies_sha256,a.reader_ready_sha256))),'ARGUMENTS')
+    raise SystemExit(reader_watch(a.runtime_sha256,a.copy_inputs_sha256) if a.mode=='Reader' else
+        run_all(a.runtime_sha256,a.copy_inputs_sha256,a.copies_sha256,a.reader_ready_sha256))

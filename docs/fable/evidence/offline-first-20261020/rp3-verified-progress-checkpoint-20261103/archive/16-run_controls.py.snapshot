@@ -1,0 +1,23 @@
+"""Retained controller-only checks with PID, elapsed time and bounded watchdog."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+import time
+PHASE=Path(__file__).absolute().parent
+parser=argparse.ArgumentParser();parser.add_argument('output');parser.add_argument('--pattern',default='test_ready_*.py');a=parser.parse_args()
+if Path(a.output).name!=a.output or not a.output:raise ValueError('OUTPUT_NAME')
+out=PHASE/a.output;out.mkdir();log=out/'unittest.log'
+started=time.monotonic();timed_out=False
+argv=[sys.executable,'-I','-B','-m','unittest','discover','-s',str(PHASE/'controls'),'-p',a.pattern,'-v']
+with log.open('xb') as stream:
+    child=subprocess.Popen(argv,stdout=stream,stderr=subprocess.STDOUT)
+    (out/'Intent.json').write_text(json.dumps({'argv':argv,'pid':child.pid,'controller':sys.executable,'watchdog_seconds':60,'selected_runtime_started':False},indent=2)+'\n')
+    try:code=child.wait(timeout=60)
+    except subprocess.TimeoutExpired:
+        timed_out=True;child.kill();child.wait(timeout=5);code=1
+raw=log.read_bytes();result={'scope':'CONTROLLER_METADATA_CONTROLS_NOT_SELECTED_RUNTIME','pid':child.pid,'exit':code,'timed_out':timed_out,'seconds':time.monotonic()-started,'log_sha256':hashlib.sha256(raw).hexdigest(),'stage_complete':False}
+(out/'Receipt.json').write_text(json.dumps(result,indent=2)+'\n')
+print(raw.decode('utf-8','replace')[-6000:]);print(json.dumps(result));raise SystemExit(code)

@@ -1,0 +1,30 @@
+{
+  "status": "SOURCE_CANDIDATE_FROZEN_NOT_SELECTED_RUNTIME_ACCEPTANCE",
+  "head": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "files": {
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py": {
+      "size": 24613,
+      "sha256": "755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "size": 37610,
+      "sha256": "0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729"
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": {
+      "size": 8547,
+      "sha256": "7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af"
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py": {
+      "size": 18970,
+      "sha256": "ba742402974a03d74d1619fddc1e4df6a8d4f768805b59f43bb268ea41bd285c"
+    }
+  },
+  "old_input_seals_checked": {
+    ".github/run-artifacts/recursive-integration-rp3-20261101/Source-Recipe.json": "644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec",
+    ".github/run-artifacts/recursive-integration-rp3-20261101/prototype/rp3_runtime.py": "e59658860778d270579599c07d34d0d02be9ecb3fea9f70c723c54b9f9e64a48",
+    ".github/run-artifacts/recursive-integration-rp2-20261031/RP2-Accepted.json": "feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369"
+  },
+  "retention_days": 3,
+  "selected_runtime_started_this_repair": false,
+  "stage_complete": false
+}

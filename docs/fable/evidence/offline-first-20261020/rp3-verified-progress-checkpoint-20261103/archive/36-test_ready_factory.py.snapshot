@@ -1,0 +1,72 @@
+"""Fresh successor registry controls; never start the selected runtime."""
+import copy
+import importlib.util
+import json
+import hashlib
+import types
+from pathlib import Path
+import unittest
+
+PHASE=Path(__file__).absolute().parents[1]
+MODULE=PHASE/'prototype/ready_factory.py'
+if MODULE.exists():
+    spec=importlib.util.spec_from_file_location('ready_factory_controls',MODULE)
+    m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+else:m=None
+
+class FactoryControls(unittest.TestCase):
+    def setUp(self):
+        self.assertIsNotNone(m,'successor factory is missing')
+        self.config=json.loads((PHASE/'Successor-Contract.json').read_bytes())
+    def validate(self):return m.validate_config(self.config,PHASE)
+    def test_exact_successor_config(self):self.validate()
+    def test_old_normal_root_refused(self):
+        self.config['root']=self.config['root'].replace('rp3-routed-20261103','recursive-launch-rp3-20261101')
+        with self.assertRaises(ValueError):self.validate()
+    def test_other_head_refused(self):
+        self.config['head']='0'*40
+        with self.assertRaises(ValueError):self.validate()
+    def test_old_session_refused(self):
+        self.config['session']='b5a2ce19a7714f3db5e4c8a0d9021f73'
+        with self.assertRaises(ValueError):self.validate()
+    def test_unknown_helper_refused(self):
+        self.config['prototype_seals']['extra.py']='0'*64
+        with self.assertRaises(ValueError):self.validate()
+    def test_old_helper_digest_change_refused(self):
+        self.config['prototype_seals']['rp3_copy.py']='0'*64
+        with self.assertRaises(ValueError):self.validate()
+    def test_budget_increase_refused(self):
+        self.config['budgets']['lifecycle']=61
+        with self.assertRaises(ValueError):self.validate()
+    def test_policy_exceptions_refused(self):
+        self.config['policy_exceptions_allowed']=True
+        with self.assertRaises(ValueError):self.validate()
+    def test_source_acceptance_rebinding_refused(self):
+        self.config['accepted']['sha256']='0'*64
+        with self.assertRaises(ValueError):self.validate()
+    def family(self):
+        raw=(PHASE/'Authority-Manifest.json').read_bytes()
+        return m.Family(hashlib.sha256(raw).hexdigest())
+    def test_actual_family_has_new_root_and_twelve_fixed_groups(self):
+        family=self.family();family.assert_bindings()
+        self.assertEqual(str(family.root),self.config['root']);self.assertEqual(len(family.runtime.GROUPS),12)
+        self.assertEqual(len(family.source_recipe(family.c1)['evaluated_manifest']),682)
+        self.assertFalse(family.root.exists())
+    def test_restoring_raw_internal_reopen_is_refused_before_it_can_use_old_root(self):
+        family=self.family();path=PHASE/'prototype/rp3_runtime.py'
+        raw=types.ModuleType('raw_old_runtime');raw.__file__=str(path)
+        exec(compile(path.read_bytes(),str(path),'exec'),raw.__dict__)
+        self.assertEqual(str(raw.ROOT),r'C:\Users\sakth\Documents\Codex\recursive-launch-rp3-20261101')
+        saved=family.runtime.load_module;family.runtime.load_module=raw.load_module
+        try:
+            with self.assertRaisesRegex(ValueError,'RAW_REOPEN'):family.assert_bindings()
+        finally:family.runtime.load_module=saved
+        family.assert_bindings();self.assertFalse(family.root.exists())
+    def test_runtime_budget_dictionary_mutation_is_refused(self):
+        family=self.family();original=dict(family.runtime.BUDGETS)
+        family.runtime.BUDGETS['cleanup']=6
+        try:
+            with self.assertRaisesRegex(ValueError,'BUDGET'):family.assert_bindings()
+        finally:family.runtime.BUDGETS=original
+
+if __name__=='__main__':unittest.main()

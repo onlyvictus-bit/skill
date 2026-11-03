@@ -1,0 +1,114 @@
+{
+  "actual_inspection": {
+    "exception_count": 0,
+    "passed": true,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\reader-outbox\\c37d1b7d50ef410a8acbda912f13d2ef\\InspectBefore-Result.json",
+      "sha256": "b23c888247e2d98cc44dbe2f7edb77ebb68524573eefe42a594d06e84eff92bc",
+      "size": 1812
+    },
+    "roots": 8
+  },
+  "actual_preflight": {
+    "accepted": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103-channel\\Transport-Accepted.json",
+      "sha256": "88e47186b793fd01aa2c2f65f9a5d0c2b2c5e4896a30d155be05c68baf4c2fec",
+      "size": 876
+    },
+    "passed": true,
+    "seconds": 0.8761661997996271
+  },
+  "actual_preparation": {
+    "diagnostics": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103\\Diagnostics.json",
+      "sha256": "b0b8d55f7b56e23ad86fbf102104fa10acbcbc12db21ccc6b2d0341565a007ea",
+      "size": 2997
+    },
+    "inputs": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103\\Inputs.json",
+      "sha256": "7fab076217bfc05732c544533ab6054a3ff21ea7cbe4a22fccf66a7815a34c41",
+      "size": 137021
+    },
+    "passed": true,
+    "seconds": 140.58294979995117
+  },
+  "already_committed_overlay_files": [
+    "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py",
+    "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py",
+    "memory-integrity/scripts/knowledge_bridge/recursive_policy.py",
+    "memory-integrity/scripts/knowledge_bridge/worker.py",
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py",
+    "memory-integrity/tests_v2/test_knowledge_recursive_integration.py",
+    "memory-integrity/tests_v2/test_knowledge_recursive_profile.py",
+    "memory-integrity/tests_v2/test_knowledge_windows_owned_process.py"
+  ],
+  "broader": {
+    "errors": 0,
+    "failures": 0,
+    "log": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\kg\\unittest.log",
+      "sha256": "bfca88d5b82be4f6f401b0a3c960c8fff9b1f86e97b2ef9e5b96d67f7f33b127",
+      "size": 58359
+    },
+    "passed": 270,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\kg\\Receipt.json",
+      "sha256": "0dbf7cbaccfbf8b276f07d9c96c0e50e8c64a2feb12a9cfa3c525a699982a991",
+      "size": 9961
+    },
+    "run": 324,
+    "skipped": 54
+  },
+  "controller": {
+    "known_gap": "Mocks omitted genuine policy scope field; not full RP3 proof",
+    "passed": 51,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261102\\controller-all-01\\Receipt.json",
+      "sha256": "ab53a63e5d14b2504f546062b645555b3404b3b9d35b0801c2c29a1def96bc84",
+      "size": 271
+    },
+    "run": 51
+  },
+  "focused": {
+    "log": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\green-queue-access-01\\unittest.log",
+      "sha256": "3ad6bdda25e5de0984a015100d3a5052a2b5f9051beb4acf6ab9793693ec7566",
+      "size": 5236
+    },
+    "passed": 32,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\green-queue-access-01\\Receipt.json",
+      "sha256": "a662c344bebc89a772e81565ca1da57cb988c270fd3f499c895c9d09cc33c4a8",
+      "size": 605
+    },
+    "run": 32
+  },
+  "fresh_binding": {
+    "passed": 12,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\reissue-registry-01\\Receipt.json",
+      "sha256": "aa2b47ef96bb2a1f86d8a6a730966f6d0ca55ad199ea83472ae89834eac1c057",
+      "size": 270
+    },
+    "run": 12
+  },
+  "gate1_complete": false,
+  "installed": false,
+  "new_ready_files": [
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py",
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py",
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py",
+    "memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py"
+  ],
+  "no_new_runtime_executed_for_checkpoint": true,
+  "old_commands_consumed": true,
+  "preservation": false,
+  "previous_checkpoint": "e801c3587e5bb87e7ea85bbdbf1ab6edd3b245ef",
+  "release_ready": false,
+  "remaining_error": "E_READY_ENVELOPE_ZERO_EXCEPTION: genuine policy has scope field omitted by verifier exact-key schema",
+  "rp2_complete": true,
+  "rp3_complete": false,
+  "selected_runtime_started": false,
+  "stage_complete": false,
+  "status": "READY_SOURCE_TESTED_AND_CROSS_ACCOUNT_TRANSPORT_OBSERVED_RP3_BLOCKED"
+}

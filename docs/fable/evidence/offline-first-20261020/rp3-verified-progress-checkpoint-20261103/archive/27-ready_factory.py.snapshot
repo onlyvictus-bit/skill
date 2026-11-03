@@ -1,0 +1,194 @@
+"""Bind unchanged RP3 helpers to one fresh, externally sealed successor.
+
+No selected interpreter is started here. Every helper reopen uses this registry;
+the predecessor files remain byte-identical. New source authority is separate
+from historical RP2 acceptance, never simulated by replacing original reads.
+"""
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import stat
+import types
+
+PHASE=Path(__file__).absolute().parents[1]
+ROOT=Path(r'C:\Users\sakth\Documents\Codex\rp3-routed-20261103')
+HEAD='fee69861e1f94c54721e5eb773633f9b1d6f9fd3'
+CONTRACT_SHA='810c681b8a799ce1d81e0902e92ae003e7bb6a376fc54d521eccdfa65f014dae'
+OLD={
+ 'rp3_prepare.py':'017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9',
+ 'rp3_copy.py':'d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b',
+ 'rp3_bound_copy.py':'7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264',
+ 'rp3_runtime.py':'2ad2e5921476e83fb4db8f26d9f46615c8e33ff3bb1b717da3cba3429c61c2e0',
+ 'rp3_finish.py':'9575210dafccd7ed4f7fd47e41ae5bd834f017d6d314d832278a35bdff4dbf60'}
+NEW=('ready_source.py','ready_envelopes.py','ready_factory.py','ready_workflow.py')
+GROUPS=(('ownership','test_knowledge_windows_owned_process.py'),('writer','test_knowledge_windows_writer.py'),
+ ('combined-shutdown','test_knowledge_windows_shutdown.py'),('combined-session','test_knowledge_windows_session.py'),
+ ('lifecycle','test_knowledge_process_lifecycle.py'),('cwd','test_knowledge_worker_cwd.py'),
+ ('budget','test_knowledge_timeout_budget.py'),('recursive-git','test_knowledge_recursive_git.py'),
+ ('recursive-integration','test_knowledge_recursive_integration.py'),('recursive-profile','test_knowledge_recursive_profile.py'),
+ ('ready-copy','test_knowledge_windows_ready_copy.py'),('owned-startup','test_knowledge_windows_owned_startup.py'))
+BUDGETS={'default':120,'public':90,'lifecycle':60,'shutdown':5,'ordered':600,'coordination':3600}
+RUNTIME_BUDGETS={'default':120,'public':90,'watchdog':600,'lifecycle_watchdog':60,'cleanup':5}
+
+
+def require(value,code):
+    if not value:raise ValueError('E_READY_RP3_FACTORY_'+code)
+
+
+def norm(path):return os.path.normcase(os.path.abspath(path))
+
+
+def validate_config(value,phase=PHASE):
+    require(type(value) is dict and value.get('scope')=='RP3_READY_COPY_SUCCESSOR_V1','CONFIG')
+    require(norm(value['root'])==norm(ROOT) and norm(value['phase'])==norm(phase) and
+        norm(value['repo'])==norm(Path(phase).parents[2]),'ROOT')
+    require(norm(value['reader_root'])==norm(Path(phase)/'reader-outbox'/value['session']) and
+        norm(value['normal_channel'])==norm(ROOT.with_name(ROOT.name+'-channel')),'ACTOR_ROOTS')
+    require(not Path(value['reader_root']).is_relative_to(ROOT) and not ROOT.is_relative_to(Path(value['reader_root'])),'ROOT_OVERLAP')
+    require(value['head']==HEAD and re.fullmatch('[0-9a-f]{32}',value['session']) is not None and
+        value['session']!='b5a2ce19a7714f3db5e4c8a0d9021f73','HEAD_SESSION')
+    require(value['prototype_seals']==OLD and value['budgets']==BUDGETS and
+        value['policy_exceptions_allowed'] is False and value['stage_complete'] is False and
+        value['selected_runtime_started'] is False,'CONFIG_AUTHORITY')
+    require(value['accepted']['sha256']=='407579bec1a94d12ebecb7ba947765b1dc5451d248cc6f9733f3e86752cfc527' and
+        value['baseline_recipe']['sha256']=='644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec' and
+        value['consumed_receipt']['sha256']=='5dc1bea4946e620a7db9914413735cb2d8b0e2ee634b2fe0b66ba3cd7c861af2' and
+        value['consumed_shutdown_log']['sha256']=='8524f8c3fbae4f378a6b376afe69d529a3eaed6cbb0d4dedd63b22e10ae47303','HISTORY')
+    require(norm(value['recipe']['path'])==norm(Path(phase)/'Source-Recipe.json'),'RECIPE_PATH')
+    return value
+
+
+def _bootstrap(path):
+    path=Path(path).absolute()
+    for part in (path,*path.parents):
+        row=part.lstat();require(not stat.S_ISLNK(row.st_mode) and not getattr(row,'st_file_attributes',0)&0x400,'REDIRECT')
+    before=path.stat();require(stat.S_ISREG(before.st_mode) and before.st_nlink==1,'CODE_TYPE')
+    with path.open('rb') as stream:
+        opened=os.fstat(stream.fileno());raw=stream.read(262145);ended=os.fstat(stream.fileno())
+    after=path.stat();key=lambda row:(row.st_dev,row.st_ino,row.st_nlink,row.st_size,row.st_mtime_ns)
+    require(len(raw)<=262144 and key(before)==key(opened)==key(ended)==key(after),'CODE_CHANGED')
+    return raw
+
+
+class Family:
+    def __init__(self,manifest_sha256,*,phase=PHASE):
+        self.phase=Path(phase).absolute();self.root=ROOT;self._modules={};self._callbacks={}
+        path=self.phase/'prototype/rp3_prepare.py';raw=_bootstrap(path)
+        require(hashlib.sha256(raw).hexdigest()==OLD[path.name],'PREP_SEAL')
+        p=types.ModuleType('ready_rp3_preparation');p.__file__=str(path);exec(compile(raw,str(path),'exec'),p.__dict__)
+        self.prep=p;self.contract=p.read_json(self.phase/'Successor-Contract.json',CONTRACT_SHA)
+        validate_config(self.contract,self.phase)
+        self.repo=Path(self.contract['repo']);self.session=self.contract['session']
+        self.reader_root=Path(self.contract['reader_root']);self.channel=Path(self.contract['normal_channel'])
+        p.ordinary(self.reader_root);p.ordinary(self.phase/'coord')
+        self.manifest_sha=manifest_sha256;self.manifest_path=self.phase/'Authority-Manifest.json'
+        self.manifest=p.read_json(self.manifest_path,manifest_sha256)
+        require(set(self.manifest)=={'scope','config','recipe','accepted','helpers'} and
+            self.manifest['scope']=='RP3_READY_FACTORY_MANIFEST_V1','MANIFEST_SCHEMA')
+        require(self.manifest['config']==p.record(self.phase/'Successor-Contract.json') and
+            self.manifest['recipe']==self.contract['recipe'] and self.manifest['accepted']==self.contract['accepted'],'MANIFEST_BINDING')
+        rows=self.manifest['helpers'];require(set(rows)==set(OLD)|set(NEW),'ROLE_SET')
+        for name,row in rows.items():
+            require(norm(row['path'])==norm(self.phase/'prototype'/name) and row==p.record(Path(row['path'])),'ROLE_RECORD:'+name)
+            if name in OLD:require(row['sha256']==OLD[name],'OLD_CODE:'+name)
+        self._modules['rp3_prepare.py']=p
+        for name in (*NEW,'rp3_copy.py','rp3_bound_copy.py','rp3_runtime.py','rp3_finish.py'):
+            if name=='ready_factory.py':continue
+            row=rows[name];raw=p.read_bytes(Path(row['path']));require(hashlib.sha256(raw).hexdigest()==row['sha256'],'HELPER_SEAL:'+name)
+            module=types.ModuleType('ready_'+Path(name).stem);module.__file__=row['path']
+            exec(compile(raw,row['path'],'exec'),module.__dict__);self._modules[name]=module
+        self.source=self._modules['ready_source.py'];self.envelopes=self._modules['ready_envelopes.py']
+        self.workflow=self._modules['ready_workflow.py'];self.copy=self._modules['rp3_copy.py']
+        self.adapter=self._modules['rp3_bound_copy.py'];self.runtime=self._modules['rp3_runtime.py'];self.finish=self._modules['rp3_finish.py']
+        self.inputs_sha=self.request_sha=self.copy_inputs_sha=None
+        original_checked=p.checked_module
+        self.c1=original_checked(self.repo/'.github/scripts/gate1_current_preflight.py',p.C1_SHA)
+        self.data=original_checked(self.repo/'.github/scripts/shutdown_copy_data.py',p.DATA_SHA);self.data._primitives()
+        self._external={norm(self.repo/'.github/scripts/gate1_current_preflight.py'):p.C1_SHA,
+            norm(self.repo/'.github/scripts/shutdown_copy_data.py'):p.DATA_SHA}
+        for module in self._modules.values():
+            if hasattr(module,'ROOT'):module.ROOT=self.root
+            if hasattr(module,'READER_ROOT'):module.READER_ROOT=self.reader_root
+            if hasattr(module,'PHASE'):module.PHASE=self.phase
+            if hasattr(module,'REPO'):module.REPO=self.repo
+        p.SESSION=self.session;p.RECIPE_SHA=self.contract['recipe']['sha256']
+        self.copy.INPUTS_SHA=None;self.copy.REQUEST_SHA=None;self.adapter.COPY_INPUTS_SHA=None
+        self.runtime.GROUPS=GROUPS
+        self._bind('rp3_prepare.py','checked_module',lambda path,seal:self.load_module(path,seal))
+        self._bind('rp3_prepare.py','source_recipe',lambda c1:self.source_recipe(c1))
+        self._bind('rp3_copy.py','modules',lambda:self.context_modules())
+        old_base=self.copy.base
+        def bound_base(inputs_sha256=None):
+            self.assert_bindings();require(self.inputs_sha is not None and inputs_sha256 in (None,self.inputs_sha),'INPUTS_BINDING')
+            return old_base(self.inputs_sha)
+        self._bind('rp3_copy.py','base',bound_base)
+        self._bind('rp3_runtime.py','load_module',lambda path,seal,name:self.load_module(path,seal))
+        def finish_modules(runtime_sha256,copy_inputs_sha256):
+            self.assert_bindings();require(runtime_sha256==OLD['rp3_runtime.py'] and copy_inputs_sha256==self.copy_inputs_sha,'FINISH_BINDING')
+            return p,self.bound_copy(),self.runtime
+        self._bind('rp3_finish.py','modules',finish_modules)
+        self._original_checked=original_checked
+        self.assert_bindings()
+
+    def _bind(self,module,name,function):
+        setattr(self._modules[module],name,function);self._callbacks[(module,name)]=function
+
+    def assert_bindings(self):
+        p=self.prep
+        require(p.record(self.manifest_path)['sha256']==self.manifest_sha and
+            p.record(self.phase/'Successor-Contract.json')==self.manifest['config'],'FACTORY_CHANGED')
+        for name,row in self.manifest['helpers'].items():require(p.record(Path(row['path']))==row,'CODE_REOPEN:'+name)
+        for module in self._modules.values():
+            if hasattr(module,'ROOT'):require(norm(module.ROOT)==norm(self.root),'MODULE_ROOT')
+            if hasattr(module,'READER_ROOT'):require(norm(module.READER_ROOT)==norm(self.reader_root),'MODULE_READER_ROOT')
+            if hasattr(module,'PHASE'):require(norm(module.PHASE)==norm(self.phase),'MODULE_PHASE')
+            if hasattr(module,'REPO'):require(norm(module.REPO)==norm(self.repo),'MODULE_REPO')
+        require(p.SESSION==self.session and p.HEAD==HEAD and p.RECIPE_SHA==self.contract['recipe']['sha256'] and
+            self.copy.INPUTS_SHA==self.inputs_sha and self.copy.REQUEST_SHA==self.request_sha and
+            self.adapter.COPY_INPUTS_SHA==self.copy_inputs_sha and self.runtime.GROUPS==GROUPS,'CONFIGURED_PINS')
+        require(self.runtime.BUDGETS==RUNTIME_BUDGETS and self.contract['budgets']==BUDGETS,'RUNTIME_BUDGETS')
+        for (module,name),function in self._callbacks.items():require(getattr(self._modules[module],name) is function,'RAW_REOPEN:'+module+'.'+name)
+        if self.inputs_sha is not None:require(p.record(self.root/'Inputs.json')['sha256']==self.inputs_sha and p.record(self.root/'BEFORERequest.json')['sha256']==self.request_sha,'INPUT_DRIFT')
+        if self.copy_inputs_sha is not None:require(p.record(self.reader_root/'Copy-Inputs.json')['sha256']==self.copy_inputs_sha,'COPY_INPUT_DRIFT')
+
+    def load_module(self,path,seal,name=None):
+        self.assert_bindings();path=Path(path).absolute()
+        if norm(path.parent)==norm(self.phase/'prototype'):
+            require(path.name in self.manifest['helpers'] and self.manifest['helpers'][path.name]['sha256']==seal,'REGISTRY_ROLE')
+            require(path.name in self._modules,'REGISTRY_ENTRY');return self._modules[path.name]
+        require(self._external.get(norm(path))==seal,'REGISTRY_EXTERNAL')
+        return self._original_checked(path,seal)
+
+    def source_recipe(self,c1):
+        self.assert_bindings();return self.source.validate_source(c1,self.contract,self.prep)
+
+    def context_modules(self):
+        self.assert_bindings();return self.prep,self.c1,self.data
+
+    def set_inputs(self,inputs_sha256,request_sha256):
+        require(self.inputs_sha is None and self.request_sha is None,'INPUTS_ALREADY_BOUND')
+        p=self.prep;i=p.read_json(self.root/'Inputs.json',inputs_sha256)
+        require(i['session']==self.session and i['head']==HEAD and norm(i['output'])==norm(self.root) and
+            i['source']==self.source_recipe(self.c1) and i['before_request']==p.record(self.root/'BEFORERequest.json') and
+            i['before_request']['sha256']==request_sha256,'FRESH_INPUTS')
+        self.inputs_sha=inputs_sha256;self.request_sha=request_sha256
+        self.copy.INPUTS_SHA=inputs_sha256;self.copy.REQUEST_SHA=request_sha256;self.assert_bindings()
+
+    def set_copy_inputs(self,copy_inputs_sha256):
+        require(self.copy_inputs_sha is None,'COPIES_ALREADY_BOUND')
+        require(self.prep.record(self.reader_root/'Copy-Inputs.json')['sha256']==copy_inputs_sha256,'FRESH_COPY_INPUTS')
+        self.copy_inputs_sha=copy_inputs_sha256;self.adapter.COPY_INPUTS_SHA=copy_inputs_sha256
+        self.assert_bindings();self.bound_copy().copy_context(copy_inputs_sha256)
+
+    def bound_copy(self):
+        self.assert_bindings();require(self.copy_inputs_sha is not None,'COPIES_NOT_BOUND')
+        return self.adapter.bind(self.copy,self.copy_inputs_sha)
+
+    def authorities(self):
+        self.assert_bindings();p=self.prep
+        return {'factory':p.record(Path(__file__).absolute()),'config':self.manifest['config'],
+            'manifest':p.record(self.manifest_path),'helpers':self.manifest['helpers'],
+            'recipe':self.contract['recipe'],'accepted':self.contract['accepted'],
+            'evaluated_manifest':p.read_json(self.phase/'Source-Recipe.json',p.RECIPE_SHA)['evaluated_manifest']}

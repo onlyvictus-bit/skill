@@ -134,7 +134,19 @@ def main(argv=None):
                 raise ValueError("E_OWNED_BOOTSTRAP_" + field.upper())
         if not observed["in_any_job"]:
             raise ValueError("E_OWNED_BOOTSTRAP_OUTSIDE_JOB")
-        _write_new(args.ready, observed)
+        transport = contract.get('ready_copy')
+        if transport is None:
+            _write_new(args.ready, observed)  # Compatibility for immutable earlier control contracts.
+        else:
+            if type(transport) is not dict or set(transport) != {'version', 'copy', 'module'} or type(transport['version']) is not int or transport['version'] != 1:
+                raise ValueError('E_OWNED_READY_COPY_SCHEMA')
+            copied = transport['copy']
+            if (type(copied) is not dict or copied.get('token') != token or
+                    os.path.normcase(os.path.abspath(copied.get('source', ''))) != os.path.normcase(os.path.abspath(args.ready))):
+                raise ValueError('E_OWNED_READY_COPY_BINDING')
+            module = _bound_module(transport['module'])
+            raw = json.dumps(observed, sort_keys=True, separators=(',', ':')).encode('utf-8')
+            module['publish'](copied, raw, lambda: _write_new(args.ready, observed))
         while not Path(args.go).exists():
             if time.monotonic() >= contract["deadline"]:
                 raise TimeoutError("E_OWNED_BOOTSTRAP_GO_DEADLINE")
@@ -148,6 +160,8 @@ def main(argv=None):
             raise TimeoutError('E_OWNED_BOOTSTRAP_WORK_DEADLINE')
     except BaseException as error:
         _fail(args.failure, token, type(error).__name__, error, expected, observed)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
         return 71
     # Install in the attested child only. Keep the trusted bootstrap path until
     # all installer imports finish; authored sibling modules are not startup code.

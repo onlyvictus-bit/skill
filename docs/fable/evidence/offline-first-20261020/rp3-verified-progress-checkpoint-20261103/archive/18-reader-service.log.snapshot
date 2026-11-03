@@ -1,0 +1,30 @@
+{"expires_utc": "2026-11-03T12:29:19.559118+00:00", "ready": {"links": 1, "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\coord\\Reader-Service-Ready.json", "sha256": "90a6e4f6649dfaae265af3881a53c64904b64fabd893331f1822719133f77e77", "size": 89434}, "status": "NEW_RP3_READER_WAITING_FOR_NORMAL_PREPARATION_NO_SELECTED_RUNTIME"}
+{"accepted": {"links": 1, "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103-channel\\Transport-Accepted.json", "sha256": "88e47186b793fd01aa2c2f65f9a5d0c2b2c5e4896a30d155be05c68baf4c2fec", "size": 876}, "normal_pid": 33956, "reader_pid": 43132, "seed": {"links": 1, "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\reader-outbox\\c37d1b7d50ef410a8acbda912f13d2ef\\Transport-Seed.json", "sha256": "a8d81e37e56cbf12e598be699bbcace2ffe960d3b9aa15b39db216379ce4c15c", "size": 508}, "status": "CROSS_ACCOUNT_READBACK_OBSERVED_NO_PEER_WRITES"}
+cooperating-before-inspection: RUNNING (data only)
+inspect-original-authority-before: RUNNING (RP3 evidence DATA only)
+inspect-original-authority-before: 2.559 seconds
+inspect-protected-identities: RUNNING (RP3 evidence DATA only)
+inspect-protected-identities: 0.681 seconds
+inspect-requested-original-data: RUNNING (RP3 evidence DATA only)
+inspect-requested-original-data: 112.408 seconds
+inspect-original-authority-after: RUNNING (RP3 evidence DATA only)
+inspect-original-authority-after: 3.616 seconds
+{"failure": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\prototype\\ready_workflow.py\", line 331, in run_reader\n    zero=f.envelopes.zero_exception(f.copy,f.copy.base(),f.contract,f.authorities(),ready)\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\prototype\\ready_envelopes.py\", line 97, in zero_exception\n    need(type(policy) is dict and set(policy)=={'root','protected_identities','allowed'} and policy['root']==str(path) and\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        policy['protected_identities']==protected and type(policy['allowed']) is dict and policy['allowed']=={},'ZERO_EXCEPTION')\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\prototype\\ready_envelopes.py\", line 13, in need\n    if not value:raise ValueError('E_READY_ENVELOPE_'+code)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: E_READY_ENVELOPE_ZERO_EXCEPTION\n", "session": "c37d1b7d50ef410a8acbda912f13d2ef", "stage_complete": false, "status": "NEW_RP3_READER_FAILED_NO_RETRY"}
+Traceback (most recent call last):
+  File "<string>", line 15, in <module>
+    exec(compile(raw,str(p),'exec'),{'__name__':'__main__','__file__':str(p),'__builtins__':__builtins__})
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\rp3-routed-20261103\prototype\ready_workflow.py", line 395, in <module>
+    raise SystemExit(run_reader(family) if args.mode=='Reader' else run_normal(family))
+                     ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\rp3-routed-20261103\prototype\ready_workflow.py", line 331, in run_reader
+    zero=f.envelopes.zero_exception(f.copy,f.copy.base(),f.contract,f.authorities(),ready)
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\rp3-routed-20261103\prototype\ready_envelopes.py", line 97, in zero_exception
+    need(type(policy) is dict and set(policy)=={'root','protected_identities','allowed'} and policy['root']==str(path) and
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        policy['protected_identities']==protected and type(policy['allowed']) is dict and policy['allowed']=={},'ZERO_EXCEPTION')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\rp3-routed-20261103\prototype\ready_envelopes.py", line 13, in need
+    if not value:raise ValueError('E_READY_ENVELOPE_'+code)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: E_READY_ENVELOPE_ZERO_EXCEPTION

@@ -1,5 +1,132 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+## CURRENT - reusable Git checkpoint; RP3 policy-schema mismatch confirmed
+
+User authorized local commit for reuse. Prior RP2 checkpoint e801c358 already
+contains8of12 overlayfiles. Newref checkpoint/rp3-verified-progress-20261103 saves
+fourREADYsource/testchanges, accepted32/324 receipts,51controller/12binding
+evidence and routedhelper/test snapshots. Read ../evidence/offline-first-20261020/
+rp3-verified-progress-checkpoint-20261103/README.md and Observed-Result.json.
+Nov3 command is consumed: actualcrossaccountpreflightPASS0.876s, preparation
+PASS140.583s, readerinspectionPASS8emptyallowedmaps; then ZERO_EXCEPTION check
+refused genuine4fieldpolicy because verifierexpects3fields, missing scope.
+This is a NEW verifier schema defect, not old crossaccount write refusal.
+No selected3.12 test/publicreplay/AFTER ran. FullRP3false. Old issued/live/unrun
+claims below are historical. Keep source HEADfee69861/index unchanged; save
+checkpointchildofe801 on separatelocalref. Do not rerun oldcommands or remove
+markers. Next repair must validate pinned scope and test real producer output.
+
+
+## CURRENT - Nov3 routed one-command handoff SHIP; actual runtime UNRUN
+
+Yesterday routedreader expired before normalroot/channel existed. Preserve it;
+all older issued/live commands below are closed or expired. Same two-root fix,
+51controllerPASS historical core and nativeSHIP reused byte-for-byte6helpers.
+Today12freshregistry/source bindingsPASS; native exactreissue+outerSHIP. Newphase
+.github/run-artifacts/rp3-routed-20261103, rootCodex/rp3-routed-20261103, separate
+normal-channel; readeroutbox/private/sessionc37d1b7d.... Reader43132/tool47343 live
+until17:59:19ISTNov3. OuterSHA15a4feec4b8c4c80d668f86529ac1ae743a64897f4ff9989624384f572267635,
+manifest9fc4eb40..., service90a6e4f6.... ActualPS7VerifyOnlyPASS. One commandissued;
+actualcrossaccountpreflight must precede expensiveprep and allselected3.12 tests.
+Normalroot/channelABSENT atissue. FullRP3false. Parent must rawreview finalStage/
+workload/nativewaits/freshoriginalAFTER beforecompletion. No ACL/install/Gitwrite,
+originaldeletion, oldcommandretry or deadlineextension. Read rp3-routed-nov3-handoff-20261103.md.
+
+
+## CURRENT - expired unused reader replaced by fresh sealed -b session, 2026-11-02
+
+Old guard refused before preparation; no normalroot or selected3.12 attempt.
+Do not reuse oldouter210eeacf/service6049cca8. Read evidence/offline-first-20261020/
+rp3-ready-reader-reissue-20261102.md. Newphase rp3-ready-20261102-b, readerPID21032
+session24359 expires19:47:24IST today. Native finalSHIP;37bindingcontrolsPASS.
+One normal command issued: outer59ad944ca4178d456b1c55fd6958a24b5e20f79390dfd6e245f99e59b6b50fd7;
+manifestf7794830..., service94fcf280.... Same682source/12groups/budgets; no product
+edits/ACL/install/Git/deletion/deadlineextension/oldattemptretry. Normalrootabsent,
+selectedruntimeUNRUN, fullRP3false. Verify actual StageEnvelope/rawtests/nativewaits/
+freshORIGINALAFTER before completion. Historical live claims below are expired.
+
+
+## CURRENT - one NEW combined RP3 normal command final SHIP, 2026-11-02
+
+Read ../evidence/offline-first-20261020/rp3-ready-successor-20261102.md.
+37controllerPASS; actual isolatedwrongaccount/bootstrap refusal; finalPSparse/
+VerifyOnly PASS; nativeSHIP exactouter210eeacf... service6049cca8... manifest
+f805d3b9.... ReaderPID37260(toolsession58287) live until13:56:30IST today.
+NormalRootCodex/rp3-ready-20261102ABSENT, selected3.12UNRUN. IssueONLY hash-
+checked Run-Ready-RP3.ps1 VerifyOnly thenone Normal call. Itincludes freshprep/
+BEFOREcopies/readback,12groups exact682source, originalpublic/replay, fresh
+ORIGINAL AFTER+rawcomparison. No per-test normal commands. Parent must monitor
+and rawreview actual Stage-Envelope/Stage-Result beforefullRP3complete.
+DoNOT extendwindow/retryconsumedcommands/alterguards/ACL/install/Git/deleteolddata.
+Privatehook-test scratchsuccessfiles areSYNTHETIC, neveractualqualification.
+
+## Historical - pre-freeze controller review state
+
+## CURRENT - READY-copy source accepted; NEW combined RP3 handoff review, 2026-11-02
+
+Source fix complete/controller-qualified:32focused;324broader270PASS54knownSKIP,
+0FAIL/ERROR; nativeSHIP. Product hashes755df303/0ff54944/7f85872a/ba742402 remain
+unchanged. FullRP3 not qualified. Old run is consumed at READY source-open error.
+New private phase .github/run-artifacts/rp3-ready-20261102 has37controller controls
+PASS incl actualfamily/raw-reopen refusal, exact runtime budgets, same-reader
+PID/claim, atomic ready markers and actual unchanged finish FSM driven by clearly
+synthetic receipts. These synthetic stages NEVER qualify selected runtime.
+SourceRecipe8160ea9b... exact682; contract7576c0f1...; AuthorityManifestf805d3b9....
+Normal root C:/Users/sakth/Documents/Codex/rp3-ready-20261102 ABSENT; coordempty.
+No selected3.12/Reader/normal attempt. Outer PS servicepin intentionally
+FREEZE_AFTER_CORE_REVIEW. Finalcorereview then existing-access reader + frozen
+service/outer review precede one combined normal workflow. No oldcommand retry,
+permission/install/Gitwrite/originaldelete. Preserve every old input/failed run.
+
+## Historical - accepted source/controller repair details
+
+## CURRENT - RP3 consumed READY-access failure; new read-only/copy repair, 2026-11-01
+
+Supersedes the old issued/unrun/reader-ready statuses below. Do NOT rerun the
+old RP3-Complete-Command.ps1 or reuse session29980. Normal BEFORE readback passed;
+selected3.12 identity/dependencies, ownership17 and writer18 passed. Combined
+shutdown had11PASS/1ERROR opening .ready.json during startup, BEFORE the broken-
+stdin assertion. Runtime Receipt121949bytes SHA5dc1bea4946e620a7db9914413735cb2d8b0e2ee634b2fe0b66ba3cd7c861af2.
+Public ordered groups and fresh ORIGINAL AFTER did not run. FullRP3 is false.
+
+User approved strict read-only/copy fallback and3days retention. New candidate
+uses GENERIC_READ first, then only native5/32 fallback to a parent-created,
+current-token independent copy with hash/native PID/image/Job checks unchanged.
+TTL begins only after accepted read plus actual native exit/successful startup;
+only NEW managed payloads expire on later app starts; metadata/originals stay.
+Normal cache: C:/Users/sakth/AppData/Local/MemoryIntegrity/ready-copies-v1.
+
+32new focused checks PASS; exact-final broader324run270PASS54unchangedSKIP
+0FAIL/ERROR. Fresh native final review SHIP for source/controller candidate only.
+Python3.14 uses explicitly isolated scratch cache and disabled user-site. Initial
+failures and each review RED/GREEN remain retained; source frozen in Source-
+Candidate.json and Controller-Accepted.json. Read
+../evidence/offline-first-20261020/rp3-ready-copy-repair-20261101.md.
+No new selected3.12 command ran; normal cache behavior, full integrated result and
+fresh ORIGINAL AFTER remain UNVERIFIED. Keep old680recipe/source/receipts fixed;
+any later selected proof uses new sealed successor inputs. No ACL/install/Git
+write or original deletion. Existing e801c358 checkpoint is historical only.
+
+## Historical issued handoff - consumed by the actual failure above
+
+## CURRENT - RP3 BEFORE copies complete; one normal integrated handoff ready, 2026-11-01
+
+Read ../evidence/offline-first-20261020/rp3-completion-handoff-20261101.md.
+RP2 accepted. Fresh existing-reader copies cover1240targets:4396files/7436objects,
+33362733bytes,0hardlinkexceptions, noACL changes. CopyInputs7c18bb40...;
+Copiesfdeacbb0....35controller controls PASS; native explicit SHIP and parent
+corrected outer parse/VerifyOnly/wronghash refusal PASS. Original prep/input
+files and fee69861 activeHEAD unchanged; local e801c358 checkpoint remains.
+One existing-access AFTER reader session29980 is ready until20:58:24IST today.
+Issue ONLY new RP3-Complete-Command.ps1 SHAa9c8a92b...; one normalnonadmin run
+does readback+selected3.12 lifecycle/recursive/public initial/replay+fresh ORIGINAL
+AFTER cooperation/comparison. No selected runtime/BeforeBundle/normalclaim yet.
+FullRP3 is pending actual result and raw review. Do not retry consumed commands
+or remove markers. Noinstall/ACL/Gitwrite/originaldelete. Gate1/release/install
+and historical C2cause remain separate. Deep timings/causes in Completion-
+Diagnostics.json/md; share Stage-Result.json and finaloutput.
+
+
 ## CURRENT - RP3 preparation observed SUCCESS; runtime pending, 2026-11-01
 
 Do NOT rerun RP3-Prepare-Command.ps1: this preparation is consumed. Parent

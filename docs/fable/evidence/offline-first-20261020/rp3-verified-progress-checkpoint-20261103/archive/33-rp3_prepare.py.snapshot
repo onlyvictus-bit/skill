@@ -1,0 +1,246 @@
+"""One RP3 input preparation; no selected interpreter, source copy or workload."""
+from contextlib import contextmanager
+import csv
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+import time
+import traceback
+import types
+
+REPO = Path(__file__).absolute().parents[4]
+PHASE = Path(__file__).absolute().parents[1]
+ROOT = Path(r'C:\Users\sakth\Documents\Codex\recursive-launch-rp3-20261101')
+RP2 = REPO/'.github/run-artifacts/recursive-integration-rp2-20261031'
+HEAD = 'fee69861e1f94c54721e5eb773633f9b1d6f9fd3'
+SID = 'S-1-5-21-2571509308-2482563067-4170768140-1001'
+SESSION = 'b5a2ce19a7714f3db5e4c8a0d9021f73'
+C1_SHA = '5e1b06812949b72a8723844c4c1b7a8bde1b4fee645c43147e3352acb7696861'
+DATA_SHA = '4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299'
+RECIPE_SHA = '644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec'
+ACCEPTED_SHA = 'feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369'
+RP1_SHA = '20800625e5f4bf72b19c1591b213e94704a48e05e173d93f9f89ff8b4fd76794'
+ATOMIC = 'memory-integrity/tests_v2/test_knowledge_windows_owned_process.py'
+ATOMIC_SHA = '0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994'
+CLIENT = 'memory-integrity/scripts/knowledge_bridge/worker_client.py'
+MAX_READ = 16*1024*1024
+OLDER_PINS = {
+    'cleanup-shutdown-repair-20261026/SR3-Before.json':
+        '4da04f0fdb6b80ee0c79e1cdc4802f0bd73c9dd7f2fdf7e0e9c10ac04c1e745f',
+    'cleanup-shutdown-repair-20261026/writer-handoff-green/Run-Inputs.json':
+        '5bc5788cd7a21af47e3a305bd3352b27a4cead6ae46d22dbce9eb748aef6f1ed',
+    'cleanup-repair-20261023/Runtime-Inputs.json':
+        '18b1d93425f0f52965b94ed7349acf11042065348aafc26b8152ce7c6b595838',
+    'cleanup-lifetime-stack-20261024/Inputs.json':
+        'ead95373d25ee2750a10c52e4e2bbf7cf3cabb087166b00df2533458bec27075',
+    'cleanup-process-timing-20261024/Inputs.json':
+        'cf45dfde1fae5d2bb5f601a8d54c4fa68e62d5db35e3248ffe9bdfecf9476d62',
+    'cleanup-membership-20261025/Inputs.json':
+        '457fc256b81f52572695b787344cd5778f3bd06bdc14939b5416508ceeacf5a4',
+}
+FLAGS = dict(selected_runtime_started=False, stage_complete=False, gate1_complete=False,
+             release_ready=False, installed=False, producer_authentication=False,
+             preservation=False, historical_c2_cause_proven=False)
+
+
+def require(value, code):
+    if not value:
+        raise ValueError('E_RP3_'+code)
+
+
+def ordinary(path):
+    path = Path(path).absolute()
+    for part in (path, *path.parents):
+        info = part.lstat()
+        require(not stat.S_ISLNK(info.st_mode) and
+                not getattr(info, 'st_file_attributes', 0) & 0x400, 'REDIRECT')
+    return path
+
+
+def read_bytes(path):
+    path = ordinary(path)
+    before = path.stat()
+    require(stat.S_ISREG(before.st_mode) and before.st_nlink == 1, 'FILE_TYPE')
+    with path.open('rb') as stream:
+        opened = os.fstat(stream.fileno())
+        require((opened.st_dev, opened.st_ino, opened.st_nlink) ==
+                (before.st_dev, before.st_ino, 1), 'FILE_IDENTITY')
+        raw = stream.read(MAX_READ+1)
+    require(len(raw) <= MAX_READ, 'FILE_SIZE')
+    return raw
+
+
+def record(path):
+    raw = read_bytes(path)
+    return {'path':str(Path(path).absolute()), 'size':len(raw),
+            'sha256':hashlib.sha256(raw).hexdigest(), 'links':1}
+
+
+def checked_module(path, digest):
+    raw = read_bytes(path)
+    require(hashlib.sha256(raw).hexdigest() == digest, 'MODULE_SEAL')
+    module = types.ModuleType('rp3_'+Path(path).stem)
+    module.__file__ = str(Path(path).absolute())
+    exec(compile(raw, module.__file__, 'exec'), module.__dict__)
+    return module
+
+
+def read_json(path, digest=None):
+    raw = read_bytes(path)
+    require(digest is None or hashlib.sha256(raw).hexdigest() == digest, 'JSON_SEAL')
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            require(key not in result, 'JSON_DUPLICATE_KEY')
+            result[key] = value
+        return result
+    def constant(value): raise ValueError('E_RP3_JSON_CONSTANT')
+    return json.loads(raw.decode('utf-8'), object_pairs_hook=unique, parse_constant=constant)
+
+
+def save(path, value):
+    path = Path(path)
+    ordinary(path.parent)
+    raw = (json.dumps(value, sort_keys=True, ensure_ascii=True, allow_nan=False)+'\n').encode()
+    with path.open('xb') as stream:
+        stream.write(raw)
+
+
+def exact_normal_account(c1):
+    c1.normal_account()
+    who = Path(os.environ['SYSTEMROOT'])/'System32/whoami.exe'
+    result = c1.subprocess.run([str(who), '/user', '/fo', 'csv', '/nh'],
+                               capture_output=True, timeout=10, check=True)
+    rows = list(csv.reader(result.stdout.decode('utf-8', 'replace').splitlines()))
+    require(len(rows) == 1 and len(rows[0]) == 2 and rows[0][1] == SID, 'EXACT_NORMAL_SID')
+
+
+def source_recipe(c1):
+    require(c1.git('rev-parse', 'HEAD').decode().strip() == HEAD, 'HEAD')
+    recipe = read_json(PHASE/'Source-Recipe.json', RECIPE_SHA)
+    accepted = read_json(RP2/'RP2-Accepted.json', ACCEPTED_SHA)
+    require(recipe['head'] == accepted['head'] == HEAD and accepted['rp2_complete'] is True and
+            recipe['rp2_accepted_sha256'] == ACCEPTED_SHA and
+            recipe['stage_complete'] is False and recipe['selected_runtime_started'] is False,
+            'SOURCE_STATUS')
+    tree = {}
+    for entry in c1.git('ls-tree', '-rz', HEAD).split(b'\0'):
+        if not entry: continue
+        meta, name = entry.split(b'\t', 1)
+        mode, kind, blob = meta.split()
+        require(mode == b'100644' and kind == b'blob' and name.decode() not in tree, 'TREE_MODE')
+        tree[name.decode()] = blob.decode()
+    rows = c1.archive_rows(c1.git('archive', '--format=zip', HEAD), tree)
+    base = {name:hashlib.sha256(raw).hexdigest() for name, raw in rows.items()}
+    require(recipe['base_tree'] == tree and recipe['base_manifest'] == base, 'ARCHIVE_RECIPE')
+    overlay = {name:row['sha256'] for name,row in accepted['sources'].items()}
+    overlay[ATOMIC] = ATOMIC_SHA
+    require(len(accepted['sources']) == 9 and recipe['approved_overlay'] == overlay and
+            recipe['evaluated_manifest'] == dict(base, **overlay), 'OVERLAY_SET')
+    for name, digest in recipe['evaluated_manifest'].items():
+        if name.startswith(('memory-integrity/', 'claude-mon/', 'semantica-runtime/', '.github/fixtures/')):
+            require(c1.sha(c1.read_file(REPO/name)) == digest, 'LIVE_SOURCE: '+name)
+    before = read_json(RP2/'Before.json')
+    require(before['head'] == HEAD and before['edit_targets'][CLIENT]['sha256'] == base[CLIENT] and
+            before['edit_targets'][ATOMIC]['sha256'] == ATOMIC_SHA, 'UNCHANGED_ORIGINALS')
+    old_receipt = accepted['rp1_receipt']
+    require(record(old_receipt['path'])['sha256'] == RP1_SHA, 'RP1_RECEIPT')
+    older = {}
+    for name, digest in OLDER_PINS.items():
+        path = REPO/'.github/run-artifacts'/name
+        older[name] = record(path)
+        require(older[name]['sha256'] == digest, 'OLDER_PIN: '+name)
+    return {'recipe':record(PHASE/'Source-Recipe.json'), 'accepted':record(RP2/'RP2-Accepted.json'),
+            'before':record(RP2/'Before.json'), 'rp1_receipt':record(old_receipt['path']),
+            'evaluated_manifest':recipe['evaluated_manifest'], 'older_pins':older}
+
+
+def history_roots():
+    roots = {name:REPO/'.github/run-artifacts'/name for name in (
+        'cleanup-repair-20261023', 'cleanup-process-timing-20261024',
+        'cleanup-lifetime-stack-20261024', 'cleanup-membership-20261025')}
+    for label, name in (
+        ('rp1-original','recursive-launch-rp1-20261029'),
+        ('rp1-corrected','recursive-launch-rp1-corrected-20261029'),
+        ('rp1-store','recursive-launch-rp1-store-env-20261029'),
+        ('rp1-audit','recursive-launch-rp1-audit-20261029')):
+        roots[label] = ROOT.parent/name
+    return roots
+
+
+def prepare(*, c1=None, data=None, root=ROOT):
+    c1 = checked_module(REPO/'.github/scripts/gate1_current_preflight.py', C1_SHA) if c1 is None else c1
+    exact_normal_account(c1)  # No directory or failure marker for a wrong account.
+    root = Path(root).absolute()
+    require(not os.path.lexists(root), 'OUTPUT_EXISTS')
+    ordinary(root.parent)
+    root.mkdir()
+    timeline, failed = [], None
+    @contextmanager
+    def segment(name):
+        nonlocal failed
+        row = {'segment':name, 'started_utc':datetime.now(timezone.utc).isoformat(),
+               'started':time.monotonic()}
+        timeline.append(row)
+        print(name+': RUNNING (RP3 inputs only)', flush=True)
+        try:
+            yield
+        except BaseException:
+            failed = failed or name
+            row['traceback'] = traceback.format_exc()
+            raise
+        finally:
+            row['ended'] = time.monotonic()
+            row['seconds'] = row['ended']-row['started']
+            print(name+': %.3f seconds' % row['seconds'], flush=True)
+    try:
+        with segment('claim-publication'):
+            save(root/'PrepClaim.json', {'scope':'RP3_INPUT_PREPARATION_ONLY', 'session':SESSION, **FLAGS})
+        with segment('source-before'): source = source_recipe(c1)
+        with segment('runtime-metadata-before'):
+            fixed, versions = c1.fixed_inputs(), c1.dependency_versions()
+        with segment('protected-before'): protected = c1.protected()
+        with segment('history-load'):
+            data = checked_module(REPO/'.github/scripts/shutdown_copy_data.py', DATA_SHA) if data is None else data
+            snapshot = data.SnapshotSet(history_roots(), SESSION)
+        for label, context in snapshot.contexts.items():
+            original = context.scan
+            def timed(*args, _original=original, _label=label, **kwargs):
+                with segment('history-'+_label): return _original(*args, **kwargs)
+            context.scan = timed
+        request = snapshot.scan('BEFORE')
+        with segment('authority-after'):
+            require(source_recipe(c1) == source and c1.fixed_inputs() == fixed and
+                    c1.dependency_versions() == versions and c1.protected() == protected,
+                    'AUTHORITY_CHANGED')
+            snapshot.verify_readable(request)
+        with segment('input-publication'):
+            save(root/'BEFORERequest.json', request)
+            inputs = {'scope':'RP3_INPUT_PREPARATION_ONLY', 'session':SESSION, 'head':HEAD,
+                'output':str(root), 'source':source, 'fixed_inputs':fixed, 'dependency_versions':versions,
+                'protected':protected, 'history_roots':{k:str(v) for k,v in history_roots().items()},
+                'before_request':record(root/'BEFORERequest.json'),
+                'helper':record(__file__), 'history_coverage':'DECLARED_EIGHT_ROOTS_ONLY',
+                'runtime_command_issued':False, **FLAGS}
+            save(root/'Inputs.json', inputs)
+        save(root/'Diagnostics.json', {'status':'INPUTS_PREPARED_PENDING_COPY', 'timeline':timeline,
+            'failed_segment':None, 'own_diagnostic_publication_timing':'OUTSIDE_RECORDED_INTERVAL', **FLAGS})
+        return {'status':'RP3_INPUTS_ONLY_PENDING_COOPERATING_COPY_NO_SELECTED_RUNTIME',
+            'inputs':record(root/'Inputs.json'), 'request':record(root/'BEFORERequest.json'),
+            'diagnostics':record(root/'Diagnostics.json'), **FLAGS}
+    except BaseException as error:
+        detail = {'scope':'RP3_INPUT_PREPARATION_ONLY', 'status':'PREPARATION_FAILED_NO_RETRY',
+            'failed_segment':failed or 'diagnostics-publication',
+            'traceback':''.join(traceback.TracebackException.from_exception(error).format(chain=True)),
+            'timeline':timeline, **FLAGS}
+        for name in ('Diagnostics.json', 'Failure.json'):
+            try: save(root/name, detail)
+            except Exception as publication: error.add_note('E_RP3_FAILURE_RECORD: '+repr(publication))
+        raise
+
+
+if __name__ == '__main__':
+    print(json.dumps(prepare(), sort_keys=True))
