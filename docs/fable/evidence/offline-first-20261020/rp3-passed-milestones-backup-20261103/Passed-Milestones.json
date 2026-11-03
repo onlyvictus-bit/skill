@@ -1,0 +1,78 @@
+{
+  "actual_preflight": {
+    "accepted": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103-channel\\Transport-Accepted.json",
+      "sha256": "88e47186b793fd01aa2c2f65f9a5d0c2b2c5e4896a30d155be05c68baf4c2fec",
+      "size": 876
+    },
+    "passed": true,
+    "seconds": 0.8761661997996271
+  },
+  "actual_preparation": {
+    "diagnostics": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103\\Diagnostics.json",
+      "sha256": "b0b8d55f7b56e23ad86fbf102104fa10acbcbc12db21ccc6b2d0341565a007ea",
+      "size": 2997
+    },
+    "inputs": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103\\Inputs.json",
+      "sha256": "7fab076217bfc05732c544533ab6054a3ff21ea7cbe4a22fccf66a7815a34c41",
+      "size": 137021
+    },
+    "passed": true,
+    "seconds": 140.58294979995117
+  },
+  "broader": {
+    "errors": 0,
+    "failures": 0,
+    "log": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\kg\\unittest.log",
+      "sha256": "bfca88d5b82be4f6f401b0a3c960c8fff9b1f86e97b2ef9e5b96d67f7f33b127",
+      "size": 58359
+    },
+    "passed": 270,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\kg\\Receipt.json",
+      "sha256": "0dbf7cbaccfbf8b276f07d9c96c0e50e8c64a2feb12a9cfa3c525a699982a991",
+      "size": 9961
+    },
+    "run": 324,
+    "skipped": 54
+  },
+  "focused": {
+    "log": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\green-queue-access-01\\unittest.log",
+      "sha256": "3ad6bdda25e5de0984a015100d3a5052a2b5f9051beb4acf6ab9793693ec7566",
+      "size": 5236
+    },
+    "passed": 32,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\green-queue-access-01\\Receipt.json",
+      "sha256": "a662c344bebc89a772e81565ca1da57cb988c270fd3f499c895c9d09cc33c4a8",
+      "size": 605
+    },
+    "run": 32
+  },
+  "fresh_binding": {
+    "passed": 12,
+    "receipt": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\reissue-registry-01\\Receipt.json",
+      "sha256": "aa2b47ef96bb2a1f86d8a6a730966f6d0ca55ad199ea83472ae89834eac1c057",
+      "size": 270
+    },
+    "run": 12
+  },
+  "gate1_complete": false,
+  "installed": false,
+  "not_promoted": "51 controller pass has a genuine-policy fixture gap; known-defective verifier/helpers are not copied into this passing-milestone bundle.",
+  "parent_rp2_checkpoint": "e801c3587e5bb87e7ea85bbdbf1ab6edd3b245ef",
+  "release_ready": false,
+  "remaining_issue": "Genuine policy includes scope; verifier exact-key schema omits it. Full failed diagnostics stay at source_commit.",
+  "rp2_complete": true,
+  "rp3_complete": false,
+  "scope": "PASSED_MILESTONES_BACKUP_NOT_FULL_RP3",
+  "selected_runtime_started": false,
+  "source_commit": "9cc2db624ca1e786b1d9eb9d56d53b49a59f0a16",
+  "source_testing_interpreter": "Controller Python3.14; selected3.12 integrated qualification unrun",
+  "stage_complete": false
+}

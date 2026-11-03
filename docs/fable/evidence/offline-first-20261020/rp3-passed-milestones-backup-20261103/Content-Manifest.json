@@ -1,0 +1,102 @@
+{
+  "excludes_own_hash": true,
+  "files": {
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/Archive-Manifest.json": {
+      "sha256": "a8f8f05e9ff798ab76095104fe5cc53b398e552a6fd8ba8838a6f599f5cf1c0d",
+      "size": 6752
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/Passed-Milestones.json": {
+      "sha256": "72c036fcbbae6b739d7d261b36c71e5d5764b2f869375cdfb597c22f9db83b3a",
+      "size": 3538
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/README.md": {
+      "sha256": "be96774baf315c28f9308a8c69b9b564568c192fd6aedf9b8590209830b65245",
+      "size": 1767
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/01-Controller-Accepted.json.snapshot": {
+      "sha256": "407579bec1a94d12ebecb7ba947765b1dc5451d248cc6f9733f3e86752cfc527",
+      "size": 1523
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/02-Source-Candidate.json.snapshot": {
+      "sha256": "b7e4f8670501bb2c3e47ec8c38a82d6cdf3a79b0d7359ef9bf5b90784746a2c0",
+      "size": 1509
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/03-Independent-Review.md.snapshot": {
+      "sha256": "e700e78cd7a31c88f4cef7ea3db9b4c8db38b76358c3826376c6ac8b26b7eb53",
+      "size": 1499
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/04-Receipt.json.snapshot": {
+      "sha256": "a662c344bebc89a772e81565ca1da57cb988c270fd3f499c895c9d09cc33c4a8",
+      "size": 605
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/05-unittest.log.snapshot": {
+      "sha256": "3ad6bdda25e5de0984a015100d3a5052a2b5f9051beb4acf6ab9793693ec7566",
+      "size": 5236
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/06-Receipt.json.snapshot": {
+      "sha256": "0dbf7cbaccfbf8b276f07d9c96c0e50e8c64a2feb12a9cfa3c525a699982a991",
+      "size": 9961
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/07-unittest.log.snapshot": {
+      "sha256": "bfca88d5b82be4f6f401b0a3c960c8fff9b1f86e97b2ef9e5b96d67f7f33b127",
+      "size": 58359
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/10-Receipt.json.snapshot": {
+      "sha256": "aa2b47ef96bb2a1f86d8a6a730966f6d0ca55ad199ea83472ae89834eac1c057",
+      "size": 270
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/11-unittest.log.snapshot": {
+      "sha256": "37258ccd3a1b87b8ba10841cd50ce4f54f6d6a64b56e1fcf2cc013dd593dc504",
+      "size": 1550
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/19-Diagnostics.json.snapshot": {
+      "sha256": "b0b8d55f7b56e23ad86fbf102104fa10acbcbc12db21ccc6b2d0341565a007ea",
+      "size": 2997
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/20-Transport-Ping.json.snapshot": {
+      "sha256": "6f789926f8a56ca1cfb76e7ca36bff81c91b82355fbeda80019a4fb77eafba34",
+      "size": 952
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/21-Transport-Ack.json.snapshot": {
+      "sha256": "f8b18b0fd003f686f4eb9f237f340c5e684309db0fb11e138d61e122a98c9317",
+      "size": 1229
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261103/archive/22-Transport-Accepted.json.snapshot": {
+      "sha256": "88e47186b793fd01aa2c2f65f9a5d0c2b2c5e4896a30d155be05c68baf4c2fec",
+      "size": 876
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": {
+      "sha256": "7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af",
+      "size": 8547
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "sha256": "0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729",
+      "size": 37610
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py": {
+      "sha256": "755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3",
+      "size": 24613
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py": {
+      "sha256": "ba742402974a03d74d1619fddc1e4df6a8d4f768805b59f43bb268ea41bd285c",
+      "size": 18970
+    }
+  },
+  "ref": "refs/heads/backup/rp3-passed-milestones-20261103",
+  "rp3_complete": false,
+  "source_commit": "9cc2db624ca1e786b1d9eb9d56d53b49a59f0a16",
+  "source_overlay": {
+    "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py": "83ec8f3fd11dba0a7eb9c94cc2c870eac7c98b7a34614893e97e53b8d3cbbc87",
+    "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py": "5d7576d225a55ddb0741de08e9151de3586e9256576364426717b99a7acfde52",
+    "memory-integrity/scripts/knowledge_bridge/recursive_policy.py": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18",
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": "7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af",
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": "0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729",
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py": "755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3",
+    "memory-integrity/scripts/knowledge_bridge/worker.py": "3df908501c83c6d101d1bdb6b42198e4887a9162e0b389b8699374909c9a283a",
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py": "2c34543cba7cf48d70552e7fe2bd5496beb0408fb1b4284bffe25a651adb4897",
+    "memory-integrity/tests_v2/test_knowledge_recursive_integration.py": "82d3f3b279d6153bbadb82b82b7f0847d0712ec81555907d00b03036a2697ffd",
+    "memory-integrity/tests_v2/test_knowledge_recursive_profile.py": "07e48ca7def0d173055f2863c2741cd904ff63725195a5e2285ae99f264ccefa",
+    "memory-integrity/tests_v2/test_knowledge_windows_owned_process.py": "0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994",
+    "memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py": "ba742402974a03d74d1619fddc1e4df6a8d4f768805b59f43bb268ea41bd285c"
+  }
+}

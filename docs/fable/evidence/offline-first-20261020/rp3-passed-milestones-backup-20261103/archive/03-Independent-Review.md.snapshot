@@ -1,0 +1,23 @@
+# Independent final correction review
+
+Verdict: SHIP for the frozen source/controller candidate only.
+Reviewer: native Fable Sol read-only review, ready_copy_final_review.
+No blocking defect remains. The reviewer inspected actual source, seals and
+retained RED/GREEN/final receipts; did not run tests, edit files or launch a
+selected runtime. Earlier FIX-FIRST findings were reproduced by specific tests
+and corrected, then re-reviewed on the exact final source hashes.
+
+Closed findings: actual deletion bound despite post-delete metadata failure;
+bounded queue scanning without permanent-receipt or interrupted-entry starvation;
+durable DELETE_INTENT and per-entry deletion/error audit before queue archival;
+exclusive payload handle rejects other live readers; active-queue access errors
+propagate rather than silently deferring forever. Native read-only/fallback/token/
+file/PID/image/Job checks, primary setup error and cleanup-debt accounting remain.
+
+Observed focused32/32PASS; exact-final broader324run270PASS54knownSKIP0FAIL/ERROR.
+Source hashes are in Source-Candidate.json; focused log3ad6bdda25e5de0984a015100d3a5052a2b5f9051beb4acf6ab9793693ec7566;
+broad logbfca88d5b82be4f6f401b0a3c960c8fff9b1f86e97b2ef9e5b96d67f7f33b127.
+
+Caveats: selected Store Python3.12 not run; actual LocalAppData creation not
+observed (controller uses isolated cache); cooperative0.1s cleanup check cannot
+preempt native filesystem calls; fullRP3/AFTER/release/install remain unverified.
