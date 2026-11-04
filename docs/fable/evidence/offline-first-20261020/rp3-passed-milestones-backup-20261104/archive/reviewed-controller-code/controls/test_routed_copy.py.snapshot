@@ -1,0 +1,103 @@
+"""Run real copy helper functions against actor-owned scratch outputs."""
+import hashlib
+import importlib.util
+import json
+import tempfile
+import types
+from pathlib import Path
+import unittest
+from unittest.mock import patch
+PHASE=Path(__file__).absolute().parents[1]
+OLD=PHASE.with_name('rp3-ready-20261102-b')/'prototype/rp3_copy.py'
+NEW=PHASE/'prototype/rp3_copy.py'
+def load(path):
+    spec=importlib.util.spec_from_file_location('routed_copy_control',path)
+    m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+def record(path):
+    path=Path(path);raw=path.read_bytes()
+    return {'path':str(path),'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'links':1}
+def fixture_save(path,value):
+    with Path(path).open('x',encoding='utf-8') as stream:json.dump(value,stream,sort_keys=True)
+class Prep:
+    SESSION='a'*32;HEAD='b'*40;FLAGS={}
+    def __init__(self,normal,reader,actor):self.normal,self.reader,self.actor=normal,reader,actor;self.writes=[]
+    def save(self,path,value):
+        path=Path(path);allowed=self.reader if self.actor=='Reader' else self.normal
+        if not path.is_relative_to(allowed):raise AssertionError('CONTROL_PEER_WRITE:'+str(path))
+        self.writes.append(path);fixture_save(path,value)
+    def record(self,path):return record(path)
+    def read_json(self,path,sha=None):
+        if sha is not None:assert record(path)['sha256']==sha
+        return json.loads(Path(path).read_bytes())
+    def exact_normal_account(self,*args):pass
+class Behavior(unittest.TestCase):
+    def setup_actor(self,source,actor):
+        scratch=PHASE/'copy-route-scratch';scratch.mkdir(exist_ok=True)
+        root=Path(tempfile.mkdtemp(dir=scratch));normal=root/'normal';reader=root/'reader';normal.mkdir();reader.mkdir()
+        mod=load(source);mod.ROOT=normal;mod.READER_ROOT=reader;p=Prep(normal,reader,actor)
+        return mod,p,normal,reader
+    def test_same_inspection_old_reader_write_is_refused_new_reader_write_succeeds(self):
+        for source,correct in ((OLD,False),(NEW,True)):
+            mod,p,normal,reader=self.setup_actor(source,'Reader')
+            proposal={'roots':{'one':{'allowed':{}}}}
+            snap=types.SimpleNamespace(roots={'one':normal/'source'},inspect_denied_policies=lambda *a:proposal)
+            context={'prep':p,'c1':None,'data':None,'request':{'phase':'BEFORE'},'snapshot':snap}
+            with patch.object(mod,'base',return_value=context),patch.object(mod,'direct_authority'),patch.object(mod,'protected_identities',return_value={'protected':[1,2]}),patch.object(mod,'validate_proposal'):
+                if correct:
+                    result=mod.inspect_before_policies();self.assertEqual(result['proposal'],record(reader/'Policy-Proposal.json'))
+                    self.assertTrue(p.writes);self.assertTrue(all(x.is_relative_to(reader) for x in p.writes))
+                else:
+                    with self.assertRaisesRegex(AssertionError,'CONTROL_PEER_WRITE'):mod.inspect_before_policies()
+                    self.assertEqual(p.writes,[])
+    def test_before_copy_uses_reader_paths_and_keeps_normal_inputs_readonly(self):
+        for source,correct in ((OLD,False),(NEW,True)):
+            mod,p,normal,reader=self.setup_actor(source,'Reader');identities={'protected':[1,2]};proposal={'roots':{'one':{'allowed':{}}}}
+            # Seed both layouts so the old helper reaches its actual wrong-actor write.
+            for root in (reader,normal):
+                fixture_save(root/'Policy-Proposal.json',proposal);fixture_save(root/'Protected-Identities.json',identities)
+                fixture_save(root/'InspectBefore-Result.json',{'status':'RP3_POLICY_PROPOSAL_REQUIRES_EXTERNAL_REVIEW_NO_COPY','session':p.SESSION,'proposal':record(root/'Policy-Proposal.json'),'identities':record(root/'Protected-Identities.json')})
+            fixture_save(normal/'Inputs.json',{});fixture_save(normal/'BEFORERequest.json',{'phase':'BEFORE'})
+            def copy(request,dest):
+                dest=Path(dest)
+                if not dest.is_relative_to(reader):raise AssertionError('CONTROL_COPY_PEER_WRITE')
+                dest.mkdir();fixture_save(dest/'Copies.json',{})
+            snapshot=types.SimpleNamespace(contexts={},_validate=lambda *a:None,copy_denied=copy)
+            context={'prep':p,'c1':None,'inputs':{},'request':{},'snapshot':types.SimpleNamespace(roots={'one':normal/'source'}),'data':types.SimpleNamespace(SnapshotSet=lambda *a:snapshot)}
+            with patch.object(mod,'base',return_value=context),patch.object(mod,'direct_authority'),patch.object(mod,'protected_identities',return_value=identities),patch.object(mod,'validate_proposal',return_value=proposal['roots']),patch.object(mod,'rebind_request',return_value={'phase':'BEFORE'}):
+                if correct:
+                    result=mod.make_before_copies(record(reader/'Policy-Proposal.json')['sha256']);self.assertEqual(result['inputs'],record(reader/'Copy-Inputs.json'))
+                    self.assertTrue(all(x.is_relative_to(reader) for x in p.writes));self.assertFalse((normal/'BEFORE').exists())
+                else:
+                    with self.assertRaisesRegex(AssertionError,'CONTROL_PEER_WRITE'):mod.make_before_copies(record(normal/'Policy-Proposal.json')['sha256'])
+                    self.assertEqual(p.writes,[])
+    def test_normal_readback_merges_reader_data_and_writes_only_normal_bundle(self):
+        mod,p,normal,reader=self.setup_actor(NEW,'Normal');fixture_save(normal/'Inputs.json',{})
+        seen=[]
+        def merge(request,path,sha):
+            self.assertEqual(path,reader/'BEFORE/reader-copy');seen.append(path);return {'complete':True}
+        snap=types.SimpleNamespace(roots={'one':normal/'source'},merge=merge)
+        identities={'protected':[1,2]};context={'prep':p,'c1':None,'request':{},'base_request':{},'snapshot':snap,
+            'copy_inputs':{'copies':{'sha256':'c'*64},'protected_identity_paths':identities},'data':types.SimpleNamespace(SnapshotSet=lambda *a:types.SimpleNamespace(verify_readable=lambda *a:None))}
+        with patch.object(mod,'copy_context',return_value=context),patch.object(mod,'direct_authority'),patch.object(mod,'protected_identities',return_value=identities):
+            result=mod.verify_before('copy-inputs','c'*64)
+        self.assertEqual(result,record(normal/'Before-Bundle.json'));self.assertEqual(len(seen),1)
+        self.assertEqual(p.writes,[normal/'VerifyBefore-Claim.json',normal/'Before-Bundle.json'])
+    def test_after_copy_reads_normal_request_but_creates_only_reader_after(self):
+        for source,correct in ((OLD,False),(NEW,True)):
+            mod,p,normal,reader=self.setup_actor(source,'Reader');before={'before':True}
+            fixture_save(normal/'Before-Bundle.json',before);fixture_save(normal/'Workload.json',{})
+            request={'phase':'AFTER','binding':{'before_sha256':'before-sha','workload_sha256':record(normal/'Workload.json')['sha256']}}
+            fixture_save(normal/'After-Request.json',request);seen=[]
+            def copy(value,dest):
+                dest=Path(dest);seen.append(dest)
+                if not dest.is_relative_to(reader):raise AssertionError('CONTROL_COPY_PEER_WRITE')
+                dest.mkdir();fixture_save(dest/'Copies.json',{})
+            context={'prep':p,'snapshot':types.SimpleNamespace(_validate=lambda *a:None,copy_denied=copy),'data':types.SimpleNamespace(digest=lambda *a:'before-sha')}
+            workload={'before_bundle':record(normal/'Before-Bundle.json')}
+            with patch.object(mod,'copy_context',return_value=context),patch.object(mod,'validate_workload_binding',return_value=workload):
+                if correct:self.assertEqual(mod.make_after_copies(record(normal/'After-Request.json')['sha256']),record(reader/'AFTER/reader-copy/Copies.json'))
+                else:
+                    with self.assertRaisesRegex(AssertionError,'CONTROL_COPY_PEER_WRITE'):mod.make_after_copies(record(normal/'After-Request.json')['sha256'])
+            if correct:self.assertFalse((normal/'AFTER').exists());self.assertEqual(seen,[reader/'AFTER/reader-copy'])
+
+if __name__=='__main__':unittest.main()

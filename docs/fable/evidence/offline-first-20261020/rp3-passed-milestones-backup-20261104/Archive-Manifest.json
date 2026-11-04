@@ -1,0 +1,1086 @@
+{
+  "byte_exact": true,
+  "files": [
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/ownership/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-ownership\\Receipt.json",
+        "sha256": "e1acb88da4d29a6af70865bea563c48d4e7da8dc582426afae21cc80f8021c74",
+        "size": 487
+      },
+      "role": "selected312 fully passed ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/ownership/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-ownership\\unittest.log",
+        "sha256": "f96df9fa00c365a8663f6c5850b442964d583b1863912a74a5f3b36ad7fd2101",
+        "size": 3470
+      },
+      "role": "selected312 fully passed ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/ownership/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-ownership-Discovery.json",
+        "sha256": "38dce3d111782cf17da14f081fa9246c90b9f96a726366366293297a507112a8",
+        "size": 2245
+      },
+      "role": "selected312 fully passed ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/writer/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-writer\\Receipt.json",
+        "sha256": "a155e0ae715e09105660cee0efd10d5c81df0d30fed90a66f1447d056a7786c6",
+        "size": 477
+      },
+      "role": "selected312 fully passed writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/writer/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-writer\\unittest.log",
+        "sha256": "a275c44182da0fb49621296964588899c3d87bda7adfb71f2911b7f2cc1ed042",
+        "size": 3346
+      },
+      "role": "selected312 fully passed writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/writer/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-writer-Discovery.json",
+        "sha256": "46616d7b55efad7180c8ffb2e3deadcf61c731423cba055ca5bade6cf4aed9a6",
+        "size": 2057
+      },
+      "role": "selected312 fully passed writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-shutdown/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-combined-shutdown\\Receipt.json",
+        "sha256": "624709038ddfe69d5b3cfd8302a36983073d1c0432786cc642e0bd3979829324",
+        "size": 490
+      },
+      "role": "selected312 fully passed combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-shutdown/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-combined-shutdown\\unittest.log",
+        "sha256": "c5a869200ee7716ea3a1e8f059fdfe415f2d288a0e572e0219da067a57a50577",
+        "size": 2232
+      },
+      "role": "selected312 fully passed combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-shutdown/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-combined-shutdown-Discovery.json",
+        "sha256": "cada957c477c2a25459ed6baf214e48a8b4275bae1aeabe8af8509cd20a342fc",
+        "size": 1417
+      },
+      "role": "selected312 fully passed combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-session/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-combined-session\\Receipt.json",
+        "sha256": "2ddef393459dd65ae1a930b0bdbfb171acfb39d1beec076f38fcd445613528e5",
+        "size": 486
+      },
+      "role": "selected312 fully passed combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-session/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-combined-session\\unittest.log",
+        "sha256": "c51f9b0dc2c2b5e5c4e1a443e35fb56917a5e53513c980ecd42c2db46f1b48f0",
+        "size": 1457
+      },
+      "role": "selected312 fully passed combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-session/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-combined-session-Discovery.json",
+        "sha256": "dea62050850c37fb007f441bf1a4be79fa0ec54e8236181d761ea3df254ad014",
+        "size": 911
+      },
+      "role": "selected312 fully passed combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/lifecycle/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-lifecycle\\Receipt.json",
+        "sha256": "a9c15c9070f3b7e8c6eba88f31a953fa6acd814fd4b70697b7b0be2599258674",
+        "size": 481
+      },
+      "role": "selected312 fully passed lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/lifecycle/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-lifecycle\\unittest.log",
+        "sha256": "c2ef37eac0abf6bd5433cd18403a1c8ee94aa4f51bf8d1d8430de0ca47e7ecab",
+        "size": 1191
+      },
+      "role": "selected312 fully passed lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/lifecycle/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-lifecycle-Discovery.json",
+        "sha256": "c0d67f967968fdf266eb27cd6baddd5c631588c5755a63fd380279ad47288ebb",
+        "size": 764
+      },
+      "role": "selected312 fully passed lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/cwd/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-cwd\\Receipt.json",
+        "sha256": "1acad30568018ba890c520efb0896045fcf6c562ec86cdbe9b19c3d3e3454e61",
+        "size": 468
+      },
+      "role": "selected312 fully passed cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/cwd/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-cwd\\unittest.log",
+        "sha256": "a355a5ffbf33b7dc2b03fe15905ba0e2c6f25f16662bc82217031d42f6d0bc63",
+        "size": 1377
+      },
+      "role": "selected312 fully passed cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/cwd/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-cwd-Discovery.json",
+        "sha256": "67edfae0543cf27adac3b767f995d826a13bdf5073387bab385e0ed5091cba88",
+        "size": 782
+      },
+      "role": "selected312 fully passed cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/budget/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-budget\\Receipt.json",
+        "sha256": "cc934d72522d67a935ec0ecf407602c0c4623fae07c29476d080352fcd5a5210",
+        "size": 475
+      },
+      "role": "selected312 fully passed budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/budget/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-budget\\unittest.log",
+        "sha256": "9559a2fd14f5d9eb01c55cb7e40c295a57eb79260da20c73681a8adc7219de61",
+        "size": 1392
+      },
+      "role": "selected312 fully passed budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/budget/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-budget-Discovery.json",
+        "sha256": "a1bad2d149af70137a050e5a8850b515fd0d3bbfa99fd2a8cc7d0e3aae2caa38",
+        "size": 892
+      },
+      "role": "selected312 fully passed budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/recursive-git/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-recursive-git\\Receipt.json",
+        "sha256": "a203a48eb73e96eb19e0177726a0c1be84988f6f6da7f40d4f65ae503295e9c7",
+        "size": 481
+      },
+      "role": "selected312 fully passed recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/recursive-git/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-recursive-git\\unittest.log",
+        "sha256": "d8a13e647a16b4fd681d26c7cc90c2ec51fa1df17fc55e051dfc19bc112b5f76",
+        "size": 935
+      },
+      "role": "selected312 fully passed recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/recursive-git/Discovery.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\group-recursive-git-Discovery.json",
+        "sha256": "89d08220b7eeaba196bb576b53185c5ca150acfacf91f9d6d1cdbb27f3d882e7",
+        "size": 600
+      },
+      "role": "selected312 fully passed recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-identity/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\preclaim-identity\\Command.json",
+        "sha256": "b8c29baa983cbd02847dc2568d0e9153be502f1291bf04e4ce8994c63cb73436",
+        "size": 2568
+      },
+      "role": "successful selected312 command preclaim-identity"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-identity/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\preclaim-identity\\stdout.log",
+        "sha256": "277fede65ab04c38ffe3f0f6af36207f09f45c0ce5c646fd38850ef93dc62622",
+        "size": 1362
+      },
+      "role": "successful selected312 capture preclaim-identity"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-identity/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\preclaim-identity\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture preclaim-identity"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-dependencies/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\preclaim-dependencies\\Command.json",
+        "sha256": "569812bfc20e5ac061704b007388fb473a7f0d586b5b5d63986904b26b483770",
+        "size": 1902
+      },
+      "role": "successful selected312 command preclaim-dependencies"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-dependencies/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\preclaim-dependencies\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      },
+      "role": "successful selected312 capture preclaim-dependencies"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-dependencies/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\preclaim-dependencies\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture preclaim-dependencies"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-ownership/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-ownership\\Command.json",
+        "sha256": "05c4098be3b01fa66c017398e816fa8b045c71136b70909692a3f7249e6f5dcc",
+        "size": 1425
+      },
+      "role": "successful selected312 command discover-ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-ownership/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-ownership\\stdout.log",
+        "sha256": "beb4d1cf4c9dde586b8de91dabf3d5275b525fc8bd541006be352d07c008acd1",
+        "size": 2161
+      },
+      "role": "successful selected312 capture discover-ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-ownership/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-ownership/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-ownership\\Command.json",
+        "sha256": "76248ce0348106a6a0549f9ec933f0660f319f1b4ddd9568a51341ee9504cb4b",
+        "size": 1330
+      },
+      "role": "successful selected312 command command-ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-ownership/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-ownership\\stdout.log",
+        "sha256": "ff7359a64abc3e91f1a5ad161bc6f1b8b9a47c1fef5eede68ff581cf38b9b038",
+        "size": 3942
+      },
+      "role": "successful selected312 capture command-ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-ownership/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-ownership"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-writer/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-writer\\Command.json",
+        "sha256": "ba86a7e99ee3c7b499d51dd01123e415233224445fc6d042ab822347e1111c1b",
+        "size": 1412
+      },
+      "role": "successful selected312 command discover-writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-writer/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-writer\\stdout.log",
+        "sha256": "586459f3be53f9aff93234f63f9252a38ef5ca9f70eab22ed0e1cd9bf72011a6",
+        "size": 1983
+      },
+      "role": "successful selected312 capture discover-writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-writer/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-writer/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-writer\\Command.json",
+        "sha256": "9de04408e4703324dd860af5d70fe013ce05f474be9f835a4508780aa3c334db",
+        "size": 1314
+      },
+      "role": "successful selected312 command command-writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-writer/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-writer\\stdout.log",
+        "sha256": "ad2088f9086eb9a8827d82836c84a0759bf0dd90e61eb39a876e86453c141be2",
+        "size": 3809
+      },
+      "role": "successful selected312 capture command-writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-writer/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-writer"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-shutdown/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-combined-shutdown\\Command.json",
+        "sha256": "c83a059a125f53344f3c4da5f5d230b1b3ce7c40d8bd4895a7934616ffa82957",
+        "size": 1436
+      },
+      "role": "successful selected312 command discover-combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-shutdown/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-combined-shutdown\\stdout.log",
+        "sha256": "46d19eef485a75530511c1f72c8eace964842f8e4bd7339b71f0656c397f02a1",
+        "size": 1330
+      },
+      "role": "successful selected312 capture discover-combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-shutdown/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-shutdown/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-combined-shutdown\\Command.json",
+        "sha256": "b61857a5c7d83c46e453794bfb89a2add4df5c4d35a3c8f0176120712b85ae49",
+        "size": 1349
+      },
+      "role": "successful selected312 command command-combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-shutdown/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-combined-shutdown\\stdout.log",
+        "sha256": "caba3c2c527e3415683a2754c6e3f936701ae816d60c8037dc01c12e4a9f54d8",
+        "size": 2702
+      },
+      "role": "successful selected312 capture command-combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-shutdown/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-combined-shutdown"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-session/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-combined-session\\Command.json",
+        "sha256": "7f6852ab8046d9891424e28be979a82369c002687273cbeec54f42384ec0ef24",
+        "size": 1431
+      },
+      "role": "successful selected312 command discover-combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-session/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-combined-session\\stdout.log",
+        "sha256": "65a10dec3bc3480bb5a393881c0fabbdeeb41f592e53963ffbf3b3f8fdc38f88",
+        "size": 826
+      },
+      "role": "successful selected312 capture discover-combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-session/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-session/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-combined-session\\Command.json",
+        "sha256": "0edf0c8c0d178a53598c587ffb5aca31b06720586e4d7b7fefd1fe7c710eb967",
+        "size": 1345
+      },
+      "role": "successful selected312 command command-combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-session/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-combined-session\\stdout.log",
+        "sha256": "b349812313035f14b4623a4befa9bd9e9a3cf11dad429a43197f8f79d6f71bfb",
+        "size": 1918
+      },
+      "role": "successful selected312 capture command-combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-session/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-combined-session"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-lifecycle/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-lifecycle\\Command.json",
+        "sha256": "590fb538863be7727e83080c8a8674aac8376f9657c0196c2099215e2ff63b38",
+        "size": 1420
+      },
+      "role": "successful selected312 command discover-lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-lifecycle/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-lifecycle\\stdout.log",
+        "sha256": "044b8f732bdeac1aaa6f83b6702b304c7a53eca16ced169ccfb7d8b75a6616d6",
+        "size": 684
+      },
+      "role": "successful selected312 capture discover-lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-lifecycle/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-lifecycle/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-lifecycle\\Command.json",
+        "sha256": "a675915c7059079468cd06529dbb31af62b1b63efd14383ee3f560aed375b734",
+        "size": 1326
+      },
+      "role": "successful selected312 command command-lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-lifecycle/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-lifecycle\\stdout.log",
+        "sha256": "27c8ab4ba409ce23dc8c01af816919d74f3af39a30413786ace167a5e601908e",
+        "size": 1646
+      },
+      "role": "successful selected312 capture command-lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-lifecycle/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-lifecycle"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-cwd/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-cwd\\Command.json",
+        "sha256": "b8502f449d30dc5288bd560bc2a9cbce8efacc0e69600388c32842622e6f8160",
+        "size": 1401
+      },
+      "role": "successful selected312 command discover-cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-cwd/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-cwd\\stdout.log",
+        "sha256": "59e205a64f1a9dd2d3e1487d89bad2ba8ad59c75b59afbf179ab286d9205d5b8",
+        "size": 715
+      },
+      "role": "successful selected312 capture discover-cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-cwd/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-cwd/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-cwd\\Command.json",
+        "sha256": "f5ae26099a135da20b217e4fe0ae694b8781b2986b5ce9782374cbff156f5fa5",
+        "size": 1301
+      },
+      "role": "successful selected312 command command-cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-cwd/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-cwd\\stdout.log",
+        "sha256": "9d8236dfe43ea4e358db45f0893d889c3b55ab83dc5fbef550d512872815f9d7",
+        "size": 1821
+      },
+      "role": "successful selected312 capture command-cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-cwd/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-cwd"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-budget/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-budget\\Command.json",
+        "sha256": "6f6df640d5a1cbf91d9408ba8216e2753cdd66baeb47b1a5f25194751ccb60a7",
+        "size": 1411
+      },
+      "role": "successful selected312 command discover-budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-budget/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-budget\\stdout.log",
+        "sha256": "960ad3e1ccb152fd9b28d9b284fd7b4ab16cc2c1d4015a142a4d0f7c7221a85c",
+        "size": 818
+      },
+      "role": "successful selected312 capture discover-budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-budget/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-budget/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-budget\\Command.json",
+        "sha256": "84d586e8107359a41267c80f02973934dfd325de625c5f39ec351101c85a869c",
+        "size": 1314
+      },
+      "role": "successful selected312 command command-budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-budget/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-budget\\stdout.log",
+        "sha256": "61473e9d3df2ce4a4db36eae3d107b0d7b2ab9239b2d60479737b30bfcf554d6",
+        "size": 1842
+      },
+      "role": "successful selected312 capture command-budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-budget/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-budget"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-recursive-git/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-recursive-git\\Command.json",
+        "sha256": "ae5c85636af5bc99315f0cee254024faef934e81ea5278e03f5231ff4e3c62c1",
+        "size": 1424
+      },
+      "role": "successful selected312 command discover-recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-recursive-git/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-recursive-git\\stdout.log",
+        "sha256": "d3924015ed50228c81947acbe3b0e457f3844884566e279225624fe16c7c953c",
+        "size": 520
+      },
+      "role": "successful selected312 capture discover-recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-recursive-git/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\discover-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture discover-recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-recursive-git/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-recursive-git\\Command.json",
+        "sha256": "0d8b8bc0a5d44204729e43b925f6acce1bb18643bc90ef6aba633a171d85d510",
+        "size": 1334
+      },
+      "role": "successful selected312 command command-recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-recursive-git/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-recursive-git\\stdout.log",
+        "sha256": "817d7ead188ee70a815cbaf74a85dfb8ed4327a3e262eac6f243101d216cee2e",
+        "size": 1389
+      },
+      "role": "successful selected312 capture command-recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-recursive-git/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\commands\\command-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected312 capture command-recursive-git"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/controller/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\all-controls-02\\Receipt.json",
+        "sha256": "c3e897377f55fb300a9536f431ba7b51ac1eb1c862a8e7092e5b0b828d3046a1",
+        "size": 271
+      },
+      "role": "67 controller314 passes, separate from selected312"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/controller/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\all-controls-02\\unittest.log",
+        "sha256": "80c0e1f22ced32e8d9bfed5c401dc1fb5fdf8bff2697cf723076ffa92f2afef3",
+        "size": 34933
+      },
+      "role": "67 controller314 raw log"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_envelopes.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_envelopes.py",
+        "sha256": "ab25895576e58fe204f2104ad023d36a5fece35b9af03f8a2058d0ee161368f5",
+        "size": 8455
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_factory.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_factory.py",
+        "sha256": "b19ab7e0ab338b5cebd5552cdd0de746e876898f2a22f0944dc5d333883a9e77",
+        "size": 14415
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_source.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_source.py",
+        "sha256": "278025b3fb5beaa518b1838f420e5e1921074afb4bdf7377f46e4d48f9a821e3",
+        "size": 9296
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_workflow.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_workflow.py",
+        "sha256": "e35adbcdedd762b3c3380991ea93ecb8c034b6bcf74258dc7d4782293f4eaae7",
+        "size": 29434
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_bound_copy.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_bound_copy.py",
+        "sha256": "7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264",
+        "size": 2059
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_copy.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_copy.py",
+        "sha256": "d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b",
+        "size": 20160
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_finish.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_finish.py",
+        "sha256": "9575210dafccd7ed4f7fd47e41ae5bd834f017d6d314d832278a35bdff4dbf60",
+        "size": 13026
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_prepare.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_prepare.py",
+        "sha256": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9",
+        "size": 11958
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_runtime.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_runtime.py",
+        "sha256": "2ad2e5921476e83fb4db8f26d9f46615c8e33ff3bb1b717da3cba3429c61c2e0",
+        "size": 25358
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_final_acceptance.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_final_acceptance.py",
+        "sha256": "6aecb9bcc272caf175647f2090e11c40053c969d210ca2ee1a3d2aa9e71b06c2",
+        "size": 7639
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_final_outer.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_final_outer.py",
+        "sha256": "8b1528d0dfe74f1991924b2703ca74536824d3ac7f2c9e93d6524f48dd4fba0b",
+        "size": 6312
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_envelopes.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_ready_envelopes.py",
+        "sha256": "79187973e77a4f99d06c4602a0b600d1f231fdd0352eb68392c38ac27a5831ce",
+        "size": 6530
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_factory.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_ready_factory.py",
+        "sha256": "e672423ff112010f1601a4de5e0d533993232aed7c42e86e8ec7a85a019c20d9",
+        "size": 3764
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_hooks.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_ready_hooks.py",
+        "sha256": "6cd083031536c38e5b3f344892162b280e483c8878ece82d0c25b6788bd79b49",
+        "size": 9853
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_source.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_ready_source.py",
+        "sha256": "dfe4c2327114c1f708b6cfa26bb362dcec5d1a9e1cfd0fdec322b7d5ab5fcfe6",
+        "size": 4205
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_workflow.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_ready_workflow.py",
+        "sha256": "461cb543601abd5e927c4db2b66705f35044ba7cf47a10bc80f51b83379ed2dc",
+        "size": 5792
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_routed_copy.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_routed_copy.py",
+        "sha256": "857b67ff0d594cb2f9c1984d4da9b4f70f4381c7850c9d52b13a5fe44a7100e4",
+        "size": 8251
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_routed_protocol.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\controls\\test_routed_protocol.py",
+        "sha256": "453ab7eebbbe8fc74d9b9a1bf0f44f56ecd0dbc4e2eea25a9fb9c6f564e3fb06",
+        "size": 9599
+      },
+      "role": "reviewed controller code; incomplete full qualification"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Authority-Manifest.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Authority-Manifest.json",
+        "sha256": "7511c550abad6c3726f57d236f1083202b155c263d87f273de12d93dcc55e42d",
+        "size": 4137
+      },
+      "role": "exact evaluated source and controller provenance, not full success"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Source-Recipe.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Source-Recipe.json",
+        "sha256": "ea4ff61382c7bb9466751bf62fcc65fc3b8f1cb0031d0e15f9069f6c5dc94cca",
+        "size": 247233
+      },
+      "role": "exact evaluated source and controller provenance, not full success"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Successor-Contract.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Successor-Contract.json",
+        "sha256": "5ecf462785cdd3ade6aaf7f64736b83dc2782c06248a64670d29b43e384260cb",
+        "size": 4191
+      },
+      "role": "exact evaluated source and controller provenance, not full success"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Fixture-Accepted.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Fixture-Accepted.json",
+        "sha256": "147d497126f3f9ba3f5f9589d747893f9ae5b77548cf836b064dab062aa806e3",
+        "size": 13038
+      },
+      "role": "exact evaluated source and controller provenance, not full success"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Core-Review.md.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Core-Review.md",
+        "sha256": "eb28a9d8802e4d6873cd9c8fb4d9ab922f0ad4687acea828a902948c5df8cb36",
+        "size": 1110
+      },
+      "role": "exact evaluated source and controller provenance, not full success"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Final-Review.md.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Final-Review.md",
+        "sha256": "f87e62292f635f35244395ff7613a1f495f809d3237bb5377a00a7dd6b52b663",
+        "size": 937
+      },
+      "role": "exact evaluated source and controller provenance, not full success"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Preparation-Diagnostics.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\Diagnostics.json",
+        "sha256": "e9862060ad61231eb4b6ee064256b26ba75722a3f01d170e0dd9a8282e1c31a1",
+        "size": 2993
+      },
+      "role": "completed actual preflight/preparation"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Transport-Ping.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b-channel\\Transport-Ping.json",
+        "sha256": "787f27b199e1f0e21dbe47bf22141f8e6e4a48be348f0719c31dc08a6c8410cc",
+        "size": 953
+      },
+      "role": "completed actual preflight/preparation"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Transport-Accepted.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b-channel\\Transport-Accepted.json",
+        "sha256": "494702b06aeddc8b668cdaa1cb817c2bf53c5a695546bea052ad1ec60c04f1e4",
+        "size": 877
+      },
+      "role": "completed actual preflight/preparation"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Transport-Ack.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\reader-outbox\\cb677199a4364bdf869b055ac6dcd705\\Transport-Ack.json",
+        "sha256": "5a6921cebb3a5618d12992087599ce638cd961de7cb6d279dfdb0f04b28035a5",
+        "size": 1231
+      },
+      "role": "completed actual preflight/preparation"
+    }
+  ],
+  "snapshots_are_not_live_commands": true
+}

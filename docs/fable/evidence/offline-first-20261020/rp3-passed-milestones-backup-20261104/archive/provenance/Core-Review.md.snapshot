@@ -1,0 +1,17 @@
+# Native read-only core and launcher-template review: SHIP
+
+Fresh reissue preserves old COORDINATION_EXPIRED evidence. New normalroot/channel
+are absent. No selected runtime attempted. Evaluated683source,12groups, budgets,
+policy and expiry behavior are identical to the accepted prior family.
+
+All five raw helpers and ready_workflow.py are byte-identical. Other three helpers
+have only config/recipe/root literal rebinding. New recipe only rebinds fixture
+acceptance path. Control fixture has exactly one contract SHA substitution; no
+assertion is weakened. Full corrected67controller tests PASS/0error/failure/skip,
+27.272s wall /26.546s test; logSHA80c0e1f22ced32e8d9bfed5c401dc1fb5fdf8bff2697cf723076ffa92f2afef3.
+First controller failures from stale control hash remain retained.
+
+Native reviewer inspected actual helper/json/template deltas and receipts.
+Cleared to start one fresh3600secondreader last, seal its actual service hash into
+reviewed outer, then verify exact live PID/claim/seed/session/window/unused roots.
+Actual normal selected3.12 run and raw review remain required for RP3 completion.

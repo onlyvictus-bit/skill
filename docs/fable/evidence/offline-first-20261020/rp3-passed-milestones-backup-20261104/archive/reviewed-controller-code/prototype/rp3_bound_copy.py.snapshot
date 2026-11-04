@@ -1,0 +1,39 @@
+"""One frozen RP3 handoff: tighten every later Copy-Inputs reopen, no file edits."""
+import types
+
+COPY_SHA='d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b'
+COPY_INPUTS_SHA='7c18bb40370ced18d5183a43cc0462c9af9f9e5c3ed0d80cfe7a2e9cd426370a'
+
+
+def require(value,code):
+    if not value:raise ValueError('E_RP3_BOUND_'+code)
+
+
+def bind(original,copy_inputs_sha256):
+    require(copy_inputs_sha256==COPY_INPUTS_SHA,'EXTERNAL_COPY_INPUTS')
+    prep=original.modules()[0]
+    require(prep.record(original.__file__)['sha256']==COPY_SHA,'ORIGINAL_HELPER_SEAL')
+    reopen=original.copy_context
+    def pinned_context(requested_sha256=None):
+        require(requested_sha256 in (None,copy_inputs_sha256),'EXTERNAL_COPY_INPUTS')
+        context=reopen(copy_inputs_sha256)
+        row=context['prep'].record(original.READER_ROOT/'Copy-Inputs.json')
+        require(row['sha256']==copy_inputs_sha256,'COPY_INPUTS_CHANGED')
+        context['copy_inputs_record']=row
+        return context
+    def pinned_workload(*args,**kwargs):
+        context=pinned_context();p=context['prep']
+        value=original.validate_workload_binding(*args,**kwargs)
+        require(value.get('copy_inputs')==p.record(original.READER_ROOT/'Copy-Inputs.json'),'WORKLOAD_COPY_INPUTS')
+        require(value['copy_inputs']['sha256']==copy_inputs_sha256,'WORKLOAD_COPY_INPUTS')
+        return value
+    namespace=dict(original.__dict__)
+    namespace.update(copy_context=pinned_context,validate_workload_binding=pinned_workload)
+    bound=types.ModuleType('rp3_frozen_copy_binding');bound.__dict__.update(namespace)
+    bound.copy_context=pinned_context;bound.copy_inputs_sha256=copy_inputs_sha256
+    for name in ('verify_before','complete_before','after','make_after_copies','finalize'):
+        function=getattr(original,name)
+        clone=types.FunctionType(function.__code__,namespace,function.__name__,function.__defaults__,function.__closure__)
+        clone.__kwdefaults__=function.__kwdefaults__
+        namespace[name]=clone;setattr(bound,name,clone)
+    return bound

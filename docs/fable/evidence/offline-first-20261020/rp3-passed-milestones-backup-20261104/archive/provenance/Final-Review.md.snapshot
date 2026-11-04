@@ -1,0 +1,14 @@
+# Exact live native acceptance: SHIP
+
+Observed2026-11-04T17:29:58+05:30. Final launcher8038bytes,
+SHAfbf59ac132636a8ec868386014cdac9b6a12e574d4b185e7c52d7ca1ab6aaa8a,
+is exactly the reviewed template with only actual serviceSHA substituted.
+Service89571bytes/SHA3245954c68416af965e154c8053ebaa15e863bd7f02110643263cc106fb02af5.
+Manifest7511c550abad6c3726f57d236f1083202b155c263d87f273de12d93dcc55e42d.
+PID11376 live C:/Python314/python.exe; service/claim/seed/config session
+cb677199a4364bdf869b055ac6dcd705 agree. Claim/seed actual size/hash match.
+Expiry18:29:07ISTNov4, admissionbefore17:43:07IST. More2760seconds remained.
+New normalroot/channel/Inputs/CopyInputs/RunClaim/run/failure/Ack all absent.
+Actual pinnedPS7 VerifyOnly exit0 with exact banner. Full67controllerPASS.
+No selectedruntime/workload. Clear one normal nonadmin command immediately;
+actual Stage/receipt/test/nativeexit/ORIGINALAFTER raw review remains mandatory.

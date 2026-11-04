@@ -1,0 +1,98 @@
+"""Validate exact historical base plus only the accepted READY-copy deltas."""
+import hashlib
+from pathlib import Path
+PHASE=Path(__file__).absolute().parents[1];REPO=PHASE.parents[2]
+RP2=REPO/'.github/run-artifacts/recursive-integration-rp2-20261031'
+BASELINE_RECIPE=REPO/'.github/run-artifacts/recursive-integration-rp3-20261101/Source-Recipe.json'
+CONTROLLER_ACCEPTED=REPO/'.github/run-artifacts/recursive-integration-rp3-20261101/ready-copy-repair/Controller-Accepted.json'
+HEAD='fee69861e1f94c54721e5eb773633f9b1d6f9fd3'
+CONTRACT_SHA='5ecf462785cdd3ade6aaf7f64736b83dc2782c06248a64670d29b43e384260cb'
+RECIPE_SHA='ea4ff61382c7bb9466751bf62fcc65fc3b8f1cb0031d0e15f9069f6c5dc94cca'
+BASELINE_SHA='644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec'
+RP2_SHA='feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369'
+ACCEPTED_SHA='407579bec1a94d12ebecb7ba947765b1dc5451d248cc6f9733f3e86752cfc527'
+RP1_SHA='20800625e5f4bf72b19c1591b213e94704a48e05e173d93f9f89ff8b4fd76794'
+ATOMIC='memory-integrity/tests_v2/test_knowledge_windows_owned_process.py'
+ATOMIC_SHA='0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994'
+CLIENT='memory-integrity/scripts/knowledge_bridge/worker_client.py'
+FILES={
+ 'memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py':{'size':8547,'sha256':'7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af'},
+ 'memory-integrity/scripts/knowledge_bridge/windows_owned_process.py':{'size':37610,'sha256':'0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729'},
+ 'memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py':{'size':24613,'sha256':'755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3'},
+ 'memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py':{'size':18970,'sha256':'ba742402974a03d74d1619fddc1e4df6a8d4f768805b59f43bb268ea41bd285c'}}
+
+
+FIXTURE_FILES={'memory-integrity/tests_v2/test_knowledge_recursive_git.py': {'size': 6711, 'sha256': 'cab604b952789ddf77bf3398d4ab2008ecf8bd782529e0cefec0d7defa65bd91'}, 'memory-integrity/tests_v2/test_knowledge_recursive_integration.py': {'size': 10723, 'sha256': '00c990e3f2549edc3a19e669413e3c3d9e4611ab3be18b28d71e00c62dbc1783'}, 'memory-integrity/tests_v2/_knowledge_git_fixture.py': {'size': 1695, 'sha256': '091eb9bcc520364cc1c2ddb832fc88fe8d279d5f03f504b1df42a968a48d270e'}}
+FIXTURE_SHA='147d497126f3f9ba3f5f9589d747893f9ae5b77548cf836b064dab062aa806e3'
+PREDECESSOR_READY='C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\Source-Recipe.json'
+
+def validate_source(c1,contract,prep):
+    need=prep.require;stored=prep.read_json(PHASE/'Successor-Contract.json',CONTRACT_SHA)
+    need(contract.get('prototype_seals')==stored['prototype_seals'],'CONTRACT_PROTOTYPES')
+    need(contract==stored,'CONTRACT_CHANGED')
+    for name,digest in stored['prototype_seals'].items():need(prep.record(PHASE/'prototype'/name)['sha256']==digest,'PROTOTYPE_SEAL')
+    need(c1.git('rev-parse','HEAD').decode().strip()==HEAD,'HEAD')
+    recipe=prep.read_json(PHASE/'Source-Recipe.json',RECIPE_SHA)
+    baseline=prep.read_json(BASELINE_RECIPE,BASELINE_SHA);accepted=prep.read_json(RP2/'RP2-Accepted.json',RP2_SHA)
+    need(stored['head']==recipe['head']==baseline['head']==accepted['head']==HEAD and
+        accepted['rp2_complete'] is True and recipe['scope']=='RP3_GIT_FIXTURE_SOURCE_RECIPE_V1' and
+        recipe['rp2_accepted_sha256']==RP2_SHA and recipe['stage_complete'] is False and
+        recipe['selected_runtime_started'] is False,'SOURCE_STATUS')
+    tree={}
+    for entry in c1.git('ls-tree','-rz',HEAD).split(b'\0'):
+        if not entry:continue
+        meta,name=entry.split(b'\t',1);mode,kind,blob=meta.split();name=name.decode()
+        need(mode==b'100644' and kind==b'blob' and name not in tree,'TREE_MODE');tree[name]=blob.decode()
+    rows=c1.archive_rows(c1.git('archive','--format=zip',HEAD),tree)
+    base={name:hashlib.sha256(raw).hexdigest() for name,raw in rows.items()}
+    need(recipe['base_tree']==baseline['base_tree']==tree and recipe['base_manifest']==baseline['base_manifest']==base,'ARCHIVE_RECIPE')
+    overlay={name:row['sha256'] for name,row in accepted['sources'].items()};overlay[ATOMIC]=ATOMIC_SHA
+    need(len(accepted['sources'])==9 and baseline['approved_overlay']==overlay and len(overlay)==10,'BASELINE_OVERLAY')
+    need(baseline['evaluated_manifest']==dict(base,**overlay),'BASELINE_MANIFEST')
+    overlay.update({name:row['sha256'] for name,row in FILES.items()})
+    predecessor=prep.read_json(PREDECESSOR_READY,'8160ea9b46d439b93b17dd0914afb4a670483ac2723b4e8defa5d2c677f48bd0')
+    need(len(overlay)==12 and predecessor['approved_overlay']==overlay and predecessor['evaluated_manifest']==dict(base,**overlay) and len(predecessor['evaluated_manifest'])==682,'PREDECESSOR_READY_OVERLAY')
+    fix=prep.read_json(PHASE/'Fixture-Accepted.json',FIXTURE_SHA)
+    need(fix['scope']=='RP3_GIT_FIXTURE_CONTROLLER_ACCEPTED_SELECTED312_UNVERIFIED' and fix['files']==FIXTURE_FILES and fix['cases']==11 and fix['failures']==fix['errors']==fix['skips']==0 and fix['selected_runtime_started'] is False and fix['stage_complete'] is False,'FIXTURE_ACCEPTANCE')
+    for role in ('controller_result','review','green_receipt','red_receipt'):need(prep.record(fix[role]['path'])==fix[role],'FIXTURE_EVIDENCE:'+role)
+    for row in fix['product_hashes'].values():need(prep.record(row['path'])['sha256']==row['sha256'],'PRODUCT_UNCHANGED')
+    need(recipe['fixture_acceptance']==stored['fixture_acceptance']==prep.record(PHASE/'Fixture-Accepted.json') and recipe['predecessor_ready_recipe']==stored['predecessor_ready_recipe']==prep.record(PREDECESSOR_READY),'FIXTURE_RECIPE')
+    overlay.update({name:row['sha256'] for name,row in FIXTURE_FILES.items()})
+    need(len(overlay)==13 and recipe['approved_overlay']==overlay and recipe['evaluated_manifest']==dict(base,**overlay) and len(recipe['evaluated_manifest'])==683,'FIXTURE_OVERLAY')
+    for name,row in FIXTURE_FILES.items():
+        live=c1.read_file(REPO/name);need(len(live)==row['size'] and c1.sha(live)==row['sha256'],'FIXTURE_LIVE:'+name)
+    controller=prep.read_json(CONTROLLER_ACCEPTED,ACCEPTED_SHA);record=prep.record(CONTROLLER_ACCEPTED)
+    need(recipe['ready_copy_acceptance']==stored['accepted']==record,'READY_ACCEPTANCE_RECORD')
+    need(recipe['baseline_recipe']==stored['baseline_recipe']==prep.record(BASELINE_RECIPE),'BASELINE_RECORD')
+    need(controller['head']==HEAD and controller['status']=='SOURCE_AND_CONTROLLER_ACCEPTED_SELECTED_RUNTIME_UNVERIFIED' and
+        controller['native_review']=='SHIP_FROZEN_SOURCE_CANDIDATE_ONLY' and controller['retention_days']==3 and
+        controller['selected_runtime_started_this_repair'] is False and controller['stage_complete'] is False and
+        controller['actual_default_cache_creation_verified'] is False and controller['gate1_complete'] is False and
+        controller['preservation'] is False,'CONTROLLER_STATUS')
+    need(controller['files']==FILES and controller['focused']['run']==controller['focused']['passed']==32 and
+        controller['broader']['run']==324 and controller['broader']['passed']==270 and controller['broader']['skipped']==54 and
+        controller['broader']['failures']==controller['broader']['errors']==0,'CONTROLLER_EVIDENCE')
+    for name,row in FILES.items():
+        raw=c1.read_file(REPO/name);need(len(raw)==row['size'] and c1.sha(raw)==row['sha256'],'READY_LIVE_SOURCE:'+name)
+    before=prep.read_json(PHASE/'Before.json')
+    need(before['head']==HEAD and before['contract']==prep.record(PHASE/'Successor-Contract.json') and
+        before['production_files']==FILES and before['fixture_files']==FIXTURE_FILES and before['normal_root_initially_absent'] is True and
+        before['old_attempts_read_only'] is True and before['selected_runtime_from_agent'] is False,'READY_BEFORE')
+    for name,digest in recipe['evaluated_manifest'].items():
+        if name.startswith(('memory-integrity/','claude-mon/','semantica-runtime/','.github/fixtures/')):
+            need(c1.sha(c1.read_file(REPO/name))==digest,'LIVE_SOURCE:'+name)
+    previous=prep.read_json(RP2/'Before.json')
+    need(previous['head']==HEAD and previous['edit_targets'][CLIENT]['sha256']==base[CLIENT] and
+        previous['edit_targets'][ATOMIC]['sha256']==ATOMIC_SHA,'UNCHANGED_ORIGINALS')
+    rp1=prep.record(accepted['rp1_receipt']['path'])
+    need(set(accepted['rp1_receipt'])=={'path','size','sha256'} and
+        {k:rp1[k] for k in accepted['rp1_receipt']}==accepted['rp1_receipt'] and
+        rp1['links']==1 and rp1['sha256']==RP1_SHA,'RP1_RECEIPT')
+    older={}
+    # The unchanged, literal-sealed preparation code supplies the exact six pins.
+    for name,digest in prep.OLDER_PINS.items():
+        older[name]=prep.record(REPO/'.github/run-artifacts'/name);need(older[name]['sha256']==digest,'OLDER_PIN:'+name)
+    need(len(older)==6,'OLDER_SET')
+    return {'recipe':prep.record(PHASE/'Source-Recipe.json'),'accepted':prep.record(RP2/'RP2-Accepted.json'),
+        'before':prep.record(RP2/'Before.json'),'rp1_receipt':rp1,'evaluated_manifest':recipe['evaluated_manifest'],
+        'older_pins':older,'ready_copy_acceptance':record,'baseline_recipe':prep.record(BASELINE_RECIPE)}

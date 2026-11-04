@@ -11,6 +11,8 @@ import types
 import unittest
 from unittest.mock import patch
 
+from _knowledge_git_fixture import create_git_fixture, fixture_snapshot
+
 ROOT = Path(__file__).absolute().parents[1]
 REPO = ROOT.parent
 sys.path.insert(0, str(ROOT/'scripts'))
@@ -24,6 +26,7 @@ class RecursiveGit(unittest.TestCase):
         directory = tempfile.TemporaryDirectory(prefix='rp2-git-binding-')
         self.addCleanup(directory.cleanup)
         self.root = Path(directory.name)
+        self.repo, self.head = create_git_fixture(self.root)
         self.env = {k:v for k,v in os.environ.items() if not k.upper().startswith(('PYTHON','GIT_'))}
         self.env['PYTHONNOUSERSITE'] = '1'
         requests = self.root/'requests'
@@ -36,44 +39,48 @@ class RecursiveGit(unittest.TestCase):
         self.addCleanup(setattr, subprocess, 'Popen', original)
 
     def test_binding_is_idempotent_but_rejects_other_root_image_and_vectors(self):
-        self.guarded._rp_bind_runtime_git(REPO)
+        self.guarded._rp_bind_runtime_git(self.repo)
         first = json.dumps(self.profile['native_commands'], sort_keys=True)
-        self.guarded._rp_bind_runtime_git(REPO)
+        self.guarded._rp_bind_runtime_git(self.repo)
         self.assertEqual(json.dumps(self.profile['native_commands'], sort_keys=True), first)
         with self.assertRaisesRegex(ValueError, 'GIT_REBIND'):
             self.guarded._rp_bind_runtime_git(self.root)
         with patch.object(self.b.shutil, 'which', return_value=str(self.root/'git.exe')):
             with self.assertRaisesRegex(ValueError, 'GIT_REBIND'):
-                self.guarded._rp_bind_runtime_git(REPO)
+                self.guarded._rp_bind_runtime_git(self.repo)
         with self.assertRaisesRegex(ValueError, 'GIT_VECTOR'):
             subprocess.Popen(['git', '--version'], env=self.env)
         with self.assertRaisesRegex(ValueError, 'GIT_ENV'):
-            subprocess.Popen(['git','-C',str(REPO),'rev-parse','HEAD'],
+            subprocess.Popen(['git','-C',str(self.repo),'rev-parse','HEAD'],
                              env=dict(self.env, GIT_CONFIG_COUNT='1'))
 
     def test_bound_git_preserves_existing_readonly_outputs(self):
-        self.guarded._rp_bind_runtime_git(REPO)
+        self.guarded._rp_bind_runtime_git(self.repo)
+        before = fixture_snapshot(self.repo)
         for tail in (['rev-parse','HEAD'], ['status','--porcelain','--untracked-files=all']):
-            argv = ['git','-C',str(REPO),*tail]
+            argv = ['git','-C',str(self.repo),*tail]
             spec = self.profile['native_commands']['git']
             original = self.guarded.__bases__[0]
-            with original([spec['image']['path'],*argv[1:]], env=self.env,
+            with original([spec['image']['path'],'--no-optional-locks',*argv[1:]], env=self.env,
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE) as direct:
                 out, err = direct.communicate(timeout=10)
             actual = subprocess.run(argv, env=self.env, capture_output=True, timeout=10)
             self.assertEqual((actual.returncode,actual.stdout,actual.stderr), (direct.returncode,out,err))
+            self.assertEqual(actual.returncode, 0, actual.stderr)
+            self.assertEqual(actual.stdout.strip(), self.head.encode() if tail[0]=='rev-parse' else b'')
+        self.assertEqual(fixture_snapshot(self.repo), before)
 
     def test_expired_binding_and_dispatch_cannot_start_git(self):
         self.profile['deadline'] = time.monotonic()-1
         with patch.object(self.b, 'native_spec', side_effect=AssertionError('must refuse before inspection')):
             with self.assertRaisesRegex(ValueError, 'DEADLINE'):
-                self.guarded._rp_bind_runtime_git(REPO)
+                self.guarded._rp_bind_runtime_git(self.repo)
         self.profile['deadline'] = time.monotonic()+10
-        self.guarded._rp_bind_runtime_git(REPO)
+        self.guarded._rp_bind_runtime_git(self.repo)
         self.profile['deadline'] = time.monotonic()-1
         with patch.object(self.b, 'route_native', side_effect=AssertionError('must refuse before routing')):
             with self.assertRaisesRegex(ValueError, 'DEADLINE'):
-                subprocess.Popen(['git','-C',str(REPO),'rev-parse','HEAD'], env=self.env)
+                subprocess.Popen(['git','-C',str(self.repo),'rev-parse','HEAD'], env=self.env)
 
 
 class EditableRuntimeHook(unittest.TestCase):

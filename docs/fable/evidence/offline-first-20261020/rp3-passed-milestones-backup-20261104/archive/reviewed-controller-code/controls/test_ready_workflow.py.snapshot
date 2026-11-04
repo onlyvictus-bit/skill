@@ -1,0 +1,78 @@
+"""Race, absolute coordination deadline and fail-before-workflow controls."""
+from datetime import datetime,timedelta,timezone
+import importlib.util
+import os
+import json
+import tempfile
+import threading
+import types
+from pathlib import Path
+import unittest
+from unittest.mock import Mock
+PHASE=Path(__file__).absolute().parents[1]
+
+class WorkflowControls(unittest.TestCase):
+    def setUp(self):
+        path=PHASE/'prototype/ready_workflow.py';self.assertTrue(path.exists(),'missing successor workflow')
+        spec=importlib.util.spec_from_file_location('ready_workflow_tests',path);self.m=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.m)
+        self.now=datetime(2026,11,2,tzinfo=timezone.utc);self.a={'factory':'sealed'}
+        self.service={'scope':'RP3_READY_READER_SERVICE_V1','session':'a'*32,'authorities':self.a,'pid':os.getpid(),'claim':{'path':'claim','size':1,'sha256':'a'*64,'links':1},'started_monotonic':100.,'deadline_monotonic':3700.,'started_utc':self.now.isoformat(),'expires_utc':(self.now+timedelta(seconds=3600)).isoformat()}
+    def test_absolute_deadline_does_not_reset_after_preparation(self):
+        value=self.m.remaining(self.service,'a'*32,self.a,now_mono=3690.,now_utc=self.now+timedelta(seconds=3590))
+        self.assertEqual(value,10.)
+    def test_expired_extended_or_rebound_service_refused(self):
+        with self.assertRaises(ValueError):self.m.remaining(self.service,'a'*32,self.a,now_mono=3701.,now_utc=self.now)
+        self.service['deadline_monotonic']+=1
+        with self.assertRaises(ValueError):self.m.remaining(self.service,'a'*32,self.a,now_mono=101.,now_utc=self.now)
+        with self.assertRaises(ValueError):self.m.remaining(self.service,'old-session',self.a,now_mono=101.,now_utc=self.now)
+    def test_diagnostics_failure_after_inputs_never_publishes_preparation_ready(self):
+        seen=[]
+        def prepare():seen.append('Inputs published');raise OSError('CONTROL_DIAGNOSTICS_PUBLICATION')
+        publish=Mock();validate=Mock()
+        with self.assertRaisesRegex(OSError,'CONTROL_DIAGNOSTICS_PUBLICATION'):self.m.publish_preparation(prepare,validate,publish)
+        validate.assert_not_called();publish.assert_not_called();self.assertEqual(seen,['Inputs published'])
+    def test_readiness_requires_validator_success_after_prepare_return(self):
+        validate=Mock(side_effect=ValueError('CONTROL_BAD_DIAGNOSTICS'));publish=Mock()
+        with self.assertRaisesRegex(ValueError,'CONTROL_BAD_DIAGNOSTICS'):self.m.publish_preparation(lambda:{'prepared':True},validate,publish)
+        publish.assert_not_called()
+    def test_wrong_normal_account_cannot_create_claim_or_start_preparation(self):
+        family=Mock();family.prep.exact_normal_account.side_effect=ValueError('WRONG_ACCOUNT')
+        with self.assertRaisesRegex(ValueError,'WRONG_ACCOUNT'):self.m.run_normal(family)
+        family.prep.prepare.assert_not_called();family.prep.save.assert_not_called()
+    def test_extra_service_fields_and_invalid_pid_are_refused(self):
+        self.service['extra']=True
+        with self.assertRaises(ValueError):self.m.remaining(self.service,'a'*32,self.a,now_mono=101.,now_utc=self.now)
+        self.service.pop('extra');self.service['pid']=True
+        with self.assertRaises(ValueError):self.m.remaining(self.service,'a'*32,self.a,now_mono=101.,now_utc=self.now)
+    def test_missing_or_other_process_claim_is_refused(self):
+        self.assertTrue(callable(getattr(self.m,'validate_claim',None)),'missing service/claim binding')
+        claim={'scope':'ONE_EXISTING_ACCESS_READER_NO_SELECTED_RUNTIME','session':'a'*32,'pid':os.getpid()+1,'seed':{'path':'seed','size':1,'sha256':'a'*64,'links':1}}
+        with self.assertRaises(ValueError):self.m.validate_claim(self.service,claim)
+        with self.assertRaises(ValueError):self.m.validate_claim(self.service,{})
+    def test_inner_reader_ready_from_other_pid_is_refused(self):
+        self.assertTrue(callable(getattr(self.m,'validate_inner_reader',None)),'missing reader PID binding')
+        value={'scope':'RP3_EXISTING_ACCESS_READER_READY','session':'a'*32,'pid':os.getpid()+1,'expires_utc':self.service['expires_utc'],
+            'copy_inputs':{},'copy_helper':{},'runtime_helper':{},'finish_helper':{},**{k:False for k in ('selected_runtime_started','stage_complete','gate1_complete','release_ready','installed','producer_authentication','preservation','historical_c2_cause_proven')}}
+        with self.assertRaises(ValueError):self.m.validate_inner_reader(self.service,value)
+    def test_atomic_marker_stays_hidden_while_json_is_incomplete(self):
+        scratch=PHASE/'publication-test-scratch';scratch.mkdir(exist_ok=True)
+        root=Path(tempfile.mkdtemp(dir=scratch));path=root/'Ready.json'
+        entered=threading.Event();release=threading.Event();errors=[]
+        def save(target,value):
+            with Path(target).open('x') as stream:
+                stream.write('{"complete":');stream.flush();entered.set()
+                if not release.wait(5):raise TimeoutError('CONTROL_PUBLISH_BLOCK')
+                stream.write('true}')
+        p=types.SimpleNamespace(ordinary=lambda q:q,save=save)
+        def publish():
+            try:self.m.atomic_publish(p,path,{'complete':True})
+            except BaseException as error:errors.append(error)
+        worker=threading.Thread(target=publish)
+        worker.start()
+        try:
+            self.assertTrue(entered.wait(5));self.assertFalse(path.exists())
+        finally:release.set();worker.join(timeout=5)
+        self.assertFalse(worker.is_alive());self.assertEqual(errors,[])
+        self.assertEqual(json.loads(path.read_bytes()),{'complete':True})
+
+if __name__=='__main__':unittest.main()

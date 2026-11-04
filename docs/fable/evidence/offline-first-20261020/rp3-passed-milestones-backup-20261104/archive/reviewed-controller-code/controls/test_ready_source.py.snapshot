@@ -1,0 +1,71 @@
+"""Adversarial current-archive/source controls; no selected runtime."""
+import copy
+import hashlib
+import importlib.util
+import io
+from pathlib import Path
+import subprocess
+import unittest
+import zipfile
+PHASE=Path(__file__).absolute().parents[1];REPO=PHASE.parents[2]
+HEAD='fee69861e1f94c54721e5eb773633f9b1d6f9fd3'
+
+def load(name,path):
+    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+
+class C1:
+    head=HEAD;tamper_archive=False
+    def __init__(self):self.tamper_live={}
+    def git(self,*args):
+        if args==('rev-parse','HEAD'):return (self.head+'\n').encode()
+        return subprocess.run(['git',*args],cwd=REPO,check=True,capture_output=True).stdout
+    def archive_rows(self,archive,tree):
+        with zipfile.ZipFile(io.BytesIO(archive)) as z:rows={n:z.read(n) for n in z.namelist() if not n.endswith('/')}
+        if self.tamper_archive:rows[next(iter(rows))]=b'archive drift'
+        return rows
+    def read_file(self,path):return self.tamper_live.get(Path(path),Path(path).read_bytes())
+    @staticmethod
+    def sha(raw):return hashlib.sha256(raw).hexdigest()
+
+class SemanticPrep:
+    def __init__(self,base,changes):self.base,self.changes=base,changes
+    def require(self,*args):return self.base.require(*args)
+    def record(self,*args):return self.base.record(*args)
+    def read_json(self,path,digest=None):
+        path=Path(path).resolve();v=copy.deepcopy(self.base.read_json(path,None if path in self.changes else digest))
+        if path in self.changes:self.changes[path](v)
+        return v
+
+class SourceControls(unittest.TestCase):
+    def setUp(self):
+        self.assertTrue((PHASE/'prototype/ready_source.py').exists(),'missing successor source validator')
+        self.m=load('ready_source_tests',PHASE/'prototype/ready_source.py')
+        self.p=load('ready_source_prep_tests',PHASE/'prototype/rp3_prepare.py')
+        self.contract=self.p.read_json(PHASE/'Successor-Contract.json',self.m.CONTRACT_SHA)
+    def validate(self,c1=None,prep=None):return self.m.validate_source(c1 or C1(),self.contract,prep or self.p)
+    def test_exact_archive_and_current_source(self):
+        v=self.validate();self.assertEqual(len(v['evaluated_manifest']),683);self.assertEqual(len(v['older_pins']),6)
+        self.assertEqual(set(v),{'recipe','accepted','before','rp1_receipt','evaluated_manifest','older_pins','ready_copy_acceptance','baseline_recipe'})
+    def test_head_archive_and_live_drift(self):
+        a=C1();a.head='0'*40
+        with self.assertRaisesRegex(ValueError,'HEAD'):self.validate(a)
+        a=C1();a.tamper_archive=True
+        with self.assertRaisesRegex(ValueError,'ARCHIVE'):self.validate(a)
+        a=C1();a.tamper_live[REPO/'memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py']=b'bad'
+        with self.assertRaisesRegex(ValueError,'LIVE_SOURCE'):self.validate(a)
+    def test_extra_overlay_and_wrong_acceptance_path_refused(self):
+        recipe=self.m.PHASE/'Source-Recipe.json'
+        p=SemanticPrep(self.p,{recipe:lambda v:v['approved_overlay'].update({'memory-integrity/evil.py':'0'*64})})
+        with self.assertRaisesRegex(ValueError,'OVERLAY'):self.validate(prep=p)
+        def wrong(v):v['ready_copy_acceptance'].update(path='C:\\forged\\accept.json',links=2)
+        with self.assertRaisesRegex(ValueError,'ACCEPTANCE_RECORD'):self.validate(prep=SemanticPrep(self.p,{recipe:wrong}))
+    def test_controller_and_baseline_drift_refused(self):
+        p=SemanticPrep(self.p,{self.m.CONTROLLER_ACCEPTED:lambda v:v.update(status='forged')})
+        with self.assertRaisesRegex(ValueError,'CONTROLLER_STATUS'):self.validate(prep=p)
+        p=SemanticPrep(self.p,{self.m.BASELINE_RECIPE:lambda v:v['approved_overlay'].update({'extra.py':'0'*64})})
+        with self.assertRaisesRegex(ValueError,'BASELINE_OVERLAY'):self.validate(prep=p)
+    def test_prototype_rebinding_refused(self):
+        self.contract['prototype_seals']['rp3_prepare.py']='0'*64
+        with self.assertRaisesRegex(ValueError,'CONTRACT_PROTOTYPES'):self.validate()
+
+if __name__=='__main__':unittest.main()

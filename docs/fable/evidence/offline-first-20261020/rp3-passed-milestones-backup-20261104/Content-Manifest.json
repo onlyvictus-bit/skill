@@ -1,0 +1,626 @@
+{
+  "excludes_own_hash": true,
+  "files": {
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/Archive-Manifest.json": {
+      "sha256": "951f1e549bc27a652ff45e1f936c6aa0e8c075e996e14c0bb63c3f43aed30353",
+      "size": 57589
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/Passed-Milestones.json": {
+      "sha256": "85f305f331963828a73dccc3e3db43ea648222c5997f2f8a37b23be45b488d99",
+      "size": 15554
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/README.md": {
+      "sha256": "b984a71144bc81e4f25ea99a9fbb70e62e0a2c48cf444d9ad667aa9af108d9f3",
+      "size": 2213
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-budget/Command.json.snapshot": {
+      "sha256": "84d586e8107359a41267c80f02973934dfd325de625c5f39ec351101c85a869c",
+      "size": 1314
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-budget/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-budget/stdout.log.snapshot": {
+      "sha256": "61473e9d3df2ce4a4db36eae3d107b0d7b2ab9239b2d60479737b30bfcf554d6",
+      "size": 1842
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-session/Command.json.snapshot": {
+      "sha256": "0edf0c8c0d178a53598c587ffb5aca31b06720586e4d7b7fefd1fe7c710eb967",
+      "size": 1345
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-session/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-session/stdout.log.snapshot": {
+      "sha256": "b349812313035f14b4623a4befa9bd9e9a3cf11dad429a43197f8f79d6f71bfb",
+      "size": 1918
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-shutdown/Command.json.snapshot": {
+      "sha256": "b61857a5c7d83c46e453794bfb89a2add4df5c4d35a3c8f0176120712b85ae49",
+      "size": 1349
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-shutdown/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-combined-shutdown/stdout.log.snapshot": {
+      "sha256": "caba3c2c527e3415683a2754c6e3f936701ae816d60c8037dc01c12e4a9f54d8",
+      "size": 2702
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-cwd/Command.json.snapshot": {
+      "sha256": "f5ae26099a135da20b217e4fe0ae694b8781b2986b5ce9782374cbff156f5fa5",
+      "size": 1301
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-cwd/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-cwd/stdout.log.snapshot": {
+      "sha256": "9d8236dfe43ea4e358db45f0893d889c3b55ab83dc5fbef550d512872815f9d7",
+      "size": 1821
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-lifecycle/Command.json.snapshot": {
+      "sha256": "a675915c7059079468cd06529dbb31af62b1b63efd14383ee3f560aed375b734",
+      "size": 1326
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-lifecycle/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-lifecycle/stdout.log.snapshot": {
+      "sha256": "27c8ab4ba409ce23dc8c01af816919d74f3af39a30413786ace167a5e601908e",
+      "size": 1646
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-ownership/Command.json.snapshot": {
+      "sha256": "76248ce0348106a6a0549f9ec933f0660f319f1b4ddd9568a51341ee9504cb4b",
+      "size": 1330
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-ownership/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-ownership/stdout.log.snapshot": {
+      "sha256": "ff7359a64abc3e91f1a5ad161bc6f1b8b9a47c1fef5eede68ff581cf38b9b038",
+      "size": 3942
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-recursive-git/Command.json.snapshot": {
+      "sha256": "0d8b8bc0a5d44204729e43b925f6acce1bb18643bc90ef6aba633a171d85d510",
+      "size": 1334
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-recursive-git/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-recursive-git/stdout.log.snapshot": {
+      "sha256": "817d7ead188ee70a815cbaf74a85dfb8ed4327a3e262eac6f243101d216cee2e",
+      "size": 1389
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-writer/Command.json.snapshot": {
+      "sha256": "9de04408e4703324dd860af5d70fe013ce05f474be9f835a4508780aa3c334db",
+      "size": 1314
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-writer/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/command-writer/stdout.log.snapshot": {
+      "sha256": "ad2088f9086eb9a8827d82836c84a0759bf0dd90e61eb39a876e86453c141be2",
+      "size": 3809
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-budget/Command.json.snapshot": {
+      "sha256": "6f6df640d5a1cbf91d9408ba8216e2753cdd66baeb47b1a5f25194751ccb60a7",
+      "size": 1411
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-budget/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-budget/stdout.log.snapshot": {
+      "sha256": "960ad3e1ccb152fd9b28d9b284fd7b4ab16cc2c1d4015a142a4d0f7c7221a85c",
+      "size": 818
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-session/Command.json.snapshot": {
+      "sha256": "7f6852ab8046d9891424e28be979a82369c002687273cbeec54f42384ec0ef24",
+      "size": 1431
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-session/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-session/stdout.log.snapshot": {
+      "sha256": "65a10dec3bc3480bb5a393881c0fabbdeeb41f592e53963ffbf3b3f8fdc38f88",
+      "size": 826
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-shutdown/Command.json.snapshot": {
+      "sha256": "c83a059a125f53344f3c4da5f5d230b1b3ce7c40d8bd4895a7934616ffa82957",
+      "size": 1436
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-shutdown/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-combined-shutdown/stdout.log.snapshot": {
+      "sha256": "46d19eef485a75530511c1f72c8eace964842f8e4bd7339b71f0656c397f02a1",
+      "size": 1330
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-cwd/Command.json.snapshot": {
+      "sha256": "b8502f449d30dc5288bd560bc2a9cbce8efacc0e69600388c32842622e6f8160",
+      "size": 1401
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-cwd/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-cwd/stdout.log.snapshot": {
+      "sha256": "59e205a64f1a9dd2d3e1487d89bad2ba8ad59c75b59afbf179ab286d9205d5b8",
+      "size": 715
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-lifecycle/Command.json.snapshot": {
+      "sha256": "590fb538863be7727e83080c8a8674aac8376f9657c0196c2099215e2ff63b38",
+      "size": 1420
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-lifecycle/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-lifecycle/stdout.log.snapshot": {
+      "sha256": "044b8f732bdeac1aaa6f83b6702b304c7a53eca16ced169ccfb7d8b75a6616d6",
+      "size": 684
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-ownership/Command.json.snapshot": {
+      "sha256": "05c4098be3b01fa66c017398e816fa8b045c71136b70909692a3f7249e6f5dcc",
+      "size": 1425
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-ownership/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-ownership/stdout.log.snapshot": {
+      "sha256": "beb4d1cf4c9dde586b8de91dabf3d5275b525fc8bd541006be352d07c008acd1",
+      "size": 2161
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-recursive-git/Command.json.snapshot": {
+      "sha256": "ae5c85636af5bc99315f0cee254024faef934e81ea5278e03f5231ff4e3c62c1",
+      "size": 1424
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-recursive-git/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-recursive-git/stdout.log.snapshot": {
+      "sha256": "d3924015ed50228c81947acbe3b0e457f3844884566e279225624fe16c7c953c",
+      "size": 520
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-writer/Command.json.snapshot": {
+      "sha256": "ba86a7e99ee3c7b499d51dd01123e415233224445fc6d042ab822347e1111c1b",
+      "size": 1412
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-writer/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/discover-writer/stdout.log.snapshot": {
+      "sha256": "586459f3be53f9aff93234f63f9252a38ef5ca9f70eab22ed0e1cd9bf72011a6",
+      "size": 1983
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-dependencies/Command.json.snapshot": {
+      "sha256": "569812bfc20e5ac061704b007388fb473a7f0d586b5b5d63986904b26b483770",
+      "size": 1902
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-dependencies/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-dependencies/stdout.log.snapshot": {
+      "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+      "size": 1247
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-identity/Command.json.snapshot": {
+      "sha256": "b8c29baa983cbd02847dc2568d0e9153be502f1291bf04e4ce8994c63cb73436",
+      "size": 2568
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-identity/stderr.log.snapshot": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/commands/preclaim-identity/stdout.log.snapshot": {
+      "sha256": "277fede65ab04c38ffe3f0f6af36207f09f45c0ce5c646fd38850ef93dc62622",
+      "size": 1362
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/controller/Receipt.json.snapshot": {
+      "sha256": "c3e897377f55fb300a9536f431ba7b51ac1eb1c862a8e7092e5b0b828d3046a1",
+      "size": 271
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/controller/unittest.log.snapshot": {
+      "sha256": "80c0e1f22ced32e8d9bfed5c401dc1fb5fdf8bff2697cf723076ffa92f2afef3",
+      "size": 34933
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/budget/Discovery.json.snapshot": {
+      "sha256": "a1bad2d149af70137a050e5a8850b515fd0d3bbfa99fd2a8cc7d0e3aae2caa38",
+      "size": 892
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/budget/Receipt.json.snapshot": {
+      "sha256": "cc934d72522d67a935ec0ecf407602c0c4623fae07c29476d080352fcd5a5210",
+      "size": 475
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/budget/unittest.log.snapshot": {
+      "sha256": "9559a2fd14f5d9eb01c55cb7e40c295a57eb79260da20c73681a8adc7219de61",
+      "size": 1392
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-session/Discovery.json.snapshot": {
+      "sha256": "dea62050850c37fb007f441bf1a4be79fa0ec54e8236181d761ea3df254ad014",
+      "size": 911
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-session/Receipt.json.snapshot": {
+      "sha256": "2ddef393459dd65ae1a930b0bdbfb171acfb39d1beec076f38fcd445613528e5",
+      "size": 486
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-session/unittest.log.snapshot": {
+      "sha256": "c51f9b0dc2c2b5e5c4e1a443e35fb56917a5e53513c980ecd42c2db46f1b48f0",
+      "size": 1457
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-shutdown/Discovery.json.snapshot": {
+      "sha256": "cada957c477c2a25459ed6baf214e48a8b4275bae1aeabe8af8509cd20a342fc",
+      "size": 1417
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-shutdown/Receipt.json.snapshot": {
+      "sha256": "624709038ddfe69d5b3cfd8302a36983073d1c0432786cc642e0bd3979829324",
+      "size": 490
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/combined-shutdown/unittest.log.snapshot": {
+      "sha256": "c5a869200ee7716ea3a1e8f059fdfe415f2d288a0e572e0219da067a57a50577",
+      "size": 2232
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/cwd/Discovery.json.snapshot": {
+      "sha256": "67edfae0543cf27adac3b767f995d826a13bdf5073387bab385e0ed5091cba88",
+      "size": 782
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/cwd/Receipt.json.snapshot": {
+      "sha256": "1acad30568018ba890c520efb0896045fcf6c562ec86cdbe9b19c3d3e3454e61",
+      "size": 468
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/cwd/unittest.log.snapshot": {
+      "sha256": "a355a5ffbf33b7dc2b03fe15905ba0e2c6f25f16662bc82217031d42f6d0bc63",
+      "size": 1377
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/lifecycle/Discovery.json.snapshot": {
+      "sha256": "c0d67f967968fdf266eb27cd6baddd5c631588c5755a63fd380279ad47288ebb",
+      "size": 764
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/lifecycle/Receipt.json.snapshot": {
+      "sha256": "a9c15c9070f3b7e8c6eba88f31a953fa6acd814fd4b70697b7b0be2599258674",
+      "size": 481
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/lifecycle/unittest.log.snapshot": {
+      "sha256": "c2ef37eac0abf6bd5433cd18403a1c8ee94aa4f51bf8d1d8430de0ca47e7ecab",
+      "size": 1191
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/ownership/Discovery.json.snapshot": {
+      "sha256": "38dce3d111782cf17da14f081fa9246c90b9f96a726366366293297a507112a8",
+      "size": 2245
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/ownership/Receipt.json.snapshot": {
+      "sha256": "e1acb88da4d29a6af70865bea563c48d4e7da8dc582426afae21cc80f8021c74",
+      "size": 487
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/ownership/unittest.log.snapshot": {
+      "sha256": "f96df9fa00c365a8663f6c5850b442964d583b1863912a74a5f3b36ad7fd2101",
+      "size": 3470
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/recursive-git/Discovery.json.snapshot": {
+      "sha256": "89d08220b7eeaba196bb576b53185c5ca150acfacf91f9d6d1cdbb27f3d882e7",
+      "size": 600
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/recursive-git/Receipt.json.snapshot": {
+      "sha256": "a203a48eb73e96eb19e0177726a0c1be84988f6f6da7f40d4f65ae503295e9c7",
+      "size": 481
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/recursive-git/unittest.log.snapshot": {
+      "sha256": "d8a13e647a16b4fd681d26c7cc90c2ec51fa1df17fc55e051dfc19bc112b5f76",
+      "size": 935
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/writer/Discovery.json.snapshot": {
+      "sha256": "46616d7b55efad7180c8ffb2e3deadcf61c731423cba055ca5bade6cf4aed9a6",
+      "size": 2057
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/writer/Receipt.json.snapshot": {
+      "sha256": "a155e0ae715e09105660cee0efd10d5c81df0d30fed90a66f1447d056a7786c6",
+      "size": 477
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/groups/writer/unittest.log.snapshot": {
+      "sha256": "a275c44182da0fb49621296964588899c3d87bda7adfb71f2911b7f2cc1ed042",
+      "size": 3346
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Preparation-Diagnostics.json.snapshot": {
+      "sha256": "e9862060ad61231eb4b6ee064256b26ba75722a3f01d170e0dd9a8282e1c31a1",
+      "size": 2993
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Transport-Accepted.json.snapshot": {
+      "sha256": "494702b06aeddc8b668cdaa1cb817c2bf53c5a695546bea052ad1ec60c04f1e4",
+      "size": 877
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Transport-Ack.json.snapshot": {
+      "sha256": "5a6921cebb3a5618d12992087599ce638cd961de7cb6d279dfdb0f04b28035a5",
+      "size": 1231
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/prechecks/Transport-Ping.json.snapshot": {
+      "sha256": "787f27b199e1f0e21dbe47bf22141f8e6e4a48be348f0719c31dc08a6c8410cc",
+      "size": 953
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Authority-Manifest.json.snapshot": {
+      "sha256": "7511c550abad6c3726f57d236f1083202b155c263d87f273de12d93dcc55e42d",
+      "size": 4137
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Core-Review.md.snapshot": {
+      "sha256": "eb28a9d8802e4d6873cd9c8fb4d9ab922f0ad4687acea828a902948c5df8cb36",
+      "size": 1110
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Final-Review.md.snapshot": {
+      "sha256": "f87e62292f635f35244395ff7613a1f495f809d3237bb5377a00a7dd6b52b663",
+      "size": 937
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Fixture-Accepted.json.snapshot": {
+      "sha256": "147d497126f3f9ba3f5f9589d747893f9ae5b77548cf836b064dab062aa806e3",
+      "size": 13038
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Source-Recipe.json.snapshot": {
+      "sha256": "ea4ff61382c7bb9466751bf62fcc65fc3b8f1cb0031d0e15f9069f6c5dc94cca",
+      "size": 247233
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/provenance/Successor-Contract.json.snapshot": {
+      "sha256": "5ecf462785cdd3ade6aaf7f64736b83dc2782c06248a64670d29b43e384260cb",
+      "size": 4191
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_final_acceptance.py.snapshot": {
+      "sha256": "6aecb9bcc272caf175647f2090e11c40053c969d210ca2ee1a3d2aa9e71b06c2",
+      "size": 7639
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_final_outer.py.snapshot": {
+      "sha256": "8b1528d0dfe74f1991924b2703ca74536824d3ac7f2c9e93d6524f48dd4fba0b",
+      "size": 6312
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_envelopes.py.snapshot": {
+      "sha256": "79187973e77a4f99d06c4602a0b600d1f231fdd0352eb68392c38ac27a5831ce",
+      "size": 6530
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_factory.py.snapshot": {
+      "sha256": "e672423ff112010f1601a4de5e0d533993232aed7c42e86e8ec7a85a019c20d9",
+      "size": 3764
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_hooks.py.snapshot": {
+      "sha256": "6cd083031536c38e5b3f344892162b280e483c8878ece82d0c25b6788bd79b49",
+      "size": 9853
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_source.py.snapshot": {
+      "sha256": "dfe4c2327114c1f708b6cfa26bb362dcec5d1a9e1cfd0fdec322b7d5ab5fcfe6",
+      "size": 4205
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_ready_workflow.py.snapshot": {
+      "sha256": "461cb543601abd5e927c4db2b66705f35044ba7cf47a10bc80f51b83379ed2dc",
+      "size": 5792
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_routed_copy.py.snapshot": {
+      "sha256": "857b67ff0d594cb2f9c1984d4da9b4f70f4381c7850c9d52b13a5fe44a7100e4",
+      "size": 8251
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/controls/test_routed_protocol.py.snapshot": {
+      "sha256": "453ab7eebbbe8fc74d9b9a1bf0f44f56ecd0dbc4e2eea25a9fb9c6f564e3fb06",
+      "size": 9599
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_envelopes.py.snapshot": {
+      "sha256": "ab25895576e58fe204f2104ad023d36a5fece35b9af03f8a2058d0ee161368f5",
+      "size": 8455
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_factory.py.snapshot": {
+      "sha256": "b19ab7e0ab338b5cebd5552cdd0de746e876898f2a22f0944dc5d333883a9e77",
+      "size": 14415
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_source.py.snapshot": {
+      "sha256": "278025b3fb5beaa518b1838f420e5e1921074afb4bdf7377f46e4d48f9a821e3",
+      "size": 9296
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/ready_workflow.py.snapshot": {
+      "sha256": "e35adbcdedd762b3c3380991ea93ecb8c034b6bcf74258dc7d4782293f4eaae7",
+      "size": 29434
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_bound_copy.py.snapshot": {
+      "sha256": "7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264",
+      "size": 2059
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_copy.py.snapshot": {
+      "sha256": "d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b",
+      "size": 20160
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_finish.py.snapshot": {
+      "sha256": "9575210dafccd7ed4f7fd47e41ae5bd834f017d6d314d832278a35bdff4dbf60",
+      "size": 13026
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_prepare.py.snapshot": {
+      "sha256": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9",
+      "size": 11958
+    },
+    "docs/fable/evidence/offline-first-20261020/rp3-passed-milestones-backup-20261104/archive/reviewed-controller-code/prototype/rp3_runtime.py.snapshot": {
+      "sha256": "2ad2e5921476e83fb4db8f26d9f46615c8e33ff3bb1b717da3cba3429c61c2e0",
+      "size": 25358
+    },
+    "memory-integrity/tests_v2/_knowledge_git_fixture.py": {
+      "sha256": "091eb9bcc520364cc1c2ddb832fc88fe8d279d5f03f504b1df42a968a48d270e",
+      "size": 1695
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py": {
+      "sha256": "cab604b952789ddf77bf3398d4ab2008ecf8bd782529e0cefec0d7defa65bd91",
+      "size": 6711
+    }
+  },
+  "parent": "19acf397907df698154a4ab397394d62639cc1c8",
+  "ref": "refs/heads/backup/rp3-passed-milestones-20261104",
+  "rp3_complete": false,
+  "verified_passed_source": {
+    "memory-integrity/scripts/knowledge_bridge/__init__.py": {
+      "sha256": "21bc21a14170b62274abdec3306b149d0dfea6dc361a547fc8597959a99b6c2f",
+      "size": 219
+    },
+    "memory-integrity/scripts/knowledge_bridge/admission.py": {
+      "sha256": "98d608b16bb2994bfbb2eb779db0c4aa72efdfe34d7af688a869edefe73568ab",
+      "size": 5313
+    },
+    "memory-integrity/scripts/knowledge_bridge/advanced_retrieval.py": {
+      "sha256": "4fad12c689b545922eaaaf38edcb28d9442466ea312665911949ebd0c092f0a6",
+      "size": 8009
+    },
+    "memory-integrity/scripts/knowledge_bridge/benchmark.py": {
+      "sha256": "499dfe8fa9fc7e58ed63ede80aca0bf0bd54b2eff83c565496a519bbb4be200b",
+      "size": 5547
+    },
+    "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py": {
+      "sha256": "d804eb655a2c5e6759f6cee73d5adca00a91c14532727e676f818bab36d19959",
+      "size": 24229
+    },
+    "memory-integrity/scripts/knowledge_bridge/contracts.py": {
+      "sha256": "bb46d8b5e124d2ea29a09e881153ba7c37c71d8adb5caf9363d31a0e66df25a6",
+      "size": 7391
+    },
+    "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py": {
+      "sha256": "83ec8f3fd11dba0a7eb9c94cc2c870eac7c98b7a34614893e97e53b8d3cbbc87",
+      "size": 19493
+    },
+    "memory-integrity/scripts/knowledge_bridge/distributed_worker.py": {
+      "sha256": "5d05e78e3917ef031fcb076e49bccd6b148e6f16dbba9c24e635b7d401faee00",
+      "size": 6594
+    },
+    "memory-integrity/scripts/knowledge_bridge/extraction.py": {
+      "sha256": "685adcb3a5459395819ada3eb526014af7a147338ebc65828a8de48642b92c03",
+      "size": 27068
+    },
+    "memory-integrity/scripts/knowledge_bridge/impact.py": {
+      "sha256": "9ef835e7e63c1989c2802f3ebe324d7a7ed9aa28782fe15a22ba086d2b1d5ac1",
+      "size": 5398
+    },
+    "memory-integrity/scripts/knowledge_bridge/indexing.py": {
+      "sha256": "75596598e1c6aa01b461ef70e1aeda2557f6a87edc6c1dea77422f11d755613e",
+      "size": 7974
+    },
+    "memory-integrity/scripts/knowledge_bridge/language_extraction.py": {
+      "sha256": "e46c412d2f44dff9cf5d12734f1edc03c2c21c55113b1f41304b72d84919768a",
+      "size": 4070
+    },
+    "memory-integrity/scripts/knowledge_bridge/model_benchmark.py": {
+      "sha256": "186dd1d69b57ba428a3b4cc3e40dcf052d2aa33ee344f586bccdfda15a11efb1",
+      "size": 25266
+    },
+    "memory-integrity/scripts/knowledge_bridge/model_runtime.py": {
+      "sha256": "4ad4eed2d58886cb2e26eece1a2f67d916cb561a6f01d34cf13dc33e6f992d45",
+      "size": 18596
+    },
+    "memory-integrity/scripts/knowledge_bridge/offline_engine.py": {
+      "sha256": "be64a19e65289f36327eeaf832cdcca757970bbce36fa94860c0f7f082ea4ea7",
+      "size": 16358
+    },
+    "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py": {
+      "sha256": "5d7576d225a55ddb0741de08e9151de3586e9256576364426717b99a7acfde52",
+      "size": 47516
+    },
+    "memory-integrity/scripts/knowledge_bridge/recursive_policy.py": {
+      "sha256": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18",
+      "size": 6554
+    },
+    "memory-integrity/scripts/knowledge_bridge/retrieval.py": {
+      "sha256": "384e30c0fff626a6c01f5b7b8d6c99fc82e615c8cca8b02e003afb2215578142",
+      "size": 14143
+    },
+    "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py": {
+      "sha256": "875bf747635eb3b3119a136b4df777ef6944fc6f0ca90948498ca7ff9919c140",
+      "size": 33972
+    },
+    "memory-integrity/scripts/knowledge_bridge/semantic_proposals.py": {
+      "sha256": "a3e2e53c5cbe7eb31c8b6c169918abaa272ce8dc29d3a8f544c3d2720536504b",
+      "size": 6722
+    },
+    "memory-integrity/scripts/knowledge_bridge/test_evidence.py": {
+      "sha256": "285ac908d6efd88461bf7e362c6f8a762b373328c87e7d66f3cb092c8055621c",
+      "size": 6724
+    },
+    "memory-integrity/scripts/knowledge_bridge/test_runner.py": {
+      "sha256": "cb87fac6296906518ed24163174d3cd8b2f59655424ebd90a78f95d37173276d",
+      "size": 2519
+    },
+    "memory-integrity/scripts/knowledge_bridge/trace_adapter.py": {
+      "sha256": "e9cf440f30f204230934e25a98280cdd87c1914701fb3c75cba14b6d0ce0ece6",
+      "size": 5058
+    },
+    "memory-integrity/scripts/knowledge_bridge/verification.py": {
+      "sha256": "4cd990a91d436fe59dc2f582a1210c712f9749df2dad4db7d7fab9bcb134fcec",
+      "size": 4712
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_job.py": {
+      "sha256": "4b8631c9e4710ecb115e3d1ddb536a0f398a25ef1f7558bc21f527aa38137cb0",
+      "size": 11423
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py": {
+      "sha256": "7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af",
+      "size": 8547
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "sha256": "0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729",
+      "size": 37610
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py": {
+      "sha256": "755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3",
+      "size": 24613
+    },
+    "memory-integrity/scripts/knowledge_bridge/windows_writer.py": {
+      "sha256": "72dde9c3a495f0326bf95a1eef25e2eb81ac1333921889a8e48656840f475d29",
+      "size": 18669
+    },
+    "memory-integrity/scripts/knowledge_bridge/worker.py": {
+      "sha256": "3df908501c83c6d101d1bdb6b42198e4887a9162e0b389b8699374909c9a283a",
+      "size": 15255
+    },
+    "memory-integrity/scripts/knowledge_bridge/worker_client.py": {
+      "sha256": "f4aa277aa5ba3ce9c6a84b4fe01a9d88b8339b633aa68b297d6551693bed54c0",
+      "size": 9604
+    },
+    "memory-integrity/scripts/knowledge_bridge/workflow.py": {
+      "sha256": "64fae4ba4a6682493424ed750785d831b333bc15c0b6c96678705b3e6577d935",
+      "size": 14234
+    },
+    "memory-integrity/tests_v2/_knowledge_git_fixture.py": {
+      "sha256": "091eb9bcc520364cc1c2ddb832fc88fe8d279d5f03f504b1df42a968a48d270e",
+      "size": 1695
+    },
+    "memory-integrity/tests_v2/test_knowledge_process_lifecycle.py": {
+      "sha256": "cccbb0f88b47b0a0d537e96cd320d25cc93f17ddd39d713a8869a1ca7367355b",
+      "size": 8088
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py": {
+      "sha256": "cab604b952789ddf77bf3398d4ab2008ecf8bd782529e0cefec0d7defa65bd91",
+      "size": 6711
+    },
+    "memory-integrity/tests_v2/test_knowledge_timeout_budget.py": {
+      "sha256": "fbaca2640c86d83b93f41e3c7d32d39d1007c237dc32d0c6787c6c8bcfefe635",
+      "size": 6099
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_owned_process.py": {
+      "sha256": "0229b3a2610853993c4f338982a874b1b0da46f1f66afe97f509e65a85a87994",
+      "size": 25363
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_session.py": {
+      "sha256": "5b989dc3e7e0dfe3aa324caef1f7135cf7001ec4e9a10139a2965603f49852ee",
+      "size": 9494
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_shutdown.py": {
+      "sha256": "86a8576e980a28fd062445e7d076917701befbdd6705e08efa22401ded98dbd7",
+      "size": 13644
+    },
+    "memory-integrity/tests_v2/test_knowledge_windows_writer.py": {
+      "sha256": "f3f89b80864a909abb704007db24503d475575365a79f02e64fef006cd969b62",
+      "size": 25995
+    },
+    "memory-integrity/tests_v2/test_knowledge_worker_cwd.py": {
+      "sha256": "393855d5236ff5620af3f0ff478f79bcbf497c535d104af7140b3fe8bcf864eb",
+      "size": 10813
+    }
+  }
+}

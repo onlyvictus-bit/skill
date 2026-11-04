@@ -1,0 +1,209 @@
+{
+  "cases": 11,
+  "controller_result": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-git-fixture-20261104\\Controller-Result.json",
+    "sha256": "357ecb1997f6c3ce5a69dd5cd66a0f95ff4564210692f4e572e06229f5c83f88",
+    "size": 1803
+  },
+  "errors": 0,
+  "failures": 0,
+  "files": {
+    "memory-integrity/tests_v2/_knowledge_git_fixture.py": {
+      "sha256": "091eb9bcc520364cc1c2ddb832fc88fe8d279d5f03f504b1df42a968a48d270e",
+      "size": 1695
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py": {
+      "sha256": "cab604b952789ddf77bf3398d4ab2008ecf8bd782529e0cefec0d7defa65bd91",
+      "size": 6711
+    },
+    "memory-integrity/tests_v2/test_knowledge_recursive_integration.py": {
+      "sha256": "00c990e3f2549edc3a19e669413e3c3d9e4611ab3be18b28d71e00c62dbc1783",
+      "size": 10723
+    }
+  },
+  "green_receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-git-fixture-20261104\\green-scoped\\Receipt.json",
+    "sha256": "9fbf33f20455f04ba4b0beb8ef359d6becbfdab609e3d00ab776536573487290",
+    "size": 560
+  },
+  "product_hashes": {
+    "scripts\\knowledge_bridge\\__init__.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\__init__.py",
+      "sha256": "21bc21a14170b62274abdec3306b149d0dfea6dc361a547fc8597959a99b6c2f",
+      "size": 219
+    },
+    "scripts\\knowledge_bridge\\admission.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\admission.py",
+      "sha256": "98d608b16bb2994bfbb2eb779db0c4aa72efdfe34d7af688a869edefe73568ab",
+      "size": 5313
+    },
+    "scripts\\knowledge_bridge\\advanced_retrieval.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\advanced_retrieval.py",
+      "sha256": "4fad12c689b545922eaaaf38edcb28d9442466ea312665911949ebd0c092f0a6",
+      "size": 8009
+    },
+    "scripts\\knowledge_bridge\\benchmark.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\benchmark.py",
+      "sha256": "499dfe8fa9fc7e58ed63ede80aca0bf0bd54b2eff83c565496a519bbb4be200b",
+      "size": 5547
+    },
+    "scripts\\knowledge_bridge\\benefit_benchmark.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\benefit_benchmark.py",
+      "sha256": "d804eb655a2c5e6759f6cee73d5adca00a91c14532727e676f818bab36d19959",
+      "size": 24229
+    },
+    "scripts\\knowledge_bridge\\contracts.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\contracts.py",
+      "sha256": "bb46d8b5e124d2ea29a09e881153ba7c37c71d8adb5caf9363d31a0e66df25a6",
+      "size": 7391
+    },
+    "scripts\\knowledge_bridge\\distributed_retrieval.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\distributed_retrieval.py",
+      "sha256": "83ec8f3fd11dba0a7eb9c94cc2c870eac7c98b7a34614893e97e53b8d3cbbc87",
+      "size": 19493
+    },
+    "scripts\\knowledge_bridge\\distributed_worker.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\distributed_worker.py",
+      "sha256": "5d05e78e3917ef031fcb076e49bccd6b148e6f16dbba9c24e635b7d401faee00",
+      "size": 6594
+    },
+    "scripts\\knowledge_bridge\\extraction.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\extraction.py",
+      "sha256": "685adcb3a5459395819ada3eb526014af7a147338ebc65828a8de48642b92c03",
+      "size": 27068
+    },
+    "scripts\\knowledge_bridge\\impact.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\impact.py",
+      "sha256": "9ef835e7e63c1989c2802f3ebe324d7a7ed9aa28782fe15a22ba086d2b1d5ac1",
+      "size": 5398
+    },
+    "scripts\\knowledge_bridge\\indexing.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\indexing.py",
+      "sha256": "75596598e1c6aa01b461ef70e1aeda2557f6a87edc6c1dea77422f11d755613e",
+      "size": 7974
+    },
+    "scripts\\knowledge_bridge\\language_extraction.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\language_extraction.py",
+      "sha256": "e46c412d2f44dff9cf5d12734f1edc03c2c21c55113b1f41304b72d84919768a",
+      "size": 4070
+    },
+    "scripts\\knowledge_bridge\\model_benchmark.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\model_benchmark.py",
+      "sha256": "186dd1d69b57ba428a3b4cc3e40dcf052d2aa33ee344f586bccdfda15a11efb1",
+      "size": 25266
+    },
+    "scripts\\knowledge_bridge\\model_runtime.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\model_runtime.py",
+      "sha256": "4ad4eed2d58886cb2e26eece1a2f67d916cb561a6f01d34cf13dc33e6f992d45",
+      "size": 18596
+    },
+    "scripts\\knowledge_bridge\\offline_engine.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\offline_engine.py",
+      "sha256": "be64a19e65289f36327eeaf832cdcca757970bbce36fa94860c0f7f082ea4ea7",
+      "size": 16358
+    },
+    "scripts\\knowledge_bridge\\recursive_bootstrap.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\recursive_bootstrap.py",
+      "sha256": "5d7576d225a55ddb0741de08e9151de3586e9256576364426717b99a7acfde52",
+      "size": 47516
+    },
+    "scripts\\knowledge_bridge\\recursive_policy.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\recursive_policy.py",
+      "sha256": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18",
+      "size": 6554
+    },
+    "scripts\\knowledge_bridge\\retrieval.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\retrieval.py",
+      "sha256": "384e30c0fff626a6c01f5b7b8d6c99fc82e615c8cca8b02e003afb2215578142",
+      "size": 14143
+    },
+    "scripts\\knowledge_bridge\\retrieval_v2.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\retrieval_v2.py",
+      "sha256": "875bf747635eb3b3119a136b4df777ef6944fc6f0ca90948498ca7ff9919c140",
+      "size": 33972
+    },
+    "scripts\\knowledge_bridge\\semantic_proposals.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\semantic_proposals.py",
+      "sha256": "a3e2e53c5cbe7eb31c8b6c169918abaa272ce8dc29d3a8f544c3d2720536504b",
+      "size": 6722
+    },
+    "scripts\\knowledge_bridge\\test_evidence.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\test_evidence.py",
+      "sha256": "285ac908d6efd88461bf7e362c6f8a762b373328c87e7d66f3cb092c8055621c",
+      "size": 6724
+    },
+    "scripts\\knowledge_bridge\\test_runner.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\test_runner.py",
+      "sha256": "cb87fac6296906518ed24163174d3cd8b2f59655424ebd90a78f95d37173276d",
+      "size": 2519
+    },
+    "scripts\\knowledge_bridge\\trace_adapter.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\trace_adapter.py",
+      "sha256": "e9cf440f30f204230934e25a98280cdd87c1914701fb3c75cba14b6d0ce0ece6",
+      "size": 5058
+    },
+    "scripts\\knowledge_bridge\\verification.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\verification.py",
+      "sha256": "4cd990a91d436fe59dc2f582a1210c712f9749df2dad4db7d7fab9bcb134fcec",
+      "size": 4712
+    },
+    "scripts\\knowledge_bridge\\windows_job.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_job.py",
+      "sha256": "4b8631c9e4710ecb115e3d1ddb536a0f398a25ef1f7558bc21f527aa38137cb0",
+      "size": 11423
+    },
+    "scripts\\knowledge_bridge\\windows_owned_bootstrap.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_bootstrap.py",
+      "sha256": "7f85872a3ce1994a2367228dd6c28786ddca426a968690e7d309be8bdb0de3af",
+      "size": 8547
+    },
+    "scripts\\knowledge_bridge\\windows_owned_process.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_process.py",
+      "sha256": "0ff549444c9ff3cdbf5433c2d13d6f564fa2b3518ed7983846be4706ceded729",
+      "size": 37610
+    },
+    "scripts\\knowledge_bridge\\windows_ready_copy.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_ready_copy.py",
+      "sha256": "755df3032aa619385fe070106a161f253565afa482ac3f2e15277935113921a3",
+      "size": 24613
+    },
+    "scripts\\knowledge_bridge\\windows_writer.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\windows_writer.py",
+      "sha256": "72dde9c3a495f0326bf95a1eef25e2eb81ac1333921889a8e48656840f475d29",
+      "size": 18669
+    },
+    "scripts\\knowledge_bridge\\worker.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\worker.py",
+      "sha256": "3df908501c83c6d101d1bdb6b42198e4887a9162e0b389b8699374909c9a283a",
+      "size": 15255
+    },
+    "scripts\\knowledge_bridge\\worker_client.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\worker_client.py",
+      "sha256": "f4aa277aa5ba3ce9c6a84b4fe01a9d88b8339b633aa68b297d6551693bed54c0",
+      "size": 9604
+    },
+    "scripts\\knowledge_bridge\\workflow.py": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\memory-integrity\\scripts\\knowledge_bridge\\workflow.py",
+      "sha256": "64fae4ba4a6682493424ed750785d831b333bc15c0b6c96678705b3e6577d935",
+      "size": 14234
+    }
+  },
+  "red_receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-git-fixture-20261104\\red-scoped\\Receipt.json",
+    "sha256": "58cadb98d948bb33ca058141310a0f979a4dff0216da23b16461ca484016b94c",
+    "size": 1025
+  },
+  "review": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-git-fixture-20261104\\Final-Review.md",
+    "sha256": "13fe0b8c05dd5a38271d00b78c7be5391fbb671289a14072ff89bc30ffc44621",
+    "size": 726
+  },
+  "scope": "RP3_GIT_FIXTURE_CONTROLLER_ACCEPTED_SELECTED312_UNVERIFIED",
+  "selected_runtime_started": false,
+  "skips": 0,
+  "stage_complete": false
+}

@@ -1,0 +1,82 @@
+{
+  "accepted": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\Controller-Accepted.json",
+    "sha256": "407579bec1a94d12ebecb7ba947765b1dc5451d248cc6f9733f3e86752cfc527",
+    "size": 1523
+  },
+  "baseline_recipe": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\Source-Recipe.json",
+    "sha256": "644a540b86083f244acb3f29a596f8030c393e80e7aaf73c572f97a8fead3fec",
+    "size": 236879
+  },
+  "budgets": {
+    "coordination": 3600,
+    "default": 120,
+    "lifecycle": 60,
+    "ordered": 600,
+    "public": 90,
+    "shutdown": 5
+  },
+  "consumed_git_log": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103\\run\\tests-recursive-git\\unittest.log",
+    "sha256": "773c89b17e83f7d8f13e3042bfb2cacd87748f8d27d6df5eee3ccb3a464d6bd0",
+    "size": 6842
+  },
+  "consumed_git_result": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-routed-20261103\\run\\Receipt.json",
+    "sha256": "e6f6eaaec0f5238bf73932abe334b18cd9a9c8620883a1147c7d4584fc6b41bb",
+    "size": 146006
+  },
+  "consumed_receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\recursive-launch-rp3-20261101\\run\\Receipt.json",
+    "sha256": "5dc1bea4946e620a7db9914413735cb2d8b0e2ee634b2fe0b66ba3cd7c861af2",
+    "size": 121949
+  },
+  "consumed_shutdown_log": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\recursive-launch-rp3-20261101\\run\\tests-combined-shutdown\\unittest.log",
+    "sha256": "8524f8c3fbae4f378a6b376afe69d529a3eaed6cbb0d4dedd63b22e10ae47303",
+    "size": 5450
+  },
+  "fixture_acceptance": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Fixture-Accepted.json",
+    "sha256": "147d497126f3f9ba3f5f9589d747893f9ae5b77548cf836b064dab062aa806e3",
+    "size": 13038
+  },
+  "head": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "normal_channel": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b-channel",
+  "phase": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b",
+  "policy_exceptions_allowed": false,
+  "predecessor_ready_recipe": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-routed-20261103\\Source-Recipe.json",
+    "sha256": "8160ea9b46d439b93b17dd0914afb4a670483ac2723b4e8defa5d2c677f48bd0",
+    "size": 248388
+  },
+  "prototype_seals": {
+    "rp3_bound_copy.py": "7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264",
+    "rp3_copy.py": "d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b",
+    "rp3_finish.py": "9575210dafccd7ed4f7fd47e41ae5bd834f017d6d314d832278a35bdff4dbf60",
+    "rp3_prepare.py": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9",
+    "rp3_runtime.py": "2ad2e5921476e83fb4db8f26d9f46615c8e33ff3bb1b717da3cba3429c61c2e0"
+  },
+  "reader_root": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\reader-outbox\\cb677199a4364bdf869b055ac6dcd705",
+  "recipe": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Source-Recipe.json",
+    "sha256": "ea4ff61382c7bb9466751bf62fcc65fc3b8f1cb0031d0e15f9069f6c5dc94cca",
+    "size": 247233
+  },
+  "repo": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git",
+  "root": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b",
+  "scope": "RP3_READY_COPY_SUCCESSOR_V1",
+  "selected_runtime_started": false,
+  "session": "cb677199a4364bdf869b055ac6dcd705",
+  "stage_complete": false
+}

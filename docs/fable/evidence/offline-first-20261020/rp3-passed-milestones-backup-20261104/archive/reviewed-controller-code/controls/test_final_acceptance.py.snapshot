@@ -1,0 +1,99 @@
+"""New683 source/producer/expiry boundaries; controller metadata only."""
+import ast,copy,hashlib,json
+from datetime import datetime,timedelta,timezone
+from pathlib import Path
+import unittest
+from unittest.mock import patch
+import test_ready_envelopes as env_tests
+import test_ready_factory as factory_tests
+import test_ready_hooks as hooks_tests
+import test_ready_source as source_tests
+PHASE=Path(__file__).absolute().parents[1]
+
+class FinalAcceptance(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.family=factory_tests.m.Family(hashlib.sha256((PHASE/'Authority-Manifest.json').read_bytes()).hexdigest())
+    def envelopes(self):
+        c=env_tests.Envelopes('runTest');c.setUp();return c
+    def hooks(self):
+        c=hooks_tests.HookControls('runTest');c.setUp();self.addCleanup(c.doCleanups);return c
+    def source(self):
+        c=source_tests.SourceControls('runTest');c.setUp();return c
+    def genuine(self):
+        c=self.envelopes();data=self.family.data;roots=c.p.history_roots()
+        for path in roots.values():path.mkdir();(path/'data.txt').write_bytes(b'fixture evidence\n')
+        snapshot=data.SnapshotSet(roots,c.c['session']);request=snapshot.scan('BEFORE')
+        proposal=snapshot.inspect_denied_policies(request,[[11,12]])
+        c.p.values[str(c.root/'BEFORERequest.json')]=request
+        c.p.values[str(c.root/'Policy-Proposal.json')]=proposal
+        context={'prep':c.p,'data':data,'request':request}
+        return c,proposal,context
+    def test_exact_predecessor682_plus_only_three_fixture_deltas_is683(self):
+        recipe=self.family.prep.read_json(PHASE/'Source-Recipe.json')
+        prior=self.family.prep.read_json(recipe['predecessor_ready_recipe']['path'])
+        expected=dict(prior['evaluated_manifest']);expected.update({k:v['sha256'] for k,v in self.family.source.FIXTURE_FILES.items()})
+        self.assertEqual(recipe['evaluated_manifest'],expected);self.assertEqual(len(expected),683)
+        changed={n for n,v in expected.items() if prior['evaluated_manifest'].get(n)!=v}
+        self.assertEqual(changed,set(self.family.source.FIXTURE_FILES));self.assertEqual(set(prior['evaluated_manifest'])-set(expected),set())
+    def test_all_eleven_fixture_case_ids_are_retained(self):
+        old=Path(r'C:\Users\sakth\Documents\Codex\rp3-routed-20261103\Source\memory-integrity\tests_v2')
+        new=PHASE.parents[2]/'memory-integrity/tests_v2'
+        def ids(path):
+            t=ast.parse(path.read_bytes());return {(c.name,f.name) for c in t.body if isinstance(c,ast.ClassDef) for f in c.body if isinstance(f,ast.FunctionDef) and f.name.startswith('test_')}
+        count=0
+        for name in ('test_knowledge_recursive_git.py','test_knowledge_recursive_integration.py'):
+            self.assertEqual(ids(old/name),ids(new/name));count+=len(ids(new/name))
+        self.assertEqual(count,11)
+    def test_fixture_live_source_or_manifest_extra_delete_and_change_are_refused(self):
+        c=self.source();fixture=PHASE.parents[2]/'memory-integrity/tests_v2/_knowledge_git_fixture.py'
+        fake=source_tests.C1();fake.tamper_live[fixture]=b'changed helper'
+        with self.assertRaisesRegex(ValueError,'FIXTURE_LIVE'):c.validate(fake)
+        path=PHASE/'Source-Recipe.json'
+        for mutation in (lambda v:v['evaluated_manifest'].update({'extra.py':'a'*64}),lambda v:v['evaluated_manifest'].pop('memory-integrity/tests_v2/_knowledge_git_fixture.py'),lambda v:v['approved_overlay'].update({'memory-integrity/tests_v2/_knowledge_git_fixture.py':'0'*64})):
+            with self.assertRaisesRegex(ValueError,'FIXTURE_OVERLAY'):c.validate(prep=source_tests.SemanticPrep(c.p,{path:mutation}))
+    def test_actual_eight_root_producer_scope_passes_full_envelope_path(self):
+        c,proposal,context=self.genuine()
+        result=c.m.zero_exception(self.family.copy,context,c.c,c.a,c.prepare())
+        self.assertEqual(result['kind'],'ZERO_EXCEPTION');self.assertEqual(len(proposal['roots']),8)
+        self.assertTrue(all(set(v)=={'scope','root','protected_identities','allowed'} and v['allowed']=={} for v in proposal['roots'].values()))
+    def test_genuine_policy_missing_wrong_extra_scope_and_nonempty_allowed_are_refused(self):
+        c,proposal,context=self.genuine()
+        for mutate in (lambda v:v['roots']['history0'].pop('scope'),lambda v:v['roots']['history0'].update(scope='wrong'),lambda v:v['roots']['history0'].update(extra_scope=True),lambda v:v['roots']['history0'].update(allowed={'fake':0})):
+            changed=copy.deepcopy(proposal);mutate(changed);c.p.values[str(c.root/'Policy-Proposal.json')]=changed
+            with self.assertRaisesRegex(ValueError,'ZERO_EXCEPTION'):c.m.zero_exception(self.family.copy,context,c.c,c.a,c.prepare())
+    def test_canonical_envelope_refuses_boolean_integer_alias(self):
+        c=self.envelopes();value=c.m.make('WORKLOAD',c.c,c.a,{'count':1});value['records']['count']=True
+        with self.assertRaisesRegex(ValueError,'EXACT_BINDING'):c.m.check(value,'WORKLOAD',c.c,c.a,{'count':1})
+    def test_reader_setup_recomputes_expiry_and_keeps_same_local_value(self):
+        c=self.hooks();f=c.f;f.reader_root=f.root/'reader-new';f.reader_root.mkdir()
+        value=copy.deepcopy(c.p.read_json(f.root/'Reader-Ready.json'))
+        end=datetime.fromisoformat(c.service['expires_utc']);value['expires_utc']=(end+timedelta(seconds=2)).isoformat()
+        with patch.object(c.m,'remaining',return_value=3000),patch.object(c.m,'_reader_records',return_value={'controller':True}):c.p.save(f.reader_root/'Reader-Ready.json',value)
+        actual=c.p.read_json(f.reader_root/'Reader-Ready.json')
+        self.assertEqual(actual['expires_utc'],value['expires_utc']);self.assertLessEqual(datetime.fromisoformat(actual['expires_utc']),end)
+        self.assertLessEqual(f.finish.READER_WAIT,3000)
+    def test_expired_success_after_result_is_blocked_but_failure_is_retained(self):
+        c=self.hooks();path=c.f.reader_root/'After-Copy-Result.json'
+        with patch.object(c.m,'remaining',side_effect=ValueError('EXPIRED_CONTROL')):
+            with self.assertRaisesRegex(ValueError,'EXPIRED_CONTROL'):c.p.save(path,{'failure':None})
+            self.assertFalse(path.exists());c.p.save(path,{'failure':'retained original'})
+        self.assertEqual(json.loads(path.read_bytes())['failure'],'retained original')
+    def test_expiry_after_workload_records_cannot_publish_success_envelope(self):
+        c=self.hooks();expired=[];original=c.m._workload_records
+        def records(f):
+            value=original(f);expired.append(True);return value
+        def left(*args,**kwargs):
+            if expired:raise ValueError('EXPIRED_DURING_RECORDS')
+            return 3000
+        with patch.object(c.m,'remaining',side_effect=left),patch.object(c.m,'_workload_records',side_effect=records):self.assertEqual(c.run_fsm(),1)
+        self.assertFalse((c.f.root/'Workload-Envelope.json').exists());self.assertFalse((c.f.root/'Stage-Envelope.json').exists())
+    def test_expiry_after_after_records_cannot_publish_after_envelope(self):
+        c=self.hooks();expired=[]
+        def records(f):expired.append(True);return {'controller':True}
+        def left(*args,**kwargs):
+            if expired:raise ValueError('EXPIRED_DURING_AFTER_RECORDS')
+            return 3000
+        with patch.object(c.m,'remaining',side_effect=left),patch.object(c.m,'_after_records',side_effect=records),self.assertRaisesRegex(ValueError,'EXPIRED_DURING_AFTER_RECORDS'):c.m.finish_after_reader(c.f,c.service,0)
+        self.assertFalse((c.f.reader_root/'After-Envelope.json').exists())
+if __name__=='__main__':unittest.main()

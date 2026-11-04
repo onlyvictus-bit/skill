@@ -1,0 +1,77 @@
+{
+  "accepted": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\recursive-integration-rp3-20261101\\ready-copy-repair\\Controller-Accepted.json",
+    "sha256": "407579bec1a94d12ebecb7ba947765b1dc5451d248cc6f9733f3e86752cfc527",
+    "size": 1523
+  },
+  "config": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Successor-Contract.json",
+    "sha256": "5ecf462785cdd3ade6aaf7f64736b83dc2782c06248a64670d29b43e384260cb",
+    "size": 4191
+  },
+  "helpers": {
+    "ready_envelopes.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_envelopes.py",
+      "sha256": "ab25895576e58fe204f2104ad023d36a5fece35b9af03f8a2058d0ee161368f5",
+      "size": 8455
+    },
+    "ready_factory.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_factory.py",
+      "sha256": "b19ab7e0ab338b5cebd5552cdd0de746e876898f2a22f0944dc5d333883a9e77",
+      "size": 14415
+    },
+    "ready_source.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_source.py",
+      "sha256": "278025b3fb5beaa518b1838f420e5e1921074afb4bdf7377f46e4d48f9a821e3",
+      "size": 9296
+    },
+    "ready_workflow.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\ready_workflow.py",
+      "sha256": "e35adbcdedd762b3c3380991ea93ecb8c034b6bcf74258dc7d4782293f4eaae7",
+      "size": 29434
+    },
+    "rp3_bound_copy.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_bound_copy.py",
+      "sha256": "7cc7f5f643b781d0c43b57529dfa0df8c07682c96ba6d4e69a54bbdc7d702264",
+      "size": 2059
+    },
+    "rp3_copy.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_copy.py",
+      "sha256": "d6e0c75166ea1df5fa141143c1d0d94a66dbb14d1c478fb72c5833195bd8d09b",
+      "size": 20160
+    },
+    "rp3_finish.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_finish.py",
+      "sha256": "9575210dafccd7ed4f7fd47e41ae5bd834f017d6d314d832278a35bdff4dbf60",
+      "size": 13026
+    },
+    "rp3_prepare.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_prepare.py",
+      "sha256": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9",
+      "size": 11958
+    },
+    "rp3_runtime.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\prototype\\rp3_runtime.py",
+      "sha256": "2ad2e5921476e83fb4db8f26d9f46615c8e33ff3bb1b717da3cba3429c61c2e0",
+      "size": 25358
+    }
+  },
+  "recipe": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-final-20261104-b\\Source-Recipe.json",
+    "sha256": "ea4ff61382c7bb9466751bf62fcc65fc3b8f1cb0031d0e15f9069f6c5dc94cca",
+    "size": 247233
+  },
+  "scope": "RP3_READY_FACTORY_MANIFEST_V1"
+}

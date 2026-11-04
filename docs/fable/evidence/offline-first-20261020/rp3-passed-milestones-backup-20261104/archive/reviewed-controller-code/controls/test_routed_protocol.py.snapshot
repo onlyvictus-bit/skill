@@ -1,0 +1,145 @@
+"""Actor ownership and cheap transport controls; no selected interpreter."""
+import copy
+import hashlib
+import importlib.util
+import json
+import os
+import threading
+import time
+from pathlib import Path
+import tempfile
+import types
+import unittest
+from unittest.mock import patch
+PHASE=Path(__file__).absolute().parents[1]
+spec=importlib.util.spec_from_file_location('routed_protocol',PHASE/'prototype/ready_workflow.py')
+m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+
+class Protocol(unittest.TestCase):
+    def family(self):
+        scratch=PHASE/'protocol-scratch';scratch.mkdir(exist_ok=True)
+        root=Path(tempfile.mkdtemp(dir=scratch));normal=root/'normal';reader=root/'reader';channel=root/'normal-channel';coord=root/'phase/coord'
+        for p in (normal,reader,channel,coord):p.mkdir(parents=True)
+        writes=[]
+        def ordinary(p):
+            p=Path(p)
+            for part in (p,*p.parents):
+                if part.is_symlink():raise ValueError('REDIRECT')
+            return p
+        def save(p,v):writes.append(Path(p))
+        f=types.SimpleNamespace(root=normal,reader_root=reader,channel=channel,phase=root/'phase',prep=types.SimpleNamespace(ordinary=ordinary,save=save))
+        return f,writes
+    def test_reader_cannot_write_normal_root_or_channel(self):
+        f,writes=self.family();m.install_actor_guard(f,'Reader')
+        for path in (f.root/'InspectBefore-Claim.json',f.channel/'wrong.json'):
+            with self.assertRaisesRegex(ValueError,'ACTOR_WRITE'):f.prep.save(path,{})
+        self.assertEqual(writes,[])
+        f.prep.save(f.reader_root/'claim.json',{});self.assertEqual(writes,[f.reader_root/'claim.json'])
+    def test_normal_cannot_write_reader_root_or_coord(self):
+        f,writes=self.family();m.install_actor_guard(f,'Normal')
+        for path in (f.reader_root/'wrong.json',f.phase/'coord/wrong.json'):
+            with self.assertRaisesRegex(ValueError,'ACTOR_WRITE'):f.prep.save(path,{})
+        self.assertEqual(writes,[])
+        f.prep.save(f.root/'Receipt.json',{});f.prep.save(f.channel/'Ping.json',{})
+        self.assertEqual(len(writes),2)
+    def test_sibling_prefix_and_parent_escape_refused(self):
+        f,writes=self.family();m.install_actor_guard(f,'Reader')
+        for path in (f.reader_root.with_name('reader-other')/'wrong.json',f.reader_root/'..'/'normal'/'wrong.json'):
+            with self.assertRaisesRegex(ValueError,'ACTOR_WRITE'):f.prep.save(path,{})
+        self.assertEqual(writes,[])
+    def test_wrong_role_refused_before_writer_is_installed(self):
+        f,writes=self.family()
+        with self.assertRaisesRegex(ValueError,'ACTOR'):m.install_actor_guard(f,'Unknown')
+        self.assertEqual(writes,[])
+
+    def transport(self):
+        f,_=self.family();p=f.prep
+        def save(path,value):
+            with Path(path).open('x',encoding='utf-8') as stream:json.dump(value,stream,sort_keys=True)
+        def record(path):
+            path=Path(path);raw=path.read_bytes()
+            return {'path':str(path),'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'links':path.stat().st_nlink}
+        p.save=save;p.record=record;p.read_json=lambda path,*a:json.loads(Path(path).read_bytes())
+        f.session='a'*32;f.manifest_path=f.phase/'Manifest.json';save(f.manifest_path,{})
+        seed={'scope':'RP3_READER_OWNED_TRANSPORT_SEED_V1','session':f.session,'pid':123,'sid':'S-1-5-21-2571509308-2482563067-4170768140-1003','nonce':'b'*32,'manifest':record(f.manifest_path)}
+        save(f.reader_root/'Transport-Seed.json',seed)
+        save(f.phase/'coord/Reader-Service-Claim.json',{'seed':record(f.reader_root/'Transport-Seed.json')})
+        service={'pid':123};save(f.phase/'coord/Reader-Service-Ready.json',service)
+        return f,seed,service,save
+
+    def test_normal_can_read_reader_ack_and_only_publish_normal_records(self):
+        f,seed,service,reader_save=self.transport();p=f.prep;m.install_actor_guard(f,'Normal')
+        def ack(*args):
+            ping=p.read_json(f.channel/'Transport-Ping.json')
+            value={'scope':'RP3_READER_OWNED_TRANSPORT_ACK_V1','session':f.session,'reader_pid':123,'normal_pid':os.getpid(),
+                'nonce':seed['nonce'],'ping':m.observation(p,f.channel/'Transport-Ping.json'),'seed':ping['seed'],'service':ping['service']}
+            reader_save(f.reader_root/'Transport-Ack.json',value);return value
+        with patch.object(m,'own_sid',return_value='S-1-5-21-2571509308-2482563067-4170768140-1001'),patch.object(m,'_await',side_effect=ack):
+            self.assertEqual(m.transport_normal(f,service)['status'],'CROSS_ACCOUNT_PREFLIGHT_PASS_NO_SELECTED_RUNTIME')
+        self.assertTrue((f.channel/'Transport-Accepted.json').exists())
+        self.assertFalse((f.root/'PrepClaim.json').exists())
+
+    def test_wrong_ack_session_pid_hash_or_path_stops_before_preparation(self):
+        for field in ('session','reader_pid','ping_hash','ping_path'):
+            f,seed,service,reader_save=self.transport();p=f.prep;m.install_actor_guard(f,'Normal')
+            def ack(*args):
+                ping=p.read_json(f.channel/'Transport-Ping.json')
+                value={'scope':'RP3_READER_OWNED_TRANSPORT_ACK_V1','session':f.session,'reader_pid':123,'normal_pid':os.getpid(),
+                    'nonce':seed['nonce'],'ping':m.observation(p,f.channel/'Transport-Ping.json'),'seed':ping['seed'],'service':ping['service']}
+                if field=='session':value['session']='c'*32
+                elif field=='reader_pid':value['reader_pid']=456
+                elif field=='ping_hash':value['ping']['record']['sha256']='0'*64
+                else:value['ping']['record']['path']=str(f.reader_root/'wrong.json')
+                return value
+            with patch.object(m,'own_sid',return_value='S-1-5-21-2571509308-2482563067-4170768140-1001'),patch.object(m,'_await',side_effect=ack):
+                with self.assertRaisesRegex(ValueError,'TRANSPORT_ACK'):m.transport_normal(f,service)
+            self.assertFalse((f.channel/'Transport-Accepted.json').exists());self.assertFalse((f.root/'PrepClaim.json').exists())
+
+    def test_seed_record_drift_and_wrong_identity_fail_closed(self):
+        f,seed,service,save=self.transport();seed['sid']='wrong';(f.reader_root/'Transport-Seed.json').write_text(json.dumps(seed))
+        with self.assertRaisesRegex(ValueError,'SEED_RECORD'):m.validate_seed(f,service)
+        (f.phase/'coord/Reader-Service-Claim.json').write_text(json.dumps({'seed':f.prep.record(f.reader_root/'Transport-Seed.json')}))
+        with self.assertRaisesRegex(ValueError,'TRANSPORT_SEED'):m.validate_seed(f,service)
+
+    def test_hardlinked_transport_file_is_not_accepted(self):
+        f,seed,service,save=self.transport();target=f.reader_root/'Transport-Seed.json'
+        os.link(target,f.reader_root/'seed-alias.json')
+        with self.assertRaisesRegex(ValueError,'FILE_CHANGED'):m.observation(f.prep,target)
+
+    def test_original_write_error_keeps_operation_and_actor_notes(self):
+        f,writes=self.family()
+        def denied(path,value):raise PermissionError(13,'CONTROL_DENIED')
+        f.prep.save=denied;m.install_actor_guard(f,'Reader')
+        with self.assertRaises(PermissionError) as caught:f.prep.save(f.reader_root/'claim.json',{})
+        self.assertEqual(caught.exception.errno,13)
+        self.assertTrue(any('actor=Reader' in note and 'claim.json' in note for note in caught.exception.__notes__))
+
+    def test_both_transport_roles_exchange_real_files_without_peer_writes(self):
+        # Two controller roles, not a claim that the real normal account has run.
+        normal,seed,service,raw_save=self.transport();reader=copy.copy(normal);reader.prep=copy.copy(normal.prep)
+        normal_writes=[];reader_writes=[]
+        def normal_save(path,value):normal_writes.append(Path(path));return raw_save(path,value)
+        def reader_save(path,value):reader_writes.append(Path(path));return raw_save(path,value)
+        normal.prep.save=normal_save;reader.prep.save=reader_save
+        m.install_actor_guard(normal,'Normal');m.install_actor_guard(reader,'Reader');errors=[]
+        def wait(f,path,s):
+            until=time.monotonic()+5
+            while not Path(path).exists():
+                if time.monotonic()>until:raise TimeoutError('CONTROL_TRANSPORT_WAIT')
+                time.sleep(.005)
+            return f.prep.read_json(path)
+        def run_reader():
+            try:m.transport_reader(reader,service,seed)
+            except BaseException as error:errors.append(error)
+        with patch.object(m,'own_sid',return_value='S-1-5-21-2571509308-2482563067-4170768140-1001'),patch.object(m,'_await',side_effect=wait):
+            thread=threading.Thread(target=run_reader);thread.start()
+            try:m.transport_normal(normal,service)
+            finally:thread.join(timeout=6)
+        self.assertFalse(thread.is_alive());self.assertEqual(errors,[])
+        self.assertTrue(all(p.is_relative_to(normal.channel) for p in normal_writes))
+        self.assertTrue(all(p.is_relative_to(reader.reader_root) for p in reader_writes))
+        records=m._transport_records(normal,service);self.assertEqual(len(records),4)
+        ping=normal.channel/'Transport-Ping.json';value=normal.prep.read_json(ping);value['pid']+=1;ping.write_text(json.dumps(value))
+        with self.assertRaisesRegex(ValueError,'TRANSPORT_CURRENT_ACK'):m._transport_records(normal,service)
+
+if __name__=='__main__':unittest.main()

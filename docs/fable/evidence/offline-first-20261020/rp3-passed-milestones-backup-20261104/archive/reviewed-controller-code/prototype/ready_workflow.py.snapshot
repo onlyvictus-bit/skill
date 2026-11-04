@@ -1,0 +1,413 @@
+"""One normal workflow plus existing-access DATA reader; old attempts stay consumed."""
+import argparse
+from datetime import datetime,timedelta,timezone
+import hashlib
+import math
+import os
+from pathlib import Path
+import stat
+import sys
+import time
+import traceback
+import types
+import uuid
+PHASE=Path(__file__).absolute().parents[1]
+READER_FLAGS=('selected_runtime_started','stage_complete','gate1_complete','release_ready','installed','producer_authentication','preservation','historical_c2_cause_proven')
+
+def need(value,code):
+    if not value:raise ValueError('E_READY_RP3_WORKFLOW_'+code)
+
+def install_actor_guard(f,actor):
+    """Authorize explicit JSON publication roots; never redirect a filesystem call."""
+    need(actor in ('Reader','Normal'),'ACTOR')
+    roots=(f.reader_root,f.phase/'coord') if actor=='Reader' else (f.root,f.channel)
+    roots=tuple(Path(os.path.abspath(path)) for path in roots)
+    def wrap(original):
+        def save(path,value):
+            target=Path(os.path.abspath(path))
+            need(any(target.is_relative_to(root) and target!=root for root in roots),'ACTOR_WRITE:'+actor+':'+str(target))
+            f.prep.ordinary(target.parent)
+            try:return original(target,value)
+            except OSError as error:
+                error.add_note('OUTPUT_WRITE actor='+actor+' path='+str(target)+' roots='+repr(tuple(map(str,roots)))+
+                    ' errno='+str(error.errno)+' winerror='+str(getattr(error,'winerror',None)))
+                raise
+        return save
+    f.prep.save=wrap(f.prep.save)
+    if hasattr(f,'runtime'):f.runtime.save=wrap(f.runtime.save)
+
+def observation(p,path):
+    path=p.ordinary(Path(path));before=path.stat();row=p.record(path);after=path.stat()
+    key=lambda s:(s.st_dev,s.st_ino,s.st_nlink,s.st_size,s.st_mtime_ns)
+    need(key(before)==key(after) and stat.S_ISREG(after.st_mode) and after.st_nlink==1,'TRANSPORT_FILE_CHANGED')
+    return {'record':row,'identity':[after.st_dev,after.st_ino],'mtime_ns':after.st_mtime_ns}
+
+def own_sid(f):
+    who=Path(os.environ['SYSTEMROOT'])/'System32/whoami.exe'
+    raw=f.c1.subprocess.run([str(who),'/user','/fo','csv','/nh'],capture_output=True,timeout=10,check=True).stdout
+    rows=list(f.prep.csv.reader(raw.decode('utf-8','strict').splitlines()))
+    need(len(rows)==1 and len(rows[0])==2,'TRANSPORT_SID');return rows[0][1]
+
+def validate_seed(f,service):
+    p=f.prep;seed=p.read_json(f.reader_root/'Transport-Seed.json');claim=p.read_json(f.phase/'coord/Reader-Service-Claim.json')
+    need(claim['seed']==p.record(f.reader_root/'Transport-Seed.json'),'TRANSPORT_SEED_RECORD')
+    need(type(seed) is dict and set(seed)=={'scope','session','pid','sid','nonce','manifest'} and
+        seed['scope']=='RP3_READER_OWNED_TRANSPORT_SEED_V1' and seed['session']==f.session and seed['pid']==service['pid'] and
+        seed['sid']=='S-1-5-21-2571509308-2482563067-4170768140-1003' and
+        type(seed['nonce']) is str and len(seed['nonce'])==32 and all(x in '0123456789abcdef' for x in seed['nonce']) and
+        seed['manifest']==p.record(f.manifest_path),'TRANSPORT_SEED')
+    return seed
+
+def transport_reader(f,service,seed):
+    p=f.prep;ping_path=f.channel/'Transport-Ping.json';ping=_await(f,ping_path,service)
+    need(type(ping) is dict and set(ping)=={'scope','session','pid','sid','nonce','seed','service'} and
+        ping['scope']=='RP3_NORMAL_OWNED_TRANSPORT_PING_V1' and ping['session']==f.session and
+        type(ping['pid']) is int and ping['pid']>0 and ping['sid']=='S-1-5-21-2571509308-2482563067-4170768140-1001' and
+        ping['nonce']==seed['nonce'] and ping['seed']==observation(p,f.reader_root/'Transport-Seed.json') and
+        ping['service']==p.record(f.phase/'coord/Reader-Service-Ready.json'),'TRANSPORT_PING')
+    ack={'scope':'RP3_READER_OWNED_TRANSPORT_ACK_V1','session':f.session,'reader_pid':service['pid'],'normal_pid':ping['pid'],
+        'nonce':seed['nonce'],'ping':observation(p,ping_path),'seed':ping['seed'],'service':ping['service']}
+    atomic_publish(p,f.reader_root/'Transport-Ack.json',ack)
+    accepted=_await(f,f.channel/'Transport-Accepted.json',service)
+    need(accepted=={'scope':'RP3_NORMAL_TRANSPORT_ACCEPTED_V1','session':f.session,'normal_pid':ping['pid'],
+        'reader_pid':service['pid'],'ack':observation(p,f.reader_root/'Transport-Ack.json'),'ping':ack['ping']},'TRANSPORT_ACCEPTED')
+    _print_json({'status':'CROSS_ACCOUNT_READBACK_OBSERVED_NO_PEER_WRITES','normal_pid':ping['pid'],'reader_pid':service['pid'],
+        'seed':p.record(f.reader_root/'Transport-Seed.json'),'accepted':p.record(f.channel/'Transport-Accepted.json')})
+
+def transport_normal(f,service):
+    p=f.prep;seed=validate_seed(f,service)
+    ping={'scope':'RP3_NORMAL_OWNED_TRANSPORT_PING_V1','session':f.session,'pid':os.getpid(),'sid':own_sid(f),
+        'nonce':seed['nonce'],'seed':observation(p,f.reader_root/'Transport-Seed.json'),
+        'service':p.record(f.phase/'coord/Reader-Service-Ready.json')}
+    need(ping['sid']=='S-1-5-21-2571509308-2482563067-4170768140-1001','TRANSPORT_NORMAL_ACTOR')
+    atomic_publish(p,f.channel/'Transport-Ping.json',ping)
+    ack=_await(f,f.reader_root/'Transport-Ack.json',service)
+    need(ack=={'scope':'RP3_READER_OWNED_TRANSPORT_ACK_V1','session':f.session,'reader_pid':service['pid'],'normal_pid':os.getpid(),
+        'nonce':seed['nonce'],'ping':observation(p,f.channel/'Transport-Ping.json'),'seed':ping['seed'],'service':ping['service']},'TRANSPORT_ACK')
+    atomic_publish(p,f.channel/'Transport-Accepted.json',{'scope':'RP3_NORMAL_TRANSPORT_ACCEPTED_V1','session':f.session,
+        'normal_pid':os.getpid(),'reader_pid':service['pid'],'ack':observation(p,f.reader_root/'Transport-Ack.json'),'ping':ack['ping']})
+    return {'status':'CROSS_ACCOUNT_PREFLIGHT_PASS_NO_SELECTED_RUNTIME','normal_pid':os.getpid(),'reader_pid':service['pid']}
+
+def remaining(service,session,authorities,*,now_mono=None,now_utc=None):
+    need(type(service) is dict and set(service)=={'scope','session','authorities','pid','claim','started_monotonic','deadline_monotonic','started_utc','expires_utc'} and
+        type(service['pid']) is int and service['pid']>0,'SERVICE_SCHEMA')
+    need(service['scope']=='RP3_READY_READER_SERVICE_V1' and service['session']==session and
+        service['authorities']==authorities,'SERVICE_BINDING')
+    start,end=service['started_monotonic'],service['deadline_monotonic']
+    need(type(start) in (int,float) and type(end) in (int,float) and math.isfinite(start) and math.isfinite(end) and
+        end-start==3600,'SERVICE_MONOTONIC_BOUND')
+    begun=datetime.fromisoformat(service['started_utc']);expires=datetime.fromisoformat(service['expires_utc'])
+    need(begun.tzinfo is not None and begun.utcoffset()==timedelta(0) and expires-begun==timedelta(seconds=3600),'SERVICE_UTC_BOUND')
+    now_mono=time.monotonic() if now_mono is None else now_mono
+    now_utc=datetime.now(timezone.utc) if now_utc is None else now_utc
+    left=min(end-now_mono,(expires-now_utc).total_seconds())
+    need(left>0,'COORDINATION_EXPIRED');return left
+
+def validate_claim(service,claim):
+    need(type(claim) is dict and set(claim)=={'scope','session','pid','seed'} and
+        claim['scope']=='ONE_EXISTING_ACCESS_READER_NO_SELECTED_RUNTIME' and claim['session']==service['session'] and
+        type(claim['pid']) is int and claim['pid']>0 and claim['pid']==service['pid'],'SERVICE_CLAIM')
+    need(type(claim['seed']) is dict and set(claim['seed'])=={'path','size','sha256','links'} and
+        claim['seed']['links']==1 and type(claim['seed']['size']) is int and claim['seed']['size']>0 and
+        type(claim['seed']['sha256']) is str and len(claim['seed']['sha256'])==64,'SERVICE_SEED_RECORD')
+
+def validate_inner_reader(service,value):
+    need(type(value) is dict and set(value)=={'scope','session','pid','expires_utc','copy_inputs','copy_helper','runtime_helper','finish_helper'}|set(READER_FLAGS),'INNER_READER_SCHEMA')
+    need(value['scope']=='RP3_EXISTING_ACCESS_READER_READY' and value['session']==service['session'] and
+        type(value['pid']) is int and value['pid']==service['pid'] and all(value[k] is False for k in READER_FLAGS),'INNER_READER_ACTOR')
+    expires=datetime.fromisoformat(value['expires_utc'])
+    need(expires.tzinfo is not None and expires.utcoffset()==timedelta(0) and
+        expires<=datetime.fromisoformat(service['expires_utc']),'INNER_READER_EXPIRY')
+
+def atomic_publish(prep,path,value):
+    path=Path(path);prep.ordinary(path.parent);need(not os.path.lexists(path),'PUBLICATION_EXISTS')
+    temporary=path.with_name(path.name+'.pending-'+uuid.uuid4().hex)
+    prep.save(temporary,value)  # Close complete bytes before making the marker visible.
+    os.rename(temporary,path)  # Windows refuses an existing destination.
+
+def publish_live(f,path,value,service):
+    remaining(service,f.session,f.authorities());atomic_publish(f.prep,path,value)
+
+def publish_preparation(action,validate,publish):
+    result=action()  # No readiness publication while prepare is still running.
+    envelope=validate(result);publish(envelope);return result
+
+def _load_family(manifest_sha):
+    def raw(path,limit):
+        path=Path(path)
+        for item in (path,*path.parents):
+            s=item.lstat();need(not stat.S_ISLNK(s.st_mode) and not getattr(s,'st_file_attributes',0)&0x400,'REDIRECT')
+        before=path.stat();need(stat.S_ISREG(before.st_mode) and before.st_nlink==1,'CODE_TYPE')
+        with path.open('rb') as stream:
+            opened=os.fstat(stream.fileno());data=stream.read(limit+1);ended=os.fstat(stream.fileno())
+        key=lambda s:(s.st_dev,s.st_ino,s.st_nlink,s.st_size,s.st_mtime_ns)
+        need(len(data)<=limit and key(before)==key(opened)==key(ended)==key(path.stat()),'CODE_CHANGED');return data
+    import json
+    data=raw(PHASE/'Authority-Manifest.json',4*1024*1024)
+    need(hashlib.sha256(data).hexdigest()==manifest_sha,'EXTERNAL_MANIFEST')
+    def unique(pairs):
+        result={}
+        for key,value in pairs:need(key not in result,'DUPLICATE_JSON');result[key]=value
+        return result
+    manifest=json.loads(data,object_pairs_hook=unique)
+    path=PHASE/'prototype/ready_factory.py';data=raw(path,262144)
+    need(hashlib.sha256(data).hexdigest()==manifest['helpers']['ready_factory.py']['sha256'],'FACTORY_SEAL')
+    m=types.ModuleType('ready_workflow_factory');m.__file__=str(path)
+    exec(compile(data,str(path),'exec'),m.__dict__);return m.Family(manifest_sha)
+
+def _named_history(f):
+    p=f.prep;result={}
+    for name in ('consumed_receipt','consumed_shutdown_log','consumed_git_result','consumed_git_log'):
+        expected=f.contract[name];path=p.ordinary(Path(expected['path']));before=path.stat();row=p.record(path);after=path.stat()
+        key=lambda s:(s.st_dev,s.st_ino,s.st_nlink,s.st_mode,s.st_size,s.st_mtime_ns)
+        need(key(before)==key(after) and stat.S_ISREG(after.st_mode) and after.st_nlink==1 and row==expected,'NAMED_HISTORY:'+name)
+        result[name]={'record':row,'identity':[after.st_dev,after.st_ino],'mode':after.st_mode,'mtime_ns':after.st_mtime_ns}
+    return result
+
+def _service(f):
+    value=f.prep.read_json(f.phase/'coord/Reader-Service-Ready.json')
+    remaining(value,f.session,f.authorities())
+    claim_path=f.phase/'coord/Reader-Service-Claim.json'
+    need(value['claim']==f.prep.record(claim_path),'CLAIM_RECORD')
+    validate_claim(value,f.prep.read_json(claim_path));return value
+
+def _await(f,path,service):
+    while not os.path.lexists(path):
+        remaining(service,f.session,f.authorities())
+        for failure in (f.phase/'coord/Reader-Service-Failure.json',f.channel/'Normal-Workflow-Failure.json',f.root/'Failure.json',f.root/'RunAll-Failure.json'):
+            if os.path.lexists(failure):raise ValueError('E_READY_RP3_PEER_FAILED: '+str(failure)+'\n'+str(f.prep.read_json(failure)))
+        time.sleep(.25)
+    remaining(service,f.session,f.authorities());return f.prep.read_json(path)
+
+def _preparation(f):
+    expected=f.envelopes.preparation(f.prep,f.contract,f.authorities())
+    actual=f.prep.read_json(f.root/'Preparation-Ready.json')
+    f.envelopes.check(actual,'PREPARATION',f.contract,f.authorities(),expected['records']);return actual
+
+def _zero(f):
+    expected=f.envelopes.zero_exception(f.copy,f.copy.base(),f.contract,f.authorities(),_preparation(f))
+    actual=f.prep.read_json(f.reader_root/'Zero-Exception-Accepted.json')
+    f.envelopes.check(actual,'ZERO_EXCEPTION',f.contract,f.authorities(),expected['records']);return actual
+
+def _reader_records(f):
+    p=f.prep;_preparation(f);_zero(f)
+    service=_service(f);validate_inner_reader(service,p.read_json(f.reader_root/'Reader-Ready.json'))
+    _transport_records(f,service)
+    context=f.bound_copy().copy_context(f.copy_inputs_sha)
+    return {'inner':p.record(f.reader_root/'Reader-Ready.json'),'preparation':p.record(f.root/'Preparation-Ready.json'),
+        'zero_exception':p.record(f.reader_root/'Zero-Exception-Accepted.json'),'copy_inputs':p.record(f.reader_root/'Copy-Inputs.json'),
+        'copies':context['copy_inputs']['copies'],'service':p.record(f.phase/'coord/Reader-Service-Ready.json'),
+        'history_before':p.record(f.root/'Named-History-Before.json'),
+        'transport_seed':p.record(f.reader_root/'Transport-Seed.json'),'transport_ack':p.record(f.reader_root/'Transport-Ack.json'),
+        'transport_accepted':p.record(f.channel/'Transport-Accepted.json')}
+
+def _transport_records(f,service=None):
+    """Revalidate the current handshake, not only a historical success label."""
+    p=f.prep;service=_service(f) if service is None else service;seed=validate_seed(f,service)
+    ping=p.read_json(f.channel/'Transport-Ping.json')
+    need(type(ping) is dict and set(ping)=={'scope','session','pid','sid','nonce','seed','service'} and
+        ping['scope']=='RP3_NORMAL_OWNED_TRANSPORT_PING_V1' and ping['session']==f.session and
+        type(ping['pid']) is int and ping['pid']>0 and ping['sid']=='S-1-5-21-2571509308-2482563067-4170768140-1001' and
+        ping['nonce']==seed['nonce'] and ping['seed']==observation(p,f.reader_root/'Transport-Seed.json') and
+        ping['service']==p.record(f.phase/'coord/Reader-Service-Ready.json'),'TRANSPORT_CURRENT_PING')
+    ack=p.read_json(f.reader_root/'Transport-Ack.json')
+    need(ack=={'scope':'RP3_READER_OWNED_TRANSPORT_ACK_V1','session':f.session,'reader_pid':service['pid'],'normal_pid':ping['pid'],
+        'nonce':seed['nonce'],'ping':observation(p,f.channel/'Transport-Ping.json'),'seed':ping['seed'],'service':ping['service']},'TRANSPORT_CURRENT_ACK')
+    accepted=p.read_json(f.channel/'Transport-Accepted.json')
+    need(accepted=={'scope':'RP3_NORMAL_TRANSPORT_ACCEPTED_V1','session':f.session,'normal_pid':ping['pid'],'reader_pid':service['pid'],
+        'ack':observation(p,f.reader_root/'Transport-Ack.json'),'ping':ack['ping']},'TRANSPORT_CURRENT_ACCEPTED')
+    return {'transport_seed':p.record(f.reader_root/'Transport-Seed.json'),'transport_ping':p.record(f.channel/'Transport-Ping.json'),
+        'transport_ack':p.record(f.reader_root/'Transport-Ack.json'),'transport_accepted':p.record(f.channel/'Transport-Accepted.json')}
+
+def _workload_records(f):
+    p=f.prep;w=p.read_json(f.root/'Workload.json')
+    return {'workload':p.record(f.root/'Workload.json'),'receipt':p.record(f.root/'run/Receipt.json'),
+        'source_manifest_sha256':w['source_manifest_sha256'],'recipe':f.contract['recipe'],'accepted':f.contract['accepted'],
+        'before':p.record(f.root/'Before-Bundle.json'),'reader':p.record(f.reader_root/'Reader-Ready-Envelope.json'),
+        'preparation':p.record(f.root/'Preparation-Ready.json'),'zero_exception':p.record(f.reader_root/'Zero-Exception-Accepted.json'),
+        'history_before':p.record(f.root/'Named-History-Before.json')}
+
+def _check_workload(f):
+    value=f.prep.read_json(f.root/'Workload-Envelope.json')
+    f.envelopes.check(value,'WORKLOAD',f.contract,f.authorities(),_workload_records(f));return value
+
+def _after_records(f):
+    p=f.prep;_check_workload(f)
+    return {'request':p.record(f.root/'After-Request.json'),'reader_result':p.record(f.reader_root/'After-Copy-Result.json'),
+        'copies':p.record(f.reader_root/'AFTER/reader-copy/Copies.json'),'workload':p.record(f.root/'Workload-Envelope.json'),
+        'reader_ready':p.record(f.reader_root/'Reader-Ready-Envelope.json')}
+
+def _check_after(f):
+    value=f.prep.read_json(f.reader_root/'After-Envelope.json')
+    f.envelopes.check(value,'AFTER',f.contract,f.authorities(),_after_records(f));return value
+
+def _stage_records(f):
+    p=f.prep
+    return {**_transport_records(f),'stage':p.record(f.root/'Stage-Result.json'),'workload':p.record(f.root/'Workload-Envelope.json'),
+        'after':p.record(f.reader_root/'After-Envelope.json'),'comparison':p.record(f.root/'After-Bundle.json'),
+        'diagnostics':p.record(f.root/'Completion-Diagnostics.json'),'diagnostics_md':p.record(f.root/'Completion-Diagnostics.md'),
+        'history_before':p.record(f.root/'Named-History-Before.json'),'history_after':p.record(f.root/'Named-History-After.json'),
+        'preparation':p.record(f.root/'Preparation-Ready.json'),'reader':p.record(f.reader_root/'Reader-Ready-Envelope.json')}
+
+def _hooks(f,service,*,normal=False,history_before=None):
+    """Add outer immutable proofs; never rewrite already-published inner JSON."""
+    p,t,finish=f.prep,f.runtime,f.finish;raw_p_save=p.save;raw_t_save=t.save
+    raw_validate=t.validate_workload;raw_reader_result=finish.validate_reader_result
+    def outer(path,kind,records):
+        value=f.envelopes.make(kind,f.contract,f.authorities(),records)
+        remaining(service,f.session,f.authorities())
+        atomic_publish(types.SimpleNamespace(ordinary=p.ordinary,save=raw_p_save),path,value);return value
+    def reader_result(*args):
+        result=raw_reader_result(*args)
+        _await(f,f.reader_root/'After-Envelope.json',service);_check_after(f);return result
+    finish.validate_reader_result=reader_result
+    def validated(workload_record,context):
+        remaining(service,f.session,f.authorities());result=raw_validate(workload_record,context);_check_workload(f);remaining(service,f.session,f.authorities());return result
+    t.validate_workload=validated
+    if normal:
+        raw_json=p.read_json
+        def read_json(path,*args,**kwargs):
+            if Path(path)==f.reader_root/'After-Copy-Result.json':_await(f,f.reader_root/'After-Envelope.json',service)
+            return raw_json(path,*args,**kwargs)
+        p.read_json=read_json
+    def t_save(path,value):
+        raw_t_save(path,value)
+        if Path(path)==f.root/'Workload.json':
+            raw_validate(p.record(path),f.bound_copy().copy_context(f.copy_inputs_sha))
+            outer(f.root/'Workload-Envelope.json','WORKLOAD',_workload_records(f))
+    t.save=t_save
+    def p_save(path,value):
+        path=Path(path)
+        if path==f.reader_root/'Reader-Ready.json':
+            now=datetime.now(timezone.utc);left=remaining(service,f.session,f.authorities())
+            expiry=datetime.fromisoformat(value['expires_utc'])
+            need(expiry.tzinfo is not None and expiry.utcoffset()==timedelta(0),'INNER_READER_EXPIRY')
+            left=min(left,(expiry-now).total_seconds());need(left>.1,'READER_COORDINATION_EXPIRED')
+            finish.READER_WAIT=left-.1
+            value['expires_utc']=min(now+timedelta(seconds=finish.READER_WAIT),datetime.fromisoformat(service['expires_utc'])).isoformat()
+        elif path==f.reader_root/'After-Copy-Result.json' and isinstance(value,dict) and value.get('failure') is None:
+            remaining(service,f.session,f.authorities())
+        original=sys.exception()
+        try:raw_p_save(path,value)
+        except Exception as publication:
+            if original is not None and isinstance(value,dict) and value.get('failure'):
+                original.add_note('SECONDARY_FAILURE_PUBLICATION: '+repr(publication));raise original
+            raise
+        if path==f.reader_root/'Reader-Ready.json':
+            validate_inner_reader(service,value)
+            outer(f.reader_root/'Reader-Ready-Envelope.json','READER_READY',_reader_records(f))
+            left=min(remaining(service,f.session,f.authorities()),(datetime.fromisoformat(value['expires_utc'])-datetime.now(timezone.utc)).total_seconds())
+            need(left>.1,'READER_COORDINATION_EXPIRED');finish.READER_WAIT=left-.1
+        elif path==f.root/'Stage-Result.json':
+            remaining(service,f.session,f.authorities());_check_workload(f);_check_after(f)
+            need(value.get('stage_complete') is True and value.get('rp2_complete') is True and value.get('rp3_complete') is True and
+                value.get('preservation') is True and value.get('producer_authentication') is False and value.get('gate1_complete') is False,'INNER_STAGE')
+            before=p.read_json(f.root/'Named-History-Before.json');after=_named_history(f)
+            need(history_before is not None and before==history_before==after,'NAMED_HISTORY_CHANGED')
+            raw_p_save(f.root/'Named-History-After.json',after)
+            outer(f.root/'Stage-Envelope.json','STAGE',_stage_records(f))
+    p.save=p_save
+
+def finish_after_reader(f,service,code):
+    p=f.prep
+    if type(code) is not int or code!=0:
+        detail=p.read_json(f.reader_root/'After-Copy-Result.json') if (f.reader_root/'After-Copy-Result.json').exists() else {'error':'missing reader result'}
+        need(False,'AFTER_READER_FAILED:'+str(detail))
+    remaining(service,f.session,f.authorities())
+    value=f.envelopes.make('AFTER',f.contract,f.authorities(),_after_records(f))
+    remaining(service,f.session,f.authorities());atomic_publish(p,f.reader_root/'After-Envelope.json',value)
+    return 0
+
+def _print_json(value):
+    import json
+    print(json.dumps(value,sort_keys=True),flush=True)
+
+def run_reader(f):
+    p=f.prep;coord=f.phase/'coord'
+    need(not os.path.lexists(coord/'Reader-Service-Claim.json') and not os.path.lexists(f.root) and not os.path.lexists(f.channel),'READER_ALREADY_CONSUMED')
+    install_actor_guard(f,'Reader')
+    started=time.monotonic();utc=datetime.now(timezone.utc)
+    seed={'scope':'RP3_READER_OWNED_TRANSPORT_SEED_V1','session':f.session,'pid':os.getpid(),'sid':own_sid(f),'nonce':uuid.uuid4().hex,'manifest':p.record(f.manifest_path)}
+    need(seed['sid']=='S-1-5-21-2571509308-2482563067-4170768140-1003','TRANSPORT_READER_ACTOR')
+    atomic_publish(p,f.reader_root/'Transport-Seed.json',seed)
+    claim={'session':f.session,'scope':'ONE_EXISTING_ACCESS_READER_NO_SELECTED_RUNTIME','pid':os.getpid(),'seed':p.record(f.reader_root/'Transport-Seed.json')}
+    p.save(coord/'Reader-Service-Claim.json',claim)
+    service={'scope':'RP3_READY_READER_SERVICE_V1','session':f.session,'authorities':f.authorities(),'pid':os.getpid(),
+        'claim':p.record(coord/'Reader-Service-Claim.json'),
+        'started_monotonic':started,'deadline_monotonic':started+3600,'started_utc':utc.isoformat(),'expires_utc':(utc+timedelta(seconds=3600)).isoformat()}
+    atomic_publish(p,coord/'Reader-Service-Ready.json',service)
+    _print_json({'status':'NEW_RP3_READER_WAITING_FOR_NORMAL_PREPARATION_NO_SELECTED_RUNTIME','ready':p.record(coord/'Reader-Service-Ready.json'),'expires_utc':service['expires_utc']})
+    try:
+        transport_reader(f,service,seed)
+        ready=_await(f,f.root/'Preparation-Ready.json',service)
+        expected=f.envelopes.preparation(p,f.contract,f.authorities())
+        f.envelopes.check(ready,'PREPARATION',f.contract,f.authorities(),expected['records'])
+        f.set_inputs(ready['records']['inputs']['sha256'],ready['records']['request']['sha256'])
+        print('cooperating-before-inspection: RUNNING (data only)',flush=True);start=time.monotonic()
+        f.copy.inspect_before_policies()
+        zero=f.envelopes.zero_exception(f.copy,f.copy.base(),f.contract,f.authorities(),ready)
+        remaining(service,f.session,f.authorities());atomic_publish(p,f.reader_root/'Zero-Exception-Accepted.json',zero)
+        # This acceptance permits no data-hardlink/protected-identity exception.
+        f.copy.make_before_copies(zero['records']['proposal']['sha256'])
+        f.set_copy_inputs(p.record(f.reader_root/'Copy-Inputs.json')['sha256'])
+        _print_json({'status':'NEW_BEFORE_DATA_COPIES_READY','seconds':time.monotonic()-start,'copies':p.record(f.reader_root/'BEFORE/reader-copy/Copies.json')})
+        _hooks(f,service)
+        f.finish.READER_WAIT=max(0,remaining(service,f.session,f.authorities())-.1)
+        need(f.finish.READER_WAIT>0,'READER_COORDINATION_EXPIRED')
+        code=f.finish.reader_watch(f.manifest['helpers']['rp3_runtime.py']['sha256'],f.copy_inputs_sha)
+        # Publish outside the unchanged helper's failure handler: a failed outer
+        # envelope must not make it overwrite an existing inner success record.
+        return finish_after_reader(f,service,code)
+    except BaseException as error:
+        failure={'status':'NEW_RP3_READER_FAILED_NO_RETRY','session':f.session,'failure':''.join(traceback.TracebackException.from_exception(error).format(chain=True)),'stage_complete':False}
+        try:atomic_publish(p,coord/'Reader-Service-Failure.json',failure)
+        except Exception as publication:error.add_note('READER_DIAGNOSTIC_PUBLICATION: '+repr(publication))
+        _print_json(failure);raise
+
+def run_normal(f):
+    p=f.prep;p.exact_normal_account(f.c1)  # Before claims/failure files or input preparation.
+    service=_service(f);need(not os.path.lexists(f.root) and not os.path.lexists(f.channel),'NORMAL_OUTPUT_CONSUMED')
+    p.ordinary(f.channel.parent);f.channel.mkdir();install_actor_guard(f,'Normal')
+    timeline=[]
+    def segment(name,action):
+        row={'segment':name,'started_utc':datetime.now(timezone.utc).isoformat(),'started_monotonic':time.monotonic()};timeline.append(row)
+        print(name+': RUNNING (new RP3 complete workflow)',flush=True)
+        try:return action()
+        except BaseException:
+            row['failure']=traceback.format_exc();raise
+        finally:row['seconds']=time.monotonic()-row['started_monotonic'];print(name+': %.3f seconds'%row['seconds'],flush=True)
+    try:
+        segment('cross-account-readback-preflight',lambda:transport_normal(f,service))
+        before=segment('named-history-before',lambda:_named_history(f))
+        def validate(result):
+            f.set_inputs(result['inputs']['sha256'],result['request']['sha256'])
+            p.save(f.root/'Named-History-Before.json',before)
+            return f.envelopes.preparation(p,f.contract,f.authorities())
+        segment('fresh-normal-input-preparation',lambda:publish_preparation(lambda:p.prepare(root=f.root),validate,lambda value:publish_live(f,f.root/'Preparation-Ready.json',value,service)))
+        reader=segment('await-fresh-cooperating-before-copies',lambda:_await(f,f.reader_root/'Reader-Ready-Envelope.json',service))
+        f.set_copy_inputs(p.record(f.reader_root/'Copy-Inputs.json')['sha256'])
+        f.envelopes.check(reader,'READER_READY',f.contract,f.authorities(),_reader_records(f))
+        _hooks(f,service,normal=True,history_before=before);f.finish.READER_WAIT=max(0,remaining(service,f.session,f.authorities())-.1)
+        code=segment('integrated-runtime-and-fresh-original-after',lambda:f.finish.run_all(
+            f.manifest['helpers']['rp3_runtime.py']['sha256'],f.copy_inputs_sha,
+            p.record(f.reader_root/'BEFORE/reader-copy/Copies.json')['sha256'],p.record(f.reader_root/'Reader-Ready.json')['sha256']))
+        need(type(code) is int and code==0 and not os.path.lexists(f.root/'RunAll-Failure.json'),'INNER_WORKFLOW_FAILED')
+        stage=p.read_json(f.root/'Stage-Envelope.json');records=_stage_records(f)
+        for name,row in records.items():need(p.record(Path(row['path']))==row,'FINAL_RECORD:'+name)
+        f.envelopes.check(stage,'STAGE',f.contract,f.authorities(),records)
+        need(p.read_json(f.root/'Stage-Result.json')['stage_complete'] is True,'STAGE_INNER_INCOMPLETE')
+        p.save(f.root/'Successor-Diagnostics.json',{'status':'NEW_RP3_OBSERVED_PENDING_PARENT_READBACK','timeline':timeline,'stage':p.record(f.root/'Stage-Envelope.json')})
+        remaining(service,f.session,f.authorities())
+        _print_json({'status':'NEW_RP3_FULL_WORKFLOW_OBSERVED_PENDING_PARENT_READBACK','stage':p.record(f.root/'Stage-Envelope.json'),'result':p.record(f.root/'Stage-Result.json'),'stage_complete':True,'gate1_complete':False});return 0
+    except BaseException as error:
+        value={'status':'NEW_RP3_STOP_NO_RETRY','session':f.session,'failure':''.join(traceback.TracebackException.from_exception(error).format(chain=True)),'timeline':timeline,'stage_complete':False,'gate1_complete':False}
+        try:atomic_publish(p,f.channel/'Normal-Workflow-Failure.json',value)
+        except Exception as publication:error.add_note('NORMAL_DIAGNOSTIC_PUBLICATION: '+repr(publication))
+        _print_json(value);raise
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--mode',choices=('Reader','Normal'),required=True)
+    parser.add_argument('--manifest-sha256',required=True);args=parser.parse_args()
+    need(len(args.manifest_sha256)==64 and all(c in '0123456789abcdef' for c in args.manifest_sha256),'EXTERNAL_SHA')
+    family=_load_family(args.manifest_sha256)
+    raise SystemExit(run_reader(family) if args.mode=='Reader' else run_normal(family))

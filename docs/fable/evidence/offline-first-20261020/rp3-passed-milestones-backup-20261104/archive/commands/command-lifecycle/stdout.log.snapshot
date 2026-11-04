@@ -1,0 +1,13 @@
+{"scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI", "pattern": "test_knowledge_process_lifecycle.py", "tests_run": 6, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "interrupted": false, "discovered": 6, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-lifecycle\\unittest.log", "log_sha256": "c2ef37eac0abf6bd5433cd18403a1c8ee94aa4f51bf8d1d8430de0ca47e7ecab"}
+test_cleanup_failure_after_success_is_not_returned_as_success (test_knowledge_process_lifecycle.ProcessLifecycle.test_cleanup_failure_after_success_is_not_returned_as_success) ... ok
+test_every_owned_process_stops_before_any_resource_disposal (test_knowledge_process_lifecycle.ProcessLifecycle.test_every_owned_process_stops_before_any_resource_disposal) ... ok
+test_one_close_failure_does_not_abandon_sibling_or_hide_original (test_knowledge_process_lifecycle.ProcessLifecycle.test_one_close_failure_does_not_abandon_sibling_or_hide_original) ... ok
+test_partial_process_creation_closes_already_opened_parent_streams (test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_process_creation_closes_already_opened_parent_streams) ... ok
+test_partial_second_creation_reaps_the_first_session (test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_second_creation_reaps_the_first_session) ... ok
+test_pipe_write_timeout_is_joined_before_handle_disposal (test_knowledge_process_lifecycle.ProcessLifecycle.test_pipe_write_timeout_is_joined_before_handle_disposal) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.110s
+
+OK
+

@@ -1,0 +1,69 @@
+"""Actual PS7 parser/guard and checked-memory loader controls; no selected runtime."""
+from datetime import datetime,timedelta,timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import tempfile
+import unittest
+PHASE=Path(__file__).absolute().parents[1]
+SHELL=Path(r'C:\Users\sakth\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell\pwsh.exe')
+class OuterControls(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        assert hashlib.sha256(SHELL.read_bytes()).hexdigest()=='362a356ce7f0940ec74f73a8fc2c990a2cc24a38a11c90bbd8eca947110ad139'
+        cls.source=(PHASE/'Run-Final-RP3-unissued.ps1').read_text()
+        cls.bootstrap=re.search(r"\$ReadyBootstrap = @'\n(.*?)\n'@",cls.source,re.S).group(1)
+    def scratch(self):
+        root=PHASE/'controls-retained';root.mkdir(exist_ok=True);return Path(tempfile.mkdtemp(prefix='outer-',dir=root))
+    def powershell(self,source):
+        path=self.scratch()/'Guard.ps1';path.write_text(source)
+        return subprocess.run([str(SHELL),'-NoLogo','-NoProfile','-File',str(path),'-VerifyOnly'],capture_output=True,text=True,timeout=30)
+    def test_draft_parses_with_existing_pinned_ps7(self):
+        path=PHASE/'Run-Final-RP3-unissued.ps1'
+        command="$tokens=$null; $errors=$null; [System.Management.Automation.Language.Parser]::ParseFile($args[0],[ref]$tokens,[ref]$errors) > $null; if($errors.Count){$errors | ForEach-Object {Write-Output $_.Message}; exit 1}; Write-Output 'PARSE_PASS'"
+        # -File keeps argv literal and avoids rebuilding shell command text from paths.
+        script=self.scratch()/'Parse.ps1';script.write_text(command)
+        result=subprocess.run([str(SHELL),'-NoLogo','-NoProfile','-File',str(script),str(path)],capture_output=True,text=True,timeout=15)
+        self.assertEqual(result.returncode,0,result.stderr);self.assertIn('PARSE_PASS',result.stdout)
+    def test_changed_external_manifest_stops_before_service_or_python(self):
+        expected=hashlib.sha256((PHASE/'Authority-Manifest.json').read_bytes()).hexdigest()
+        result=self.powershell(self.source.replace(expected,'0'*64))
+        self.assertNotEqual(result.returncode,0);self.assertIn('Sealed bytes changed',result.stderr)
+        self.assertIn('Authority-Manifest.json',result.stderr)
+    def test_expired_reader_is_refused_before_python_or_attempt(self):
+        root=self.scratch();path=root/'Expired-Service.json'
+        manifest=hashlib.sha256((PHASE/'Authority-Manifest.json').read_bytes()).hexdigest();config=json.loads((PHASE/'Successor-Contract.json').read_text())
+        value={'scope':'RP3_READY_READER_SERVICE_V1','session':config['session'],'authorities':{'manifest':{'sha256':manifest}},'started_utc':'2000-01-01T00:00:00+00:00','expires_utc':'2000-01-01T01:00:00+00:00','started_monotonic':1,'deadline_monotonic':3601}
+        path.write_text(json.dumps(value));sha=hashlib.sha256(path.read_bytes()).hexdigest()
+        source=self.source.replace('FREEZE_AFTER_CORE_REVIEW',sha).replace("$ReadyServicePath = Join-Path $ReadyPhase 'coord\\Reader-Service-Ready.json'","$ReadyServicePath = '"+str(path)+"'")
+        result=self.powershell(source);self.assertNotEqual(result.returncode,0,result.stdout)
+        self.assertIn('cooperating reader is changed or expired',result.stderr)
+    def test_insufficient_window_failed_reader_old_ack_or_dead_pid_stop_before_attempt(self):
+        manifest=hashlib.sha256((PHASE/'Authority-Manifest.json').read_bytes()).hexdigest();config=json.loads((PHASE/'Successor-Contract.json').read_text())
+        for case,expected in [('short','Insufficient reader window'),('failure','Reader has recorded a failure'),('ack','transport already has acknowledgement'),('pid','Cannot find a process')]:
+            with self.subTest(case=case):
+                root=self.scratch();path=root/'Service.json';now=datetime.now(timezone.utc);expiry=now+timedelta(seconds=2759 if case=='short' else 3590)
+                value={'scope':'RP3_READY_READER_SERVICE_V1','session':config['session'],'authorities':{'manifest':{'sha256':manifest}},'started_utc':(expiry-timedelta(seconds=3600)).isoformat(),'expires_utc':expiry.isoformat(),'started_monotonic':1,'deadline_monotonic':3601,'pid':2147483647 if case=='pid' else os.getpid()}
+                path.write_text(json.dumps(value));sha=hashlib.sha256(path.read_bytes()).hexdigest()
+                source=self.source.replace('FREEZE_AFTER_CORE_REVIEW',sha).replace("$ReadyServicePath = Join-Path $ReadyPhase 'coord\\Reader-Service-Ready.json'","$ReadyServicePath = '"+str(path)+"'")
+                if case in ('failure','ack'):
+                    marker=root/'Present.json';marker.write_text('{}')
+                    target="Join-Path $ReadyPhase 'coord\\Reader-Service-Failure.json'" if case=='failure' else "Join-Path $ReadyConfig.reader_root 'Transport-Ack.json'"
+                    source=source.replace(target,"'"+str(marker)+"'")
+                result=self.powershell(source);self.assertNotEqual(result.returncode,0,result.stdout);self.assertIn(expected,result.stderr)
+                self.assertFalse(Path(config['normal_channel']).exists())
+    def test_changed_entrypoint_never_executes_marker(self):
+        root=self.scratch();path=root/'entry.py';marker=root/'must-not-run'
+        path.write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("bad")\n')
+        result=subprocess.run([sys.executable,'-I','-B','-c',self.bootstrap,str(path),'0'*64],capture_output=True,text=True,timeout=10)
+        self.assertNotEqual(result.returncode,0);self.assertIn('BOOTSTRAP_SOURCE_SHA',result.stderr);self.assertFalse(marker.exists())
+    def test_linked_entrypoint_is_refused_even_with_matching_bytes(self):
+        root=self.scratch();path=root/'entry.py';path.write_text('raise AssertionError("must-not-execute")\n');os.link(path,root/'alias.py')
+        sha=hashlib.sha256(path.read_bytes()).hexdigest()
+        result=subprocess.run([sys.executable,'-I','-B','-c',self.bootstrap,str(path),sha],capture_output=True,text=True,timeout=10)
+        self.assertNotEqual(result.returncode,0);self.assertIn('BOOTSTRAP_TYPE',result.stderr)
+if __name__=='__main__':unittest.main()

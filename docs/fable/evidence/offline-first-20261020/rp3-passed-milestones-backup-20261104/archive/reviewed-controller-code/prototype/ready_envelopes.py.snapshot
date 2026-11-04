@@ -1,0 +1,109 @@
+"""Validate successor publication boundaries; no copying or runtime actions."""
+from copy import deepcopy
+import math
+import json
+import os
+from pathlib import Path
+SCOPE='RP3_READY_SUCCESSOR_ENVELOPE_V1'
+FLAGS=('selected_runtime_started','stage_complete','gate1_complete','release_ready','installed','producer_authentication','preservation','historical_c2_cause_proven')
+KINDS={'PREPARATION','ZERO_EXCEPTION','READER_READY','WORKLOAD','AFTER','STAGE'}
+KEYS={'factory','config','manifest','helpers','recipe','accepted','evaluated_manifest'}
+NAMES={'rp3_bound_copy.py','rp3_copy.py','rp3_finish.py','rp3_prepare.py','rp3_runtime.py','ready_source.py','ready_envelopes.py','ready_factory.py','ready_workflow.py'}
+
+def need(value,code):
+    if not value:raise ValueError('E_READY_ENVELOPE_'+code)
+
+def json_value(value):
+    if value is None or type(value) in (str,bool,int):return
+    if type(value) is float:need(math.isfinite(value),'FINITE');return
+    if type(value) is list:
+        for item in value:json_value(item)
+        return
+    if type(value) is dict:
+        for key,item in value.items():need(type(key) is str,'KEY');json_value(item)
+        return
+    need(False,'JSON_TYPE')
+
+def record(value):
+    need(type(value) is dict and set(value)=={'path','size','sha256','links'},'RECORD_SHAPE')
+    need(type(value['path']) is str and bool(value['path']) and type(value['size']) is int and value['size']>=0 and
+        type(value['links']) is int and value['links']==1,'RECORD_FIELDS')
+    need(type(value['sha256']) is str and len(value['sha256'])==64 and all(c in '0123456789abcdef' for c in value['sha256']),'RECORD_HASH')
+
+def authority(contract,a):
+    need(type(contract) is dict and contract['scope']=='RP3_READY_COPY_SUCCESSOR_V1','CONTRACT')
+    need(type(a) is dict and set(a)==KEYS,'AUTHORITIES')
+    phase=Path(contract['phase'])
+    for key in ('factory','config','manifest','recipe','accepted'):record(a[key])
+    need(a['factory']['path']==str(phase/'prototype/ready_factory.py') and
+        a['config']['path']==str(phase/'Successor-Contract.json') and
+        a['config']['sha256']=='5ecf462785cdd3ade6aaf7f64736b83dc2782c06248a64670d29b43e384260cb' and
+        a['manifest']['path']==str(phase/'Authority-Manifest.json'),'AUTHORITY_PATHS')
+    need(type(a['helpers']) is dict and set(a['helpers'])==NAMES,'HELPERS')
+    for name,row in a['helpers'].items():record(row);need(row['path']==str(phase/'prototype'/name),'HELPER_PATH')
+    need(a['recipe']==contract['recipe'] and a['accepted']==contract['accepted'],'SOURCE_AUTHORITY')
+    need(type(a['evaluated_manifest']) is dict and len(a['evaluated_manifest'])==683,'SOURCE_MANIFEST')
+    for name,digest in a['evaluated_manifest'].items():
+        need(type(name) is str and bool(name) and type(digest) is str and len(digest)==64 and all(c in '0123456789abcdef' for c in digest),'SOURCE_ROW')
+    json_value(a)
+
+def make(kind,contract,authorities,records):
+    need(kind in KINDS and type(records) is dict,'KIND_RECORDS');authority(contract,authorities);json_value(records)
+    return {'scope':SCOPE,'kind':kind,'root':contract['root'],'session':contract['session'],
+        'authorities':deepcopy(authorities),'records':deepcopy(records)}
+
+def check(value,kind,contract,authorities,records):
+    expected=make(kind,contract,authorities,records);json_value(value)
+    need(type(value) is dict and set(value)==set(expected) and json.dumps(value,sort_keys=True,allow_nan=False,separators=(',',':'))==json.dumps(expected,sort_keys=True,allow_nan=False,separators=(',',':')),'EXACT_BINDING')
+    return deepcopy(value)
+
+def flags_false(value):
+    need(type(value) is dict and all(value.get(key) is False for key in FLAGS),'FLAGS')
+
+def preparation(prep,contract,authorities):
+    authority(contract,authorities);root=Path(contract['root'])
+    need(not os.path.lexists(root/'Failure.json'),'PREPARATION_FAILED')
+    i=prep.read_json(root/'Inputs.json');request=prep.read_json(root/'BEFORERequest.json');d=prep.read_json(root/'Diagnostics.json')
+    need(i['scope']=='RP3_INPUT_PREPARATION_ONLY' and i['session']==contract['session'] and i['head']==contract['head'] and
+        i['output']==contract['root'] and i['runtime_command_issued'] is False,'INPUTS_CONTEXT')
+    flags_false(i);flags_false(d)
+    source=i['source']
+    need(type(source) is dict and set(source)=={'recipe','accepted','before','rp1_receipt','evaluated_manifest','older_pins','ready_copy_acceptance','baseline_recipe'},'SOURCE_SHAPE')
+    need(source['recipe']==contract['recipe'] and source['baseline_recipe']==contract['baseline_recipe'] and
+        source['ready_copy_acceptance']==contract['accepted'] and source['evaluated_manifest']==authorities['evaluated_manifest'],'INPUT_SOURCE')
+    need(i['before_request']==prep.record(root/'BEFORERequest.json') and
+        i['helper']==prep.record(Path(contract['phase'])/'prototype/rp3_prepare.py'),'PREP_RECORDS')
+    need(request['phase']=='BEFORE' and d['status']=='INPUTS_PREPARED_PENDING_COPY' and d['failed_segment'] is None,'PREP_DIAGNOSTICS')
+    return make('PREPARATION',contract,authorities,{'inputs':prep.record(root/'Inputs.json'),
+        'request':prep.record(root/'BEFORERequest.json'),'diagnostics':prep.record(root/'Diagnostics.json'),'recipe':contract['recipe']})
+
+def zero_exception(copied,context,contract,authorities,preparation_record):
+    p=context['prep'];expected=preparation(p,contract,authorities)
+    check(preparation_record,'PREPARATION',contract,authorities,expected['records'])
+    root=Path(contract['root']);request=p.read_json(root/'BEFORERequest.json')
+    need(context['request']==request,'REQUEST_CONTEXT')
+    proposal=p.read_json(Path(contract['reader_root'])/'Policy-Proposal.json');ids=p.read_json(Path(contract['reader_root'])/'Protected-Identities.json');inspected=p.read_json(Path(contract['reader_root'])/'InspectBefore-Result.json')
+    need(type(ids) is dict and bool(ids),'IDENTITIES')
+    for name,pair in ids.items():
+        need(type(name) is str and type(pair) is list and len(pair)==2 and all(type(x) is int and x>=0 for x in pair),'IDENTITY_ROW')
+    protected=[list(x) for x in sorted(set(map(tuple,ids.values())))];roots=p.history_roots()
+    need(type(roots) is dict and len(roots)==8,'ROOTS')
+    need(type(proposal) is dict and set(proposal)=={'scope','session','request_sha256','roots','origin','producer_authentication','policy_approved'},'PROPOSAL_SCHEMA')
+    need(proposal['scope']=='SR3_COPY_POLICY_PROPOSAL_V1' and proposal['session']==contract['session'] and
+        proposal['origin']=='CURRENT_REQUESTED_HISTORICAL_DATA_READ_NOT_AUTHENTICATED' and
+        proposal['producer_authentication'] is False and proposal['policy_approved'] is False,'POLICY_CONTEXT')
+    need(type(proposal['roots']) is dict and set(proposal['roots'])==set(roots),'POLICY_ROOTS')
+    for label,path in roots.items():
+        policy=proposal['roots'][label]
+        need(type(policy) is dict and set(policy)=={'scope','root','protected_identities','allowed'} and policy['scope']==context['data']._primitives()[1].SCOPE and policy['root']==str(path) and
+            policy['protected_identities']==protected and type(policy['allowed']) is dict and policy['allowed']=={},'ZERO_EXCEPTION')
+    need(type(inspected) is dict and set(inspected)=={'status','session','proposal','identities','hardlink_data_exceptions','timeline'}|set(FLAGS),'INSPECTION_SCHEMA')
+    need(inspected['status']=='RP3_POLICY_PROPOSAL_REQUIRES_EXTERNAL_REVIEW_NO_COPY' and inspected['session']==contract['session'] and
+        inspected['proposal']==p.record(Path(contract['reader_root'])/'Policy-Proposal.json') and inspected['identities']==p.record(Path(contract['reader_root'])/'Protected-Identities.json') and
+        type(inspected['hardlink_data_exceptions']) is int and inspected['hardlink_data_exceptions']==0 and type(inspected['timeline']) is list,'INSPECTION_BINDING')
+    flags_false(inspected)
+    structural=copied.validate_proposal(context['data'],proposal,request,protected,roots,contract['session'])
+    need(structural==proposal['roots'],'STRUCTURAL_VALIDATION')
+    return make('ZERO_EXCEPTION',contract,authorities,{'proposal':p.record(Path(contract['reader_root'])/'Policy-Proposal.json'),
+        'identities':p.record(Path(contract['reader_root'])/'Protected-Identities.json'),'inspect_result':p.record(Path(contract['reader_root'])/'InspectBefore-Result.json'),
+        'preparation':deepcopy(preparation_record)})

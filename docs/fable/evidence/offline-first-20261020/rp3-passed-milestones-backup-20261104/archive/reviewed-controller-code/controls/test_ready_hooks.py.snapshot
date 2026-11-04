@@ -1,0 +1,126 @@
+"""Execute publication hooks and unchanged finish FSM on synthetic receipts.
+
+No selected interpreter, numerical method or original history is executed.
+This proves metadata ordering/failure behavior, not actual runtime qualification.
+"""
+from datetime import datetime,timedelta,timezone
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import tempfile
+import time
+import types
+import unittest
+from unittest.mock import patch
+PHASE=Path(__file__).absolute().parents[1]
+
+def load(name,path):
+    s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
+
+class Prep:
+    def __init__(self,root,events):
+        self.root=root;self.events=events;self.SESSION='a'*32;self.fail_prefix=None
+        self.FLAGS={k:False for k in ('selected_runtime_started','stage_complete','gate1_complete','release_ready','installed','producer_authentication','preservation','historical_c2_cause_proven')}
+    def save(self,path,value):
+        path=Path(path)
+        if self.fail_prefix and path.name.startswith(self.fail_prefix):raise OSError('CONTROL_SECONDARY_OR_OUTER_WRITE')
+        with path.open('x',encoding='utf-8') as stream:json.dump(value,stream,sort_keys=True);stream.write('\n')
+        self.events.append('save:'+path.name)
+    def read_json(self,path,*args,**kwargs):return json.loads(Path(path).read_bytes())
+    def record(self,path):
+        path=Path(path);raw=path.read_bytes()
+        return {'path':str(path),'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'links':1}
+    def ordinary(self,path):return Path(path).absolute()
+    def exact_normal_account(self,c1):pass  # Synthetic FSM actor, never used in the real launcher.
+
+class HookControls(unittest.TestCase):
+    def setUp(self):
+        self.m=load('hook_workflow',PHASE/'prototype/ready_workflow.py');self.e=load('hook_envelopes',PHASE/'prototype/ready_envelopes.py')
+        scratch=PHASE/'hook-test-scratch';scratch.mkdir(exist_ok=True);root=Path(tempfile.mkdtemp(dir=scratch))
+        self.events=[];p=Prep(root,self.events);self.p=p
+        c=json.loads((PHASE/'Successor-Contract.json').read_bytes());c['root']=str(root);c['session']=p.SESSION
+        manifest=json.loads((PHASE/'Authority-Manifest.json').read_bytes())
+        a={'factory':p.record(PHASE/'prototype/ready_factory.py'),'config':p.record(PHASE/'Successor-Contract.json'),'manifest':p.record(PHASE/'Authority-Manifest.json'),'helpers':manifest['helpers'],'recipe':c['recipe'],'accepted':c['accepted'],'evaluated_manifest':json.loads((PHASE/'Source-Recipe.json').read_bytes())['evaluated_manifest']}
+        finish=load('synthetic_finish_fsm',PHASE/'prototype/rp3_finish.py');finish.ROOT=root;finish.READER_ROOT=root;finish.PHASE=PHASE
+        runtime=types.SimpleNamespace(save=p.save)
+        def validate(record,context):self.events.append('raw-validated');return p.read_json(root/'Workload.json')
+        runtime.validate_workload=validate
+        self.f=types.SimpleNamespace(root=root,phase=PHASE,session=p.SESSION,prep=p,runtime=runtime,finish=finish,envelopes=self.e,contract=c,authorities=lambda:a,reader_root=root,channel=root)
+        for name in ('Copy-Inputs.json','Preparation-Ready.json','Zero-Exception-Accepted.json','Reader-Ready-Envelope.json','Transport-Seed.json','Transport-Ack.json','Transport-Accepted.json'):p.save(root/name,{})
+        self.f.copy_inputs_sha=p.record(root/'Copy-Inputs.json')['sha256']
+        self.history={'original_identity':'unchanged'};p.save(root/'Named-History-Before.json',self.history)
+        ready={'scope':'RP3_EXISTING_ACCESS_READER_READY','session':p.SESSION,'pid':os.getpid(),'expires_utc':(datetime.now(timezone.utc)+timedelta(seconds=300)).isoformat(),'copy_inputs':p.record(root/'Copy-Inputs.json'),'copy_helper':p.record(PHASE/'prototype/rp3_copy.py'),'runtime_helper':p.record(PHASE/'prototype/rp3_runtime.py'),'finish_helper':p.record(PHASE/'prototype/rp3_finish.py'),**p.FLAGS}
+        p.save(root/'Reader-Ready.json',ready)
+        utc=datetime.now(timezone.utc);mono=time.monotonic()
+        self.service={'scope':'RP3_READY_READER_SERVICE_V1','session':p.SESSION,'pid':os.getpid(),'claim':p.record(root/'Copy-Inputs.json'),'authorities':a,'started_monotonic':mono,'deadline_monotonic':mono+3600,'started_utc':utc.isoformat(),'expires_utc':(utc+timedelta(seconds=3600)).isoformat()}
+        copied=types.SimpleNamespace(INPUTS_SHA='i')
+        copied.copy_context=lambda *args:{'c1':None};self.f.bound_copy=lambda:copied
+        def before(*args):p.save(root/'Before-Bundle.json',{});return p.record(root/'Before-Bundle.json')
+        copied.verify_before=before
+        def run(*args):
+            (root/'run').mkdir();runtime.save(root/'run/Receipt.json',{'commands':[]})
+            try:runtime.save(root/'Workload.json',{'status':'RP3_RUNTIME_OBSERVED_PENDING_ORIGINAL_AFTER','source_manifest_sha256':'a'*64})
+            except BaseException as error:
+                p.save(root/'Runtime-Validation-Failure.json',{'failure':str(error),'stage_complete':False});raise
+            return 0
+        runtime.run=run
+        def after(workload):
+            p.save(root/'After-Request.json',{});(root/'AFTER/reader-copy').mkdir(parents=True);p.save(root/'AFTER/reader-copy/Copies.json',{})
+            result={'status':'RP3_FRESH_AFTER_COPIES_READY','session':p.SESSION,'workload':workload,'request':p.record(root/'After-Request.json'),'copies':p.record(root/'AFTER/reader-copy/Copies.json'),'failure':None}
+            p.save(root/'After-Copy-Result.json',result)
+            self.m.finish_after_reader(self.f,self.service,0);return p.record(root/'After-Request.json')
+        copied.after=after
+        def finalize(*args):
+            self.m._check_after(self.f);self.events.append('comparison-after-validated-envelope')
+            p.save(root/'After-Bundle.json',{});return {'status':'CONTENT_MATCH_AT_BEFORE_AFTER_SAMPLES','producer_authentication':False}
+        copied.finalize=finalize
+        finish.modules=lambda *args:(p,copied,runtime)
+        transport_patch=patch.object(self.m,'_transport_records',return_value={});transport_patch.start();self.addCleanup(transport_patch.stop)
+        self.patch=patch.object(self.m,'_named_history',return_value=self.history);self.patch.start();self.addCleanup(self.patch.stop)
+        self.m._hooks(self.f,self.service,normal=True,history_before=self.history);self.events.clear()
+    def run_fsm(self):
+        p=self.p;r=self.f.root
+        return self.f.finish.run_all('runtime','copy',p.record(r/'Copy-Inputs.json')['sha256'],p.record(r/'Reader-Ready.json')['sha256'])
+    def test_full_publication_order_and_stage_envelope(self):
+        self.assertEqual(self.run_fsm(),0)
+        root=self.f.root
+        self.assertTrue((root/'Stage-Envelope.json').exists());self.assertFalse((root/'RunAll-Failure.json').exists())
+        inner=self.events.index('save:Workload.json');validated=self.events.index('raw-validated')
+        outer=next(i for i,v in enumerate(self.events) if v.startswith('save:Workload-Envelope.json.pending-'))
+        self.assertLess(inner,validated);self.assertLess(validated,outer);self.assertIn('comparison-after-validated-envelope',self.events)
+    def test_outer_workload_failure_cannot_complete_stage(self):
+        self.p.fail_prefix='Workload-Envelope.json.pending-'
+        self.assertEqual(self.run_fsm(),1);r=self.f.root
+        self.assertTrue((r/'Runtime-Validation-Failure.json').exists());self.assertTrue((r/'RunAll-Failure.json').exists())
+        self.assertFalse((r/'Workload-Envelope.json').exists());self.assertFalse((r/'Stage-Envelope.json').exists())
+    def test_reader_failure_never_publishes_after_envelope(self):
+        # This callback runs in the separate Reader role, whose raw JSON reader
+        # does not have the Normal role's wait-for-AFTER wrapper installed.
+        self.p.read_json=types.MethodType(Prep.read_json,self.p)
+        r=self.f.root;self.p.save(r/'After-Copy-Result.json',{'failure':'CONTROL_READER_FAILED'})
+        with self.assertRaisesRegex(ValueError,'AFTER_READER_FAILED'):self.m.finish_after_reader(self.f,self.service,1)
+        self.assertFalse((r/'After-Envelope.json').exists())
+    def test_normal_json_read_waits_for_after_envelope_before_opening_inner(self):
+        r=self.f.root;(r/'After-Copy-Result.json').write_text('{')
+        seen=[]
+        def ready(f,path,service):
+            self.assertEqual(path,r/'After-Envelope.json');seen.append('outer-wait')
+            (r/'After-Copy-Result.json').write_text('{"complete":true}')
+            return {}
+        with patch.object(self.m,'_await',side_effect=ready):
+            value=self.p.read_json(r/'After-Copy-Result.json')
+        self.assertEqual(value,{'complete':True});self.assertEqual(seen,['outer-wait'])
+    def test_inner_stage_file_is_not_success_when_history_hook_fails(self):
+        with patch.object(self.m,'_named_history',return_value={'changed':True}):self.assertEqual(self.run_fsm(),1)
+        r=self.f.root;self.assertTrue((r/'Stage-Result.json').exists());self.assertTrue((r/'RunAll-Failure.json').exists())
+        self.assertFalse((r/'Stage-Envelope.json').exists())
+    def test_secondary_failure_publication_preserves_original_protocol_error(self):
+        self.p.fail_prefix='RunAll-Failure.json'
+        with patch.object(self.m,'_named_history',return_value={'changed':True}):
+            with self.assertRaisesRegex(ValueError,'NAMED_HISTORY_CHANGED') as caught:self.run_fsm()
+        self.assertTrue(any('SECONDARY_FAILURE_PUBLICATION' in note for note in caught.exception.__notes__))
+        self.assertFalse((self.f.root/'Stage-Envelope.json').exists())
+
+if __name__=='__main__':unittest.main()

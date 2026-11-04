@@ -1,0 +1,251 @@
+{
+  "backup_tree_is_full_qualified_candidate": false,
+  "complete_group_errors": 0,
+  "complete_group_failures": 0,
+  "complete_group_skips": 0,
+  "complete_group_tests": 79,
+  "complete_passed_groups": [
+    {
+      "ids": [
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_active_count_may_change_after_pid_snapshot_without_identity_gap",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_assignment_failure_reaps_unassigned_suspended_root_and_closes_stdin",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_authored_script_keeps_its_original_sibling_import_directory",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_cpython_consumed_launcher_environment_is_not_false_identity_drift",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_event_drain_cannot_ignore_expired_observation_deadline",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_expired_start_never_opens_work_gate_after_identity_check",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_and_member_release_attempt_every_close_and_keep_all_errors",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_setup_close_debt_is_not_labelled_complete_without_an_owner",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_member_outside_job_is_not_accepted_from_a_completion_pid",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_missing_accounting_member_still_terminates_all_known_processes",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_nested_job_descendant_has_independent_native_exit_proof",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_popen_failure_keeps_the_pre_owner_job_when_its_close_fails",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_rejects_requested_executable_identity_drift_before_start",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_release_refuses_before_native_exit_proof",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_resume_identity_error_survives_all_handle_close_failures",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_script_system_exit_is_not_relabelled_as_bootstrap_failure",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_stop_reaps_root_child_grandchild_but_not_unrelated_process"
+      ],
+      "label": "ownership",
+      "log_sha256": "f96df9fa00c365a8663f6c5850b442964d583b1863912a74a5f3b36ad7fd2101",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-ownership\\Receipt.json",
+        "sha256": "e1acb88da4d29a6af70865bea563c48d4e7da8dc582426afae21cc80f8021c74",
+        "size": 487
+      },
+      "tests": 17
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_writer.WindowsWriter.test_boolean_write_count_cannot_be_reported_as_sent_bytes",
+        "test_knowledge_windows_writer.WindowsWriter.test_buffered_stream_is_rejected_before_any_request",
+        "test_knowledge_windows_writer.WindowsWriter.test_cancel_and_join_retries_after_a_cancel_miss_before_real_pipe_io",
+        "test_knowledge_windows_writer.WindowsWriter.test_cancel_miss_is_not_completion_and_close_remains_refused",
+        "test_knowledge_windows_writer.WindowsWriter.test_cancellation_api_failure_is_not_success_and_keeps_original_code",
+        "test_knowledge_windows_writer.WindowsWriter.test_failed_start_handle_retirement_cannot_be_reported_as_success",
+        "test_knowledge_windows_writer.WindowsWriter.test_failed_thread_handle_creation_preserves_error_and_allows_no_io_cleanup",
+        "test_knowledge_windows_writer.WindowsWriter.test_failed_write_is_recorded_once_and_never_resent",
+        "test_knowledge_windows_writer.WindowsWriter.test_invalid_deadlines_are_rejected_before_starting_a_thread",
+        "test_knowledge_windows_writer.WindowsWriter.test_native_close_failure_stays_visible_and_does_not_retire_handle",
+        "test_knowledge_windows_writer.WindowsWriter.test_payload_preparation_past_deadline_cannot_launch_or_write",
+        "test_knowledge_windows_writer.WindowsWriter.test_readiness_after_start_timeout_never_transfers_handle_or_starts_io",
+        "test_knowledge_windows_writer.WindowsWriter.test_real_blocked_write_cancels_while_reader_remains_alive",
+        "test_knowledge_windows_writer.WindowsWriter.test_retiring_worker_handle_cannot_be_accepted_cancelled_or_waited_concurrently",
+        "test_knowledge_windows_writer.WindowsWriter.test_short_writes_are_completed_before_success",
+        "test_knowledge_windows_writer.WindowsWriter.test_start_obeys_absolute_deadline_and_prevents_late_write",
+        "test_knowledge_windows_writer.WindowsWriter.test_stream_close_is_refused_until_blocked_writer_has_exited",
+        "test_knowledge_windows_writer.WindowsWriter.test_thread_creation_failure_never_transfers_stream_or_starts_io"
+      ],
+      "label": "writer",
+      "log_sha256": "a275c44182da0fb49621296964588899c3d87bda7adfb71f2911b7f2cc1ed042",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-writer\\Receipt.json",
+        "sha256": "a155e0ae715e09105660cee0efd10d5c81df0d30fed90a66f1447d056a7786c6",
+        "size": 477
+      },
+      "tests": 18
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_assignment_failure_never_runs_suspended_child",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_blocked_real_pipe_writer_is_released_before_cleanup",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_broken_stdin_does_not_abandon_owned_interpreter",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_close_all_without_primary_error_reports_failure_and_attempts_each_handle",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_expired_stop_waits_for_the_owned_interpreter_not_only_launcher",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_idle_stop_waits_for_actual_interpreter_before_cleanup",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_release_failure_without_primary_error_remains_a_failure",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_resume_close_failures_preserve_thread_owner_error",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_resume_failure_reaps_already_assigned_root",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_setup_close_failure_preserves_original_setup_error",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_termination_close_failures_preserve_membership_error_and_close_all",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_unobserved_member_refuses_success_and_retains_output"
+      ],
+      "label": "combined-shutdown",
+      "log_sha256": "c5a869200ee7716ea3a1e8f059fdfe415f2d288a0e572e0219da067a57a50577",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-combined-shutdown\\Receipt.json",
+        "sha256": "624709038ddfe69d5b3cfd8302a36983073d1c0432786cc642e0bd3979829324",
+        "size": 490
+      },
+      "tests": 12
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_session.WindowsSession.test_cancel_failure_does_not_abandon_owned_tree_or_hide_original",
+        "test_knowledge_windows_session.WindowsSession.test_cancel_tree_exit_and_join_share_one_deadline_before_any_disposal",
+        "test_knowledge_windows_session.WindowsSession.test_failed_close_retains_directory_instead_of_later_finalizer_deletion",
+        "test_knowledge_windows_session.WindowsSession.test_missing_start_owner_cannot_mask_original_cleanup_debt",
+        "test_knowledge_windows_session.WindowsSession.test_post_stop_stream_close_failure_detaches_directory_finalizer",
+        "test_knowledge_windows_session.WindowsSession.test_unproven_constructor_cleanup_retains_all_parent_streams_and_original",
+        "test_knowledge_windows_session.WindowsSession.test_unproven_process_exit_still_joins_writer_but_forbids_resource_disposal"
+      ],
+      "label": "combined-session",
+      "log_sha256": "c51f9b0dc2c2b5e5c4e1a443e35fb56917a5e53513c980ecd42c2db46f1b48f0",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-combined-session\\Receipt.json",
+        "sha256": "2ddef393459dd65ae1a930b0bdbfb171acfb39d1beec076f38fcd445613528e5",
+        "size": 486
+      },
+      "tests": 7
+    },
+    {
+      "ids": [
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_cleanup_failure_after_success_is_not_returned_as_success",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_every_owned_process_stops_before_any_resource_disposal",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_one_close_failure_does_not_abandon_sibling_or_hide_original",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_process_creation_closes_already_opened_parent_streams",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_second_creation_reaps_the_first_session",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_pipe_write_timeout_is_joined_before_handle_disposal"
+      ],
+      "label": "lifecycle",
+      "log_sha256": "c2ef37eac0abf6bd5433cd18403a1c8ee94aa4f51bf8d1d8430de0ca47e7ecab",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-lifecycle\\Receipt.json",
+        "sha256": "a9c15c9070f3b7e8c6eba88f31a953fa6acd814fd4b70697b7b0be2599258674",
+        "size": 481
+      },
+      "tests": 6
+    },
+    {
+      "ids": [
+        "test_knowledge_worker_cwd.WorkerCwd.test_benchmark_cross_drive_temp_keeps_companion_and_relative_output",
+        "test_knowledge_worker_cwd.WorkerCwd.test_benchmark_dispatch_keeps_caller_relative_companion_and_report",
+        "test_knowledge_worker_cwd.WorkerCwd.test_shards_relative_writes_are_isolated_in_each_owned_directory",
+        "test_knowledge_worker_cwd.WorkerCwd.test_single_relative_writes_are_isolated_per_invocation",
+        "test_knowledge_worker_cwd.WorkerCwd.test_successful_child_cwd_cleanup_failure_is_named_and_not_success",
+        "test_knowledge_worker_cwd.WorkerCwd.test_timeout_stays_primary_when_cwd_cleanup_also_fails",
+        "test_knowledge_worker_cwd.WorkerCwd.test_worker_refusal_stays_primary_when_cwd_cleanup_also_fails"
+      ],
+      "label": "cwd",
+      "log_sha256": "a355a5ffbf33b7dc2b03fe15905ba0e2c6f25f16662bc82217031d42f6d0bc63",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-cwd\\Receipt.json",
+        "sha256": "1acad30568018ba890c520efb0896045fcf6c562ec86cdbe9b19c3d3e3454e61",
+        "size": 468
+      },
+      "tests": 7
+    },
+    {
+      "ids": [
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_default_worker_allows_50second_loading_then_returns_valid_reply",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_distributed_default_uses_supported_cold_start_budget",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_explicit_short_budget_still_times_out_without_retry",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_invalid_budgets_still_refuse_before_process_start",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_programmatic_fresh_preflight_omitted_timeout_uses_120",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_offline_and_fresh_verify_select_120_by_default",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_retrieve_selects_120_by_default_and_preserves_override"
+      ],
+      "label": "budget",
+      "log_sha256": "9559a2fd14f5d9eb01c55cb7e40c295a57eb79260da20c73681a8adc7219de61",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-budget\\Receipt.json",
+        "sha256": "cc934d72522d67a935ec0ecf407602c0c4623fae07c29476d080352fcd5a5210",
+        "size": 475
+      },
+      "tests": 7
+    },
+    {
+      "ids": [
+        "test_knowledge_recursive_git.EditableRuntimeHook.test_editable_owned_runtime_binds_before_existing_git_queries",
+        "test_knowledge_recursive_git.EditableRuntimeHook.test_non_owned_runtime_keeps_existing_git_path",
+        "test_knowledge_recursive_git.RecursiveGit.test_binding_is_idempotent_but_rejects_other_root_image_and_vectors",
+        "test_knowledge_recursive_git.RecursiveGit.test_bound_git_preserves_existing_readonly_outputs",
+        "test_knowledge_recursive_git.RecursiveGit.test_expired_binding_and_dispatch_cannot_start_git"
+      ],
+      "label": "recursive-git",
+      "log_sha256": "d8a13e647a16b4fd681d26c7cc90c2ec51fa1df17fc55e051dfc19bc112b5f76",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-recursive-git\\Receipt.json",
+        "sha256": "a203a48eb73e96eb19e0177726a0c1be84988f6f6da7f40d4f65ae503295e9c7",
+        "size": 481
+      },
+      "tests": 5
+    }
+  ],
+  "controller_checks": {
+    "interpreter": "Python3.14",
+    "log_sha256": "80c0e1f22ced32e8d9bfed5c401dc1fb5fdf8bff2697cf723076ffa92f2afef3",
+    "not_added_to_79": true,
+    "passed": 67,
+    "tests": 67
+  },
+  "failure_context": "Integration process-record assertion expected>=2, observed1. This does not prove a live child or full shutdown failure.",
+  "gate1_complete": false,
+  "inherited_product_files_verified": 32,
+  "installed": false,
+  "new_regular_source_files": [
+    "memory-integrity/tests_v2/_knowledge_git_fixture.py",
+    "memory-integrity/tests_v2/test_knowledge_recursive_git.py"
+  ],
+  "normal_run_receipt_reference_only": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\Receipt.json",
+    "sha256": "b97c6b35b44f5ba75e5648dee742351fcf30cd8c744246a30bd46ca0ed4c31f6",
+    "size": 145058
+  },
+  "parent": "19acf397907df698154a4ab397394d62639cc1c8",
+  "partial_integration_not_promoted": {
+    "failed": 1,
+    "failure": "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_actual_owned_root_runs_bound_readonly_git_with_native_exit_proof",
+    "log_sha256": "62c55ab1a11bc72bf7040566988233d736c0e8736ec9f85339eec2b9a7f2ad6c",
+    "passed": 5,
+    "receipt_reference": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-final-20261104-b\\run\\tests-recursive-integration\\Receipt.json",
+      "sha256": "2c8275e4e9a1fd712bedd06aae269a250cd833db0a360f6e246e910f5bc638cb",
+      "size": 641
+    },
+    "tests": 6
+  },
+  "ref": "refs/heads/backup/rp3-passed-milestones-20261104",
+  "release_ready": false,
+  "remaining_unrun": [
+    "recursive-profile",
+    "ready-copy",
+    "owned-startup",
+    "public initial/replay/refusal method",
+    "fresh original AFTER comparison"
+  ],
+  "rp2_complete": true,
+  "rp3_complete": false,
+  "scope": "INCREMENTAL_PASSED_PARTS_BACKUP_NOT_FULL_RP3",
+  "selected_python": "3.12",
+  "selected_runtime_started": true,
+  "source_head": "fee69861e1f94c54721e5eb773633f9b1d6f9fd3",
+  "stage_complete": false,
+  "verified_passed_source_files": 41,
+  "whole_attempt": {
+    "errors": 0,
+    "failed": 1,
+    "passed": 84,
+    "skips": 0,
+    "tests": 85
+  }
+}

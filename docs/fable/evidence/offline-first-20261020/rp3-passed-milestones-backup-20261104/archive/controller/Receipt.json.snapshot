@@ -1,0 +1,9 @@
+{
+  "scope": "CONTROLLER_METADATA_CONTROLS_NOT_SELECTED_RUNTIME",
+  "pid": 33584,
+  "exit": 0,
+  "timed_out": false,
+  "seconds": 27.272255199961364,
+  "log_sha256": "80c0e1f22ced32e8d9bfed5c401dc1fb5fdf8bff2697cf723076ffa92f2afef3",
+  "stage_complete": false
+}
