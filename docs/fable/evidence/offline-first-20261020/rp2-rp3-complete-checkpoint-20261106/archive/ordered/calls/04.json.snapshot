@@ -1,0 +1,1 @@
+{"generation": "08a1c278cb6d05b95fd64698dff0c983658db31c5a740493426266761dab05ac", "generation_lease": "08a1c278cb6d05b95fd64698dff0c983658db31c5a740493426266761dab05ac", "lease_refusal": false, "mode": ["global", "single"], "pack_digest": "4f5317176e189278ad8f973513555a66202ce5b98a98d12ca09fb63de3dedcc5", "phase": "replay", "returned": true, "sequence": 4}

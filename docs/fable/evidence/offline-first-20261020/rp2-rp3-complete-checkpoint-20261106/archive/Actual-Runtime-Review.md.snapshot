@@ -1,0 +1,20 @@
+# Selected integrated runtime accepted — 2026-11-06
+
+Independent native verdict: SHIP for ND3 runtime only. Parent and reviewer read
+actual receipts/streams/logs; no tests were rerun. Root97469bytes SHA
+b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e;
+product19652bytes SHA00d9db76c42038ba830871ff4a38ec1469a73bd79507f026998c1bceecbd2bf4.
+All34contained commands exit0 with complete capture/no timeout/error/limits;
+all stream sizes/hashes match.14focused groups177PASS;1original ordered method
+adds4passing mode subtests,178unittest cases total.0fail/error/skip/exclusion.
+Discovery IDs/suite receipts/rawlogs and12ordered public/replay/stale-lease calls
+reconcile. Both actual native Git launches start outside INNER, exercise explicit
+assignment before resume, and map to OUTER5members/all exits. Python tree3members/
+all exits.741seals/685source and identity+53versions BEFORE/AFTER pass.
+
+Wall244.135seconds; ordered command86.548seconds. Unittest-reported focused35.721,
+ordered85.920,total121.641seconds; inclusive times are not wall-time sums.
+Reviewer could not enumerate128NEW retained scratch roots but verified ALL
+load-bearing receipts/streams/discoveries/logs/ordered records. No exhaustive new
+scratch content or continuous archive immutability claim. Full Stage remains
+pending complete historical ORIGINAL AFTER; Gate1/release/install separate.

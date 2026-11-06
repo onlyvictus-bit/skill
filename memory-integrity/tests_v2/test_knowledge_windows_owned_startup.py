@@ -19,6 +19,24 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 @unittest.skipUnless(os.name == "nt", "Windows Job/process-handle proof required")
 class OwnedStartupTests(unittest.TestCase):
+    def test_failure_json_read_shares_delete_without_changing_file_permissions(self):
+        from knowledge_bridge.windows_ready_copy import NativeFiles,READ
+        with tempfile.TemporaryDirectory(prefix='failure-read-sharing-')as name:
+            path=Path(name)/'failure.json'
+            value={'token':'a'*64,'code':'ValueError','detail':'CONTROL_FAILURE_FRAME'}
+            path.write_text(json.dumps(value),encoding='utf-8')
+            native=NativeFiles()
+            try:
+                # A live DELETE-access handle models a rename-capable publisher.
+                # No deletion or permission/attribute operation is performed.
+                native.open(path,READ|0x10000,7,3)
+                try:actual=self.owned._bootstrap_json(path,'FAILURE')
+                except PermissionError as error:
+                    self.fail('read-only bootstrap reader denied compatible sharing: '+repr(error))
+                self.assertEqual(actual,value)
+                self.assertTrue(path.exists())
+            finally:native.close_all()
+
     def setUp(self):
         from knowledge_bridge import windows_owned_process as owned
         self.owned = owned

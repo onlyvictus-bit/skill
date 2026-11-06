@@ -1,0 +1,90 @@
+{
+  "copies": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\Copies.json",
+    "sha256": "79ff16837887502b4deb2771f80579bf78a538cb9e925fd600d1f40d89c5f002",
+    "size": 2116
+  },
+  "failure": null,
+  "finished_utc": "2026-11-06T12:12:52.888658+00:00",
+  "gate1_complete": false,
+  "inputs": {
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Reader-After-Request.json": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Reader-After-Request.json",
+      "sha256": "7e363dcfc711e5a0fce583d3d6e918628f697a723acb719ba77b9df754c5d58d",
+      "size": 5920559
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-on-demand-20261105\\reader-outbox\\94d2f72684de412280da30ac1527fb0b\\Copy-Inputs.json": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-on-demand-20261105\\reader-outbox\\94d2f72684de412280da30ac1527fb0b\\Copy-Inputs.json",
+      "sha256": "4f36f1a2d3ac3243d73ca6b8264b1f48ce143d82cd6eab1e2d4e7ff6c14396b7",
+      "size": 414282
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\shutdown_copy_data.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\scripts\\shutdown_copy_data.py",
+      "sha256": "4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299",
+      "size": 14324
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\Receipt.json": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\Receipt.json",
+      "sha256": "b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e",
+      "size": 97469
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\rp3-on-demand-20261105\\Before-Bundle.json": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-on-demand-20261105\\Before-Bundle.json",
+      "sha256": "c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b",
+      "size": 4224786
+    }
+  },
+  "producer_authentication": false,
+  "request": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Reader-After-Request.json",
+    "sha256": "7e363dcfc711e5a0fce583d3d6e918628f697a723acb719ba77b9df754c5d58d",
+    "size": 5920559
+  },
+  "required_paths": 53,
+  "scope": "ND4_NORMAL_EXISTING_ACCESS_HISTORICAL_AFTER_COPY_ONLY",
+  "selected_runtime_started": false,
+  "stage_complete": false,
+  "started_utc": "2026-11-06T12:12:39.163095+00:00",
+  "status": "FRESH_AFTER_COPIES_READY_PENDING_PARENT_MERGE",
+  "timeline": [
+    {
+      "root": "cleanup-lifetime-stack-20261024",
+      "seconds": 0.6318392995744944
+    },
+    {
+      "root": "cleanup-membership-20261025",
+      "seconds": 0.01413859985768795
+    },
+    {
+      "root": "cleanup-process-timing-20261024",
+      "seconds": 0.8077654000371695
+    },
+    {
+      "root": "cleanup-repair-20261023",
+      "seconds": 3.6708165002055466
+    },
+    {
+      "root": "rp1-audit",
+      "seconds": 2.9189630998298526
+    },
+    {
+      "root": "rp1-corrected",
+      "seconds": 0.029891899786889553
+    },
+    {
+      "root": "rp1-original",
+      "seconds": 2.362122400198132
+    },
+    {
+      "root": "rp1-store",
+      "seconds": 2.6489317999221385
+    }
+  ]
+}

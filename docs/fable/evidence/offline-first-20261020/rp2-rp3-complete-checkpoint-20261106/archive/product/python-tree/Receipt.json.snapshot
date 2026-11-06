@@ -1,0 +1,153 @@
+{
+  "cleanup_failures": [],
+  "failure": null,
+  "mode": "python-tree",
+  "observed": {
+    "child": {
+      "grand": {
+        "pid": 46908,
+        "ppid": 23152
+      },
+      "pid": 23152,
+      "ppid": 37920
+    },
+    "pid": 37920
+  },
+  "outer": {
+    "membership": {
+      "events": [
+        {
+          "message": 6,
+          "pid": 37920
+        },
+        {
+          "message": 6,
+          "pid": 23152
+        },
+        {
+          "message": 6,
+          "pid": 46908
+        },
+        {
+          "message": 7,
+          "pid": 46908
+        },
+        {
+          "message": 7,
+          "pid": 23152
+        },
+        {
+          "message": 7,
+          "pid": 37920
+        },
+        {
+          "message": 4,
+          "pid": 0
+        }
+      ],
+      "records": [
+        {
+          "created": 134384375998917545,
+          "handle_origin": "popen-duplicate",
+          "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+          "pid": 37920,
+          "source": "assigned-root"
+        },
+        {
+          "created": 134384376003990817,
+          "handle_origin": "OpenProcess",
+          "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+          "pid": 23152,
+          "source": "completion-port"
+        },
+        {
+          "created": 134384376006951296,
+          "handle_origin": "OpenProcess",
+          "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+          "pid": 46908,
+          "source": "completion-port"
+        }
+      ]
+    },
+    "released": true,
+    "startup": {
+      "expected": {
+        "base_executable": "c:\\users\\sakth\\appdata\\local\\microsoft\\windowsapps\\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\\python.exe",
+        "base_prefix": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0",
+        "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+        "launcher": null,
+        "prefix": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv",
+        "sys_executable": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\scripts\\python.exe",
+        "token": "a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9"
+      },
+      "go_opened": true,
+      "observed": {
+        "base_executable": "c:\\users\\sakth\\appdata\\local\\microsoft\\windowsapps\\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\\python.exe",
+        "base_prefix": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0",
+        "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+        "in_any_job": true,
+        "launcher": null,
+        "pid": 37920,
+        "prefix": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv",
+        "sys_executable": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\scripts\\python.exe",
+        "token": "a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9"
+      },
+      "paths": {
+        "contract": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\owned-bootstrap-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.json",
+        "failure": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\owned-bootstrap-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.failure.json",
+        "go": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\owned-bootstrap-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.go",
+        "ready": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\owned-bootstrap-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.ready.json",
+        "requests": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\owned-bootstrap-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.recursive-requests"
+      },
+      "ready_copy_cleanup": {
+        "bounded": false,
+        "deleted": [],
+        "deletion_attempts": 0,
+        "errors": [],
+        "retention_days": 3,
+        "scanned": 0
+      },
+      "ready_read": {
+        "copy": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\ready-copies-v1\\ready-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.copy",
+        "copy_identity": [
+          2593720372,
+          2251799815668707
+        ],
+        "copy_read_seconds": 0.0,
+        "copy_sha256": "37da6cb9104056343f400fe4827732670e11ce393ba0533ab205203bee4ed326",
+        "elapsed_seconds": 0.0,
+        "mode": "DIRECT_READ_ONLY",
+        "producer_authentication": false,
+        "source": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\owned-bootstrap-a58fc536ea518b634f40128db8efdee783cf6c5f64d8d973a671c570d01e03d9.ready.json",
+        "source_error": null,
+        "source_read_seconds": 0.0,
+        "source_winerror": null
+      },
+      "state": "resumed"
+    },
+    "termination": {
+      "accounting_total": 3,
+      "failures": [],
+      "mode": "graceful",
+      "native_exit_proved": true,
+      "operations": [],
+      "records": 3
+    }
+  },
+  "root_script": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\root.py",
+    "sha256": "c17eef015d35b007de0df2afc08c004f1a70e4e3d73554a9fa3755a2b7a3846c",
+    "size": 337
+  },
+  "seconds": 1.1559999999590218,
+  "stderr": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "stdout": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\stdout.json",
+    "sha256": "a6c8bbfb58ac2faa5e4a61d38bb9965f76c94fa10c45d36a31585d6c35c38e09",
+    "size": 96
+  }
+}

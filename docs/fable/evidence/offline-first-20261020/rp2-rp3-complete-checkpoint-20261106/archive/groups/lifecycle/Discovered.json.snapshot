@@ -1,0 +1,11 @@
+{
+  "ids": [
+    "test_knowledge_process_lifecycle.ProcessLifecycle.test_cleanup_failure_after_success_is_not_returned_as_success",
+    "test_knowledge_process_lifecycle.ProcessLifecycle.test_every_owned_process_stops_before_any_resource_disposal",
+    "test_knowledge_process_lifecycle.ProcessLifecycle.test_one_close_failure_does_not_abandon_sibling_or_hide_original",
+    "test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_process_creation_closes_already_opened_parent_streams",
+    "test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_second_creation_reaps_the_first_session",
+    "test_knowledge_process_lifecycle.ProcessLifecycle.test_pipe_write_timeout_is_joined_before_handle_disposal"
+  ],
+  "pattern": "test_knowledge_process_lifecycle.py"
+}

@@ -1,0 +1,17 @@
+{
+  "ids": [
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_assignment_failure_never_runs_suspended_child",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_blocked_real_pipe_writer_is_released_before_cleanup",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_broken_stdin_does_not_abandon_owned_interpreter",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_close_all_without_primary_error_reports_failure_and_attempts_each_handle",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_expired_stop_waits_for_the_owned_interpreter_not_only_launcher",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_idle_stop_waits_for_actual_interpreter_before_cleanup",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_release_failure_without_primary_error_remains_a_failure",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_resume_close_failures_preserve_thread_owner_error",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_resume_failure_reaps_already_assigned_root",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_setup_close_failure_preserves_original_setup_error",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_termination_close_failures_preserve_membership_error_and_close_all",
+    "test_knowledge_windows_shutdown.WindowsShutdown.test_unobserved_member_refuses_success_and_retains_output"
+  ],
+  "pattern": "test_knowledge_windows_shutdown.py"
+}

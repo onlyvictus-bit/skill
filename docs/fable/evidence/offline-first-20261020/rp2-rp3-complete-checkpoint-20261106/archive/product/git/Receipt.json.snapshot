@@ -1,0 +1,262 @@
+{
+  "cleanup_failures": [],
+  "existing_git_ignore_warnings": [],
+  "failure": null,
+  "fixture_unchanged": true,
+  "mode": "git",
+  "observed": {
+    "guard": true,
+    "rows": [
+      {
+        "native": {
+          "assigned": true,
+          "assignment_attempted": true,
+          "context": {
+            "argv_digest": "8e787bf1c21522cdc28c5cae95362e2eb2f6afeb76371677e142bb023761183c",
+            "deadline_clock": "GetTickCount64()",
+            "effective_creationflags": 4,
+            "recursive_deadline": 2585227.796,
+            "source": {
+              "links": 1,
+              "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity\\scripts\\knowledge_bridge\\recursive_bootstrap.py",
+              "sha256": "0b41766314cfb6b3f14b020ccdcc23b9d358a444853a67d0c1c84820d1780930",
+              "size": 64134
+            }
+          },
+          "identity": {
+            "created": 134384375993765925,
+            "image": "c:\\program files\\git\\cmd\\git.exe",
+            "pid": 48504
+          },
+          "member_at_creation": false,
+          "member_before_resume": true,
+          "native_wait_before_resume": 258,
+          "pre_resume_deadline_checked_at": 2585108.765,
+          "pre_resume_deadline_passed": true,
+          "resume_may_have_started": true,
+          "resume_previous_count": 1,
+          "resumed": true,
+          "root_inner_verified": true,
+          "schema_version": 1,
+          "scope": "INNER_JOB_NATIVE_START"
+        },
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "b03d4da5c5f5df116728f74c474088b2345a8952\n",
+        "tail": [
+          "rev-parse",
+          "HEAD"
+        ]
+      },
+      {
+        "native": {
+          "assigned": true,
+          "assignment_attempted": true,
+          "context": {
+            "argv_digest": "64bb77703bdcc05ce4f263919f1db5b3e980f7a514c492bfd44f4a457ecf7a71",
+            "deadline_clock": "GetTickCount64()",
+            "effective_creationflags": 4,
+            "recursive_deadline": 2585227.796,
+            "source": {
+              "links": 1,
+              "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity\\scripts\\knowledge_bridge\\recursive_bootstrap.py",
+              "sha256": "0b41766314cfb6b3f14b020ccdcc23b9d358a444853a67d0c1c84820d1780930",
+              "size": 64134
+            }
+          },
+          "identity": {
+            "created": 134384375995679677,
+            "image": "c:\\program files\\git\\cmd\\git.exe",
+            "pid": 21296
+          },
+          "member_at_creation": false,
+          "member_before_resume": true,
+          "native_wait_before_resume": 258,
+          "pre_resume_deadline_checked_at": 2585108.968,
+          "pre_resume_deadline_passed": true,
+          "resume_may_have_started": true,
+          "resume_previous_count": 1,
+          "resumed": true,
+          "root_inner_verified": true,
+          "schema_version": 1,
+          "scope": "INNER_JOB_NATIVE_START"
+        },
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "",
+        "tail": [
+          "status",
+          "--porcelain",
+          "--untracked-files=all"
+        ]
+      }
+    ]
+  },
+  "outer": {
+    "membership": {
+      "events": [
+        {
+          "message": 6,
+          "pid": 40368
+        },
+        {
+          "message": 6,
+          "pid": 48504
+        },
+        {
+          "message": 6,
+          "pid": 36680
+        },
+        {
+          "message": 7,
+          "pid": 36680
+        },
+        {
+          "message": 7,
+          "pid": 48504
+        },
+        {
+          "message": 6,
+          "pid": 21296
+        },
+        {
+          "message": 6,
+          "pid": 40232
+        },
+        {
+          "message": 7,
+          "pid": 40232
+        },
+        {
+          "message": 7,
+          "pid": 21296
+        },
+        {
+          "message": 7,
+          "pid": 40368
+        },
+        {
+          "message": 4,
+          "pid": 0
+        }
+      ],
+      "records": [
+        {
+          "created": 134384375986155565,
+          "handle_origin": "popen-duplicate",
+          "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+          "pid": 40368,
+          "source": "assigned-root"
+        },
+        {
+          "created": 134384375993765925,
+          "handle_origin": "OpenProcess",
+          "image": "c:\\program files\\git\\cmd\\git.exe",
+          "pid": 48504,
+          "source": "completion-port"
+        },
+        {
+          "created": 134384375995021086,
+          "handle_origin": "OpenProcess",
+          "image": "c:\\program files\\git\\mingw64\\bin\\git.exe",
+          "pid": 36680,
+          "source": "completion-port"
+        },
+        {
+          "created": 134384375995679677,
+          "handle_origin": "OpenProcess",
+          "image": "c:\\program files\\git\\cmd\\git.exe",
+          "pid": 21296,
+          "source": "completion-port"
+        },
+        {
+          "created": 134384375996944730,
+          "handle_origin": "OpenProcess",
+          "image": "c:\\program files\\git\\mingw64\\bin\\git.exe",
+          "pid": 40232,
+          "source": "completion-port"
+        }
+      ]
+    },
+    "released": true,
+    "startup": {
+      "expected": {
+        "base_executable": "c:\\users\\sakth\\appdata\\local\\microsoft\\windowsapps\\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\\python.exe",
+        "base_prefix": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0",
+        "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+        "launcher": null,
+        "prefix": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv",
+        "sys_executable": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\scripts\\python.exe",
+        "token": "08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad"
+      },
+      "go_opened": true,
+      "observed": {
+        "base_executable": "c:\\users\\sakth\\appdata\\local\\microsoft\\windowsapps\\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\\python.exe",
+        "base_prefix": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0",
+        "image": "c:\\program files\\windowsapps\\pythonsoftwarefoundation.python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+        "in_any_job": true,
+        "launcher": null,
+        "pid": 40368,
+        "prefix": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv",
+        "sys_executable": "c:\\users\\sakth\\documents\\codex\\2026-10-02\\ad\\work\\r5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\scripts\\python.exe",
+        "token": "08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad"
+      },
+      "paths": {
+        "contract": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\owned-bootstrap-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.json",
+        "failure": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\owned-bootstrap-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.failure.json",
+        "go": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\owned-bootstrap-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.go",
+        "ready": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\owned-bootstrap-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.ready.json",
+        "requests": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\owned-bootstrap-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.recursive-requests"
+      },
+      "ready_copy_cleanup": {
+        "bounded": false,
+        "deleted": [],
+        "deletion_attempts": 0,
+        "errors": [],
+        "retention_days": 3,
+        "scanned": 0
+      },
+      "ready_read": {
+        "copy": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\ready-copies-v1\\ready-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.copy",
+        "copy_identity": [
+          2593720372,
+          2251799815668347
+        ],
+        "copy_read_seconds": 0.0,
+        "copy_sha256": "f8314c11c21b8cb3374dc8dc0de20d2fef6ff4d6c5178967cabafe63bca801f7",
+        "elapsed_seconds": 0.016000000294297934,
+        "mode": "DIRECT_READ_ONLY",
+        "producer_authentication": false,
+        "source": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\owned-bootstrap-08d087100cf2e23857b5f74d6afa7abf278275dd1af2b2f15fc4a7332bd1caad.ready.json",
+        "source_error": null,
+        "source_read_seconds": 0.016000000294297934,
+        "source_winerror": null
+      },
+      "state": "resumed"
+    },
+    "termination": {
+      "accounting_total": 5,
+      "failures": [],
+      "mode": "graceful",
+      "native_exit_proved": true,
+      "operations": [],
+      "records": 5
+    }
+  },
+  "root_script": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\root.py",
+    "sha256": "305a31d3afaf75cedbd99b56b494499e14a6f33b646c36e4de0529981eca83f2",
+    "size": 621
+  },
+  "seconds": 1.328999999910593,
+  "stderr": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "stdout": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\stdout.json",
+    "sha256": "4efe869f9757634f4ff05aa7d4b75b3ce37b3169450469f8d70f648689acc793",
+    "size": 2408
+  }
+}

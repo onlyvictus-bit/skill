@@ -1,0 +1,81 @@
+{
+  "after": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\After-Bundle.json",
+    "sha256": "497e45086209b1e33ef7162ac02137e33e81ba6e916aaf43848821603bb62e21",
+    "size": 6054708
+  },
+  "before": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-on-demand-20261105\\Before-Bundle.json",
+    "sha256": "c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b",
+    "size": 4224786
+  },
+  "copies": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\Copies.json",
+    "sha256": "79ff16837887502b4deb2771f80579bf78a538cb9e925fd600d1f40d89c5f002",
+    "size": 2116
+  },
+  "failure": null,
+  "final_authority": {
+    "controller_data_roles_matched": 18,
+    "protected_maps_match": true,
+    "runtime_fixed_inputs_match": true
+  },
+  "finished_utc": "2026-11-06T12:22:19.627039+00:00",
+  "gate1_complete": false,
+  "normal_copy_receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\Receipt.json",
+    "sha256": "e946d11d5d872987acc6f98b6a22e1e3be4fdb32720fc7d4c1b2d78b2ae4f7df",
+    "size": 4041
+  },
+  "objects_per_root": {
+    "cleanup-lifetime-stack-20261024": 43,
+    "cleanup-membership-20261025": 50,
+    "cleanup-process-timing-20261024": 726,
+    "cleanup-repair-20261023": 9868,
+    "rp1-audit": 932,
+    "rp1-corrected": 740,
+    "rp1-original": 782,
+    "rp1-store": 825
+  },
+  "result": {
+    "continuous_immutability_proven": false,
+    "producer_authentication": false,
+    "status": "CONTENT_MATCH_AT_BEFORE_AFTER_SAMPLES",
+    "whole_skill_ready": false
+  },
+  "runtime_acceptance": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Runtime-Acceptance.json",
+    "sha256": "71e67a6c25dec1d3abd1ef909e7c2a50a1b64e1b9fbdfe2b2797ccd0ccf8f6a1",
+    "size": 28256
+  },
+  "scope": "ND4_FRESH_ORIGINAL_AFTER_COMPLETE_COMPARISON",
+  "stage_complete": false,
+  "started_utc": "2026-11-06T12:19:35.772088+00:00",
+  "status": "FULL_ORIGINAL_AFTER_MATCH_PENDING_FINAL_INDEPENDENT_REVIEW",
+  "timeline": [
+    {
+      "label": "fresh-readable-originals-and-all-normal-copies",
+      "seconds": 160.12864020001143
+    },
+    {
+      "label": "all-eight-original-before-after-object-comparison",
+      "seconds": 0.5413420000113547
+    },
+    {
+      "label": "protected-runtime-and18roles-final-read",
+      "seconds": 1.2051617000252008
+    }
+  ],
+  "total_objects": 13966,
+  "workload": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\Receipt.json",
+    "sha256": "b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e",
+    "size": 97469
+  }
+}

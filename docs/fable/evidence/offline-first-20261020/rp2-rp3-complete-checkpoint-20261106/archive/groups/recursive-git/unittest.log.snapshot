@@ -1,0 +1,10 @@
+test_editable_owned_runtime_binds_before_existing_git_queries (test_knowledge_recursive_git.EditableRuntimeHook.test_editable_owned_runtime_binds_before_existing_git_queries) ... ok
+test_non_owned_runtime_keeps_existing_git_path (test_knowledge_recursive_git.EditableRuntimeHook.test_non_owned_runtime_keeps_existing_git_path) ... ok
+test_binding_is_idempotent_but_rejects_other_root_image_and_vectors (test_knowledge_recursive_git.RecursiveGit.test_binding_is_idempotent_but_rejects_other_root_image_and_vectors) ... ok
+test_bound_git_preserves_existing_readonly_outputs (test_knowledge_recursive_git.RecursiveGit.test_bound_git_preserves_existing_readonly_outputs) ... ok
+test_expired_binding_and_dispatch_cannot_start_git (test_knowledge_recursive_git.RecursiveGit.test_expired_binding_and_dispatch_cannot_start_git) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.587s
+
+OK

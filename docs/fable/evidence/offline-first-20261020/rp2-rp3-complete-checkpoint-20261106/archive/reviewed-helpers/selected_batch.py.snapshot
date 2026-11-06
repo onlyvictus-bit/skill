@@ -1,0 +1,164 @@
+"""One source-sealed integrated batch; original-history AFTER remains separate."""
+import argparse
+from datetime import datetime,timezone
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import sys
+import time
+import traceback
+
+P=Path(__file__).absolute().parent;R=P.parents[2]
+BASE=R/'.github/run-artifacts/rp3-native-dispatch-20261105/coordinator.py'
+BASE_SHA='bfba095318909b0271ba73a21907fcd571a614f12972c713963a35fc5c4dd764'
+if hashlib.sha256(BASE.read_bytes()).hexdigest()!=BASE_SHA:raise ValueError('E_INTEGRATED_BASE_HELPER_CHANGED')
+spec=importlib.util.spec_from_file_location('sealed_dispatch_base',BASE)
+base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
+
+GROUPS=(('native-gate','test_knowledge_recursive_native.py'),
+ ('recursive-integration','test_knowledge_recursive_integration.py'),
+ ('recursive-git','test_knowledge_recursive_git.py'),('recursive-profile','test_knowledge_recursive_profile.py'),
+ ('ownership','test_knowledge_windows_owned_process.py'),('writer','test_knowledge_windows_writer.py'),
+ ('combined-shutdown','test_knowledge_windows_shutdown.py'),('combined-session','test_knowledge_windows_session.py'),
+ ('lifecycle','test_knowledge_process_lifecycle.py'),('cwd','test_knowledge_worker_cwd.py'),
+ ('budget','test_knowledge_timeout_budget.py'),('ready-copy','test_knowledge_windows_ready_copy.py'),
+ ('owned-startup','test_knowledge_windows_owned_startup.py'),('fixture-publication','test_knowledge_windows_fixture_publication.py'))
+DISCOVERY='''import json,sys,unittest
+root,pattern=sys.argv[1:];sys.path.insert(0,root)
+suite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)
+def walk(group):
+ for item in group:
+  if isinstance(item,unittest.TestSuite):yield from walk(item)
+  else:yield item.id()
+print(json.dumps(list(walk(suite))))
+'''
+
+
+def need(value,code):
+    if not value:raise ValueError('E_INTEGRATED_BATCH_'+code)
+
+
+def inputs(digest):
+    raw=(P/'Selected-Inputs.json').read_bytes();need(hashlib.sha256(raw).hexdigest()==digest,'EXTERNAL_INPUTS')
+    value=base.read(raw)
+    need(type(value)is dict and set(value)=={'scope','repo','source','output','worker','head','index_sha256','groups',
+        'versions','source_acceptance','files'} and value['scope']=='ND3_INTEGRATED_RUNTIME_NOT_HISTORICAL_STAGE','INPUT_SCHEMA')
+    need(value['repo']==str(R) and value['source']==str(P/'Source-under-test') and
+        value['output']==r'C:\Users\sakth\Documents\Codex\rp3-native-product-20261106' and
+        value['groups']==[list(x)for x in GROUPS] and len(value['versions'])==53,'INPUT_AUTHORITY')
+    for path,row in value['files'].items():need(base.record(path)==row,'INPUT_CHANGED:'+path)
+    need(base.record(P/'Source-Acceptance.json')==value['source_acceptance'],'SOURCE_ACCEPTANCE')
+    acceptance=base.read((P/'Source-Acceptance.json').read_bytes())
+    actual_files=set()
+    def denied(error):raise error
+    for parent,dirs,files in os.walk(value['source'],followlinks=False,onerror=denied):
+        for name in dirs:
+            item=Path(parent)/name;info=item.lstat()
+            need(not item.is_symlink()and not getattr(info,'st_file_attributes',0)&0x400,'SOURCE_DIRECTORY_REDIRECT')
+        actual_files.update((Path(parent)/name).relative_to(value['source']).as_posix()for name in files)
+    need(actual_files==set(acceptance['manifest']),'SOURCE_FILE_SET_CHANGED')
+    need((R/'.git/HEAD').read_text().strip()=='ref: refs/heads/development/r5-practical-fence-wip-20261014' and
+        (R/'.git/refs/heads/development/r5-practical-fence-wip-20261014').read_text().strip()==value['head'] and
+        hashlib.sha256((R/'.git/index').read_bytes()).hexdigest()==value['index_sha256'],'GIT_CONTEXT_CHANGED')
+    return value
+
+
+def run(digest,verify_only=False):
+    value=inputs(digest);output=Path(value['output']);source=Path(value['source'])
+    need(not os.path.lexists(output),'EXISTING_ATTEMPT_NO_RETRY')
+    if verify_only:
+        print('INTEGRATED_NATIVE_INPUT_SEALS_MATCH_NO_SELECTED_RUNTIME_OR_ATTEMPT');return 0
+    base.normal_account();output.mkdir()
+    work_started=time.monotonic();work_deadline=work_started+3600
+    report={'status':'PARTIAL_OR_FAILED_NO_RETRY','scope':value['scope'],
+        'started_utc':datetime.now(timezone.utc).isoformat(),'failure':None,'postcheck_failure':None,
+        'failed_segment':None,'commands':[],'groups':[],'stage_complete':False,'gate1_complete':False,
+        'historical_original_after_completed':False,'release_ready':False,'installed':False,
+        'work_started_monotonic':work_started,'work_deadline_monotonic':work_deadline}
+    try:
+        scripts=R/'.github/scripts';sys.path.insert(0,str(scripts))
+        host=base.module(scripts/'offline_host_validation.py');image=base.module(scripts/'gate1_image_successor.py')
+        c1=base.module(scripts/'gate1_current_preflight.py');sr3=base.module(scripts/'shutdown_repair_verification.py')
+        ordered=base.module(scripts/'gate1_ordered_runner.py');diagnostic=base.module(scripts/'gate1_ordered_diagnostic.py')
+        env=image.windows_environment(dict(os.environ))
+        for key in ('MODEL_PYTHON','KNOWLEDGE_MODEL_MANIFEST','PYTHONPATH','PYTHONHOME','MEMORY_INTEGRITY_WORKER_DIAGNOSTICS'):
+            env.pop(key,None)
+        temp=output/'temp';temp.mkdir()
+        env.update(PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',PYTHONIOENCODING='utf-8',
+            HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',TEMP=str(temp),TMP=str(temp),TMPDIR=str(temp),
+            KNOWLEDGE_WORKER_PYTHON=value['worker'])
+        def capture(label,argv,timeout):
+            inputs(digest)
+            need(time.monotonic()+timeout<work_deadline,'INSUFFICIENT_REMAINING_WORK_WINDOW:'+label)
+            target=output/('command-'+label);target.mkdir();start=time.monotonic()
+            print(label+': RUNNING (integrated product, not historical Stage)',flush=True)
+            report['failed_segment']=label
+            completed,row=host.capture_owned(argv,target,output,env,timeout)
+            row.update(label=label,seconds=time.monotonic()-start);report['commands'].append(row)
+            print(label+': %.3f seconds'%row['seconds'],flush=True)
+            if label=='product-proof' or completed is None or completed.returncode!=0:
+                for stream in ('stdout','stderr'):
+                    raw=(target/(stream+'.log')).read_bytes()
+                    if raw:
+                        print(label+'/'+stream+' (full retained '+str(target/(stream+'.log'))+')',flush=True)
+                        print(raw[:131072].decode('utf-8',errors='replace'),flush=True)
+                        if len(raw)>131072:print('Console truncated; full bytes='+str(len(raw)),flush=True)
+            need(completed is not None,'INCOMPLETE_CAPTURE:'+label)
+            sr3.validate_capture(completed,row)
+            inputs(digest)
+            return completed
+        result=capture('identity-before',[value['worker'],'-B','-c',image.g.runtime_probe()],30)
+        image.validate_runtime_observation(base.read(result.stdout),env,output)
+        names=sorted(value['versions'])
+        dep="import importlib.metadata as m,json,site;d=m.distribution('semantica');u=json.loads(d.read_text('direct_url.json')or'{}');print(json.dumps({'versions':{n:m.version(n)for n in "+repr(names)+"},'revision':u.get('vcs_info',{}).get('commit_id'),'user_site':site.ENABLE_USER_SITE}))"
+        result=capture('dependencies-before',[value['worker'],'-B','-c',dep],30)
+        c1.validate_dependencies(base.read(result.stdout),value['versions'])
+        git=value['files'][r'C:\Program Files\Git\cmd\git.exe']
+        capture('product-proof',[value['worker'],'-B',str(P/'product_probe.py'),'--repo',str(source),
+            '--output',str(output/'product-observation'),'--git-image',git['path'],'--git-sha256',git['sha256']],60)
+        proof=base.read((output/'product-observation/Receipt.json').read_bytes())
+        need(proof['failure']is None and proof['status']=='PRODUCT_NATIVE_AND_PYTHON_TREE_OBSERVED_NOT_FULL_RP3','PRODUCT_PROOF')
+        report['product_proof']=base.record(output/'product-observation/Receipt.json')
+        for label,pattern in GROUPS:
+            found=capture('discover-'+label,[value['worker'],'-B','-c',DISCOVERY,str(source/'memory-integrity'),pattern],60)
+            ids=sr3.validate_discovery(base.read(found.stdout),pattern)
+            folder=output/('tests-'+label)
+            capture('tests-'+label,[value['worker'],'-B',str(P/'selected_runner.py'),
+                '--package-root',str(source/'memory-integrity'),'--pattern',pattern,'--output-dir',str(folder)],60)
+            unit=base.read((folder/'Receipt.json').read_bytes());sr3.validate_suite(unit,ids)
+            need(unit['pattern']==pattern and base.record(unit['log'])['sha256']==unit['log_sha256'],'UNIT_LOG')
+            base.save(output/('discovered-'+label+'.json'),{'pattern':pattern,'ids':list(ids)})
+            report['groups'].append({'label':label,'ids':list(ids),'receipt':base.record(folder/'Receipt.json')})
+        folder=output/'ordered'
+        capture('ordered-public',[value['worker'],'-B',str(P/'selected_runner.py'),'--ordered',
+            '--package-root',str(source/'memory-integrity'),'--pattern','test_knowledge_completion.py','--output-dir',str(folder)],600)
+        observed=base.read((folder/'Ordered-Outcomes.json').read_bytes());unit=base.read((folder/'Receipt.json').read_bytes())
+        diagnostic.verify_calls(observed,folder);diagnostic.validate_unit_receipt(unit,0,observed)
+        state=sr3.validate_ordered(observed,unit,ordered)
+        report['ordered']={'state':state,'receipt':base.record(folder/'Receipt.json'),
+                           'outcomes':base.record(folder/'Ordered-Outcomes.json')}
+        result=capture('identity-after',[value['worker'],'-B','-c',image.g.runtime_probe()],30)
+        image.validate_runtime_observation(base.read(result.stdout),env,output)
+        result=capture('dependencies-after',[value['worker'],'-B','-c',dep],30)
+        c1.validate_dependencies(base.read(result.stdout),value['versions'])
+        report['failed_segment']=None
+        report['status']='INTEGRATED_PRODUCT_RUNTIME_OBSERVED_PENDING_HISTORICAL_AFTER'
+    except BaseException:report['failure']=traceback.format_exc()
+    finally:
+        try:inputs(digest)
+        except BaseException:report['postcheck_failure']=traceback.format_exc()
+        if report['failure']or report['postcheck_failure']:report['status']='PARTIAL_OR_FAILED_NO_RETRY'
+        report['finished_utc']=datetime.now(timezone.utc).isoformat()
+        base.save(output/'Receipt.json',report)
+    print(json.dumps({'status':report['status'],'failure':report['failure'],'postcheck_failure':report['postcheck_failure'],
+        'failed_segment':report['failed_segment'],'groups_completed':len(report['groups']),
+        'receipt':base.record(output/'Receipt.json'),'stage_complete':False}),flush=True)
+    return 1 if report['failure']or report['postcheck_failure']else 0
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--inputs-sha256',required=True)
+    parser.add_argument('--verify-only',action='store_true');args=parser.parse_args()
+    raise SystemExit(run(args.inputs_sha256,args.verify_only))

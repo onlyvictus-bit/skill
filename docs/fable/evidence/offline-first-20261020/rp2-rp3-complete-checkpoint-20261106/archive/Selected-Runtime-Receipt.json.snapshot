@@ -1,0 +1,1673 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "\nimport ctypes,ctypes.wintypes as w,hashlib,json,os,sys\nfrom pathlib import Path\nk=ctypes.WinDLL('kernel32',use_last_error=True)\nk.GetModuleFileNameW.argtypes=[w.HMODULE,w.LPWSTR,w.DWORD]\nk.GetModuleFileNameW.restype=w.DWORD\nk.CreateFileW.argtypes=[w.LPCWSTR,w.DWORD,w.DWORD,ctypes.c_void_p,w.DWORD,w.DWORD,w.HANDLE]\nk.CreateFileW.restype=w.HANDLE\nk.GetFinalPathNameByHandleW.argtypes=[w.HANDLE,w.LPWSTR,w.DWORD,w.DWORD]\nk.GetFinalPathNameByHandleW.restype=w.DWORD\nk.CloseHandle.argtypes=[w.HANDLE]\nb=ctypes.create_unicode_buffer(32768)\nn=k.GetModuleFileNameW(None,b,len(b))\nif not 0<n<len(b):raise ctypes.WinError(ctypes.get_last_error())\nh=k.CreateFileW(b.value,0x80,7,None,3,0,None)\nif h in (None,ctypes.c_void_p(-1).value):raise ctypes.WinError(ctypes.get_last_error())\ntry:\n n=k.GetFinalPathNameByHandleW(h,b,len(b),0)\n if not 0<n<len(b):raise ctypes.WinError(ctypes.get_last_error())\n image=b.value\nfinally:k.CloseHandle(h)\nif image.startswith('\\\\\\\\?\\\\'):image=image[4:]\nprint(json.dumps(dict(version=list(sys.version_info[:3]),executable=sys.executable,\n base_executable=sys._base_executable,prefix=sys.prefix,base_prefix=sys.base_prefix,\n image_path=image,image_sha256=hashlib.sha256(Path(image).read_bytes()).hexdigest(),cwd=os.getcwd(),\n environment={name:os.environ.get(name) for name in ('USERPROFILE','TEMP','TMP','SYSTEMROOT','SystemDrive','PYTHONNOUSERSITE')},\n path_sha256=hashlib.sha256(os.environ.get('PATH','').encode()).hexdigest(),\n model_selected=bool(os.environ.get('MODEL_PYTHON') or os.environ.get('KNOWLEDGE_MODEL_MANIFEST')))))\n"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 27848,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "identity-before",
+      "seconds": 0.7907165996730328,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\stdout.log",
+        "sha256": "4f2e8c0fb51139485a360f877ca9a1b0213d094fef3abf4a88c3256aeba72a24",
+        "size": 1339
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import importlib.metadata as m,json,site;d=m.distribution('semantica');u=json.loads(d.read_text('direct_url.json')or'{}');print(json.dumps({'versions':{n:m.version(n)for n in ['PyYAML', 'Pygments', 'annotated-types', 'anyio', 'certifi', 'chardet', 'charset-normalizer', 'click', 'cloudpickle', 'colorama', 'grpcio', 'h11', 'html5rdf', 'httpcore', 'httpx', 'idna', 'joblib', 'loguru', 'markdown-it-py', 'mdurl', 'narwhals', 'networkx', 'numpy', 'owlrl', 'packaging', 'pandas', 'pillow', 'prettytable', 'protobuf', 'pyarrow', 'pydantic', 'pydantic_core', 'pyparsing', 'pyshacl', 'python-dateutil', 'python-dotenv', 'rdflib', 'requests', 'rich', 'scikit-learn', 'scipy', 'semantica', 'six', 'structlog', 'threadpoolctl', 'toml', 'tqdm', 'typing-inspection', 'typing_extensions', 'tzdata', 'urllib3', 'wcwidth', 'win32-setctime']},'revision':u.get('vcs_info',{}).get('commit_id'),'user_site':site.ENABLE_USER_SITE}))"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 46428,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "dependencies-before",
+      "seconds": 2.1397390998899937,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\product_probe.py",
+        "--repo",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test",
+        "--output",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation",
+        "--git-image",
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "--git-sha256",
+        "da240fe9bc24895b3e04150a4990b8a6ff329ecabcd8f19684c2cc310da5ef3f"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 35136,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "product-proof",
+      "seconds": 3.5187389999628067,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\stdout.log",
+        "sha256": "f0133d199a08cde58249a2e80ffada86b170b6ba3dd92a88320eddcc238d309b",
+        "size": 2968
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_recursive_native.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 26980,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-native-gate",
+      "seconds": 0.505598799791187,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\stdout.log",
+        "sha256": "a41d180bea04f34d400bb406d7bd577cf0cf92959d8e2df62a84262ed8959ef6",
+        "size": 2550
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_recursive_native.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-native-gate"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 33144,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-native-gate",
+      "seconds": 0.654691900126636,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\stdout.log",
+        "sha256": "32e485b9c557cf4304a1bd2cc041139c4fd25d79c5c7ba0ddc349cd731465ce0",
+        "size": 4635
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_recursive_integration.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 15584,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-recursive-integration",
+      "seconds": 0.5965654999017715,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\stdout.log",
+        "sha256": "a5bd1619e57af996465935655f51d5e7633962e71782342292ff517e12488a3a",
+        "size": 811
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_recursive_integration.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-integration"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 31552,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-recursive-integration",
+      "seconds": 3.851823200006038,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\stdout.log",
+        "sha256": "8522c9a2f839255dbbf977850402922dc3b8b18eac7bc2b6fcfb6f92707514d5",
+        "size": 1840
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_recursive_git.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 23744,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-recursive-git",
+      "seconds": 0.5870150001719594,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\stdout.log",
+        "sha256": "d3924015ed50228c81947acbe3b0e457f3844884566e279225624fe16c7c953c",
+        "size": 520
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_recursive_git.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-git"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 7376,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-recursive-git",
+      "seconds": 2.24298769980669,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\stdout.log",
+        "sha256": "3349ab1cf55dcebdfe0ed0bc298fd69e7435423e792c86dad64076272cb8eea6",
+        "size": 1391
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_recursive_profile.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 46848,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-recursive-profile",
+      "seconds": 0.6641580001451075,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\stdout.log",
+        "sha256": "3c21bdce057c74e82839a186f9f2c16a2af32c5935d9254edad40810d9ea219a",
+        "size": 1457
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_recursive_profile.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-profile"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 2560,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-recursive-profile",
+      "seconds": 0.9692788999527693,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\stdout.log",
+        "sha256": "69919d5ff588da86ed8767e8c6571c254a01741e3771a4abd28f227967182f2a",
+        "size": 2914
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_owned_process.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 5320,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-ownership",
+      "seconds": 0.5312831997871399,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\stdout.log",
+        "sha256": "beb4d1cf4c9dde586b8de91dabf3d5275b525fc8bd541006be352d07c008acd1",
+        "size": 2161
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_owned_process.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ownership"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 10768,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-ownership",
+      "seconds": 6.5279975002631545,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\stdout.log",
+        "sha256": "beee71c34f79d1aca14f9a76d52cdf7b4df4ac4b1700cda6bd64da1ff429d317",
+        "size": 3944
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_writer.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 24236,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-writer",
+      "seconds": 0.5151130999438465,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\stdout.log",
+        "sha256": "586459f3be53f9aff93234f63f9252a38ef5ca9f70eab22ed0e1cd9bf72011a6",
+        "size": 1983
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_writer.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-writer"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 28832,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-writer",
+      "seconds": 1.7023384999483824,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\stdout.log",
+        "sha256": "3c1d6646f2471c1c9fe8205f2d0e844e6dba51883bc8f59dd564b2b828a8d89d",
+        "size": 3811
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_shutdown.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 29488,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-combined-shutdown",
+      "seconds": 0.5503193996846676,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\stdout.log",
+        "sha256": "46d19eef485a75530511c1f72c8eace964842f8e4bd7339b71f0656c397f02a1",
+        "size": 1330
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_shutdown.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-shutdown"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 36656,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-combined-shutdown",
+      "seconds": 5.617794299963862,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\stdout.log",
+        "sha256": "49d1656c9637f60e5874d28d9aea37fccc2e31cd72a3edc250a22fd8cd871b8f",
+        "size": 2704
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_session.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 45240,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-combined-session",
+      "seconds": 0.5657780999317765,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\stdout.log",
+        "sha256": "65a10dec3bc3480bb5a393881c0fabbdeeb41f592e53963ffbf3b3f8fdc38f88",
+        "size": 826
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_session.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-session"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 39628,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-combined-session",
+      "seconds": 0.5887844995595515,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\stdout.log",
+        "sha256": "87963ca301b654499b0ba9a6a17fc3ba72de43c61d5b563365a1840055e84d27",
+        "size": 1920
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_process_lifecycle.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 38040,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-lifecycle",
+      "seconds": 0.5186137999407947,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\stdout.log",
+        "sha256": "044b8f732bdeac1aaa6f83b6702b304c7a53eca16ced169ccfb7d8b75a6616d6",
+        "size": 684
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_process_lifecycle.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-lifecycle"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 40540,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-lifecycle",
+      "seconds": 0.7052396000362933,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\stdout.log",
+        "sha256": "6c397f60580c3e939e207ea6266f40196b06e1160db9ac64a053de339b0df472",
+        "size": 1648
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_worker_cwd.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 30320,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-cwd",
+      "seconds": 0.6513278996571898,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\stdout.log",
+        "sha256": "59e205a64f1a9dd2d3e1487d89bad2ba8ad59c75b59afbf179ab286d9205d5b8",
+        "size": 715
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_worker_cwd.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-cwd"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 34388,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-cwd",
+      "seconds": 5.451041799969971,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\stdout.log",
+        "sha256": "b99c93e62140e1b2e66ffb83523bbbb863b7ebaf4caa53498bcc9fb0d7bdc2a1",
+        "size": 1823
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_timeout_budget.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 48164,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-budget",
+      "seconds": 0.6251814002171159,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\stdout.log",
+        "sha256": "960ad3e1ccb152fd9b28d9b284fd7b4ab16cc2c1d4015a142a4d0f7c7221a85c",
+        "size": 818
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_timeout_budget.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-budget"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 30144,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-budget",
+      "seconds": 0.7506316998042166,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\stdout.log",
+        "sha256": "735bea33a0ad94c0f2072a2359713a011dec3079f6aadfc3f4a77b0662f8bd8b",
+        "size": 1844
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_ready_copy.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 20676,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-ready-copy",
+      "seconds": 0.5337316002696753,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\stdout.log",
+        "sha256": "0783de491e5b989121adce2e592c7670f87288b68e05b8672f8d863d0587b9f8",
+        "size": 3288
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_ready_copy.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ready-copy"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 35308,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-ready-copy",
+      "seconds": 7.468283500056714,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\stdout.log",
+        "sha256": "53840ca4e91a69a7402f49f8953ba5fe1d20da699aed23c5585a9cc03882f3ec",
+        "size": 4983
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_owned_startup.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 31488,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-owned-startup",
+      "seconds": 0.5514136999845505,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\stdout.log",
+        "sha256": "507b04814f1940c058c42ec1444cda89f1b2e8b8b62ea80f9f8478e19c51e506",
+        "size": 2752
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_owned_startup.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-owned-startup"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 7092,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-owned-startup",
+      "seconds": 7.084673100151122,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\stdout.log",
+        "sha256": "e608dd5bcd635f99a4c4ce463f48a0ff7e1148f42f0f7acdcd39ee97ba1a2e5c",
+        "size": 4984
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import json,sys,unittest\nroot,pattern=sys.argv[1:];sys.path.insert(0,root)\nsuite=unittest.defaultTestLoader.discover(root+'/tests_v2',pattern=pattern)\ndef walk(group):\n for item in group:\n  if isinstance(item,unittest.TestSuite):yield from walk(item)\n  else:yield item.id()\nprint(json.dumps(list(walk(suite))))\n",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "test_knowledge_windows_fixture_publication.py"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 7260,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "discover-fixture-publication",
+      "seconds": 0.4956638002768159,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\stdout.log",
+        "sha256": "8d441b85034c40a91c6a5b3570f5df08cad6dc001a8d5774eacd03bd35819991",
+        "size": 262
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_windows_fixture_publication.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-fixture-publication"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 46708,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "tests-fixture-publication",
+      "seconds": 0.6174151003360748,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\stdout.log",
+        "sha256": "bfbfc4959440ab8ec82b6012ab5e6196499c972fb5043f9375a02800204b00be",
+        "size": 980
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "--ordered",
+        "--package-root",
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-under-test\\memory-integrity",
+        "--pattern",
+        "test_knowledge_completion.py",
+        "--output-dir",
+        "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 40232,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "ordered-public",
+      "seconds": 86.54765189997852,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\stdout.log",
+        "sha256": "848c1f5cb4fcad7a464ab4f5f1591e469e290a695150624229159a7e0a71640f",
+        "size": 706
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "\nimport ctypes,ctypes.wintypes as w,hashlib,json,os,sys\nfrom pathlib import Path\nk=ctypes.WinDLL('kernel32',use_last_error=True)\nk.GetModuleFileNameW.argtypes=[w.HMODULE,w.LPWSTR,w.DWORD]\nk.GetModuleFileNameW.restype=w.DWORD\nk.CreateFileW.argtypes=[w.LPCWSTR,w.DWORD,w.DWORD,ctypes.c_void_p,w.DWORD,w.DWORD,w.HANDLE]\nk.CreateFileW.restype=w.HANDLE\nk.GetFinalPathNameByHandleW.argtypes=[w.HANDLE,w.LPWSTR,w.DWORD,w.DWORD]\nk.GetFinalPathNameByHandleW.restype=w.DWORD\nk.CloseHandle.argtypes=[w.HANDLE]\nb=ctypes.create_unicode_buffer(32768)\nn=k.GetModuleFileNameW(None,b,len(b))\nif not 0<n<len(b):raise ctypes.WinError(ctypes.get_last_error())\nh=k.CreateFileW(b.value,0x80,7,None,3,0,None)\nif h in (None,ctypes.c_void_p(-1).value):raise ctypes.WinError(ctypes.get_last_error())\ntry:\n n=k.GetFinalPathNameByHandleW(h,b,len(b),0)\n if not 0<n<len(b):raise ctypes.WinError(ctypes.get_last_error())\n image=b.value\nfinally:k.CloseHandle(h)\nif image.startswith('\\\\\\\\?\\\\'):image=image[4:]\nprint(json.dumps(dict(version=list(sys.version_info[:3]),executable=sys.executable,\n base_executable=sys._base_executable,prefix=sys.prefix,base_prefix=sys.base_prefix,\n image_path=image,image_sha256=hashlib.sha256(Path(image).read_bytes()).hexdigest(),cwd=os.getcwd(),\n environment={name:os.environ.get(name) for name in ('USERPROFILE','TEMP','TMP','SYSTEMROOT','SystemDrive','PYTHONNOUSERSITE')},\n path_sha256=hashlib.sha256(os.environ.get('PATH','').encode()).hexdigest(),\n model_selected=bool(os.environ.get('MODEL_PYTHON') or os.environ.get('KNOWLEDGE_MODEL_MANIFEST')))))\n"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 11852,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "identity-after",
+      "seconds": 0.35857920022681355,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\stdout.log",
+        "sha256": "4f2e8c0fb51139485a360f877ca9a1b0213d094fef3abf4a88c3256aeba72a24",
+        "size": 1339
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import importlib.metadata as m,json,site;d=m.distribution('semantica');u=json.loads(d.read_text('direct_url.json')or'{}');print(json.dumps({'versions':{n:m.version(n)for n in ['PyYAML', 'Pygments', 'annotated-types', 'anyio', 'certifi', 'chardet', 'charset-normalizer', 'click', 'cloudpickle', 'colorama', 'grpcio', 'h11', 'html5rdf', 'httpcore', 'httpx', 'idna', 'joblib', 'loguru', 'markdown-it-py', 'mdurl', 'narwhals', 'networkx', 'numpy', 'owlrl', 'packaging', 'pandas', 'pillow', 'prettytable', 'protobuf', 'pyarrow', 'pydantic', 'pydantic_core', 'pyparsing', 'pyshacl', 'python-dateutil', 'python-dotenv', 'rdflib', 'requests', 'rich', 'scikit-learn', 'scipy', 'semantica', 'six', 'structlog', 'threadpoolctl', 'toml', 'tqdm', 'typing-inspection', 'typing_extensions', 'tzdata', 'urllib3', 'wcwidth', 'win32-setctime']},'revision':u.get('vcs_info',{}).get('commit_id'),'user_site':site.ENABLE_USER_SITE}))"
+      ],
+      "containment": {
+        "capture_complete": true,
+        "capture_errors": [],
+        "containment_method": "windows-job-kill-on-close",
+        "containment_note": "job closed on return; OS terminates any stragglers",
+        "exit_code": 0,
+        "kill_path_used": false,
+        "output_limit_exceeded": false,
+        "process_id": 41396,
+        "timed_out": false,
+        "tree_contained": true
+      },
+      "execution": "EXITED",
+      "exit_code": 0,
+      "failure": null,
+      "label": "dependencies-after",
+      "seconds": 0.5744623998180032,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      }
+    }
+  ],
+  "failed_segment": null,
+  "failure": null,
+  "finished_utc": "2026-11-06T11:23:50.470391+00:00",
+  "gate1_complete": false,
+  "groups": [
+    {
+      "ids": [
+        "test_knowledge_recursive_native.NativeDispatchWiring.test_constructor_failure_retains_native_identity_and_cleanup_proof",
+        "test_knowledge_recursive_native.NativeDispatchWiring.test_controller_native_does_not_add_owned_gate_or_suspend_flag",
+        "test_knowledge_recursive_native.NativeDispatchWiring.test_gate_failure_reaps_and_preserves_the_original",
+        "test_knowledge_recursive_native.NativeDispatchWiring.test_missing_job_refuses_before_a_native_process_exists",
+        "test_knowledge_recursive_native.NativeDispatchWiring.test_native_creation_is_suspended_and_gate_finishes_before_return",
+        "test_knowledge_recursive_native.NativeDispatchWiring.test_recursive_python_route_keeps_its_existing_startup_path",
+        "test_knowledge_recursive_native.NativeJobFaults.test_assign_failure_is_native_error_and_child_never_resumes",
+        "test_knowledge_recursive_native.NativeJobFaults.test_cleanup_already_exited_child_waits_without_killing",
+        "test_knowledge_recursive_native.NativeJobFaults.test_cleanup_attempts_wait_when_kill_fails_and_preserves_primary",
+        "test_knowledge_recursive_native.NativeJobFaults.test_deadline_expiry_never_resumes_child",
+        "test_knowledge_recursive_native.NativeJobFaults.test_existing_child_membership_is_verified_without_reassignment",
+        "test_knowledge_recursive_native.NativeJobFaults.test_final_deadline_expiry_after_enumeration_never_resumes_child",
+        "test_knowledge_recursive_native.NativeJobFaults.test_full_native_failure_sidecar_is_bound_by_old_failure_record",
+        "test_knowledge_recursive_native.NativeJobFaults.test_missing_membership_is_assigned_and_verified_before_single_resume",
+        "test_knowledge_recursive_native.NativeJobFaults.test_partial_identity_observation_remains_unknown_on_native_query_error",
+        "test_knowledge_recursive_native.NativeJobFaults.test_query_error_keeps_native_operation_and_blocks_resume",
+        "test_knowledge_recursive_native.NativeJobFaults.test_resume_error_is_original_windows_error",
+        "test_knowledge_recursive_native.NativeJobFaults.test_resume_handle_close_error_retains_debt_and_attempts_both_closes",
+        "test_knowledge_recursive_native.NativeJobFaults.test_root_membership_loss_refuses_before_resume",
+        "test_knowledge_recursive_native.NativeJobFaults.test_successful_assign_return_without_membership_is_not_success",
+        "test_knowledge_recursive_native.NativeJobFaults.test_unpublished_raw_create_state_is_unknown_and_not_claimed_reaped",
+        "test_knowledge_recursive_native.NativeJobFaults.test_wrong_native_image_blocks_resume",
+        "test_knowledge_recursive_native.NativeJobFaults.test_wrong_native_pid_blocks_resume"
+      ],
+      "label": "native-gate",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-native-gate\\Receipt.json",
+        "sha256": "4dc53d68507d7464ab04580aead4fcdc4b187f6d24066946e4c607b6166ff4d4",
+        "size": 486
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_actual_owned_root_runs_bound_readonly_git_with_native_exit_proof",
+        "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_both_sessions_propagate_the_same_recursive_request_deadline",
+        "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_changed_policy_seal_blocks_authored_code_and_retains_profile_failure",
+        "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_default_recursive_budget_is_independent_of_startup_deadline",
+        "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_owned_root_refuses_unsupported_recursive_python_before_child_starts",
+        "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_post_go_startup_refusal_retains_cause_before_authored_worker"
+      ],
+      "label": "recursive-integration",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-integration\\Receipt.json",
+        "sha256": "5732fdd8ed5fa59478b4e8899eabb30796683e87912d4d2be5bbe3c3616ea24e",
+        "size": 499
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_recursive_git.EditableRuntimeHook.test_editable_owned_runtime_binds_before_existing_git_queries",
+        "test_knowledge_recursive_git.EditableRuntimeHook.test_non_owned_runtime_keeps_existing_git_path",
+        "test_knowledge_recursive_git.RecursiveGit.test_binding_is_idempotent_but_rejects_other_root_image_and_vectors",
+        "test_knowledge_recursive_git.RecursiveGit.test_bound_git_preserves_existing_readonly_outputs",
+        "test_knowledge_recursive_git.RecursiveGit.test_expired_binding_and_dispatch_cannot_start_git"
+      ],
+      "label": "recursive-git",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-git\\Receipt.json",
+        "sha256": "6b247e47dd6ee903558fee3f257eb5f26f074604283d7167acef7dd293c6271f",
+        "size": 483
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_recursive_profile.OwnedProfile.test_child_attestation_rejects_consistent_but_wrong_store_location",
+        "test_knowledge_recursive_profile.OwnedProfile.test_non_store_profile_cannot_borrow_store_userbase_exception",
+        "test_knowledge_recursive_profile.OwnedProfile.test_store_cannot_bind_arbitrary_absolute_or_wrong_family_userbase",
+        "test_knowledge_recursive_profile.OwnedProfile.test_store_missing_binding_cannot_reach_child_audit",
+        "test_knowledge_recursive_profile.OwnedProfile.test_store_missing_userbase_cannot_reach_installer",
+        "test_knowledge_recursive_profile.OwnedProfile.test_store_value_requires_no_user_site_and_is_bound_without_rewriting",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_controller_variant_does_not_change_its_job_membership",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_create_or_assignment_failure_blocks_dispatch",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_guard_failure_attempts_job_close_and_preserves_original",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_native_assign_error_remains_primary_when_close_also_fails",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_native_create_assign_and_membership_faults_fail_closed",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_native_job_verifies_current_membership_and_retains_exact_handle",
+        "test_knowledge_recursive_profile.OwnedRootJobGate.test_owned_root_enters_job_before_guard_and_retains_handle"
+      ],
+      "label": "recursive-profile",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-profile\\Receipt.json",
+        "sha256": "8de1e35d88021880f1cf2331ebabaf170542bbe67abb49cb991c9b594d90e5ce",
+        "size": 493
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_active_count_may_change_after_pid_snapshot_without_identity_gap",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_assignment_failure_reaps_unassigned_suspended_root_and_closes_stdin",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_authored_script_keeps_its_original_sibling_import_directory",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_cpython_consumed_launcher_environment_is_not_false_identity_drift",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_event_drain_cannot_ignore_expired_observation_deadline",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_expired_start_never_opens_work_gate_after_identity_check",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_and_member_release_attempt_every_close_and_keep_all_errors",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_setup_close_debt_is_not_labelled_complete_without_an_owner",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_member_outside_job_is_not_accepted_from_a_completion_pid",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_missing_accounting_member_still_terminates_all_known_processes",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_nested_job_descendant_has_independent_native_exit_proof",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_popen_failure_keeps_the_pre_owner_job_when_its_close_fails",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_rejects_requested_executable_identity_drift_before_start",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_release_refuses_before_native_exit_proof",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_resume_identity_error_survives_all_handle_close_failures",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_script_system_exit_is_not_relabelled_as_bootstrap_failure",
+        "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_stop_reaps_root_child_grandchild_but_not_unrelated_process"
+      ],
+      "label": "ownership",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ownership\\Receipt.json",
+        "sha256": "a2d33d6b885103604373c4f18258a5b3c8b1982e5fcd34cfbf8ee9f0ddaf047e",
+        "size": 489
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_writer.WindowsWriter.test_boolean_write_count_cannot_be_reported_as_sent_bytes",
+        "test_knowledge_windows_writer.WindowsWriter.test_buffered_stream_is_rejected_before_any_request",
+        "test_knowledge_windows_writer.WindowsWriter.test_cancel_and_join_retries_after_a_cancel_miss_before_real_pipe_io",
+        "test_knowledge_windows_writer.WindowsWriter.test_cancel_miss_is_not_completion_and_close_remains_refused",
+        "test_knowledge_windows_writer.WindowsWriter.test_cancellation_api_failure_is_not_success_and_keeps_original_code",
+        "test_knowledge_windows_writer.WindowsWriter.test_failed_start_handle_retirement_cannot_be_reported_as_success",
+        "test_knowledge_windows_writer.WindowsWriter.test_failed_thread_handle_creation_preserves_error_and_allows_no_io_cleanup",
+        "test_knowledge_windows_writer.WindowsWriter.test_failed_write_is_recorded_once_and_never_resent",
+        "test_knowledge_windows_writer.WindowsWriter.test_invalid_deadlines_are_rejected_before_starting_a_thread",
+        "test_knowledge_windows_writer.WindowsWriter.test_native_close_failure_stays_visible_and_does_not_retire_handle",
+        "test_knowledge_windows_writer.WindowsWriter.test_payload_preparation_past_deadline_cannot_launch_or_write",
+        "test_knowledge_windows_writer.WindowsWriter.test_readiness_after_start_timeout_never_transfers_handle_or_starts_io",
+        "test_knowledge_windows_writer.WindowsWriter.test_real_blocked_write_cancels_while_reader_remains_alive",
+        "test_knowledge_windows_writer.WindowsWriter.test_retiring_worker_handle_cannot_be_accepted_cancelled_or_waited_concurrently",
+        "test_knowledge_windows_writer.WindowsWriter.test_short_writes_are_completed_before_success",
+        "test_knowledge_windows_writer.WindowsWriter.test_start_obeys_absolute_deadline_and_prevents_late_write",
+        "test_knowledge_windows_writer.WindowsWriter.test_stream_close_is_refused_until_blocked_writer_has_exited",
+        "test_knowledge_windows_writer.WindowsWriter.test_thread_creation_failure_never_transfers_stream_or_starts_io"
+      ],
+      "label": "writer",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-writer\\Receipt.json",
+        "sha256": "e89d47f723c040ee2e89dc8004d58d0dffa8647db9dc8a9c5e89e554e18638c7",
+        "size": 479
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_assignment_failure_never_runs_suspended_child",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_blocked_real_pipe_writer_is_released_before_cleanup",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_broken_stdin_does_not_abandon_owned_interpreter",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_close_all_without_primary_error_reports_failure_and_attempts_each_handle",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_expired_stop_waits_for_the_owned_interpreter_not_only_launcher",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_idle_stop_waits_for_actual_interpreter_before_cleanup",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_release_failure_without_primary_error_remains_a_failure",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_resume_close_failures_preserve_thread_owner_error",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_resume_failure_reaps_already_assigned_root",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_setup_close_failure_preserves_original_setup_error",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_termination_close_failures_preserve_membership_error_and_close_all",
+        "test_knowledge_windows_shutdown.WindowsShutdown.test_unobserved_member_refuses_success_and_retains_output"
+      ],
+      "label": "combined-shutdown",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-shutdown\\Receipt.json",
+        "sha256": "072ff12ca945612d76e131c8aa6eda175c7e8b25356125513d58f18ee2eede40",
+        "size": 492
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_session.WindowsSession.test_cancel_failure_does_not_abandon_owned_tree_or_hide_original",
+        "test_knowledge_windows_session.WindowsSession.test_cancel_tree_exit_and_join_share_one_deadline_before_any_disposal",
+        "test_knowledge_windows_session.WindowsSession.test_failed_close_retains_directory_instead_of_later_finalizer_deletion",
+        "test_knowledge_windows_session.WindowsSession.test_missing_start_owner_cannot_mask_original_cleanup_debt",
+        "test_knowledge_windows_session.WindowsSession.test_post_stop_stream_close_failure_detaches_directory_finalizer",
+        "test_knowledge_windows_session.WindowsSession.test_unproven_constructor_cleanup_retains_all_parent_streams_and_original",
+        "test_knowledge_windows_session.WindowsSession.test_unproven_process_exit_still_joins_writer_but_forbids_resource_disposal"
+      ],
+      "label": "combined-session",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-session\\Receipt.json",
+        "sha256": "be247da2025cc3e34880046557e5c526e0ab644d069a223435cd8e19d856447c",
+        "size": 488
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_cleanup_failure_after_success_is_not_returned_as_success",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_every_owned_process_stops_before_any_resource_disposal",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_one_close_failure_does_not_abandon_sibling_or_hide_original",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_process_creation_closes_already_opened_parent_streams",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_partial_second_creation_reaps_the_first_session",
+        "test_knowledge_process_lifecycle.ProcessLifecycle.test_pipe_write_timeout_is_joined_before_handle_disposal"
+      ],
+      "label": "lifecycle",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-lifecycle\\Receipt.json",
+        "sha256": "cd47ab248da31cbf922528b856cf6e43bdf1910d23dc353901b42b96cd55e802",
+        "size": 483
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_worker_cwd.WorkerCwd.test_benchmark_cross_drive_temp_keeps_companion_and_relative_output",
+        "test_knowledge_worker_cwd.WorkerCwd.test_benchmark_dispatch_keeps_caller_relative_companion_and_report",
+        "test_knowledge_worker_cwd.WorkerCwd.test_shards_relative_writes_are_isolated_in_each_owned_directory",
+        "test_knowledge_worker_cwd.WorkerCwd.test_single_relative_writes_are_isolated_per_invocation",
+        "test_knowledge_worker_cwd.WorkerCwd.test_successful_child_cwd_cleanup_failure_is_named_and_not_success",
+        "test_knowledge_worker_cwd.WorkerCwd.test_timeout_stays_primary_when_cwd_cleanup_also_fails",
+        "test_knowledge_worker_cwd.WorkerCwd.test_worker_refusal_stays_primary_when_cwd_cleanup_also_fails"
+      ],
+      "label": "cwd",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-cwd\\Receipt.json",
+        "sha256": "2162f2117718bb370ee0f21306d6e8dc8655a73cf69a89aa47bedcc26e8b34e6",
+        "size": 470
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_default_worker_allows_50second_loading_then_returns_valid_reply",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_distributed_default_uses_supported_cold_start_budget",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_explicit_short_budget_still_times_out_without_retry",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_invalid_budgets_still_refuse_before_process_start",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_programmatic_fresh_preflight_omitted_timeout_uses_120",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_offline_and_fresh_verify_select_120_by_default",
+        "test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_retrieve_selects_120_by_default_and_preserves_override"
+      ],
+      "label": "budget",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-budget\\Receipt.json",
+        "sha256": "446845e85a13926fb8a51218a96cbba89aee8106bffea473672a91766bc6da53",
+        "size": 477
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_actual_owned_worker_uses_copy_when_parent_original_open_is_denied",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_changed_original_never_falls_back_to_good_copy",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_cleanup_bound_survives_receipt_save_failure_after_delete",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_corrupt_copy_hash_is_rejected",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_deleted_receipt_backlog_cannot_starve_later_expired_copy",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_direct_read_is_preferred_and_backup_matches",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_duplicate_ready_json_is_rejected",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_expiry_refuses_another_live_reader_and_retains_diagnostic",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_expiry_waits_three_days_after_both_read_and_exit",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_failed_original_publication_cannot_commit_copy",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_failed_unaccepted_copy_never_age_deletes",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_hardlinked_managed_copy_is_never_deleted",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_hardlinked_source_is_rejected_without_fallback",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_incomplete_startup_never_becomes_expiry_eligible",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_interrupted_queue_temps_cannot_starve_valid_due_copy",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_invalid_queue_days_cannot_starve_valid_due_copy",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_known_folder_lookup_preserves_existing_com_apartment",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_metadata_cannot_redirect_expiry_to_original",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_missing_native_exit_proof_prevents_expiry",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_missing_source_is_not_an_access_denied_fallback",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_native_read_handle_cannot_write",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_nonfinite_json_is_rejected",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_queue_empty_directory_permission_error_is_not_hidden",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_queue_list_permission_error_is_not_silently_deferred",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_real_source_sharing_denial_uses_parent_owned_copy",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_repeated_finish_does_not_reset_expiry",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_replaced_copy_path_is_rejected_even_with_original_handle",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_retained_tombstones_are_not_opened_by_cleanup",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_source_close_debt_is_not_hidden_by_access_denied_fallback",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_uncommitted_copy_is_not_ready",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_unmanaged_existing_directory_is_refused",
+        "test_knowledge_windows_ready_copy.ReadOnlyCopies.test_wrong_token_is_rejected"
+      ],
+      "label": "ready-copy",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ready-copy\\Receipt.json",
+        "sha256": "fbe5f6ca3f4c3de29eedf28ca1173b8845a2230cdc4fb018cca1005411a40fda",
+        "size": 487
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_actual_startup_retains_identity_frame_then_native_exit_proof",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_assigned_not_resumed_cleanup_records_specific_native_exit_mode",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_assigned_not_resumed_failure_reaps_recorded_root_without_authored_work",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_bootstrap_emitter_caps_detail_and_preserves_identity_in_a_bounded_frame",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_bootstrap_emitter_never_writes_an_oversized_identity_failure",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_bootstrap_role_mismatch_records_bounded_expected_observed_frame_and_reaps_root",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_expected_identity_keeps_parent_base_distinct_from_loaded_image",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_failed_accounting_query_names_its_native_operation",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_failed_completion_query_names_its_native_operation",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_failed_terminate_names_native_operation_and_preserves_resume_error",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_failure_json_read_shares_delete_without_changing_file_permissions",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_oversized_failure_detail_is_rejected_before_publication",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_preinsert_query_and_close_failure_retain_recoverable_handle_debt",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_ready_file_is_bounded_before_json_parsing",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_real_post_resume_close_failure_keeps_debt_and_never_claims_complete",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_root_exit_without_a_new_event_is_attributable_to_the_pre_resume_ledger",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_same_token_tampered_expected_frame_is_rejected",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_signalled_root_uses_fresh_empty_check_not_termination_of_a_stale_pid_snapshot",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_successful_resume_then_close_failure_still_records_resumed_cleanup_state",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_unknown_nonroot_exit_remains_a_proof_gap",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_wait_failure_is_not_falsely_attributed_to_successful_termination",
+        "test_knowledge_windows_owned_startup.OwnedStartupTests.test_wrong_token_failure_cannot_publish_an_identity_frame"
+      ],
+      "label": "owned-startup",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-owned-startup\\Receipt.json",
+        "sha256": "1d19f11b381cf0dc05c187aaf48aa2b3a7afa7c40b746902d0e2f1ce7a2bf5c7",
+        "size": 493
+      }
+    },
+    {
+      "ids": [
+        "test_knowledge_windows_fixture_publication.FixturePublication.test_marker_is_not_visible_until_complete_pid_bytes_are_published",
+        "test_knowledge_windows_fixture_publication.FixturePublication.test_only_atomic_publisher_diff_restores_exact_original17_bytes"
+      ],
+      "label": "fixture-publication",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-fixture-publication\\Receipt.json",
+        "sha256": "0eebe1f2f5ccaf1ce3230b66ba2418f8ebdf7019b45d92e4341465ae9ba86d9a",
+        "size": 503
+      }
+    }
+  ],
+  "historical_original_after_completed": false,
+  "installed": false,
+  "ordered": {
+    "outcomes": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Outcomes.json",
+      "sha256": "7f33f1f0cb80bbd5f8640bfac59e182c7abb8129a37238838e02f4bd72834a59",
+      "size": 15089
+    },
+    "receipt": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Receipt.json",
+      "sha256": "6cca0ab48d5af95765b5ed82fd0b49ca16c25c1c4984017e1d088da89afd7f5c",
+      "size": 468
+    },
+    "state": "FAILURE_NOT_REPRODUCED_INCONCLUSIVE"
+  },
+  "postcheck_failure": null,
+  "product_proof": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\Receipt.json",
+    "sha256": "00d9db76c42038ba830871ff4a38ec1469a73bd79507f026998c1bceecbd2bf4",
+    "size": 19652
+  },
+  "release_ready": false,
+  "scope": "ND3_INTEGRATED_RUNTIME_NOT_HISTORICAL_STAGE",
+  "stage_complete": false,
+  "started_utc": "2026-11-06T11:19:46.335356+00:00",
+  "status": "INTEGRATED_PRODUCT_RUNTIME_OBSERVED_PENDING_HISTORICAL_AFTER",
+  "work_deadline_monotonic": 2588797.7255268,
+  "work_started_monotonic": 2585197.7255268
+}

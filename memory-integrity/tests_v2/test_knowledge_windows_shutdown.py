@@ -28,7 +28,9 @@ class WindowsShutdown(unittest.TestCase):
             (root/'actual.py').write_text(
                 'import os,sys\nfrom pathlib import Path\n'
                 'root=Path(sys.argv[1])\n'
-                '(root/"actual.pid").write_text(str(os.getpid()),encoding="utf-8")\n' +
+                'pending=root/"actual.pid.pending"\n'
+                'pending.write_text(str(os.getpid()),encoding="utf-8")\n'
+                'pending.rename(root/"actual.pid")\n' +
                 ('import threading\nthreading.Event().wait(60)\n' if blocked else 'sys.stdin.buffer.read()\n') +
                 '(root/"eof-observed").write_text("input closed",encoding="utf-8")\n', encoding='utf-8')
             (root/'distributed_worker.py').write_text(

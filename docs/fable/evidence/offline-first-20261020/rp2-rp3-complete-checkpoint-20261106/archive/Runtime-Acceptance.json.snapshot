@@ -1,0 +1,668 @@
+{
+  "actual_missing_native_assignment_exercised": true,
+  "commands": [
+    {
+      "label": "identity-before",
+      "seconds": 0.7907165996730328,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\stdout.log",
+        "sha256": "4f2e8c0fb51139485a360f877ca9a1b0213d094fef3abf4a88c3256aeba72a24",
+        "size": 1339
+      }
+    },
+    {
+      "label": "dependencies-before",
+      "seconds": 2.1397390998899937,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      }
+    },
+    {
+      "label": "product-proof",
+      "seconds": 3.5187389999628067,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\stdout.log",
+        "sha256": "f0133d199a08cde58249a2e80ffada86b170b6ba3dd92a88320eddcc238d309b",
+        "size": 2968
+      }
+    },
+    {
+      "label": "discover-native-gate",
+      "seconds": 0.505598799791187,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\stdout.log",
+        "sha256": "a41d180bea04f34d400bb406d7bd577cf0cf92959d8e2df62a84262ed8959ef6",
+        "size": 2550
+      }
+    },
+    {
+      "label": "tests-native-gate",
+      "seconds": 0.654691900126636,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\stdout.log",
+        "sha256": "32e485b9c557cf4304a1bd2cc041139c4fd25d79c5c7ba0ddc349cd731465ce0",
+        "size": 4635
+      }
+    },
+    {
+      "label": "discover-recursive-integration",
+      "seconds": 0.5965654999017715,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\stdout.log",
+        "sha256": "a5bd1619e57af996465935655f51d5e7633962e71782342292ff517e12488a3a",
+        "size": 811
+      }
+    },
+    {
+      "label": "tests-recursive-integration",
+      "seconds": 3.851823200006038,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\stdout.log",
+        "sha256": "8522c9a2f839255dbbf977850402922dc3b8b18eac7bc2b6fcfb6f92707514d5",
+        "size": 1840
+      }
+    },
+    {
+      "label": "discover-recursive-git",
+      "seconds": 0.5870150001719594,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\stdout.log",
+        "sha256": "d3924015ed50228c81947acbe3b0e457f3844884566e279225624fe16c7c953c",
+        "size": 520
+      }
+    },
+    {
+      "label": "tests-recursive-git",
+      "seconds": 2.24298769980669,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\stdout.log",
+        "sha256": "3349ab1cf55dcebdfe0ed0bc298fd69e7435423e792c86dad64076272cb8eea6",
+        "size": 1391
+      }
+    },
+    {
+      "label": "discover-recursive-profile",
+      "seconds": 0.6641580001451075,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\stdout.log",
+        "sha256": "3c21bdce057c74e82839a186f9f2c16a2af32c5935d9254edad40810d9ea219a",
+        "size": 1457
+      }
+    },
+    {
+      "label": "tests-recursive-profile",
+      "seconds": 0.9692788999527693,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\stdout.log",
+        "sha256": "69919d5ff588da86ed8767e8c6571c254a01741e3771a4abd28f227967182f2a",
+        "size": 2914
+      }
+    },
+    {
+      "label": "discover-ownership",
+      "seconds": 0.5312831997871399,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\stdout.log",
+        "sha256": "beb4d1cf4c9dde586b8de91dabf3d5275b525fc8bd541006be352d07c008acd1",
+        "size": 2161
+      }
+    },
+    {
+      "label": "tests-ownership",
+      "seconds": 6.5279975002631545,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\stdout.log",
+        "sha256": "beee71c34f79d1aca14f9a76d52cdf7b4df4ac4b1700cda6bd64da1ff429d317",
+        "size": 3944
+      }
+    },
+    {
+      "label": "discover-writer",
+      "seconds": 0.5151130999438465,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\stdout.log",
+        "sha256": "586459f3be53f9aff93234f63f9252a38ef5ca9f70eab22ed0e1cd9bf72011a6",
+        "size": 1983
+      }
+    },
+    {
+      "label": "tests-writer",
+      "seconds": 1.7023384999483824,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\stdout.log",
+        "sha256": "3c1d6646f2471c1c9fe8205f2d0e844e6dba51883bc8f59dd564b2b828a8d89d",
+        "size": 3811
+      }
+    },
+    {
+      "label": "discover-combined-shutdown",
+      "seconds": 0.5503193996846676,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\stdout.log",
+        "sha256": "46d19eef485a75530511c1f72c8eace964842f8e4bd7339b71f0656c397f02a1",
+        "size": 1330
+      }
+    },
+    {
+      "label": "tests-combined-shutdown",
+      "seconds": 5.617794299963862,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\stdout.log",
+        "sha256": "49d1656c9637f60e5874d28d9aea37fccc2e31cd72a3edc250a22fd8cd871b8f",
+        "size": 2704
+      }
+    },
+    {
+      "label": "discover-combined-session",
+      "seconds": 0.5657780999317765,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\stdout.log",
+        "sha256": "65a10dec3bc3480bb5a393881c0fabbdeeb41f592e53963ffbf3b3f8fdc38f88",
+        "size": 826
+      }
+    },
+    {
+      "label": "tests-combined-session",
+      "seconds": 0.5887844995595515,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\stdout.log",
+        "sha256": "87963ca301b654499b0ba9a6a17fc3ba72de43c61d5b563365a1840055e84d27",
+        "size": 1920
+      }
+    },
+    {
+      "label": "discover-lifecycle",
+      "seconds": 0.5186137999407947,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\stdout.log",
+        "sha256": "044b8f732bdeac1aaa6f83b6702b304c7a53eca16ced169ccfb7d8b75a6616d6",
+        "size": 684
+      }
+    },
+    {
+      "label": "tests-lifecycle",
+      "seconds": 0.7052396000362933,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\stdout.log",
+        "sha256": "6c397f60580c3e939e207ea6266f40196b06e1160db9ac64a053de339b0df472",
+        "size": 1648
+      }
+    },
+    {
+      "label": "discover-cwd",
+      "seconds": 0.6513278996571898,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\stdout.log",
+        "sha256": "59e205a64f1a9dd2d3e1487d89bad2ba8ad59c75b59afbf179ab286d9205d5b8",
+        "size": 715
+      }
+    },
+    {
+      "label": "tests-cwd",
+      "seconds": 5.451041799969971,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\stdout.log",
+        "sha256": "b99c93e62140e1b2e66ffb83523bbbb863b7ebaf4caa53498bcc9fb0d7bdc2a1",
+        "size": 1823
+      }
+    },
+    {
+      "label": "discover-budget",
+      "seconds": 0.6251814002171159,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\stdout.log",
+        "sha256": "960ad3e1ccb152fd9b28d9b284fd7b4ab16cc2c1d4015a142a4d0f7c7221a85c",
+        "size": 818
+      }
+    },
+    {
+      "label": "tests-budget",
+      "seconds": 0.7506316998042166,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\stdout.log",
+        "sha256": "735bea33a0ad94c0f2072a2359713a011dec3079f6aadfc3f4a77b0662f8bd8b",
+        "size": 1844
+      }
+    },
+    {
+      "label": "discover-ready-copy",
+      "seconds": 0.5337316002696753,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\stdout.log",
+        "sha256": "0783de491e5b989121adce2e592c7670f87288b68e05b8672f8d863d0587b9f8",
+        "size": 3288
+      }
+    },
+    {
+      "label": "tests-ready-copy",
+      "seconds": 7.468283500056714,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\stdout.log",
+        "sha256": "53840ca4e91a69a7402f49f8953ba5fe1d20da699aed23c5585a9cc03882f3ec",
+        "size": 4983
+      }
+    },
+    {
+      "label": "discover-owned-startup",
+      "seconds": 0.5514136999845505,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\stdout.log",
+        "sha256": "507b04814f1940c058c42ec1444cda89f1b2e8b8b62ea80f9f8478e19c51e506",
+        "size": 2752
+      }
+    },
+    {
+      "label": "tests-owned-startup",
+      "seconds": 7.084673100151122,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\stdout.log",
+        "sha256": "e608dd5bcd635f99a4c4ce463f48a0ff7e1148f42f0f7acdcd39ee97ba1a2e5c",
+        "size": 4984
+      }
+    },
+    {
+      "label": "discover-fixture-publication",
+      "seconds": 0.4956638002768159,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\stdout.log",
+        "sha256": "8d441b85034c40a91c6a5b3570f5df08cad6dc001a8d5774eacd03bd35819991",
+        "size": 262
+      }
+    },
+    {
+      "label": "tests-fixture-publication",
+      "seconds": 0.6174151003360748,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\stdout.log",
+        "sha256": "bfbfc4959440ab8ec82b6012ab5e6196499c972fb5043f9375a02800204b00be",
+        "size": 980
+      }
+    },
+    {
+      "label": "ordered-public",
+      "seconds": 86.54765189997852,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\stdout.log",
+        "sha256": "848c1f5cb4fcad7a464ab4f5f1591e469e290a695150624229159a7e0a71640f",
+        "size": 706
+      }
+    },
+    {
+      "label": "identity-after",
+      "seconds": 0.35857920022681355,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\stdout.log",
+        "sha256": "4f2e8c0fb51139485a360f877ca9a1b0213d094fef3abf4a88c3256aeba72a24",
+        "size": 1339
+      }
+    },
+    {
+      "label": "dependencies-after",
+      "seconds": 0.5744623998180032,
+      "stderr": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      }
+    }
+  ],
+  "errors": 0,
+  "failures": 0,
+  "focused_cases": 177,
+  "gate1_complete": false,
+  "git_outer_members": 5,
+  "groups": [
+    {
+      "cases": 23,
+      "label": "native-gate",
+      "log_sha256": "952e94bf0b8e316950a9ccadc0488c7b75ff9d4befae5092a561a080c05543e7",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-native-gate\\Receipt.json",
+        "sha256": "4dc53d68507d7464ab04580aead4fcdc4b187f6d24066946e4c607b6166ff4d4",
+        "size": 486
+      }
+    },
+    {
+      "cases": 6,
+      "label": "recursive-integration",
+      "log_sha256": "f9d30d54a8f627685829577591b2c9aa9bee64b784a5f17af988b3c013cbef97",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-integration\\Receipt.json",
+        "sha256": "5732fdd8ed5fa59478b4e8899eabb30796683e87912d4d2be5bbe3c3616ea24e",
+        "size": 499
+      }
+    },
+    {
+      "cases": 5,
+      "label": "recursive-git",
+      "log_sha256": "d7c406946e1c52b077720878351c03d42078aed10947593cca69e58afd397324",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-git\\Receipt.json",
+        "sha256": "6b247e47dd6ee903558fee3f257eb5f26f074604283d7167acef7dd293c6271f",
+        "size": 483
+      }
+    },
+    {
+      "cases": 13,
+      "label": "recursive-profile",
+      "log_sha256": "4e6318d67c0a196d79a36ad24e077ceb62c77b0a9b7c849089b51d4ab1a52464",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-profile\\Receipt.json",
+        "sha256": "8de1e35d88021880f1cf2331ebabaf170542bbe67abb49cb991c9b594d90e5ce",
+        "size": 493
+      }
+    },
+    {
+      "cases": 17,
+      "label": "ownership",
+      "log_sha256": "ebccab2800019e2327987534f289f4ffc6aad4adfc55abefc1de47495860f9da",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ownership\\Receipt.json",
+        "sha256": "a2d33d6b885103604373c4f18258a5b3c8b1982e5fcd34cfbf8ee9f0ddaf047e",
+        "size": 489
+      }
+    },
+    {
+      "cases": 18,
+      "label": "writer",
+      "log_sha256": "85e9b35a904b48d5c36c67c188b00e65a1d39f6a9d66a26b6750deeea82a4d02",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-writer\\Receipt.json",
+        "sha256": "e89d47f723c040ee2e89dc8004d58d0dffa8647db9dc8a9c5e89e554e18638c7",
+        "size": 479
+      }
+    },
+    {
+      "cases": 12,
+      "label": "combined-shutdown",
+      "log_sha256": "4ed990509d07ab03c976ef347b43b89a2e3ce255bf264283d5949a73fc943984",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-shutdown\\Receipt.json",
+        "sha256": "072ff12ca945612d76e131c8aa6eda175c7e8b25356125513d58f18ee2eede40",
+        "size": 492
+      }
+    },
+    {
+      "cases": 7,
+      "label": "combined-session",
+      "log_sha256": "4da11f5f32b3111c5e7321f6a7897f45b4280aab8d64b1121dddee1f4a878726",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-session\\Receipt.json",
+        "sha256": "be247da2025cc3e34880046557e5c526e0ab644d069a223435cd8e19d856447c",
+        "size": 488
+      }
+    },
+    {
+      "cases": 6,
+      "label": "lifecycle",
+      "log_sha256": "98b7fccc4e8752d36a7dded556c64283ba889e9d982d10e9df103b8626e7b14b",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-lifecycle\\Receipt.json",
+        "sha256": "cd47ab248da31cbf922528b856cf6e43bdf1910d23dc353901b42b96cd55e802",
+        "size": 483
+      }
+    },
+    {
+      "cases": 7,
+      "label": "cwd",
+      "log_sha256": "dbe47c6a39aa12ca233916d8b9a34540a423562c4b7f8d66a73f1454153d6956",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-cwd\\Receipt.json",
+        "sha256": "2162f2117718bb370ee0f21306d6e8dc8655a73cf69a89aa47bedcc26e8b34e6",
+        "size": 470
+      }
+    },
+    {
+      "cases": 7,
+      "label": "budget",
+      "log_sha256": "fe623343585ac060f0e7f1ec151c22c30453977348d8c19c166eabb83f820ded",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-budget\\Receipt.json",
+        "sha256": "446845e85a13926fb8a51218a96cbba89aee8106bffea473672a91766bc6da53",
+        "size": 477
+      }
+    },
+    {
+      "cases": 32,
+      "label": "ready-copy",
+      "log_sha256": "59d7ce260fa38da104ff689b8b38cdc882ad737d9246f5262ef6aaaee2fe1628",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ready-copy\\Receipt.json",
+        "sha256": "fbe5f6ca3f4c3de29eedf28ca1173b8845a2230cdc4fb018cca1005411a40fda",
+        "size": 487
+      }
+    },
+    {
+      "cases": 22,
+      "label": "owned-startup",
+      "log_sha256": "c36c1a998b24fd7da796c38ca659d3302b67f37d49f2142bb952231782e6fa50",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-owned-startup\\Receipt.json",
+        "sha256": "1d19f11b381cf0dc05c187aaf48aa2b3a7afa7c40b746902d0e2f1ce7a2bf5c7",
+        "size": 493
+      }
+    },
+    {
+      "cases": 2,
+      "label": "fixture-publication",
+      "log_sha256": "d6235f473deefd2f562ec1acb17459b742d76742e02137bf3cda73a6328306a5",
+      "receipt": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-fixture-publication\\Receipt.json",
+        "sha256": "0eebe1f2f5ccaf1ce3230b66ba2418f8ebdf7019b45d92e4341465ae9ba86d9a",
+        "size": 503
+      }
+    }
+  ],
+  "historical_original_after_completed": false,
+  "identity_dependency_before_after_stable": true,
+  "input_seals": 741,
+  "installed": false,
+  "native_runtime_review": "SHIP_INDEPENDENT_RAW_LOG_AND_SEAL_RECONCILIATION",
+  "ordered_cases": 1,
+  "product": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\Receipt.json",
+    "sha256": "00d9db76c42038ba830871ff4a38ec1469a73bd79507f026998c1bceecbd2bf4",
+    "size": 19652
+  },
+  "python_outer_members": 3,
+  "release_ready": false,
+  "runtime": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\Receipt.json",
+    "sha256": "b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e",
+    "size": 97469
+  },
+  "scope": "ND3_SELECTED_INTEGRATED_RUNTIME_ACCEPTED_PENDING_ND4",
+  "scratch_review_caveat": "128 test-owned retained-temp directories deny reviewer enumeration; authoritative receipts/34streams/14logs/discovery/ordered12calls all accessible and verified",
+  "skips": 0,
+  "source_files": 685,
+  "stage_complete": false,
+  "total_cases": 178
+}

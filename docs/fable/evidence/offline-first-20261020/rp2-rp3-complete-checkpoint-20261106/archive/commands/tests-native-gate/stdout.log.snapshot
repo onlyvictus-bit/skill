@@ -1,0 +1,30 @@
+{"scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI", "pattern": "test_knowledge_recursive_native.py", "tests_run": 23, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "interrupted": false, "discovered": 23, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-native-gate\\unittest.log", "log_sha256": "952e94bf0b8e316950a9ccadc0488c7b75ff9d4befae5092a561a080c05543e7"}
+test_constructor_failure_retains_native_identity_and_cleanup_proof (test_knowledge_recursive_native.NativeDispatchWiring.test_constructor_failure_retains_native_identity_and_cleanup_proof) ... ok
+test_controller_native_does_not_add_owned_gate_or_suspend_flag (test_knowledge_recursive_native.NativeDispatchWiring.test_controller_native_does_not_add_owned_gate_or_suspend_flag) ... ok
+test_gate_failure_reaps_and_preserves_the_original (test_knowledge_recursive_native.NativeDispatchWiring.test_gate_failure_reaps_and_preserves_the_original) ... ok
+test_missing_job_refuses_before_a_native_process_exists (test_knowledge_recursive_native.NativeDispatchWiring.test_missing_job_refuses_before_a_native_process_exists) ... ok
+test_native_creation_is_suspended_and_gate_finishes_before_return (test_knowledge_recursive_native.NativeDispatchWiring.test_native_creation_is_suspended_and_gate_finishes_before_return) ... ok
+test_recursive_python_route_keeps_its_existing_startup_path (test_knowledge_recursive_native.NativeDispatchWiring.test_recursive_python_route_keeps_its_existing_startup_path) ... ok
+test_assign_failure_is_native_error_and_child_never_resumes (test_knowledge_recursive_native.NativeJobFaults.test_assign_failure_is_native_error_and_child_never_resumes) ... ok
+test_cleanup_already_exited_child_waits_without_killing (test_knowledge_recursive_native.NativeJobFaults.test_cleanup_already_exited_child_waits_without_killing) ... ok
+test_cleanup_attempts_wait_when_kill_fails_and_preserves_primary (test_knowledge_recursive_native.NativeJobFaults.test_cleanup_attempts_wait_when_kill_fails_and_preserves_primary) ... ok
+test_deadline_expiry_never_resumes_child (test_knowledge_recursive_native.NativeJobFaults.test_deadline_expiry_never_resumes_child) ... ok
+test_existing_child_membership_is_verified_without_reassignment (test_knowledge_recursive_native.NativeJobFaults.test_existing_child_membership_is_verified_without_reassignment) ... ok
+test_final_deadline_expiry_after_enumeration_never_resumes_child (test_knowledge_recursive_native.NativeJobFaults.test_final_deadline_expiry_after_enumeration_never_resumes_child) ... ok
+test_full_native_failure_sidecar_is_bound_by_old_failure_record (test_knowledge_recursive_native.NativeJobFaults.test_full_native_failure_sidecar_is_bound_by_old_failure_record) ... ok
+test_missing_membership_is_assigned_and_verified_before_single_resume (test_knowledge_recursive_native.NativeJobFaults.test_missing_membership_is_assigned_and_verified_before_single_resume) ... ok
+test_partial_identity_observation_remains_unknown_on_native_query_error (test_knowledge_recursive_native.NativeJobFaults.test_partial_identity_observation_remains_unknown_on_native_query_error) ... ok
+test_query_error_keeps_native_operation_and_blocks_resume (test_knowledge_recursive_native.NativeJobFaults.test_query_error_keeps_native_operation_and_blocks_resume) ... ok
+test_resume_error_is_original_windows_error (test_knowledge_recursive_native.NativeJobFaults.test_resume_error_is_original_windows_error) ... ok
+test_resume_handle_close_error_retains_debt_and_attempts_both_closes (test_knowledge_recursive_native.NativeJobFaults.test_resume_handle_close_error_retains_debt_and_attempts_both_closes) ... ok
+test_root_membership_loss_refuses_before_resume (test_knowledge_recursive_native.NativeJobFaults.test_root_membership_loss_refuses_before_resume) ... ok
+test_successful_assign_return_without_membership_is_not_success (test_knowledge_recursive_native.NativeJobFaults.test_successful_assign_return_without_membership_is_not_success) ... ok
+test_unpublished_raw_create_state_is_unknown_and_not_claimed_reaped (test_knowledge_recursive_native.NativeJobFaults.test_unpublished_raw_create_state_is_unknown_and_not_claimed_reaped) ... ok
+test_wrong_native_image_blocks_resume (test_knowledge_recursive_native.NativeJobFaults.test_wrong_native_image_blocks_resume) ... ok
+test_wrong_native_pid_blocks_resume (test_knowledge_recursive_native.NativeJobFaults.test_wrong_native_pid_blocks_resume) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.092s
+
+OK
+

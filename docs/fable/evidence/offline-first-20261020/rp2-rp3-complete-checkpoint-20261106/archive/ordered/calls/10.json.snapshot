@@ -1,0 +1,1 @@
+{"generation": "08a1c278cb6d05b95fd64698dff0c983658db31c5a740493426266761dab05ac", "generation_lease": "08a1c278cb6d05b95fd64698dff0c983658db31c5a740493426266761dab05ac", "lease_refusal": false, "mode": ["vector", "distributed-local"], "pack_digest": "8618575c4e0345240326aa43447e864f9ea93dac98082c5e5574121841a4126f", "phase": "replay", "returned": true, "sequence": 10}

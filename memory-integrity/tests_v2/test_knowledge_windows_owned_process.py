@@ -216,7 +216,8 @@ class CurrentImageOwnerTests(unittest.TestCase):
                 'job=k.CreateJobObjectW(None,None)\n'
                 'if not job or not k.AssignProcessToJobObject(job,k.GetCurrentProcess()): raise ctypes.WinError(ctypes.get_last_error())\n'
                 'child=subprocess.Popen([sys.executable,"-B","-c","import time; time.sleep(60)"])\n'
-                'Path('+repr(str(ready))+').write_text(str(child.pid))\n'
+                'marker=Path('+repr(str(ready))+'); pending=marker.with_name(marker.name+".ready-tmp")\n'
+                'pending.write_text(str(child.pid)); pending.rename(marker)\n'
                 'time.sleep(60)\n', encoding='utf-8')
             owner = self.launch_current(subprocess.Popen, sys.executable, script, deadline=time.monotonic()+5,
                 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=os.environ.copy(), cwd=root)

@@ -1,0 +1,9 @@
+{"scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI", "pattern": "test_knowledge_windows_fixture_publication.py", "tests_run": 2, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "interrupted": false, "discovered": 2, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-fixture-publication\\unittest.log", "log_sha256": "d6235f473deefd2f562ec1acb17459b742d76742e02137bf3cda73a6328306a5"}
+test_marker_is_not_visible_until_complete_pid_bytes_are_published (test_knowledge_windows_fixture_publication.FixturePublication.test_marker_is_not_visible_until_complete_pid_bytes_are_published) ... ok
+test_only_atomic_publisher_diff_restores_exact_original17_bytes (test_knowledge_windows_fixture_publication.FixturePublication.test_only_atomic_publisher_diff_restores_exact_original17_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.013s
+
+OK
+

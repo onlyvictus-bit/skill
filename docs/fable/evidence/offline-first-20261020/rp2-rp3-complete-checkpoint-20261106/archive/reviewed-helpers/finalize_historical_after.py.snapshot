@@ -1,0 +1,108 @@
+"""Merge fresh two-account AFTER evidence; no test or selected runtime rerun."""
+from datetime import datetime,timezone
+import hashlib
+from pathlib import Path
+import time
+import traceback
+import json
+import selected_batch as batch
+
+P=Path(__file__).absolute().parent;R=P.parents[2]
+ART=P/'historical-after-20261106'
+OLD=Path(r'C:\Users\sakth\Documents\Codex\rp3-on-demand-20261105')
+COPY=Path(r'C:\Users\sakth\Documents\Codex\rp3-after-copy-20261106')
+RUN=Path(r'C:\Users\sakth\Documents\Codex\rp3-native-product-20261106')
+POLICY=R/'.github/run-artifacts/rp3-on-demand-20261105/reader-outbox/94d2f72684de412280da30ac1527fb0b/Copy-Inputs.json'
+PINS={COPY/'Receipt.json':'e946d11d5d872987acc6f98b6a22e1e3be4fdb32720fc7d4c1b2d78b2ae4f7df',
+ COPY/'reader-copy/Copies.json':'79ff16837887502b4deb2771f80579bf78a538cb9e925fd600d1f40d89c5f002',
+ RUN/'Receipt.json':'b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e',
+ OLD/'Before-Bundle.json':'c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b',
+ ART/'Reader-After-Request.json':'7e363dcfc711e5a0fce583d3d6e918628f697a723acb719ba77b9df754c5d58d',
+ ART/'Authority-After.json':'f11f3730385d007f3b83ecd887870e9d5014bc498739a012e984af5d241092b9',
+ P/'Runtime-Acceptance.json':'71e67a6c25dec1d3abd1ef909e7c2a50a1b64e1b9fbdfe2b2797ccd0ccf8f6a1',
+ POLICY:'4f36f1a2d3ac3243d73ca6b8264b1f48ce143d82cd6eab1e2d4e7ff6c14396b7',
+ R/'.github/scripts/shutdown_copy_data.py':'4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299'}
+base=batch.base
+
+
+def need(value,code):
+    if not value:raise ValueError('E_ND4_FINAL_'+code)
+
+
+def read(path):
+    row=base.record(path);need(row['sha256']==PINS[path],'PIN_CHANGED:'+str(path))
+    raw=path.read_bytes();need(base.record(path)==row and hashlib.sha256(raw).hexdigest()==row['sha256'],'READ_CHANGED')
+    return base.read(raw)if path.suffix=='.json'else raw
+
+
+def main():
+    for path in PINS:read(path)
+    batch.inputs('87727eff5ada400e875faf895844db4bf9a42f5684f50f9620b2956ac7a0530b')
+    for name in ('Finalization-Claim.json','After-Bundle.json','Comparison.json','Stage-Candidate.json','Finalization-Failure.json'):
+        need(not (ART/name).exists(),'OUTPUT_EXISTS_NO_RETRY:'+name)
+    runtime=read(RUN/'Receipt.json');copy=read(COPY/'Receipt.json');before=read(OLD/'Before-Bundle.json')
+    request=read(ART/'Reader-After-Request.json');authority=read(ART/'Authority-After.json');accepted=read(P/'Runtime-Acceptance.json')
+    need(runtime['failure']is runtime['postcheck_failure']is None and len(runtime['groups'])==14,'RUNTIME_NOT_PASSED')
+    need(accepted['total_cases']==178 and accepted['native_runtime_review']=='SHIP_INDEPENDENT_RAW_LOG_AND_SEAL_RECONCILIATION','RUNTIME_REVIEW')
+    need(copy['status']=='FRESH_AFTER_COPIES_READY_PENDING_PARENT_MERGE'and copy['failure']is None and
+        copy['required_paths']==53 and copy['selected_runtime_started']is False and copy['stage_complete']is False,'COPY_RESULT')
+    need(copy['copies']==base.record(COPY/'reader-copy/Copies.json')and copy['request']==base.record(ART/'Reader-After-Request.json'),'COPY_RECORD_BINDING')
+    for path,row in copy['inputs'].items():need(base.record(path)==row,'COPY_INPUT_CHANGED')
+    need(datetime.fromisoformat(copy['started_utc'])>datetime.fromisoformat(runtime['finished_utc']),'COPY_NOT_AFTER_RUNTIME')
+    need(authority['status']=='AFTER_AUTHORITY_AND_18ROLES_MATCH'and authority['failure']is None,'AUTHORITY_AFTER')
+    data=base.module(R/'.github/scripts/shutdown_copy_data.py');data._primitives()
+    policy=read(POLICY);snapshot=data.SnapshotSet({k:x['root']for k,x in before['roots'].items()},before['session'],policy['policies'])
+    snapshot._validate_before_bundle(before);snapshot._validate(request)
+    need(request['binding']=={'before_sha256':data.digest(before),'workload_sha256':PINS[RUN/'Receipt.json']},'AFTER_BINDING')
+    report={'scope':'ND4_FRESH_ORIGINAL_AFTER_COMPLETE_COMPARISON','started_utc':datetime.now(timezone.utc).isoformat(),
+        'timeline':[],'failure':None,'stage_complete':False,'gate1_complete':False}
+    base.save(ART/'Finalization-Claim.json',{'scope':report['scope'],'started_utc':report['started_utc'],
+        'normal_copies':base.record(COPY/'Receipt.json'),'workload':base.record(RUN/'Receipt.json')})
+    def segment(label,action):
+        start=time.monotonic();print(label+': RUNNING (final preservation only)',flush=True)
+        try:return action()
+        finally:
+            row={'label':label,'seconds':time.monotonic()-start};report['timeline'].append(row)
+            print(label+': %.3f seconds'%row['seconds'],flush=True)
+    try:
+        after=segment('fresh-readable-originals-and-all-normal-copies',lambda:snapshot.merge(request,COPY/'reader-copy',PINS[COPY/'reader-copy/Copies.json']))
+        result=segment('all-eight-original-before-after-object-comparison',lambda:snapshot.compare(before,after))
+        counts={k:len(x['objects'])for k,x in after['roots'].items()}
+        need(sum(counts.values())==13966,'INCOMPLETE_OBJECT_SET')
+        need(result['status']=='CONTENT_MATCH_AT_BEFORE_AFTER_SAMPLES','PRESERVATION_NOT_MATCHED')
+        def authority_recheck():
+            c1=base.module(R/'.github/scripts/gate1_current_preflight.py')
+            need(c1.protected()==authority['protected']['actual'],'PROTECTED_CHANGED_AFTER_SAMPLE')
+            old=base.read((OLD/'Inputs.json').read_bytes())
+            need(c1.fixed_inputs()==old['fixed_inputs']and c1.dependency_versions()==old['dependency_versions'],'RUNTIME_AUTHORITY_CHANGED')
+            b=base.read((R/'.github/run-artifacts/rp3-on-demand-20261105/reader-outbox/94d2f72684de412280da30ac1527fb0b/Root-Job-Data-Before.json').read_bytes())
+            prep=base.module(R/'.github/run-artifacts/rp3-on-demand-20261105/prototype/rp3_prepare.py')
+            roles=base.module(R/'.github/run-artifacts/rp3-on-demand-20261105/prototype/ready_data.py')
+            expected={key:row['original']['record']for key,row in b['roles'].items()}
+            fresh=roles.reader_sample(prep,R/'.github/run-artifacts/rp3-on-demand-20261105/Controller-Data-Plan.json',b['session'],expected,R/'.github/run-artifacts/rp3-on-demand-20261105')
+            roles.compare_samples(b,fresh)
+            return {'protected_maps_match':True,'runtime_fixed_inputs_match':True,'controller_data_roles_matched':18}
+        report['final_authority']=segment('protected-runtime-and18roles-final-read',authority_recheck)
+        for path in PINS:read(path)
+        batch.inputs('87727eff5ada400e875faf895844db4bf9a42f5684f50f9620b2956ac7a0530b')
+        base.save(ART/'After-Bundle.json',after)
+        report.update(result=result,objects_per_root=counts,total_objects=sum(counts.values()),
+            before=base.record(OLD/'Before-Bundle.json'),after=base.record(ART/'After-Bundle.json'),
+            copies=base.record(COPY/'reader-copy/Copies.json'),normal_copy_receipt=base.record(COPY/'Receipt.json'),
+            workload=base.record(RUN/'Receipt.json'),runtime_acceptance=base.record(P/'Runtime-Acceptance.json'),
+            status='FULL_ORIGINAL_AFTER_MATCH_PENDING_FINAL_INDEPENDENT_REVIEW',finished_utc=datetime.now(timezone.utc).isoformat())
+        base.save(ART/'Comparison.json',report)
+        base.save(ART/'Stage-Candidate.json',{'scope':'RP2_RP3_FOCUSED_STAGE_CANDIDATE_NOT_GATE1','runtime_passed_cases':178,
+            'groups':14,'original_after_objects_matched':13966,'controller_data_roles_matched':18,
+            'comparison':base.record(ART/'Comparison.json'),'workload':base.record(RUN/'Receipt.json'),
+            'stage_complete':False,'gate1_complete':False,'release_ready':False,'installed':False,
+            'producer_authentication':False,'historical_c2_cause_proven':False,'final_review':'PENDING'})
+    except BaseException:
+        report.update(failure=traceback.format_exc(),status='INCOMPLETE_NO_RETRY',finished_utc=datetime.now(timezone.utc).isoformat())
+        base.save(ART/'Finalization-Failure.json',report)
+    print(json.dumps({'status':report['status'],'failure':report['failure'],'objects':report.get('total_objects'),
+        'comparison':base.record(ART/'Comparison.json')if(ART/'Comparison.json').exists()else None,'stage_complete':False}),flush=True)
+    return int(report['failure']is not None)
+
+
+if __name__=='__main__':raise SystemExit(main())

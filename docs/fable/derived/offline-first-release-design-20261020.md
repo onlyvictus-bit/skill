@@ -989,3 +989,70 @@ fresh original AFTER sampling. Finalization rechecks raw command/stream/test/
 discovery/ordered-call/runtime metadata records and complete sample comparison.
 No copied code is executed as historical data; qualified source is independently
 reconstructed from the fixed Git tree plus exact approved deltas.
+
+
+## READY read-only/copy successor - user-selected retention3days
+
+INTENT: explicit GENERIC_READ source handles, read-sharing without write access,
+exact native error codes; on access/sharing failure only, a current-token copy
+pre-created by the parent and read using its already-open read-only handle. Child
+publishes only into that exact empty single-link file; framed size/hash/token and
+actual native PID/image/Job checks remain mandatory. Bad JSON/identity/link/data
+never falls back. Permission errors are not relabelled a proven ACL/lock cause.
+
+Reuse archive_copy_h1/read_file principles: source preserved, independent copy,
+file identity/link/type/size/hash checks, explicit source-to-copy mapping. Existing
+offline SnapshotSet is inert evidence machinery, not live-worker authority; do
+not execute copied data or bypass native attestation. Parent resolves one user
+cache root via Windows known folders and sends exact path to child. Proposed
+normal root is C:/Users/sakth/AppData/Local/MemoryIntegrity/ready-copies-v1.
+
+Deletion eligibility requires an accepted read, successful startup, and actual
+native worker-tree exit; expires3days after both read/exit complete. Cleanup on
+subsequent application starts deletes only the exact managed single-link payload
+by verified file handle inside that root; metadata/audit stays, failed/unaccepted
+copies stay. No global scheduler/service or permission/attribute change. If app
+is not running, expiry cleanup occurs at the next startup after3days.
+
+No-build leaves RP3 failed; another chmod/read-only attribute does not grant read
+access. Recommend parent-owned copy with existing read-only first path. A pipe
+transport is a stronger redesign held outside this focused repair. Weak link:
+selectedStore3.12 access behavior remains unobserved until one separately sealed
+new source/runtime proof. Cheapest falsifier is real native exclusive-sharing
+denial plus read-only fallback, token/hash/reparse drift, and expiry guards in
+controller tests. Keep120/90/60/5 and existing ordered600 bounds.
+
+Files: new windows_ready_copy.py and test_knowledge_windows_ready_copy.py; bounded
+changes windows_owned_process.py/bootstrap.py; existing Fable plan/design/state
+and evidence. First failing focused tests, minimal integration, Windows/lifecycle
+and knowledge regressions, read-only review, then a fresh sealed successor. Any
+source/runtime recipe is NEW; old680recipe/launcher/receipts remain immutable.
+
+
+### READY-copy implementation observation and native final review
+
+Final exact-source32focusedPASS; broader324run270PASS54unchanged runtime-dependent
+SKIP,0FAIL/ERROR in108.667s. Native Fable reviewer first FIX-FIRST for expiry
+bound/scan/audit/error propagation, then explicit SHIP after retained RED/GREEN
+corrections. All32 focused cases are included in broader total. Controller uses
+isolated managed cache and PYTHONNOUSERSITE=1 because agent1003 cannot create
+normal user's LocalAppData path. Three-day time arithmetic is simulated; actual
+Store3.12/default-cache access/fullRP3/ORIGINAL AFTER remain UNVERIFIED.
+
+Expiry implementation: due-date queue bounded to128 scanned entries and64
+reserved deletion attempts, cooperative0.1s check (not native-I/O preemption).
+Permanent receipts never scanned; interrupted/invalid queue data preserved in
+retained quarantine; unsafe active-queue traversal fails explicitly. Verified
+exclusive payload handle plus durable DELETE_INTENT precede removal; outcome/
+error envelope precedes metadata archival. Only new empty queue-day directories
+are removed as housekeeping. Locked/unsafe payloads stay retained with causes.
+No global scheduler; cleanup waits for a later app start after3days.
+
+Candidate source hashes: ready_copy755df303..., owner0ff54944..., bootstrap
+7f85872a..., testsba742402.... Source-Candidate/Controller-Accepted and read-only
+Independent-Review are under existing RP3 ready-copy-repair evidence phase. Read
+rp3-ready-copy-repair-20261101.md for actual failing selected run and exact proofs.
+Old680recipe/runtime/RP2Acceptance/failedreceipt remain unchanged; HEADfee69861,
+indexempty. No selected runtime/oldcommand retry, install, ACL/Gitwrite or olddata
+removal. A NEW sealed normal-account combined BEFORE/run/ORIGINAL AFTER successor
+is still required before any full RP3 success statement; no successor issued here.

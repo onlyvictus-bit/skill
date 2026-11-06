@@ -1,0 +1,12 @@
+{
+  "ids": [
+    "test_knowledge_windows_session.WindowsSession.test_cancel_failure_does_not_abandon_owned_tree_or_hide_original",
+    "test_knowledge_windows_session.WindowsSession.test_cancel_tree_exit_and_join_share_one_deadline_before_any_disposal",
+    "test_knowledge_windows_session.WindowsSession.test_failed_close_retains_directory_instead_of_later_finalizer_deletion",
+    "test_knowledge_windows_session.WindowsSession.test_missing_start_owner_cannot_mask_original_cleanup_debt",
+    "test_knowledge_windows_session.WindowsSession.test_post_stop_stream_close_failure_detaches_directory_finalizer",
+    "test_knowledge_windows_session.WindowsSession.test_unproven_constructor_cleanup_retains_all_parent_streams_and_original",
+    "test_knowledge_windows_session.WindowsSession.test_unproven_process_exit_still_joins_writer_but_forbids_resource_disposal"
+  ],
+  "pattern": "test_knowledge_windows_session.py"
+}

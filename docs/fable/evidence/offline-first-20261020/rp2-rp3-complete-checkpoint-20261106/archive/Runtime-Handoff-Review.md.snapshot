@@ -1,0 +1,33 @@
+# Exact integrated handoff review — 2026-11-06
+
+Verdict: SHIP. Native fable_sol_reviewer resumed after the workspace-credit
+interruption and inspected the final coherent working tree read-only. The prior
+stale-draft mismatch is closed. No selected runtime or old attempt was executed.
+
+Observed current files:
+
+| File | Bytes | SHA256 |
+| --- | ---: | --- |
+| selected_batch.py | 11273 | 46810f0f166490637d2bbf46ab556aedc567a5fc2bcd45b62de14e39a679bfee |
+| selected_runner.py | 1195 | 7121972c33561ada5c68a0d600195952b8e81e46556916cbe238d149b1b6e603 |
+| Selected-Inputs.json | 451023 | 87727eff5ada400e875faf895844db4bf9a42f5684f50f9620b2956ac7a0530b |
+| Run-Integrated-Native.ps1 | 2580 | 00382d1f7ad988a4ae4b66bf979db395baab8c93c6828b7f245da742c6108536 |
+
+Reviewer verified matching launcher/batch/input pins;741sealed roles/685source/
+14groups/53versions; unchanged HEAD fee69861e1f94c54721e5eb773633f9b1d6f9fd3
+and index5fd392acd105cf8d9156b666dec6194bc3a7a77b0cdea302edb454699f0bcf7b.
+Fixed normal output remains absent.
+
+Capture collision is closed by command-<label> versus exclusive tests-<label>/
+ordered outputs. Retained RED demonstrates precreation failure; GREEN reaches the
+deliberate pre-dispatch stop with runner output still absent. Test-owned READY
+wrapper preserves explicit roots, intentional default_root override and the real
+known-folder resolver test. Frozen32READY/22startup have zero errors/failures/skips.
+Product proof does not intercept native dispatch; controller Git ledger6/Python4,
+native exit accounting and fixture preservation pass. Fixed3600work clock and
+full-seal BEFORE/AFTER per command remain intact. Scope flags cannot claim final
+Stage, historical AFTER, Gate1, release or installation.
+
+Clearance is only for ONE exact normal1001 non-admin integrated invocation.
+Selected outcome, fresh historical ORIGINAL AFTER and final Stage remain unproven.
+This review is evidence for the already authorized scope, not new authorization.

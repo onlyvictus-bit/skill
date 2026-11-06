@@ -56,7 +56,7 @@ class _Session:
             if os.name == 'nt':
                 from .windows_owned_process import launch_current
                 self._tree = launch_current(subprocess.Popen, python, Path(args[2]),
-                                            deadline=deadline, **options)
+                                            deadline=deadline, recursive_deadline=deadline, **options)
                 self.process = self._tree.process
                 self._windows_owned = True
             else:

@@ -1,0 +1,180 @@
+"""Observe the actual integrated dispatcher; no native dispatch interception."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+import traceback
+import re
+import shutil
+from unittest.mock import patch
+
+
+def need(value,code):
+    if not value:raise ValueError('E_PRODUCT_PROBE_'+code)
+
+
+def save(path,value):
+    with path.open('x',encoding='utf-8')as stream:json.dump(value,stream,indent=2,sort_keys=True)
+
+
+def record(path):
+    raw=path.read_bytes();return {'path':str(path),'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+
+
+def fail(error):return ''.join(traceback.format_exception(error))
+
+
+def git_stderr_is_known(value,environment):
+    if value=='':return True
+    home=environment.get('HOME')or environment.get('USERPROFILE')
+    if not home:return False
+    expected=os.path.normcase(os.path.abspath(str(Path(home)/'.config/git/ignore')))
+    lines=value.splitlines()
+    if not 1<=len(lines)<=4:return False
+    for line in lines:
+        match=re.fullmatch(r"warning: unable to access '([^']+)': Permission denied",line)
+        if match is None or os.path.normcase(os.path.abspath(match[1]))!=expected:return False
+    return True
+
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--repo',type=Path,required=True)
+    parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--git-image',type=Path,required=True)
+    parser.add_argument('--git-sha256',required=True);args=parser.parse_args()
+    resolved=shutil.which('git')
+    need(resolved is not None and os.path.normcase(os.path.abspath(resolved))==
+         os.path.normcase(os.path.abspath(args.git_image)),'UNPINNED_GIT_PATH')
+    need(hashlib.sha256(args.git_image.read_bytes()).hexdigest()==args.git_sha256,'UNPINNED_GIT_BYTES')
+    repo=args.repo.resolve();output=args.output.absolute();need(not output.exists(),'EXISTING_ATTEMPT')
+    output.mkdir();sys.path[:0]=[str(repo/'memory-integrity/scripts'),str(repo/'memory-integrity/tests_v2')]
+    from knowledge_bridge import recursive_bootstrap as b
+    from knowledge_bridge import windows_ready_copy as ready
+    from knowledge_bridge.windows_owned_process import launch_current
+    from _knowledge_git_fixture import create_git_fixture,fixture_snapshot
+    receipt={'status':'PRODUCT_PROOF_FAILED','failure':None,'cleanup_failures':[],
+             'stage_complete':False,'arms':[]}
+    try:
+        for mode in ('git','python-tree'):
+            root=output/mode;root.mkdir();script=root/'root.py';expected=None
+            if mode=='git':
+                fixture,expected=create_git_fixture(root)
+                with(fixture/'.git/config').open('a',encoding='ascii')as stream:stream.write('longpaths = true\n')
+                before=fixture_snapshot(fixture)
+                code='import json,subprocess\nroot='+repr(str(fixture))+'\n'
+                code+='subprocess.Popen._rp_bind_runtime_git(root)\nrows=[]\n'
+                code+='for tail in (["rev-parse","HEAD"],["status","--porcelain","--untracked-files=all"]):\n'
+                code+=' with subprocess.Popen(["git","-C",root,*tail],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True) as child:\n'
+                code+='  out,err=child.communicate(timeout=5)\n'
+                code+='  rows.append({"tail":tail,"returncode":child.returncode,"stdout":out,"stderr":err,"native":child._rp_native_proof})\n'
+                code+='print(json.dumps({"rows":rows,"guard":subprocess.Popen._rp1_guard}))\n'
+            else:
+                grand=root/'grandchild.py';child=root/'child.py'
+                grand.write_text('import json,os\nprint(json.dumps({"pid":os.getpid(),"ppid":os.getppid()}))\n',encoding='utf-8')
+                child.write_text('import json,os,subprocess,sys\n'
+                    'r=subprocess.run([sys.executable,"-B",'+repr(str(grand))+'],capture_output=True,text=True,timeout=5)\n'
+                    'if r.returncode:raise RuntimeError(r.stderr)\n'
+                    'print(json.dumps({"pid":os.getpid(),"ppid":os.getppid(),"grand":json.loads(r.stdout)}))\n',encoding='utf-8')
+                code='import json,os,subprocess,sys\n'
+                code+='r=subprocess.run([sys.executable,"-B",'+repr(str(child))+'],capture_output=True,text=True,timeout=5)\n'
+                code+='if r.returncode:raise RuntimeError(r.stderr)\n'
+                code+='print(json.dumps({"pid":os.getpid(),"child":json.loads(r.stdout)}))\n'
+            script.write_text(code,encoding='utf-8')
+            owner=None;row={'mode':mode,'failure':None,'cleanup_failures':[]};started=time.monotonic()
+            print(mode+': RUNNING (actual integrated dispatcher)',flush=True)
+            with(root/'stdout.json').open('wb')as out,(root/'stderr.log').open('wb')as err:
+                try:
+                    env={k:v for k,v in os.environ.items()if not k.upper().startswith('GIT_')}
+                    env['PYTHONNOUSERSITE']='1'
+                    with patch.object(ready,'default_root',return_value=root/'ready-copies-v1'):
+                        owner=launch_current(subprocess.Popen,sys.executable,script,deadline=time.monotonic()+10,
+                            stdin=subprocess.PIPE,stdout=out,stderr=err,env=env,cwd=root)
+                    owner.wait(time.monotonic()+5)
+                    need(owner.process.returncode==0,'ROOT_EXIT_'+str(owner.process.returncode))
+                except BaseException as error:row['failure']=fail(error)
+                finally:
+                    if owner is not None:
+                        until=time.monotonic()+5;actions=[]
+                        if not owner.proof.get('termination',{}).get('native_exit_proved'):
+                            actions.append(('stop',lambda:owner.stop(until)))
+                        actions.append(('release',owner.release))
+                        if owner.process.stdin is not None and not owner.process.stdin.closed:
+                            actions.append(('stdin.close',owner.process.stdin.close))
+                        for label,action in actions:
+                            try:action()
+                            except BaseException as error:row['cleanup_failures'].append({'operation':label,'failure':fail(error)})
+                        row['outer']=owner.proof
+            try:
+                need(row['failure']is None and not row['cleanup_failures'],'ROOT_OR_CLEANUP_FAILED')
+                need(not(root/'stderr.log').read_bytes(),'ROOT_STDERR')
+                raw=(root/'stdout.json').read_bytes();need(len(raw)<=32768,'STDOUT_LIMIT')
+                def unique(pairs):
+                    result={}
+                    for key,value in pairs:need(key not in result,'DUPLICATE_KEY');result[key]=value
+                    return result
+                value=json.loads(raw.decode('utf-8'),object_pairs_hook=unique)
+                row['observed']=value
+                term=row['outer']['termination'];members=row['outer']['membership']['records']
+                need(term['native_exit_proved']is True and row['outer']['released']is True and
+                     term['failures']==[] and term['records']==term['accounting_total']==len(members),'OUTER_EXIT')
+                if mode=='git':
+                    need(value.get('guard')is True and len(value['rows'])==2,'GIT_ROWS')
+                    source=b.record(b.__file__)
+                    for call,tail in zip(value['rows'],(['rev-parse','HEAD'],['status','--porcelain','--untracked-files=all'])):
+                        need(call['tail']==tail and call['returncode']==0 and
+                             git_stderr_is_known(call['stderr'],env),'GIT_OUTPUT')
+                        need(call['stdout'].strip()==(expected if tail[0]=='rev-parse'else''),'GIT_RESULT')
+                        proof=call['native'];context=proof['context'];ident=proof['identity']
+                        need(context['source']==source and context['effective_creationflags']==4 and
+                             context['deadline_clock']==b.deadline_clock() and
+                             context['argv_digest']==hashlib.sha256(b.canonical_native_argv(['git','-C',str(fixture),*tail])).hexdigest(),
+                             'SOURCE_VECTOR_FLAGS')
+                        need(proof['schema_version']==1 and proof['scope']=='INNER_JOB_NATIVE_START' and
+                             proof['root_inner_verified']is True and proof['member_before_resume']is True and
+                             proof['native_wait_before_resume']==258 and proof['pre_resume_deadline_passed']is True and
+                             proof['pre_resume_deadline_checked_at']<context['recursive_deadline'] and
+                             proof['resume_previous_count']==1 and proof['resume_may_have_started']is True and
+                             proof['resumed']is True,'PRODUCT_GATE')
+                        need(type(ident['pid'])is int and ident['pid']>0 and type(ident['created'])is int and
+                             ident['created']>0 and os.path.normcase(ident['image'])==
+                             os.path.normcase(os.path.abspath(args.git_image)),'PINNED_NATIVE_IDENTITY')
+                        need(type(proof['member_at_creation'])is bool and
+                             proof['assignment_attempted']==proof['assigned']==(not proof['member_at_creation']),'ASSIGNMENT')
+                        matches=[m for m in members if all(m[k]==ident[k]for k in ('pid','created','image'))]
+                        need(len(matches)==1,'GIT_OUTER_IDENTITY')
+                    mingw=os.path.normcase(str(args.git_image.parent.parent/'mingw64/bin/git.exe'))
+                    descendants=[m for m in members if os.path.normcase(m['image'])==mingw]
+                    need(term['records']>=5 and len(descendants)==2 and len({m['pid']for m in descendants})==2,
+                         'GIT_DESCENDANT_OUTER_COUNT')
+                    need(fixture_snapshot(fixture)==before,'FIXTURE_CHANGED');row['fixture_unchanged']=True
+                    row['existing_git_ignore_warnings']=[call['stderr']for call in value['rows']if call['stderr']]
+                else:
+                    need(value['pid']==owner.process.pid and value['child']['ppid']==value['pid'] and
+                         value['child']['grand']['ppid']==value['child']['pid'],'PYTHON_LINEAGE')
+                    pids={value['pid'],value['child']['pid'],value['child']['grand']['pid']}
+                    need(len(pids)==3 and pids<={m['pid']for m in members} and term['records']>=3,'PYTHON_OUTER_LEDGER')
+            except BaseException as error:
+                if row['failure']is None:row['failure']=fail(error)
+            row.update(seconds=time.monotonic()-started,stdout=record(root/'stdout.json'),stderr=record(root/'stderr.log'),
+                       root_script=record(script))
+            receipt['arms'].append(row);save(root/'Receipt.json',row)
+            print(mode+': %.3f seconds'%row['seconds'],flush=True)
+            print(json.dumps({'mode':mode,'failure':row['failure'],'outer':row.get('outer',{}).get('termination'),
+                'native':[x['native']for x in row.get('observed',{}).get('rows',[])]}),flush=True)
+            if row['failure']is not None:
+                print((root/'stdout.json').read_text(encoding='utf-8',errors='replace'),flush=True)
+                print((root/'stderr.log').read_text(encoding='utf-8',errors='replace'),flush=True)
+            need(row['failure']is None and not row['cleanup_failures'],'ARM_FAILED_'+mode)
+        receipt['status']='PRODUCT_NATIVE_AND_PYTHON_TREE_OBSERVED_NOT_FULL_RP3'
+    except BaseException as error:receipt['failure']=fail(error)
+    save(output/'Receipt.json',receipt)
+    print(json.dumps({'status':receipt['status'],'failure':receipt['failure'],
+        'receipt':record(output/'Receipt.json'),'stage_complete':False}),flush=True)
+    return 0 if receipt['failure']is None else 1
+
+
+if __name__=='__main__':raise SystemExit(main())

@@ -1,0 +1,100 @@
+{
+  "after": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\After-Bundle.json",
+    "sha256": "497e45086209b1e33ef7162ac02137e33e81ba6e916aaf43848821603bb62e21",
+    "size": 6054708
+  },
+  "before": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-on-demand-20261105\\Before-Bundle.json",
+    "sha256": "c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b",
+    "size": 4224786
+  },
+  "comparison": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Comparison.json",
+    "sha256": "56500c220118dd94bf1c4e3da003a87629051dc8755fa5e8e19544f3a642babb",
+    "size": 3021
+  },
+  "completed_utc": "2026-11-06T12:30:16.873124+00:00",
+  "continuous_immutability_proven": false,
+  "controller_data_roles_matched": 18,
+  "copies": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\Copies.json",
+    "sha256": "79ff16837887502b4deb2771f80579bf78a538cb9e925fd600d1f40d89c5f002",
+    "size": 2116
+  },
+  "final_reader_seals": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Final-Reader-Seals.json",
+    "sha256": "6343e1ceb174a876cccfdb20388f8a4b44270776208530754654a29b966d354d",
+    "size": 880
+  },
+  "final_review": {
+    "record": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Final-Stage-Review.md",
+      "sha256": "15c83b4ca1581baf350ca1aed831f33dfbed797231160dbb307f409e33395cbd",
+      "size": 3151
+    },
+    "verdict": "VERIFIED_FOCUSED_STAGE"
+  },
+  "gate1_complete": false,
+  "historical_c2_cause_proven": false,
+  "historical_original_after_completed": true,
+  "historical_roots_matched": 8,
+  "input_seals": 741,
+  "installed": false,
+  "next_action": "No more RP2/RP3 stage test/copy retries. Gate1/release/installation are separate qualifications.",
+  "normal_copy_receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\Receipt.json",
+    "sha256": "e946d11d5d872987acc6f98b6a22e1e3be4fdb32720fc7d4c1b2d78b2ae4f7df",
+    "size": 4041
+  },
+  "old_raw_receipts_unchanged": true,
+  "original_after_objects_matched": 13966,
+  "preservation": true,
+  "preservation_scope": "Exact recorded BEFORE/AFTER samples using fresh existing-access original reads and fresh two-account copies; not continuous immutability",
+  "producer_authentication": false,
+  "release_ready": false,
+  "rp2_complete": true,
+  "rp3_complete": true,
+  "runtime": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\Receipt.json",
+    "sha256": "b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e",
+    "size": 97469
+  },
+  "runtime_acceptance": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Runtime-Acceptance.json",
+    "sha256": "71e67a6c25dec1d3abd1ef909e7c2a50a1b64e1b9fbdfe2b2797ccd0ccf8f6a1",
+    "size": 28256
+  },
+  "runtime_errors": 0,
+  "runtime_failures": 0,
+  "runtime_groups_passed": 14,
+  "runtime_skips": 0,
+  "runtime_tests_passed": 178,
+  "scope": "RP2_RP3_FOCUSED_SHUTDOWN_AND_RECURSIVE_LAUNCH_VERIFICATION",
+  "selected_inputs": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Selected-Inputs.json",
+    "sha256": "87727eff5ada400e875faf895844db4bf9a42f5684f50f9620b2956ac7a0530b",
+    "size": 451023
+  },
+  "source_acceptance": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-Acceptance.json",
+    "sha256": "5f226d351b286dccefe221adb7ab7b9dee0730de1b3c7370e160fb9291188c27",
+    "size": 91571
+  },
+  "source_files": 685,
+  "stage_complete": true,
+  "status": "RP2_RP3_FOCUSED_STAGE_COMPLETE_NOT_GATE1",
+  "tests_rerun_for_finalization": false,
+  "whole_skill_ready": false
+}

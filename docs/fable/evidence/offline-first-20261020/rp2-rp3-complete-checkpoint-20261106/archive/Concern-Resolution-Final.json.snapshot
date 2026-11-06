@@ -1,0 +1,54 @@
+{
+  "attachment": {
+    "path": "C:\\Users\\sakth\\.codex\\attachments\\ab4d18b8-1d35-45ac-8948-b4b2d4195b9f\\Pasted text.txt",
+    "sha256": "1a67023b01bef1d70b2ee2402dfbdfae3940e49f2e94a22d044919eca5fe8075",
+    "size": 15450
+  },
+  "claims": [
+    {
+      "claim": "Product native gate not integrated",
+      "current": "RESOLVED",
+      "evidence": "Live and frozen recursive_bootstrap SHA0b417663...80930;actual target bothGitcalls assigned=true before resume"
+    },
+    {
+      "claim": "Old584add source seal",
+      "current": "RESOLVED",
+      "evidence": "New685fileSourceAcceptance+741input seals;actualselectedreceiptb103015f...0b9e binds0b417663 source"
+    },
+    {
+      "claim": "Newnative suite/READY/startup omitted or12/13group mismatch",
+      "current": "RESOLVED",
+      "evidence": "Actual14groups: native23,READY32,startup22,allformer12groups plus2fixturepublicationcases;178PASS"
+    },
+    {
+      "claim": "Stale diagnosticUNRUN state",
+      "current": "RESOLVED",
+      "evidence": "Fable current task records actual178runtime accepted and historical AFTER merge pending"
+    },
+    {
+      "claim": "No targetPython3.12 integration result",
+      "current": "RESOLVED",
+      "evidence": "ActualselectedruntimeReceipt97469bytesSHAb103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e;independent raw reviewSHIP"
+    },
+    {
+      "claim": "Sidechattempdirenvironmenterror",
+      "current": "NOT_REPRODUCED_IN_QUALIFIED_RUN",
+      "evidence": "Full23nativecases pass in actual retained writable test scratch;no test skips or assertion weakening"
+    },
+    {
+      "claim": "HistoricalAFTER/Stage incomplete",
+      "current": "RESOLVED",
+      "evidence": "All13966entriesmatch;fresh304missingobjectsverified;18roles andprotectedruntimepass;independentStageReviewVERIFIED"
+    }
+  ],
+  "final_stage": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Stage-Result.json",
+    "sha256": "e0c5027dd928b67a229b58b5f2c0a9dcc707bf4e25649599924bd4653544dee5",
+    "size": 4757
+  },
+  "product_code_changed_this_review": false,
+  "scope": "USER_ATTACHMENT_CURRENT_CLAIM_RECONCILIATION",
+  "stage_complete": true,
+  "tests_rerun_this_review": false
+}

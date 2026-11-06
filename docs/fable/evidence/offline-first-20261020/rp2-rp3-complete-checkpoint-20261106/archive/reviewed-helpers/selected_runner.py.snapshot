@@ -1,0 +1,30 @@
+"""Keep test-default READY copies in this run's owned scratch, preserving tests.
+
+The native known-folder resolver remains real. Explicit roots and any test's
+intentional default_root override remain unchanged. No native dispatch is mocked.
+"""
+from pathlib import Path
+import runpy
+import sys
+from unittest.mock import patch
+
+package=Path(sys.argv[sys.argv.index('--package-root')+1]).resolve(strict=True)
+output=Path(sys.argv[sys.argv.index('--output-dir')+1]).absolute()
+scripts=package.parent/'.github/scripts'
+ordered='--ordered' in sys.argv
+if ordered:sys.argv.remove('--ordered')
+target=scripts/('gate1_ordered_runner.py'if ordered else'retained_unittest.py')
+sys.path[:0]=[str(package/'scripts'),str(scripts)]
+from knowledge_bridge import windows_ready_copy as ready
+original,default=ready.ReadyCopy.__init__,ready.default_root
+
+
+def fixture_init(channel,source,token,*,root=None):
+    if root is None and ready.default_root is default:
+        root=output/'retained-temp/managed/ready-copies-v1'
+    return original(channel,source,token,root=root)
+
+
+sys.argv[0]=str(target)
+with patch.object(ready.ReadyCopy,'__init__',fixture_init):
+    runpy.run_path(str(target),run_name='__main__')

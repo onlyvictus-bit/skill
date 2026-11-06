@@ -1,0 +1,2376 @@
+{
+  "byte_exact": true,
+  "files": [
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Stage-Result.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Stage-Result.json",
+        "sha256": "e0c5027dd928b67a229b58b5f2c0a9dcc707bf4e25649599924bd4653544dee5",
+        "size": 4757
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Final-Stage-Review.md.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Final-Stage-Review.md",
+        "sha256": "15c83b4ca1581baf350ca1aed831f33dfbed797231160dbb307f409e33395cbd",
+        "size": 3151
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Final-Comparison.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Comparison.json",
+        "sha256": "56500c220118dd94bf1c4e3da003a87629051dc8755fa5e8e19544f3a642babb",
+        "size": 3021
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Historical-AFTER.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\After-Bundle.json",
+        "sha256": "497e45086209b1e33ef7162ac02137e33e81ba6e916aaf43848821603bb62e21",
+        "size": 6054708
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Historical-BEFORE.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-on-demand-20261105\\Before-Bundle.json",
+        "sha256": "c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b",
+        "size": 4224786
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Historical-AFTER-Request.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Reader-After-Request.json",
+        "sha256": "7e363dcfc711e5a0fce583d3d6e918628f697a723acb719ba77b9df754c5d58d",
+        "size": 5920559
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Historical-Copy-Policy.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-on-demand-20261105\\reader-outbox\\94d2f72684de412280da30ac1527fb0b\\Copy-Inputs.json",
+        "sha256": "4f36f1a2d3ac3243d73ca6b8264b1f48ce143d82cd6eab1e2d4e7ff6c14396b7",
+        "size": 414282
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Authority-After.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Authority-After.json",
+        "sha256": "f11f3730385d007f3b83ecd887870e9d5014bc498739a012e984af5d241092b9",
+        "size": 45682
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Final-Reader-Seals.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical-after-20261106\\Final-Reader-Seals.json",
+        "sha256": "6343e1ceb174a876cccfdb20388f8a4b44270776208530754654a29b966d354d",
+        "size": 880
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Selected-Runtime-Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\Receipt.json",
+        "sha256": "b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e",
+        "size": 97469
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Normal-Copy-Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\Receipt.json",
+        "sha256": "e946d11d5d872987acc6f98b6a22e1e3be4fdb32720fc7d4c1b2d78b2ae4f7df",
+        "size": 4041
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Normal-Copies.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\Copies.json",
+        "sha256": "79ff16837887502b4deb2771f80579bf78a538cb9e925fd600d1f40d89c5f002",
+        "size": 2116
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Runtime-Acceptance.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Runtime-Acceptance.json",
+        "sha256": "71e67a6c25dec1d3abd1ef909e7c2a50a1b64e1b9fbdfe2b2797ccd0ccf8f6a1",
+        "size": 28256
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Source-Acceptance.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Source-Acceptance.json",
+        "sha256": "5f226d351b286dccefe221adb7ab7b9dee0730de1b3c7370e160fb9291188c27",
+        "size": 91571
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Selected-Inputs.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Selected-Inputs.json",
+        "sha256": "87727eff5ada400e875faf895844db4bf9a42f5684f50f9620b2956ac7a0530b",
+        "size": 451023
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Actual-Runtime-Review.md.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Actual-Runtime-Review.md",
+        "sha256": "afec1e29956dcbd70c3923d8c32f890b784bb0dccdd2edf68691539fdcbb1578",
+        "size": 1381
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Runtime-Handoff-Review.md.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Final-Review.md",
+        "sha256": "5a9fa61e6c7ce93f82dc5a56a0c7c2c79fb61b3beed254a50c6c2355cb7c00d2",
+        "size": 1974
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/Concern-Resolution-Final.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\Concern-Resolution-Final.json",
+        "sha256": "90208f62b33f45a0c45ea7f17949ce322069ac64f5f9fd9cd4de696ebffefeff",
+        "size": 2403
+      },
+      "role": "verified final RP2/RP3 evidence; immutable snapshot"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-before/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\Intent.json",
+        "sha256": "b292f641ff2ecc0249f555c2afd3e1f668e264a0b33ffe3f216970f519b64078",
+        "size": 1813
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-before/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\Command.json",
+        "sha256": "1ca43984431e8a33b8f157cb346699099e9f0905dd7204880a25107a0c6d5212",
+        "size": 2564
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-before/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\stdout.log",
+        "sha256": "4f2e8c0fb51139485a360f877ca9a1b0213d094fef3abf4a88c3256aeba72a24",
+        "size": 1339
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-before/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-before\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-before/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\Intent.json",
+        "sha256": "17d8ef4e28846dfa551a5772b8397f3acc0cd388913d43fdd8bf289bfa07e6f6",
+        "size": 1136
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-before/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\Command.json",
+        "sha256": "c7851fd6b1d1ab1303d714c940ad75ae477b1992022528935f1983952a18dc3e",
+        "size": 1895
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-before/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-before/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-before\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/product-proof/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\Intent.json",
+        "sha256": "a373b6276a463ca6c0ba3188ad7340b1ea10f5cb115f9a550ebac271cf811149",
+        "size": 809
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/product-proof/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\Command.json",
+        "sha256": "530b0fd51bcbb12370cd35a7fac4d19e191196d971ceb7bf269eca1b385544b8",
+        "size": 1556
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/product-proof/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\stdout.log",
+        "sha256": "f0133d199a08cde58249a2e80ffada86b170b6ba3dd92a88320eddcc238d309b",
+        "size": 2968
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/product-proof/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-product-proof\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-native-gate/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\Intent.json",
+        "sha256": "c27d8f51dab836383a6b4ff8be895326d6c4b42ba9a2710e6cb020fa50f1afec",
+        "size": 774
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-native-gate/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\Command.json",
+        "sha256": "6b9d93a77dc057d970c5928b796f173da580bcfba4eae64bdce68dd023b3d9ba",
+        "size": 1535
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-native-gate/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\stdout.log",
+        "sha256": "a41d180bea04f34d400bb406d7bd577cf0cf92959d8e2df62a84262ed8959ef6",
+        "size": 2550
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-native-gate/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-native-gate\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-native-gate/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\Intent.json",
+        "sha256": "35da86dbca0c53de331c92963ea81590a3f79f8f942f78baf65f59f0e81aea4e",
+        "size": 753
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-native-gate/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\Command.json",
+        "sha256": "6bc66ca7ade15e29864da795ea5c7af63177cf08327404a1a8f2a756bbaaeaa9",
+        "size": 1508
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-native-gate/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\stdout.log",
+        "sha256": "32e485b9c557cf4304a1bd2cc041139c4fd25d79c5c7ba0ddc349cd731465ce0",
+        "size": 4635
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-native-gate/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-native-gate\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-integration/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\Intent.json",
+        "sha256": "e4a7fe866752a5f20e1c0092f1bf88cbe9905cd083a3cd9b4bec107832c13e9d",
+        "size": 779
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-integration/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\Command.json",
+        "sha256": "8a70f8519beb041b067c8f340a06165eef20572a7214d5394fb2a214653e7527",
+        "size": 1559
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-integration/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\stdout.log",
+        "sha256": "a5bd1619e57af996465935655f51d5e7633962e71782342292ff517e12488a3a",
+        "size": 811
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-integration/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-integration\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-integration/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\Intent.json",
+        "sha256": "1eb5a8038a572089e7b841cc76f3d5eca5af324a34243592db06cfcbc011abe5",
+        "size": 768
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-integration/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\Command.json",
+        "sha256": "cdd83db4f448c3b8711ec8ef44009077a5ec713c63668c0604e2662f91656849",
+        "size": 1543
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-integration/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\stdout.log",
+        "sha256": "8522c9a2f839255dbbf977850402922dc3b8b18eac7bc2b6fcfb6f92707514d5",
+        "size": 1840
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-integration/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-integration\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-git/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\Intent.json",
+        "sha256": "35863539f5afa72007a79aea12bda74bba1e3f03d3ff6e540feadaaffea39bcf",
+        "size": 771
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-git/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\Command.json",
+        "sha256": "3f19c4722fd979b2e0bc727825da86201800ab194748197e898b3f67684c6e9e",
+        "size": 1535
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-git/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\stdout.log",
+        "sha256": "d3924015ed50228c81947acbe3b0e457f3844884566e279225624fe16c7c953c",
+        "size": 520
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-git/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-git/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\Intent.json",
+        "sha256": "620d01de041e302f1e3d9b5e3078bbf3737944fb064c89688af5d9885877b517",
+        "size": 752
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-git/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\Command.json",
+        "sha256": "cd5111170340abe51b9b97982931b6ea95ad24c1d1a3bf10efaf291f7051a4be",
+        "size": 1510
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-git/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\stdout.log",
+        "sha256": "3349ab1cf55dcebdfe0ed0bc298fd69e7435423e792c86dad64076272cb8eea6",
+        "size": 1391
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-git/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-profile/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\Intent.json",
+        "sha256": "d6d7b2ec489b30cc7b24efcb4f431d3091394b052af884084d6e5d38bfef10d1",
+        "size": 775
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-profile/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\Command.json",
+        "sha256": "d9e611b19e394448624d16941dd114fdc104d1946ff7a6c809f25a2c688ecf79",
+        "size": 1548
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-profile/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\stdout.log",
+        "sha256": "3c21bdce057c74e82839a186f9f2c16a2af32c5935d9254edad40810d9ea219a",
+        "size": 1457
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-recursive-profile/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-recursive-profile\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-profile/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\Intent.json",
+        "sha256": "116fb1892e4fd1ef107baa2d3ab3547bc5d73b481d64622d1ec271a798526c9c",
+        "size": 760
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-profile/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\Command.json",
+        "sha256": "ffe9e6c5b1d3b5392eb74655e9103d03be3acdd42cf8fb0821c9065cce4491e7",
+        "size": 1526
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-profile/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\stdout.log",
+        "sha256": "69919d5ff588da86ed8767e8c6571c254a01741e3771a4abd28f227967182f2a",
+        "size": 2914
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-recursive-profile/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-recursive-profile\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ownership/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\Intent.json",
+        "sha256": "9bde50f3a94ecac210394ac2084d48deb78756c4204eca94700a97da6b0b025a",
+        "size": 779
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ownership/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\Command.json",
+        "sha256": "bab46731352c2dad87c8e291c725fb11f08f9a24977f43599261a78063c01822",
+        "size": 1535
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ownership/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\stdout.log",
+        "sha256": "beb4d1cf4c9dde586b8de91dabf3d5275b525fc8bd541006be352d07c008acd1",
+        "size": 2161
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ownership/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ownership/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\Intent.json",
+        "sha256": "84d18ec901dd169645c8af65455ad2b56b45f44ec6b411610f1140733e7b5ce1",
+        "size": 756
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ownership/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\Command.json",
+        "sha256": "54998d51409f04d8a3e54856e70d6d4381b890d521e3f4068cb65ecb0728a3c3",
+        "size": 1507
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ownership/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\stdout.log",
+        "sha256": "beee71c34f79d1aca14f9a76d52cdf7b4df4ac4b1700cda6bd64da1ff429d317",
+        "size": 3944
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ownership/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ownership\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-writer/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\Intent.json",
+        "sha256": "f80b6cf4dcec93c2c428b7c5fbf060fcb073e6d9f4f33c8d7bbbd144bad47a49",
+        "size": 772
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-writer/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\Command.json",
+        "sha256": "cea82d772c5d35b1467214ccaf71173a4321ba4870d7bf8ec5b423253d0db3b2",
+        "size": 1523
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-writer/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\stdout.log",
+        "sha256": "586459f3be53f9aff93234f63f9252a38ef5ca9f70eab22ed0e1cd9bf72011a6",
+        "size": 1983
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-writer/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-writer/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\Intent.json",
+        "sha256": "047de095ae13dfd82bacbda7129e329a5d7e13e4b7d46d0cb9ab64300e393855",
+        "size": 746
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-writer/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\Command.json",
+        "sha256": "530e0a3ac98b6213b0ebd6fd8107be5f42a590fd5c2461c5dc80faf51015fcd5",
+        "size": 1491
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-writer/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\stdout.log",
+        "sha256": "3c1d6646f2471c1c9fe8205f2d0e844e6dba51883bc8f59dd564b2b828a8d89d",
+        "size": 3811
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-writer/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-writer\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-shutdown/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\Intent.json",
+        "sha256": "52040f1dfe1331ff383eccf3231e0b7432aaa5cd0ca03293adb65cfdb8999385",
+        "size": 774
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-shutdown/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\Command.json",
+        "sha256": "a6618f17b949cafd968f7bf74c4d280b397cb0558574db1e1ffc6d5df1b67638",
+        "size": 1547
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-shutdown/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\stdout.log",
+        "sha256": "46d19eef485a75530511c1f72c8eace964842f8e4bd7339b71f0656c397f02a1",
+        "size": 1330
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-shutdown/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-shutdown/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\Intent.json",
+        "sha256": "561d759041853a89b7b8c44c4c140b9c105188d6d9c0fd4a6d8de7024dba1a03",
+        "size": 759
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-shutdown/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\Command.json",
+        "sha256": "d01410367b4c819ee3abacdd94816ed38aa419495a55ee6c75f145fe5fba6d8f",
+        "size": 1526
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-shutdown/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\stdout.log",
+        "sha256": "49d1656c9637f60e5874d28d9aea37fccc2e31cd72a3edc250a22fd8cd871b8f",
+        "size": 2704
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-shutdown/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-shutdown\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-session/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\Intent.json",
+        "sha256": "d901217ee2e6009c4fd62b12eced29cbceaaea99b64c88f02e8f3a6239e5d504",
+        "size": 773
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-session/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\Command.json",
+        "sha256": "cd0924cb35eb050049d5df85fbc4b91b64faaedcb4d095d03ced89c6f0a4356b",
+        "size": 1543
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-session/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\stdout.log",
+        "sha256": "65a10dec3bc3480bb5a393881c0fabbdeeb41f592e53963ffbf3b3f8fdc38f88",
+        "size": 826
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-combined-session/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-session/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\Intent.json",
+        "sha256": "a0039938f60cd5bb02f8c7bacc782a34ee881f38e49aa1f1467a3e8b7bf73172",
+        "size": 757
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-session/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\Command.json",
+        "sha256": "861b9f6c62f527fa84dc3cc23bc5c97e4b3d0cfffd6d9e035d3ea54561bdf19e",
+        "size": 1522
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-session/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\stdout.log",
+        "sha256": "87963ca301b654499b0ba9a6a17fc3ba72de43c61d5b563365a1840055e84d27",
+        "size": 1920
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-combined-session/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-combined-session\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-lifecycle/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\Intent.json",
+        "sha256": "65ec06b8546c2afd264da957ab3a7daaa3f7db3f439261be01c70339266a98b0",
+        "size": 775
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-lifecycle/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\Command.json",
+        "sha256": "6fd1fb914ae3c317c91b3c2dc80f567fc374a0d6c26a302702dfdb094395ee8a",
+        "size": 1531
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-lifecycle/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\stdout.log",
+        "sha256": "044b8f732bdeac1aaa6f83b6702b304c7a53eca16ced169ccfb7d8b75a6616d6",
+        "size": 684
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-lifecycle/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-lifecycle/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\Intent.json",
+        "sha256": "e1756df5bd44e8b10cd5d13d3742af75eb4fac0ecadf254f17953d8da73a5907",
+        "size": 752
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-lifecycle/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\Command.json",
+        "sha256": "b0ff888652606f384945b8ef12c2db22ae8c77a3444398cf0fde9c86e64fa034",
+        "size": 1503
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-lifecycle/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\stdout.log",
+        "sha256": "6c397f60580c3e939e207ea6266f40196b06e1160db9ac64a053de339b0df472",
+        "size": 1648
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-lifecycle/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-lifecycle\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-cwd/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\Intent.json",
+        "sha256": "c905d244d9d3788eb4f10b1579e7fb57ade6615dbb97f460bc5475fc4c6e63b4",
+        "size": 768
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-cwd/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\Command.json",
+        "sha256": "a4185297be915555a9f3b3334d4b5fd4125d8fe676d2999632e6fa9ef0e67106",
+        "size": 1512
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-cwd/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\stdout.log",
+        "sha256": "59e205a64f1a9dd2d3e1487d89bad2ba8ad59c75b59afbf179ab286d9205d5b8",
+        "size": 715
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-cwd/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-cwd/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\Intent.json",
+        "sha256": "bb6e3d56889af398f9f58d48068acb8be7e29c23515141d4d6069f2867a333b7",
+        "size": 739
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-cwd/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\Command.json",
+        "sha256": "3987aeca6d073a2c45282c5c9df8e2440c651887df40bb1bf2dd44d4088e6697",
+        "size": 1478
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-cwd/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\stdout.log",
+        "sha256": "b99c93e62140e1b2e66ffb83523bbbb863b7ebaf4caa53498bcc9fb0d7bdc2a1",
+        "size": 1823
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-cwd/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-cwd\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-budget/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\Intent.json",
+        "sha256": "6c87614fa238aea9ca6a8c7b42167da7d786bd6dafa4d2e5bfc88aaa53ebf8c6",
+        "size": 772
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-budget/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\Command.json",
+        "sha256": "51a0c67e5975c80909392a473ef0b0257cc84a96ce3d93aa60701bee4697e029",
+        "size": 1522
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-budget/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\stdout.log",
+        "sha256": "960ad3e1ccb152fd9b28d9b284fd7b4ab16cc2c1d4015a142a4d0f7c7221a85c",
+        "size": 818
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-budget/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-budget/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\Intent.json",
+        "sha256": "66d50a5de99ffcb0de8b68aaf7747c87936f3d0b0043eb738e9443251880f311",
+        "size": 746
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-budget/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\Command.json",
+        "sha256": "c83fd7c664d3c0f2029d5a01a3edb8e2bea9d4e0860bed2f98da3fe2ffcce48b",
+        "size": 1491
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-budget/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\stdout.log",
+        "sha256": "735bea33a0ad94c0f2072a2359713a011dec3079f6aadfc3f4a77b0662f8bd8b",
+        "size": 1844
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-budget/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-budget\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ready-copy/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\Intent.json",
+        "sha256": "bb8f18090be513c2336bd4d7c85eb26230cbd77b311aeb048a1802d337b21217",
+        "size": 776
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ready-copy/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\Command.json",
+        "sha256": "6134fde103fff7dc954d4babb207863f06bf99f770965f9af77925fc6bd6b46d",
+        "size": 1535
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ready-copy/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\stdout.log",
+        "sha256": "0783de491e5b989121adce2e592c7670f87288b68e05b8672f8d863d0587b9f8",
+        "size": 3288
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-ready-copy/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-ready-copy\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ready-copy/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\Intent.json",
+        "sha256": "2da4960d701cdbfdbf6959cdcc28a7d449718c4c57a92b6788f464d5ebc44b32",
+        "size": 754
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ready-copy/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\Command.json",
+        "sha256": "0a572637a736c85a231c4ea17e700a459b1d8a633a3e72fcceec2431a7e42994",
+        "size": 1507
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ready-copy/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\stdout.log",
+        "sha256": "53840ca4e91a69a7402f49f8953ba5fe1d20da699aed23c5585a9cc03882f3ec",
+        "size": 4983
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-ready-copy/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-ready-copy\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-owned-startup/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\Intent.json",
+        "sha256": "51567b63075126abd79cd456f7e80a33f4a56d7f3fa09aa10e215f8d7874edfc",
+        "size": 779
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-owned-startup/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\Command.json",
+        "sha256": "e17426186f0d43387fb2a811e57ec32a3cbba1a6813fdda394b4f629fa0a5cf0",
+        "size": 1544
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-owned-startup/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\stdout.log",
+        "sha256": "507b04814f1940c058c42ec1444cda89f1b2e8b8b62ea80f9f8478e19c51e506",
+        "size": 2752
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-owned-startup/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-owned-startup\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-owned-startup/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\Intent.json",
+        "sha256": "ab6d5b0ca2354096efade42761cde48636f804422e18b868e777218b4e53f03d",
+        "size": 760
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-owned-startup/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\Command.json",
+        "sha256": "596ecea3e84f3c7b6e878bfa9797168883c91d0357eb548c5c656ebb32e80dc2",
+        "size": 1518
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-owned-startup/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\stdout.log",
+        "sha256": "e608dd5bcd635f99a4c4ce463f48a0ff7e1148f42f0f7acdcd39ee97ba1a2e5c",
+        "size": 4984
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-owned-startup/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-owned-startup\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-fixture-publication/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\Intent.json",
+        "sha256": "cca6c445b9c4b305ba76e48c974eadabd08425066e885db1b625892bab2198be",
+        "size": 785
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-fixture-publication/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\Command.json",
+        "sha256": "7447b6de339c4f2da2b4256d5d43e63787435f16e0227734de636b4bda9628c0",
+        "size": 1560
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-fixture-publication/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\stdout.log",
+        "sha256": "8d441b85034c40a91c6a5b3570f5df08cad6dc001a8d5774eacd03bd35819991",
+        "size": 262
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/discover-fixture-publication/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-discover-fixture-publication\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-fixture-publication/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\Intent.json",
+        "sha256": "e7f0cb945fa85014bc7f1f1805a7ffd56061dfa2a24c95fda633bd580e6a8d87",
+        "size": 772
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-fixture-publication/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\Command.json",
+        "sha256": "54c5209d63a95a8fa5c2214f1e4ce3e29f42e08ebb563bb8993731a5521f4f6d",
+        "size": 1542
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-fixture-publication/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\stdout.log",
+        "sha256": "bfbfc4959440ab8ec82b6012ab5e6196499c972fb5043f9375a02800204b00be",
+        "size": 980
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/tests-fixture-publication/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-tests-fixture-publication\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/ordered-public/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\Intent.json",
+        "sha256": "48eb2aeb5ff8abf62fba790e27aa14f4766323ab4939362a634b10bd6b79fb5d",
+        "size": 750
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/ordered-public/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\Command.json",
+        "sha256": "d180673595cab858fb561000cdcfd64cbb70b39ae096b068aaf8d22de895c86f",
+        "size": 1497
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/ordered-public/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\stdout.log",
+        "sha256": "848c1f5cb4fcad7a464ab4f5f1591e469e290a695150624229159a7e0a71640f",
+        "size": 706
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/ordered-public/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-ordered-public\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-after/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\Intent.json",
+        "sha256": "b292f641ff2ecc0249f555c2afd3e1f668e264a0b33ffe3f216970f519b64078",
+        "size": 1813
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-after/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\Command.json",
+        "sha256": "c8cc8d1df42e3aa7e30c833a5cffe5fb7bbf00b40814d7017457da2089c7fa81",
+        "size": 2562
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-after/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\stdout.log",
+        "sha256": "4f2e8c0fb51139485a360f877ca9a1b0213d094fef3abf4a88c3256aeba72a24",
+        "size": 1339
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/identity-after/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-identity-after\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-after/Intent.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\Intent.json",
+        "sha256": "17d8ef4e28846dfa551a5772b8397f3acc0cd388913d43fdd8bf289bfa07e6f6",
+        "size": 1136
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-after/Command.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\Command.json",
+        "sha256": "5c9ab31baef587845ce7b85245e5890f8b554fd1d72eadc1ba3a6f1bc0f46f70",
+        "size": 1893
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-after/stdout.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\stdout.log",
+        "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28",
+        "size": 1247
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/commands/dependencies-after/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\command-dependencies-after\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "successful selected command; exact capture"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/native-gate/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-native-gate\\Receipt.json",
+        "sha256": "4dc53d68507d7464ab04580aead4fcdc4b187f6d24066946e4c607b6166ff4d4",
+        "size": 486
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/native-gate/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-native-gate\\unittest.log",
+        "sha256": "952e94bf0b8e316950a9ccadc0488c7b75ff9d4befae5092a561a080c05543e7",
+        "size": 4158
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/native-gate/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-native-gate.json",
+        "sha256": "3dfa37f2bf7c698a5bf0f493d102767c54bdd592acebc648fe8d49ad771f1c1f",
+        "size": 2735
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-integration/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-integration\\Receipt.json",
+        "sha256": "5732fdd8ed5fa59478b4e8899eabb30796683e87912d4d2be5bbe3c3616ea24e",
+        "size": 499
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-integration/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-integration\\unittest.log",
+        "sha256": "f9d30d54a8f627685829577591b2c9aa9bee64b784a5f17af988b3c013cbef97",
+        "size": 1367
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-integration/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-recursive-integration.json",
+        "sha256": "39891c5be134019b5ce7413a2fa5b663e77d32b0470cea2047e49053b5b0f762",
+        "size": 916
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-git/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-git\\Receipt.json",
+        "sha256": "6b247e47dd6ee903558fee3f257eb5f26f074604283d7167acef7dd293c6271f",
+        "size": 483
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-git/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-git\\unittest.log",
+        "sha256": "d7c406946e1c52b077720878351c03d42078aed10947593cca69e58afd397324",
+        "size": 935
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-git/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-recursive-git.json",
+        "sha256": "aec13f7eb9c5e120d9c43f88d835fef4b52b0d469bc665395a2fef814e577510",
+        "size": 612
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-profile/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-profile\\Receipt.json",
+        "sha256": "8de1e35d88021880f1cf2331ebabaf170542bbe67abb49cb991c9b594d90e5ce",
+        "size": 493
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-profile/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-recursive-profile\\unittest.log",
+        "sha256": "4e6318d67c0a196d79a36ad24e077ceb62c77b0a9b7c849089b51d4ab1a52464",
+        "size": 2440
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/recursive-profile/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-recursive-profile.json",
+        "sha256": "3cbc686c89c56f3c3a55d5d0cc6991e4dade9055a11875ee29584e0ff92a9d07",
+        "size": 1593
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/ownership/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ownership\\Receipt.json",
+        "sha256": "a2d33d6b885103604373c4f18258a5b3c8b1982e5fcd34cfbf8ee9f0ddaf047e",
+        "size": 489
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/ownership/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ownership\\unittest.log",
+        "sha256": "ebccab2800019e2327987534f289f4ffc6aad4adfc55abefc1de47495860f9da",
+        "size": 3470
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/ownership/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-ownership.json",
+        "sha256": "5076dae03ef609d1bcb3332051af360ce638fe94fb4a5eee0392d1135e76ecfc",
+        "size": 2321
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/writer/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-writer\\Receipt.json",
+        "sha256": "e89d47f723c040ee2e89dc8004d58d0dffa8647db9dc8a9c5e89e554e18638c7",
+        "size": 479
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/writer/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-writer\\unittest.log",
+        "sha256": "85e9b35a904b48d5c36c67c188b00e65a1d39f6a9d66a26b6750deeea82a4d02",
+        "size": 3346
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/writer/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-writer.json",
+        "sha256": "fa487209f8bdbab1e58f8a6c6abcee92e41ee8c9c3d9f708ab30dc1bc01a6b65",
+        "size": 2141
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/combined-shutdown/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-shutdown\\Receipt.json",
+        "sha256": "072ff12ca945612d76e131c8aa6eda175c7e8b25356125513d58f18ee2eede40",
+        "size": 492
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/combined-shutdown/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-shutdown\\unittest.log",
+        "sha256": "4ed990509d07ab03c976ef347b43b89a2e3ce255bf264283d5949a73fc943984",
+        "size": 2232
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/combined-shutdown/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-combined-shutdown.json",
+        "sha256": "d2057ea64cd93b70f329c13d208c3c62d219451c942a7a5c4fea509091500652",
+        "size": 1460
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/combined-session/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-session\\Receipt.json",
+        "sha256": "be247da2025cc3e34880046557e5c526e0ab644d069a223435cd8e19d856447c",
+        "size": 488
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/combined-session/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-combined-session\\unittest.log",
+        "sha256": "4da11f5f32b3111c5e7321f6a7897f45b4280aab8d64b1121dddee1f4a878726",
+        "size": 1457
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/combined-session/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-combined-session.json",
+        "sha256": "c03fe967fd535986b5a93cdbcf98c63c792acafa29084fd2e83fb835886ca5b2",
+        "size": 930
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/lifecycle/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-lifecycle\\Receipt.json",
+        "sha256": "cd47ab248da31cbf922528b856cf6e43bdf1910d23dc353901b42b96cd55e802",
+        "size": 483
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/lifecycle/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-lifecycle\\unittest.log",
+        "sha256": "98b7fccc4e8752d36a7dded556c64283ba889e9d982d10e9df103b8626e7b14b",
+        "size": 1191
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/lifecycle/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-lifecycle.json",
+        "sha256": "efdb3620b767dbc3326b2666dccf1dcab7420b86557324a928b495fb373c5155",
+        "size": 785
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/cwd/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-cwd\\Receipt.json",
+        "sha256": "2162f2117718bb370ee0f21306d6e8dc8655a73cf69a89aa47bedcc26e8b34e6",
+        "size": 470
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/cwd/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-cwd\\unittest.log",
+        "sha256": "dbe47c6a39aa12ca233916d8b9a34540a423562c4b7f8d66a73f1454153d6956",
+        "size": 1377
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/cwd/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-cwd.json",
+        "sha256": "7ebff79c47fc4470a852952f875d8012c8d0bb61b73baf0116d2fa54299c14aa",
+        "size": 814
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/budget/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-budget\\Receipt.json",
+        "sha256": "446845e85a13926fb8a51218a96cbba89aee8106bffea473672a91766bc6da53",
+        "size": 477
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/budget/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-budget\\unittest.log",
+        "sha256": "fe623343585ac060f0e7f1ec151c22c30453977348d8c19c166eabb83f820ded",
+        "size": 1392
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/budget/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-budget.json",
+        "sha256": "fa8db5a71fa881146cecd91d1fdaad71673875658af9969d66df2396b1c1f2ed",
+        "size": 921
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/ready-copy/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ready-copy\\Receipt.json",
+        "sha256": "fbe5f6ca3f4c3de29eedf28ca1173b8845a2230cdc4fb018cca1005411a40fda",
+        "size": 487
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/ready-copy/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-ready-copy\\unittest.log",
+        "sha256": "59d7ce260fa38da104ff689b8b38cdc882ad737d9246f5262ef6aaaee2fe1628",
+        "size": 5236
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/ready-copy/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-ready-copy.json",
+        "sha256": "2371855247f912629843991bfa6b3b110948238a22e65a5c5c2c1d595c50516f",
+        "size": 3520
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/owned-startup/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-owned-startup\\Receipt.json",
+        "sha256": "1d19f11b381cf0dc05c187aaf48aa2b3a7afa7c40b746902d0e2f1ce7a2bf5c7",
+        "size": 493
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/owned-startup/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-owned-startup\\unittest.log",
+        "sha256": "c36c1a998b24fd7da796c38ca659d3302b67f37d49f2142bb952231782e6fa50",
+        "size": 4553
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/owned-startup/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-owned-startup.json",
+        "sha256": "17eb456cc387deb20a34fae241ab62597ad722b396c828cb6e7c78206f9d1b8d",
+        "size": 2937
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/fixture-publication/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-fixture-publication\\Receipt.json",
+        "sha256": "0eebe1f2f5ccaf1ce3230b66ba2418f8ebdf7019b45d92e4341465ae9ba86d9a",
+        "size": 503
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/fixture-publication/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\tests-fixture-publication\\unittest.log",
+        "sha256": "d6235f473deefd2f562ec1acb17459b742d76742e02137bf3cda73a6328306a5",
+        "size": 507
+      },
+      "role": "fully passed selected group"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/groups/fixture-publication/Discovered.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\discovered-fixture-publication.json",
+        "sha256": "7f9414262faa0c60f9413cff0b055d01199c6783cefb1c57f662a3917a8bc525",
+        "size": 353
+      },
+      "role": "exact discovery IDs"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Receipt.json",
+        "sha256": "6cca0ab48d5af95765b5ed82fd0b49ca16c25c1c4984017e1d088da89afd7f5c",
+        "size": 468
+      },
+      "role": "unchanged public four-mode method passed"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\unittest.log",
+        "sha256": "b768d1c438f3bc1a6694ab491600fd10b852972a491bda03d8621ba78a82f536",
+        "size": 269
+      },
+      "role": "unchanged public four-mode method passed"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/Ordered-Outcomes.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Outcomes.json",
+        "sha256": "7f33f1f0cb80bbd5f8640bfac59e182c7abb8129a37238838e02f4bd72834a59",
+        "size": 15089
+      },
+      "role": "unchanged public four-mode method passed"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/00.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\00.json",
+        "sha256": "e7a66501d370a7cea16a1026901353c320874c85717c78c2df47e23f2aa99188",
+        "size": 2336
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/01.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\01.json",
+        "sha256": "224016c4ba1ba617b0ac9239b8afd4b972a4aa6c16d538d44f8e7a111471a20c",
+        "size": 363
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/02.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\02.json",
+        "sha256": "1b871d029ea1e1b98b94aec14207b672cc7e8d928330547f782681bc236dd437",
+        "size": 439
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/03.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\03.json",
+        "sha256": "a2000a6ebabf91fbff2a1dcee38d6972db365107f6f65fb51aa44f3f9e6ab00d",
+        "size": 2324
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/04.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\04.json",
+        "sha256": "f2cf7153349fa1e8ef1686185ce219b9f6d97d5a1048cf6ca101f7b4bb883f94",
+        "size": 360
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/05.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\05.json",
+        "sha256": "c89c9ec502441269b1f9a37e24a1a557a10cbc57622970c7470464d587152427",
+        "size": 436
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/06.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\06.json",
+        "sha256": "978a8c17a29fc33e002c5ad01927e9d2faebf8f311d66e9b549e7583178b3ec1",
+        "size": 2320
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/07.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\07.json",
+        "sha256": "10e061762f7dd35dbb6ecb71ac99c049c86d525ec587e3ed06c4147d961dcc8b",
+        "size": 359
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/08.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\08.json",
+        "sha256": "8e514e843f984952e07f45af8ee9139bd3ef7fe100d52200b7f68709a6bcc5e9",
+        "size": 435
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/09.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\09.json",
+        "sha256": "135bb5fc5e78882dfe274023a1767a1bfcfef6ae9b4eccda4037ebe3a56638b4",
+        "size": 2368
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/10.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\10.json",
+        "sha256": "a8b8112088f2e1ead99f10f65f0d302cb2b44fe575d735316b62c8795a871eda",
+        "size": 372
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/ordered/calls/11.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\ordered\\Ordered-Calls\\11.json",
+        "sha256": "d4fd4d53fcbf688ab14a9a0da54399f2a70e038c156c8dab744a18ab97478b48",
+        "size": 448
+      },
+      "role": "real public/replay/negative-lease call"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\Receipt.json",
+        "sha256": "00d9db76c42038ba830871ff4a38ec1469a73bd79507f026998c1bceecbd2bf4",
+        "size": 19652
+      },
+      "role": "actual native enrollment and Python-tree proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/git/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\Receipt.json",
+        "sha256": "333d0f0b5e7a7ef8bce69b5d75f918c80817c9b6dbfd401ff0534b64da077291",
+        "size": 10837
+      },
+      "role": "actual owned native member/exit proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/git/stdout.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\stdout.json",
+        "sha256": "4efe869f9757634f4ff05aa7d4b75b3ce37b3169450469f8d70f648689acc793",
+        "size": 2408
+      },
+      "role": "actual owned native member/exit proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/git/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\git\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "actual owned native member/exit proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/python-tree/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\Receipt.json",
+        "sha256": "90071e7087e84afbb3d44fc23dd332b6f16bcd2f8171cc7d6b2797a18ccd9ad5",
+        "size": 6984
+      },
+      "role": "actual owned native member/exit proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/python-tree/stdout.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\stdout.json",
+        "sha256": "a6c8bbfb58ac2faa5e4a61d38bb9965f76c94fa10c45d36a31585d6c35c38e09",
+        "size": 96
+      },
+      "role": "actual owned native member/exit proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/product/python-tree/stderr.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-native-product-20261106\\product-observation\\python-tree\\stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "role": "actual owned native member/exit proof"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/cleanup-lifetime-stack-20261024.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\cleanup-lifetime-stack-20261024\\Copies.json",
+        "sha256": "09aeed42c550e3c0363b5b8ba327b837c9907ca0f5fd1335343c0ebbf4a874ee",
+        "size": 14990
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/cleanup-membership-20261025.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\cleanup-membership-20261025\\Copies.json",
+        "sha256": "5463f2190411b3cb63eecb2a258f5441628184d6bd14ad72f93a9c190ddaf7d0",
+        "size": 588
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/cleanup-process-timing-20261024.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\cleanup-process-timing-20261024\\Copies.json",
+        "sha256": "8995c4705c9bccdbfe007b9ab2459a1bc72c8512b775d4d4e043a4fe7b10ca1e",
+        "size": 15056
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/cleanup-repair-20261023.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\cleanup-repair-20261023\\Copies.json",
+        "sha256": "b5864cac2039cc359b4f423a8b0a8d7279a54448477d9d07b7957ad885ec5b74",
+        "size": 62340
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/rp1-audit.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\rp1-audit\\Copies.json",
+        "sha256": "8bc4ec0ff06ddc51d793236a04136b0cf36afeb2df5284740644f73f62b9e45c",
+        "size": 78196
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/rp1-corrected.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\rp1-corrected\\Copies.json",
+        "sha256": "f22a7da2076d9622c1cf305fec0ffd718267cb1aef2295e4397d6a08ca59bfd6",
+        "size": 588
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/rp1-original.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\rp1-original\\Copies.json",
+        "sha256": "448693333b5286c243136aff3d4f54db1070a4551cd4b0b0894982252c201d91",
+        "size": 74176
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/historical-copies/rp1-store.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\rp3-after-copy-20261106\\reader-copy\\rp1-store\\Copies.json",
+        "sha256": "32972896a104ca8da4d11c9b25401dec75c44cdbc96157738e67249897521ab3",
+        "size": 78448
+      },
+      "role": "fresh original/copy mappings; no payload files"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/reviewed-helpers/selected_batch.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_batch.py",
+        "sha256": "46810f0f166490637d2bbf46ab556aedc567a5fc2bcd45b62de14e39a679bfee",
+        "size": 11273
+      },
+      "role": "read-only derivation snapshot; not a live command"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/reviewed-helpers/selected_runner.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\selected_runner.py",
+        "sha256": "7121972c33561ada5c68a0d600195952b8e81e46556916cbe238d149b1b6e603",
+        "size": 1195
+      },
+      "role": "read-only derivation snapshot; not a live command"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/reviewed-helpers/product_probe.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\product_probe.py",
+        "sha256": "cf6c2f8a84b48dd29824490ccdfdc55aadf2f4604b25404b13366b49c7ce3d38",
+        "size": 11979
+      },
+      "role": "read-only derivation snapshot; not a live command"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/reviewed-helpers/historical_after_copy.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\historical_after_copy.py",
+        "sha256": "12249ac6069c952c03242fb37cd38618adbfb69c0010c2c8c8015f206bacace3",
+        "size": 5265
+      },
+      "role": "read-only derivation snapshot; not a live command"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/reviewed-helpers/finalize_historical_after.py.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\finalize_historical_after.py",
+        "sha256": "f650e016c713582266c22e7b44e15d272fdb9e7985bb3f6b4c1a732d24f2bdd7",
+        "size": 8327
+      },
+      "role": "read-only derivation snapshot; not a live command"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/controller/knowledge-read-final-green/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\knowledge-read-final-green\\Receipt.json",
+        "sha256": "ff6e789073a1ad999dd730970af78fc91061c78b1edfc3c35ff69ef8ee70fc1d",
+        "size": 9963
+      },
+      "role": "controller-only green evidence; not selected-runtime counts"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/controller/knowledge-read-final-green/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\knowledge-read-final-green\\unittest.log",
+        "sha256": "90143f4bed003b2a89a77d48422cb54ec0e4b9c19e5e70cb84ce322e6851421f",
+        "size": 63882
+      },
+      "role": "controller-only green evidence; not selected-runtime counts"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/controller/recursive-review-green/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\recursive-review-green\\Receipt.json",
+        "sha256": "0e5a5d48ad51482d1fc15c348e0cdd80b9c5512efc78e00aa3697670738ba2ee",
+        "size": 577
+      },
+      "role": "controller-only green evidence; not selected-runtime counts"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/controller/recursive-review-green/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\recursive-review-green\\unittest.log",
+        "sha256": "fda99487a9e522e4815cbe0676b8041fce81f6d0ea65a33f00876f3437fad14f",
+        "size": 8590
+      },
+      "role": "controller-only green evidence; not selected-runtime counts"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/controller/green-startup-read-sharing/Receipt.json.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\green-startup-read-sharing\\Receipt.json",
+        "sha256": "a08ac211a926bc59327c25d7e90063954eb5e29f12c0c3eda5900a7b4973a373",
+        "size": 591
+      },
+      "role": "controller-only green evidence; not selected-runtime counts"
+    },
+    {
+      "backup_path": "docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/archive/controller/green-startup-read-sharing/unittest.log.snapshot",
+      "original": {
+        "links": 1,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-integration-20261105\\green-startup-read-sharing\\unittest.log",
+        "sha256": "a37e9661fe7816b3412b5ee337f5beae3230dea5eb963d68fb1d83c31dfb8b2d",
+        "size": 4553
+      },
+      "role": "controller-only green evidence; not selected-runtime counts"
+    }
+  ],
+  "snapshots_are_not_live_commands": true
+}

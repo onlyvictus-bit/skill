@@ -1,0 +1,20 @@
+{
+  "helpers": {
+    "ready_data.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-on-demand-20261105\\prototype\\ready_data.py",
+      "sha256": "2cb74a5e8155bc0af7baefc1dfb72ee9285d69dc8df0369376c1d321db3f892f",
+      "size": 7960
+    },
+    "rp3_prepare.py": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-on-demand-20261105\\prototype\\rp3_prepare.py",
+      "sha256": "017a40729d78d82f0ac3ed7a4c173f6332e0ae2026d0a47989a320d7e068dad9",
+      "size": 11958
+    }
+  },
+  "original_copy_roles_match": 18,
+  "scope": "FINAL_LEGACY_READER_HELPER_SEALS_AND18ROLE_RECHECK",
+  "selected_runtime_started": false,
+  "status": "PASS"
+}

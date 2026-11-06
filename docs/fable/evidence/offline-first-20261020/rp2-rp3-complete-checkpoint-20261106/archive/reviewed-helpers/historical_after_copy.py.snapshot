@@ -1,0 +1,91 @@
+"""Copy only 53 required normal-owned history paths; no tests or selected Python."""
+import argparse
+from datetime import datetime,timezone
+import hashlib
+import importlib.util
+from pathlib import Path
+import time
+import traceback
+import json
+
+P=Path(__file__).absolute().parent;R=P.parents[2]
+OLD=Path(r'C:\Users\sakth\Documents\Codex\rp3-on-demand-20261105')
+OUT=Path(r'C:\Users\sakth\Documents\Codex\rp3-after-copy-20261106')
+ART=P/'historical-after-20261106'
+BASE=R/'.github/run-artifacts/rp3-native-dispatch-20261105/coordinator.py'
+BASE_SHA='bfba095318909b0271ba73a21907fcd571a614f12972c713963a35fc5c4dd764'
+PINS={
+ ART/'Reader-After-Request.json':'7e363dcfc711e5a0fce583d3d6e918628f697a723acb719ba77b9df754c5d58d',
+ OLD/'Before-Bundle.json':'c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b',
+ R/'.github/run-artifacts/rp3-on-demand-20261105/reader-outbox/94d2f72684de412280da30ac1527fb0b/Copy-Inputs.json':
+ '4f36f1a2d3ac3243d73ca6b8264b1f48ce143d82cd6eab1e2d4e7ff6c14396b7',
+ Path(r'C:\Users\sakth\Documents\Codex\rp3-native-product-20261106\Receipt.json'):
+ 'b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e',
+ R/'.github/scripts/shutdown_copy_data.py':'4fa0afdaa1219b243421717eca9a8d2939c4f653a8d9b27110e2b63c80e27299',
+}
+
+
+def checked(path):
+    raw=path.read_bytes()
+    if hashlib.sha256(raw).hexdigest()!=PINS[path]:raise ValueError('E_AFTER_COPY_INPUT_CHANGED:'+str(path))
+    return raw
+
+
+def main(verify_only=False):
+    if hashlib.sha256(BASE.read_bytes()).hexdigest()!=BASE_SHA:raise ValueError('E_AFTER_COPY_BASE')
+    spec=importlib.util.spec_from_file_location('sealed_after_copy_base',BASE)
+    base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
+    for path in PINS:checked(path)
+    # All authoritative inputs must be ordinary stable files, not links/redirects.
+    rows={str(path):base.record(path)for path in PINS}
+    if any(row['links']!=1 for row in rows.values()):raise ValueError('E_AFTER_COPY_LINK')
+    request=base.read(checked(ART/'Reader-After-Request.json'))
+    before=base.read(checked(OLD/'Before-Bundle.json'))
+    copy_path=next(path for path in PINS if path.name=='Copy-Inputs.json')
+    policy=base.read(checked(copy_path))
+    data=base.module(R/'.github/scripts/shutdown_copy_data.py');data._primitives()
+    snapshot=data.SnapshotSet({key:row['root']for key,row in before['roots'].items()},before['session'],policy['policies'])
+    snapshot._validate_before_bundle(before);snapshot._validate(request)
+    if any(row['allowed']for row in policy['policies'].values()):raise ValueError('E_AFTER_COPY_POLICY_EXCEPTION')
+    if request['phase']!='AFTER'or request['binding']!={'before_sha256':data.digest(before),
+        'workload_sha256':'b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e'}:
+        raise ValueError('E_AFTER_COPY_BINDING')
+    count=sum(len(row['unresolved'])for row in request['roots'].values())
+    if count!=53:raise ValueError('E_AFTER_COPY_COVERAGE')
+    if OUT.exists():raise ValueError('E_AFTER_COPY_OUTPUT_EXISTS_NO_RETRY')
+    if verify_only:
+        print('AFTER_COPY_SEALS_MATCH_53_PATHS_NO_COPY_OR_SELECTED_RUNTIME');return 0
+    base.normal_account()  # Wrong account cannot create an output or claim.
+    OUT.mkdir()
+    report={'scope':'ND4_NORMAL_EXISTING_ACCESS_HISTORICAL_AFTER_COPY_ONLY',
+        'started_utc':datetime.now(timezone.utc).isoformat(),'status':'PARTIAL_NO_RETRY',
+        'failure':None,'inputs':rows,'request':base.record(ART/'Reader-After-Request.json'),
+        'required_paths':count,'timeline':[],'selected_runtime_started':False,
+        'stage_complete':False,'gate1_complete':False,'producer_authentication':False}
+    try:
+        for label,context in snapshot.contexts.items():
+            original=context.copy_denied
+            def timed(*args,_original=original,_label=label,**kwargs):
+                start=time.monotonic();print(_label+': COPYING required AFTER evidence only',flush=True)
+                try:return _original(*args,**kwargs)
+                finally:
+                    row={'root':_label,'seconds':time.monotonic()-start};report['timeline'].append(row)
+                    print(_label+': %.3f seconds'%row['seconds'],flush=True)
+            context.copy_denied=timed
+        snapshot.copy_denied(request,OUT/'reader-copy')
+        report['copies']=base.record(OUT/'reader-copy/Copies.json')
+        for path in PINS:
+            checked(path)
+            if base.record(path)!=rows[str(path)]:raise ValueError('E_AFTER_COPY_INPUT_IDENTITY_CHANGED')
+        report['status']='FRESH_AFTER_COPIES_READY_PENDING_PARENT_MERGE'
+    except BaseException:report['failure']=traceback.format_exc()
+    report['finished_utc']=datetime.now(timezone.utc).isoformat();base.save(OUT/'Receipt.json',report)
+    print(json.dumps({'status':report['status'],'failure':report['failure'],
+        'copies':report.get('copies'),'receipt':base.record(OUT/'Receipt.json'),
+        'selected_runtime_started':False,'stage_complete':False}),flush=True)
+    return int(report['failure']is not None)
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--verify-only',action='store_true')
+    args=parser.parse_args();raise SystemExit(main(args.verify_only))

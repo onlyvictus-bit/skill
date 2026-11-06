@@ -1,0 +1,12 @@
+test_default_worker_allows_50second_loading_then_returns_valid_reply (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_default_worker_allows_50second_loading_then_returns_valid_reply) ... ok
+test_distributed_default_uses_supported_cold_start_budget (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_distributed_default_uses_supported_cold_start_budget) ... ok
+test_explicit_short_budget_still_times_out_without_retry (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_explicit_short_budget_still_times_out_without_retry) ... ok
+test_invalid_budgets_still_refuse_before_process_start (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_invalid_budgets_still_refuse_before_process_start) ... ok
+test_programmatic_fresh_preflight_omitted_timeout_uses_120 (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_programmatic_fresh_preflight_omitted_timeout_uses_120) ... ok
+test_public_offline_and_fresh_verify_select_120_by_default (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_offline_and_fresh_verify_select_120_by_default) ... ok
+test_public_retrieve_selects_120_by_default_and_preserves_override (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_retrieve_selects_120_by_default_and_preserves_override) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.089s
+
+OK

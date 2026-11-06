@@ -1,0 +1,11 @@
+{
+  "ids": [
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_actual_owned_root_runs_bound_readonly_git_with_native_exit_proof",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_both_sessions_propagate_the_same_recursive_request_deadline",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_changed_policy_seal_blocks_authored_code_and_retains_profile_failure",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_default_recursive_budget_is_independent_of_startup_deadline",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_owned_root_refuses_unsupported_recursive_python_before_child_starts",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_post_go_startup_refusal_retains_cause_before_authored_worker"
+  ],
+  "pattern": "test_knowledge_recursive_integration.py"
+}

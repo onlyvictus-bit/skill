@@ -1,0 +1,49 @@
+# Final independent acceptance — focused RP2/RP3 Stage
+
+Verdict: SHIP / VERIFIED for the focused RP2/RP3 shutdown and recursive-launch
+Stage. Native fable_sol_reviewer resumed the interrupted final review and checked
+the completed evidence read-only. No tests, copies or selected runtime were rerun.
+
+Actual selected runtime:178PASS/14groups,0failure/error/skip/exclusion. This is
+177focused cases plus1original ordered method with4mode subtests.34contained
+command captures, exact discovery/suite/log sets, public/replay/stale-lease calls,
+actual missing native membership assignment and OUTER exit ledger proof pass.
+Current and frozen bootstrap0b417663...80930,685source/741seals and53versions match.
+
+The reviewer independently recomputed exact BEFORE/AFTER equality for all13966
+recorded objects in8historical roots, including the fields captured by the sealed
+schema. AFTER is the exact disjoint union of13662fresh-reader-visible objects and
+304fresh cooperating-copy objects, with zero overlap/missing/extra/value mismatch.
+The53requested directories expand to210files/94directories/7097744payloadbytes;
+all raw copy manifests, source identity/permission records, destination bytes,
+batch/session/phase and BEFORE/workload bindings reconcile. Current protected
+source/runtime maps and18original/copy DATA native/ancestor samples pass.
+
+Verified records:
+
+| Record | Bytes | SHA256 |
+| --- | ---: | --- |
+| Selected runtime Receipt | 97469 | b103015f47b698449d4f94616c6cce61fc4d4958af86a6e54e693f1f765e0b9e |
+| Normal-copy Receipt | 4041 | e946d11d5d872987acc6f98b6a22e1e3be4fdb32720fc7d4c1b2d78b2ae4f7df |
+| Normal Copies | 2116 | 79ff16837887502b4deb2771f80579bf78a538cb9e925fd600d1f40d89c5f002 |
+| BEFORE bundle | 4224786 | c6b075d958c1d4d0d8373e11b683b4df590026d7a5656b07e7d088f8a98a9f7b |
+| AFTER bundle | 6054708 | 497e45086209b1e33ef7162ac02137e33e81ba6e916aaf43848821603bb62e21 |
+| Comparison | 3021 | 56500c220118dd94bf1c4e3da003a87629051dc8755fa5e8e19544f3a642babb |
+| Final reader helper seals | 880 | 6343e1ceb174a876cccfdb20388f8a4b44270776208530754654a29b966d354d |
+
+Final reader code matches017a407...dad9 and2cb74...892f;18role recheck PASS and
+no selected-runtime restart. Parent independently rechecked all fresh copied
+files, exact snapshot comparison and all741seals in the final continuation.
+
+The attached side-chat's product-not-integrated/584add/5-caseRED/UNRUN/12-or-13
+group claims describe superseded snapshots. Current raw target14groups/178PASS
+supersede them. Its standalone temporary-directory error was in a separate
+read-only environment; the required native23cases pass in retained writable
+scratch. No currently unresolved blocker from that list was found.
+
+A NEW Stage-Result may record focusedRP2/RP3 completion. Keep all old runtime,
+copy,candidate and pending-state receipts immutable. This verifies sampled
+preservation and the tested behavior; producer authentication, continuous
+immutability, exact historical C2 cause,Gate1,release and installation remain
+false/unproven.128NEW runtime scratch roots were not exhaustively inventoried;
+all load-bearing runtime evidence was accessible and reconciled.
