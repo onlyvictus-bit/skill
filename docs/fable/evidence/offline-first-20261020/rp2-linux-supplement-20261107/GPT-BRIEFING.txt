@@ -1,0 +1,233 @@
+RP2 VERIFICATION BRIEFING — 55 PREVIOUSLY-SKIPPED LINUX TESTS RE-EXECUTED FOR REAL
+=================================================================================
+Verdict issued by the independent verifier harness (NOT asserted by the project):
+  ** RP2_PREVIOUSLY_SKIPPED_LINUX_TESTS_VERIFIED **
+Meaning: all 55 tests that the RP2 acceptance run SKIPPED on the Windows controller
+(54 knowledge-final-02 + 1 compatibility-final-02) were re-executed on Linux from the
+byte-pinned accepted source, in fresh processes, and produced exactly 55 PASS with
+zero FAIL / ERROR / SKIP / TIMEOUT, passing every gate and reconciliation check.
+
+This briefing is one self-contained block: identity pins, the four defects that had to
+be fixed in the VERIFIER (with the exact code), the execution contract, the full 55-id
+result list, and the commands to re-verify everything independently.
+
+--------------------------------------------------------------------------------
+1) SOURCE IDENTITY PINS (all re-measured during this run, exact matches)
+--------------------------------------------------------------------------------
+  commit                e801c3587e5bb87e7ea85bbdbf1ab6edd3b245ef
+  tree                  48264d0700abe1f012e3da79199941595f92ac42   (699 files)
+  source ZIP            RP2-Source-e801c358.zip
+    bytes               4545834
+    sha256              cfff992529bd7fbe13768b478a61676a6be7756c73654a195af4d54c13cfb25d
+  source manifest       RP2-Source-Manifest.json
+    sha256              e3c6ddcb6bc8ffede28751b76250ec4b6baf6598e514496cd3512a203bb8054d
+  acceptance record     docs/fable/evidence/offline-first-20261020/
+                        rp2-rp3-reuse-checkpoint-20261101/archive/02-RP2-Accepted.json.snapshot
+    size                16283
+    sha256              feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369
+  wrapper snapshot      03-test_promoted_recursive_contracts.py.snapshot
+    sha256              02265f81747ea4953102569e158e2a3eca56c8381305ebec4ab381c68e296a96
+
+  The 55 skipped-test inventory is DERIVED, not assumed: the acceptance record stores
+  checks.knowledge-final-02.skipped = 54 entries and
+  checks.compatibility-final-02.skipped = 1 entry, each entry being a 2-element list
+  [dotted_test_id, skip_reason]. 54 + 1 = 55 unique ids, classified
+  41 A_runtime + 4 B_parser + 6 C_model + 3 D_posix + 1 E_symlink.
+
+--------------------------------------------------------------------------------
+2) VERIFIER HARNESS IDENTITY
+--------------------------------------------------------------------------------
+  file                  scripts/verify_rp2_skipped.py (v2.2, single-file, stdlib only)
+  sha256                893285a00ebaf2f1b223caeca9f0b2fc8600cc9ec08ef6a36bd022f8697410c4
+  selftest              28/28 PASS (synthetic boundary tests: gate, derivation,
+                        reconciliation tamper-rejection, wrapper selection, exit map)
+
+--------------------------------------------------------------------------------
+3) THE FOUR VERIFIER DEFECTS FIXED BEFORE THE RUN COULD BE TRUSTED
+   (defects were in the VERIFIER, never in the tested source; the source was
+   never modified — all pins re-verified byte-exact after every fix)
+--------------------------------------------------------------------------------
+D9 — wrong production-policy pin. The harness pinned the ORIGINAL TEST-module
+     snapshot hash (811505ca…) where the acceptance record's 'sources' mapping pins
+     the PRODUCTION file. Fix (constant now matches the record):
+       POLICY_SRC_SHA256 = "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18"
+       POLICY_SRC_REPO_PATH = "memory-integrity/scripts/knowledge_bridge/recursive_policy.py"
+     (The record itself maps this path -> that sha256, size 6554; the gate verifies
+     all nine 'sources' hashes independently.)
+
+D10 — Archive-Manifest.json location. The delivered checkpoint places it at the
+     CHECKPOINT ROOT (parent of archive/), not inside archive/. Fix in gate + restore:
+       am = src_root / archive_dir / ARCHIVE_MANIFEST_NAME
+       if not am.is_file():
+           alt = (src_root / archive_dir).parent / ARCHIVE_MANIFEST_NAME
+           if alt.is_file(): am = alt          # resolved_location = "checkpoint_root"
+
+D11 — acceptance-record skipped-list schema. v2.0 assumed str/dict entries; the REAL
+     record uses 2-element lists [dotted_test_id, skip_reason], so every entry mapped
+     to None and derivation fell back to a partial hardcoded inventory (14/55). Fix:
+       def to_id(e):
+           if isinstance(e, str): return e
+           if isinstance(e, list) and len(e) >= 1 and isinstance(e[0], str): return e[0]
+           if isinstance(e, dict):
+               for k in ("test", "id", "test_id", "name", "dotted_name"):
+                   if e.get(k): return e[k]
+           return None
+     After the fix: DERIVED_EXACT_55 (54 + 1), no fallback data used.
+
+D14 — Archive-Manifest files schema. Real schema is
+       files:[{original_repository_path, snapshot_path, size, sha256}]
+     with snapshot_path relative to the checkpoint root and the snapshot NAME being
+     its basename. Fix in the restore normalizer:
+       name = (e.get("snapshot") or e.get("name") or e.get("archive") or e.get("file")
+               or (str(e["snapshot_path"]).rsplit("/", 1)[-1] if e.get("snapshot_path") else None))
+       tgt  = (e.get("path") or e.get("original_path") or e.get("target")
+               or e.get("original_repository_path"))
+       norm[str(name)] = {"path": str(tgt), "sha256": e.get("sha256"),
+                           "bytes": e.get("bytes", e.get("size")),
+                           "snapshot_path": e.get("snapshot_path")}
+     and snapshot resolution prefers  ck_root / meta["snapshot_path"].
+
+Wrapper mechanics (audit D3, hardened this run): the E_symlink wrapper's
+rp2_unchanged_* modules are created dynamically inside its load_tests hook via
+module_from_spec + exec and are NOT importable, so the loader now (a) loads the
+byte-pinned wrapper file by spec, (b) lets its load_tests hook import the 4 hash-pinned
+originals (4623e17f…, 811505ca…, 7313536c…, 05b5df22…), (c) resolves the selected
+test's defining module through the bound method's __globals__ (the module object may
+be GC-collected; its __dict__ survives via function globals), and (d) requires that
+class-module file to be one of the restored originals. Result: loaded_by=file_path_spec,
+suite_size=45, class_module_is_restored_original=True.
+
+--------------------------------------------------------------------------------
+4) EXECUTION CONTRACT (what "PASS" means here)
+--------------------------------------------------------------------------------
+  * One fresh OS process per test  (python -m unittest -v <dotted.id>; E_symlink via
+    python -m unittest discover -v -s <wrapper_dir> -p test_promoted_recursive_contracts.py
+    -k <method>, uniqueness of the -k match proven in-process first).
+  * timeout 900 s per test; timeout status is recorded as TIMEOUT, never PASS.
+  * unittest exit 0 is PASS only if the stderr tail shows "OK" WITHOUT "(skipped=n)";
+    any skip marker records SKIP, never PASS.
+  * venvs: Python 3.12.16 (knowledge / models / controller), offline contract enforced
+    via env: KNOWLEDGE_WORKER_PYTHON, MODEL_PYTHON, KNOWLEDGE_MODEL_MANIFEST,
+    TRANSFORMERS_OFFLINE=1, HF_HUB_OFFLINE=1, HF_DATASETS_OFFLINE=1, PIP_NO_INDEX=1,
+    PYTHONPATH = tests_v2 + memory-integrity + memory-integrity/scripts.
+  * Models: 2 pinned local models hash-verified against models-lock.json
+    (sentence-transformers/all-MiniLM-L6-v2 @1110a243…, ONNX quint8;
+     Qwen/Qwen2.5-Coder-0.5B-Instruct @ea3f2471…, safetensors 988,097,824 B).
+    Prepare-Models.py exit 0, Verify-Models.py exit 0.
+  * Append-only records: every attempt is appended with stdout/stderr logs on disk and
+    their sha256 recorded; reconciliation rejects duplicate ids, unexpected ids,
+    missing ids and incomplete captures — dict-overwrite of results is impossible.
+  * Reconciliation: 55 expected ids vs executed set — verified=True requires
+    exact set match and PASS on every unique id.
+
+--------------------------------------------------------------------------------
+5) GATE (11/11 checks ok, 0 missing — checks in evidence order)
+--------------------------------------------------------------------------------
+   ok=true  source_identity_established
+   ok=true  RP2_acceptance_record_present
+   ok=true  acceptance_record_byte_exact_vs_expected
+   ok=true  acceptance_record_strict_json_parse
+   ok=true  acceptance_record_has_knowledge_and_compatibility_skipped_lists
+   ok=true  nine_source_hashes_verified
+   ok=true  compatibility_wrapper_present_with_expected_sha256
+   ok=true  promoted_recursive_policy_present_with_expected_sha256
+   ok=true  tests_v2_target_modules_present
+   ok=true  knowledge_runtime_workflow_present
+   ok=true  compat_archive_manifest_mapping_present
+
+--------------------------------------------------------------------------------
+6) FULL 55-ID RESULT LIST (all PASS; total wall time 326.6s)
+--------------------------------------------------------------------------------
+  [PASS] (   2.2s) test_knowledge_advanced.AdvancedRetrieval.test_all_three_real_adapters_return_only_authored_paths
+  [PASS] (   1.9s) test_knowledge_advanced.AdvancedRetrieval.test_global_report_findings_bind_exact_source_node_text
+  [PASS] (  14.4s) test_knowledge_benefit.RealBenefit.test_real_case_runs_regressions_and_preserves_fair_direct_baseline
+  [PASS] (   1.6s) test_knowledge_bridge.Runtime.test_actual_lineage_contains_recursive_premise
+  [PASS] (   1.6s) test_knowledge_bridge.Runtime.test_expired_private_nodes_absent_before_runtime
+  [PASS] (   2.9s) test_knowledge_bridge.Runtime.test_nonaxis_real_query_replay_and_worker_timeout
+  [PASS] (   1.8s) test_knowledge_bridge.Runtime.test_real_semantica_two_hop_vectors_lineage_shacl
+  [PASS] (   1.6s) test_knowledge_bridge.Runtime.test_runtime_visit_budget
+  [PASS] (   0.3s) test_knowledge_bridge.Runtime.test_wrong_runtime_pin_refused
+  [PASS] (  14.4s) test_knowledge_completion.ProtectedAdmission.test_criterion_missing_test_and_forged_admission_are_refused
+  [PASS] (  12.9s) test_knowledge_completion.ProtectedAdmission.test_public_task_relative_admission_and_stale_rejection
+  [PASS] (  20.3s) test_knowledge_completion.RemainingPublicContract.test_public_advanced_modes_source_closure_and_replay
+  [PASS] (   2.5s) test_knowledge_distributed.DistributedRetrieval.test_exact_score_ties_choose_canonical_global_seed
+  [PASS] (   1.7s) test_knowledge_distributed.DistributedRetrieval.test_killed_owner_blocks_without_partial_pack
+  [PASS] (   1.9s) test_knowledge_distributed.DistributedRetrieval.test_prepared_shared_vectors_are_used_by_both_actual_shards
+  [PASS] (   7.5s) test_knowledge_distributed.DistributedRetrieval.test_real_cross_partition_paths_reverse_and_global_limits
+  [PASS] (   6.9s) test_knowledge_distributed.DistributedRetrieval.test_real_two_worker_result_equals_single_worker
+  [PASS] (   0.3s) test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges
+  [PASS] (   1.7s) test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica
+  [PASS] (   0.1s) test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted
+  [PASS] (   0.3s) test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans
+  [PASS] (   0.1s) test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts
+  [PASS] (   1.4s) test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented
+  [PASS] (   1.4s) test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads
+  [PASS] (   1.4s) test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity
+  [PASS] (   1.4s) test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors
+  [PASS] (   0.8s) test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range
+  [PASS] (   0.3s) test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span
+  [PASS] (   0.1s) test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened
+  [PASS] (   6.0s) test_knowledge_retrieval_v2.RetrievalV2.test_actual_text_worker_incoming_replay_is_current_and_exact
+  [PASS] (   4.9s) test_knowledge_workflow.RuntimeWorkflow.test_audit_requires_protected_run_map
+  [PASS] (   1.8s) test_knowledge_workflow.RuntimeWorkflow.test_changed_pack_refused_before_new_run_state
+  [PASS] (   6.4s) test_knowledge_workflow.RuntimeWorkflow.test_copied_map_uses_verified_original_run_directory
+  [PASS] (   5.6s) test_knowledge_workflow.RuntimeWorkflow.test_current_acl_revoke_staleness_and_missing_receipt_block
+  [PASS] (   6.3s) test_knowledge_workflow.RuntimeWorkflow.test_pack_reaches_actual_serialized_request_and_sidecar
+  [PASS] (   7.9s) test_knowledge_workflow.RuntimeWorkflow.test_real_audit_detects_reversed_retrieved_proposition
+  [PASS] (   8.1s) test_knowledge_workflow.RuntimeWorkflow.test_real_audit_does_not_blame_source_for_unretrieved_unit
+  [PASS] (   8.1s) test_knowledge_workflow.RuntimeWorkflow.test_real_audit_matching_structured_proposition_passes
+  [PASS] (   4.9s) test_knowledge_workflow.RuntimeWorkflow.test_resume_without_pack_is_a_downgrade
+  [PASS] (   1.8s) test_knowledge_workflow.RuntimeWorkflow.test_unrelated_execution_task_blocks_before_state
+  [PASS] (   2.3s) test_knowledge_workflow.RuntimeWorkflow.test_unrelated_plain_run_cannot_satisfy_graph_required_verifier
+  [PASS] (   0.1s) test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target
+  [PASS] (   0.1s) test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success
+  [PASS] (   0.1s) test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection
+  [PASS] (   0.1s) test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges
+  [PASS] ( 119.1s) test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts
+  [PASS] (   1.3s) test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation
+  [PASS] (  17.8s) test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens
+  [PASS] (   5.1s) test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation
+  [PASS] (   1.2s) test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens
+  [PASS] (   7.5s) test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model
+  [PASS] (   0.8s) test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants
+  [PASS] (   3.2s) test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped
+  [PASS] (   0.1s) test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work
+  [PASS] (   0.2s) rp2_unchanged_test_recursive_launch_policy.RecursiveLaunchPolicy.test_checked_read_rejects_a_symlinked_source_or_parent
+--------------------------------------------------------------------------------
+7) INDEPENDENT RE-VERIFICATION COMMANDS
+--------------------------------------------------------------------------------
+  # identity (any machine, no trust needed):
+  sha256sum RP2-Source-e801c358.zip RP2-Source-Manifest.json
+  #    expect cfff992529bd7fbe13768b478a61676a6be7756c73654a195af4d54c13cfb25d
+  #    expect e3c6ddcb6bc8ffede28751b76250ec4b6baf6598e514496cd3512a203bb8054d
+
+  # harness boundary tests (no source needed):
+  python3 verify_rp2_skipped.py --selftest                # expect: 28/28 passed
+
+  # full verification (Linux, Python 3.12, ~6-10 min incl. model download):
+  python3 verify_rp2_skipped.py \
+      --source-archive RP2-Source-e801c358.zip \
+      --source-manifest RP2-Source-Manifest.json \
+      --workspace /tmp/ws --resume --group-budget 300 \
+      --stages platform-record,provenance,targets,environments,models,compat,groups,validate,source,report
+  # (repeat the same command if --group-budget pauses it; resume skips done ids)
+  # expect final line: VERDICT: RP2_PREVIOUSLY_SKIPPED_LINUX_TESTS_VERIFIED
+  # and artifacts/Results.json -> {"verdict": "...VERIFIED", "counts": {"PASS": 55}}
+
+  # per-test raw evidence: artifacts/Execution-Records.json (55 records; each has
+  # command, cwd, env keys, module origin, stdout/stderr logs + sha256, unittest tail)
+--------------------------------------------------------------------------------
+8) WHAT THIS VERDICT DOES NOT CLAIM (honest boundary)
+--------------------------------------------------------------------------------
+  * It does not re-run the full 292-test knowledge-final-02 suite; it re-executes
+    exactly the 55 tests the RP2 acceptance run marked skipped, per the acceptance
+    record's own lists.
+  * The 55 executions happened on this Linux x86-64 sandbox (Python 3.12.16) on
+    2026-11-06 UTC; wall times above are from that run. Any re-run on other hardware
+    should reproduce statuses; timings will differ.
+  * The E_symlink test proves symlink REJECTION on a filesystem where symlinks exist;
+    on the original Windows controller it was skipped precisely because symlinks
+    were unavailable there.
+  * Raw logs + hashes for all 55 executions are preserved in the evidence bundle
+    (RP2-VERIFIED-evidence-bundle.json) alongside this briefing.
+=================================================================================

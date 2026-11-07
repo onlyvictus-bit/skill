@@ -1,0 +1,657 @@
+{
+ "verdict": "RP2_PREVIOUSLY_SKIPPED_LINUX_TESTS_VERIFIED",
+ "generated_utc": "2026-11-06T05:15:17.564+00:00",
+ "source_identity": {
+  "commit": "e801c3587e5bb87e7ea85bbdbf1ab6edd3b245ef",
+  "tree": "48264d0700abe1f012e3da79199941595f92ac42",
+  "zip_sha256": "cfff992529bd7fbe13768b478a61676a6be7756c73654a195af4d54c13cfb25d",
+  "zip_bytes": 4545834,
+  "manifest_sha256": "e3c6ddcb6bc8ffede28751b76250ec4b6baf6598e514496cd3512a203bb8054d",
+  "acceptance_snapshot_sha256": "feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369",
+  "acceptance_snapshot_size": 16283
+ },
+ "harness": {
+  "sha256": "893285a00ebaf2f1b223caeca9f0b2fc8600cc9ec08ef6a36bd022f8697410c4",
+  "selftest": "28/28 PASS"
+ },
+ "gate": {
+  "items": 11,
+  "failures": 0,
+  "checks": [
+   "source_identity_established",
+   "RP2_acceptance_record_present",
+   "acceptance_record_byte_exact_vs_expected",
+   "acceptance_record_strict_json_parse",
+   "acceptance_record_has_knowledge_and_compatibility_skipped_lists",
+   "nine_source_hashes_verified",
+   "compatibility_wrapper_present_with_expected_sha256",
+   "promoted_recursive_policy_present_with_expected_sha256",
+   "tests_v2_target_modules_present",
+   "knowledge_runtime_workflow_present",
+   "compat_archive_manifest_mapping_present"
+  ]
+ },
+ "target_derivation": {
+  "status": "DERIVED_EXACT_55",
+  "source": {
+   "knowledge-final-02.skipped": 54,
+   "compatibility-final-02.skipped": 1
+  },
+  "groups": {
+   "A_runtime": 41,
+   "B_parser": 4,
+   "C_model": 6,
+   "D_posix": 3,
+   "E_symlink": 1
+  }
+ },
+ "compat_restore": {
+  "status": "OK",
+  "mapping_entries": 11,
+  "restored": 5,
+  "wrapper_sha256": "02265f81747ea4953102569e158e2a3eca56c8381305ebec4ab381c68e296a96",
+  "wrapper_loaded_by": "file_path_spec",
+  "wrapper_suite_size": 45,
+  "class_module_is_restored_original": true
+ },
+ "models": {
+  "status": "READY",
+  "manifest": "/home/z/my-project/rp2-verify/ws-qualify-r2/models/models.json",
+  "steps": [
+   {
+    "step": "Prepare-Models.py",
+    "exit_code": 0
+   },
+   {
+    "step": "Verify-Models.py",
+    "exit_code": 0
+   }
+  ]
+ },
+ "environment": {
+  "python": "Python 3.12.16",
+  "venvs": {
+   "controller": "READY",
+   "knowledge": "READY",
+   "models": "READY"
+  },
+  "contract": [
+   "KNOWLEDGE_WORKER_PYTHON",
+   "MODEL_PYTHON",
+   "KNOWLEDGE_MODEL_MANIFEST",
+   "TRANSFORMERS_OFFLINE=1",
+   "HF_HUB_OFFLINE=1",
+   "HF_DATASETS_OFFLINE=1",
+   "PIP_NO_INDEX=1"
+  ],
+  "PYTHONPATH": "tests_v2 + memory-integrity + memory-integrity/scripts"
+ },
+ "execution": {
+  "per_test_fresh_process": true,
+  "test_timeout_s": 900,
+  "total": 55,
+  "counts": {
+   "PASS": 55
+  },
+  "zero_fail_error_skip_timeout": true,
+  "reconciliation_verified": true,
+  "anomalies": []
+ },
+ "tests": [
+  {
+   "test_id": "test_knowledge_advanced.AdvancedRetrieval.test_all_three_real_adapters_return_only_authored_paths",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 2.207,
+   "ran_line": "Ran 1 test in 2.134s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "16058b2c41d35fc270c51bb79efec9394fde1153d3a842fbe73f60f8dc873efd"
+  },
+  {
+   "test_id": "test_knowledge_advanced.AdvancedRetrieval.test_global_report_findings_bind_exact_source_node_text",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.941,
+   "ran_line": "Ran 1 test in 1.861s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "c546370ed6dcbd24bb017932bbc6427314c0c6da9850e5d487c0e261d6e8ca86"
+  },
+  {
+   "test_id": "test_knowledge_benefit.RealBenefit.test_real_case_runs_regressions_and_preserves_fair_direct_baseline",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 14.387,
+   "ran_line": "Ran 1 test in 14.309s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "161753eee05c49d3502e6ae2a41b01848eb9e9b107034e76b9af08bda3123350"
+  },
+  {
+   "test_id": "test_knowledge_bridge.Runtime.test_actual_lineage_contains_recursive_premise",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.592,
+   "ran_line": "Ran 1 test in 1.506s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "67f5a831c297219b6b90d813c4f0c0bd5125b8f15b444ff217a188d2db7fbee0"
+  },
+  {
+   "test_id": "test_knowledge_bridge.Runtime.test_expired_private_nodes_absent_before_runtime",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.6,
+   "ran_line": "Ran 1 test in 1.515s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "ec2ef52564489df67e1228027610415ab742401fc6512234b9b0a693d27fc817"
+  },
+  {
+   "test_id": "test_knowledge_bridge.Runtime.test_nonaxis_real_query_replay_and_worker_timeout",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 2.948,
+   "ran_line": "Ran 1 test in 2.861s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "dda0f4d303c83e498882526435ed2a87791459fd62b8474733d1ac5026f8292b"
+  },
+  {
+   "test_id": "test_knowledge_bridge.Runtime.test_real_semantica_two_hop_vectors_lineage_shacl",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.775,
+   "ran_line": "Ran 1 test in 1.689s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "c6d4ac62f260ca1337f648aa5b9e29010699751326cd1c4b5b92c1c27cbbe7bd"
+  },
+  {
+   "test_id": "test_knowledge_bridge.Runtime.test_runtime_visit_budget",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.635,
+   "ran_line": "Ran 1 test in 1.550s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "0d5a593302913b6ba7c989c077b19a335cc1cc220c7d06486cb9a981d1b1c2e0"
+  },
+  {
+   "test_id": "test_knowledge_bridge.Runtime.test_wrong_runtime_pin_refused",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.264,
+   "ran_line": "Ran 1 test in 0.181s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "6029f2688d3c8274feaf23d0ac28a89d58820b42550e3d380d583609f1a937fc"
+  },
+  {
+   "test_id": "test_knowledge_completion.ProtectedAdmission.test_criterion_missing_test_and_forged_admission_are_refused",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 14.371,
+   "ran_line": "Ran 1 test in 14.284s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "4b3e9f7fad5b31c3446b0736ffd8ab99742154817ed72f3d0f5a74f17ec43e95"
+  },
+  {
+   "test_id": "test_knowledge_completion.ProtectedAdmission.test_public_task_relative_admission_and_stale_rejection",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 12.909,
+   "ran_line": "Ran 1 test in 12.820s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "a971cdc4a00430b5a0904e3f3196043595310c86f9be89491b362e8d7eb5e295"
+  },
+  {
+   "test_id": "test_knowledge_completion.RemainingPublicContract.test_public_advanced_modes_source_closure_and_replay",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 20.329,
+   "ran_line": "Ran 1 test in 20.240s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "e3e1a46c8a8e9c47998510f73c90e02c4271fe804cd68e5740078359af668618"
+  },
+  {
+   "test_id": "test_knowledge_distributed.DistributedRetrieval.test_exact_score_ties_choose_canonical_global_seed",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 2.472,
+   "ran_line": "Ran 1 test in 2.394s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "37e0df39f0bc033a2dcaa194e723f8965ffa14b25c27e533cfda6e8d5977931b"
+  },
+  {
+   "test_id": "test_knowledge_distributed.DistributedRetrieval.test_killed_owner_blocks_without_partial_pack",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.664,
+   "ran_line": "Ran 1 test in 1.585s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "ca89a53f26f72f384ea7646fdba74cbc44e9f763a14b9f7c933e809d5c78d008"
+  },
+  {
+   "test_id": "test_knowledge_distributed.DistributedRetrieval.test_prepared_shared_vectors_are_used_by_both_actual_shards",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.865,
+   "ran_line": "Ran 1 test in 1.788s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "c61b0dcf39e1a4009a5a7a76aa51fb4eaec2355963e056c0b87eac39fa721549"
+  },
+  {
+   "test_id": "test_knowledge_distributed.DistributedRetrieval.test_real_cross_partition_paths_reverse_and_global_limits",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 7.48,
+   "ran_line": "Ran 1 test in 7.401s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "2856148de629619c0a6b35aaae41bb3e27580bd6a621892cddc628940f8f06a8"
+  },
+  {
+   "test_id": "test_knowledge_distributed.DistributedRetrieval.test_real_two_worker_result_equals_single_worker",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 6.877,
+   "ran_line": "Ran 1 test in 6.792s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "05df428160af15ae9429f6b03270dccf2ea628588cca71bb9469be5b1c6db5aa"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.27,
+   "ran_line": "Ran 1 test in 0.190s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "30daa97da01b30ab13f779ad53832999a92e3fcf28fb49118b5efe86d75f829c"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.689,
+   "ran_line": "Ran 1 test in 1.608s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "00a5b18e71b3fc226ff962e374c89d990fed706b783b02d516a5baa5dde455f8"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.112,
+   "ran_line": "Ran 1 test in 0.035s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "c53cfd2837291b6ff76ec3e713df10eea117874d180a5d717c091c4e41719b95"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.265,
+   "ran_line": "Ran 1 test in 0.187s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "6a9b19b4bf41d6fe67bdee6662800c82f56c2a87f10a2a0ead5f11f965132a19"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.112,
+   "ran_line": "Ran 1 test in 0.035s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "8a2d60e1dd73b91fafe2e8b393575d159b8d04fe57c3e613581ad2a04be4a463"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.373,
+   "ran_line": "Ran 1 test in 1.296s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "1392a02415f37475f5ac4792df32657fb30eb92767a92e2591c31ecbcf2f138e"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.446,
+   "ran_line": "Ran 1 test in 1.361s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "655a269d40be7a9c5882c7f3bdf581e326d6de8c6b0cc007abcefe0dbb2d9fef"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.415,
+   "ran_line": "Ran 1 test in 1.319s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "c87498bdbfde3674e512b8eeb96fa49bed2e6d9dac82c7b6556a177ae97c819a"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.418,
+   "ran_line": "Ran 1 test in 1.336s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "b10350679ddc94eefa3f3f72ddfeca35a7300c0a8997b5f7c363bfe32c2eef12"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.815,
+   "ran_line": "Ran 1 test in 0.734s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "925d07050d77147f074715d7856aae851aec64c2fc0ae2ccc400eeb5b9186877"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.273,
+   "ran_line": "Ran 1 test in 0.193s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "229ac32b3683badd06fd353982764f65e8a03eb6348282f9de4aed423c69939c"
+  },
+  {
+   "test_id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.115,
+   "ran_line": "Ran 1 test in 0.035s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "6c866832a24bd5e238e7e1c0532e5e2e0deab4cb0ad6b78e21c11b9ad1799470"
+  },
+  {
+   "test_id": "test_knowledge_retrieval_v2.RetrievalV2.test_actual_text_worker_incoming_replay_is_current_and_exact",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 5.982,
+   "ran_line": "Ran 1 test in 5.895s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "3398f5e7ca167b3aee6aec4c11a18979a7410d9b010e70c31b3577cf111a3c30"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_audit_requires_protected_run_map",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 4.914,
+   "ran_line": "Ran 1 test in 4.829s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "0eec97f013ba3acb825a93c9f84e698d660d5085d92b617d01298dffecbb4b0b"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_changed_pack_refused_before_new_run_state",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.819,
+   "ran_line": "Ran 1 test in 1.731s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "8231a5f46f829c689917aa5fd86a7ffe917a0e6c60a71e5966c9289d5fc1c99e"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_copied_map_uses_verified_original_run_directory",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 6.448,
+   "ran_line": "Ran 1 test in 6.362s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "59a9cefbf5cbe76f1686e4eddee643c4ae621a60e403f6081e55ca2c3714e605"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_current_acl_revoke_staleness_and_missing_receipt_block",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 5.648,
+   "ran_line": "Ran 1 test in 5.565s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "26adf5908c9c738bb244b518dbf18526e58a95fb2eef8e92d801702fc717cb33"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_pack_reaches_actual_serialized_request_and_sidecar",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 6.287,
+   "ran_line": "Ran 1 test in 6.204s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "57668af0b0c2e0a3102e19fcf31d36047767b9a0353d66f544646c499ecc570f"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_detects_reversed_retrieved_proposition",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 7.901,
+   "ran_line": "Ran 1 test in 7.814s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "1bb8186b8fc14208219fafddba5ce14ce57af7ebb5a80336df96bfccb9d9377d"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_does_not_blame_source_for_unretrieved_unit",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 8.082,
+   "ran_line": "Ran 1 test in 7.998s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "53586b139766d9a0763d30540e609a82efbc28eec26d717eebac67d6a9d282ff"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_matching_structured_proposition_passes",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 8.081,
+   "ran_line": "Ran 1 test in 7.997s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "9902b42e7bb983cd9ddc3f413c3809beb7cb6d08cf1c6f1b92bd53f3571e70fb"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_resume_without_pack_is_a_downgrade",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 4.894,
+   "ran_line": "Ran 1 test in 4.808s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "a089cf58df58bcd726b118c83d3f1e55d2d0334a6e939a79aceab73a73c0a5a4"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_unrelated_execution_task_blocks_before_state",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.775,
+   "ran_line": "Ran 1 test in 1.692s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "f15f2fc4eabf4d31851ebc1e81950ab9e0c2d36bc853c767fc5e153e59e7d930"
+  },
+  {
+   "test_id": "test_knowledge_workflow.RuntimeWorkflow.test_unrelated_plain_run_cannot_satisfy_graph_required_verifier",
+   "group": "A_runtime",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 2.326,
+   "ran_line": "Ran 1 test in 2.240s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "b25985fe3614163dd999d44dea3714049436d366b67d4bd4b6ed745ffc6b72f0"
+  },
+  {
+   "test_id": "test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target",
+   "group": "B_parser",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.114,
+   "ran_line": "Ran 1 test in 0.026s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "581f344408288ca3030ef205a8971689efc28ffd4de0b666146f1dfc6ce4d6f7"
+  },
+  {
+   "test_id": "test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success",
+   "group": "B_parser",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.107,
+   "ran_line": "Ran 1 test in 0.020s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "7bcb0ec5edbed9e4134831ee2a2f6be13592c146585cce074bf50e62987ee30e"
+  },
+  {
+   "test_id": "test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection",
+   "group": "B_parser",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.122,
+   "ran_line": "Ran 1 test in 0.034s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "7750915dbfc4bc33563ebc481b6d549afb5925e5d0f857d1107ff353618f14f7"
+  },
+  {
+   "test_id": "test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges",
+   "group": "B_parser",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.108,
+   "ran_line": "Ran 1 test in 0.021s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "8c840c5f564b42d80583d150b2ba77cab142034ea70ea019cd490650987535ca"
+  },
+  {
+   "test_id": "test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts",
+   "group": "C_model",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 119.112,
+   "ran_line": "Ran 1 test in 119.024s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "f667a115c6d1c10158376557d488da0f2953fa6ef6bb95767a33892be585c732"
+  },
+  {
+   "test_id": "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation",
+   "group": "C_model",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.293,
+   "ran_line": "Ran 1 test in 1.190s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "ad8bfbe3da00e3bb598f5cd15eabe9c126c0cab3dbdd99816fdc02b5b1bd6e7d"
+  },
+  {
+   "test_id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens",
+   "group": "C_model",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 17.756,
+   "ran_line": "Ran 1 test in 17.669s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "6367ce35ffafcd7d368e4f4edb84f9b69badccd65f0389667f753dbf5399bcf4"
+  },
+  {
+   "test_id": "rp2_unchanged_test_recursive_launch_policy.RecursiveLaunchPolicy.test_checked_read_rejects_a_symlinked_source_or_parent",
+   "group": "E_symlink",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.193,
+   "ran_line": "Ran 1 test in 0.003s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "1490baf3e12dacc13b81d5e467438a5e74aceeecee6bc283c0a3d2f582ea3510"
+  },
+  {
+   "test_id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation",
+   "group": "C_model",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 5.083,
+   "ran_line": "Ran 1 test in 5.003s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "ec3057b8ed407db7d06fcd270574fa48842fb56c735f7338e90f7d29cb595aeb"
+  },
+  {
+   "test_id": "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens",
+   "group": "C_model",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 1.207,
+   "ran_line": "Ran 1 test in 1.118s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "1db096f3bcaa393381573c5174fc79aae6ebf477ca0cb6f0cc2fd24c73e7b9de"
+  },
+  {
+   "test_id": "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model",
+   "group": "C_model",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 7.519,
+   "ran_line": "Ran 1 test in 7.434s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "18abefc5fc2f7f2ac0162f1e815cf814c3bad2aa74bb9e22c8f7fe5b3fefc697"
+  },
+  {
+   "test_id": "test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants",
+   "group": "D_posix",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.819,
+   "ran_line": "Ran 1 test in 0.730s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "d255915eb703739ba255b8b289946c62685eda9c6be35cc055248ad3346e34f4"
+  },
+  {
+   "test_id": "test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped",
+   "group": "D_posix",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 3.211,
+   "ran_line": "Ran 1 test in 3.132s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "1186c05a02367fc285e75ee9b327b7783c84945b365181983a0e91dc3de1a2f4"
+  },
+  {
+   "test_id": "test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work",
+   "group": "D_posix",
+   "status": "PASS",
+   "exit_code": 0,
+   "elapsed_s": 0.138,
+   "ran_line": "Ran 1 test in 0.058s",
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "daad199a5eefc55eb21d203dfb90b53d56fcb598645fa8a19c6d3f5f4f93a9f0"
+  }
+ ],
+ "reproduction_commands": [
+  "sha256sum upload/folder/209af1ee/RP2-Source-e801c358.zip  # expect cfff992529bd7fbe13768b478a61676a6be7756c73654a195af4d54c13cfb25d",
+  "python3 scripts/verify_rp2_skipped.py --selftest  # expect 28/28",
+  "python3 scripts/verify_rp2_skipped.py --source-archive <zip> --source-manifest <manifest> --workspace <ws> --stages platform-record,provenance,targets,environments,models,compat,groups,validate,source,report --resume --group-budget 300"
+ ]
+}

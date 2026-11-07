@@ -1,0 +1,55 @@
+{
+  "status": "EXTERNAL_RESULTS_REPORTED_RAW_EXECUTION_VALIDATION_PENDING",
+  "tested_commit": "e801c3587e5bb87e7ea85bbdbf1ab6edd3b245ef",
+  "base_checkpoint": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "files": [
+    {
+      "supplied_name": "Unconfirmed 81543.crdownload",
+      "snapshot_path": "verify_rp2_skipped.py.snapshot",
+      "size": 105694,
+      "sha256": "893285a00ebaf2f1b223caeca9f0b2fc8600cc9ec08ef6a36bd022f8697410c4",
+      "lines": 1991
+    },
+    {
+      "supplied_name": "GPT-BRIEFING.txt",
+      "snapshot_path": "GPT-BRIEFING.txt",
+      "size": 18091,
+      "sha256": "feb9688bc303ea2a2cb0ae8857d137ebca95f854b7303bbb35647c05fccaf87b",
+      "lines": 233
+    },
+    {
+      "supplied_name": "RP2-VERIFIED-evidence-bundle.json",
+      "snapshot_path": "RP2-VERIFIED-evidence-bundle.json",
+      "size": 26703,
+      "sha256": "0c69eb821409812f7baa8d78a77371a792b0161029ed38a21c8fe059f9670301",
+      "lines": 657
+    },
+    {
+      "supplied_name": "Recheck-Gate-Evidence-20261105.json",
+      "snapshot_path": "Recheck-Gate-Evidence-20261105.json",
+      "size": 18048,
+      "sha256": "a3a53b97de451b51e8082b8c733d12c8803b9dfeee6ad03bb67972072a07778b",
+      "lines": 392
+    },
+    {
+      "supplied_name": "Recheck-Rerun-Summary-20261105.json",
+      "snapshot_path": "Recheck-Rerun-Summary-20261105.json",
+      "size": 10539,
+      "sha256": "490e95f191f4da0e36463ef98553ad84663717eb181711cd836027e33ccfedf9",
+      "lines": 340
+    },
+    {
+      "supplied_name": "Pasted text.txt",
+      "snapshot_path": "User-Pasted-Briefing.txt",
+      "size": 18239,
+      "sha256": "3a12eaf7197eadb01b1cc076db0885075f4c3306e09aa9a4a67e0187957273b1",
+      "lines": 232
+    }
+  ],
+  "read_lines": 3845,
+  "raw_logs_supplied": false,
+  "linux_tests_independently_rerun_here": false,
+  "gate1_complete": false,
+  "release_ready": false,
+  "installed": false
+}

@@ -1,0 +1,392 @@
+{
+  "generated_utc": "2026-11-04T16:17:13.322+00:00",
+  "source_evidence": {
+    "git_route": {
+      "ok": false,
+      "note": "not provided / failed"
+    },
+    "archive_route": {
+      "archive": "/home/z/my-project/upload/folder/209af1ee/RP2-Source-e801c358.zip",
+      "manifest": "/home/z/my-project/upload/folder/5866dd51/RP2-Source-Manifest.json",
+      "manifest_keys": [
+        "archive_sha256",
+        "commit",
+        "files",
+        "root_dir"
+      ],
+      "archive_sha256_actual": "cfff992529bd7fbe13768b478a61676a6be7756c73654a195af4d54c13cfb25d",
+      "manifest_file_count": 699,
+      "extraction": {
+        "count": 699,
+        "rejected_members": []
+      },
+      "verified_files": 699,
+      "src_root": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source",
+      "ok": true
+    }
+  },
+  "gate_items": [
+    {
+      "check": "source_identity_established",
+      "ok": true,
+      "evidence": {
+        "git_route": {
+          "ok": false,
+          "note": "not provided / failed"
+        },
+        "archive_route": {
+          "archive": "/home/z/my-project/upload/folder/209af1ee/RP2-Source-e801c358.zip",
+          "manifest": "/home/z/my-project/upload/folder/5866dd51/RP2-Source-Manifest.json",
+          "manifest_keys": [
+            "archive_sha256",
+            "commit",
+            "files",
+            "root_dir"
+          ],
+          "archive_sha256_actual": "cfff992529bd7fbe13768b478a61676a6be7756c73654a195af4d54c13cfb25d",
+          "manifest_file_count": 699,
+          "extraction": {
+            "count": 699,
+            "rejected_members": []
+          },
+          "verified_files": 699,
+          "src_root": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source",
+          "ok": true
+        }
+      }
+    },
+    {
+      "check": "RP2_acceptance_record_present",
+      "ok": true,
+      "evidence": {
+        "searched": [
+          ".github/run-artifacts/recursive-integration-rp2-20261031/RP2-Accepted.json",
+          "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/02-RP2-Accepted.json.snapshot"
+        ],
+        "found": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source/docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/02-RP2-Accepted.json.snapshot",
+        "origin": "archival snapshot"
+      }
+    },
+    {
+      "check": "acceptance_record_byte_exact_vs_expected",
+      "ok": true,
+      "evidence": {
+        "path": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source/docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/02-RP2-Accepted.json.snapshot",
+        "size": 16283,
+        "expected_size": 16283,
+        "sha256": "feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369",
+        "expected_sha256": "feb82bdbecfa8fef0c37ba72f7d4601b4fb0febea05e6cb101adc5aa1f078369"
+      }
+    },
+    {
+      "check": "acceptance_record_strict_json_parse",
+      "ok": true,
+      "evidence": "strict parse OK (dup keys / non-finite rejected)"
+    },
+    {
+      "check": "acceptance_record_has_knowledge_and_compatibility_skipped_lists",
+      "ok": true,
+      "evidence": {
+        "checks_keys": [
+          "compatibility-final-02",
+          "knowledge-final-02"
+        ],
+        "recorded_totals": {
+          "knowledge": {
+            "total": null,
+            "passed": 238,
+            "failed": null,
+            "errors": null,
+            "skipped": [
+              [
+                "test_knowledge_advanced.AdvancedRetrieval.test_all_three_real_adapters_return_only_authored_paths",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_advanced.AdvancedRetrieval.test_global_report_findings_bind_exact_source_node_text",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_benefit.RealBenefit.test_real_case_runs_regressions_and_preserves_fair_direct_baseline",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_bridge.Runtime.test_actual_lineage_contains_recursive_premise",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_bridge.Runtime.test_expired_private_nodes_absent_before_runtime",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_bridge.Runtime.test_nonaxis_real_query_replay_and_worker_timeout",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_bridge.Runtime.test_real_semantica_two_hop_vectors_lineage_shacl",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_bridge.Runtime.test_runtime_visit_budget",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_bridge.Runtime.test_wrong_runtime_pin_refused",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_completion.ProtectedAdmission.test_criterion_missing_test_and_forged_admission_are_refused",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_completion.ProtectedAdmission.test_public_task_relative_admission_and_stale_rejection",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_completion.RemainingPublicContract.test_public_advanced_modes_source_closure_and_replay",
+                "explicit pinned runtime required"
+              ],
+              [
+                "test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants",
+                "POSIX process-group observation required"
+              ],
+              [
+                "test_knowledge_distributed.DistributedRetrieval.test_exact_score_ties_choose_canonical_global_seed",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_distributed.DistributedRetrieval.test_killed_owner_blocks_without_partial_pack",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_distributed.DistributedRetrieval.test_prepared_shared_vectors_are_used_by_both_actual_shards",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_distributed.DistributedRetrieval.test_real_cross_partition_paths_reverse_and_global_limits",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_distributed.DistributedRetrieval.test_real_two_worker_result_equals_single_worker",
+                "pinned runtime required"
+              ],
+              [
+                "test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped",
+                "POSIX pinned runtime required"
+              ],
+              [
+                "test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target",
+                "isolated parser runtime required"
+              ],
+              [
+                "test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success",
+                "isolated parser runtime required"
+              ],
+              [
+                "test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection",
+                "isolated parser runtime required"
+              ],
+              [
+                "test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges",
+                "isolated parser runtime required"
+              ],
+              [
+                "test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work",
+                "direct per-model signal timeout is POSIX-only"
+              ],
+              [
+                "test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts",
+                "explicit actual model and worker runtimes not selected"
+              ],
+              [
+                "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation",
+                "explicit local model manifest and interpreter not selected"
+              ],
+              [
+                "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens",
+                "explicit local model manifest and interpreter not selected"
+              ],
+              [
+                "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation",
+                "explicit local model manifest and interpreter not selected"
+              ],
+              [
+                "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens",
+                "explicit local model manifest and interpreter not selected"
+              ],
+              [
+                "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model",
+                "explicit local model manifest and interpreter not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_retrieval_v2.RetrievalV2.test_actual_text_worker_incoming_replay_is_current_and_exact",
+                "explicit pinned Semantica runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_audit_requires_protected_run_map",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_changed_pack_refused_before_new_run_state",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_copied_map_uses_verified_original_run_directory",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_current_acl_revoke_staleness_and_missing_receipt_block",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_pack_reaches_actual_serialized_request_and_sidecar",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_detects_reversed_retrieved_proposition",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_does_not_blame_source_for_unretrieved_unit",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_real_audit_matching_structured_proposition_passes",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_resume_without_pack_is_a_downgrade",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_unrelated_execution_task_blocks_before_state",
+                "explicit pinned runtime not selected"
+              ],
+              [
+                "test_knowledge_workflow.RuntimeWorkflow.test_unrelated_plain_run_cannot_satisfy_graph_required_verifier",
+                "explicit pinned runtime not selected"
+              ]
+            ]
+          },
+          "compatibility": {
+            "total": null,
+            "passed": 44,
+            "failed": null,
+            "errors": null,
+            "skipped": [
+              [
+                "rp2_unchanged_test_recursive_launch_policy.RecursiveLaunchPolicy.test_checked_read_rejects_a_symlinked_source_or_parent",
+                "symlink creation unavailable in this controller context"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "check": "nine_source_hashes_verified",
+      "ok": true,
+      "evidence": {
+        "sources_in_record": 9,
+        "mismatches_or_missing": []
+      }
+    },
+    {
+      "check": "compatibility_wrapper_present_with_expected_sha256",
+      "ok": true,
+      "evidence": {
+        "searched": [
+          ".github/run-artifacts/recursive-integration-rp2-20261031/controls/test_promoted_recursive_contracts.py",
+          "docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/03-test_promoted_recursive_contracts.py.snapshot"
+        ],
+        "found": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source/docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/archive/03-test_promoted_recursive_contracts.py.snapshot",
+        "expected_sha256": "02265f81747ea4953102569e158e2a3eca56c8381305ebec4ab381c68e296a96"
+      }
+    },
+    {
+      "check": "promoted_recursive_policy_present_with_expected_sha256",
+      "ok": true,
+      "evidence": {
+        "path": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source/memory-integrity/scripts/knowledge_bridge/recursive_policy.py",
+        "present": true,
+        "sha256": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18",
+        "expected_sha256": "ec950e7fb6dfb37ed875b49f5a578f8e34f81b15905eb4efd0507f7068fb3b18"
+      }
+    },
+    {
+      "check": "tests_v2_target_modules_present",
+      "ok": true,
+      "evidence": {
+        "absent_modules": [],
+        "note": "Presence on this snapshot does not equal RP2-accepted content; hashes are verified only via the acceptance record 'sources' mapping."
+      }
+    },
+    {
+      "check": "knowledge_runtime_workflow_present",
+      "ok": true,
+      "evidence": {
+        "path": ".github/workflows/knowledge-runtime.yml"
+      }
+    },
+    {
+      "check": "compat_archive_manifest_mapping_present",
+      "ok": true,
+      "evidence": {
+        "searched": [
+          "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source/docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/Archive-Manifest.json"
+        ],
+        "found": "/home/z/my-project/rp2-verify/ws-recheck-20261105/restored-source/rp2-source/docs/fable/evidence/offline-first-20261020/rp2-rp3-reuse-checkpoint-20261101/Archive-Manifest.json",
+        "note": "Archive-Manifest.json maps the 11 byte-exact snapshots; the 5 compat-critical ones (wrapper + 4 original test modules) are restored from it. D10: the delivered checkpoint layout keeps it in the checkpoint directory."
+      }
+    }
+  ],
+  "missing_count": 0
+}
