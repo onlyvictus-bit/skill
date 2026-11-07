@@ -1,0 +1,121 @@
+acceptance/runtime-handshake: RUNNING
+acceptance/runtime-handshake: 1.625 seconds
+acceptance/project: RUNNING
+acceptance/project: 2.468 seconds
+acceptance/freshness-literal-discovery: RUNNING
+acceptance/freshness-literal-discovery: 1.515 seconds
+acceptance/replay-freshness-literal-discovery: RUNNING
+acceptance/replay-freshness-literal-discovery: 1.031 seconds
+acceptance/freshness-literal-mandatory: RUNNING
+acceptance/freshness-literal-mandatory: 1.563 seconds
+acceptance/replay-freshness-literal-mandatory: RUNNING
+acceptance/replay-freshness-literal-mandatory: 1.141 seconds
+acceptance/freshness-lexical-discovery: RUNNING
+acceptance/freshness-lexical-discovery: 7.984 seconds
+acceptance/replay-freshness-lexical-discovery: RUNNING
+acceptance/replay-freshness-lexical-discovery: 7.172 seconds
+acceptance/freshness-lexical-mandatory: RUNNING
+acceptance/freshness-lexical-mandatory: 7.094 seconds
+acceptance/replay-freshness-lexical-mandatory: RUNNING
+acceptance/replay-freshness-lexical-mandatory: 6.734 seconds
+acceptance/freshness-lsa-discovery: RUNNING
+acceptance/freshness-lsa-discovery: 7.094 seconds
+acceptance/replay-freshness-lsa-discovery: RUNNING
+acceptance/replay-freshness-lsa-discovery: 6.656 seconds
+acceptance/freshness-lsa-mandatory: RUNNING
+acceptance/freshness-lsa-mandatory: 7.015 seconds
+acceptance/replay-freshness-lsa-mandatory: RUNNING
+acceptance/replay-freshness-lsa-mandatory: 6.859 seconds
+acceptance/unicode-literal-discovery: RUNNING
+acceptance/unicode-literal-discovery: 1.422 seconds
+acceptance/replay-unicode-literal-discovery: RUNNING
+acceptance/replay-unicode-literal-discovery: 1.031 seconds
+acceptance/unicode-literal-mandatory: RUNNING
+acceptance/unicode-literal-mandatory: 1.485 seconds
+acceptance/replay-unicode-literal-mandatory: RUNNING
+acceptance/replay-unicode-literal-mandatory: 1.172 seconds
+acceptance/unicode-lexical-discovery: RUNNING
+acceptance/unicode-lexical-discovery: 6.984 seconds
+acceptance/replay-unicode-lexical-discovery: RUNNING
+acceptance/replay-unicode-lexical-discovery: 6.703 seconds
+acceptance/unicode-lexical-mandatory: RUNNING
+acceptance/unicode-lexical-mandatory: 7.110 seconds
+acceptance/replay-unicode-lexical-mandatory: RUNNING
+acceptance/replay-unicode-lexical-mandatory: 6.906 seconds
+acceptance/unicode-lsa-discovery: RUNNING
+acceptance/unicode-lsa-discovery: 7.297 seconds
+acceptance/replay-unicode-lsa-discovery: RUNNING
+acceptance/replay-unicode-lsa-discovery: 6.437 seconds
+acceptance/unicode-lsa-mandatory: RUNNING
+acceptance/unicode-lsa-mandatory: 5.875 seconds
+acceptance/replay-unicode-lsa-mandatory: RUNNING
+acceptance/replay-unicode-lsa-mandatory: 6.109 seconds
+acceptance/approval-literal-discovery: RUNNING
+acceptance/approval-literal-discovery: 1.156 seconds
+acceptance/replay-approval-literal-discovery: RUNNING
+acceptance/replay-approval-literal-discovery: 0.875 seconds
+acceptance/approval-literal-mandatory: RUNNING
+acceptance/approval-literal-mandatory: 1.265 seconds
+acceptance/replay-approval-literal-mandatory: RUNNING
+acceptance/replay-approval-literal-mandatory: 0.938 seconds
+acceptance/approval-lexical-discovery: RUNNING
+acceptance/approval-lexical-discovery: 6.563 seconds
+acceptance/replay-approval-lexical-discovery: RUNNING
+acceptance/replay-approval-lexical-discovery: 6.719 seconds
+acceptance/approval-lexical-mandatory: RUNNING
+acceptance/approval-lexical-mandatory: 6.797 seconds
+acceptance/replay-approval-lexical-mandatory: RUNNING
+acceptance/replay-approval-lexical-mandatory: 6.906 seconds
+acceptance/approval-lsa-discovery: RUNNING
+acceptance/approval-lsa-discovery: 7.172 seconds
+acceptance/replay-approval-lsa-discovery: RUNNING
+acceptance/replay-approval-lsa-discovery: 6.797 seconds
+acceptance/approval-lsa-mandatory: RUNNING
+acceptance/approval-lsa-mandatory: 7.062 seconds
+acceptance/replay-approval-lsa-mandatory: RUNNING
+acceptance/replay-approval-lsa-mandatory: 7.015 seconds
+acceptance/resume-literal-discovery: RUNNING
+acceptance/resume-literal-discovery: 1.407 seconds
+acceptance/replay-resume-literal-discovery: RUNNING
+acceptance/replay-resume-literal-discovery: 0.985 seconds
+acceptance/resume-literal-mandatory: RUNNING
+acceptance/resume-literal-mandatory: 1.406 seconds
+acceptance/replay-resume-literal-mandatory: RUNNING
+acceptance/replay-resume-literal-mandatory: 1.063 seconds
+acceptance/resume-lexical-discovery: RUNNING
+acceptance/resume-lexical-discovery: 7.218 seconds
+acceptance/replay-resume-lexical-discovery: RUNNING
+acceptance/replay-resume-lexical-discovery: 6.890 seconds
+acceptance/resume-lexical-mandatory: RUNNING
+acceptance/resume-lexical-mandatory: 6.985 seconds
+acceptance/replay-resume-lexical-mandatory: RUNNING
+acceptance/replay-resume-lexical-mandatory: 5.969 seconds
+acceptance/resume-lsa-discovery: RUNNING
+acceptance/resume-lsa-discovery: 6.078 seconds
+acceptance/replay-resume-lsa-discovery: RUNNING
+acceptance/replay-resume-lsa-discovery: 5.750 seconds
+acceptance/resume-lsa-mandatory: RUNNING
+acceptance/resume-lsa-mandatory: 6.141 seconds
+acceptance/replay-resume-lsa-mandatory: RUNNING
+acceptance/replay-resume-lsa-mandatory: 5.937 seconds
+acceptance/coding-tests: RUNNING
+acceptance/coding-tests: 1.578 seconds
+acceptance/save: RUNNING
+acceptance/save: 11.610 seconds
+acceptance/fresh-recall: RUNNING
+acceptance/fresh-recall: 2.312 seconds
+acceptance/unchanged-resume: RUNNING
+acceptance/unchanged-resume: 3.313 seconds
+acceptance/changed-source: RUNNING
+acceptance/changed-source: 1.391 seconds
+acceptance/revoked-access: RUNNING
+acceptance/revoked-access: 1.328 seconds
+acceptance/budget: RUNNING
+acceptance/budget: 1.360 seconds
+acceptance/optional-stale: RUNNING
+acceptance/optional-stale: 1.406 seconds
+acceptance/replay-optional-stale: RUNNING
+acceptance/replay-optional-stale: 0.985 seconds
+acceptance/forged-pack: RUNNING
+acceptance/forged-pack: 1.125 seconds
+{"status": "PASS_BOUNDED_RUNTIME", "receipt": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\acceptance\\Receipt.json", "receipt_sha256": "fcfa1d791403742a38a3e4157ea5058085fe5b401670818a0d59f2ee4a6da395", "checks_passed": 11, "measurements": 24, "whole_skill_ready": false, "failure": null}

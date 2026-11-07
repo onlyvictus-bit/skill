@@ -1,0 +1,31 @@
+import hashlib,json,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+import common as q
+import run_gate1 as run
+class RuntimeGuards(unittest.TestCase):
+    def folder(self):return Path(tempfile.mkdtemp(prefix='runtime-guard-',dir=Path(__file__).parent))
+    def test_existing_attempt_refused_before_reader_or_account(self):
+        folder=self.folder()
+        with patch.object(q,'RUN',folder),patch.object(q,'inputs',return_value={}),patch.object(run,'capture_ready')as reader:
+            with self.assertRaisesRegex(ValueError,'EXISTING_RUN'):run.run('a'*64)
+            reader.assert_not_called()
+    def test_wrong_account_never_creates_attempt(self):
+        output=self.folder()/'absent-run'
+        with patch.object(q,'RUN',output),patch.object(q,'inputs',return_value={}),patch.object(run,'capture_ready'),\
+             patch.object(q.base,'normal_account',side_effect=ValueError('wrong SID')):
+            with self.assertRaisesRegex(ValueError,'wrong SID'):run.run('a'*64)
+        self.assertFalse(output.exists())
+    def test_verify_only_never_creates_attempt_or_checks_runtime_account(self):
+        output=self.folder()/'absent-run'
+        with patch.object(q,'RUN',output),patch.object(q,'inputs',return_value={}),patch.object(run,'capture_ready'),\
+             patch.object(q.base,'normal_account')as account:
+            self.assertEqual(run.run('a'*64,True),0);account.assert_not_called()
+        self.assertFalse(output.exists())
+    def test_different_commit_refused_before_source_or_runtime_reads(self):
+        folder=self.folder();raw=json.dumps({'scope':'FULL_GATE1_20261107','source':str(q.SOURCE),
+          'run':str(q.RUN),'commit':'e801c3587e5bb87e7ea85bbdbf1ab6edd3b245ef'}).encode()
+        (folder/'Inputs.json').write_bytes(raw)
+        with patch.object(q,'P',folder):
+            with self.assertRaisesRegex(ValueError,'COMMITTED_SOURCE_IDENTITY'):q.inputs(hashlib.sha256(raw).hexdigest())
+if __name__=='__main__':unittest.main(verbosity=2)

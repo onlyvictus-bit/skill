@@ -1,0 +1,60 @@
+import copy,itertools,unittest
+import gate1_contract as c
+class Contract(unittest.TestCase):
+    def suite(self):
+        ids=['tests.A.test_one','tests.A.test_two']
+        receipt={'tests_run':2,'discovered':2,'interrupted':False,
+          **{k:[]for k in ('failures','errors','excluded','expected_failures','skipped')}}
+        cases={'expected_ids':ids,'outcomes':{'started':ids,'finished':[
+          {'id':x,'outcome':'PASS','reason':''}for x in ids]}}
+        return ids,receipt,cases
+    def test_complete_suite_accepted(self):c.suite(*self.suite(),{})
+    def test_suite_mutations_refused(self):
+        ids,r,v=self.suite()
+        mutations=[lambda x:x['outcomes']['started'].pop(),lambda x:x['outcomes']['finished'].pop(),
+          lambda x:x['outcomes']['finished'].reverse(),
+          lambda x:x['outcomes']['finished'][0].update(outcome='FAIL'),
+          lambda x:x['outcomes']['finished'][0].update(outcome='EXPECTED_FAILURE'),
+          lambda x:x['outcomes']['finished'][0].update(outcome='SKIP',reason='runtime absent')]
+        for mutation in mutations:
+            with self.subTest(mutation=mutation):
+                changed=copy.deepcopy(v);mutation(changed)
+                with self.assertRaises(ValueError):c.suite(ids,r,changed,{})
+        for key in ('failures','errors','excluded','expected_failures'):
+            changed=copy.deepcopy(r);changed[key]=['unacceptable']
+            with self.assertRaises(ValueError):c.suite(ids,changed,v,{})
+    def test_skip_requires_exact_permission_and_accounting(self):
+        ids,r,v=self.suite();v['outcomes']['finished'][1].update(outcome='SKIP',reason='POSIX only')
+        r['skipped']=[[ids[1],'POSIX only']];c.suite(ids,r,v,{ids[1]:'POSIX'})
+        with self.assertRaises(ValueError):c.suite(ids,r,v,{})
+        r['skipped']=[]
+        with self.assertRaises(ValueError):c.suite(ids,r,v,{ids[1]:'POSIX'})
+    def test_capture_failure_flags_refused(self):
+        row={'exit_code':0,'execution':'EXITED','failure':None,'containment':{
+          'capture_complete':True,'tree_contained':True,'capture_errors':[],
+          'timed_out':False,'output_limit_exceeded':False}}
+        c.capture(row)
+        for key,value in [('capture_complete',False),('tree_contained',False),
+          ('capture_errors',['lost stream']),('timed_out',True),('output_limit_exceeded',True)]:
+            changed=copy.deepcopy(row);changed['containment'][key]=value
+            with self.assertRaises(ValueError):c.capture(changed)
+        row['exit_code']=1
+        with self.assertRaises(ValueError):c.capture(row)
+    def test_measurements_exact_24_no_duplicates_replays_and_positive_controls(self):
+        rows=[{'case':case,'mode':mode,'mandatory':mandatory,'replay_verified':True,
+          'mandatory_missing':[],'ranked_results':[]if mode=='literal'else[{'id':'positive'}]}
+          for case,mode,mandatory in itertools.product(c.CASES,c.MODES,(False,True))]
+        c.measurements(rows)
+        for mutate in [lambda x:x.pop(),lambda x:x.__setitem__(0,copy.deepcopy(x[1])),
+          lambda x:x[0].update(replay_verified=False),lambda x:x[0].update(mandatory_missing=['missing']),
+          lambda x:x[2].update(ranked_results=[])]:
+            changed=copy.deepcopy(rows);mutate(changed)
+            with self.assertRaises(ValueError):c.measurements(changed)
+    def test_default_adapter_exact_anchors_and_roundtrip(self):
+        fixture='C:/fixture';raw=(c.ACCEPTANCE_ANCHORS[0][0]+'\n'+c.ACCEPTANCE_ANCHORS[1][0]+"\nfixture = Path(__file__).resolve().parents[1]/'fixtures/offline-first'").encode()
+        changed=c.adapt_acceptance(raw,fixture)
+        self.assertEqual(c.restore_acceptance(changed,fixture),raw)
+        self.assertNotIn(b"'--worker-timeout','60'",changed)
+        self.assertNotIn(b'timeout=60',changed)
+        with self.assertRaises(ValueError):c.adapt_acceptance(raw+b'\n'+c.ACCEPTANCE_ANCHORS[0][0].encode(),fixture)
+if __name__=='__main__':unittest.main(verbosity=2)

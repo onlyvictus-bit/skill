@@ -1,0 +1,25 @@
+import sys,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+P=Path(__file__).absolute().parent
+OLD=P.parent/'gate1-full-20261107/suite_runner.py'
+class NoNativeTimer(unittest.TestCase):
+    def execute(self,path):
+        folder=Path(tempfile.mkdtemp(prefix='timer-protocol-',dir=P));output=folder/'tests'
+        namespace={'RecordingResult':type('Result',(),{'startTest':lambda *a:None,'stopTest':lambda *a:None}),'main':lambda:0}
+        argv=[str(path),'--package-root',str(P.parent/'gate1-full-20261107/source/memory-integrity'),'--output-dir',str(output)]
+        with patch.object(sys,'argv',argv),patch('runpy.run_path',return_value=namespace),patch('faulthandler.enable'),\
+          patch('faulthandler.disable'),patch('faulthandler.dump_traceback_later',side_effect=RuntimeError('CONTROL_NATIVE_TIMER_INVOKED'))as native:
+            scope={'__name__':'__main__','__file__':str(path)};original_path=list(sys.path)
+            try:exec(compile(path.read_bytes(),str(path),'exec'),scope)
+            except SystemExit as done:
+                self.assertEqual(done.code,0)
+                self.assertNotEqual(scope['stack'].name,scope['diagnostics'].stack.name)
+            finally:
+                sys.path[:]=original_path
+                if scope.get('stack')is not None:scope['stack'].close()
+            return native.call_count
+    def test_corrected_runner_never_schedules_native_dump(self):self.assertEqual(self.execute(P/'suite_runner.py'),0)
+    def test_historical_runner_reproduces_unsafe_timer_invocation(self):
+        with self.assertRaisesRegex(RuntimeError,'CONTROL_NATIVE_TIMER_INVOKED'):self.execute(OLD)
+if __name__=='__main__':unittest.main(verbosity=2)

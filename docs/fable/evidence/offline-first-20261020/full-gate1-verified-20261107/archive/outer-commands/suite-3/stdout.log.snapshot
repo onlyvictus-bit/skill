@@ -1,0 +1,35 @@
+{"scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI", "pattern": "test_knowledge*.py", "tests_run": 355, "failures": [], "errors": [], "skipped": [["test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants", "POSIX process-group observation required"], ["test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped", "POSIX pinned runtime required"], ["test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target", "isolated parser runtime required"], ["test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success", "isolated parser runtime required"], ["test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection", "isolated parser runtime required"], ["test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges", "isolated parser runtime required"], ["test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work", "direct per-model signal timeout is POSIX-only"], ["test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts", "explicit actual model and worker runtimes not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model", "explicit local model manifest and interpreter not selected"]], "expected_failures": [], "interrupted": false, "discovered": 355, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\tests-3\\unittest.log", "log_sha256": "6b352894739a4c534b8295982007c6589cebab9b47cd8d27bf1049788345f3ad"}
+st_readiness_after_start_timeout_never_transfers_handle_or_starts_io) ... ok
+test_real_blocked_write_cancels_while_reader_remains_alive (test_knowledge_windows_writer.WindowsWriter.test_real_blocked_write_cancels_while_reader_remains_alive) ... ok
+test_retiring_worker_handle_cannot_be_accepted_cancelled_or_waited_concurrently (test_knowledge_windows_writer.WindowsWriter.test_retiring_worker_handle_cannot_be_accepted_cancelled_or_waited_concurrently) ... ok
+test_short_writes_are_completed_before_success (test_knowledge_windows_writer.WindowsWriter.test_short_writes_are_completed_before_success) ... ok
+test_start_obeys_absolute_deadline_and_prevents_late_write (test_knowledge_windows_writer.WindowsWriter.test_start_obeys_absolute_deadline_and_prevents_late_write) ... ok
+test_stream_close_is_refused_until_blocked_writer_has_exited (test_knowledge_windows_writer.WindowsWriter.test_stream_close_is_refused_until_blocked_writer_has_exited) ... ok
+test_thread_creation_failure_never_transfers_stream_or_starts_io (test_knowledge_windows_writer.WindowsWriter.test_thread_creation_failure_never_transfers_stream_or_starts_io) ... ok
+test_benchmark_cross_drive_temp_keeps_companion_and_relative_output (test_knowledge_worker_cwd.WorkerCwd.test_benchmark_cross_drive_temp_keeps_companion_and_relative_output) ... ok
+test_benchmark_dispatch_keeps_caller_relative_companion_and_report (test_knowledge_worker_cwd.WorkerCwd.test_benchmark_dispatch_keeps_caller_relative_companion_and_report)
+Real dispatch/companion handshake/child, authored argv echo, NO model. ... ok
+test_shards_relative_writes_are_isolated_in_each_owned_directory (test_knowledge_worker_cwd.WorkerCwd.test_shards_relative_writes_are_isolated_in_each_owned_directory) ... ok
+test_single_relative_writes_are_isolated_per_invocation (test_knowledge_worker_cwd.WorkerCwd.test_single_relative_writes_are_isolated_per_invocation) ... ok
+test_successful_child_cwd_cleanup_failure_is_named_and_not_success (test_knowledge_worker_cwd.WorkerCwd.test_successful_child_cwd_cleanup_failure_is_named_and_not_success) ... ok
+test_timeout_stays_primary_when_cwd_cleanup_also_fails (test_knowledge_worker_cwd.WorkerCwd.test_timeout_stays_primary_when_cwd_cleanup_also_fails) ... ok
+test_worker_refusal_stays_primary_when_cwd_cleanup_also_fails (test_knowledge_worker_cwd.WorkerCwd.test_worker_refusal_stays_primary_when_cwd_cleanup_also_fails) ... ok
+test_absolute_worker_executable_required (test_knowledge_workflow.PublicSurface.test_absolute_worker_executable_required) ... ok
+test_public_front_door_routes_knowledge (test_knowledge_workflow.PublicSurface.test_public_front_door_routes_knowledge) ... ok
+test_audit_requires_protected_run_map (test_knowledge_workflow.RuntimeWorkflow.test_audit_requires_protected_run_map) ... ok
+test_changed_pack_refused_before_new_run_state (test_knowledge_workflow.RuntimeWorkflow.test_changed_pack_refused_before_new_run_state) ... ok
+test_copied_map_uses_verified_original_run_directory (test_knowledge_workflow.RuntimeWorkflow.test_copied_map_uses_verified_original_run_directory) ... ok
+test_current_acl_revoke_staleness_and_missing_receipt_block (test_knowledge_workflow.RuntimeWorkflow.test_current_acl_revoke_staleness_and_missing_receipt_block) ... ok
+test_pack_reaches_actual_serialized_request_and_sidecar (test_knowledge_workflow.RuntimeWorkflow.test_pack_reaches_actual_serialized_request_and_sidecar) ... ok
+test_real_audit_detects_reversed_retrieved_proposition (test_knowledge_workflow.RuntimeWorkflow.test_real_audit_detects_reversed_retrieved_proposition) ... ok
+test_real_audit_does_not_blame_source_for_unretrieved_unit (test_knowledge_workflow.RuntimeWorkflow.test_real_audit_does_not_blame_source_for_unretrieved_unit) ... ok
+test_real_audit_matching_structured_proposition_passes (test_knowledge_workflow.RuntimeWorkflow.test_real_audit_matching_structured_proposition_passes) ... ok
+test_resume_without_pack_is_a_downgrade (test_knowledge_workflow.RuntimeWorkflow.test_resume_without_pack_is_a_downgrade) ... ok
+test_unrelated_execution_task_blocks_before_state (test_knowledge_workflow.RuntimeWorkflow.test_unrelated_execution_task_blocks_before_state) ... ok
+test_unrelated_plain_run_cannot_satisfy_graph_required_verifier (test_knowledge_workflow.RuntimeWorkflow.test_unrelated_plain_run_cannot_satisfy_graph_required_verifier) ... ok
+
+----------------------------------------------------------------------
+Ran 355 tests in 725.083s
+
+OK (skipped=13)
+

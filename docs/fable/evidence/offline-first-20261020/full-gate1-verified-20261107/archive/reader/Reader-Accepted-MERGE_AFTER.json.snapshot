@@ -1,0 +1,10 @@
+{
+  "action": "MERGE_AFTER",
+  "request": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Reader-Request-MERGE_AFTER.json",
+    "sha256": "679f30ecc810c891c2aef851fa1c1b0bbbffff1cb2878a5f0ef5c5abc861c4e7",
+    "size": 481
+  },
+  "session": "ea7a0437c1c94401ba75ce204d9a5090"
+}

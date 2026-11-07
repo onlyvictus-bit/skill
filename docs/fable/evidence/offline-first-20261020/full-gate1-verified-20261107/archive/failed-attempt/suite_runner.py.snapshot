@@ -1,0 +1,31 @@
+"""Keep original per-case recording/assertions; add timings and scoped READY fixture."""
+import faulthandler,json,runpy,sys,time
+from pathlib import Path
+from unittest.mock import patch
+package=Path(sys.argv[sys.argv.index('--package-root')+1]).resolve(strict=True)
+output=Path(sys.argv[sys.argv.index('--output-dir')+1]).absolute()
+scripts=package.parent/'.github/scripts';sys.path[:0]=[str(scripts),str(package/'scripts')]
+namespace=runpy.run_path(str(scripts/'gate1_runner.py'),run_name='full_gate1_runner_definitions')
+result=namespace['RecordingResult'];start,stop=result.startTest,result.stopTest
+timings=[];active={}
+def started(self,test):active[test.id()]=time.monotonic();return start(self,test)
+def stopped(self,test):
+    try:return stop(self,test)
+    finally:timings.append({'id':test.id(),'seconds':time.monotonic()-active.pop(test.id())})
+result.startTest,result.stopTest=started,stopped
+stack=(output.parent/(output.name+'-Slow-Stack.log')).open('x',encoding='utf-8')
+faulthandler.enable(file=stack);faulthandler.dump_traceback_later(30,repeat=True,file=stack)
+try:
+    if package.name=='memory-integrity':
+        from knowledge_bridge import windows_ready_copy as ready
+        original,default=ready.ReadyCopy.__init__,ready.default_root
+        def fixture_init(channel,source,token,*,root=None):
+            if root is None and ready.default_root is default:root=output/'retained-temp/managed/ready-copies-v1'
+            return original(channel,source,token,root=root)
+        with patch.object(ready.ReadyCopy,'__init__',fixture_init):code=namespace['main']()
+    else:code=namespace['main']()
+finally:
+    faulthandler.cancel_dump_traceback_later();faulthandler.disable();stack.close()
+    with(output.parent/(output.name+'-Case-Timings.json')).open('x',encoding='utf-8')as f:
+        json.dump({'finished':timings,'unfinished':active},f,indent=2)
+raise SystemExit(code)

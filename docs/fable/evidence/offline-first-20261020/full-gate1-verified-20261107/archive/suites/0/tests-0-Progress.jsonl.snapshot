@@ -1,0 +1,6 @@
+{"event": "START", "id": "test_native_containment.CleanExitDescendantTests.test_clean_exit_descendant_accounted", "utc": "2026-11-07T14:05:24.069540+00:00", "monotonic": 2681433.359, "pid": 32356}
+{"id": "test_native_containment.CleanExitDescendantTests.test_clean_exit_descendant_accounted", "outcome": "PASS", "reason": "", "event": "END", "seconds": 0.4369999999180436, "utc": "2026-11-07T14:05:24.509736+00:00", "monotonic": 2681433.796, "pid": 32356}
+{"event": "START", "id": "test_native_containment.ContainmentTests.test_clean_command_unaffected", "utc": "2026-11-07T14:05:24.511243+00:00", "monotonic": 2681433.796, "pid": 32356}
+{"id": "test_native_containment.ContainmentTests.test_clean_command_unaffected", "outcome": "PASS", "reason": "", "event": "END", "seconds": 0.20399999991059303, "utc": "2026-11-07T14:05:24.716004+00:00", "monotonic": 2681434.0, "pid": 32356}
+{"event": "START", "id": "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed", "utc": "2026-11-07T14:05:24.716997+00:00", "monotonic": 2681434.0, "pid": 32356}
+{"id": "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed", "outcome": "PASS", "reason": "", "event": "END", "seconds": 5.5, "utc": "2026-11-07T14:05:30.216862+00:00", "monotonic": 2681439.5, "pid": 32356}

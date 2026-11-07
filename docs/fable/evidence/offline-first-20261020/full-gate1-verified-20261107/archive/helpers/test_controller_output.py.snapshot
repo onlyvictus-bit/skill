@@ -1,0 +1,15 @@
+import subprocess,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+import verify_gate1 as v
+class ControllerOutput(unittest.TestCase):
+    def test_windows_crlf_success_accepted_and_failed_or_skipped_rejected(self):
+        folder=Path(tempfile.mkdtemp(prefix='controller-output-',dir=v.q.P))
+        for stderr,accept in [(b'Ran 27 tests in 1.0s\r\n\r\nOK\r\n',True),
+          (b'Ran 27 tests\r\nFAILED\r\n',False),(b'OK (skipped=1)\r\n',False)]:
+            result=subprocess.CompletedProcess([],0,b'',stderr)
+            with patch.object(v.q,'P',folder),patch.object(v.q,'inputs'),patch.object(v.subprocess,'run',return_value=result):
+                if accept:v.controls_gate({},'a'*64)
+                else:
+                    with self.assertRaisesRegex(ValueError,'CONTROLLER_TESTS_INCOMPLETE'):v.controls_gate({},'a'*64)
+if __name__=='__main__':unittest.main(verbosity=2)

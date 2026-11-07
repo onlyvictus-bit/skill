@@ -1,0 +1,79 @@
+"""Read-only process-lineage sampling with pinned native exit handles; never kills."""
+import ctypes,os,threading,time
+from ctypes import wintypes as w
+class Entry(ctypes.Structure):
+    _fields_=[('size',w.DWORD),('usage',w.DWORD),('pid',w.DWORD),('heap',ctypes.c_size_t),
+      ('module',w.DWORD),('threads',w.DWORD),('parent',w.DWORD),('priority',w.LONG),('flags',w.DWORD),('exe',w.WCHAR*260)]
+class Observer:
+    def __init__(self):
+        self.api=ctypes.WinDLL('kernel32',use_last_error=True)
+        signatures={'GetCurrentProcess':([],w.HANDLE),'DuplicateHandle':([w.HANDLE,w.HANDLE,w.HANDLE,ctypes.POINTER(w.HANDLE),w.DWORD,w.BOOL,w.DWORD],w.BOOL),
+          'QueryFullProcessImageNameW':([w.HANDLE,w.DWORD,w.LPWSTR,ctypes.POINTER(w.DWORD)],w.BOOL),
+          'GetProcessTimes':([w.HANDLE,ctypes.POINTER(w.FILETIME),ctypes.POINTER(w.FILETIME),ctypes.POINTER(w.FILETIME),ctypes.POINTER(w.FILETIME)],w.BOOL),
+          'WaitForSingleObject':([w.HANDLE,w.DWORD],w.DWORD),'CloseHandle':([w.HANDLE],w.BOOL),
+          'CreateToolhelp32Snapshot':([w.DWORD,w.DWORD],w.HANDLE),'Process32FirstW':([w.HANDLE,ctypes.POINTER(Entry)],w.BOOL),
+          'Process32NextW':([w.HANDLE,ctypes.POINTER(Entry)],w.BOOL),'OpenProcess':([w.DWORD,w.BOOL,w.DWORD],w.HANDLE)}
+        for name,(args,result)in signatures.items():f=getattr(self.api,name);f.argtypes=args;f.restype=result
+        self.rows={};self.lock=threading.RLock();self.done=threading.Event();self.errors=[]
+        self.thread=threading.Thread(target=self._loop,daemon=True);self.thread.start()
+    def check(self,value):
+        if not value:raise ctypes.WinError(ctypes.get_last_error())
+    def add(self,pid,handle,cwd,parent=None):
+        try:
+            text=ctypes.create_unicode_buffer(32768);size=w.DWORD(len(text))
+            self.check(self.api.QueryFullProcessImageNameW(handle,0,text,ctypes.byref(size)))
+            created,ended,kernel,user=(w.FILETIME()for _ in range(4))
+            self.check(self.api.GetProcessTimes(handle,*map(ctypes.byref,(created,ended,kernel,user))))
+            self.rows[pid]={'pid':pid,'image':text.value,'creation_time':created.dwLowDateTime+(created.dwHighDateTime<<32),
+              'cwd':str(cwd),'parent':parent,'handle':handle,'observed_at':time.monotonic()}
+        except BaseException:
+            self.api.CloseHandle(handle);raise
+    def root(self,process,cwd):
+        with self.lock:
+            duplicate=w.HANDLE();current=self.api.GetCurrentProcess()
+            self.check(self.api.DuplicateHandle(current,w.HANDLE(int(process._handle)),current,ctypes.byref(duplicate),0,False,2))
+            self.add(process.pid,duplicate.value,cwd)
+    def sample(self):
+        with self.lock:
+            handle=self.api.CreateToolhelp32Snapshot(2,0)
+            if handle==ctypes.c_void_p(-1).value:raise ctypes.WinError(ctypes.get_last_error())
+            try:
+                entry=Entry();entry.size=ctypes.sizeof(entry);entries=[]
+                self.check(self.api.Process32FirstW(handle,ctypes.byref(entry)))
+                while True:
+                    entries.append((entry.pid,entry.parent))
+                    if not self.api.Process32NextW(handle,ctypes.byref(entry)):
+                        if ctypes.get_last_error()!=18:raise ctypes.WinError(ctypes.get_last_error())
+                        break
+                changed=True
+                while changed:
+                    changed=False
+                    for pid,parent in entries:
+                        if parent in self.rows and pid not in self.rows:
+                            native=self.api.OpenProcess(0x101000,False,pid);self.check(native)
+                            self.add(pid,native,self.rows[parent]['cwd'],parent);changed=True
+            finally:self.check(self.api.CloseHandle(handle))
+    def _loop(self):
+        while not self.done.wait(.005):
+            try:self.sample()
+            except BaseException as e:self.errors.append(repr(e));return
+    def before_cleanup(self,cwd,physical_image):
+        self.sample()
+        with self.lock:
+            if self.errors:raise ValueError('E_G1_NATIVE_OBSERVER:'+str(self.errors))
+            normalize=lambda path:os.path.normcase(os.path.abspath(path))
+            rows=[row for row in self.rows.values()if normalize(row['cwd'])==normalize(cwd)]
+            if not rows:raise ValueError('E_G1_NO_PINNED_WORKER')
+            if not any(row['image'].casefold()==str(physical_image).casefold()for row in rows):
+                raise ValueError('E_G1_ACTUAL_INTERPRETER_NOT_OBSERVED')
+            result=[]
+            for row in rows:
+                observed={k:v for k,v in row.items()if k!='handle'}
+                observed.update(native_wait=self.api.WaitForSingleObject(row['handle'],0),checked_at=time.monotonic())
+                if observed['native_wait']!=0:raise ValueError('E_G1_NATIVE_PROCESS_ALIVE_BEFORE_CLEANUP:'+str(observed))
+                result.append(observed)
+            return result
+    def close(self):
+        self.done.set();self.thread.join(timeout=1)
+        if self.thread.is_alive():raise ValueError('E_G1_NATIVE_OBSERVER_THREAD')
+        for row in self.rows.values():self.check(self.api.CloseHandle(row['handle']))

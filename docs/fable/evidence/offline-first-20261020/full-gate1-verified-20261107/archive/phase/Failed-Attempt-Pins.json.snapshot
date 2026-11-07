@@ -1,0 +1,30 @@
+{
+  "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-full-20261107\\Inputs.json": {
+    "size": 357859,
+    "sha256": "675a74ff02fd5cd8972edd47910b8ec5a27e80edc018137a2ee9f9b82426e3c5"
+  },
+  "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-full-20261107\\suite_runner.py": {
+    "size": 1896,
+    "sha256": "f2f4e48e9480c49264ed644f535bba013f21dba58439e02b83ee2c9b3fe30efd"
+  },
+  "C:\\Users\\sakth\\Documents\\Codex\\g1-full-20261107\\Runtime-Receipt.json": {
+    "size": 120888,
+    "sha256": "4ac16c6e9f99af9d5d0908793aeaa5c7e5678e4dbd5db09a41cd370759ebbc66"
+  },
+  "C:\\Users\\sakth\\Documents\\Codex\\g1-full-20261107\\Receipt.json": {
+    "size": 3594,
+    "sha256": "7f1b7848b7f3386a768d23b5c2496c2e34685e6f116e71df4e2488342c8111a8"
+  },
+  "C:\\Users\\sakth\\Documents\\Codex\\g1-full-20261107\\tests-3\\unittest.log": {
+    "size": 54333,
+    "sha256": "9c2ce6acd8d263b51118b5158b76abe91ea5a93b8bb46a9a2408360caaa00fce"
+  },
+  "C:\\Users\\sakth\\Documents\\Codex\\g1-full-20261107\\tests-3-Slow-Stack.log": {
+    "size": 51263,
+    "sha256": "3c8649496553fb5b7577b08c8bc7a34cc28fa844c5ab4c00906ef6453f9f5e4a"
+  },
+  "C:\\Users\\sakth\\Documents\\Codex\\g1-full-20261107\\command-suite-3\\Command.json": {
+    "size": 1406,
+    "sha256": "e4a2ad3b916d7148fc03c66fef765e398236b401561fbf0b5e26e56e74b6bcb9"
+  }
+}

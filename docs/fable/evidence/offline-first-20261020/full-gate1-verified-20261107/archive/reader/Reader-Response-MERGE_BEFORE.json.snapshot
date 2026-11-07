@@ -1,0 +1,59 @@
+{
+  "action": "MERGE_BEFORE",
+  "bundle": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\BEFORE-Bundle.json",
+    "sha256": "da58bbf8917d684a5927e0a0c371e095e2051300cad20bd574a8818e326553f0",
+    "size": 6052991
+  },
+  "completed_controls": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Completed-BEFORE.json",
+    "sha256": "47f9af6f6deb3c7fe747bc6cb0fb7f0bff205e1662c09da79bb1b500cac4c15e",
+    "size": 91072
+  },
+  "failure": null,
+  "objects": 13966,
+  "request": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Reader-Request-MERGE_BEFORE.json",
+    "sha256": "0d9aa01ec7e3f799fb18b7be47b102b677fcdcfcc540cbbba086c8554a35a940",
+    "size": 483
+  },
+  "scope": "FULL_GATE1_HISTORY_RESPONSE",
+  "session": "ea7a0437c1c94401ba75ce204d9a5090",
+  "timeline": [
+    {
+      "label": "BEFORE-original-cleanup-lifetime-stack-20261024",
+      "seconds": 0.3650858998298645
+    },
+    {
+      "label": "BEFORE-original-cleanup-membership-20261025",
+      "seconds": 0.7555740997195244
+    },
+    {
+      "label": "BEFORE-original-cleanup-process-timing-20261024",
+      "seconds": 17.050728399772197
+    },
+    {
+      "label": "BEFORE-original-cleanup-repair-20261023",
+      "seconds": 98.6416310002096
+    },
+    {
+      "label": "BEFORE-original-rp1-audit",
+      "seconds": 6.610999300144613
+    },
+    {
+      "label": "BEFORE-original-rp1-corrected",
+      "seconds": 5.596487799659371
+    },
+    {
+      "label": "BEFORE-original-rp1-original",
+      "seconds": 4.983859499916434
+    },
+    {
+      "label": "BEFORE-original-rp1-store",
+      "seconds": 5.310042500030249
+    }
+  ]
+}

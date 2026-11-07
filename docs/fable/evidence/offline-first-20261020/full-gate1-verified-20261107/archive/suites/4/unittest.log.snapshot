@@ -1,0 +1,10 @@
+test_direct_native_success_event_refuses_before_database (test_offline_release_profile.OfflineReleaseProfile.test_direct_native_success_event_refuses_before_database) ... ok
+test_dispatch_refuses_before_authority_consumption (test_offline_release_profile.OfflineReleaseProfile.test_dispatch_refuses_before_authority_consumption) ... ok
+test_native_authority_disabled (test_offline_release_profile.OfflineReleaseProfile.test_native_authority_disabled) ... ok
+test_reconciliation_cannot_promote_applied (test_offline_release_profile.OfflineReleaseProfile.test_reconciliation_cannot_promote_applied) ... ok
+test_reservation_refuses_before_database_access (test_offline_release_profile.OfflineReleaseProfile.test_reservation_refuses_before_database_access) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.016s
+
+OK

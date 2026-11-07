@@ -1,0 +1,48 @@
+import copy,json,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+import history_service as h
+PROFILE={'pid':123,'creation':456,'image':__import__('sys').executable,'sid':next(iter(h.reader_guard.READER_SIDS)),'elevated':False}
+def hello(folder):
+    h.publish(folder/'Reader-Request-HELLO.json',{'scope':'FULL_GATE1_HISTORY_RPC','session':'a'*32,'inputs_sha256':'b'*64,'action':'HELLO','payload':{'challenge':'c'*32}})
+class HistoryProtocol(unittest.TestCase):
+    def test_exact_session_action_and_input_binding(self):
+        good={'scope':'FULL_GATE1_HISTORY_RPC','session':'a'*32,'inputs_sha256':'b'*64,'action':'BEFORE','payload':{}}
+        h.validate(good,'a'*32,'b'*64,'BEFORE')
+        for key,value in [('scope','other'),('session','c'*32),('inputs_sha256','d'*64),('action','AFTER'),('payload',[])]:
+            bad=copy.deepcopy(good);bad[key]=value
+            with self.assertRaises(ValueError):h.validate(bad,'a'*32,'b'*64,'BEFORE')
+        good['extra']='forbidden'
+        with self.assertRaises(ValueError):h.validate(good,'a'*32,'b'*64,'BEFORE')
+    def test_atomic_publication_cannot_replace_existing_packet(self):
+        folder=Path(tempfile.mkdtemp(prefix='ipc-control-',dir=Path(__file__).parent));path=folder/'message.json'
+        h.publish(path,{'first':True});before=path.read_bytes()
+        with self.assertRaises(OSError):h.publish(path,{'replacement':True})
+        self.assertEqual(path.read_bytes(),before);self.assertEqual(h.packet(path)[0],{'first':True})
+    def test_wrong_request_stops_before_snapshot_or_runtime(self):
+        folder=Path(tempfile.mkdtemp(prefix='ipc-wrong-control-',dir=Path(__file__).parent))
+        value={'session':'a'*32,'history_roots':{}}
+        h.publish(folder/'Reader-Request-HELLO.json',{'scope':'WRONG','session':'a'*32,
+          'inputs_sha256':'b'*64,'action':'BEFORE','payload':{}})
+        with patch.object(h.controller_identity,'current',return_value=PROFILE),patch.object(h.q,'P',folder),patch.object(h.q,'inputs',return_value=value),patch.object(h,'snapshot',return_value=(None,None)):
+            self.assertEqual(h.serve('b'*64),1)
+        result=h.packet(folder/'Reader-Response-HELLO.json')[0]
+        self.assertIn('IPC_PACKET',result['failure']);self.assertFalse((folder/'BEFORE-Request.json').exists())
+        self.assertFalse((folder/'Reader-Accepted-BEFORE.json').exists())
+    def test_valid_first_request_samples_then_wrong_second_request_stops(self):
+        folder=Path(tempfile.mkdtemp(prefix='ipc-positive-control-',dir=Path(__file__).parent))
+        value={'session':'a'*32,'history_roots':{}}
+        good={'scope':'FULL_GATE1_HISTORY_RPC','session':'a'*32,'inputs_sha256':'b'*64,'action':'BEFORE','payload':{}}
+        hello(folder);h.publish(folder/'Reader-Request-BEFORE.json',good)
+        bad={**good,'action':'WRONG'};h.publish(folder/'Reader-Request-MERGE_BEFORE.json',bad)
+        class Synthetic:
+            contexts={}
+            def scan(self,phase,binding):return {'fixture':'SYNTHETIC_ONLY','phase':phase}
+        with patch.object(h.controller_identity,'current',return_value=PROFILE),patch.object(h.q,'P',folder),patch.object(h.q,'inputs',return_value=value),patch.object(h,'snapshot',return_value=(None,Synthetic())),\
+             patch.object(h.q,'completed_originals',return_value={'fixture':'SYNTHETIC_ONLY'}):
+            self.assertEqual(h.serve('b'*64),1)
+        first=h.packet(folder/'Reader-Response-BEFORE.json')[0]
+        self.assertIsNone(first['failure']);self.assertTrue((folder/'Reader-Accepted-BEFORE.json').exists())
+        self.assertEqual(h.packet(folder/'BEFORE-Request.json')[0],{'fixture':'SYNTHETIC_ONLY','phase':'BEFORE'})
+        self.assertIn('IPC_PACKET',h.packet(folder/'Reader-Response-MERGE_BEFORE.json')[0]['failure'])
+if __name__=='__main__':unittest.main(verbosity=2)

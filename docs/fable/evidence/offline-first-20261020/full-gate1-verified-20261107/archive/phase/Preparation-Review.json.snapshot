@@ -1,0 +1,17 @@
+{
+  "verdict": "SHIP_ONE_FRESH_FULL_GATE1_SUCCESSOR_HANDOFF_ONLY",
+  "reviewer": "/root/on_demand_final_review",
+  "controller_controls": 47,
+  "source_windows_session_controls": 7,
+  "source_journal_events_verified": 14,
+  "inputs_sha256": "bb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319",
+  "command_sha256": "7e213d936570bba31c44bb4991b321c703827141821ca79146319c0d208374fd",
+  "native_memory_cause_proven": false,
+  "selected_runtime_started": false,
+  "gate1_complete": false,
+  "gates_met": 2,
+  "gates_unmet": 5,
+  "gates_abandoned": 0,
+  "reader_pid": 29760,
+  "reader_armed_utc": "2026-11-07T13:56:38.026744+00:00"
+}

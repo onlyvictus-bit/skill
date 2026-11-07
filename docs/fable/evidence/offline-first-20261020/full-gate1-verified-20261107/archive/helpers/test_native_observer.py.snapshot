@@ -1,0 +1,35 @@
+import subprocess,sys,tempfile,unittest
+from pathlib import Path
+from native_observer import Observer
+class NativeObservation(unittest.TestCase):
+    def test_live_root_refused_then_exact_handle_exit_accepted(self):
+        cwd=Path(tempfile.mkdtemp(prefix='native-control-',dir=Path(__file__).parent))
+        process=subprocess.Popen([sys.executable,'-B','-c','import sys;sys.stdin.buffer.read()'],cwd=cwd,
+            stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,creationflags=0x08000000)
+        observer=Observer()
+        try:
+            observer.root(process,cwd)
+            with self.assertRaisesRegex(ValueError,'ALIVE_BEFORE_CLEANUP'):observer.before_cleanup(cwd,sys.executable)
+            process.stdin.close();process.wait(timeout=5)
+            rows=observer.before_cleanup(cwd,sys.executable)
+            self.assertEqual(rows[0]['native_wait'],0);self.assertEqual(rows[0]['pid'],process.pid)
+        finally:
+            if process.poll()is None:process.kill();process.wait(timeout=5)
+            observer.close();process.stdout.close();process.stderr.close()
+    def test_real_child_lineage_pinned_before_exit(self):
+        cwd=Path(tempfile.mkdtemp(prefix='native-child-control-',dir=Path(__file__).parent))
+        code="import subprocess,sys;p=subprocess.Popen([sys.executable,'-B','-c','import sys;print(\"child-ready\",flush=True);sys.stdin.buffer.read()'],stdin=sys.stdin);p.wait()"
+        process=subprocess.Popen([sys.executable,'-B','-c',code],cwd=cwd,stdin=subprocess.PIPE,
+          stdout=subprocess.PIPE,stderr=subprocess.PIPE,creationflags=0x08000000)
+        observer=Observer()
+        try:
+            observer.root(process,cwd);self.assertEqual(process.stdout.readline().strip(),b'child-ready');observer.sample()
+            self.assertGreaterEqual(len(observer.rows),2)
+            with self.assertRaisesRegex(ValueError,'ALIVE_BEFORE_CLEANUP'):observer.before_cleanup(cwd,sys.executable)
+            process.stdin.close();process.wait(timeout=5)
+            rows=observer.before_cleanup(cwd,sys.executable)
+            self.assertGreaterEqual(len(rows),2);self.assertTrue(all(x['native_wait']==0 for x in rows))
+        finally:
+            if process.poll()is None:process.kill();process.wait(timeout=5)
+            observer.close();process.stdout.close();process.stderr.close()
+if __name__=='__main__':unittest.main(verbosity=2)

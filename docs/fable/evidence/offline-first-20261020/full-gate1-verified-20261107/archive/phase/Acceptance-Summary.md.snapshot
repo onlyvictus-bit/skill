@@ -1,0 +1,26 @@
+# Full Gate1 accepted - 2026-11-07
+
+**FULL_GATE1_VERIFIED_COMPLETE. All7gates met;0unmet;0abandoned.**
+
+| Suite | Cases | Passed | Permitted skips | Failure/error |
+|---|---:|---:|---:|---:|
+| Native containment |3|3|0|0|
+| Native paths |2|2|0|0|
+| Memory Integrity offline profile |16|16|0|0|
+| Knowledge |355|342|13|0|
+| Claude-Mon offline profile |5|5|0|0|
+| Total |381|368|13|0|
+
+24acceptance arms and24fresh-process replays;11safety checks;60owned acceptance
+commands verified. Source/code/default120 and53dependency versions unchanged.
+Real cleanup proved native exit before3directory deletions;2shardowners released.
+8history roots/13966objects and237previous proof originals matched before/after.
+All762journal events and all command/suite streams were independently checked.
+
+The prior diagnostic native crash did not recur. Its exact native memory cause
+remains unproven. Gate1 success does not establish release, installation, learned
+model/semantic truth, native Beads/Dolt or authenticated producer provenance.
+
+Final authority: Gate1-Acceptance.json. The original consumed runtime and receipt
+are preserved unchanged; their pending-parent-review labels are historical.
+No workload was rerun during result verification. No Git publication was performed.

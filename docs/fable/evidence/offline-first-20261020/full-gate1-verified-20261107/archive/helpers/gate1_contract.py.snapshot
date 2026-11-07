@@ -1,0 +1,90 @@
+"""Pure Gate1 receipt contracts; no runtime, files, network or process side effects."""
+import copy,itertools,subprocess,math
+from datetime import datetime,timedelta
+CASES=('freshness','unicode','approval','resume')
+MODES=('literal','lexical','lsa')
+GROUPS=(('memory-integrity','test_native_containment.py',3),('memory-integrity','test_native_paths.py',2),
+  ('memory-integrity','test_offline_release_profile.py',16),('memory-integrity','test_knowledge*.py',355),
+  ('claude-mon','test_offline_release_profile.py',5))
+COMMANDS=('identity-before','dependencies-before',*[x for n in range(5)for x in ('discover-'+str(n),'suite-'+str(n))],
+  'acceptance','real-cleanup','identity-after','dependencies-after')
+
+def inventory(value,discovery,pins):
+    need([(x['package'],x['pattern'],len(x['ids']))for x in value['groups']]==list(GROUPS),'EXACT_GROUP_VECTOR')
+    need(value['groups']==discovery['groups'],'FROZEN_DISCOVERY_BINDING')
+    need(len(value['source_manifest'])==931 and len(value['history_roots'])==8 and len(pins)==237 and len(value['versions'])==53,'REQUIRED_INVENTORY_CARDINALITIES')
+
+def runtime_structure(report,digest,commit):
+    need(report.get('scope')=='FULL_GATE1_20261107'and report.get('inputs_sha256')==digest and report.get('commit')==commit,'RUNTIME_BINDING')
+    need(report.get('selected_runtime_started')is True and report.get('selected_runtime_attempted')is True and
+      report.get('workload_claimed')is True,'RUNTIME_NOT_STARTED')
+    need([x.get('label')for x in report.get('commands',[])]==list(COMMANDS),'EXACT_COMMAND_ORDER')
+
+def progress(events,ids,finished):
+    need(len(events)==2*len(ids)and len(finished)==len(ids),'DURABLE_CASE_COMPLETENESS')
+    prior=-math.inf;pid=None
+    for number,(ident,outcome)in enumerate(zip(ids,finished)):
+        start,end=events[2*number:2*number+2]
+        for row,kind in ((start,'START'),(end,'END')):
+            keys={'event','id','utc','monotonic','pid'}|({'outcome','reason','seconds'}if kind=='END'else set())
+            need(type(row)is dict and set(row)==keys and row['event']==kind and row['id']==ident,'DURABLE_CASE_ORDER_SCHEMA')
+            need(type(row['pid'])is int and row['pid']>0 and (pid is None or row['pid']==pid),'DURABLE_CASE_PID');pid=row['pid']
+            stamp=row['monotonic'];need(type(stamp)in(int,float)and math.isfinite(stamp)and stamp>=prior,'DURABLE_CASE_CLOCK');prior=stamp
+            need(type(row['utc'])is str and datetime.fromisoformat(row['utc']).utcoffset()==timedelta(0),'DURABLE_CASE_UTC')
+        need(type(end['seconds'])in(int,float)and math.isfinite(end['seconds'])and 0<=end['seconds']<=end['monotonic']-start['monotonic']+.001,'DURABLE_CASE_DURATION')
+        need(type(end['outcome'])is str and type(end['reason'])is str and
+          {k:end[k]for k in ('id','outcome','reason')}==outcome,'DURABLE_CASE_OUTCOMES')
+ACCEPTANCE_ANCHORS=(
+ ('worker = WorkerClient(args.worker_python,timeout=60) if args.worker_python else None',
+  'worker = WorkerClient(args.worker_python) if args.worker_python else None'),
+ ("worker_flags = ['--worker-python',args.worker_python,'--worker-timeout','60'] if args.worker_python else []",
+  "worker_flags = ['--worker-python',args.worker_python] if args.worker_python else []"))
+def need(value,message):
+    if not value:raise ValueError('E_FULL_GATE1_'+message)
+def suite(ids,receipt,cases,allowed):
+    need(bool(ids)and len(ids)==len(set(ids))and all(isinstance(x,str)and '_FailedTest'not in x for x in ids),'DISCOVERY')
+    need(type(receipt.get('tests_run'))is int and receipt['tests_run']==receipt.get('discovered')==len(ids)
+         and receipt.get('interrupted')is False,'SUITE_AGGREGATE')
+    need(all(receipt.get(k)==[]for k in ('failures','errors','excluded','expected_failures')),'SUITE_FAILURES')
+    need(cases.get('expected_ids')==ids and cases.get('outcomes',{}).get('started')==ids,'CASE_STARTS')
+    finished=cases['outcomes'].get('finished',[])
+    need([x.get('id')for x in finished]==ids,'CASE_COMPLETENESS')
+    skips=[]
+    for row in finished:
+        need(set(row)=={'id','outcome','reason'},'CASE_SCHEMA')
+        if row['outcome']=='SKIP':
+            need(row['id']in allowed and allowed[row['id']]in row['reason'],'UNPERMITTED_SKIP')
+            skips.append([row['id'],row['reason']])
+        else:need(row['outcome']=='PASS','CASE_FAILED:'+str(row))
+    need(receipt.get('skipped')==skips,'SKIP_ACCOUNTING')
+def capture(row):
+    code=row.get('exit_code');detail=str(code)+(' / 0x'+format(code&0xffffffff,'08X')if type(code)is int else'')
+    need(type(code)is int and code==0 and row.get('execution')=='EXITED'and row.get('failure')is None,'CHILD_EXIT:'+detail)
+    c=row.get('containment',{})
+    need(c.get('capture_complete')is True and c.get('tree_contained')is True and c.get('capture_errors')==[]
+         and c.get('timed_out')is False and c.get('output_limit_exceeded')is False,'INCOMPLETE_CAPTURE')
+def measurements(rows):
+    expected=set(itertools.product(CASES,MODES,(False,True)))
+    need(len(rows)==len(expected)and {(x.get('case'),x.get('mode'),x.get('mandatory'))for x in rows}==expected,'24_ARM_SET')
+    for row in rows:
+        need(type(row['mandatory'])is bool and row.get('replay_verified')is True and row.get('mandatory_missing')==[],'ARM_PROOF')
+        if row['mode']!='literal':need(bool(row.get('ranked_results')),'RANKED_POSITIVE_CONTROL')
+REFUSALS={'changed-source':'E_REQUIRED_STALE','revoked-access':'E_REQUIRED_ACCESS_REVOKED',
+  'budget':'E_PACK_BUDGET','forged-pack':'E_PACK_SOURCE'}
+def acceptance_command(command,stdout,stderr,validator):
+    row=copy.deepcopy(command)
+    if row['label']in REFUSALS:
+        need(type(row['exit_code'])is int and row['exit_code']==2,'REFUSAL_EXIT')
+        validator(subprocess.CompletedProcess(row['argv'],2,stdout,stderr),REFUSALS[row['label']])
+        row['exit_code']=0
+    capture(row);need('--worker-timeout'not in row['argv'],'EXPLICIT_TIMEOUT_IN_ACCEPTANCE')
+def anchors(fixture):
+    return (*ACCEPTANCE_ANCHORS,("fixture = Path(__file__).resolve().parents[1]/'fixtures/offline-first'",'fixture = Path('+repr(str(fixture))+')'))
+def adapt_acceptance(raw,fixture):
+    for old,new in anchors(fixture):
+        need(raw.count(old.encode())==1,'ADAPTER_ANCHOR');raw=raw.replace(old.encode(),new.encode(),1)
+    return raw
+def restore_acceptance(raw,fixture):
+    for old,new in reversed(anchors(fixture)):
+        need(raw.count(new.encode())==1,'ADAPTER_REVERSE');raw=raw.replace(new.encode(),old.encode(),1)
+    return raw

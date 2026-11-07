@@ -1,0 +1,41 @@
+{
+  "after_bundle": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\AFTER-Bundle.json",
+    "sha256": "308ccfeba10c1e610e2fb964aca615e20f898e5476e7bf94bf377b2af761509a",
+    "size": 6054708
+  },
+  "before_bundle": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\BEFORE-Bundle.json",
+    "sha256": "da58bbf8917d684a5927e0a0c371e095e2051300cad20bd574a8818e326553f0",
+    "size": 6052991
+  },
+  "completed_originals_after": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Completed-AFTER.json",
+    "sha256": "f6f210f8bfb1916f30e3f5996244531a98bc1aa7e0fd808195f59493758027e8",
+    "size": 91071
+  },
+  "completed_originals_before": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Completed-BEFORE.json",
+    "sha256": "47f9af6f6deb3c7fe747bc6cb0fb7f0bff205e1662c09da79bb1b500cac4c15e",
+    "size": 91072
+  },
+  "failure": null,
+  "gate1_complete": false,
+  "installed": false,
+  "postcheck_failure": null,
+  "preservation": true,
+  "preservation_failure": null,
+  "producer_authentication": false,
+  "release_ready": false,
+  "runtime": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\Runtime-Receipt.json",
+    "sha256": "c51dce8ddb2de2eb482769087ceca9eae7e433edabf1293f994c28c1181eac0e",
+    "size": 187910
+  },
+  "status": "FULL_GATE1_OBSERVED_PENDING_PARENT_RAW_REVIEW"
+}

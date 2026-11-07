@@ -1,0 +1,71 @@
+import json,os,subprocess,sys,tempfile,threading,time,unittest
+from pathlib import Path
+from unittest.mock import patch
+from safe_suite_diagnostics import Diagnostics
+P=Path(__file__).absolute().parent
+class SafeDiagnostics(unittest.TestCase):
+    def folder(self):return Path(tempfile.mkdtemp(prefix='diagnostic-control-',dir=P))
+    def test_periodic_python_stacks_and_durable_case_outcomes_without_native_timer(self):
+        folder=self.folder()
+        with patch('faulthandler.dump_traceback_later',side_effect=AssertionError('unsafe native timer')):
+            observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log',interval=.01)
+            observer.start_case('case.one');observer.sample();observer.end_case('case.one',{'outcome':'PASS','reason':''});observer.close()
+        rows=[json.loads(x)for x in (folder/'progress.jsonl').read_text().splitlines()]
+        self.assertEqual([x['event']for x in rows],['START','END']);self.assertEqual(rows[-1]['outcome'],'PASS')
+        self.assertGreaterEqual(rows[-1]['seconds'],0);self.assertIn('test_periodic_python_stacks',(folder/'stack.log').read_text())
+        self.assertFalse(observer.thread.is_alive())
+    def test_abrupt_process_exit_retains_active_test(self):
+        folder=self.folder();code='import os,sys;sys.path.insert(0,'+repr(str(P))+');from safe_suite_diagnostics import Diagnostics;d=Diagnostics('+repr(str(folder/'progress.jsonl'))+','+repr(str(folder/'stack.log'))+');d.start_case("active.at.crash");os._exit(7)'
+        result=subprocess.run([sys.executable,'-B','-c',code],capture_output=True,timeout=10)
+        self.assertEqual(result.returncode,7)
+        rows=[json.loads(x)for x in (folder/'progress.jsonl').read_text().splitlines()]
+        self.assertEqual(len(rows),1);self.assertEqual(rows[0]['id'],'active.at.crash');self.assertEqual(rows[0]['event'],'START')
+    def test_sampling_error_fails_closed(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log',interval=.01)
+        with patch('sys._current_frames',side_effect=RuntimeError('CONTROL_SAMPLE_FAILURE')):
+            observer.thread.join(timeout=1)
+        with self.assertRaisesRegex(RuntimeError,'CONTROL_SAMPLE_FAILURE'):observer.close()
+        self.assertFalse(observer.thread.is_alive())
+    def test_complete_but_failed_case_remains_failed(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log')
+        observer.start_case('negative');observer.end_case('negative',{'outcome':'FAIL','reason':'assertion failed'});observer.close()
+        row=json.loads((folder/'progress.jsonl').read_text().splitlines()[-1])
+        self.assertEqual(row['outcome'],'FAIL');self.assertEqual(row['reason'],'assertion failed')
+    def test_progress_fsync_failure_is_not_success(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log')
+        try:
+            with patch('os.fsync',side_effect=OSError('CONTROL_FSYNC_FAILURE')):
+                with self.assertRaisesRegex(OSError,'CONTROL_FSYNC_FAILURE'):observer.start_case('must.fail')
+            self.assertEqual(observer.active,{})
+        finally:observer.close()
+    def test_stack_formatter_failure_is_not_silenced(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log',interval=.01)
+        with patch('traceback.walk_stack',side_effect=RuntimeError('CONTROL_FORMAT_FAILURE')):
+            observer.thread.join(timeout=1)
+        with self.assertRaisesRegex(RuntimeError,'CONTROL_FORMAT_FAILURE'):observer.close()
+        rows=[json.loads(x)for x in(folder/'progress.jsonl').read_text().splitlines()]
+        self.assertEqual(rows[-1]['event'],'SAMPLER_ERROR')
+    def test_large_many_thread_samples_are_bounded_without_source_lookup(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log')
+        def frame():return sys._getframe()
+        frame.__code__=frame.__code__.replace(co_filename='X'*100000,co_name='Y'*100000)
+        held=frame()
+        try:
+            with patch('sys._current_frames',return_value={i:held for i in range(1000)}),\
+              patch('linecache.getline',side_effect=AssertionError('unexpected source read')):observer.sample()
+        finally:observer.close()
+        raw=(folder/'stack.log').read_bytes();self.assertLessEqual(len(raw),observer.SAMPLE_LIMIT)
+        self.assertIn(b'STACK_TRUNCATED',raw);self.assertTrue(raw.endswith(b'SAMPLE_END\n'))
+    def test_live_sampler_join_failure_is_not_success(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log')
+        with patch.object(observer.thread,'join'),patch.object(observer.thread,'is_alive',return_value=True):
+            with self.assertRaisesRegex(RuntimeError,'SAMPLER_STILL_ALIVE'):observer.close()
+        self.assertTrue(observer.progress.closed);self.assertTrue(observer.stack.closed)
+        observer.close()
+    def test_diagnostic_cleanup_does_not_replace_primary_error(self):
+        folder=self.folder();observer=Diagnostics(folder/'progress.jsonl',folder/'stack.log');original=observer.close
+        with patch.object(observer,'close',side_effect=RuntimeError('diagnostic error')):
+            with self.assertRaisesRegex(ValueError,'primary test error')as caught:
+                with observer:raise ValueError('primary test error')
+        self.assertIn('diagnostic error',str(caught.exception.__notes__));original()
+if __name__=='__main__':unittest.main(verbosity=2)

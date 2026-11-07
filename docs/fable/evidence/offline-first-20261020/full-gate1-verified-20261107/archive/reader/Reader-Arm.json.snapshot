@@ -1,0 +1,16 @@
+{
+  "armed_utc": "2026-11-07T13:56:38.026744+00:00",
+  "idle_seconds": 86400,
+  "inputs_sha256": "bb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319",
+  "reader_identity": {
+    "creation": 134385333938446221,
+    "elevated": false,
+    "image": "C:\\Python314\\python.exe",
+    "pid": 29760,
+    "sid": "S-1-5-21-2571509308-2482563067-4170768140-1003"
+  },
+  "scope": "FULL_GATE1_HISTORY_READER",
+  "selected_runtime_started": false,
+  "session": "ea7a0437c1c94401ba75ce204d9a5090",
+  "work_seconds": 3600
+}

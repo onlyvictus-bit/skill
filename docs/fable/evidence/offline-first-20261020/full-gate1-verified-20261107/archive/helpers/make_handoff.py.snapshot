@@ -1,0 +1,42 @@
+"""Generate the externally pinned, one-run normal-account command after input freeze."""
+import json,sys
+from pathlib import Path
+import common as q
+
+def main():
+    digest=q.record(q.P/'Inputs.json')['sha256'];value=q.inputs(digest)
+    paths=[Path(sys.executable),q.P/'Inputs.json',q.BASE]
+    paths.extend(q.P/name for name in ('run_gate1.py','common.py','gate1_contract.py','history_service.py',
+      'controller_identity.py','reader_guard.py'))
+    quote=lambda value:"'"+str(value).replace("'","''")+"'"
+    rows='\n'.join('        '+quote(path)+' = '+quote(q.record(path)['sha256'])for path in paths)
+    text="""& {
+    $ErrorActionPreference = 'Stop'
+    $g1Python = PYTHON
+    $g1Script = SCRIPT
+    $g1Digest = DIGEST
+    $g1Pins = @{
+PINS
+    }
+    function Test-G1Pins {
+        foreach ($g1Pin in $g1Pins.GetEnumerator()) {
+            $g1Actual = (Get-FileHash -LiteralPath $g1Pin.Key -Algorithm SHA256).Hash.ToLowerInvariant()
+            if ($g1Actual -cne $g1Pin.Value) {
+                throw ('Reviewed input changed. Path={0}; Expected={1}; Actual={2}. Stop.' -f $g1Pin.Key, $g1Pin.Value, $g1Actual)
+            }
+        }
+    }
+    Test-G1Pins
+    & $g1Python -B $g1Script --inputs-sha256 $g1Digest --verify-only
+    if ($LASTEXITCODE -ne 0) { throw 'Static verification stopped. Do not start or alter guards.' }
+    Test-G1Pins
+    Write-Output 'ONE NEW FULL GATE1: fresh reader challenge, selected identity, five suites, 24 arms, real cleanup, fresh original AFTER.'
+    Write-Output 'No install, ACL/security/Git change or old attempt retry. All stages retain timing and full failures.'
+    & $g1Python -B $g1Script --inputs-sha256 $g1Digest
+    if ($LASTEXITCODE -ne 0) { throw 'Full Gate1 stopped. Preserve/share all output and the new receipt. Do not retry.' }
+}
+""".replace('PYTHON',quote(sys.executable)).replace('SCRIPT',quote(q.P/'run_gate1.py')).replace('DIGEST',quote(digest)).replace('PINS',rows)
+    path=q.P/'Run-Full-Gate1.ps1'
+    with path.open('x',encoding='utf-8')as f:f.write(text)
+    print(json.dumps({'command':q.record(path),'inputs_sha256':digest,'selected_runtime_started':False}))
+if __name__=='__main__':main()

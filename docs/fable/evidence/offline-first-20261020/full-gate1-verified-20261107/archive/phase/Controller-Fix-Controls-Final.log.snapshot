@@ -1,0 +1,57 @@
+GATE1_CONTROLLER_CONTROLS_VERIFIED
+identity-before: RUNNING (Full Gate1)
+{"status": "PARTIAL_OR_FAILED_NO_RETRY", "runtime": {"path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\normal-route-0n4r8msu\\absent-run\\Runtime-Receipt.json", "size": 6662, "sha256": "d7dff1ea33ebce5a506ddfb0e8855d27d2fec259a7187dda4328687e248521f4", "links": 1}, "failure": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\run_gate1.py\", line 72, in run\n    observed=q.read(capture('identity-before',[value['worker'],'-B','-c',image.g.runtime_probe()],30).stdout)\n                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\run_gate1.py\", line 45, in capture\n    completed,row=host.capture_owned(argv,folder,q.RUN,env,timeout)\n                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\unittest\\mock.py\", line 1175, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\unittest\\mock.py\", line 1179, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\unittest\\mock.py\", line 1234, in _execute_mock_call\n    raise effect\nRuntimeError: synthetic capture failure\n", "postcheck_failure": null, "preservation_failure": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\run_gate1.py\", line 134, in run\n    else:q.need(False,'NO_BEFORE_SAMPLE')\n         ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\rp3-native-dispatch-20261105\\coordinator.py\", line 19, in need\n    if not value:raise ValueError('E_DISPATCH_COORD_'+code)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: E_DISPATCH_COORD_NO_BEFORE_SAMPLE\n", "gate1_complete": false, "release_ready": false, "installed": false, "producer_authentication": false, "receipt": {"path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\normal-route-0n4r8msu\\absent-run\\Receipt.json", "size": 2569, "sha256": "cec6520c4202f9355eea53bfd9d6e79534f8c887084eb65594a91fa4ec8e568c", "links": 1}}
+HELLO: reader acknowledged; fresh original sampling active
+FULL_GATE1_STATIC_SEALS_VERIFIED_READER_LIVENESS_UNOBSERVED_NO_WORKLOAD
+test_capture_failure_flags_refused (test_contract.Contract.test_capture_failure_flags_refused) ... ok
+test_complete_suite_accepted (test_contract.Contract.test_complete_suite_accepted) ... ok
+test_default_adapter_exact_anchors_and_roundtrip (test_contract.Contract.test_default_adapter_exact_anchors_and_roundtrip) ... ok
+test_measurements_exact_24_no_duplicates_replays_and_positive_controls (test_contract.Contract.test_measurements_exact_24_no_duplicates_replays_and_positive_controls) ... ok
+test_skip_requires_exact_permission_and_accounting (test_contract.Contract.test_skip_requires_exact_permission_and_accounting) ... ok
+test_suite_mutations_refused (test_contract.Contract.test_suite_mutations_refused) ... ok
+test_windows_crlf_success_accepted_and_failed_or_skipped_rejected (test_controller_output.ControllerOutput.test_windows_crlf_success_accepted_and_failed_or_skipped_rejected) ... ok
+test_atomic_publication_cannot_replace_existing_packet (test_history_protocol.HistoryProtocol.test_atomic_publication_cannot_replace_existing_packet) ... ok
+test_exact_session_action_and_input_binding (test_history_protocol.HistoryProtocol.test_exact_session_action_and_input_binding) ... ok
+test_valid_first_request_samples_then_wrong_second_request_stops (test_history_protocol.HistoryProtocol.test_valid_first_request_samples_then_wrong_second_request_stops) ... ok
+test_wrong_request_stops_before_snapshot_or_runtime (test_history_protocol.HistoryProtocol.test_wrong_request_stops_before_snapshot_or_runtime) ... ok
+test_exact_inventory_and_narrowing_mutations (test_inventory_raw.InventoryAndRaw.test_exact_inventory_and_narrowing_mutations) ... ok
+test_runtime_requires_exact_order_and_started_flags (test_inventory_raw.InventoryAndRaw.test_runtime_requires_exact_order_and_started_flags) ... ok
+test_live_root_refused_then_exact_handle_exit_accepted (test_native_observer.NativeObservation.test_live_root_refused_then_exact_handle_exit_accepted) ... ok
+test_real_child_lineage_pinned_before_exit (test_native_observer.NativeObservation.test_real_child_lineage_pinned_before_exit) ... ok
+test_corrected_runner_never_schedules_native_dump (test_no_native_timer.NoNativeTimer.test_corrected_runner_never_schedules_native_dump) ... ok
+test_historical_runner_reproduces_unsafe_timer_invocation (test_no_native_timer.NoNativeTimer.test_historical_runner_reproduces_unsafe_timer_invocation) ... ok
+test_exact_interleaving_and_types_are_required (test_progress_contract.ProgressContract.test_exact_interleaving_and_types_are_required) ... ok
+test_independent_raw_identity_and_dependency_mutations (test_raw_observations.RawObservations.test_independent_raw_identity_and_dependency_mutations) ... ok
+test_after_record_failure_precedes_private_sampling (test_reader_admission.ReaderAdmission.test_after_record_failure_precedes_private_sampling) ... ok
+test_arm_digest_schema_budget_and_account (test_reader_admission.ReaderAdmission.test_arm_digest_schema_budget_and_account) ... ok
+test_compare_overrun_never_publishes_after_bundle (test_reader_admission.ReaderAdmission.test_compare_overrun_never_publishes_after_bundle) ... ok
+test_dead_reader_never_creates_run (test_reader_admission.ReaderAdmission.test_dead_reader_never_creates_run) ... ok
+test_expired_client_does_not_publish_request (test_reader_admission.ReaderAdmission.test_expired_client_does_not_publish_request) ... ok
+test_fresh_challenge_and_creation_identity_required (test_reader_admission.ReaderAdmission.test_fresh_challenge_and_creation_identity_required) ... ok
+test_invalid_before_payload_never_activates_or_reads_private_data (test_reader_admission.ReaderAdmission.test_invalid_before_payload_never_activates_or_reads_private_data) ... ok
+test_native_controller_profile_is_complete (test_reader_admission.ReaderAdmission.test_native_controller_profile_is_complete) ... ok
+test_normal_failed_capture_retains_receipts_without_private_reads (test_reader_admission.ReaderAdmission.test_normal_failed_capture_retains_receipts_without_private_reads) ... ok
+test_normal_path_never_samples_private_originals (test_reader_admission.ReaderAdmission.test_normal_path_never_samples_private_originals) ... ok
+test_original_sampling_overrun_stops_before_scan (test_reader_admission.ReaderAdmission.test_original_sampling_overrun_stops_before_scan) ... ok
+test_preexisting_request_cannot_bypass_expired_idle_deadline (test_reader_admission.ReaderAdmission.test_preexisting_request_cannot_bypass_expired_idle_deadline) ... ok
+test_success_requires_exact_ack (test_reader_admission.ReaderAdmission.test_success_requires_exact_ack) ... ok
+test_actual_producer_exit2_refusal_is_accepted (test_refusal_contract.RefusalContract.test_actual_producer_exit2_refusal_is_accepted) ... ok
+test_exit1_and_stderr_and_wrong_cause_are_refused (test_refusal_contract.RefusalContract.test_exit1_and_stderr_and_wrong_cause_are_refused) ... ok
+test_different_commit_refused_before_source_or_runtime_reads (test_runtime_guards.RuntimeGuards.test_different_commit_refused_before_source_or_runtime_reads) ... ok
+test_existing_attempt_refused_before_reader_or_account (test_runtime_guards.RuntimeGuards.test_existing_attempt_refused_before_reader_or_account) ... ok
+test_verify_only_never_creates_attempt_or_checks_runtime_account (test_runtime_guards.RuntimeGuards.test_verify_only_never_creates_attempt_or_checks_runtime_account) ... ok
+test_wrong_account_never_creates_attempt (test_runtime_guards.RuntimeGuards.test_wrong_account_never_creates_attempt) ... ok
+test_abrupt_process_exit_retains_active_test (test_safe_diagnostics.SafeDiagnostics.test_abrupt_process_exit_retains_active_test) ... ok
+test_complete_but_failed_case_remains_failed (test_safe_diagnostics.SafeDiagnostics.test_complete_but_failed_case_remains_failed) ... ok
+test_diagnostic_cleanup_does_not_replace_primary_error (test_safe_diagnostics.SafeDiagnostics.test_diagnostic_cleanup_does_not_replace_primary_error) ... ok
+test_large_many_thread_samples_are_bounded_without_source_lookup (test_safe_diagnostics.SafeDiagnostics.test_large_many_thread_samples_are_bounded_without_source_lookup) ... ok
+test_live_sampler_join_failure_is_not_success (test_safe_diagnostics.SafeDiagnostics.test_live_sampler_join_failure_is_not_success) ... ok
+test_periodic_python_stacks_and_durable_case_outcomes_without_native_timer (test_safe_diagnostics.SafeDiagnostics.test_periodic_python_stacks_and_durable_case_outcomes_without_native_timer) ... ok
+test_progress_fsync_failure_is_not_success (test_safe_diagnostics.SafeDiagnostics.test_progress_fsync_failure_is_not_success) ... ok
+test_sampling_error_fails_closed (test_safe_diagnostics.SafeDiagnostics.test_sampling_error_fails_closed) ... ok
+test_stack_formatter_failure_is_not_silenced (test_safe_diagnostics.SafeDiagnostics.test_stack_formatter_failure_is_not_silenced) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 3.042s
+
+OK

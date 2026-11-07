@@ -1,0 +1,47 @@
+"""Explicit Full Gate1 paths and sealed existing helpers, without launching workers."""
+import hashlib,importlib.util,json,os,sys,time
+from pathlib import Path
+P=Path(__file__).absolute().parent;R=P.parents[2];SOURCE=R/'.github/run-artifacts/gate1-full-20261107/source'
+RUN=Path(r'C:\Users\sakth\Documents\Codex\g1-dfix-20261107')
+BASE=R/'.github/run-artifacts/rp3-native-dispatch-20261105/coordinator.py'
+assert hashlib.sha256(BASE.read_bytes()).hexdigest()=='bfba095318909b0271ba73a21907fcd571a614f12972c713963a35fc5c4dd764'
+spec=importlib.util.spec_from_file_location('gate1_sealed_base',BASE)
+base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
+need=base.need;read=base.read;record=base.record;save=base.save
+def module(path):return base.module(path)
+def manifest(root):
+    result={}
+    def failed(error):raise error
+    for parent,dirs,files in os.walk(root,followlinks=False,onerror=failed):
+        for name in dirs:
+            path=Path(parent)/name;info=path.lstat()
+            need(not path.is_symlink()and not getattr(info,'st_file_attributes',0)&0x400,'DIRECTORY_REDIRECT')
+        for name in files:
+            path=Path(parent)/name;row=record(path);need(row['links']==1,'SOURCE_LINK')
+            result[path.relative_to(root).as_posix()]={k:row[k]for k in ('size','sha256')}
+    return result
+def inputs(digest):
+    path=P/'Inputs.json';need(record(path)['sha256']==digest,'INPUT_SEAL')
+    value=read(path.read_bytes());need(value['scope']=='FULL_GATE1_20261107'and value['source']==str(SOURCE)and value['run']==str(RUN),'INPUT_PATHS')
+    need(value['commit']=='a2a28bf547a9c3e187c89eb6aee9f0b6bd822956','COMMITTED_SOURCE_IDENTITY')
+    need(record(sys.executable)==value['seals'].get(str(Path(sys.executable).absolute())),'CONTROLLER_IDENTITY')
+    need(all(str(x)in value['seals']for x in P.glob('*.py')),'UNSEALED_PHASE_CODE')
+    for path,row in value['seals'].items():need(record(path)==row,'SEALED_INPUT_CHANGED:'+path)
+    expected={k:{x:v[x]for x in ('size','sha256')}for k,v in value['source_manifest'].items()}
+    need(manifest(SOURCE)==expected,'SOURCE_CHANGED')
+    need(hashlib.sha256((R/'.git/index').read_bytes()).hexdigest()==value['index_sha256'],'INDEX_CHANGED')
+    need((R/'.git/HEAD').read_text().strip()=='ref: refs/heads/'+value['branch'],'BRANCH_CHANGED')
+    need((R/'.git/refs/heads'/value['branch']).read_text().strip()==value['head'],'HEAD_CHANGED')
+    return value
+def timed(label,action,timeline):
+    start=time.monotonic();print(label+': RUNNING',flush=True)
+    try:return action()
+    finally:
+        row={'label':label,'seconds':time.monotonic()-start};timeline.append(row)
+        print(label+': %.3f seconds'%row['seconds'],flush=True)
+def completed_originals():
+    pins=read((P/'Completed-Control-Pins.json').read_bytes())
+    need(bool(pins),'NO_COMPLETED_PINS')
+    observed={path:record(path)for path in pins}
+    need(observed==pins,'COMPLETED_ORIGINAL_CHANGED')
+    return observed

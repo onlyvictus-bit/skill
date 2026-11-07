@@ -1,0 +1,73 @@
+{
+  "acceptance_arms": 24,
+  "acceptance_checks_passed": 11,
+  "accepted_utc": "2026-11-07T15:44:01.504854+00:00",
+  "cases": 381,
+  "completed_original_pins": 237,
+  "errors": 0,
+  "exclusions": 0,
+  "expected_failures": 0,
+  "failures": 0,
+  "fresh_replays_verified": 24,
+  "gate1_complete": true,
+  "gates_abandoned": 0,
+  "gates_met": 7,
+  "gates_unmet": 0,
+  "historical_c2_cause_proven": false,
+  "history_objects": 13966,
+  "independent_review": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Independent-Result-Review.json",
+    "sha256": "2aceb9e205e317e9ea2c001cd0c62aa649ac614fca40056e7ed44396fb87f370",
+    "size": 1873
+  },
+  "inputs": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Inputs.json",
+    "sha256": "bb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319",
+    "size": 378494
+  },
+  "installed": false,
+  "learned_model_qualification": false,
+  "ledger": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\GATES.md",
+    "sha256": "c3d58fed7307fb1a23b067054ad3d78cc64962c10f1ec8bf2246c45eafefd250",
+    "size": 3636
+  },
+  "missing_cases": 0,
+  "native_memory_cause_proven": false,
+  "note": "Separate final acceptance of retained evidence; original runtime/receipts retain their original pending-parent-review status.",
+  "parent_raw_review": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Raw-Verification.json",
+    "sha256": "3e13d3ae40bb4e8bdfd5b004d5c7e7c0301b64a90d51255669b0f43369054ac2",
+    "size": 3804
+  },
+  "passed": 368,
+  "permitted_skips": 13,
+  "preservation_verified": true,
+  "prior_native_crash_recurred": false,
+  "producer_authentication": false,
+  "real_cleanup_verified": true,
+  "release_ready": false,
+  "run_receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\Receipt.json",
+    "sha256": "1bfd6bbcd5af754298e258ddef973ed220082894c0e659c88282ae0488b1eeb2",
+    "size": 1901
+  },
+  "runtime": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\Runtime-Receipt.json",
+    "sha256": "c51dce8ddb2de2eb482769087ceca9eae7e433edabf1293f994c28c1181eac0e",
+    "size": 187910
+  },
+  "schema_version": 1,
+  "scope": "FULL_GATE1_ACCEPTANCE_20261107",
+  "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "source_files": 931,
+  "status": "FULL_GATE1_VERIFIED_COMPLETE",
+  "whole_skill_ready": false,
+  "worker_default_seconds": 120
+}

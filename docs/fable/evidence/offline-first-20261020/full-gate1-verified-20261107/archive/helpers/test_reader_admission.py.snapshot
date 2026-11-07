@@ -1,0 +1,157 @@
+import copy,sys,tempfile,unittest
+from pathlib import Path
+from datetime import datetime,timezone
+from unittest.mock import patch
+import history_service as h
+import reader_guard as g
+import controller_identity
+import run_gate1 as run
+
+PROFILE={'pid':123,'creation':456,'image':sys.executable,'sid':next(iter(g.READER_SIDS)),'elevated':False}
+class ReaderAdmission(unittest.TestCase):
+    def arm(self):return {'scope':'FULL_GATE1_HISTORY_READER','session':'a'*32,'inputs_sha256':'b'*64,
+      'reader_identity':copy.deepcopy(PROFILE),'armed_utc':datetime.now(timezone.utc).isoformat(),
+      'idle_seconds':86400,'work_seconds':3600,'selected_runtime_started':False}
+    def test_arm_digest_schema_budget_and_account(self):
+        good=self.arm();g.arm(good,{'session':'a'*32},'b'*64,sys.executable)
+        for key,value in [('inputs_sha256','c'*64),('idle_seconds',86401),('work_seconds',7200),
+          ('selected_runtime_started',True),('extra',True)]:
+            bad=copy.deepcopy(good);bad[key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):g.arm(bad,{'session':'a'*32},'b'*64,sys.executable)
+        for key,value in [('sid','normal-user'),('sid','S-1-5-21-2571509308-2482563067-4170768140-1004'),
+          ('elevated',True),('image','C:/other.exe'),('pid',True),('creation',0)]:
+            bad=copy.deepcopy(good);bad['reader_identity'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):g.arm(bad,{'session':'a'*32},'b'*64,sys.executable)
+    def test_fresh_challenge_and_creation_identity_required(self):
+        arm=self.arm();response={'challenge':'c'*32,'reader_identity':copy.deepcopy(PROFILE)}
+        g.hello(arm,response,'c'*32)
+        with self.assertRaises(ValueError):g.hello(arm,response,'d'*32)
+        response['reader_identity']['creation']+=1
+        with self.assertRaises(ValueError):g.hello(arm,response,'c'*32)
+    def test_dead_reader_never_creates_run(self):
+        folder=Path(tempfile.mkdtemp(prefix='dead-reader-',dir=h.q.P));output=folder/'absent'
+        with patch.object(h.q,'RUN',output),patch.object(h.q,'inputs',return_value={}),\
+          patch.object(run,'capture_ready',return_value=self.arm()),patch.object(h.q.base,'normal_account'),\
+          patch.object(h,'client',side_effect=ValueError('no live hello')):
+            with self.assertRaisesRegex(ValueError,'no live hello'):run.run('b'*64)
+        self.assertFalse(output.exists())
+    def service(self,body,clock=None):
+        folder=Path(tempfile.mkdtemp(prefix='reader-adversarial-',dir=h.q.P))
+        for action,payload in [('HELLO',{'challenge':'c'*32}),('BEFORE',body)]:
+            h.publish(folder/('Reader-Request-'+action+'.json'),{'scope':'FULL_GATE1_HISTORY_RPC','session':'a'*32,
+              'inputs_sha256':'b'*64,'action':action,'payload':payload})
+        with patch.object(h.q,'P',folder),patch.object(h.q,'inputs',return_value={'session':'a'*32}),\
+          patch.object(h,'snapshot',return_value=(None,None)),patch.object(controller_identity,'current',return_value=PROFILE),\
+          patch.object(h.q,'completed_originals')as originals:
+            if clock is None:code=h.serve('b'*64)
+            else:
+                with patch.object(h.time,'monotonic',side_effect=clock):code=h.serve('b'*64)
+            originals.assert_not_called()
+        self.assertEqual(code,1);return folder
+    def test_invalid_before_payload_never_activates_or_reads_private_data(self):
+        folder=self.service({'unexpected':True})
+        self.assertFalse((folder/'Reader-Accepted-BEFORE.json').exists())
+        self.assertFalse((folder/'Reader-Work-Started.json').exists())
+        self.assertFalse((folder/'Completed-BEFORE.json').exists())
+        self.assertIn('BEFORE_PAYLOAD',h.packet(folder/'Reader-Response-BEFORE.json')[0]['failure'])
+    def test_preexisting_request_cannot_bypass_expired_idle_deadline(self):
+        calls=[0]
+        def clock():
+            calls[0]+=1
+            return 0 if calls[0]<=7 else 90000
+        folder=self.service({},clock)
+        self.assertIn('DEADLINE_EXPIRED',h.packet(folder/'Reader-Response-BEFORE.json')[0]['failure'])
+        self.assertFalse((folder/'Reader-Work-Started.json').exists())
+    def test_expired_client_does_not_publish_request(self):
+        folder=Path(tempfile.mkdtemp(prefix='client-deadline-',dir=h.q.P))
+        with patch.object(h.q,'P',folder),patch.object(h.time,'monotonic',return_value=20):
+            with self.assertRaisesRegex(ValueError,'DEADLINE_EXPIRED'):h.client({'session':'a'*32},'b'*64,'BEFORE',{},10)
+        self.assertEqual(list(folder.iterdir()),[])
+    def test_native_controller_profile_is_complete(self):
+        row=controller_identity.current()
+        self.assertEqual(set(row),{'pid','image','creation','sid','elevated'})
+        self.assertGreater(row['creation'],0);self.assertEqual(row['pid'],__import__('os').getpid())
+        self.assertEqual(Path(row['image']),Path(sys.executable))
+    def test_original_sampling_overrun_stops_before_scan(self):
+        folder=Path(tempfile.mkdtemp(prefix='reader-overrun-',dir=h.q.P));clock=[0]
+        for action,body in [('HELLO',{'challenge':'c'*32}),('BEFORE',{})]:
+            h.publish(folder/('Reader-Request-'+action+'.json'),{'scope':'FULL_GATE1_HISTORY_RPC','session':'a'*32,
+              'inputs_sha256':'b'*64,'action':action,'payload':body})
+        from unittest.mock import Mock
+        snapshots=Mock();snapshots.contexts={}
+        def overrun():clock[0]=3601;return {'fixture':'only'}
+        with patch.object(h.q,'P',folder),patch.object(h.q,'inputs',return_value={'session':'a'*32}),\
+          patch.object(h,'snapshot',return_value=(None,snapshots)),patch.object(controller_identity,'current',return_value=PROFILE),\
+          patch.object(h.time,'monotonic',side_effect=lambda:clock[0]),patch.object(h.q,'completed_originals',side_effect=overrun):
+            self.assertEqual(h.serve('b'*64),1)
+        snapshots.scan.assert_not_called()
+        self.assertIn('DEADLINE_EXPIRED',h.packet(folder/'Reader-Response-BEFORE.json')[0]['failure'])
+    def test_after_record_failure_precedes_private_sampling(self):
+        message={'payload':{'workload':{'path':str(h.q.RUN/'Runtime-Receipt.json'),'sha256':'b'*64}},'inputs_sha256':'b'*64}
+        with patch.object(h.q,'record',side_effect=ValueError('unsafe link')):
+            with self.assertRaisesRegex(ValueError,'unsafe link'):h.payload(message,'AFTER',None,{'before':'fixture'})
+    def test_compare_overrun_never_publishes_after_bundle(self):
+        folder=Path(tempfile.mkdtemp(prefix='reader-compare-',dir=h.q.P));output=folder/'run';output.mkdir();clock=[0]
+        h.publish(output/'Runtime-Receipt.json',{'fixture':'only'});workload=h.q.record(output/'Runtime-Receipt.json')
+        bodies={'HELLO':{'challenge':'c'*32},'BEFORE':{},'AFTER':{'workload':workload}}
+        for phase in ('BEFORE','AFTER'):
+            target=output/('history-'+phase.lower()+'-copy');target.mkdir();h.publish(target/'Copies.json',{})
+            bodies['MERGE_'+phase]={'copies':h.q.record(target/'Copies.json')}
+        for action,body in bodies.items():h.publish(folder/('Reader-Request-'+action+'.json'),
+          {'scope':'FULL_GATE1_HISTORY_RPC','session':'a'*32,'inputs_sha256':'b'*64,'action':action,'payload':body})
+        class Synthetic:
+            contexts={}
+            def scan(self,*a):return {'fixture':'only'}
+            def merge(self,*a):return {'roots':{}}
+            def compare(self,*a):clock[0]=3601;return {'status':'CONTENT_MATCH_AT_BEFORE_AFTER_SAMPLES'}
+        with patch.object(h.q,'P',folder),patch.object(h.q,'RUN',output),patch.object(h.q,'inputs',return_value={'session':'a'*32}),\
+          patch.object(h,'snapshot',return_value=(None,Synthetic())),patch.object(controller_identity,'current',return_value=PROFILE),\
+          patch.object(h,'payload'),patch.object(h.time,'monotonic',side_effect=lambda:clock[0]),patch.object(h.q,'completed_originals',return_value={}):
+            self.assertEqual(h.serve('b'*64),1)
+        self.assertTrue((folder/'BEFORE-Bundle.json').exists());self.assertFalse((folder/'AFTER-Bundle.json').exists())
+        self.assertIn('DEADLINE_EXPIRED',h.packet(folder/'Reader-Response-MERGE_AFTER.json')[0]['failure'])
+    def test_normal_path_never_samples_private_originals(self):
+        import inspect,ast
+        tree=ast.parse(inspect.getsource(run))
+        calls=[node for node in ast.walk(tree)if isinstance(node,ast.Call)and isinstance(node.func,ast.Attribute)
+          and node.func.attr=='completed_originals']
+        self.assertEqual(calls,[])
+    def test_normal_failed_capture_retains_receipts_without_private_reads(self):
+        from unittest.mock import Mock
+        folder=Path(tempfile.mkdtemp(prefix='normal-route-',dir=h.q.P));output=folder/'absent-run'
+        for name in ('Reader-Arm.json','Reader-Request-HELLO.json','Reader-Response-HELLO.json','Reader-Accepted-HELLO.json'):h.publish(folder/name,{})
+        host=Mock();host.capture_owned.side_effect=RuntimeError('synthetic capture failure')
+        image=Mock();image.windows_environment.side_effect=lambda env:env
+        c1=Mock()
+        with patch.object(h.q,'P',folder),patch.object(h.q,'RUN',output),\
+          patch.object(h.q,'inputs',return_value={'commit':'b'*40,'worker':'unused.exe'}),\
+          patch.object(run,'capture_ready',return_value={}),patch.object(h,'client',return_value={}),patch.object(g,'hello'),\
+          patch.object(h.q.base,'normal_account'),patch.object(h.q,'module',side_effect=[host,image,c1]),\
+          patch.object(h.q,'completed_originals',side_effect=AssertionError('private DATA read'))as private:
+            self.assertEqual(run.run('b'*64),1);private.assert_not_called()
+        self.assertTrue((output/'Receipt.json').exists())
+        self.assertIn('synthetic capture failure',h.packet(output/'Runtime-Receipt.json')[0]['failure'])
+    def test_success_requires_exact_ack(self):
+        for mode in ('missing','wrong','late','correct'):
+            folder=Path(tempfile.mkdtemp(prefix='ack-binding-',dir=h.q.P));original=h.publish;original_packet=h.packet
+            def dispatched(path,value):
+                original(path,value)
+                if path.name=='Reader-Request-HELLO.json':
+                    row=h.q.record(path)
+                    if mode not in ('missing','late'):original(folder/'Reader-Accepted-HELLO.json',
+                      {'session':'a'*32,'action':'HELLO','request':row if mode=='correct'else{}})
+                    original(folder/'Reader-Response-HELLO.json',{'scope':'FULL_GATE1_HISTORY_RESPONSE',
+                      'session':'a'*32,'action':'HELLO','request':row,'failure':None})
+            def response_first(path):
+                result=original_packet(path)
+                if mode=='late'and Path(path).name=='Reader-Response-HELLO.json':
+                    original(folder/'Reader-Accepted-HELLO.json',{'session':'a'*32,'action':'HELLO',
+                      'request':h.q.record(folder/'Reader-Request-HELLO.json')})
+                return result
+            with self.subTest(mode=mode),patch.object(h.q,'P',folder),patch.object(h,'publish',side_effect=dispatched),\
+              patch.object(h,'packet',side_effect=response_first):
+                if mode=='correct':self.assertIsNone(h.client({'session':'a'*32},'b'*64,'HELLO',{'challenge':'c'*32})['failure'])
+                else:
+                    with self.assertRaisesRegex(ValueError,'WITHOUT_ACK'if mode in ('missing','late')else'ACK_BINDING'):
+                        h.client({'session':'a'*32},'b'*64,'HELLO',{'challenge':'c'*32})
+if __name__=='__main__':unittest.main(verbosity=2)

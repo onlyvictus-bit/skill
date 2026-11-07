@@ -1,0 +1,155 @@
+"""Read/verify actual Gate1 artifacts; required missing evidence always fails."""
+import argparse,copy,hashlib,json,subprocess,sys
+from datetime import datetime
+from pathlib import Path
+import common as q
+import gate1_contract as contract
+import history_service as history
+import reader_guard
+def value():
+    raw=(q.P/'Inputs.json').read_bytes();digest=hashlib.sha256(raw).hexdigest()
+    result=q.inputs(digest)
+    contract.inventory(result,q.read((q.P/'Controller-Discovery.json').read_bytes()),q.read((q.P/'Completed-Control-Pins.json').read_bytes()))
+    return result,digest
+def runtime(v,digest):
+    report=q.read((q.RUN/'Runtime-Receipt.json').read_bytes())
+    contract.runtime_structure(report,digest,v['commit'])
+    q.need(report['inputs_sha256']==digest and report['commit']==v['commit']and
+      report['status']=='FULL_GATE1_RUNTIME_OBSERVED_PENDING_PRESERVATION_AND_REVIEW'and
+      report['failure']is report['postcheck_failure']is None and report['workload_claimed']is True,'RUNTIME_NOT_ACCEPTED')
+    for row in report['commands']:
+        contract.capture(row)
+        q.need(row.get('argv',[])[:2]==[v['worker'],'-B'],'COMMAND_RUNTIME')
+        for key in ('stdout','stderr'):
+            rec=row[key];actual=q.record(rec['path'])
+            q.need(all(actual[x]==rec[x]for x in ('path','size','sha256'))and actual['links']==1,'COMMAND_STREAM_CHANGED')
+    commands={row['label']:row for row in report['commands']}
+    image=q.module(q.R/'.github/scripts/gate1_image_successor.py');c1=q.module(q.R/'.github/scripts/gate1_current_preflight.py')
+    for number,group in enumerate(v['groups']):
+        package=q.SOURCE/group['package'];pattern=group['pattern']
+        q.need(commands['discover-'+str(number)]['argv']==[v['worker'],'-B',str(q.SOURCE/'.github/scripts/gate1_runner.py'),
+          '--discover','--package-root',str(package),'--pattern',pattern],'DISCOVERY_COMMAND')
+        q.need(commands['suite-'+str(number)]['argv']==[v['worker'],'-B',str(q.P/'suite_runner.py'),
+          '--package-root',str(package),'--pattern',pattern,'--output-dir',str(q.RUN/('tests-'+str(number)))],'SUITE_COMMAND')
+    q.need(commands['acceptance']['argv']==[v['worker'],'-B',str(q.P/'acceptance_runner.py'),'--package-root',str(q.SOURCE/'memory-integrity'),
+      '--claude-mon-root',str(q.SOURCE/'claude-mon'),'--worker-python',v['worker'],'--output-dir',str(q.RUN/'acceptance')],'ACCEPTANCE_COMMAND')
+    q.need(commands['real-cleanup']['argv']==[v['worker'],'-B',str(q.P/'cleanup_probe.py'),'--source',str(q.SOURCE),
+      '--worker',v['worker'],'--physical-image',str(image.g.BASE.with_name('python3.12.exe')),'--output',str(q.RUN/'cleanup')],'CLEANUP_COMMAND')
+    env=report['context_environment']
+    q.need(set(env)=={'USERPROFILE','TEMP','TMP','SYSTEMROOT','SYSTEMDRIVE','PYTHONNOUSERSITE','PATH'}and
+      env['USERPROFILE'].casefold()==r'C:\Users\sakth'.casefold()and env['TEMP']==env['TMP']==str(q.RUN/'temp')and
+      env['PYTHONNOUSERSITE']=='1','RUNTIME_ENVIRONMENT')
+    for phase in ('before','after'):
+        row=commands['identity-'+phase];observed=q.read(Path(row['stdout']['path']).read_bytes())
+        q.need(row['argv']==[v['worker'],'-B','-c',image.g.runtime_probe()]and observed==report['identity_'+phase],'IDENTITY_RAW_BINDING')
+        image.validate_runtime_observation(observed,env,q.RUN)
+        row=commands['dependencies-'+phase];observed=q.read(Path(row['stdout']['path']).read_bytes())
+        q.need(observed.pop('worker_default')==120,'DEPENDENCY_RAW_DEFAULT')
+        c1.validate_dependencies(observed,v['versions'])
+        q.need(report['dependencies-'+phase]=={'versions':observed,'worker_default':120},'DEPENDENCY_RAW_BINDING')
+    return report
+def inputs_gate(v,digest):
+    contract.inventory(v,q.read((q.P/'Controller-Discovery.json').read_bytes()),q.read((q.P/'Completed-Control-Pins.json').read_bytes()))
+    q.need(len(v['groups'])==5 and len(v['versions'])==53,'REQUIRED_GROUPS_VERSIONS')
+    q.need(v['groups'][0]['package']=='memory-integrity'and v['groups'][4]['package']=='claude-mon','GROUP_PACKAGE')
+    for group in v['groups']:
+        ids=group['ids'];q.need(ids and len(ids)==len(set(ids))and not any('_FailedTest'in x for x in ids),'REQUIRED_DISCOVERY')
+    original=(q.SOURCE/'.github/scripts/offline_release_acceptance.py').read_bytes()
+    q.need(contract.restore_acceptance((q.P/'acceptance-defaults.py').read_bytes(),q.SOURCE/'.github/fixtures/offline-first')==original,'ADAPTER_EXTRA_CHANGE')
+    q.completed_originals()
+    print('GATE1_INPUTS_VERIFIED')
+def controls_gate(v,digest):
+    result=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s',str(q.P),'-p','test_*.py','-v'],
+      capture_output=True,timeout=120)
+    q.need(result.returncode==0,'CONTROLLER_CONTROLS_FAILED:'+result.stderr.decode(errors='replace'))
+    q.need(b'OK'in result.stderr.splitlines() and b'FAILED'not in result.stderr and b'(skipped='not in result.stderr,'CONTROLLER_TESTS_INCOMPLETE')
+    path=q.P/'Controller-Gate-Last.log';path.write_bytes(result.stdout+result.stderr)
+    q.inputs(digest);print('GATE1_CONTROLLER_CONTROLS_VERIFIED')
+def suites_gate(v,digest,report):
+    q.need(len(report['groups'])==len(v['groups'])==5,'MISSING_SUITE_GROUP')
+    runner=q.module(q.SOURCE/'.github/scripts/gate1_runner.py')
+    for number,(observed,expected)in enumerate(zip(report['groups'],v['groups'])):
+        q.need(observed['number']==number and all(observed[k]==expected[k]for k in ('package','pattern','ids')),'GROUP_IDENTITY')
+        for key in ('receipt','cases'):q.need(q.record(observed[key]['path'])==observed[key],'SUITE_ARTIFACT_CHANGED')
+        receipt=q.read(Path(observed['receipt']['path']).read_bytes());cases=q.read(Path(observed['cases']['path']).read_bytes())
+        contract.suite(expected['ids'],receipt,cases,runner.allowed_skips())
+        q.need(q.record(receipt['log'])['sha256']==receipt['log_sha256'],'SUITE_LOG')
+        diagnostics=observed['diagnostics']
+        suffixes={'timings':'-Case-Timings.json','progress':'-Progress.jsonl','python_stacks':'-Python-Stacks.log','fatal_stacks':'-Slow-Stack.log'}
+        q.need(set(diagnostics)==set(suffixes),'DIAGNOSTIC_RECORD_SET')
+        for key,suffix in suffixes.items():
+            path=q.RUN/('tests-'+str(number)+suffix)
+            q.need(diagnostics[key]['path']==str(path)and q.record(path)==diagnostics[key],'DIAGNOSTIC_ARTIFACT_CHANGED')
+        timings=q.read(Path(diagnostics['timings']['path']).read_bytes())
+        q.need(timings['unfinished']=={}and[x['id']for x in timings['finished']]==expected['ids'],'TEST_TIMING_COMPLETENESS')
+        progress=[q.read(line)for line in Path(diagnostics['progress']['path']).read_bytes().splitlines()]
+        contract.progress(progress,expected['ids'],cases['outcomes']['finished'])
+    print('GATE1_ALL_FIVE_SUITES_VERIFIED')
+def acceptance_gate(v,digest,report):
+    row=report['acceptance'];q.need(q.record(row['path'])==row,'ACCEPTANCE_BINDING')
+    receipt=q.read(Path(row['path']).read_bytes());producer=q.module(q.P/'acceptance-defaults.py')
+    producer.validate_receipt(receipt);contract.measurements(receipt['measurements'])
+    q.need(receipt['status']=='PASS_BOUNDED_RUNTIME'and receipt['failure']is None,'ACCEPTANCE_FAILURE')
+    for entry in receipt['commands']:
+        contract.acceptance_command(entry,Path(entry['stdout']['path']).read_bytes(),
+            Path(entry['stderr']['path']).read_bytes(),producer.expected_refusal)
+    q.need(report['dependencies-before']['worker_default']==report['dependencies-after']['worker_default']==120,'DEFAULT_120')
+    print('GATE1_24_ARMS_AND_SAFETY_VERIFIED')
+def cleanup_gate(v,digest,report):
+    row=report['cleanup'];q.need(q.record(row['path'])==row,'CLEANUP_BINDING')
+    receipt=q.read(Path(row['path']).read_bytes())
+    q.need(receipt['status']=='PASS_NATIVE_EXIT_BEFORE_REAL_CLEANUP'and receipt['failure']is None and receipt['all_reaped']is True,'CLEANUP_FAILED')
+    dirs=receipt['directories'];q.need(len(dirs)==3 and all(x['removed']and x['pre_cleanup']for x in dirs),'CLEANUP_DIRS')
+    for item in dirs:
+        q.need(all(x['native_wait']==0 and x['creation_time']>0 for x in item['pre_cleanup']),'NATIVE_EXIT')
+        events=[x for x in receipt['events']if x['cwd']==item['path']]
+        q.need([x['event']for x in events]==['native-exit-before-cleanup','real-cleanup-returned']and events[0]['at']<=events[1]['at'],'CLEANUP_ORDER')
+    q.need(len(receipt['owner_proofs'])==2 and all(x['released']and x['termination']['native_exit_proved']for x in receipt['owner_proofs']),'SHARD_OWNER_PROOF')
+    print('GATE1_NATIVE_EXIT_AND_CLEANUP_VERIFIED')
+def preservation_gate(v,digest,report):
+    admission=report['reader_admission']
+    for key in ('arm','hello_request','hello_response','hello_accepted'):q.need(q.record(admission[key]['path'])==admission[key],'ADMISSION_CHANGED')
+    q.need(admission['arm']['path']==str(q.P/'Reader-Arm.json')and
+      admission['hello_request']['path']==str(q.P/'Reader-Request-HELLO.json')and
+      admission['hello_response']['path']==str(q.P/'Reader-Response-HELLO.json')and
+      admission['hello_accepted']['path']==str(q.P/'Reader-Accepted-HELLO.json'),'ADMISSION_PATHS')
+    arm,_=history.packet(q.P/'Reader-Arm.json');request,request_row=history.packet(q.P/'Reader-Request-HELLO.json')
+    reply,_=history.packet(q.P/'Reader-Response-HELLO.json')
+    reader_guard.arm(arm,v,digest,sys.executable,datetime.fromisoformat(admission['admitted_utc']))
+    history.validate(request,v['session'],digest,'HELLO');history.payload(request,'HELLO',None,None)
+    q.need(reply.get('scope')=='FULL_GATE1_HISTORY_RESPONSE'and reply.get('session')==v['session']and
+      reply.get('action')=='HELLO'and reply.get('request')==request_row and reply.get('failure')is None,'HELLO_RAW_BINDING')
+    reader_guard.hello(arm,reply,request['payload']['challenge'])
+    ack,_=history.packet(q.P/'Reader-Accepted-HELLO.json')
+    q.need(ack=={'session':v['session'],'action':'HELLO','request':request_row},'HELLO_ACK_BINDING')
+    work,_=history.packet(q.P/'Reader-Work-Started.json')
+    q.need(work=={'session':v['session'],'seconds':3600,'request':q.record(q.P/'Reader-Request-BEFORE.json')},'WORK_ACTIVATION_BINDING')
+    ack,_=history.packet(q.P/'Reader-Accepted-BEFORE.json')
+    q.need(ack=={'session':v['session'],'action':'BEFORE','request':work['request']},'BEFORE_ACK_BINDING')
+    final=q.read((q.RUN/'Receipt.json').read_bytes())
+    q.need(final['runtime']==q.record(q.RUN/'Runtime-Receipt.json')and final['status']=='FULL_GATE1_OBSERVED_PENDING_PARENT_RAW_REVIEW'
+      and final['preservation']is True and final['preservation_failure']is None,'FINAL_PRESERVATION')
+    for key in ('before_bundle','after_bundle'):q.need(q.record(final[key]['path'])==final[key],'BUNDLE_CHANGED')
+    before=q.read(Path(final['before_bundle']['path']).read_bytes());after=q.read(Path(final['after_bundle']['path']).read_bytes())
+    data=q.module(q.R/'.github/scripts/shutdown_copy_data.py');snap=data.SnapshotSet(v['history_roots'],v['session'])
+    snap.compare(before,after);q.need(after['binding']['workload_sha256']==final['runtime']['sha256'],'AFTER_WORKLOAD')
+    c1=q.module(q.R/'.github/scripts/gate1_current_preflight.py')
+    q.need(report['protected_before']==report['protected_after']==c1.protected(),'PROTECTED_AFTER_CHANGED')
+    pins=q.completed_originals()
+    for key,phase in [('completed_originals_before','BEFORE'),('completed_originals_after','AFTER')]:
+        row=final[key];q.need(q.record(row['path'])==row,'COMPLETED_SAMPLE_CHANGED')
+        observation=q.read(Path(row['path']).read_bytes())
+        q.need(observation=={'session':v['session'],'phase':phase,'inputs_sha256':digest,'records':pins},'COMPLETED_ORIGINAL_SAMPLE')
+    print('GATE1_FRESH_PRESERVATION_VERIFIED')
+def main(gate):
+    v,digest=value()
+    if gate=='inputs':return inputs_gate(v,digest)
+    if gate=='controls':return controls_gate(v,digest)
+    report=runtime(v,digest)
+    functions={'suites':suites_gate,'acceptance':acceptance_gate,'cleanup':cleanup_gate,'preservation':preservation_gate}
+    if gate=='all':
+        for fn in functions.values():fn(v,digest,report)
+    else:functions[gate](v,digest,report)
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--gate',choices=('inputs','controls','suites','acceptance','cleanup','preservation','all'),required=True)
+    main(p.parse_args().gate)

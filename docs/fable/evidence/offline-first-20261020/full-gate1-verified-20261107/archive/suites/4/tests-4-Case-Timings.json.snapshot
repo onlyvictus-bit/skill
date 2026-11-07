@@ -1,0 +1,25 @@
+{
+  "finished": [
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_direct_native_success_event_refuses_before_database",
+      "seconds": 0.015999999828636646
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_dispatch_refuses_before_authority_consumption",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_native_authority_disabled",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_reconciliation_cannot_promote_applied",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_reservation_refuses_before_database_access",
+      "seconds": 0.0
+    }
+  ],
+  "unfinished": {}
+}

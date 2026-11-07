@@ -1,0 +1,17 @@
+{
+  "finished": [
+    {
+      "id": "test_native_containment.CleanExitDescendantTests.test_clean_exit_descendant_accounted",
+      "seconds": 0.4369999999180436
+    },
+    {
+      "id": "test_native_containment.ContainmentTests.test_clean_command_unaffected",
+      "seconds": 0.20399999991059303
+    },
+    {
+      "id": "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed",
+      "seconds": 5.5
+    }
+  ],
+  "unfinished": {}
+}

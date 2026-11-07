@@ -1,0 +1,44 @@
+"""Extract and independently hash the exact accepted Git tree; no runtime starts."""
+import hashlib,io,json,os,subprocess,time,zipfile
+from pathlib import Path,PurePosixPath
+P=Path(__file__).absolute().parent;R=P.parents[2]
+COMMIT='a2a28bf547a9c3e187c89eb6aee9f0b6bd822956'
+GIT=Path('C:/Program Files/Git/cmd/git.exe')
+def digest(raw):return hashlib.sha256(raw).hexdigest()
+def main():
+    assert digest(GIT.read_bytes())=='da240fe9bc24895b3e04150a4990b8a6ff329ecabcd8f19684c2cc310da5ef3f'
+    env=dict(os.environ);env.update(GIT_OPTIONAL_LOCKS='0',GIT_NO_REPLACE_OBJECTS='1')
+    def git(*args):return subprocess.check_output([str(GIT),'-C',str(R),*args],env=env,timeout=60)
+    expected={}
+    for row in git('ls-tree','-rz',COMMIT).split(b'\0'):
+        if not row:continue
+        meta,name=row.split(b'\t',1);mode,kind,ident=meta.split()
+        assert mode==b'100644'and kind==b'blob'
+        expected[name.decode('utf-8')]=ident.decode()
+    source=P/'source';assert not source.exists();source.mkdir()
+    started=time.monotonic();print('exact-committed-source: RUNNING (no selected runtime)',flush=True)
+    raw=git('archive','--format=zip',COMMIT)
+    with(P/'Source.zip').open('xb')as f:f.write(raw)
+    manifest={}
+    with zipfile.ZipFile(io.BytesIO(raw))as z:
+        for entry in z.infolist():
+            parts=PurePosixPath(entry.filename)
+            assert not parts.is_absolute()and '..'not in parts.parts and '\\'not in entry.filename
+            assert entry.filename not in manifest
+            if entry.is_dir():continue
+            assert entry.filename in expected
+            content=z.read(entry)
+            assert hashlib.sha1(b'blob '+str(len(content)).encode()+b'\0'+content).hexdigest()==expected[entry.filename]
+            target=source/entry.filename;target.parent.mkdir(parents=True,exist_ok=True)
+            with target.open('xb')as f:f.write(content)
+            assert target.read_bytes()==content
+            manifest[entry.filename]={'size':len(content),'sha256':digest(content),'git_blob':expected[entry.filename]}
+    assert set(manifest)==set(expected)
+    actual={x.relative_to(source).as_posix()for x in source.rglob('*')if x.is_file()}
+    assert actual==set(manifest)
+    result={'commit':COMMIT,'tree':git('rev-parse',COMMIT+'^{tree}').decode().strip(),
+        'source':str(source),'zip_sha256':digest(raw),'files':manifest,'file_count':len(manifest),
+        'seconds':time.monotonic()-started,'selected_runtime_started':False}
+    with(P/'Source-Manifest.json').open('x',encoding='utf-8')as f:json.dump(result,f,indent=2)
+    print('EXACT_COMMITTED_SOURCE_VERIFIED',len(manifest),'files','%.3f seconds'%result['seconds'])
+if __name__=='__main__':main()

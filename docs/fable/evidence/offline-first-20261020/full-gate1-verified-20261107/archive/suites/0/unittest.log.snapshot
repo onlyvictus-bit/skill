@@ -1,0 +1,8 @@
+test_clean_exit_descendant_accounted (test_native_containment.CleanExitDescendantTests.test_clean_exit_descendant_accounted) ... ok
+test_clean_command_unaffected (test_native_containment.ContainmentTests.test_clean_command_unaffected) ... ok
+test_grandchild_pipe_holder_killed (test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 6.151s
+
+OK

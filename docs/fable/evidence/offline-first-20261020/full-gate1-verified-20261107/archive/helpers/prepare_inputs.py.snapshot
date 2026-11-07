@@ -1,0 +1,74 @@
+"""Gate1 fresh committed source discovery/metadata only; selected runtime unused."""
+import argparse,hashlib,json,os,subprocess,sys,uuid
+from pathlib import Path
+import common as q
+import gate1_contract as contract
+P,R,S=q.P,q.R,q.SOURCE
+PATTERNS=[['memory-integrity',x]for x in ('test_native_containment.py','test_native_paths.py','test_offline_release_profile.py','test_knowledge*.py')]+[['claude-mon','test_offline_release_profile.py']]
+def main():
+    need=q.need;need(not(P/'Inputs-Draft.json').exists()and not(P/'Inputs.json').exists(),'INPUTS_EXIST_NO_RETRY')
+    baseline=q.read((P/'Baseline.json').read_bytes());source=q.read((P/'Source-Manifest.json').read_bytes())
+    need(q.manifest(S)=={k:{x:v[x]for x in ('size','sha256')}for k,v in source['files'].items()},'SOURCE_MANIFEST')
+    acceptance=(S/'.github/scripts/offline_release_acceptance.py').read_bytes()
+    adapted=contract.adapt_acceptance(acceptance,S/'.github/fixtures/offline-first')
+    need(contract.restore_acceptance(adapted,S/'.github/fixtures/offline-first')==acceptance,'ADAPTER_REVERSIBLE')
+    with(P/'acceptance-defaults.py').open('xb')as f:f.write(adapted)
+    c1=q.module(R/'.github/scripts/gate1_current_preflight.py');g=c1.load_support('gate1_validation')
+    fixed=c1.fixed_inputs();versions=c1.dependency_versions()
+    timeline=[];found=[]
+    for n,(package,pattern)in enumerate(PATTERNS):
+        def discover():
+            env=dict(os.environ);env.update(PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1')
+            argv=[sys.executable,'-B',str(S/'.github/scripts/gate1_runner.py'),'--discover','--package-root',str(S/package),'--pattern',pattern]
+            result=subprocess.run(argv,cwd=P,env=env,capture_output=True,timeout=60)
+            for stream in ('stdout','stderr'):
+                with(P/('discovery-'+str(n)+'-'+stream+'.log')).open('xb')as f:f.write(getattr(result,stream))
+            need(result.returncode==0,'DISCOVERY_FAILED:'+result.stderr.decode(errors='replace'))
+            ids=q.read(result.stdout);need(bool(ids)and len(ids)==len(set(ids))and not any('_FailedTest'in x for x in ids),'DISCOVERY_IDS')
+            return ids
+        ids=q.timed('controller-discovery-'+str(n),discover,timeline)
+        found.append({'package':package,'pattern':pattern,'ids':ids})
+    old=q.read(Path(r'C:\Users\sakth\Documents\Codex\rp3-on-demand-20261105\Before-Bundle.json').read_bytes())
+    roots={label:x['root']for label,x in old['roots'].items()}
+    archive=q.read((S/'docs/fable/evidence/offline-first-20261020/rp2-rp3-complete-checkpoint-20261106/Archive-Manifest.json').read_bytes())
+    completed={}
+    for item in archive['files']:
+        row=item['original'];actual=q.record(row['path']);need(actual==row,'COMPLETED_CONTROL_CHANGED:'+row['path']);completed[row['path']]=actual
+    q.save(P/'Controller-Discovery.json',{'groups':found,'timeline':timeline,'selected_runtime_started':False})
+    q.save(P/'Completed-Control-Pins.json',completed)
+    # The final input seal is created only after every new helper and fault test exists.
+    scripts={str(R/'.github/scripts'/name):q.record(R/'.github/scripts'/name)for name in (
+        'gate1_current_preflight.py','gate1_validation.py','gate1_image_successor.py','offline_host_validation.py',
+        'offline_release_acceptance.py','shutdown_copy_data.py','archive_copy_snapshot.py','archive_copy_h1.py')}
+    scripts[str(q.BASE)]=q.record(q.BASE)
+    for name,expected in source['files'].items():
+        if name.endswith('.py')and name.startswith(('memory-integrity/scripts/','claude-mon/scripts/')):
+            actual=q.record(R/name);need(actual['sha256']==expected['sha256'],'LIVE_CAPTURE_CODE_DIFFERS:'+name)
+            scripts[str(R/name)]=actual
+    for path in P.glob('*.py'):scripts[str(path)]=q.record(path)
+    for name in ('Source-Manifest.json','Controller-Discovery.json','Completed-Control-Pins.json'):
+        scripts[str(P/name)]=q.record(P/name)
+    q.save(P/'Inputs-Draft.json',{'scope':'FULL_GATE1_20261107','commit':source['commit'],'tree':source['tree'],
+       'source':str(S),'run':str(q.RUN),'worker':str(g.WORKER),'source_manifest':source['files'],
+       'seals':{**scripts,**fixed},'versions':versions,'groups':found,'history_roots':roots,
+       'session':uuid.uuid4().hex,'head':baseline['head'],'branch':'development/r5-practical-fence-wip-20261014',
+       'index_sha256':baseline['index_sha256'],'selected_runtime_started':False})
+    print(json.dumps({'status':'GATE1_DRAFT_INPUTS_PREPARED_SELECTED_RUNTIME_UNRUN','inputs':q.record(P/'Inputs-Draft.json'),
+       'group_counts':[len(x['ids'])for x in found],'completed_control_pins':len(completed)},indent=2))
+def freeze():
+    q.need(not(P/'Inputs.json').exists(),'FINAL_INPUTS_EXIST_NO_RETRY')
+    q.need(q.record(P/'Inputs-Draft.json')['sha256']=='dd06fedf5d686a72cba04f7292778c316b3712f8703ff134aea8c35d4960da22','REVIEWED_DRAFT_CHANGED')
+    value=q.read((P/'Inputs-Draft.json').read_bytes())
+    contract.inventory(value,q.read((P/'Controller-Discovery.json').read_bytes()),q.read((P/'Completed-Control-Pins.json').read_bytes()))
+    for name,row in value['seals'].items():
+        path=Path(name)
+        if path.parent==P and path.suffix=='.py':continue
+        q.need(q.record(path)==row,'NONCONTROLLER_INPUT_CHANGED:'+name)
+    q.need(q.manifest(S)=={k:{x:v[x]for x in ('size','sha256')}for k,v in value['source_manifest'].items()},'SOURCE_CHANGED')
+    for path in P.glob('*.py'):value['seals'][str(path)]=q.record(path)
+    q.save(P/'Inputs.json',value)
+    q.inputs(q.record(P/'Inputs.json')['sha256'])
+    print(json.dumps({'status':'GATE1_FINAL_INPUTS_FROZEN_NO_RUNTIME','inputs':q.record(P/'Inputs.json')}))
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--freeze',action='store_true');a=p.parse_args()
+    freeze()if a.freeze else main()

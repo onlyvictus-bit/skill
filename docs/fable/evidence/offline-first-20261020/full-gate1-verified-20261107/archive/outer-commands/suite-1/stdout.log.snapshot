@@ -1,0 +1,9 @@
+{"scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI", "pattern": "test_native_paths.py", "tests_run": 2, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "interrupted": false, "discovered": 2, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\tests-1\\unittest.log", "log_sha256": "086d1e92f036561f5d43ba63bfb3488d4bed43f6324dd862323b203eafbaa096"}
+test_info_accepts_short_database_path (test_native_paths.PathIdentityTests.test_info_accepts_short_database_path) ... ok
+test_short_and_long_forms_unify (test_native_paths.PathIdentityTests.test_short_and_long_forms_unify) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.015s
+
+OK
+

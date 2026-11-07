@@ -1,0 +1,15 @@
+# Gate1 diagnostic crash repair - approved continuation
+
+User: WHATS ERROR, EXPLAIN, FIND ROOT CAUSE, SOLVE IT.
+
+Evidence: first3groups21casesPASS. Knowledge child exited0xC0000005 at456.246s, not watchdog expiry. Windows event1000 faultoffset0x27e990 inside python312.dll. PE unwind/literal analysis maps containing function0x27e95c..0x27eaab to CPython dump_frame. Final timer stack dump stops after File prefix. Exact stale-frame/memory origin remains unproven without native dump or reproduction.
+
+Options: nochange leaves failing diagnostic path; selected fix replaces only periodic asynchronous native frame walking with GIL-held Python frame references and durable progress. Reinstall/newPython/skiptests/longertimeouts are unsupported. Stronger isolate-every-test redesign is deferred unless evidence refutes diagnostic-path hypothesis.
+
+1. Preserve/hash failed attempt; reproduce native-timer invocation in bounded controller fixture.
+2. Fresh runner safe sampling + per-test START/END/outcome fsync journal; failure/sampler errors failclosed; all original assertions and source unchanged.
+3. Original35controller checks + focused observation/abnormal-exit controls and realcontroller source tests; independent currentbyte review.
+4. Freeze fresh successor inputs referencing same exact931immutable source; one complete normal selected-runtime command with deep logs and fresh8root/237proof preservation. Never rerun/modify consumed old command/output.
+5. Parent raw evidence + independent acceptance before Gate1 success.
+
+Current scope diagnostic-only; no installs, permission/security/Git change or original deletion.

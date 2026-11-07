@@ -1,0 +1,22 @@
+"""Exact idle-arm and fresh-challenge admission contracts; no private data reads."""
+import os
+from datetime import datetime,timezone
+from gate1_contract import need
+READER_SIDS={'S-1-5-21-2571509308-2482563067-4170768140-1003'}
+def identity(row,controller):
+    need(type(row)is dict and set(row)=={'pid','image','creation','sid','elevated'},'READER_IDENTITY_SCHEMA')
+    need(type(row['pid'])is int and row['pid']>0 and type(row['creation'])is int and row['creation']>0,'READER_PID_CREATION')
+    need(row['sid']in READER_SIDS and row['elevated']is False,'READER_ACCOUNT')
+    normalize=lambda p:os.path.normcase(os.path.abspath(p))
+    need(normalize(row['image'])==normalize(controller),'READER_IMAGE')
+def arm(row,value,digest,controller,observed_at=None):
+    need(type(row)is dict and set(row)=={'scope','session','inputs_sha256','reader_identity','armed_utc',
+      'idle_seconds','work_seconds','selected_runtime_started'},'READER_ARM_SCHEMA')
+    need(row['scope']=='FULL_GATE1_HISTORY_READER'and row['session']==value['session']and row['inputs_sha256']==digest,'READER_ARM_BINDING')
+    need(type(row['idle_seconds'])is int and row['idle_seconds']==86400 and type(row['work_seconds'])is int and
+      row['work_seconds']==3600 and row['selected_runtime_started']is False,'READER_ARM_BUDGET')
+    identity(row['reader_identity'],controller)
+    age=((datetime.now(timezone.utc)if observed_at is None else observed_at)-datetime.fromisoformat(row['armed_utc'])).total_seconds()
+    need(0<=age<86400,'READER_IDLE_EXPIRED_NO_ATTEMPT')
+def hello(arm,response,challenge):
+    need(response.get('challenge')==challenge and response.get('reader_identity')==arm['reader_identity'],'READER_FRESH_HELLO_IDENTITY')

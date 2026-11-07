@@ -3975,3 +3975,107 @@ is in native-integration phase/historical-after-20261106. Detailed result is in
 rp2-rp3-stage-complete-20261106.md. Gate1/release/install and broader qualification
 remain separate,as do producerAuth/continuousimmutability/exacthistoricalC2cause.
 Earlier unchecked handoff/Stage statements are historical and superseded here.
+
+
+## Full Gate1 acceptance continuation - authorized 2026-11-07
+
+AUTH: user "COMPLETE THIS PENDING Full Gate1 acceptance", with Fable and Unlazy.
+All local preparation/control/review/new execution/preservation/result-review
+milestones in this named scope are approved. No install, Git publication, ACL or
+security/global change, native database or learned-model operation is included.
+
+Use .github/run-artifacts/gate1-full-20261107/PLAN.md and GATES.md as the bounded
+execution detail/observable ledger of this same campaign. Seven acceptance gates:
+exact committed inputs, controller refusals, complete five groups,24arms/default120
+and fresh replay/safety, native exit before real cleanup, fresh preservation,
+and independent final raw-result acceptance. No abandoned or pre-passed gates.
+
+- Source a2a28bf tree122c521: fresh931-file exact Git extraction; no overlays.
+- Input-only discovery3/2/16/355/5=381cases. Freeze actual IDs, not old224/217counts.
+- Existing optional model/parser/POSIX skip allowlist retained; no in-scope runtime
+  skip, exclusions, errors or expected-failure acceptance.
+- Draft353917bytes SHA dd06fedf5d686a72cba04f7292778c316b3712f8703ff134aea8c35d4960da22;
+  53versions,237immutable completed original records and8oldhistoryroots bound.
+- Controller16PASS incl actual3.14 root/child native-handle positive/negative checks.
+  Selected3.12 remains UNRUN. Final inputs/reader/runtime command not issued yet.
+- New C3 observer corrects old alias-only filter, checks actual physical workers'
+  native handles BEFORE deletion and actual shard owner/writer/stream completion.
+- Existing SnapshotSet handles new BEFORE/AFTER and existing-access copies, with
+  a fresh session. AFTER must bind the new runtime receipt. Old13966/178results
+  remain immutable controls, not fresh observations for this workload.
+- Use short normal output C:/Users/sakth/Documents/Codex/g1-full-20261107 to avoid
+  deep retained fixture paths. Reader idle24h/work3600 begins on valid request.
+  Existing work120/public90/startup10/shutdown5/lifecycle60 budgets stay unchanged.
+
+Next: final controller/code review, corrections and final seals, then one complete
+Normal1001/nonadmin command. Actual five suites/24arms/C3/fresh preservation and
+parent raw review must all pass before Full Gate1 true. RP2/RP3 focused Stage
+remains complete. Release/install/producer authentication are separate.
+
+Full Gate1 correction observation 2026-11-07:34controller tests PASS,0fail/error/skip.
+Independent review findings corrected: exact exit2 refusals; CRLF output; exact
+SID1003/fresh challenge before run creation; invalid payload before activation/
+private reads; bounded expensive operations including AFTER compare; exact381
+case inventory and16command/raw identity/dependency/reader proof revalidation.
+Final review remains pending; no final Inputs seal, reader or selected run yet.
+
+Full Gate1 final preparation2026-11-07: same-seat independent review SHIP for
+preparation/handoff only;35current controller checks PASS. Final Inputs675a74ff...
+357859bytes;24phasePython seals match. New readerPID32828/SID1003 armedUTC
+2026-11-07T12:39:04.454781+00:00 with24h idle; freshHELLO before attempt,60min
+work clock on validBEFORE. Static VerifyOnly PASS; selected runtime UNRUN and
+short g1-full-20261107 root stillABSENT. One Run-Full-Gate1.ps1 externally sealed
+b5ddeda6602aa1d76af0e7c48902f37cf610b12b6fdbf2b93d992b78912ee45a
+executes all five381case suites,24arms,realC3cleanup and fresh originalAFTER.
+Successful runtime remains pending parent raw review and G7; not Gate1 done.
+
+Full Gate1 ACTUAL FAILURE2026-11-07: old g1-full run consumed. First21cases
+PASS;knowledge log297ok/13skip/1incomplete/44notstarted. Interpreter exited
+0xC0000005 at456.246s,notwatchdog/captureloss;no knowledgeaggregate receipt.
+WindowsEvent1000 python312.dll+0x27e990;PEfunction literals+finalpartial
+30sstackdump localizecrashto dump_frame. Nativeperiodicdiagnostic trigger
+stronglyimplicated; exactmemoryorigin UNPROVEN. Preservation completedTRUE.
+No fullGate1pass,CM/24arms/C3run. Fresh gate1-diagnostics-fix-20261107 uses
+same931source/381IDs and external safePythonstacks+durablefsyncSTART/END.
+47controllerchecksPASS,7existingWindowsSessiontestsPASS/controller3.14only;
+independentreview pendingcurrentfreeze. Do NOT rerunoldcommand/editsoldseals.
+
+Diagnostic successor final2026-11-07: independentread-onlyreview SHIP forone
+freshfullhandoff;47controllerPASS+7existingWindowsSessionPASS/14journalevents.
+Inputbb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319
+378494bytes. Same931source reusedimmutable;oldfailedInput/receipts/logspinned.
+G1/G2PASS;5runtime/rawreviewgatespending,0abandoned. StaticVerifyOnlyPASS.
+Reader29760/SID1003 armedUTC2026-11-07T13:56:38.026744+00:00 with24hidle,
+no selected3.12runtime andshortg1-dfix-20261107outputABSENT. NewcommandSHA
+7e213d936570bba31c44bb4991b321c703827141821ca79146319c0d208374fd.
+No oldretry;diagnostictriggerremoved,exactnative memoryoriginUNPROVEN.
+
+## CURRENT - Full Gate1 VERIFIED COMPLETE, 2026-11-07
+
+Supersedes the earlier Full Gate1 preparation/pending/crash status for the current
+accepted source. Final Gate1-Acceptance.json is in .github/run-artifacts/
+gate1-diagnostics-fix-20261107, SHA256
+958cea3c2ad671e621cb235959d9bcac18960dcd34e5256c20bb23c3d1bf0e65.
+All7gates met;0unmet/abandoned. Independent native raw-result review SHIP.
+
+Selected Python3.12.10 full5groups:381cases =368PASS+13exact permitted optional/
+platformSKIP;0fail/error/exclusion/xfail/missing.24arms and24freshreplays/11safety
+checks PASS;60acceptance commands(56exit0+4exact refusalexit2). Default120 before/
+after;53dependency versions match. C3 native exit-before-delete PASS for3new
+scratch directories,6pinned native handle observations and2released shardowners.
+All13966objects in8history roots BEFORE/AFTER match;237completed proof originals
+match.762durable START/END events verified. All5fatal-stacklogs empty. Knowledge
+suite completed726.158s outer capture without recurrence of0xC0000005.
+
+Final runtimeSHA c51dce8ddb2de2eb482769087ceca9eae7e433edabf1293f994c28c1181eac0e;
+run receiptSHA1bfd6bbcd5af754298e258ddef973ed220082894c0e659c88282ae0488b1eeb2.
+Original runtime/receipt retain their historical pending-parent-review labels;
+final acceptance is separate. Exact931file a2a28bf source and184seals unchanged;
+oldfailedattempt7pins unchanged. Currentcheckout/index retained. No workload
+was rerun for parent or independent result review. Do NOT rerun consumed command.
+
+Full Gate1 is complete; release/package/extracted/installed/whole-skill/model/native
+DB/producer-authentication qualification remains separate and false here. Exact
+memory origin of the earlier native crash and historical C2cause remain unproven.
+No commit/push, installation, OS permission/security or original deletion occurred.
+

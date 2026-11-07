@@ -1,0 +1,1 @@
+{"adapter_calls": 0, "approvals_consumed": 0, "blockers": ["ValueError: E_REQUIRED_STALE"], "evidence_class": "TEST_ONLY", "ok": false, "overall": "BLOCKED"}

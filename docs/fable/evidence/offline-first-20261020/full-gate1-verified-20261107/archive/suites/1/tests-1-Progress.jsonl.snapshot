@@ -1,0 +1,4 @@
+{"event": "START", "id": "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path", "utc": "2026-11-07T14:05:42.665742+00:00", "monotonic": 2681451.953, "pid": 43616}
+{"id": "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path", "outcome": "PASS", "reason": "", "event": "END", "seconds": 0.0, "utc": "2026-11-07T14:05:42.673736+00:00", "monotonic": 2681451.953, "pid": 43616}
+{"event": "START", "id": "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify", "utc": "2026-11-07T14:05:42.675735+00:00", "monotonic": 2681451.953, "pid": 43616}
+{"id": "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify", "outcome": "PASS", "reason": "", "event": "END", "seconds": 0.014999999664723873, "utc": "2026-11-07T14:05:42.680736+00:00", "monotonic": 2681451.968, "pid": 43616}

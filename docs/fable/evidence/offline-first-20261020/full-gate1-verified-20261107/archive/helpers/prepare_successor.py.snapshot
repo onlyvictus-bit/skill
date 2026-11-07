@@ -1,0 +1,31 @@
+"""Freeze a fresh diagnostic-only successor over the same exact committed source."""
+import json,uuid
+from pathlib import Path
+import common as q
+import gate1_contract as contract
+OLD=q.R/'.github/run-artifacts/gate1-full-20261107'
+OLD_SHA='675a74ff02fd5cd8972edd47910b8ec5a27e80edc018137a2ee9f9b82426e3c5'
+def main():
+    q.need(not(q.P/'Inputs.json').exists(),'SUCCESSOR_INPUTS_EXIST_NO_RETRY')
+    q.need(q.record(OLD/'Inputs.json')['sha256']==OLD_SHA,'OLD_ACCEPTED_INPUTS_CHANGED')
+    value=q.read((OLD/'Inputs.json').read_bytes())
+    for path,row in value['seals'].items():q.need(q.record(path)==row,'OLD_SEALED_INPUT_CHANGED:'+path)
+    q.need(q.manifest(q.SOURCE)=={k:{x:v[x]for x in ('size','sha256')}for k,v in value['source_manifest'].items()},'COMMITTED_SOURCE_CHANGED')
+    contract.inventory(value,q.read((q.P/'Controller-Discovery.json').read_bytes()),q.read((q.P/'Completed-Control-Pins.json').read_bytes()))
+    failed=q.read((q.P/'Failed-Attempt-Pins.json').read_bytes())
+    for path,pin in failed.items():
+        row=q.record(path);q.need(all(row[k]==pin[k]for k in ('size','sha256'))and row['links']==1,'FAILED_ATTEMPT_CHANGED:'+path)
+        value['seals'][path]=row
+    for path in q.P.glob('*.py'):value['seals'][str(path)]=q.record(path)
+    for name in ('Controller-Discovery.json','Completed-Control-Pins.json','Failed-Attempt-Pins.json','Event-1000.xml','Event-1000.txt'):
+        path=q.P/name;value['seals'][str(path)]=q.record(path)
+    dll=Path(r'C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\python312.dll')
+    row=q.record(dll);q.need(row['sha256']=='9a0e3435aaa680d868150f87ab3e388ad2eebc22f87e036155c7b4eda8cd2120','OBSERVED_RUNTIME_DLL_CHANGED')
+    value['seals'][str(dll)]=row
+    value.update(source=str(q.SOURCE),run=str(q.RUN),session=uuid.uuid4().hex,selected_runtime_started=False,
+      diagnostic_successor={'old_inputs':q.record(OLD/'Inputs.json'),'old_runtime':q.record(Path(r'C:\Users\sakth\Documents\Codex\g1-full-20261107\Runtime-Receipt.json')),
+        'change':'Replace native periodic stack walker with Python frame sampler and fsync per-case journal; original source/assertions/timeouts unchanged',
+        'native_memory_cause_proven':False})
+    q.save(q.P/'Inputs.json',value);row=q.record(q.P/'Inputs.json');q.inputs(row['sha256'])
+    print(json.dumps({'status':'DIAGNOSTIC_SUCCESSOR_INPUTS_ONLY_NO_SELECTED_RUNTIME','inputs':row,'source_reused_exact':931}))
+if __name__=='__main__':main()

@@ -1,0 +1,30 @@
+"""Read the current controller's native image/creation identity and account SID."""
+import ctypes,os
+from ctypes import wintypes as w
+def current():
+    k=ctypes.WinDLL('kernel32',use_last_error=True);a=ctypes.WinDLL('advapi32',use_last_error=True)
+    def bind(api,name,args,result):
+        f=getattr(api,name);f.argtypes=args;f.restype=result;return f
+    def check(ok):
+        if not ok:raise ctypes.WinError(ctypes.get_last_error())
+    process=bind(k,'GetCurrentProcess',[],w.HANDLE)()
+    image=ctypes.create_unicode_buffer(32768);length=w.DWORD(len(image))
+    check(bind(k,'QueryFullProcessImageNameW',[w.HANDLE,w.DWORD,w.LPWSTR,ctypes.POINTER(w.DWORD)],w.BOOL)(process,0,image,ctypes.byref(length)))
+    times=[w.FILETIME()for _ in range(4)]
+    check(bind(k,'GetProcessTimes',[w.HANDLE,*([ctypes.POINTER(w.FILETIME)]*4)],w.BOOL)(process,*map(ctypes.byref,times)))
+    token=w.HANDLE();check(bind(a,'OpenProcessToken',[w.HANDLE,w.DWORD,ctypes.POINTER(w.HANDLE)],w.BOOL)(process,8,ctypes.byref(token)))
+    close=bind(k,'CloseHandle',[w.HANDLE],w.BOOL)
+    try:
+        info=bind(a,'GetTokenInformation',[w.HANDLE,ctypes.c_int,ctypes.c_void_p,w.DWORD,ctypes.POINTER(w.DWORD)],w.BOOL)
+        size=w.DWORD();ok=info(token,1,None,0,ctypes.byref(size))
+        if ok or ctypes.get_last_error()!=122 or not 0<size.value<=65536:raise ValueError('E_G1_TOKEN_USER_SIZE')
+        buffer=ctypes.create_string_buffer(size.value);check(info(token,1,buffer,size,ctypes.byref(size)))
+        sid=ctypes.cast(buffer,ctypes.POINTER(ctypes.c_void_p))[0];text=w.LPWSTR()
+        check(bind(a,'ConvertSidToStringSidW',[ctypes.c_void_p,ctypes.POINTER(w.LPWSTR)],w.BOOL)(sid,ctypes.byref(text)))
+        try:account=text.value
+        finally:bind(k,'LocalFree',[ctypes.c_void_p],ctypes.c_void_p)(ctypes.cast(text,ctypes.c_void_p))
+    finally:check(close(token))
+    shell=ctypes.WinDLL('shell32',use_last_error=True)
+    admin=bind(shell,'IsUserAnAdmin',[],w.BOOL)()
+    return {'pid':os.getpid(),'image':image.value,'creation':times[0].dwLowDateTime+(times[0].dwHighDateTime<<32),
+      'sid':account,'elevated':bool(admin)}

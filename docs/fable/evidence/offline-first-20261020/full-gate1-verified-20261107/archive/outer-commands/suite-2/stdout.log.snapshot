@@ -1,0 +1,23 @@
+{"scope": "RETAINED_LOCAL_SCOPED_TEMP_CLEANUP_NOT_UNCHANGED_CI", "pattern": "test_offline_release_profile.py", "tests_run": 16, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "interrupted": false, "discovered": 16, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\tests-2\\unittest.log", "log_sha256": "1c48c60c3c3250c706f9b12ab57300ca26856f6a1632fc416b6811b44d8f2695"}
+test_active_profile_refuses_native_authority (test_offline_release_profile.OfflineReleaseProfile.test_active_profile_refuses_native_authority) ... ok
+test_direct_disposable_adapter_refuses_all_native_entrypoints (test_offline_release_profile.OfflineReleaseProfile.test_direct_disposable_adapter_refuses_all_native_entrypoints) ... ok
+test_direct_race_transport_refuses_before_resources (test_offline_release_profile.OfflineReleaseProfile.test_direct_race_transport_refuses_before_resources) ... ok
+test_direct_race_worker_refuses_before_reading_spec_or_journal (test_offline_release_profile.OfflineReleaseProfile.test_direct_race_worker_refuses_before_reading_spec_or_journal) ... ok
+test_direct_read_command_refuses_before_executable_selection (test_offline_release_profile.OfflineReleaseProfile.test_direct_read_command_refuses_before_executable_selection) ... ok
+test_duplicate_profile_json_refused (test_offline_release_profile.OfflineReleaseProfile.test_duplicate_profile_json_refused) ... ok
+test_fixture_remains_test_only (test_offline_release_profile.OfflineReleaseProfile.test_fixture_remains_test_only) ... ok
+test_flag_edit_cannot_enable_native_operations (test_offline_release_profile.OfflineReleaseProfile.test_flag_edit_cannot_enable_native_operations) ... ok
+test_lease_transport_refuses_before_boundary (test_offline_release_profile.OfflineReleaseProfile.test_lease_transport_refuses_before_boundary) ... ok
+test_missing_profile_cannot_use_historical_qualification (test_offline_release_profile.OfflineReleaseProfile.test_missing_profile_cannot_use_historical_qualification) ... ok
+test_native_event_acceptance_refuses_before_journal_access (test_offline_release_profile.OfflineReleaseProfile.test_native_event_acceptance_refuses_before_journal_access) ... ok
+test_observation_refuses_before_selection (test_offline_release_profile.OfflineReleaseProfile.test_observation_refuses_before_selection) ... ok
+test_pilots_refuse_before_initialization (test_offline_release_profile.OfflineReleaseProfile.test_pilots_refuse_before_initialization) ... ok
+test_predecessor_cli_refuses_before_path_validation (test_offline_release_profile.OfflineReleaseProfile.test_predecessor_cli_refuses_before_path_validation) ... ok
+test_race_confirmation_cannot_construct_live_driver (test_offline_release_profile.OfflineReleaseProfile.test_race_confirmation_cannot_construct_live_driver) ... ok
+test_shared_claim_and_readback_never_call_transport (test_offline_release_profile.OfflineReleaseProfile.test_shared_claim_and_readback_never_call_transport) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.074s
+
+OK
+

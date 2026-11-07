@@ -1,0 +1,7 @@
+test_info_accepts_short_database_path (test_native_paths.PathIdentityTests.test_info_accepts_short_database_path) ... ok
+test_short_and_long_forms_unify (test_native_paths.PathIdentityTests.test_short_and_long_forms_unify) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.015s
+
+OK

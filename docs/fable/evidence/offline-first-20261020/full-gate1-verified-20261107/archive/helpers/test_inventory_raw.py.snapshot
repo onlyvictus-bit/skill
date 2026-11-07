@@ -1,0 +1,24 @@
+import copy,unittest
+import gate1_contract as c
+class InventoryAndRaw(unittest.TestCase):
+    def value(self):return {'groups':[{'package':p,'pattern':t,'ids':[str(i)for i in range(n)]}for p,t,n in c.GROUPS],
+      'source_manifest':dict.fromkeys(range(931)),'history_roots':dict.fromkeys(range(8)),'versions':dict.fromkeys(range(53))}
+    def test_exact_inventory_and_narrowing_mutations(self):
+        v=self.value();d={'groups':copy.deepcopy(v['groups'])};pins=dict.fromkeys(range(237));c.inventory(v,d,pins)
+        for key,value in [('package','other'),('pattern','test_one.py'),('ids',['one'])]:
+            bad=copy.deepcopy(v);bad['groups'][2][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):c.inventory(bad,{'groups':bad['groups']},pins)
+        for key in ('source_manifest','history_roots','versions'):
+            bad=copy.deepcopy(v);bad[key].pop(next(iter(bad[key])))
+            with self.subTest(key=key),self.assertRaises(ValueError):c.inventory(bad,d,pins)
+        pins.pop(0)
+        with self.assertRaises(ValueError):c.inventory(v,d,pins)
+    def test_runtime_requires_exact_order_and_started_flags(self):
+        good={'scope':'FULL_GATE1_20261107','inputs_sha256':'a'*64,'commit':'b'*40,'selected_runtime_started':True,
+          'selected_runtime_attempted':True,'workload_claimed':True,'commands':[{'label':x}for x in c.COMMANDS]}
+        c.runtime_structure(good,'a'*64,'b'*40)
+        for key,value in [('scope','other'),('inputs_sha256','c'*64),('selected_runtime_started',False),
+          ('selected_runtime_attempted',False),('workload_claimed',False),('commands',[]),('commands',list(reversed(good['commands'])))]:
+            bad=copy.deepcopy(good);bad[key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):c.runtime_structure(bad,'a'*64,'b'*40)
+if __name__=='__main__':unittest.main(verbosity=2)

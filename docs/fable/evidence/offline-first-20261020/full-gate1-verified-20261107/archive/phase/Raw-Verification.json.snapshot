@@ -1,0 +1,158 @@
+{
+  "acceptance_checks": [
+    {
+      "name": "source-accounting",
+      "passed": true
+    },
+    {
+      "name": "coding-tests",
+      "passed": true
+    },
+    {
+      "name": "save",
+      "passed": true
+    },
+    {
+      "name": "fresh-recall",
+      "passed": true
+    },
+    {
+      "name": "unchanged-resume",
+      "passed": true
+    },
+    {
+      "name": "changed-source",
+      "passed": true
+    },
+    {
+      "name": "revoked-access",
+      "passed": true
+    },
+    {
+      "name": "budget",
+      "passed": true
+    },
+    {
+      "name": "optional-stale",
+      "passed": true
+    },
+    {
+      "name": "forged-pack",
+      "passed": true
+    },
+    {
+      "name": "preservation",
+      "passed": true
+    }
+  ],
+  "acceptance_commands": 60,
+  "cleanup_directories": 3,
+  "command_seconds": {
+    "acceptance": 268.1041782000102,
+    "dependencies-after": 0.7087119002826512,
+    "dependencies-before": 0.8709351001307368,
+    "discover-0": 0.647550200112164,
+    "discover-1": 0.5003665001131594,
+    "discover-2": 0.7291155001148582,
+    "discover-3": 1.0595283000729978,
+    "discover-4": 0.5357133997604251,
+    "identity-after": 0.37910859985277057,
+    "identity-before": 0.5264667998999357,
+    "real-cleanup": 11.052730799652636,
+    "suite-0": 6.935192899778485,
+    "suite-1": 0.7768270000815392,
+    "suite-2": 0.8550533000379801,
+    "suite-3": 726.158436700236,
+    "suite-4": 0.764149900060147
+  },
+  "completed_original_pins": 237,
+  "gate1_complete": false,
+  "gates_abandoned": 0,
+  "gates_met": 6,
+  "gates_unmet": 1,
+  "groups": [
+    {
+      "cases": 3,
+      "errors": 0,
+      "failures": 0,
+      "group": 0,
+      "passed": 3,
+      "skipped": 0
+    },
+    {
+      "cases": 2,
+      "errors": 0,
+      "failures": 0,
+      "group": 1,
+      "passed": 2,
+      "skipped": 0
+    },
+    {
+      "cases": 16,
+      "errors": 0,
+      "failures": 0,
+      "group": 2,
+      "passed": 16,
+      "skipped": 0
+    },
+    {
+      "cases": 355,
+      "errors": 0,
+      "failures": 0,
+      "group": 3,
+      "passed": 342,
+      "skipped": 13
+    },
+    {
+      "cases": 5,
+      "errors": 0,
+      "failures": 0,
+      "group": 4,
+      "passed": 5,
+      "skipped": 0
+    }
+  ],
+  "history_objects_after": 13966,
+  "history_objects_before": 13966,
+  "history_roots": 8,
+  "inputs": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Inputs.json",
+    "sha256": "bb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319",
+    "size": 378494
+  },
+  "installed": false,
+  "journal_events": 762,
+  "measurements": 24,
+  "native_memory_cause_proven": false,
+  "native_waits": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "passed": 368,
+  "producer_authentication": false,
+  "receipt": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\Receipt.json",
+    "sha256": "1bfd6bbcd5af754298e258ddef973ed220082894c0e659c88282ae0488b1eeb2",
+    "size": 1901
+  },
+  "release_ready": false,
+  "released_shard_owners": 2,
+  "runtime": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\Runtime-Receipt.json",
+    "sha256": "c51dce8ddb2de2eb482769087ceca9eae7e433edabf1293f994c28c1181eac0e",
+    "size": 187910
+  },
+  "scope": "FULL_GATE1_PARENT_RAW_VERIFICATION_20261107",
+  "skipped": 13,
+  "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "status": "ALL_RUNTIME_AND_PRESERVATION_CHECKS_PASS_PENDING_INDEPENDENT_G7",
+  "total_cases": 381,
+  "verified_utc": "2026-11-07T15:43:08.576275+00:00"
+}

@@ -1,0 +1,150 @@
+"""Four fixed preservation operations using existing access; no workload dispatch."""
+import argparse,hashlib,json,os,re,sys,time,traceback
+from datetime import datetime,timezone
+from pathlib import Path
+import common as q
+import controller_identity,reader_guard
+ACTIONS=('HELLO','BEFORE','MERGE_BEFORE','AFTER','MERGE_AFTER')
+
+def remaining(deadline):
+    left=deadline-time.monotonic();q.need(left>0,'READER_DEADLINE_EXPIRED');return left
+
+def payload(message,action,s,before):
+    body=message['payload']
+    if action=='HELLO':
+        q.need(set(body)=={'challenge'}and type(body['challenge'])is str and re.fullmatch('[0-9a-f]{32}',body['challenge'])is not None,'HELLO_PAYLOAD')
+    elif action=='BEFORE':q.need(body=={},'BEFORE_PAYLOAD')
+    elif action=='AFTER':
+        q.need(set(body)=={'workload'}and type(body['workload'])is dict,'AFTER_PAYLOAD')
+        row=body['workload'];q.need(row.get('path')==str(q.RUN/'Runtime-Receipt.json')and q.record(row['path'])==row,'WORKLOAD_BINDING')
+        runtime,_=packet(Path(row['path']))
+        q.need(runtime.get('scope')=='FULL_GATE1_20261107'and runtime.get('inputs_sha256')==message['inputs_sha256']and
+          runtime.get('commit')=='a2a28bf547a9c3e187c89eb6aee9f0b6bd822956'and before is not None,'WORKLOAD_CONTENT_BINDING')
+    else:
+        q.need(set(body)=={'copies'}and type(body['copies'])is dict,'MERGE_PAYLOAD')
+        phase='BEFORE'if action=='MERGE_BEFORE'else'AFTER';folder=q.RUN/('history-'+phase.lower()+'-copy');row=body['copies']
+        q.need(row.get('path')==str(folder/'Copies.json')and q.record(row['path'])==row,'COPY_BINDING')
+        observed,_=packet(q.P/(phase+'-Request.json'));s._copies(observed,folder,row['sha256'])
+def publish(path,value):
+    tmp=path.with_name(path.name+'.tmp-'+str(os.getpid()))
+    with tmp.open('x',encoding='utf-8')as f:json.dump(value,f,indent=2,sort_keys=True);f.flush();os.fsync(f.fileno())
+    os.rename(tmp,path)
+def packet(path):
+    row=q.record(path);q.need(row['links']==1 and row['size']<=128*1024*1024,'IPC_FILE_TYPE_SIZE')
+    result=q.read(path.read_bytes());q.need(q.record(path)==row,'IPC_FILE_UNSTABLE');return result,row
+def validate(message,session,digest,action):
+    q.need(type(message)is dict and set(message)=={'scope','session','inputs_sha256','action','payload'}and
+      message['scope']=='FULL_GATE1_HISTORY_RPC'and message['session']==session and
+      message['inputs_sha256']==digest and message['action']==action and type(message['payload'])is dict,'IPC_PACKET')
+def snapshot(value):
+    data=q.module(q.R/'.github/scripts/shutdown_copy_data.py');data._primitives()
+    return data,data.SnapshotSet(value['history_roots'],value['session'])
+def serve(digest):
+    value=q.inputs(digest);data,s=snapshot(value);q.need(not(q.P/'Reader-Arm.json').exists(),'READER_ALREADY_ARMED')
+    identity=controller_identity.current();reader_guard.identity(identity,sys.executable)
+    publish(q.P/'Reader-Arm.json',{'scope':'FULL_GATE1_HISTORY_READER','session':value['session'],
+      'inputs_sha256':digest,'reader_identity':identity,'armed_utc':datetime.now(timezone.utc).isoformat(),
+      'idle_seconds':86400,'work_seconds':3600,'selected_runtime_started':False})
+    deadline=time.monotonic()+86400;before=None;timeline=[]
+    for number,action in enumerate(ACTIONS):
+        request=q.P/('Reader-Request-'+action+'.json');response=q.P/('Reader-Response-'+action+'.json')
+        while not request.exists():
+            if time.monotonic()>=deadline:return 2
+            time.sleep(.2)
+        result={'scope':'FULL_GATE1_HISTORY_RESPONSE','session':value['session'],'action':action,'failure':None}
+        try:
+            remaining(deadline)
+            message,row=packet(request);validate(message,value['session'],digest,action);result['request']=row
+            payload(message,action,s,before);remaining(deadline);q.inputs(digest);remaining(deadline)
+            if action=='BEFORE':
+                deadline=time.monotonic()+3600
+                publish(q.P/'Reader-Work-Started.json',{'session':value['session'],'seconds':3600,'request':row})
+            publish(q.P/('Reader-Accepted-'+action+'.json'),{'session':value['session'],'action':action,'request':row})
+            if action=='HELLO':
+                observed_identity=controller_identity.current();q.need(observed_identity==identity,'READER_IDENTITY_CHANGED')
+                result.update(challenge=message['payload']['challenge'],reader_identity=observed_identity)
+            elif action in ('BEFORE','AFTER'):
+                remaining(deadline);completed=q.completed_originals();remaining(deadline)
+                control_path=q.P/('Completed-'+action+'.json')
+                publish(control_path,{'session':value['session'],'phase':action,'inputs_sha256':digest,'records':completed})
+                result['completed_controls']=q.record(control_path)
+                binding=None
+                if action=='BEFORE':q.need(message['payload']=={},'BEFORE_PAYLOAD')
+                else:
+                    q.need(set(message['payload'])=={'workload'},'AFTER_PAYLOAD')
+                    workload=message['payload']['workload'];q.need(workload['path']==str(q.RUN/'Runtime-Receipt.json')and q.record(workload['path'])==workload,'WORKLOAD_BINDING')
+                    binding={'before':before,'workload_sha256':workload['sha256']}
+                for label,context in s.contexts.items():
+                    original=context.scan
+                    def observed(*args,_original=original,_label=label,**kwargs):
+                        remaining(deadline)
+                        answer=q.timed(action+'-original-'+_label,lambda:_original(*args,**kwargs),timeline)
+                        remaining(deadline);return answer
+                    context.scan=observed
+                remaining(deadline);observed=s.scan(action,binding);remaining(deadline)
+                # Restore context methods so AFTER does not wrap the BEFORE observer.
+                data,s=snapshot(value);remaining(deadline)
+                path=q.P/(action+'-Request.json');publish(path,observed);result['observation']=q.record(path)
+            else:
+                phase='BEFORE'if action=='MERGE_BEFORE'else'AFTER'
+                q.need(set(message['payload'])=={'copies'},'MERGE_PAYLOAD')
+                copies=message['payload']['copies'];folder=q.RUN/('history-'+phase.lower()+'-copy')
+                q.need(copies['path']==str(folder/'Copies.json')and q.record(copies['path'])==copies,'COPY_BINDING')
+                observed,_=packet(q.P/(phase+'-Request.json'))
+                remaining(deadline);bundle=s.merge(observed,folder,copies['sha256']);remaining(deadline)
+                if phase=='BEFORE':before=bundle
+                else:
+                    remaining(deadline);result['comparison']=s.compare(before,bundle);remaining(deadline)
+                path=q.P/(phase+'-Bundle.json');publish(path,bundle);result['bundle']=q.record(path)
+                result['completed_controls']=q.record(q.P/('Completed-'+phase+'.json'))
+                result['objects']=sum(len(x['objects'])for x in bundle['roots'].values())
+            remaining(deadline);q.inputs(digest);remaining(deadline);result['timeline']=list(timeline)
+        except BaseException:result['failure']=traceback.format_exc()
+        publish(response,result)
+        if result['failure']:return 1
+    return 0
+def client(value,digest,action,payload,deadline=None):
+    if deadline is not None:remaining(deadline)
+    request=q.P/('Reader-Request-'+action+'.json');response=q.P/('Reader-Response-'+action+'.json')
+    publish(request,{'scope':'FULL_GATE1_HISTORY_RPC','session':value['session'],
+      'inputs_sha256':digest,'action':action,'payload':payload})
+    start=time.monotonic();next_notice=start+30
+    accepted=q.P/('Reader-Accepted-'+action+'.json')
+    while not accepted.exists()and not response.exists():
+        if deadline is not None:remaining(deadline)
+        q.need(time.monotonic()-start<30,'READER_DID_NOT_ACKNOWLEDGE:'+action)
+        time.sleep(.1)
+    ack_validated=False
+    if accepted.exists():
+        q.need(time.monotonic()-start<30,'READER_ACK_LATE:'+action)
+        ack,_=packet(accepted)
+        q.need(ack=={'session':value['session'],'action':action,'request':q.record(request)},'READER_ACK_BINDING')
+        ack_validated=True
+        print(action+': reader acknowledged; fresh original sampling active',flush=True)
+    while not response.exists():
+        now=time.monotonic()
+        if deadline is not None:remaining(deadline)
+        q.need(now-start<1200,'READER_RESPONSE_TIMEOUT:'+action)
+        if now>=next_notice:
+            print(action+': reader sampling originals; %.1f seconds elapsed'%(now-start),flush=True);next_notice=now+30
+        time.sleep(.2)
+    if deadline is not None:remaining(deadline)
+    result,_=packet(response)
+    q.need(result.get('scope')=='FULL_GATE1_HISTORY_RESPONSE'and result.get('session')==value['session']and
+      result.get('action')==action and result.get('request')==q.record(request),'READER_REPLY_BINDING')
+    q.need(result.get('failure')is None,'READER_FAILED:'+str(result.get('failure')))
+    q.need(ack_validated,'READER_SUCCESS_WITHOUT_ACK:'+action)
+    return result
+def cooperate(value,digest,phase,workload=None,deadline=None):
+    result=client(value,digest,phase,{}if workload is None else{'workload':workload},deadline)
+    request=result['observation'];q.need(q.record(request['path'])==request,'OBSERVATION_BINDING')
+    observed,_=packet(Path(request['path']));data,s=snapshot(value)
+    folder=q.RUN/('history-'+phase.lower()+'-copy')
+    # Existing primitives read only current unresolved paths using this account's access.
+    if deadline is not None:remaining(deadline)
+    q.timed(phase+'-normal-existing-access-copy',lambda:s.copy_denied(observed,folder),[])
+    if deadline is not None:remaining(deadline)
+    return client(value,digest,'MERGE_'+phase,{'copies':q.record(folder/'Copies.json')},deadline)
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--inputs-sha256',required=True)
+    a=p.parse_args();raise SystemExit(serve(a.inputs_sha256))

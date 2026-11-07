@@ -1,0 +1,150 @@
+"""One fresh complete Gate1 run, with original-history cooperation and raw receipts."""
+import argparse,copy,json,os,secrets,subprocess,sys,time,traceback
+from datetime import datetime,timezone
+from pathlib import Path
+import common as q
+import gate1_contract as contract
+import history_service as history
+import reader_guard
+CREATED_RUN=False
+def capture_ready(value,digest):
+    arm,row=history.packet(q.P/'Reader-Arm.json')
+    reader_guard.arm(arm,value,digest,sys.executable)
+    return arm
+def run(digest,verify_only=False):
+    global CREATED_RUN
+    value=q.inputs(digest);q.need(not os.path.lexists(q.RUN),'EXISTING_RUN_NO_RETRY')
+    arm=capture_ready(value,digest)
+    if verify_only:print('FULL_GATE1_STATIC_SEALS_VERIFIED_READER_LIVENESS_UNOBSERVED_NO_WORKLOAD');return 0
+    q.base.normal_account()
+    challenge=secrets.token_hex(16)
+    response=history.client(value,digest,'HELLO',{'challenge':challenge},time.monotonic()+60)
+    reader_guard.hello(arm,response,challenge)
+    q.RUN.mkdir();CREATED_RUN=True;temp=q.RUN/'temp';temp.mkdir()
+    report={'scope':'FULL_GATE1_20261107','status':'PARTIAL_OR_FAILED_NO_RETRY','started_utc':datetime.now(timezone.utc).isoformat(),
+      'inputs_sha256':digest,'commit':value['commit'],'commands':[],'groups':[],'failure':None,'postcheck_failure':None,
+      'failed_segment':None,'timeline':[],'gate1_complete':False,'release_ready':False,'installed':False,
+      'producer_authentication':False,'selected_runtime_started':False,'workload_claimed':False}
+    report['reader_admission']={'arm':q.record(q.P/'Reader-Arm.json'),'hello_request':q.record(q.P/'Reader-Request-HELLO.json'),
+      'hello_response':q.record(q.P/'Reader-Response-HELLO.json'),'hello_accepted':q.record(q.P/'Reader-Accepted-HELLO.json'),
+      'admitted_utc':report['started_utc']}
+    sys.path.insert(0,str(q.R/'.github/scripts'))
+    host=q.module(q.R/'.github/scripts/offline_host_validation.py')
+    image=q.module(q.R/'.github/scripts/gate1_image_successor.py')
+    c1=q.module(q.R/'.github/scripts/gate1_current_preflight.py')
+    env=image.windows_environment(dict(os.environ))
+    for key in ('MODEL_PYTHON','KNOWLEDGE_MODEL_MANIFEST','PYTHONPATH','PYTHONHOME','MEMORY_INTEGRITY_WORKER_DIAGNOSTICS'):env.pop(key,None)
+    env.update(PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',PYTHONIOENCODING='utf-8',HF_HUB_OFFLINE='1',
+      TRANSFORMERS_OFFLINE='1',KNOWLEDGE_WORKER_PYTHON=value['worker'],TEMP=str(temp),TMP=str(temp),TMPDIR=str(temp))
+    report['context_environment']={key:env.get(key)for key in ('USERPROFILE','TEMP','TMP','SYSTEMROOT','SYSTEMDRIVE','PYTHONNOUSERSITE','PATH')}
+    deadline=time.monotonic()+3600;before=None
+    def capture(label,argv,timeout):
+        q.inputs(digest);q.need(time.monotonic()+timeout<deadline,'INSUFFICIENT_REMAINING_WORK_WINDOW:'+label)
+        report['failed_segment']=label;folder=q.RUN/('command-'+label);folder.mkdir()
+        start=time.monotonic();print(label+': RUNNING (Full Gate1)',flush=True)
+        completed,row=host.capture_owned(argv,folder,q.RUN,env,timeout)
+        row.update(label=label,seconds=time.monotonic()-start);report['commands'].append(row)
+        print(label+': %.3f seconds'%row['seconds'],flush=True)
+        if row.get('exit_code')not in(None,0):
+            code=row['exit_code'];print(label+': CHILD EXIT '+str(code)+' / 0x'+format(code&0xffffffff,'08X'),flush=True)
+            if label.startswith('suite-'):
+                number=label.split('-')[-1];artifacts=[]
+                for path in (q.RUN/('tests-'+number)/'unittest.log',q.RUN/('tests-'+number+'-Slow-Stack.log'),
+                  q.RUN/('tests-'+number+'-Python-Stacks.log'),q.RUN/('tests-'+number+'-Progress.jsonl')):
+                    if path.exists():
+                        artifacts.append(q.record(path));raw=path.read_bytes()
+                        print('FAILURE EVIDENCE '+str(path)+' (last65536bytes; full file retained)\n'+raw[-65536:].decode('utf-8',errors='replace'),flush=True)
+                row['failure_artifacts']=artifacts
+        if label=='acceptance'or completed is None or completed.returncode!=0:
+            for stream in ('stdout','stderr'):
+                path=folder/(stream+'.log');raw=path.read_bytes()
+                if raw:print(label+'/'+stream+' full retained '+str(path)+'\n'+raw.decode('utf-8',errors='replace'),flush=True)
+        q.need(completed is not None,'CAPTURE_FAILED:'+label);contract.capture(row)
+        q.inputs(digest);return completed
+    def dependencies(label):
+        names=sorted(value['versions'])
+        code="import importlib.metadata as m,json,site,sys;sys.path.insert(0,"+repr(str(q.SOURCE/'memory-integrity/scripts'))+");from knowledge_bridge.worker_client import WorkerClient;d=m.distribution('semantica');u=json.loads(d.read_text('direct_url.json')or'{}');print(json.dumps({'versions':{n:m.version(n)for n in "+repr(names)+"},'revision':u.get('vcs_info',{}).get('commit_id'),'user_site':site.ENABLE_USER_SITE,'worker_default':WorkerClient(sys.executable).timeout}))"
+        observed=q.read(capture(label,[value['worker'],'-B','-c',code],30).stdout)
+        default=observed.pop('worker_default');q.need(default==120,'OBSERVED_DEFAULT_NOT_120')
+        c1.validate_dependencies(observed,value['versions']);report[label]={'versions':observed,'worker_default':default}
+    try:
+        report['selected_runtime_attempted']=True
+        observed=q.read(capture('identity-before',[value['worker'],'-B','-c',image.g.runtime_probe()],30).stdout)
+        report['selected_runtime_started']=True
+        image.validate_runtime_observation(observed,env,q.RUN);report['identity_before']=observed
+        dependencies('dependencies-before')
+        before=q.timed('history-before',lambda:history.cooperate(value,digest,'BEFORE',deadline=deadline),report['timeline'])
+        report['before_bundle']=before['bundle']
+        report['completed_originals_before']=before['completed_controls']
+        report['protected_before']=q.timed('protected-before',c1.protected,report['timeline'])
+        q.save(q.RUN/'Workload-Claim.json',{'inputs_sha256':digest,'before_bundle':before['bundle'],'commit':value['commit']})
+        report['workload_claimed']=True
+        for number,group in enumerate(value['groups']):
+            package=q.SOURCE/group['package'];pattern=group['pattern']
+            result=capture('discover-'+str(number),[value['worker'],'-B',str(q.SOURCE/'.github/scripts/gate1_runner.py'),
+              '--discover','--package-root',str(package),'--pattern',pattern],60)
+            ids=q.read(result.stdout);q.need(ids==group['ids'],'SELECTED_DISCOVERY_CHANGED:'+pattern)
+            folder=q.RUN/('tests-'+str(number))
+            capture('suite-'+str(number),[value['worker'],'-B',str(q.P/'suite_runner.py'),'--package-root',str(package),
+              '--pattern',pattern,'--output-dir',str(folder)],1200)
+            receipt=q.read((folder/'Receipt.json').read_bytes());cases=q.read((folder/'Case-Outcomes.json').read_bytes())
+            runner=q.module(q.SOURCE/'.github/scripts/gate1_runner.py')
+            contract.suite(ids,receipt,cases,runner.allowed_skips())
+            q.need(q.record(receipt['log'])['sha256']==receipt['log_sha256'],'SUITE_LOG')
+            report['groups'].append({'number':number,'package':group['package'],'pattern':pattern,'ids':ids,
+              'skipped':receipt['skipped'],'receipt':q.record(folder/'Receipt.json'),'cases':q.record(folder/'Case-Outcomes.json'),
+              'diagnostics':{key:q.record(q.RUN/('tests-'+str(number)+suffix))for key,suffix in
+                [('timings','-Case-Timings.json'),('progress','-Progress.jsonl'),('python_stacks','-Python-Stacks.log'),('fatal_stacks','-Slow-Stack.log')]}})
+            print('suite-'+str(number)+': VERIFIED '+str(len(ids))+' cases; '+str(len(receipt['skipped']))+' declared skips',flush=True)
+        capture('acceptance',[value['worker'],'-B',str(q.P/'acceptance_runner.py'),'--package-root',str(q.SOURCE/'memory-integrity'),
+          '--claude-mon-root',str(q.SOURCE/'claude-mon'),'--worker-python',value['worker'],'--output-dir',str(q.RUN/'acceptance')],2400)
+        acceptance=q.read((q.RUN/'acceptance/Receipt.json').read_bytes());producer=q.module(q.P/'acceptance-defaults.py')
+        producer.validate_receipt(acceptance);contract.measurements(acceptance['measurements'])
+        q.need(acceptance['status']=='PASS_BOUNDED_RUNTIME'and acceptance['failure']is None,'ACCEPTANCE_STATUS')
+        for command in acceptance['commands']:
+            contract.acceptance_command(command,Path(command['stdout']['path']).read_bytes(),
+                Path(command['stderr']['path']).read_bytes(),producer.expected_refusal)
+        report['acceptance']=q.record(q.RUN/'acceptance/Receipt.json')
+        capture('real-cleanup',[value['worker'],'-B',str(q.P/'cleanup_probe.py'),'--source',str(q.SOURCE),
+          '--worker',value['worker'],'--physical-image',str(image.g.BASE.with_name('python3.12.exe')),'--output',str(q.RUN/'cleanup')],60)
+        cleanup=q.read((q.RUN/'cleanup/Receipt.json').read_bytes())
+        q.need(cleanup['status']=='PASS_NATIVE_EXIT_BEFORE_REAL_CLEANUP'and cleanup['failure']is None and cleanup['all_reaped']is True,'CLEANUP_STATUS')
+        report['cleanup']=q.record(q.RUN/'cleanup/Receipt.json')
+        observed=q.read(capture('identity-after',[value['worker'],'-B','-c',image.g.runtime_probe()],30).stdout)
+        image.validate_runtime_observation(observed,env,q.RUN);report['identity_after']=observed;dependencies('dependencies-after')
+        report['failed_segment']=None;report['status']='FULL_GATE1_RUNTIME_OBSERVED_PENDING_PRESERVATION_AND_REVIEW'
+    except BaseException:report['failure']=traceback.format_exc()
+    finally:
+        try:
+            q.inputs(digest)
+            if report.get('protected_before')is not None:
+                report['protected_after']=c1.protected();q.need(report['protected_after']==report['protected_before'],'PROTECTED_CHANGED')
+        except BaseException:report['postcheck_failure']=traceback.format_exc()
+        if report['failure']or report['postcheck_failure']:report['status']='PARTIAL_OR_FAILED_NO_RETRY'
+        report['finished_utc']=datetime.now(timezone.utc).isoformat();q.save(q.RUN/'Runtime-Receipt.json',report)
+    final={'status':'PARTIAL_OR_FAILED_NO_RETRY','runtime':q.record(q.RUN/'Runtime-Receipt.json'),
+      'failure':report['failure'],'postcheck_failure':report['postcheck_failure'],'preservation_failure':None,
+      'gate1_complete':False,'release_ready':False,'installed':False,'producer_authentication':False}
+    try:
+        if before is not None:
+            after=q.timed('history-after',lambda:history.cooperate(value,digest,'AFTER',final['runtime'],deadline=deadline),report['timeline'])
+            q.need(after['comparison']['status']=='CONTENT_MATCH_AT_BEFORE_AFTER_SAMPLES','HISTORY_CHANGED')
+            final['before_bundle']=before['bundle'];final['after_bundle']=after['bundle'];final['preservation']=True
+            final['completed_originals_before']=before['completed_controls'];final['completed_originals_after']=after['completed_controls']
+        else:q.need(False,'NO_BEFORE_SAMPLE')
+        if not any(final[k]for k in ('failure','postcheck_failure','preservation_failure')):
+            final['status']='FULL_GATE1_OBSERVED_PENDING_PARENT_RAW_REVIEW'
+    except BaseException:final['preservation_failure']=traceback.format_exc()
+    q.save(q.RUN/'Receipt.json',final)
+    print(json.dumps({**final,'receipt':q.record(q.RUN/'Receipt.json')}),flush=True)
+    return int(final['status']!='FULL_GATE1_OBSERVED_PENDING_PARENT_RAW_REVIEW')
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--inputs-sha256',required=True);p.add_argument('--verify-only',action='store_true')
+    a=p.parse_args()
+    try:code=run(a.inputs_sha256,a.verify_only)
+    except BaseException:
+        failure=traceback.format_exc()
+        if CREATED_RUN and not(q.RUN/'Emergency-Failure.json').exists():
+            q.save(q.RUN/'Emergency-Failure.json',{'failure':failure,'gate1_complete':False})
+        print(failure,flush=True);code=1
+    raise SystemExit(code)

@@ -1,0 +1,11 @@
+Faulting application name: python3.12.exe, version: 3.12.10150.1013, time stamp: 0x67f515ae
+Faulting module name: python312.dll, version: 3.12.10150.1013, time stamp: 0x67f5153a
+Exception code: 0xc0000005
+Fault offset: 0x000000000027e990
+Faulting process id: 0x6E9C
+Faulting application start time: 0x1DD6EB681A78BE8
+Faulting application path: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\python3.12.exe
+Faulting module path: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\python312.dll
+Report Id: 597b5e85-bbf7-40d8-88e4-03205b1ccf86
+Faulting package full name: PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0
+Faulting package-relative application ID: Python

@@ -1,0 +1,55 @@
+# Gate1 native crash: observed cause boundary and bounded repair
+
+The outer `E_FULL_GATE1_CHILD_EXIT` reports the failed child; it is not itself
+the original fault. The selected knowledge-suite interpreter exited3221225477
+(0xC0000005, native memory access violation), after456.246seconds. Capture was
+complete, streams empty, no watchdog timeout/output overflow/capture error.
+
+Before this, selected native containment3, native paths2 and MI offline profile16
+cases passed. The partial knowledge log contains311started:297ok,13declared skips,
+one unmatched case (`WindowsShutdown.test_idle_stop_waits_for_actual_interpreter_before_cleanup`).
+44knowledge cases had not started. No aggregate knowledge receipt or case-timing
+footer exists, so the suite is NOT passed. CM/24arms/C3 did not run.
+
+Windows Application Error1000 at18:27:33 IST records actual interpreterPID0x6E9C,
+python312.dll3.12.10150.1013, faultoffset0x27e990. Event XML/text are retained here.
+The launcher capturePID11996 is a distinct process; do not confuse these roles.
+The loaded file SHA256 is9a0e3435aaa680d868150f87ab3e388ad2eebc22f87e036155c7b4eda8cd2120.
+
+Read-only PE analysis places0x27e990 in unwind range0x27e95c..0x27eaab. That
+function references literals `  File `, `, line `, ` in ` and `???`, matching
+CPythonv3.12.10 Python/traceback.c `dump_frame`; fault bytes begin488b4670.
+The final Slow-Stack log stops midway through a scheduled30second traceback,
+after the File prefix, then reports two access violations. The new old runner
+explicitly scheduled `faulthandler.dump_traceback_later(30,repeat=True)`.
+
+Primary source:
+https://github.com/python/cpython/blob/v3.12.10/Python/traceback.c#L1169
+https://github.com/python/cpython/blob/v3.12.10/Modules/faulthandler.c#L524
+
+Conclusion: the crash is localized to native traceback rendering, with the
+periodic asynchronous diagnostic walker strongly implicated as its trigger.
+The exact invalid-frame/memory origin is NOT proven: an interpreter race,
+earlier memory corruption, or native test code cannot be distinguished from
+these retained artifacts alone. No native dump/PDB was obtained. A nearby
+external crash report is not evidence that this machine shares its cause.
+
+Bounded repair: remove only the periodic native walker from the fresh runner.
+Keep fatal faulthandler on a separate descriptor. Use an ordinary Python thread,
+owned frame references, no locals/source lookup, bounded stack text, explicit
+sample markers, flush/fsync and fail-closed diagnostic errors. Add durable fsync
+START/END/outcome events, independently rehashed and checked in exact order.
+Retain original source931,355knowledge IDs, all assertions/skips/defaults and
+watchdogs. All failed attempt files and seals remain immutable.
+
+Verification:47fresh controller controls pass (no selected3.12 run), and the
+corrected wrapper ran seven existing Windows session controls with14journal
+events independently validated. The old-wrapper control demonstrates native
+timer invocation; it does NOT reproduce the actual native crash. The earlier
+short controller-output attempt stopped at directory access before any test;
+no permission change or retry of a consumed selected command was made.
+
+Cheapest falsifier: one separately sealed full selected-runtime successor. If
+0xC0000005 recurs without the periodic native walker, stop blind retries and
+pivot to a native crash dump/symbol-backed analysis or separately scoped test
+isolation. Package reinstall, timeout increases and test skips are unsupported.

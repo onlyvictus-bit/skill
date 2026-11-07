@@ -1,0 +1,14 @@
+{
+  "action": "MERGE_BEFORE",
+  "inputs_sha256": "bb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319",
+  "payload": {
+    "copies": {
+      "links": 1,
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\g1-dfix-20261107\\history-before-copy\\Copies.json",
+      "sha256": "51958d635ae1777f120bf1fe54a323f49ef5fe1f7aebf8a4cd3b8ee99b97c40a",
+      "size": 2125
+    }
+  },
+  "scope": "FULL_GATE1_HISTORY_RPC",
+  "session": "ea7a0437c1c94401ba75ce204d9a5090"
+}

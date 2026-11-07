@@ -1,0 +1,22 @@
+import importlib.util,json,unittest
+from pathlib import Path
+import gate1_contract as c
+import common as q
+path=q.SOURCE/'.github/scripts/offline_release_acceptance.py'
+spec=importlib.util.spec_from_file_location('accepted_source_refusal_contract',path)
+producer=importlib.util.module_from_spec(spec);spec.loader.exec_module(producer)
+class RefusalContract(unittest.TestCase):
+    def row(self,code):
+        return {'label':'changed-source','argv':['python','actual-cli'],'exit_code':code,'execution':'EXITED','failure':None,
+          'containment':{'capture_complete':True,'tree_contained':True,'capture_errors':[],
+          'timed_out':False,'output_limit_exceeded':False}}
+    def payload(self):
+        return json.dumps({'ok':False,'overall':'BLOCKED','evidence_class':'TEST_ONLY','adapter_calls':0,
+          'approvals_consumed':0,'blockers':['ValueError: E_REQUIRED_STALE']}).encode()
+    def test_actual_producer_exit2_refusal_is_accepted(self):
+        c.acceptance_command(self.row(2),self.payload(),b'',producer.expected_refusal)
+    def test_exit1_and_stderr_and_wrong_cause_are_refused(self):
+        for code,out,err in [(1,self.payload(),b''),(2,self.payload(),b'error'),(2,b'{}',b'')]:
+            with self.subTest(code=code,out=out,err=err):
+                with self.assertRaises(ValueError):c.acceptance_command(self.row(code),out,err,producer.expected_refusal)
+if __name__=='__main__':unittest.main(verbosity=2)

@@ -1,0 +1,38 @@
+# Gates: Full Gate1 acceptance continuation
+
+OWNS: .github/run-artifacts/gate1-diagnostics-fix-20261107/**, docs/fable/evidence/offline-first-20261020/gate1-diagnostics-fix-20261107/**
+
+Scope: complete full Gate1 on the verified a2a28bf production checkpoint, preserving earlier consumed attempts and their evidence.
+
+- [x] G1: Exact committed source, runtime metadata and required immutable inputs are sealed
+  CHECK: C:\Python314\python.exe -B .github/run-artifacts/gate1-diagnostics-fix-20261107/verify_gate1.py --gate inputs
+  EXPECT: GATE1_INPUTS_VERIFIED
+  EVIDENCE: exit=0; shell=C:\windows\system32\cmd.exe; cwd=C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git; path=359abab17389/42 entries; output=GATE1_INPUTS_VERIFIED
+
+- [x] G2: Coordinator controls reject incomplete, forged, skipped-runtime and changed-input results
+  CHECK: C:\Python314\python.exe -B .github/run-artifacts/gate1-diagnostics-fix-20261107/verify_gate1.py --gate controls
+  EXPECT: GATE1_CONTROLLER_CONTROLS_VERIFIED
+  EVIDENCE: exit=0; shell=C:\windows\system32\cmd.exe; cwd=C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git; path=359abab17389/42 entries; output=GATE1_CONTROLLER_CONTROLS_VERIFIED
+
+- [x] G3: Five complete selected-runtime suite groups match frozen discovery and permitted skip policy
+  CHECK: C:\Python314\python.exe -B .github/run-artifacts/gate1-diagnostics-fix-20261107/verify_gate1.py --gate suites
+  EXPECT: GATE1_ALL_FIVE_SUITES_VERIFIED
+  EVIDENCE: exit=0; shell=C:\windows\system32\cmd.exe; cwd=C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git; path=359abab17389/42 entries; output=GATE1_ALL_FIVE_SUITES_VERIFIED
+
+- [x] G4: All 24 acceptance arms have source-bound results, fresh replay, default120 and safety checks
+  CHECK: C:\Python314\python.exe -B .github/run-artifacts/gate1-diagnostics-fix-20261107/verify_gate1.py --gate acceptance
+  EXPECT: GATE1_24_ARMS_AND_SAFETY_VERIFIED
+  EVIDENCE: exit=0; shell=C:\windows\system32\cmd.exe; cwd=C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git; path=359abab17389/42 entries; output=GATE1_24_ARMS_AND_SAFETY_VERIFIED
+
+- [x] G5: Actual single and shard workers exit before real owned-resource cleanup
+  CHECK: C:\Python314\python.exe -B .github/run-artifacts/gate1-diagnostics-fix-20261107/verify_gate1.py --gate cleanup
+  EXPECT: GATE1_NATIVE_EXIT_AND_CLEANUP_VERIFIED
+  EVIDENCE: exit=0; shell=C:\windows\system32\cmd.exe; cwd=C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git; path=359abab17389/42 entries; output=GATE1_NATIVE_EXIT_AND_CLEANUP_VERIFIED
+
+- [x] G6: Fresh protected source/runtime/history AFTER observations match their BEFORE bindings
+  CHECK: C:\Python314\python.exe -B .github/run-artifacts/gate1-diagnostics-fix-20261107/verify_gate1.py --gate preservation
+  EXPECT: GATE1_FRESH_PRESERVATION_VERIFIED
+  EVIDENCE: exit=0; shell=C:\windows\system32\cmd.exe; cwd=C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git; path=359abab17389/42 entries; output=GATE1_FRESH_PRESERVATION_VERIFIED
+
+- [x] G7: Independent final raw-result review accepts all required Gate1 outcomes
+  EVIDENCE: Independent native reviewer /root/on_demand_final_review returned SHIP; retained-artifact validator plus raw outcome/native/preservation review. Independent-Result-Review.json SHA256 2aceb9e205e317e9ea2c001cd0c62aa649ac614fca40056e7ed44396fb87f370; runtime SHA256 c51dce8ddb2de2eb482769087ceca9eae7e433edabf1293f994c28c1181eac0e; no workload rerun.

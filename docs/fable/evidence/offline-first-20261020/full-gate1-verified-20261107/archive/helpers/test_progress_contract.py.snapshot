@@ -1,0 +1,21 @@
+import copy,unittest
+import gate1_contract as c
+class ProgressContract(unittest.TestCase):
+    def fixture(self):
+        ids=['case.one','case.two'];finished=[{'id':i,'outcome':'PASS','reason':''}for i in ids];events=[]
+        for n,ident in enumerate(ids):
+            common={'id':ident,'pid':123,'utc':'2026-11-07T00:00:00+00:00'}
+            events.extend([{**common,'event':'START','monotonic':n+1.0},
+              {**common,**finished[n],'event':'END','monotonic':n+1.5,'seconds':.4}])
+        return events,ids,finished
+    def test_exact_interleaving_and_types_are_required(self):
+        good,ids,finished=self.fixture();c.progress(good,ids,finished)
+        mutations=[lambda e:e.__setitem__(slice(None),[e[0],e[2],e[1],e[3]]),lambda e:e[1].update(extra=True),
+          lambda e:e[1].update(seconds=-1),lambda e:e[1].update(seconds=float('nan')),
+          lambda e:e[2].update(monotonic=0),lambda e:e[3].update(pid=True),lambda e:e[3].update(pid=124),
+          lambda e:e[3].update(reason=None),lambda e:e[1].update(outcome='FAIL'),lambda e:e[0].update(event='SAMPLER_ERROR'),
+          lambda e:e[0].update(utc='2026-11-07T00:00:00'),lambda e:e.pop()]
+        for mutation in mutations:
+            value=copy.deepcopy(good);mutation(value)
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):c.progress(value,ids,finished)
+if __name__=='__main__':unittest.main(verbosity=2)

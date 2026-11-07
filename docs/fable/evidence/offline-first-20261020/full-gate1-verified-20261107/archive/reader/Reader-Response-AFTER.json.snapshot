@@ -1,0 +1,90 @@
+{
+  "action": "AFTER",
+  "completed_controls": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Completed-AFTER.json",
+    "sha256": "f6f210f8bfb1916f30e3f5996244531a98bc1aa7e0fd808195f59493758027e8",
+    "size": 91071
+  },
+  "failure": null,
+  "observation": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\AFTER-Request.json",
+    "sha256": "eb38f8b53ad1a7ba6da9dc9315a16877b920bdb57dacf078e860bec46986f4c1",
+    "size": 5920559
+  },
+  "request": {
+    "links": 1,
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\gate1-diagnostics-fix-20261107\\Reader-Request-AFTER.json",
+    "sha256": "209dd8d0de10e0f1bd0071cee24408b5a9ad2f3a72c52fe0f3cd23f3e35718f5",
+    "size": 468
+  },
+  "scope": "FULL_GATE1_HISTORY_RESPONSE",
+  "session": "ea7a0437c1c94401ba75ce204d9a5090",
+  "timeline": [
+    {
+      "label": "BEFORE-original-cleanup-lifetime-stack-20261024",
+      "seconds": 0.3650858998298645
+    },
+    {
+      "label": "BEFORE-original-cleanup-membership-20261025",
+      "seconds": 0.7555740997195244
+    },
+    {
+      "label": "BEFORE-original-cleanup-process-timing-20261024",
+      "seconds": 17.050728399772197
+    },
+    {
+      "label": "BEFORE-original-cleanup-repair-20261023",
+      "seconds": 98.6416310002096
+    },
+    {
+      "label": "BEFORE-original-rp1-audit",
+      "seconds": 6.610999300144613
+    },
+    {
+      "label": "BEFORE-original-rp1-corrected",
+      "seconds": 5.596487799659371
+    },
+    {
+      "label": "BEFORE-original-rp1-original",
+      "seconds": 4.983859499916434
+    },
+    {
+      "label": "BEFORE-original-rp1-store",
+      "seconds": 5.310042500030249
+    },
+    {
+      "label": "AFTER-original-cleanup-lifetime-stack-20261024",
+      "seconds": 0.18266510032117367
+    },
+    {
+      "label": "AFTER-original-cleanup-membership-20261025",
+      "seconds": 0.37659050012007356
+    },
+    {
+      "label": "AFTER-original-cleanup-process-timing-20261024",
+      "seconds": 6.656421500258148
+    },
+    {
+      "label": "AFTER-original-cleanup-repair-20261023",
+      "seconds": 75.15340769989416
+    },
+    {
+      "label": "AFTER-original-rp1-audit",
+      "seconds": 5.418944200035185
+    },
+    {
+      "label": "AFTER-original-rp1-corrected",
+      "seconds": 4.920402399729937
+    },
+    {
+      "label": "AFTER-original-rp1-original",
+      "seconds": 4.62686219997704
+    },
+    {
+      "label": "AFTER-original-rp1-store",
+      "seconds": 4.558734899852425
+    }
+  ]
+}

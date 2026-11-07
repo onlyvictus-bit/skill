@@ -1,0 +1,95 @@
+"""Observe unmodified workers, native exit before cleanup, and actual directory removal."""
+import argparse,json,os,subprocess,sys,tempfile,time,traceback
+from pathlib import Path
+from unittest.mock import patch
+from native_observer import Observer
+def execute(source,worker,output,physical_image):
+    sys.path[:0]=[str(source/'.github/scripts'),str(source/'memory-integrity/scripts'),str(source/'memory-integrity/tests_v2')]
+    from gate1_validation import inventory,ordinary,require,save
+    from knowledge_bridge.worker_client import WorkerClient
+    from knowledge_bridge import distributed_retrieval as distributed
+    from knowledge_bridge import windows_owned_process as owned,windows_ready_copy as ready
+    from test_knowledge_advanced import fixture
+    require(not output.exists(),'E_G1_EXISTING_CLEANUP_ATTEMPT');output.mkdir()
+    scratch=output/'scratch';scratch.mkdir();snapshots=output/'snapshots';snapshots.mkdir()
+    tempfile.tempdir=str(scratch);os.environ.update(TEMP=str(scratch),TMP=str(scratch),TMPDIR=str(scratch),PYTHONDONTWRITEBYTECODE='1')
+    directories,sessions,owners,events=[],[],[],[];observer=Observer()
+    original_directory,original_popen=tempfile.TemporaryDirectory,subprocess.Popen
+    original_session,original_launch=distributed._Session.__init__,owned.launch_current
+    original_ready,default_ready=ready.ReadyCopy.__init__,ready.default_root
+    class ObservedDirectory(original_directory):
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs);require(Path(self.name).resolve().is_relative_to(scratch),'E_G1_CWD_SCOPE')
+            self.observation={'path':self.name,'removed':False,'pre_cleanup':[]};directories.append(self.observation)
+        def cleanup(self):
+            path=Path(self.name)
+            if not path.exists():return
+            self.observation['pre_cleanup']=observer.before_cleanup(path,physical_image)
+            events.append({'event':'native-exit-before-cleanup','cwd':str(path),'at':time.monotonic()})
+            for session in sessions:
+                if getattr(getattr(session,'directory',None),'name',None)!=str(path):continue
+                require(session._stopped and session._tree.proof['released']and session._tree.proof['termination']['native_exit_proved'],'E_G1_SHARD_NATIVE_PROOF')
+                require(all(x is None or x.closed for x in (session.reader,session.output,session.errors)),'E_G1_SHARD_STREAMS_OPEN')
+                require(session.writer is None or(session.writer.has_joined and not session.writer.is_alive()and session.writer.stream_closed),'E_G1_WRITER_NOT_JOINED')
+            observed=inventory(path);target=snapshots/str(directories.index(self.observation));target.mkdir()
+            for name in observed:
+                dest=target/name;dest.parent.mkdir(parents=True,exist_ok=True)
+                with dest.open('xb')as f:f.write((path/name).read_bytes())
+            require(inventory(target)==observed,'E_G1_RETAIN_BEFORE_CLEANUP')
+            self.observation['files']=observed
+            super().cleanup();self.observation['removed']=not path.exists()
+            events.append({'event':'real-cleanup-returned','cwd':str(path),'at':time.monotonic()})
+    def popen(*args,**kwargs):
+        cwd=kwargs.get('cwd')
+        # Preserve production's exceptional owned taskkill call and its errors.
+        if cwd is None:return original_popen(*args,**kwargs)
+        require(Path(cwd).resolve().is_relative_to(scratch),'E_G1_PROCESS_SCOPE')
+        process=original_popen(*args,**kwargs);observer.root(process,Path(cwd));return process
+    def session_init(session,*args,**kwargs):
+        sessions.append(session);return original_session(session,*args,**kwargs)
+    def launch(*args,**kwargs):
+        try:owner=original_launch(*args,**kwargs)
+        except BaseException as error:
+            owner=getattr(error,'owned_process_owner',None)
+            if owner is not None:owners.append(owner)
+            raise
+        owners.append(owner);return owner
+    def ready_init(channel,source_path,token,*,root=None):
+        if root is None and ready.default_root is default_ready:root=scratch/'managed/ready-copies-v1'
+        return original_ready(channel,source_path,token,root=root)
+    def audit(event,args):
+        if event in ('os.remove','os.rmdir','shutil.rmtree'):
+            path=Path(os.fsdecode(args[0])).absolute();require(path!=scratch and path.resolve().is_relative_to(scratch),'E_G1_DELETE_OUTSIDE_NEW_SCRATCH')
+            ordinary(path)
+            if path.is_file():require(path.stat().st_nlink==1,'E_G1_LINKED_DELETE')
+            require(len(args)<2 or args[1]in(None,-1),'E_G1_DIRFD_DELETE')
+        if event in ('socket.connect','socket.bind','socket.getaddrinfo'):raise PermissionError('E_G1_NO_NETWORK')
+        if event=='subprocess.Popen'and Path(str(args[0])).name.lower()in('pip','pip.exe','bd','bd.exe','dolt','dolt.exe'):
+            raise PermissionError('E_G1_NO_INSTALL_OR_DATABASE')
+    sys.addaudithook(audit)
+    receipt={'status':'PARTIAL_OR_FAILED_NO_RETRY','failure':None,'directories':directories,'events':events,'all_reaped':False}
+    try:
+        with patch.object(tempfile,'TemporaryDirectory',ObservedDirectory),patch.object(subprocess,'Popen',popen),\
+             patch.object(distributed._Session,'__init__',session_init),patch.object(owned,'launch_current',launch),\
+             patch.object(ready.ReadyCopy,'__init__',ready_init):
+            single=WorkerClient(worker);require(single.timeout==120,'E_G1_SINGLE_DEFAULT')
+            receipt['single_reply']=single({'op':'handshake'});require(receipt['single_reply']['ok']is True,'E_G1_SINGLE_REPLY')
+            nodes,edges=fixture();client=distributed.DistributedClient(worker);require(client.timeout==120,'E_G1_SHARD_DEFAULT')
+            receipt['shard_reply']=client({'nodes':nodes,'edges':edges,'query_text':'alpha validation','embedding_mode':'lexical',
+              'direction':'outgoing','seeds':1,'max_hops':2,'max_visits':100,'max_results':50,'generation_lease':'a'*64})
+            require(receipt['shard_reply']['results']and len(set(client.execution_proof['worker_pids']))==2,'E_G1_TWO_ACTUAL_SHARDS')
+            require(len(directories)==3 and all(x['removed']and x['pre_cleanup']for x in directories),'E_G1_REAL_CLEANUP')
+            require(len(owners)==2 and all(x.proof['released']and x.proof['termination']['native_exit_proved']for x in owners),'E_G1_OWNERS')
+            receipt['all_reaped']=True;receipt['status']='PASS_NATIVE_EXIT_BEFORE_REAL_CLEANUP'
+    except BaseException:receipt['failure']=traceback.format_exc()
+    finally:
+        receipt['owner_proofs']=[x.proof for x in owners]
+        try:observer.close()
+        except BaseException:receipt['observer_failure']=traceback.format_exc();receipt['status']='PARTIAL_OR_FAILED_NO_RETRY'
+        save(output/'Receipt.json',receipt)
+    print(json.dumps({'status':receipt['status'],'failure':receipt['failure'],'receipt':str(output/'Receipt.json')}),flush=True)
+    return int(receipt['status']!='PASS_NATIVE_EXIT_BEFORE_REAL_CLEANUP')
+if __name__=='__main__':
+    p=argparse.ArgumentParser()
+    for key in ('source','worker','output','physical-image'):p.add_argument('--'+key,type=Path,required=True)
+    a=p.parse_args();raise SystemExit(execute(a.source,a.worker,a.output,a.physical_image))

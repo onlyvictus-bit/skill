@@ -1,0 +1,9 @@
+{
+  "action": "HELLO",
+  "inputs_sha256": "bb90caad81398f7b3dc18bd5624de303573abdbddc82d3be75f1576db993f319",
+  "payload": {
+    "challenge": "36144864255f7447f77527d01096835f"
+  },
+  "scope": "FULL_GATE1_HISTORY_RPC",
+  "session": "ea7a0437c1c94401ba75ce204d9a5090"
+}

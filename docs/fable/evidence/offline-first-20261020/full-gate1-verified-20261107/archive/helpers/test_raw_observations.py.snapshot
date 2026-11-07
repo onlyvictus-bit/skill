@@ -1,0 +1,53 @@
+import copy,json,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+import verify_gate1 as v
+class RawObservations(unittest.TestCase):
+    def fixture(self,folder):
+        image=v.q.module(v.q.R/'.github/scripts/gate1_image_successor.py');c1=v.q.module(v.q.R/'.github/scripts/gate1_current_preflight.py')
+        value={'worker':str(image.g.WORKER),'commit':'a2a28bf547a9c3e187c89eb6aee9f0b6bd822956','versions':c1.dependency_versions(),
+          'groups':[{'package':p,'pattern':t,'ids':[]}for p,t,n in v.contract.GROUPS]}
+        env={'USERPROFILE':r'C:\Users\sakth','TEMP':str(folder/'temp'),'TMP':str(folder/'temp'),
+          'SYSTEMROOT':r'C:\Windows','SYSTEMDRIVE':'C:','PYTHONNOUSERSITE':'1','PATH':'fixture-only'}
+        identity=image.runtime_expectation(env,folder)
+        dependency={'versions':value['versions'],'revision':c1.REVISION,'user_site':False,'worker_default':120}
+        report={'scope':'FULL_GATE1_20261107','inputs_sha256':'a'*64,'commit':value['commit'],
+          'status':'FULL_GATE1_RUNTIME_OBSERVED_PENDING_PRESERVATION_AND_REVIEW','failure':None,'postcheck_failure':None,
+          'selected_runtime_started':True,'selected_runtime_attempted':True,'workload_claimed':True,
+          'commands':[],'context_environment':env}
+        for label in v.contract.COMMANDS:
+            argv=[value['worker'],'-B','-c','synthetic-only'];data={}
+            if label.startswith('identity-'):argv[-1]=image.g.runtime_probe();data=identity;report[label.replace('-','_')]=identity
+            if label.startswith('dependencies-'):
+                data=dependency;report[label]={'versions':{k:x for k,x in dependency.items()if k!='worker_default'},'worker_default':120}
+            if label.startswith(('discover-','suite-')):
+                number=int(label[-1]);group=value['groups'][number];package=v.q.SOURCE/group['package']
+                if label.startswith('discover-'):argv=[value['worker'],'-B',str(v.q.SOURCE/'.github/scripts/gate1_runner.py'),'--discover']
+                else:argv=[value['worker'],'-B',str(v.q.P/'suite_runner.py')]
+                argv+=['--package-root',str(package),'--pattern',group['pattern']]
+                if label.startswith('suite-'):argv+=['--output-dir',str(folder/('tests-'+str(number)))]
+            if label=='acceptance':argv=[value['worker'],'-B',str(v.q.P/'acceptance_runner.py'),'--package-root',str(v.q.SOURCE/'memory-integrity'),
+              '--claude-mon-root',str(v.q.SOURCE/'claude-mon'),'--worker-python',value['worker'],'--output-dir',str(folder/'acceptance')]
+            if label=='real-cleanup':argv=[value['worker'],'-B',str(v.q.P/'cleanup_probe.py'),'--source',str(v.q.SOURCE),
+              '--worker',value['worker'],'--physical-image',str(image.g.BASE.with_name('python3.12.exe')),'--output',str(folder/'cleanup')]
+            stdout=folder/(label+'.stdout');stderr=folder/(label+'.stderr');stdout.write_text(json.dumps(data));stderr.write_bytes(b'')
+            report['commands'].append({'label':label,'argv':argv,'exit_code':0,'execution':'EXITED','failure':None,
+              'containment':{'capture_complete':True,'tree_contained':True,'capture_errors':[],'timed_out':False,'output_limit_exceeded':False},
+              'stdout':v.q.record(stdout),'stderr':v.q.record(stderr)})
+        return value,report
+    def test_independent_raw_identity_and_dependency_mutations(self):
+        folder=Path(tempfile.mkdtemp(prefix='raw-proof-',dir=v.q.P))
+        with patch.object(v.q,'RUN',folder):
+            value,good=self.fixture(folder)
+            def check(report):
+                (folder/'Runtime-Receipt.json').write_text(json.dumps(report));return v.runtime(value,'a'*64)
+            check(good)
+            for label,key,changed in [('identity-before','image_path',r'C:\other.exe'),
+              ('dependencies-after','worker_default',60),('dependencies-before','user_site',True)]:
+                report=copy.deepcopy(good);row=next(x for x in report['commands']if x['label']==label);path=Path(row['stdout']['path'])
+                original=path.read_bytes();data=json.loads(original);data[key]=changed;path.write_text(json.dumps(data));row['stdout']=v.q.record(path)
+                if label.startswith('identity-'):report[label.replace('-','_')]=data
+                with self.subTest(label=label),self.assertRaises(ValueError):check(report)
+                path.write_bytes(original)
+            check(good)
+if __name__=='__main__':unittest.main(verbosity=2)
