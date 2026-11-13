@@ -1,0 +1,66 @@
+{
+  "files": {
+    "release/Build-Knowledge-Bridge.py": {
+      "bytes": 2769,
+      "sha256": "349af9c13da927e1192ee92918826e168d2ae6f28e8f47b9cd0be3ba33bb7997"
+    },
+    "release/Knowledge-Bridge-Manifest.json": {
+      "bytes": 744,
+      "sha256": "7bd6ba1b11a3348044ca627d56ed061bfdcdf925d18759c3e6ac0080f87783d9"
+    },
+    "release/Memory-Integrity-R3-Release-Manifest.json": {
+      "bytes": 2295,
+      "sha256": "385b2901b640ad3d0a763290e61423f065a5e0300db42b2c025b4101e88e09bc"
+    },
+    "release/Memory-Integrity-R4-Release-Manifest.json": {
+      "bytes": 802,
+      "sha256": "5ad52112df27d10a14209fd17ff943c413a62f1c7a8359d181db3de3e052727f"
+    },
+    "release/Verify-Knowledge-Bridge.py": {
+      "bytes": 5106,
+      "sha256": "63a010e0ad0aed2beeec86e666b98bb2d69880b8f0c6fd96dcf178f3ff82b08d"
+    },
+    "release/Verify-Memory-Integrity-R3.py": {
+      "bytes": 3593,
+      "sha256": "7a1c16c5595ccfcb32ab73674486686e1559b3e2155e4371d31bbbbf0975d67d"
+    },
+    "release/Verify-Memory-Integrity-R4.py": {
+      "bytes": 6179,
+      "sha256": "9f7b62bdc7f66a7b5aee4bf0f093da98f95b90a6efd721ad40668405a0221b2c"
+    },
+    "release/claude-mon-knowledge-v1.zip": {
+      "bytes": 154348,
+      "sha256": "c3b0fa2a0c4f51847d62542ce48e8f5d5dfcbb38ab8af6d6e91b8f28976d0fcf"
+    },
+    "release/claude-mon-knowledge-v2.zip": {
+      "bytes": 154391,
+      "sha256": "898011cf9056883695bdf3fec7ffaebecbbe0b471acb8f843b4ca3dab967d979"
+    },
+    "release/claude-mon-r3.zip": {
+      "bytes": 149321,
+      "sha256": "747fa62d6c074f71a7b79ba64b37f20e3cb2015e5e40183c158f58b5ac4b9cec"
+    },
+    "release/claude-mon-r4.zip": {
+      "bytes": 154816,
+      "sha256": "5cf842c5e02c05e3e34069090a7d00e05d8eee250701fb786eaa638b3e6bba57"
+    },
+    "release/memory-integrity-knowledge-v1.zip": {
+      "bytes": 334811,
+      "sha256": "12ce0f6cb3b5b8edb100f906a5c39f0e6567522e1ee2cb4baa247a0b5ee808be"
+    },
+    "release/memory-integrity-knowledge-v2.zip": {
+      "bytes": 387921,
+      "sha256": "55f024478a1edcd976fc364fbd4ee91ec5a2029841d7fc23e7a131d300529eb3"
+    },
+    "release/memory-integrity-r3.zip": {
+      "bytes": 180713,
+      "sha256": "c6fdda3425b1d13bb6ba600207efa3e79ca7267da079750124852fe4e39f875a"
+    },
+    "release/memory-integrity-r4.zip": {
+      "bytes": 232434,
+      "sha256": "888d435b4fb5a2eac3d8e14ac783c40399b0d473aee676ff164189b08d87bc6a"
+    }
+  },
+  "schema_version": 1,
+  "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956"
+}

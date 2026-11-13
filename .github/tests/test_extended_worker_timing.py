@@ -3,6 +3,7 @@ import hashlib
 import importlib
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -156,7 +157,17 @@ class ExtendedTimingTests(unittest.TestCase):
         self.assertTrue(callable(getattr(timing,'make_source_copy',None)), 'Sealed source-copy builder missing')
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder); source = root/'source'; source.mkdir()
-            timing.make_source_copy(source)
+            from _offline_historical_fixture import checkout, git_at
+            historical = checkout(timing.HEAD)
+            # The observer was introduced after the package snapshot. Supply
+            # its unchanged bytes in this test-owned checkout, outside packages.
+            helper = historical/'.github/scripts/extended_timing_log.py'
+            helper.parent.mkdir(parents=True, exist_ok=True)
+            if not helper.exists():
+                shutil.copyfile(SCRIPTS/'extended_timing_log.py', helper)
+            with mock.patch.object(timing, 'REPO', historical), \
+                    mock.patch.object(timing, 'git', side_effect=lambda *args: git_at(historical, *args)):
+                timing.make_source_copy(source)
             fixture = root/'fixture'; fixture.mkdir()
             for name, text in timing.FIXTURE.items():
                 (fixture/name).write_text(text, encoding='utf-8')

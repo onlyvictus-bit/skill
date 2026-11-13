@@ -1,0 +1,85 @@
+{
+  "status": "LOCAL_RELEASE_CI_CANDIDATE_VERIFIED_HOSTED_CI_PENDING",
+  "parent_commit": "fc4315b329409e8eac21bbd84a844442e0187732",
+  "accepted_base": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "controller": {
+    "original_cases": 525,
+    "final_cases": 540,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "no_original_case_omitted": true
+  },
+  "proofs": {
+    "baseline": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\controller-baseline\\Receipt.json",
+      "bytes": 5674,
+      "sha256": "1299308523ad9cf5ecd6b8e7473c3bdffe84f72a3563c3e09c450fca05f97e02"
+    },
+    "baseline_log": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\controller-baseline\\unittest.log",
+      "bytes": 160168,
+      "sha256": "ea7b3bac3c302d656d38f4aa5b0c6e611c726f9d8783bdc551455356313c46f4"
+    },
+    "final": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\controller-final-01\\Receipt.json",
+      "bytes": 59444,
+      "sha256": "6f9329e39c13ed65a9e8af9de91a94d30b89e72f80ae1e71772b93c3c0b9bf2d"
+    },
+    "final_log": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\controller-final-01\\unittest.log",
+      "bytes": 93711,
+      "sha256": "85e6426a6b9f66db4d67987a40cd62c3696a02e7259c7ee0d0666b37e702311f"
+    },
+    "final_events": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\controller-final-01\\Cases.jsonl",
+      "bytes": 194762,
+      "sha256": "baf6ffedc20cd7b9c590e2bf77052957c72c079a90509a0b81f9aa6fb82cd6b4"
+    },
+    "archives": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\Archive-GREEN.log",
+      "bytes": 2481,
+      "sha256": "d0651d94495f5ae60406cac2c116afce6f88d34a1a888f30d8e16efcaa1e6919"
+    },
+    "exact_pair": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\exact-pair-check-01\\Receipt.json",
+      "bytes": 2717,
+      "sha256": "3b6740df00ec2ef667b5d05bd2841d1351e84a9c9bfdddb315029b8946af196d"
+    },
+    "runner": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\CI-Suite-Controls-03.log",
+      "bytes": 1302,
+      "sha256": "81dd487170f7cf85cb6238e8609d2e0202561db34ec0da396b799db228da0f5c"
+    },
+    "ci_release": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\CI-Release-Controls-01.log",
+      "bytes": 933,
+      "sha256": "f504f05a20de1c63e9ae13e2b70b52c4d7fd2951c1d97751e2a41582d152b78f"
+    },
+    "mi_legacy": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\runner-mi-legacy\\Receipt.json",
+      "bytes": 2748,
+      "sha256": "de8816a3aac6d01db31ffc219db3eeffafc5f6150b69ba113e6d323f2afefa5f"
+    },
+    "cm_v2": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\runner-cm-v2\\Receipt.json",
+      "bytes": 17109,
+      "sha256": "8c497878671651bb0ddd9694de0d0d8594627827c4c34cd656c88b1771c74025"
+    },
+    "evals": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\Eval-Controls-01.log",
+      "bytes": 1116,
+      "sha256": "f42114e8bd3d121b81b7b15a491a9fee4fd51cbb5a128e1fda2eeec58d7f920d"
+    },
+    "frontmatter": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\Frontmatter-01.log",
+      "bytes": 62,
+      "sha256": "266938c919e4c47e31e8f4b9a8932757f1b7e9f4ed6d43d7e5b2774b18dbeac4"
+    }
+  },
+  "hosted_ci_verified": false,
+  "installed": false,
+  "release_ready": false,
+  "original_head_and_index_unchanged": true,
+  "independent_final_review": "UNVERIFIED_HELPER_WORKSPACE_CREDITS_EXHAUSTED; prior architecture guards applied, parent review pending"
+}

@@ -148,10 +148,14 @@ class TimingObserver(unittest.TestCase):
         row['containment']['capture_complete'] = False
         with self.assertRaises(ValueError): m.classify(row)
 
+    @unittest.skipUnless(os.name == 'nt', 'Twelve native Windows lifecycle controls require the Windows matrix job')
     def test_real_instrumented_copy_runs_all_twelve_local_controller_cases(self):
         m = self.coordinator(); ld, cr, c1 = m.context()
         with tempfile.TemporaryDirectory(prefix='tc-native-smoke-') as name:
             root = Path(name); source = root/'source'; events = root/'events'; events.mkdir()
+            from _offline_historical_fixture import timing_source
+            ld.SOURCE = timing_source(root/'frozen-source')
+            self.enterContext(patch.object(m, 'context', return_value=(ld, cr, c1)))
             config = root/'Config.json'
             c1.save(config, {'root':str(events),'watched_roots':[str(root)],'budget':120})
             doc = {'source_manifest':c1.source_manifest(ld.SOURCE),

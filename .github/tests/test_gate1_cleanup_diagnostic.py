@@ -13,7 +13,8 @@ from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[2]
 SUBJECT = ROOT / '.github/scripts/gate1_cleanup_diagnostic.py'
-WORKER = ROOT / 'memory-integrity/scripts/knowledge_bridge/worker.py'
+from _offline_historical_fixture import checkout
+WORKER = checkout() / 'memory-integrity/scripts/knowledge_bridge/worker.py'
 
 
 def load_subject():

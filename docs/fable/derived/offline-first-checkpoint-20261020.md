@@ -1,5 +1,20 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+## CURRENT - release source/CI candidate locally green, hosted CI pending2026-11-13
+
+Isolated ci/source clone derives from publishedfc4315b. Exact qualified active
+source manifests added; accepted package source and all15 oldrelease files stay
+byte-exact. New CI verifies source, historical artifacts, deterministic ZIPpair,
+fresh extraction, source/extracted suites and pinned-runtime acceptance/replay.
+540controller controlsPASS with all525 original IDs retained; MIlegacy21, CMv2213
+and eval10PASS. Existing package qualification and RP1-RP3/FullGate1 not repeated.
+Read evidence/offline-first-20261020/offline-release-ci-20261113/Local-Verification.json.
+Next: reviewed CI candidate publication then exact Windows/Linux hosted checks.
+Final independent native review currently UNVERIFIED from helper creditlimit.
+Installation and release_ready remain false; original development HEAD/index
+and consumed runtimes/handoffs are preserved. No installation is authorized here.
+
+
 ## CURRENT — exact release ZIP pair runtime VERIFIED COMPLETE, 2026-11-13
 
 Supersedes package preparation/pending/agent-failure notes below. Final

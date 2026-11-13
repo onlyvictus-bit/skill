@@ -5,6 +5,7 @@ import tempfile
 from pathlib import Path
 import unittest
 from unittest.mock import patch
+from _offline_historical_fixture import checkout, git_at
 
 SCRIPT = Path(__file__).absolute().parents[1]/'scripts/shutdown_copy_verification.py'
 
@@ -174,7 +175,10 @@ class CopyCoordinator(unittest.TestCase):
     def test_approved_checkout_is_exact_and_evaluation_stays_old_source(self):
         c=self.controller()
         self.assertTrue(callable(getattr(c,'source_basis',None)),'Approved exact checkout transition not implemented')
-        files,tree=c.source_basis(c.c1_module())
+        historical=checkout(c.CHECKOUT_HEAD); real=c.c1_module()
+        with patch.object(c,'REPO',historical), \
+             patch.object(real,'git',side_effect=lambda *args:git_at(historical,*args)):
+            files,tree=c.source_basis(real)
         self.assertEqual(len(files),627)
         self.assertEqual(len(tree),627)
         self.assertEqual(c.sr3().HEAD,'a38297dd797eeecd25e41ab0af1df4e3db8fa984')
@@ -184,10 +188,11 @@ class CopyCoordinator(unittest.TestCase):
         from types import SimpleNamespace
         c=self.controller()
         self.assertTrue(callable(getattr(c,'checkout_transition',None)),'Missing exact transition proof')
-        real=c.c1_module(); seen={}
+        real=c.c1_module(); seen={}; historical=checkout(c.CHECKOUT_HEAD)
         def capture(*argv):
-            seen[argv]=real.git(*argv); return seen[argv]
-        c.checkout_transition(SimpleNamespace(git=capture))
+            seen[argv]=git_at(historical,*argv); return seen[argv]
+        with patch.object(c,'REPO',historical):
+            c.checkout_transition(SimpleNamespace(git=capture))
         variants=[]
         for args,raw in seen.items():
             if args[0]=='rev-parse': variants.append((args,b'0'*40+b'\n'))
@@ -198,7 +203,7 @@ class CopyCoordinator(unittest.TestCase):
         self.assertGreaterEqual(len(variants),5)
         for changed,value in variants:
             def altered(*argv): return value if argv==changed else seen[argv]
-            with self.subTest(args=changed),self.assertRaisesRegex(ValueError,'E_SC_CHECKOUT'):
+            with patch.object(c,'REPO',historical),self.subTest(args=changed),self.assertRaisesRegex(ValueError,'E_SC_CHECKOUT'):
                 c.checkout_transition(SimpleNamespace(git=altered))
 
     def test_protected_paths_are_derived_from_all_authority_families(self):

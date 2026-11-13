@@ -112,11 +112,20 @@ def source_check(source, commit, repo=ROOT):
     maps = git_packages(repo, commit)
     actual = {n: inventory(source/n) for n in PACKAGES}
     for package in PACKAGES:
-        need(set(actual[package]) == set(maps[package]), 'SOURCE_MEMBERS:' + package)
+        base = set(maps[package])
+        need(ACTIVE not in base, 'BASE_ALREADY_HAS_ACTIVE:' + package)
+        need(set(actual[package]) in (base, base | {ACTIVE}), 'SOURCE_MEMBERS:' + package)
         for rel, blob in maps[package].items():
             raw = (source/package/rel).read_bytes()
             got = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
             need(got == blob, 'SOURCE_BYTES:' + package + '/' + rel)
+        if ACTIVE in actual[package]:
+            expected = canonical(consumer(source/package).content_document(source/package)) + b'\n'
+            need((source/package/ACTIVE).read_bytes() == expected,
+                 'ACTIVE_MANIFEST_BYTES:' + package)
+            # This derived file is validated separately and is generated into the
+            # archive. Keep the qualified base inventory and deterministic bytes.
+            del actual[package][ACTIVE]
     return actual
 
 

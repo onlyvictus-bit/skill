@@ -4157,3 +4157,36 @@ whole-skill/model/nativeDB/producer-authentication remain separate and unqualifi
 Source a2a28bf itself predates generatedOFFLINE1manifests; deliveryCI must test the
 final release source/manifest commit, not reuse Gate1/oldCI as that proof.
 PENDING: release commit/push and exact-release hosted CI - awaiting your authorization.
+
+
+## Release source and exact-commit CI integration — authorized2026-11-13
+
+User YES follows the completed package checkpoint/publication and the stated
+next source/manifest+CI stage. Installation remains separate. Clean candidate
+clone under ofpkg-20261113/ci/source starts at publishedfc4315b; originalcheckout
+and consumed runtime/helper inputs stay unchanged. Existing ZIPs remain byte-exact.
+
+- [x] Source manifests copied exactly from qualified195/74member ZIPs.
+- [x] RED/GREEN: release source permits only exact generated active manifest
+  in addition to archiveda2a28bf source; corrupted/extra content still refused.
+- [x] CI verifies current source plus exact qualified offline pair, preserves old
+  archive identity, and executes all applicable source/extracted core/runtime tests.
+- [ ] Portable full controller/eval regression; independent CI/candidate review.
+- [ ] Final release commit/push and observe exact Windows/Linux CI results.
+
+No-build invokes obsolete full-current-tree comparison and cannot qualify this
+release. Minimal successor integration preserves archives and assertion semantics;
+rewriting product code/rebuilding qualified ZIPs is unnecessary. Hardcoded
+historical host diagnostics may expose portability issues: retain failures and
+fix fixture seams, never skip or repin history to make CI green. Existing hosted
+matrix/core runtime bounds and scoped test-owned ephemeral cleanup are preserved;
+no local runtime/model/dependency installation or original deletion.
+
+Observed local controls: original525 controller cases retained, new15 controls;
+540/540PASS, zero skip/fail/error. Initial baseline2FAIL+39ERROR retained.
+Fixture seams now consume exact oldGit objects, old Job API and inert saved
+evidence; no historical helper/source pins were rewritten. Loopback MIlegacy21
+and CMv2213PASS; eval10PASS. Rebuilt ZIPs and manifest remain exact qualified
+hashes. Fresh final independent review unavailable from helper workspacecredits;
+parent checks and hosted exactcommit results remain separate from that gap.
+Evidence: evidence/offline-first-20261020/offline-release-ci-20261113/.

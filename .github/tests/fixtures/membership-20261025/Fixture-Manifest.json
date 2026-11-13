@@ -1,0 +1,62 @@
+{
+  "files": {
+    "Receipt.json": {
+      "bytes": 9846,
+      "sha256": "0a61222897b210c2500a5c461b7bacc5f00e296b4d2f5678a51f82b256c488d7"
+    },
+    "Saved-Evidence-exact.json": {
+      "bytes": 11597,
+      "sha256": "de56fc9f1dc507be9e1b3aa3ac915d9fd54fda830b7decaff888c717c5753067"
+    },
+    "membership/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "membership/stdout.log": {
+      "bytes": 79,
+      "sha256": "1270fe5fe361a02336dc1fded6f3bac957f3098f6141ff9407fd48e4d1c82595"
+    },
+    "preclaim-dependencies/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "preclaim-dependencies/stdout.log": {
+      "bytes": 1247,
+      "sha256": "8c871fe5fc78041afa1e26781d547eedc3a42985a37bf6486e73b84d417d1c28"
+    },
+    "preclaim-identity/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "preclaim-identity/stdout.log": {
+      "bytes": 1676,
+      "sha256": "d998cc4c4eb9b24a2bf6ae515ff334f20104d27eaa6d18e8660eec252d96b32e"
+    },
+    "probe/Incremental.jsonl": {
+      "bytes": 2978,
+      "sha256": "f5db10480209726452eea09e4d03cb41e2938ac66d4b848ffe1ccaad98e3a567"
+    },
+    "probe/Probe-error.json": {
+      "bytes": 674,
+      "sha256": "3df45fa112e9863a1859fac1e66a5cfa178893a82d0a87b67adbe7a321b263db"
+    },
+    "probe/fixture/child.json": {
+      "bytes": 104,
+      "sha256": "f010b4604bc11fc014be13ed9f5d77495b1b41f7f5081e818568a6aea9aa4a43"
+    },
+    "probe/fixture/launcher.json": {
+      "bytes": 104,
+      "sha256": "65e42089bbb4e43d7fff20b6145d3ca70dd0275f297000865e469f6eaa333d80"
+    },
+    "probe/fixture/relay.json": {
+      "bytes": 104,
+      "sha256": "c8bede1135e78c05edbc77fee04aefb3acacc942428d97db180f17b883ca4dca"
+    },
+    "probe/fixture/root.json": {
+      "bytes": 77,
+      "sha256": "99022833cd6f9a557710f76c2ef5192fe4e5068b50d993034e1c841b22a5fb9a"
+    }
+  },
+  "original_attempt": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\cleanup-membership-20261025\\normal-membership",
+  "scope": "IMMUTABLE_HISTORICAL_FIXTURE_NOT_NEW_RUNTIME_PROOF"
+}

@@ -12,7 +12,8 @@ import tempfile
 import unittest
 
 SCRIPTS = Path(__file__).resolve().parents[1] / 'scripts'
-REPO = SCRIPTS.parent.parent
+from _offline_historical_fixture import checkout
+REPO = checkout('923de16c91a9ef4381e7ac975e3a3780f42a4bf5')
 sys.path.insert(0, str(SCRIPTS))
 try:
     import worker_diagnostic_events as events

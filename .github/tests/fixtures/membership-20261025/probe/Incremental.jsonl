@@ -1,0 +1,15 @@
+{"stage":"fixture-created","topology":"SELECTED_VENV_ORIGINAL_RELAY_CHILD","utc_ns":1793001732690793000}
+{"root_pid":44532,"stage":"session-created","utc_ns":1793001732912508400}
+{"pids":{"child":19464,"launcher":35012,"relay":43800,"root":44532},"stage":"roles-pinned","utc_ns":1793001733541399500}
+{"membership":{"active":2,"assigned":2,"listed":2,"members":[44532,17336],"total":2},"roles":{"child":{"in_job":false,"signalled":false},"launcher":{"in_job":false,"signalled":false},"relay":{"in_job":false,"signalled":false},"root":{"in_job":true,"signalled":false}},"stage":"before-write","utc_ns":1793001733557439400}
+{"error":["ValueError: E_DISTRIBUTED_WORKER_TIMEOUT"],"stage":"request-ended","utc_ns":1793001733670007900}
+{"creation":"134374753335658076","creator_process":40592,"stage":"writer-pinned","thread_id":3408,"utc_ns":1793001733693770400}
+{"membership":{"active":2,"assigned":2,"listed":2,"members":[44532,17336],"total":2},"roles":{"child":{"in_job":false,"signalled":false},"launcher":{"in_job":false,"signalled":false},"relay":{"in_job":false,"signalled":false},"root":{"in_job":true,"signalled":false}},"stage":"before-terminate","utc_ns":1793001733700987300}
+{"last_error":0,"stage":"terminate-returned","utc_ns":1793001733702997100,"value":true}
+{"membership":{"active":0,"assigned":0,"listed":0,"members":[],"total":2},"roles":{"child":{"in_job":false,"signalled":false},"launcher":{"in_job":false,"signalled":false},"relay":{"in_job":false,"signalled":false},"root":{"in_job":true,"signalled":false}},"stage":"after-terminate","utc_ns":1793001733702997100}
+{"last_error":0,"stage":"terminate-returned","utc_ns":1793001738695774800,"value":true}
+{"membership":{"active":0,"assigned":0,"listed":0,"members":[],"total":2},"roles":{"child":{"in_job":false,"signalled":false},"launcher":{"in_job":false,"signalled":false},"relay":{"in_job":false,"signalled":true},"root":{"in_job":true,"signalled":true}},"stage":"after-terminate","utc_ns":1793001738717680900}
+{"error":["ValueError: E_DISTRIBUTED_WRITER_STILL_ALIVE","NOTE: E_SHARD_STOP_CLEANUP: ValueError('E_SHARD_TREE_UNOBSERVED_MEMBER')"],"stage":"stop-failed","utc_ns":1793001738724355900}
+{"signalled":{"child":false,"launcher":false,"relay":true,"root":true},"stage":"after-stop","stop_error":["ValueError: E_DISTRIBUTED_WRITER_STILL_ALIVE","NOTE: E_SHARD_STOP_CLEANUP: ValueError('E_SHARD_TREE_UNOBSERVED_MEMBER')"],"utc_ns":1793001738724355900,"writer_alive":true}
+{"emergency":{"attempted":true,"cancel_synchronous_io":{"last_error":0,"ok":true},"completed":true,"errors":[],"job_closed":true,"roles_signalled":{"child":true,"launcher":true,"relay":true,"root":true},"root_reaped":true,"streams_closed":true,"termination":[{"last_error":0,"ok":true,"role":"child"},{"last_error":0,"ok":true,"role":"launcher"}],"writer_joined":true},"stage":"emergency-finished","utc_ns":1793001738732610900}
+{"handle_cleanup":{"completed":true,"errors":[]},"stage":"handle-cleanup","utc_ns":1793001738732610900}

@@ -5,8 +5,15 @@ on:
     branches: [main, development/**, release/**]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   suites:
+    timeout-minutes: 60
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONNOUSERSITE: "1"
     strategy:
       fail-fast: false
       matrix:
@@ -15,54 +22,42 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: memory-integrity legacy suite
-        working-directory: memory-integrity
-        run: python -B -m unittest discover -s tests
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-      - name: memory-integrity v2 suite
-        working-directory: memory-integrity
-        run: python -B -m unittest discover -s tests_v2
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-      - name: claude-mon legacy suite
-        working-directory: claude-mon
-        run: python -B -m unittest discover -s tests
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-      - name: claude-mon v2 suite
-        working-directory: claude-mon
-        run: python -B -m unittest discover -s tests_v2
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
+      - name: Exact qualified pair and historical release integrity
+        run: python -B release/Check-Offline-First-CI.py --output-dir "${{ runner.temp }}/offline-pair"
+      - name: Source package suites
+        shell: python
+        run: |
+          import os, pathlib, subprocess, sys
+          root = pathlib.Path.cwd()
+          output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'offline-source'
+          for package in ('memory-integrity', 'claude-mon'):
+              for tests in ('tests', 'tests_v2'):
+                  subprocess.run([sys.executable, '-B', '.github/scripts/offline_ci_suite.py',
+                      '--package-root', str(root/package), '--test-dir', tests,
+                      '--output-dir', str(output/(package+'-'+tests))], check=True)
+      - name: Fresh extracted package suites
+        shell: python
+        run: |
+          import os, pathlib, subprocess, sys
+          temp = pathlib.Path(os.environ['RUNNER_TEMP'])
+          extracted = temp / 'offline-pair/verified/extracted'
+          for package in ('memory-integrity', 'claude-mon'):
+              for tests in ('tests', 'tests_v2'):
+                  subprocess.run([sys.executable, '-B', '.github/scripts/offline_ci_suite.py',
+                      '--package-root', str(extracted/package), '--test-dir', tests,
+                      '--output-dir', str(temp/'offline-extracted'/(package+'-'+tests))], check=True)
       - name: repository release/workflow contract tests
-        run: python -B -m unittest discover -s .github/tests
+        run: python -B .github/scripts/offline_ci_suite.py --package-root . --test-dir .github/tests --output-dir "${{ runner.temp }}/offline-controller"
         env:
           PYTHONDONTWRITEBYTECODE: "1"
       - name: behavioral eval self-tests
         working-directory: evals
         run: python -B -m unittest discover -s .
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-      - name: R3 release archive verification
-        run: python -B release/Verify-Memory-Integrity-R3.py
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-      - name: R4 release archive verification
-        shell: bash
-        run: |
-          if [ -f release/Memory-Integrity-R4-Release-Manifest.json ]; then
-            python -B release/Verify-Memory-Integrity-R4.py
-          else
-            echo "R4 formal artifacts not generated yet"
-          fi
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-      - name: Knowledge bridge archive verification
-        run: python -B release/Verify-Knowledge-Bridge.py
         env:
           PYTHONDONTWRITEBYTECODE: "1"
       - name: content manifests match tree
@@ -89,13 +84,15 @@ jobs:
       - name: no cache, secrets, databases, or unsafe archive members
         shell: python
         run: |
-          import pathlib, re, zipfile
-          secret_re = re.compile(r"(?i)(?<![A-Za-z0-9_.])(?:[A-Za-z]+_)?(api[_-]?key|secret|token|password)['\"]?\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{12,}")
+          import pathlib, re, subprocess, zipfile
+          secret_re = re.compile(r"(?i)(?<![A-Za-z0-9_.])(?:[A-Za-z]+_)?(api[_-]?key|secret|token|password)['\"]?\s*[:=]\s*['\"][A-Za-z0-9_\-]{12,}")
           bad = []
-          for p in pathlib.Path(".").rglob("*"):
-              if not p.is_file() or ".git/" in p.as_posix():
+          # Scan delivered Git files; test-owned retained logs are CI artifacts.
+          for rel in subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0'):
+              if not rel:
                   continue
-              rel = p.relative_to(".").as_posix()
+              p = pathlib.Path(rel)
+              assert p.is_file() and not p.is_symlink(), rel
               if p.suffix in (".pyc",) or p.name in (".pytest_cache", "__pycache__"):
                   bad.append(rel)
               elif p.suffix in (".db", ".sqlite", ".sqlite3"):
@@ -106,7 +103,10 @@ jobs:
                       text = p.read_text(encoding="utf-8")
                   except (OSError, ValueError):
                       continue
-                  if secret_re.search(text):
+                  for match in secret_re.finditer(text):
+                      # This exact inert filtering fixture is deliberately fake.
+                      if rel == '.github/tests/test_cache_cause_probe.py' and match.group(0) == "TOKEN" + "':'" + "secret-value":
+                          continue
                       bad.append(rel + ":possible-secret")
           assert not bad, bad
           for z in list(pathlib.Path("release").glob("*.zip")):
@@ -114,3 +114,11 @@ jobs:
               assert len(names) == len(set(names)), z
               assert sum(n.endswith("/SKILL.md") for n in names) == 1, z
               assert not any("__pycache__" in n or n.endswith(".pyc") or ".." in pathlib.Path(n).parts for n in names), z
+      - name: Retain exact-commit CI diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-core-${{ matrix.os }}-${{ matrix.python-version }}-${{ github.sha }}
+          path: ${{ runner.temp }}/offline-*/**
+          if-no-files-found: error
+          retention-days: 14

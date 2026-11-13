@@ -10,6 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import zipfile
+from _offline_historical_fixture import checkout, git_at
 
 ROOT = Path(__file__).absolute().parents[2]
 SCRIPT = ROOT/'.github/scripts/gate1_current_preflight.py'
@@ -47,10 +48,14 @@ class CurrentPreflight(unittest.TestCase):
             self.assertEqual(self.g.read_file(path), b'original')
 
     def test_pinned_system_executable_uses_type_identity_not_filename_execute_bits(self):
-        git = Path(r'C:\Program Files\Git\cmd\git.exe')
-        self.assertEqual(hashlib.sha256(self.g.read_file(git, 2)).hexdigest(),
-                         'da240fe9bc24895b3e04150a4990b8a6ff329ecabcd8f19684c2cc310da5ef3f')
-        with self.assertRaises(ValueError): self.g.read_file(git)
+        # This read-file contract is independent of the host Git version. The
+        # inert .exe fixture deliberately has no executable mode requirement.
+        with tempfile.TemporaryDirectory() as folder:
+            git = Path(folder)/'git.exe'; raw = b'non-executable pinned binary fixture'
+            git.write_bytes(raw); git.chmod(0o600)
+            os.link(git, Path(folder)/'alias.exe')
+            self.assertEqual(hashlib.sha256(self.g.read_file(git, 2)).hexdigest(), hashlib.sha256(raw).hexdigest())
+            with self.assertRaises(ValueError): self.g.read_file(git)
 
     def test_clean_extract_matches_exact_git_blobs_and_preserves_archive(self):
         raw = archive([('memory-integrity/a.py', b'print(120)\n'), ('claude-mon/b.txt', b'pair')])
@@ -63,7 +68,10 @@ class CurrentPreflight(unittest.TestCase):
             self.assertEqual(set(self.g.source_manifest(dest)), set(tree))
 
     def test_real_current_commit_extracts_without_old_caches_or_overlay(self):
-        raw, tree, expected = self.g.committed_source()
+        historical = checkout(self.g.HEAD)
+        with patch.object(self.g, 'REPO', historical), \
+                patch.object(self.g, 'git', side_effect=lambda *args: git_at(historical, *args)):
+            raw, tree, expected = self.g.committed_source()
         with tempfile.TemporaryDirectory() as folder:
             dest = Path(folder)/'source'
             self.g.extract_source(raw, tree, dest)

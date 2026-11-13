@@ -205,7 +205,18 @@ class Gate1Contracts(unittest.TestCase):
     def test_real_recording_runner_keeps_caller_relative_output_after_chdir(self):
         with tempfile.TemporaryDirectory() as temp:
             output=Path(temp)/'recorded'
-            result=subprocess.run([sys.executable,'-B',str(ROOT/'.github/scripts/gate1_runner.py'),
+            # The actual recording runner still receives caller-relative output.
+            # Only its owned READY fixture is redirected from account AppData.
+            fixture=Path(temp)/'ready-fixture';fixture.mkdir()
+            program=('import runpy,sys;from pathlib import Path;'
+                     'sys.path.insert(0,sys.argv.pop(1));'
+                     'from offline_ci_suite import memory_integrity_ready_fixture;'
+                     'runner=sys.argv.pop(1);package=Path(sys.argv.pop(1));scratch=Path(sys.argv.pop(1));'
+                     'sys.argv[0]=runner;'
+                     '\nwith memory_integrity_ready_fixture(package,scratch):\n'
+                     ' runpy.run_path(runner,run_name="__main__")\n')
+            result=subprocess.run([sys.executable,'-B','-c',program,str(ROOT/'.github/scripts'),
+                str(ROOT/'.github/scripts/gate1_runner.py'),str(ROOT/'memory-integrity'),str(fixture),
                 '--package-root',str(ROOT/'memory-integrity'),'--pattern','test_knowledge_worker_cwd.py',
                 '--output-dir','recorded'],cwd=temp,capture_output=True,timeout=40)
             (Path(temp)/'stdout.log').write_bytes(result.stdout)

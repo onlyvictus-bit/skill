@@ -137,6 +137,9 @@ class CoordinatorGuards(unittest.TestCase):
     def test_actual_committed_source_copy_contains_only_exact_named_live_delta(self):
         path = sr3.REPO/'.github/scripts/gate1_current_preflight.py'
         c1 = sr3.load_module(path, {'sha256':sr3.C1_SHA, 'size':path.stat().st_size})
+        from _offline_historical_fixture import checkout, git_at
+        historical = checkout(sr3.HEAD)
+        c1.git = lambda *args: git_at(historical, *args)
         basis, tree = sr3.source_basis(c1)
         value = {'tree':tree, 'live_delta':{name:sr3.record(sr3.REPO/name) for name in sr3.LIVE_DELTA}}
         with tempfile.TemporaryDirectory(prefix='sr3-real-source-copy-') as name:

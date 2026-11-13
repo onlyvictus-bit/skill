@@ -1,8 +1,9 @@
 """SR1 saved-data regression: never starts a worker or changes old evidence."""
 import copy
+import hashlib
 import importlib.util
 import json
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -10,7 +11,34 @@ from unittest.mock import patch
 REPO = Path(__file__).absolute().parents[2]
 SCRIPT = REPO/'.github/scripts/cleanup_shutdown_evidence.py'
 OLD_PROBE = REPO/'.github/scripts/cleanup_membership_probe.py'
-ATTEMPT = REPO/'.github/run-artifacts/cleanup-membership-20261025/normal-membership'
+ATTEMPT = Path(__file__).parent/'fixtures/membership-20261025'
+FIXTURE_SHA = '2ab2a1c2f72cf5f27693ad65828d1ca5b728375b91b0ad6f555e8fb444de1ef4'
+
+
+def fixture_manifest():
+    raw = (ATTEMPT/'Fixture-Manifest.json').read_bytes()
+    if hashlib.sha256(raw).hexdigest() != FIXTURE_SHA:
+        raise AssertionError('Historical membership fixture authority changed')
+    manifest = json.loads(raw)
+    for name, row in manifest['files'].items():
+        path = ATTEMPT/name; data = path.read_bytes()
+        if path.is_symlink() or path.stat().st_nlink != 1 or len(data) != row['bytes'] or hashlib.sha256(data).hexdigest() != row['sha256']:
+            raise AssertionError('Historical membership fixture changed: ' + name)
+    return manifest
+
+
+def relocated(value, prefix=None):
+    """Relocate only the exact pinned historical prefix, preserving raw data."""
+    if prefix is None:
+        prefix = fixture_manifest()['original_attempt']
+    if isinstance(value, str) and value.startswith(prefix):
+        suffix = value[len(prefix):].lstrip('\\/')
+        return str(ATTEMPT.joinpath(*PureWindowsPath(suffix).parts))
+    if isinstance(value, list):
+        return [relocated(item, prefix) for item in value]
+    if isinstance(value, dict):
+        return {relocated(key, prefix): relocated(item, prefix) for key, item in value.items()}
+    return value
 
 
 def load(path, name):
@@ -41,6 +69,15 @@ class SavedEvidenceRepair(unittest.TestCase):
         if not SCRIPT.exists():
             self.fail('SR1 saved-evidence interpreter is not implemented')
         self.m = load(SCRIPT, 'sr_saved_evidence_tests')
+        manifest = fixture_manifest()
+        self.m.ATTEMPT = ATTEMPT
+        original = self.m.verify_stream
+        def fixture_stream(record, expected_path):
+            rel = expected_path.relative_to(ATTEMPT)
+            pinned = str(PureWindowsPath(manifest['original_attempt']).joinpath(*rel.parts))
+            self.m.require(isinstance(record, dict) and record.get('path') == pinned, 'E_SR_STREAM_PATH')
+            return original({**record, 'path': str(expected_path)}, expected_path)
+        self.m.verify_stream = fixture_stream
 
     def test_saved_run_is_a_gap_not_a_fixed_or_accepted_probe(self):
         result = self.m.review_saved_attempt()
@@ -150,9 +187,9 @@ class SavedEvidenceRepair(unittest.TestCase):
         self.assertEqual(result['raw_probe_error']['error'], ['ValueError: E_MP_OBSERVATION'])
 
     def test_retained_exact_export_preserves_every_integer_and_raw_record(self):
-        artifact = REPO/'.github/run-artifacts/cleanup-shutdown-repair-20261026/Saved-Evidence-exact.json'
+        artifact = ATTEMPT/'Saved-Evidence-exact.json'
         self.assertTrue(artifact.exists(), 'exact unparsed-stdout export is missing')
-        saved = json.loads(artifact.read_bytes())
+        saved = relocated(json.loads(artifact.read_bytes()))
         actual = self.m.review_saved_attempt()
         self.assertEqual(saved, actual)
         self.assertEqual(saved['raw_events'][2]['utc_ns'], 1793001733541399500)

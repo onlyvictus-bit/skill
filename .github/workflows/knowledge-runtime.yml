@@ -3,8 +3,15 @@ on:
   push:
     branches: [main, development/**, release/**]
   pull_request:
+permissions:
+  contents: read
+
 jobs:
   isolated-runtime:
+    timeout-minutes: 60
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONNOUSERSITE: "1"
     strategy:
       fail-fast: false
       matrix:
@@ -13,6 +20,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
@@ -23,11 +32,43 @@ jobs:
           subprocess.run([sys.executable, '-m', 'venv', '.knowledge-runtime'], check=True)
           exe = pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')
           subprocess.run([str(exe), '-m', 'pip', 'install', '-r', 'semantica-runtime/requirements-lock.txt'], check=True)
-      - name: Real runtime and protected workflow checks
+      - name: Exact qualified pair and historical release integrity
+        run: python -B release/Check-Offline-First-CI.py --output-dir "${{ runner.temp }}/offline-runtime-pair"
+      - name: Source runtime and protected workflow checks
         shell: python
         run: |
           import os, pathlib, subprocess, sys
-          exe = pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')
-          env = dict(os.environ, KNOWLEDGE_WORKER_PYTHON=str(exe.absolute()), PYTHONDONTWRITEBYTECODE='1')
-          subprocess.run([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'memory-integrity/tests_v2', '-p', 'test_knowledge*.py'], check=True, env=env)
-          subprocess.run([sys.executable, '-B', 'release/Verify-Knowledge-Bridge.py'], check=True, env=env)
+          worker = (pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')).absolute()
+          env = dict(os.environ, KNOWLEDGE_WORKER_PYTHON=str(worker))
+          subprocess.run([sys.executable, '-B', '.github/scripts/offline_ci_suite.py',
+              '--package-root', 'memory-integrity', '--test-dir', 'tests_v2', '--pattern', 'test_knowledge*.py',
+              '--output-dir', str(pathlib.Path(os.environ['RUNNER_TEMP'])/'offline-runtime-source')], check=True, env=env)
+      - name: Fresh extracted runtime and protected workflow checks
+        shell: python
+        run: |
+          import os, pathlib, subprocess, sys
+          worker = (pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')).absolute()
+          temp = pathlib.Path(os.environ['RUNNER_TEMP'])
+          env = dict(os.environ, KNOWLEDGE_WORKER_PYTHON=str(worker))
+          subprocess.run([sys.executable, '-B', '.github/scripts/offline_ci_suite.py',
+              '--package-root', str(temp/'offline-runtime-pair/verified/extracted/memory-integrity'),
+              '--test-dir', 'tests_v2', '--pattern', 'test_knowledge*.py',
+              '--output-dir', str(temp/'offline-runtime-extracted')], check=True, env=env)
+      - name: Extracted public acceptance and fresh replay
+        shell: python
+        run: |
+          import os, pathlib, subprocess, sys
+          worker = (pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')).absolute()
+          temp = pathlib.Path(os.environ['RUNNER_TEMP'])
+          extracted = temp/'offline-runtime-pair/verified/extracted'
+          subprocess.run([sys.executable, '-B', '.github/scripts/offline_release_acceptance.py',
+              '--package-root', str(extracted/'memory-integrity'), '--claude-mon-root', str(extracted/'claude-mon'),
+              '--worker-python', str(worker), '--output-dir', str(temp/'offline-runtime-acceptance')], check=True)
+      - name: Retain exact-commit runtime diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-runtime-${{ matrix.os }}-${{ matrix.python-version }}-${{ github.sha }}
+          path: ${{ runner.temp }}/offline-*/**
+          if-no-files-found: error
+          retention-days: 14

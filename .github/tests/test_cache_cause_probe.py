@@ -214,6 +214,7 @@ class CacheCauseProbe(unittest.TestCase):
         sys.path.insert(0,str(ROOT/'memory-integrity/scripts'))
         from knowledge_bridge.worker_client import _process
         from knowledge_bridge import distributed_retrieval as shard
+        from knowledge_bridge import windows_ready_copy
         with tempfile.TemporaryDirectory() as temp:
             scratch=Path(temp)
             script=scratch/'distributed_worker.py'
@@ -230,7 +231,12 @@ class CacheCauseProbe(unittest.TestCase):
                 self.assertNotIn('TOKEN_FOR_PROBE',first['keys'])
                 self.assertNotIn('SYSTEMDRIVE',{key.upper() for key in first['keys']})
                 self.assertFalse((scratch/'authored-relative-output').exists())
-                with patch.object(shard,'__file__',str(scratch/'distributed_retrieval.py')):
+                # The READY copy is created by the child-launch implementation.
+                # Give this controller fixture its own root rather than relying
+                # on the caller's physical LocalAppData policy.
+                ready_root = scratch/'managed'/'ready-copies-v1'
+                with patch.object(shard,'__file__',str(scratch/'distributed_retrieval.py')), \
+                        patch.object(windows_ready_copy, 'default_root', return_value=ready_root):
                     session=shard._Session(sys.executable,'probe','not-a-real-lease',time.monotonic()+5)
                     try:
                         self.assertEqual(session.process.wait(timeout=5),0)

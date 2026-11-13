@@ -2,6 +2,7 @@
 import importlib.util
 import json
 import os
+import sys
 from pathlib import Path
 import time
 import unittest
@@ -25,6 +26,18 @@ def retained_root(label):
 
 @unittest.skipUnless(os.name == 'nt', 'Windows native job and thread observation required')
 class MembershipNativeControls(unittest.TestCase):
+    def setUp(self):
+        self.cached_bridge = {name: module for name, module in sys.modules.items()
+                              if name == 'knowledge_bridge' or name.startswith('knowledge_bridge.')}
+        for name in self.cached_bridge:
+            del sys.modules[name]
+
+    def tearDown(self):
+        for name in list(sys.modules):
+            if name == 'knowledge_bridge' or name.startswith('knowledge_bridge.'):
+                del sys.modules[name]
+        sys.modules.update(self.cached_bridge)
+
     def module(self):
         if not SCRIPT.exists():
             self.fail('MP1 native membership witness is not implemented')
@@ -32,6 +45,13 @@ class MembershipNativeControls(unittest.TestCase):
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         return module
+
+    def owned_source(self):
+        # The old probe intentionally consumes the old Job API. Current
+        # recursive ownership has a different internal representation.
+        from _offline_historical_fixture import timing_source
+        return timing_source(retained_root('historical-source')/'source')
+
 
     def test_probe_refuses_a_preexisting_output_directory(self):
         module = self.module()
@@ -45,7 +65,7 @@ class MembershipNativeControls(unittest.TestCase):
 
     def test_native_probe_binds_four_roles_and_records_emergency_result(self):
         module = self.module()
-        source = Path(__file__).absolute().parents[2]
+        source = self.owned_source()
         output = retained_root('native-witness')/'witness'
         # Direct Python 3.14 has no venv launcher layers.  This is deliberately
         # a controller-only topology and cannot satisfy the sealed runtime path.
@@ -77,7 +97,7 @@ class MembershipNativeControls(unittest.TestCase):
 
     def test_fault_after_exact_role_pinning_retains_bounded_emergency_receipt(self):
         module = self.module()
-        source = Path(__file__).absolute().parents[2]
+        source = self.owned_source()
         output = retained_root('fault-after-pin')/'witness'
         with self.assertRaisesRegex(RuntimeError, 'E_MP_CONTROL_FAULT_AFTER_ROLES_PINNED'):
             module.run_probe(source, output, control_topology=True, _fault_after_roles_pinned=True)
@@ -89,7 +109,7 @@ class MembershipNativeControls(unittest.TestCase):
 
     def test_blocked_writer_uses_its_native_thread_handle_before_fixture_termination(self):
         module = self.module()
-        source = Path(__file__).absolute().parents[2]
+        source = self.owned_source()
         output = retained_root('native-writer-cancel')/'witness'
         result = module.run_probe(source, output, control_topology=True, _force_stop_failure=True)
         cancellation = result['emergency_cleanup']['cancel_synchronous_io']
@@ -140,7 +160,7 @@ class MembershipNativeControls(unittest.TestCase):
         self.assertIn('E_MP_HANDLE_CLOSE', '\n'.join(getattr(raised.exception, '__notes__', ())))
 
     def test_actual_probe_close_failure_becomes_error_receipt_not_success_probe(self):
-        module = self.module(); source = Path(__file__).absolute().parents[2]
+        module = self.module(); source = self.owned_source()
         output = retained_root('handle-close-failure')/'witness'
         with self.assertRaisesRegex(ValueError, 'E_MP_HANDLE_CLEANUP'):
             module.run_probe(source, output, control_topology=True, _force_handle_cleanup_error=True)
@@ -149,7 +169,7 @@ class MembershipNativeControls(unittest.TestCase):
         self.assertFalse(receipt['handle_cleanup']['completed'])
 
     def test_nonvalue_error_after_real_writer_start_retains_writer_cleanup(self):
-        module = self.module(); source = Path(__file__).absolute().parents[2]
+        module = self.module(); source = self.owned_source()
         output = retained_root('nonvalue-after-writer')/'witness'
         with self.assertRaisesRegex(RuntimeError, 'E_MP_CONTROL_NONVALUE_AFTER_WRITER_START'):
             module.run_probe(source, output, control_topology=True, _force_nonvalue_after_request=True)

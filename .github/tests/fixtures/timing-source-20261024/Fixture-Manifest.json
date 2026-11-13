@@ -1,0 +1,17 @@
+{
+  "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py": {
+    "bytes": 15240,
+    "fixture": "memory-integrity_scripts_knowledge_bridge_distributed_retrieval.py.snapshot",
+    "sha256": "f78ea987850a14229ec8750ac215dc121c54ee09413fc7330edd48ebad8dcde9"
+  },
+  "memory-integrity/scripts/knowledge_bridge/windows_job.py": {
+    "bytes": 11423,
+    "fixture": "memory-integrity_scripts_knowledge_bridge_windows_job.py.snapshot",
+    "sha256": "4b8631c9e4710ecb115e3d1ddb536a0f398a25ef1f7558bc21f527aa38137cb0"
+  },
+  "memory-integrity/tests_v2/test_knowledge_windows_shutdown.py": {
+    "bytes": 13644,
+    "fixture": "memory-integrity_tests_v2_test_knowledge_windows_shutdown.py.snapshot",
+    "sha256": "86a8576e980a28fd062445e7d076917701befbdd6705e08efa22401ded98dbd7"
+  }
+}

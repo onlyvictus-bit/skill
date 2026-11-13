@@ -49,6 +49,8 @@ class OfflineArchives(unittest.TestCase):
             for raw in names.split(b'\0'):
                 if raw:
                     rel = raw.decode('utf-8')
+                    if rel == package + '/' + cls.b.ACTIVE:
+                        continue  # Derived delivery manifest is tested separately below.
                     target = cls.source/rel
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(ROOT/rel, target)
@@ -87,6 +89,48 @@ class OfflineArchives(unittest.TestCase):
             self.b.build(self.source, 'a'*40, self.release)
         with self.assertRaisesRegex(ValueError, 'OUTPUT_EXISTS'):
             self.v.verify(self.release, self.folder('existing'), self.source)
+
+    def active_source(self):
+        source = self.folder('active-source')/'source'
+        shutil.copytree(self.source, source)
+        for name in self.b.PACKAGES:
+            (source/name/self.b.ACTIVE).write_bytes(
+                self.b.canonical(self.b.consumer(source/name).content_document(source/name)) + b'\n')
+        return source
+
+    def test_active_delivery_manifests_preserve_qualified_archive_bytes(self):
+        source = self.active_source()
+        out = self.folder('active-build')/'new'
+        self.assertEqual(self.b.build(source, 'a'*40, out), self.manifest)
+        for row in self.manifest['packages'].values():
+            self.assertEqual((out/row['zip']).read_bytes(), (self.release/row['zip']).read_bytes())
+        self.assertEqual(self.v.verify(out, self.folder('active-verify')/'new', source)['status'],
+                         'PAIR_ARCHIVE_AND_EXTRACTION_VERIFIED')
+
+    def test_active_manifest_tamper_noncanonical_and_unknown_extensions_refused(self):
+        for mode in ('malformed', 'noncanonical', 'tamper', 'extra', 'case'):
+            with self.subTest(mode=mode):
+                source = self.active_source()
+                path = source/'memory-integrity'/self.b.ACTIVE
+                if mode == 'malformed':
+                    path.write_bytes(b'{')
+                elif mode == 'noncanonical':
+                    path.write_bytes(path.read_bytes() + b' ')
+                elif mode == 'tamper':
+                    value = self.b.read(path.read_bytes());value['files']['SKILL.md'] = '0'*64
+                    path.write_bytes(self.b.canonical(value) + b'\n')
+                else:
+                    (source/'memory-integrity'/('extra.txt' if mode == 'extra' else
+                                               'tests_v2/offline1-content.json')).write_bytes(b'bad')
+                with self.assertRaises(ValueError):
+                    self.b.source_check(source, 'a'*40)
+
+    def test_active_manifest_hardlink_refused_before_read(self):
+        import os
+        source = self.active_source()
+        os.link(source/'memory-integrity'/self.b.ACTIVE, self.folder('active-alias')/'alias')
+        with self.assertRaisesRegex(ValueError, 'NONORDINARY_FILE'):
+            self.b.source_check(source, 'a'*40)
 
     def test_source_drift_rejected_by_git_blob_binding(self):
         altered = self.folder('source-drift')/'source'
