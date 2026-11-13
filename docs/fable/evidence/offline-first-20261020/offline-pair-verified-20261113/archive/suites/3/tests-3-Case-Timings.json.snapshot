@@ -1,0 +1,857 @@
+{
+  "finished": [
+    {
+      "id": "test_acceptance.FaultMatrixTests.test_all_offline_faults_block",
+      "seconds": 0.18699999999989814
+    },
+    {
+      "id": "test_acceptance.FaultMatrixTests.test_oversize_unit_subdivided_not_dropped",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_acceptance.FullPipelineTests.test_ground_truth_end_to_end",
+      "seconds": 0.18800000000010186
+    },
+    {
+      "id": "test_acceptance.FullPipelineTests.test_seeded_bad_interpretation_flagged",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_acceptance.ScaleTests.test_exact_fixture_sizes",
+      "seconds": 0.6409999999996217
+    },
+    {
+      "id": "test_acceptance.ScaleTests.test_mechanical_scale_50mb",
+      "seconds": 13.32800000000043
+    },
+    {
+      "id": "test_artifact_recovery.ArtifactTests.test_backup_restore_reopens",
+      "seconds": 0.0929999999998472
+    },
+    {
+      "id": "test_artifact_recovery.ArtifactTests.test_corrupt_artifact_blocks",
+      "seconds": 0.01599999999962165
+    },
+    {
+      "id": "test_artifact_recovery.ArtifactTests.test_idempotent_restore",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_artifact_recovery.ArtifactTests.test_missing_artifact_blocks",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_artifact_recovery.ArtifactTests.test_no_visible_partials",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_artifact_recovery.ArtifactTests.test_roundtrip_verifies",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_bogus_encoding_fails_closed",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_budget.BudgetTests.test_exact_boundary_fits",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_injected_counter_with_provenance",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_input_alone_at_limit_fails_with_reserve",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_measure_request_breakdown",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_oversize_unit_refused_not_truncated",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_plan_single_batch",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_plan_splits_on_input",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_plan_splits_on_output",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_safety_covering_context_refused",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_total_plus_one_fails",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_unknown_field_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_unknown_limits_refused",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_budget.BudgetTests.test_valid_profile_accepted",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_claim_provenance.ClaimProvenanceTests.test_foreign_citation_fails",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_claim_provenance.ClaimProvenanceTests.test_full_mapping_passes",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_claim_provenance.ClaimProvenanceTests.test_partial_mode_allows_gap",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_claim_provenance.ClaimProvenanceTests.test_unclaimed_unit_fails",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_claim_provenance.ClaimProvenanceTests.test_unmapped_claim_fails",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_cli_v2.CliV2Tests.test_capabilities_lists_commands",
+      "seconds": 0.2820000000001528
+    },
+    {
+      "id": "test_cli_v2.CliV2Tests.test_end_to_end_offline",
+      "seconds": 1.2349999999996726
+    },
+    {
+      "id": "test_cli_v2.CliV2Tests.test_freeze_scope",
+      "seconds": 0.7809999999999491
+    },
+    {
+      "id": "test_cli_v2.CliV2Tests.test_resume_and_export",
+      "seconds": 0.5619999999998981
+    },
+    {
+      "id": "test_cli_v2.CliV2Tests.test_run_without_budget_or_approval_blocked",
+      "seconds": 0.625
+    },
+    {
+      "id": "test_cli_v2.CliV2Tests.test_verify_open_unit_query",
+      "seconds": 0.7350000000005821
+    },
+    {
+      "id": "test_composed_gate.ComposedGateTests.test_blocked_layer_blocks_despite_guard",
+      "seconds": 0.15599999999994907
+    },
+    {
+      "id": "test_composed_gate.ComposedGateTests.test_cli_end_to_end",
+      "seconds": 0.3279999999995198
+    },
+    {
+      "id": "test_composed_gate.ComposedGateTests.test_conformance_with_mi_report",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_composed_gate.ComposedGateTests.test_guard_failure_blocks_despite_ready_layers",
+      "seconds": 0.15599999999994907
+    },
+    {
+      "id": "test_composed_gate.ComposedGateTests.test_guard_pass_plus_ready_is_ready",
+      "seconds": 0.14100000000053114
+    },
+    {
+      "id": "test_composed_gate.ComposedGateTests.test_no_layers_is_blocked",
+      "seconds": 0.15599999999994907
+    },
+    {
+      "id": "test_consent.ConsentTests.test_approval_ref_recorded",
+      "seconds": 0.07799999999951979
+    },
+    {
+      "id": "test_consent.ConsentTests.test_batch_policy_rejected",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_consent.ConsentTests.test_dispatch_without_approval_blocked",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_consent.ConsentTests.test_empty_approval_ref_blocked",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_consent.ConsentTests.test_explicit_per_call_accepted",
+      "seconds": 0.09400000000005093
+    },
+    {
+      "id": "test_consent.ConsentTests.test_mismatched_policy_ref_rejected",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_contracts.ContractTests.test_accept_valid_envelope",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_bad_digest",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_digest_mismatch",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_duplicate_ids",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_duplicate_json_keys",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_missing_and_unknown_fields",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_unknown_enum",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_reject_wrong_schema_version",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_contracts.ContractTests.test_schema_digest_stable_and_hex",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_exports.ExportTests.test_corrupt_line_fails",
+      "seconds": 0.014999999999417923
+    },
+    {
+      "id": "test_exports.ExportTests.test_missing_row_fails",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_exports.ExportTests.test_roundtrip_complete",
+      "seconds": 0.01599999999962165
+    },
+    {
+      "id": "test_exports.ExportTests.test_source_order_preserved",
+      "seconds": 0.015000000000327418
+    },
+    {
+      "id": "test_host_routing.HostRoutingTests.test_capabilities_file_matches_runtime",
+      "seconds": 0.2969999999995707
+    },
+    {
+      "id": "test_host_routing.HostRoutingTests.test_explicit_entrypoint_reports_v2",
+      "seconds": 0.2970000000004802
+    },
+    {
+      "id": "test_host_routing.HostRoutingTests.test_unknown_command_is_usage_error",
+      "seconds": 0.2969999999995707
+    },
+    {
+      "id": "test_invalidation.InvalidationTests.test_events_are_append_only",
+      "seconds": 0.14000000000032742
+    },
+    {
+      "id": "test_invalidation.InvalidationTests.test_revoke_on_change_then_reaccept",
+      "seconds": 0.26599999999962165
+    },
+    {
+      "id": "test_invalidation.InvalidationTests.test_stale_work_cannot_accept_without_revoke",
+      "seconds": 0.17199999999957072
+    },
+    {
+      "id": "test_inventory.InventoryTests.test_change_after_freeze_changes_digest",
+      "seconds": 0.015000000000327418
+    },
+    {
+      "id": "test_inventory.InventoryTests.test_empty_scope_refused",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_inventory.InventoryTests.test_escape_refused",
+      "seconds": 0.01599999999962165
+    },
+    {
+      "id": "test_inventory.InventoryTests.test_freeze_explicit_set",
+      "seconds": 0.015000000000327418
+    },
+    {
+      "id": "test_inventory.InventoryTests.test_missing_source_blocked",
+      "seconds": 0.01599999999962165
+    },
+    {
+      "id": "test_inventory.InventoryTests.test_snapshot_bytes_equal_source",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_double_accept_blocked",
+      "seconds": 0.10899999999946886
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_duplicate_work_item_rejected",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_full_forward_path",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_illegal_jump_rejected",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_migrate_v2_through_v4_preserves_data",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_reconcile_dispatching_becomes_unknown",
+      "seconds": 0.07800000000042928
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_reconcile_undispatched_requeues",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_revoke_keeps_history",
+      "seconds": 0.09400000000005093
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_revoke_needs_reason",
+      "seconds": 0.03099999999994907
+    },
+    {
+      "id": "test_ledger.LedgerTests.test_terminal_state_frozen",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f1_total_context_enforced",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f2_request_contains_material",
+      "seconds": 0.032000000000152795
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f3_negatives_and_duplicates_rejected",
+      "seconds": 0.046000000000276486
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f3_synthetic_counts_cannot_go_live",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f4_adapter_traverses_real_path",
+      "seconds": 0.18800000000010186
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f4_reused_approval_never_dispatches",
+      "seconds": 0.14000000000032742
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f5_missing_and_mismatched_results_rejected",
+      "seconds": 0.032000000000152795
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f5_spoofed_digest_rejected",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f6_saved_response_resumes_not_resends",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f6_uncertain_delivery_needs_decision",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f6_unknown_and_mismatched_work_blocked",
+      "seconds": 0.0929999999998472
+    },
+    {
+      "id": "test_m4r_regressions.M4RTests.test_f7_approval_bound_to_exact_request",
+      "seconds": 0.17199999999957072
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_direct_native_success_event_refuses_before_database",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_dispatch_refuses_before_authority_consumption",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_native_authority_disabled",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_reconciliation_cannot_promote_applied",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_offline_release_profile.OfflineReleaseProfile.test_reservation_refuses_before_database_access",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_context_never_counts_as_primary",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_duplicate_chunk_id_blocked",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_empty_source_valid_empty_manifest",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_gap_blocked",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_invalid_utf8_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_overlap_blocked",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_oversized_line_subdivided_with_lineage",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_reordered_units_blocked",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_swapped_manifest_binding_mismatch",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_valid_corpus_reassembles_exactly",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_partition_integrity.PartitionTests.test_wrong_payload_hash_blocked",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_dispatch_claim_is_durable_once_before_unknown",
+      "seconds": 0.0929999999998472
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_generic_event_api_refuses_dispatched_namespace",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_invalid_capability_reopened_store_and_rebound_binding_cannot_consume",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_legacy_intent_to_applied_remains_valid_but_cannot_later_dispatch",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_reservation_and_consumption_race_has_one_durable_dispatch",
+      "seconds": 0.07799999999951979
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_reservation_refuses_a_stored_but_unregistered_policy",
+      "seconds": 0.09400000000005093
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_v2_lease_binding_is_all_or_none_and_self_consistent",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_practical_dispatch.PracticalDispatchTests.test_v2_receipt_does_not_treat_true_as_numeric_row_lock",
+      "seconds": 0.046000000000276486
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_generic_event_api_refuses_practical_namespace",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_historical_receipt_cannot_authorize_a_new_grant",
+      "seconds": 0.07800000000042928
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_malformed_or_foreign_result_cannot_create_terminal_event",
+      "seconds": 0.032000000000152795
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_missing_or_nonworking_readback_is_durable_unknown_and_idempotent",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_only_registered_reader_can_seal_fresh_exact_applied_readback",
+      "seconds": 0.07799999999951979
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_reopened_store_reconciles_intent_without_replaying_dispatch_token",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_reopened_unknown_reconciles_once_to_fresh_exact_applied_readback",
+      "seconds": 0.07800000000042928
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_reservation_requires_current_registered_work_item_and_exact_binding",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_reuse_with_wrong_task_or_original_binding_refuses",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_practical_journal.PracticalJournalTests.test_two_connections_get_exactly_one_dispatch_winner",
+      "seconds": 0.06300000000010186
+    },
+    {
+      "id": "test_preservation.Preservation.test_r1_prefix_preserved_byte_for_byte",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_preservation.Preservation.test_release_exact_content_and_declared_changes",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_base_adapter_dispatches_nothing",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_non_ok_terminal_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_prepared_rejects_duplicates_and_empties",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_prepared_request_canonical",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_testonly_never_live",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_testonly_ok_validated",
+      "seconds": 0.015000000000327418
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_unit_set_mismatch_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_provider_contract.ProviderContractTests.test_unknown_state_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF03PreflightContract.test_cli_preflight_runs",
+      "seconds": 0.032000000000152795
+    },
+    {
+      "id": "test_r1_hardening.TestF04DispatchIntent.test_state_dispatching_during_call",
+      "seconds": 0.014999999999417923
+    },
+    {
+      "id": "test_r1_hardening.TestF05InvalidBasis.test_full_invalid_basis_cannot_accept",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_r1_hardening.TestF05InvalidBasis.test_null_result_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF05InvalidBasis.test_wrong_task_prepare_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF05StrictAcceptPositive.test_valid_basis_accepts",
+      "seconds": 0.01599999999962165
+    },
+    {
+      "id": "test_r1_hardening.TestF06ProfileBinding.test_profile_change_alters_digest",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF06ProfileBinding.test_serialized_size_recorded",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF08Reads.test_open_unit_stale_source",
+      "seconds": 0.015000000000327418
+    },
+    {
+      "id": "test_r1_hardening.TestF08Reads.test_query_unicode",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF09Snapshot.test_corrupt_snapshot_refused",
+      "seconds": 0.01599999999962165
+    },
+    {
+      "id": "test_r1_hardening.TestF09Snapshot.test_valid_snapshot_reused",
+      "seconds": 0.015000000000327418
+    },
+    {
+      "id": "test_r1_hardening.TestF10LedgerOwnership.test_foreign_db_untouched",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF10LedgerOwnership.test_unsupported_version_untouched",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF11Imports.test_invalid_utf8_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF11Imports.test_oversize_chunk_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF12Results.test_invalid_fields_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r1_hardening.TestF13ContextPayload.test_payload_contains_context",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2Dispatch.test_context_one_with_output_reserve_rejects_before_adapter_boundary",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2Dispatch.test_dispatch_rejects_profile_approval_mismatch_before_adapter",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_r2_hardening.R2Dispatch.test_final_payload_measurement_is_external_and_exact",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2Dispatch.test_live_adapter_is_rejected_before_approval_consumption",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2Dispatch.test_unknown_delivery_cannot_be_bypassed_by_prepare",
+      "seconds": 0.014999999999417923
+    },
+    {
+      "id": "test_r2_hardening.R2Durability.test_empty_result_list_is_never_a_rich_result",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2Durability.test_generic_meta_database_is_refused_without_mutation",
+      "seconds": 0.016000000000531145
+    },
+    {
+      "id": "test_r2_hardening.R2Durability.test_invalid_cas_address_rejects_before_filesystem_read",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2Durability.test_strict_result_requires_actual_task_and_attempt",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2SourceAndRead.test_manifest_rejects_utf8_split_and_reversed_primary",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_r2_hardening.R2SourceAndRead.test_query_rejects_stale_manifest_before_returning_old_hit",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_blocked_dispatch_spends_no_approval_and_calls_no_adapter",
+      "seconds": 0.43800000000010186
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_caller_off_mode_or_new_id_cannot_downgrade_registered_task",
+      "seconds": 0.09400000000005093
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_deleted_policy_cannot_be_reclassified_as_standalone_off",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_generic_dispatch_transition_cannot_replace_atomic_approval_start",
+      "seconds": 0.10899999999946886
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_graph_rejects_cycle_missing_and_unsupported_relation",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept",
+      "seconds": 0.25
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_missing_prerequisite_blocks_prepare_without_attempt",
+      "seconds": 0.07799999999951979
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_partial_task_results_and_changed_source_cannot_satisfy_prerequisite",
+      "seconds": 0.20300000000042928
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_raw_protected_transitions_and_legacy_path_refuse_missing_context",
+      "seconds": 0.15599999999994907
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_revocation_after_dispatch_blocks_acceptance_and_changed_fence_blocks_dispatch",
+      "seconds": 0.46900000000005093
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_revocation_between_guard_and_dispatch_is_checked_before_approval_spend",
+      "seconds": 0.375
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_self_partial_foreign_and_missing_prerequisite_context_refuse",
+      "seconds": 0.25
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_serialized_same_task_claim_and_full_ready_blocked_query",
+      "seconds": 0.07799999999951979
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_spent_awaiting_approval_cannot_cancel_uncertainty",
+      "seconds": 0.125
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_spent_dispatch_cannot_be_cancelled_or_retried_as_definite_nondelivery",
+      "seconds": 0.14099999999962165
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_uncertain_coordinated_delivery_blocks_low_level_replacement_attempt",
+      "seconds": 0.1710000000002765
+    },
+    {
+      "id": "test_r3_coordination.CoordinationTests.test_verified_prerequisite_allows_b_then_revoke_blocks_current_applicability",
+      "seconds": 0.23499999999967258
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_caller_transaction_cannot_launder_removed_coordination_or_task",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_checkpoint_is_external_and_detects_erased_history",
+      "seconds": 0.07799999999951979
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_checkpoint_prefix_does_not_claim_new_tail_independently_anchored",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_invalid_checkpoints_never_verify",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_legacy_reconcile_keeps_spent_awaiting_attempt_uncertain",
+      "seconds": 0.0929999999998472
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_ordinary_event_update_delete_and_unsealed_insert_are_refused",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_projection_and_event_rollback_together",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_replay_matches_current_projection_and_revoke_is_a_new_event",
+      "seconds": 0.09400000000005093
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_security_bearing_projection_change_cannot_be_laundered",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_semantic_replay_rejects_changed_projection_under_generic_event",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_r3_history.HistoryTests.test_v3_migration_preserves_legacy_unverified_provenance",
+      "seconds": 0.10900000000037835
+    },
+    {
+      "id": "test_resume.ResumeTests.test_kill_after_save_needs_strict_basis",
+      "seconds": 0.4219999999995707
+    },
+    {
+      "id": "test_resume.ResumeTests.test_kill_in_dispatch_resumes_unknown",
+      "seconds": 0.3900000000003274
+    },
+    {
+      "id": "test_resume.ResumeTests.test_live_dispatch_absent",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_resume.ResumeTests.test_offline_fake_paths",
+      "seconds": 0.2039999999997235
+    },
+    {
+      "id": "test_runner.PreflightTests.test_bad_profile_blocked",
+      "seconds": 0.046000000000276486
+    },
+    {
+      "id": "test_runner.PreflightTests.test_changed_source_blocked",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_runner.PreflightTests.test_infeasible_budget_blocked",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_runner.PreflightTests.test_invalid_manifest_blocked",
+      "seconds": 0.04699999999957072
+    },
+    {
+      "id": "test_runner.PreflightTests.test_pass_on_ready",
+      "seconds": 0.04700000000048021
+    },
+    {
+      "id": "test_runner.PreflightTests.test_unreconciled_attempt_blocked",
+      "seconds": 0.06199999999989814
+    },
+    {
+      "id": "test_unit_results.UnitResultTests.test_empty_interpretation_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_unit_results.UnitResultTests.test_make_and_validate",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_unit_results.UnitResultTests.test_reconcile_missing_duplicate_foreign",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_unit_results.UnitResultTests.test_stale_source_detected_at_manifest_level",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_unit_results.UnitResultTests.test_tampered_excerpt_rejected",
+      "seconds": 0.0
+    },
+    {
+      "id": "test_unit_results.UnitResultTests.test_uniform_interpretations_flagged",
+      "seconds": 0.0
+    }
+  ],
+  "unfinished": {}
+}

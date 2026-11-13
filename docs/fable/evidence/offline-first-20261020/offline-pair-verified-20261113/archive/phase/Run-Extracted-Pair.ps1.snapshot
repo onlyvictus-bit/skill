@@ -1,0 +1,30 @@
+param([switch]$VerifyOnly)
+$ErrorActionPreference = 'Stop'
+$pqPython = 'C:\Python314\python.exe'
+$pqHelper = 'C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\qualify_extracted.py'
+$pqInputs = 'C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\Qualification-Final-Inputs.json'
+$pqDigest = '48ae4403af413c7f289a4d791cf60e1464a1ff28cf2a2d668dbf406fd1422f97'
+function Test-PqSeals {
+    $pqPins = @{
+        $pqPython = 'cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b'
+        $pqHelper = 'c379646e96ef56e57da55f9032cf57739fd9949d8937a7436537894177806032'
+        $pqInputs = '48ae4403af413c7f289a4d791cf60e1464a1ff28cf2a2d668dbf406fd1422f97'
+    }
+    foreach ($pqPin in $pqPins.GetEnumerator()) {
+        $pqActual = (Get-FileHash -LiteralPath $pqPin.Key -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($pqActual -cne $pqPin.Value) {
+            throw ('Qualification input changed. Path={0}; Expected={1}; Actual={2}. Stop.' -f $pqPin.Key, $pqPin.Value, $pqActual)
+        }
+    }
+}
+Test-PqSeals
+& $pqPython -B $pqHelper --inputs-sha256 $pqDigest --verify-only
+if ($LASTEXITCODE -ne 0) { throw 'Seals failed. Do not start a workload or change guards.' }
+if ($VerifyOnly) { exit 0 }
+Test-PqSeals
+Write-Output 'ONE NEW EXACT ZIP-PAIR VERIFICATION: existing selected Python3.12, fresh extraction, all four suites, 24 initial/replay arms.'
+Write-Output '1112 exact test identities; known optional/POSIX skips and one declared unsupported live-DB expected failure are explicit.'
+Write-Output 'Uses existing scoped READY fixture and loopback-only fake HTTP fixtures. Full command/case timing, causes, streams and Python stacks retained.'
+Write-Output 'No rebuild, old attempt retry, reader expiry, install, permission/global/Git change or original deletion. Default120/shutdown5 unchanged.'
+& $pqPython -B $pqHelper --inputs-sha256 $pqDigest
+if ($LASTEXITCODE -ne 0) { throw 'Package qualification stopped. Preserve/share the complete output and receipt. Do not retry or change guards.' }

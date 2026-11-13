@@ -1,0 +1,11 @@
+test_active_selection_never_falls_back_when_missing_or_corrupt (test_offline_release_contract.ReleaseContent.test_active_selection_never_falls_back_when_missing_or_corrupt) ... ok
+test_added_and_changed_lists_are_measured_not_caller_claimed (test_offline_release_contract.ReleaseContent.test_added_and_changed_lists_are_measured_not_caller_claimed) ... ok
+test_old_manifest_is_hashed_and_only_active_excludes_itself (test_offline_release_contract.ReleaseContent.test_old_manifest_is_hashed_and_only_active_excludes_itself) ... ok
+test_original_content_deletion_and_skill_prefix_change_refuse (test_offline_release_contract.ReleaseContent.test_original_content_deletion_and_skill_prefix_change_refuse) ... ok
+test_packaged_consumers_are_identical_and_legacy_selection_still_works (test_offline_release_contract.ReleaseContent.test_packaged_consumers_are_identical_and_legacy_selection_still_works) ... ok
+test_wrong_profile_pointer_and_duplicate_json_refuse (test_offline_release_contract.ReleaseContent.test_wrong_profile_pointer_and_duplicate_json_refuse) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.354s
+
+OK

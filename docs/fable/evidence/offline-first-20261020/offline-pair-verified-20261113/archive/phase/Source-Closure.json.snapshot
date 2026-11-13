@@ -1,0 +1,10 @@
+{
+  "accepted_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "source_files": 931,
+  "gate1_source_manifest_exact_match": true,
+  "package_files": {
+    "memory-integrity": 194,
+    "claude-mon": 73
+  },
+  "planned_package_delta": "Only generated tests_v2/OFFLINE1-CONTENT.json per package"
+}

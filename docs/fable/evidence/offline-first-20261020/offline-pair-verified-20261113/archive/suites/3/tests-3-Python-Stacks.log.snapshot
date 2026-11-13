@@ -1,0 +1,35 @@
+SAMPLE_START PYTHON_LEVEL_STACK 2026-11-13T10:14:54.102640+00:00
+Thread 3488
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py', line 1599 in _readerthread
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1012 in run
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1075 in _bootstrap_inner
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1032 in _bootstrap
+Thread 3700
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1169 in _wait_for_tstate_lock
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1153 in join
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py', line 1628 in _communicate
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py', line 1209 in communicate
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py', line 550 in run
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\verified\\extracted\\claude-mon\\tests_v2\\test_resume.py', line 32 in kill_probe
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\verified\\extracted\\claude-mon\\tests_v2\\test_resume.py', line 50 in test_kill_in_dispatch_resumes_unknown
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\unittest\\case.py', line 589 in _callTestMethod
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\unittest\\case.py', line 634 in run
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\unittest\\case.py', line 690 in __call__
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\unittest\\suite.py', line 122 in run
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\unittest\\suite.py', line 84 in __call__
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\unittest\\runner.py', line 240 in run
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\verified\\extracted\\.github\\scripts\\retained_unittest.py', line 108 in main
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\verified\\extracted\\.github\\scripts\\gate1_runner.py', line 111 in main
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\scoped-diagnostics\\suite_runner.py', line 31 in <module>
+Thread 10404
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\subprocess.py', line 1599 in _readerthread
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1012 in run
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1075 in _bootstrap_inner
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1032 in _bootstrap
+Thread 24168
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\scoped-diagnostics\\safe_suite_diagnostics.py', line 43 in sample
+  File 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\scoped-diagnostics\\safe_suite_diagnostics.py', line 57 in _loop
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1012 in run
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1075 in _bootstrap_inner
+  File 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\threading.py', line 1032 in _bootstrap
+SAMPLE_END

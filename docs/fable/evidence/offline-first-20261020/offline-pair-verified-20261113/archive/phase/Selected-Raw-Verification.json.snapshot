@@ -1,0 +1,115 @@
+{
+  "acceptance_checks": 11,
+  "acceptance_commands": 60,
+  "acceptance_exits": {
+    "0": 56,
+    "2": 4
+  },
+  "all_source931_files_unchanged": true,
+  "counts": {
+    "EXPECTED_FAILURE": 1,
+    "PASS": 1098,
+    "SKIP": 13
+  },
+  "durable_case_events": 2224,
+  "fresh_replays": 24,
+  "historic15_release_files_unchanged": true,
+  "index_and_head_unchanged": true,
+  "installed": false,
+  "outer_commands": 9,
+  "package_qualified": true,
+  "previous_three_platform_failures": {
+    "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed": "PASS",
+    "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path": "PASS",
+    "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify": "PASS"
+  },
+  "release_ready": false,
+  "runtime_receipt_sha256": "770bf22f3fd8bf7d424523029fc0f4cf1931eeb3795a37046d13aea3f932ecc3",
+  "status": "PARENT_RAW_PACKAGE_RESULTS_VERIFIED",
+  "streams_verified": 138,
+  "suites": [
+    {
+      "expected_failures": [],
+      "package": "memory-integrity",
+      "skips": [],
+      "suite": "tests",
+      "tests": 21
+    },
+    {
+      "expected_failures": [
+        "test_practical_v2_schema.CorrespondenceTests.test_dolt_ignore_configuration_proven_on_live_db"
+      ],
+      "package": "memory-integrity",
+      "skips": [
+        [
+          "test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants",
+          "POSIX process-group observation required"
+        ],
+        [
+          "test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped",
+          "POSIX pinned runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges",
+          "isolated parser runtime required"
+        ],
+        [
+          "test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work",
+          "direct per-model signal timeout is POSIX-only"
+        ],
+        [
+          "test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts",
+          "explicit actual model and worker runtimes not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens",
+          "explicit local model manifest and interpreter not selected"
+        ],
+        [
+          "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model",
+          "explicit local model manifest and interpreter not selected"
+        ]
+      ],
+      "suite": "tests_v2",
+      "tests": 857
+    },
+    {
+      "expected_failures": [],
+      "package": "claude-mon",
+      "skips": [],
+      "suite": "tests",
+      "tests": 21
+    },
+    {
+      "expected_failures": [],
+      "package": "claude-mon",
+      "skips": [],
+      "suite": "tests_v2",
+      "tests": 213
+    }
+  ]
+}

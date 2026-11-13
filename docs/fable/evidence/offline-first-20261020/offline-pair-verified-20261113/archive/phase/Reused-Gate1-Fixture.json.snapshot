@@ -1,0 +1,25 @@
+{
+  "reason": "Reuse exact successful Gate1 scoped ReadyCopy fixture; source/ZIP/test assertions unchanged",
+  "files": {
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\verify\\extracted\\.github\\scripts\\gate1_runner.py": {
+      "bytes": 5195,
+      "sha256": "13bf5ebccbd5f707f2f66c8dcd48ff73c18fb484bfc7f17b6698a66c574d51ae"
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\verify\\extracted\\.github\\scripts\\offline_release_acceptance.py": {
+      "bytes": 26483,
+      "sha256": "297239367be35ff0f920a4c2dbaeb2e8af0333a5c1e236f8e009c7c577911fcd"
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\verify\\extracted\\.github\\scripts\\retained_unittest.py": {
+      "bytes": 6214,
+      "sha256": "4aba6fe49641f86dcb548219f0c6efc8bbd2fbaa4e32f5be40703a1cee18453b"
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\scoped-diagnostics\\safe_suite_diagnostics.py": {
+      "bytes": 4697,
+      "sha256": "27174a613e5466b999c574df1dce976fc328ca0ff8b6dc8423f7c61b06519722"
+    },
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\scoped-diagnostics\\suite_runner.py": {
+      "bytes": 2265,
+      "sha256": "60726ff8d46b6075bf689caaaf412dd56ffdabdd503a7b015c7085dd54c12d4b"
+    }
+  }
+}

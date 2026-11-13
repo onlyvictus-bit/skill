@@ -1,0 +1,22 @@
+"""Unchanged acceptance semantics with existing owned capture and command timing."""
+import importlib.util,json,sys,time
+from pathlib import Path
+P=Path(__file__).absolute().parent
+package=Path(sys.argv[sys.argv.index('--package-root')+1]).resolve(strict=True)
+sys.path.insert(0,str(package.parent/'.github/scripts'))
+import offline_host_validation as host
+spec=importlib.util.spec_from_file_location('full_gate1_acceptance',P/'acceptance-defaults.py')
+producer=importlib.util.module_from_spec(spec);spec.loader.exec_module(producer)
+timings=[]
+def capture(argv,target,cwd,env,timeout):
+    start=time.monotonic();label=Path(target).name;print('acceptance/'+label+': RUNNING',flush=True)
+    try:return host.capture_owned(argv,target,cwd,env,timeout)
+    finally:
+        row={'label':label,'seconds':time.monotonic()-start};timings.append(row)
+        print('acceptance/'+label+': %.3f seconds'%row['seconds'],flush=True)
+producer.capture_command=capture
+try:code=producer.main()
+finally:
+    output=Path(sys.argv[sys.argv.index('--output-dir')+1])
+    with(output/'Command-Timings.json').open('x',encoding='utf-8')as f:json.dump(timings,f,indent=2)
+raise SystemExit(code)

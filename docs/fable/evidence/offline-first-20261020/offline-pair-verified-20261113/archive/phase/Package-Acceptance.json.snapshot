@@ -1,0 +1,67 @@
+{
+  "acceptance_arms": 24,
+  "acceptance_checks": 11,
+  "accepted_utc": "2026-11-13T10:40:57.200645+00:00",
+  "archive_pair_verified": true,
+  "cases": 1112,
+  "commands_verified": 69,
+  "declared_expected_failures": 1,
+  "durable_case_events": 2224,
+  "errors": 0,
+  "exact_release_ci_verified": false,
+  "excluded": 0,
+  "failures": 0,
+  "fresh_extraction_verified": true,
+  "fresh_replays": 24,
+  "historical_release_files_unchanged": 15,
+  "independent_review": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-release-20261113\\Independent-Selected-Result-Review.json",
+    "sha256": "21f03373f19298bf451bb4548b7d1c316c284d37857177da28bcb9f7e4b9cd90",
+    "size": 900
+  },
+  "installed": false,
+  "interrupted": false,
+  "learned_model_qualified": false,
+  "native_beads_qualified": false,
+  "new_release_committed": false,
+  "new_release_pushed": false,
+  "next": "Final release source/CI integration and commit/push need separate authorization; installation follows exact-release CI. Do not retry consumed package runtime command.",
+  "original_source_unchanged": true,
+  "package_qualification_complete": true,
+  "packages": {
+    "claude-mon": {
+      "bytes": 172663,
+      "entries": 74,
+      "sha256": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+      "zip": "claude-mon-offline-v1.zip"
+    },
+    "memory-integrity": {
+      "bytes": 661030,
+      "entries": 195,
+      "sha256": "c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526",
+      "zip": "memory-integrity-offline-v1.zip"
+    }
+  },
+  "parent_raw_review": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-release-20261113\\Selected-Raw-Verification.json",
+    "sha256": "6fcbc6881e0a28dd0fe34b1e4d8aeb41da7f4bb73300f6eec9c360bca8a7f4fb",
+    "size": 4272
+  },
+  "passed": 1098,
+  "producer_authentication": false,
+  "release_ready": false,
+  "runtime": "Windows Python3.12.10",
+  "runtime_receipt": {
+    "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\Receipt.json",
+    "sha256": "770bf22f3fd8bf7d424523029fc0f4cf1931eeb3795a37046d13aea3f932ecc3",
+    "size": 295948
+  },
+  "runtime_verified": true,
+  "schema_version": 1,
+  "semantic_truth": "UNVERIFIED",
+  "skipped": 13,
+  "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "status": "OFFLINE_FIRST_PAIR_RUNTIME_VERIFIED_COMPLETE",
+  "streams_verified": 138,
+  "whole_skill_ready": false
+}

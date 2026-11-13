@@ -1,0 +1,16 @@
+test_archive_hash_tamper_rejected (test_offline_release_archives.OfflineArchives.test_archive_hash_tamper_rejected) ... ok
+test_build_and_verify_refuse_existing_output (test_offline_release_archives.OfflineArchives.test_build_and_verify_refuse_existing_output) ... ok
+test_deterministic_success_and_fresh_extraction (test_offline_release_archives.OfflineArchives.test_deterministic_success_and_fresh_extraction) ... ok
+test_duplicate_json_and_nonfinite_json_rejected (test_offline_release_archives.OfflineArchives.test_duplicate_json_and_nonfinite_json_rejected) ... ok
+test_missing_extra_members_rejected_even_with_updated_zip_hash (test_offline_release_archives.OfflineArchives.test_missing_extra_members_rejected_even_with_updated_zip_hash) ... ok
+test_source_drift_rejected_by_git_blob_binding (test_offline_release_archives.OfflineArchives.test_source_drift_rejected_by_git_blob_binding) ... ok
+test_source_link_rejected (test_offline_release_archives.OfflineArchives.test_source_link_rejected) ... ok
+test_unsafe_duplicate_and_case_members_rejected_even_with_updated_zip_hash (test_offline_release_archives.OfflineArchives.test_unsafe_duplicate_and_case_members_rejected_even_with_updated_zip_hash) ... ok
+test_windows_and_traversal_member_aliases_rejected (test_offline_release_archives.OfflineArchives.test_windows_and_traversal_member_aliases_rejected) ... ok
+test_wrong_companion_pin_rejected (test_offline_release_archives.OfflineArchives.test_wrong_companion_pin_rejected) ... ok
+test_consumer_import_never_writes_bytecode_without_cli_B (test_offline_release_archives.ReadOnlyConsumer.test_consumer_import_never_writes_bytecode_without_cli_B) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 44.655s
+
+OK

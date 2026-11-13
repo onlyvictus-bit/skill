@@ -61,7 +61,7 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "FULL_GATE1_ACCEPTANCE_VERIFIED_COMPLETE_20261107",
+  "current_task": "OFFLINE_FIRST_PAIR_RUNTIME_VERIFIED_COMPLETE_20261113",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
   "next_action": "Full Gate1 complete:7/7gates,381cases(368PASS/13permittedSKIP),24arms/24replays/11checks,C3nativecleanup and fresh preservation accepted independently. Read final Gate1-Acceptance.json in gate1-diagnostics-fix-20261107. No Gate1 rerun. Release/package/install/whole-skill/nativeDB/model/producer-authentication remain separate; no further milestone executed.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
@@ -2161,5 +2161,150 @@
     "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
     "release_ready": false,
     "installed": false
+  },
+  "offline_release_pair_20261113": {
+    "status": "OFFLINE_FIRST_PAIR_RUNTIME_VERIFIED_COMPLETE",
+    "acceptance": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-release-20261113\\Package-Acceptance.json",
+      "size": 2664,
+      "sha256": "57a3e422ccf6d3296fd192a4fcc4a3aab78402bc7c27db24b2295b16d3ed1b7d"
+    },
+    "result": {
+      "schema_version": 1,
+      "status": "OFFLINE_FIRST_PAIR_RUNTIME_VERIFIED_COMPLETE",
+      "accepted_utc": "2026-11-13T10:40:57.200645+00:00",
+      "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+      "archive_pair_verified": true,
+      "fresh_extraction_verified": true,
+      "package_qualification_complete": true,
+      "runtime_verified": true,
+      "runtime": "Windows Python3.12.10",
+      "cases": 1112,
+      "passed": 1098,
+      "skipped": 13,
+      "declared_expected_failures": 1,
+      "failures": 0,
+      "errors": 0,
+      "excluded": 0,
+      "interrupted": false,
+      "acceptance_arms": 24,
+      "fresh_replays": 24,
+      "acceptance_checks": 11,
+      "commands_verified": 69,
+      "streams_verified": 138,
+      "durable_case_events": 2224,
+      "original_source_unchanged": true,
+      "historical_release_files_unchanged": 15,
+      "packages": {
+        "claude-mon": {
+          "bytes": 172663,
+          "entries": 74,
+          "sha256": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+          "zip": "claude-mon-offline-v1.zip"
+        },
+        "memory-integrity": {
+          "bytes": 661030,
+          "entries": 195,
+          "sha256": "c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526",
+          "zip": "memory-integrity-offline-v1.zip"
+        }
+      },
+      "runtime_receipt": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\Receipt.json",
+        "size": 295948,
+        "sha256": "770bf22f3fd8bf7d424523029fc0f4cf1931eeb3795a37046d13aea3f932ecc3"
+      },
+      "parent_raw_review": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-release-20261113\\Selected-Raw-Verification.json",
+        "size": 4272,
+        "sha256": "6fcbc6881e0a28dd0fe34b1e4d8aeb41da7f4bb73300f6eec9c360bca8a7f4fb"
+      },
+      "independent_review": {
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git\\.github\\run-artifacts\\offline-release-20261113\\Independent-Selected-Result-Review.json",
+        "size": 900,
+        "sha256": "21f03373f19298bf451bb4548b7d1c316c284d37857177da28bcb9f7e4b9cd90"
+      },
+      "release_ready": false,
+      "installed": false,
+      "exact_release_ci_verified": false,
+      "new_release_committed": false,
+      "new_release_pushed": false,
+      "whole_skill_ready": false,
+      "semantic_truth": "UNVERIFIED",
+      "producer_authentication": false,
+      "native_beads_qualified": false,
+      "learned_model_qualified": false,
+      "next": "Final release source/CI integration and commit/push need separate authorization; installation follows exact-release CI. Do not retry consumed package runtime command."
+    },
+    "earlier_controller_observation": {
+      "active_index_unchanged": true,
+      "archive_controls": 11,
+      "claude_mon_legacy": 21,
+      "claude_mon_v2": 213,
+      "existing_contract_controls": 6,
+      "historical_release_files_unchanged": 15,
+      "independent_review": {
+        "verdict": "SHIP_ONE_NORMAL_ACCOUNT_EXACT_PAIR_QUALIFICATION_ONLY",
+        "launcher_sha256": "be81771130cf470501fd502407c982647812e3f9883363e689536b4b8bb1f865",
+        "helper_sha256": "c379646e96ef56e57da55f9032cf57739fd9949d8937a7436537894177806032",
+        "inputs_sha256": "48ae4403af413c7f289a4d791cf60e1464a1ff28cf2a2d668dbf406fd1422f97",
+        "seals": 22,
+        "exact_test_ids": 1112,
+        "guard_controls": 14,
+        "independent_verify_only": "PASS_NO_SELECTED_RUNTIME_OR_ATTEMPT",
+        "selected_runtime_started": false,
+        "release_ready": false,
+        "installed": false,
+        "notes": "Prior controller1nativefailure/2shortpatherrors not waived. Exact ZIP qualified status needs actual normal-account run and raw review."
+      },
+      "installed": false,
+      "memory_integrity_legacy": 21,
+      "memory_integrity_v2": {
+        "errors": [
+          "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path",
+          "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify"
+        ],
+        "expected_failures": [
+          "test_practical_v2_schema.CorrespondenceTests.test_dolt_ignore_configuration_proven_on_live_db"
+        ],
+        "failures": [
+          "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed"
+        ],
+        "outcomes": {
+          "ERROR": 2,
+          "EXPECTED_FAILURE": 1,
+          "FAIL": 1,
+          "PASS": 799,
+          "SKIP": 54
+        },
+        "tests_run": 857
+      },
+      "next": "one new normal-account exact ZIP selected3.12 qualification; no rebuild/retry of old stages",
+      "packages": {
+        "claude-mon": {
+          "bytes": 172663,
+          "entries": 74,
+          "sha256": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+          "zip": "claude-mon-offline-v1.zip"
+        },
+        "memory-integrity": {
+          "bytes": 661030,
+          "entries": 195,
+          "sha256": "c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526",
+          "zip": "memory-integrity-offline-v1.zip"
+        }
+      },
+      "public_literal": {
+        "checks": 11,
+        "measurements": 8,
+        "status": "PASS_CORE_ONLY_RUNTIME_UNVERIFIED"
+      },
+      "qualification_guard_controls": 14,
+      "release_ready": false,
+      "selected_runtime_started": false,
+      "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+      "status": "ARCHIVES_AND_CORE_VERIFIED_SELECTED_RUNTIME_PENDING",
+      "final_verification": "verify-final/Verification.json passed without CLI -B; accepted931sourcefiles unchanged"
+    }
   }
 }

@@ -1,0 +1,17 @@
+[
+  {
+    "mutation": "missing-declared-xfail",
+    "refused": true,
+    "error": "E_PACKAGE_QUALIFICATION_UNEXPECTED_XFAIL"
+  },
+  {
+    "mutation": "missing-completion",
+    "refused": true,
+    "error": "E_PACKAGE_QUALIFICATION_CASE_COMPLETENESS"
+  },
+  {
+    "mutation": "same-count-changed-identity",
+    "refused": true,
+    "error": "E_PACKAGE_QUALIFICATION_CASE_IDENTITIES_CHANGED"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "manifest": "Memory-Integrity-R3-Release-Manifest.json",
+    "package": "claude-mon",
+    "zip": "claude-mon-r3.zip",
+    "hash_matches": true
+  },
+  {
+    "manifest": "Memory-Integrity-R3-Release-Manifest.json",
+    "package": "memory-integrity",
+    "zip": "memory-integrity-r3.zip",
+    "hash_matches": true
+  },
+  {
+    "manifest": "Memory-Integrity-R4-Release-Manifest.json",
+    "package": "claude-mon",
+    "zip": "claude-mon-r4.zip",
+    "hash_matches": true
+  },
+  {
+    "manifest": "Memory-Integrity-R4-Release-Manifest.json",
+    "package": "memory-integrity",
+    "zip": "memory-integrity-r4.zip",
+    "hash_matches": true
+  },
+  {
+    "manifest": "Knowledge-Bridge-Manifest.json",
+    "package": "claude-mon",
+    "zip": "claude-mon-knowledge-v2.zip",
+    "hash_matches": true
+  },
+  {
+    "manifest": "Knowledge-Bridge-Manifest.json",
+    "package": "memory-integrity",
+    "zip": "memory-integrity-knowledge-v2.zip",
+    "hash_matches": true
+  }
+]

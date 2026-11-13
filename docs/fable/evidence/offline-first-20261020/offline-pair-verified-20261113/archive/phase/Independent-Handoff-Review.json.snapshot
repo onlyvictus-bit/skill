@@ -1,0 +1,14 @@
+{
+  "verdict": "SHIP_ONE_NORMAL_ACCOUNT_EXACT_PAIR_QUALIFICATION_ONLY",
+  "launcher_sha256": "be81771130cf470501fd502407c982647812e3f9883363e689536b4b8bb1f865",
+  "helper_sha256": "c379646e96ef56e57da55f9032cf57739fd9949d8937a7436537894177806032",
+  "inputs_sha256": "48ae4403af413c7f289a4d791cf60e1464a1ff28cf2a2d668dbf406fd1422f97",
+  "seals": 22,
+  "exact_test_ids": 1112,
+  "guard_controls": 14,
+  "independent_verify_only": "PASS_NO_SELECTED_RUNTIME_OR_ATTEMPT",
+  "selected_runtime_started": false,
+  "release_ready": false,
+  "installed": false,
+  "notes": "Prior controller1nativefailure/2shortpatherrors not waived. Exact ZIP qualified status needs actual normal-account run and raw review."
+}

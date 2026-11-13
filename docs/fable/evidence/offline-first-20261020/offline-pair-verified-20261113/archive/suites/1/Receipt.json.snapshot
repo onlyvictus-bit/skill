@@ -1,0 +1,69 @@
+{
+  "scope": "RETAINED_LOCAL_LOOPBACK_FIXTURES_NOT_UNCHANGED_CI",
+  "pattern": "test_*.py",
+  "tests_run": 857,
+  "failures": [],
+  "errors": [],
+  "skipped": [
+    [
+      "test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants",
+      "POSIX process-group observation required"
+    ],
+    [
+      "test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped",
+      "POSIX pinned runtime required"
+    ],
+    [
+      "test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target",
+      "isolated parser runtime required"
+    ],
+    [
+      "test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success",
+      "isolated parser runtime required"
+    ],
+    [
+      "test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection",
+      "isolated parser runtime required"
+    ],
+    [
+      "test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges",
+      "isolated parser runtime required"
+    ],
+    [
+      "test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work",
+      "direct per-model signal timeout is POSIX-only"
+    ],
+    [
+      "test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts",
+      "explicit actual model and worker runtimes not selected"
+    ],
+    [
+      "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation",
+      "explicit local model manifest and interpreter not selected"
+    ],
+    [
+      "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens",
+      "explicit local model manifest and interpreter not selected"
+    ],
+    [
+      "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation",
+      "explicit local model manifest and interpreter not selected"
+    ],
+    [
+      "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens",
+      "explicit local model manifest and interpreter not selected"
+    ],
+    [
+      "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model",
+      "explicit local model manifest and interpreter not selected"
+    ]
+  ],
+  "expected_failures": [
+    "test_practical_v2_schema.CorrespondenceTests.test_dolt_ignore_configuration_proven_on_live_db"
+  ],
+  "interrupted": false,
+  "discovered": 857,
+  "excluded": [],
+  "log": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\tests-1\\unittest.log",
+  "log_sha256": "d23b4e9ba257485f93b97c7ec3403280259ff1626f15e5d1ecfa01bce767d881"
+}

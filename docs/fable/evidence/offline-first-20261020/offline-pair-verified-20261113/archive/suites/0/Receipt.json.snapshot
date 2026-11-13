@@ -1,0 +1,14 @@
+{
+  "scope": "RETAINED_LOCAL_LOOPBACK_FIXTURES_NOT_UNCHANGED_CI",
+  "pattern": "test_*.py",
+  "tests_run": 21,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "expected_failures": [],
+  "interrupted": false,
+  "discovered": 21,
+  "excluded": [],
+  "log": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\tests-0\\unittest.log",
+  "log_sha256": "b222fd79e9ccf5c7fc3314d556eefbeca3d951d74984c104ed9a4861e360f046"
+}

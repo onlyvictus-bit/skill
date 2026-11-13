@@ -1,0 +1,1 @@
+{"answer_generation": false, "backend": "SEMANTICA_OBSERVED", "bridge_version": "1.2.0", "network_policy": "no provider operations; Python sockets blocked; not an OS sandbox", "ok": true, "revision": "320761de5d040a54a3220acc563223b4a7ffdc51", "semantica_version": "0.7.0", "shacl_available": true}

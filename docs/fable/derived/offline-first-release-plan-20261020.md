@@ -4079,3 +4079,81 @@ DB/producer-authentication qualification remains separate and false here. Exact
 memory origin of the earlier native crash and historical C2cause remain unproven.
 No commit/push, installation, OS permission/security or original deletion occurred.
 
+
+
+## Release-pair audit/build/extraction — authorized 2026-11-13
+
+User requested existing script/manifest/ZIP audit, updated matching pair, and fresh
+extracted verification. Existing Tasks4–5 remain the plan; RP1–RP3 and Full Gate1
+are complete and will not restart. No install, publication or Git action is included.
+
+- [x] Retain dirty baseline, active HEAD/index and all historical release hashes.
+- [x] Extract exact accepted a2a28bf547a9c3e187c89eb6aee9f0b6bd822956 source (931files).
+- [x] Compare all8historical ZIP inventories with that accepted source; all stale.
+- [x] New deterministic non-overwriting builder/verifier and failure controls.
+- [x] Build pair with generated OFFLINE1 content manifests, exact source binding.
+- [x] Fresh safe extraction, content/pair/preservation checks and applicable suites.
+- [x] Fresh independent result review, exact ZIP hashes and honest runtime coverage.
+
+Decision: retain accepted m12 code/schema/version metadata; offline-first-v1 release
+identity is separate. No m13 bump is fabricated. Historic builder/ZIP/manifests stay
+byte-identical. Only generated OFFLINE1-CONTENT.json is added inside each package.
+No-build cannot deliver accepted fixes (latest MI ZIP missing52/changed15; CMmissing5/
+changed3). New successor builder is smaller and safer than modifying historical
+builders. Weakest link is selected3.12 account access; controller-only extraction
+checks will never be reported as selected-runtime or installed qualification.
+New scripts release/Build-Offline-First.py, Verify-Offline-First.py and archive
+controls; outputs retained under ofpkg-20261113 and offline-release-20261113.
+
+
+Release audit observation2026-11-13: newpair built; all old15releasefiles unchanged.
+11archive+6content+14handoff controlsPASS; CM234+MIlegacy21PASS; publicliteral
+8arms/11checksPASS. FinalcontrollerMIv2857:799PASS/54SKIP/1declaredXFAIL/1FAIL/2ERROR.
+Reused existing G1 READY fixture+noUSERSITE closes33initialfailure/error records
+to3nativehostchecks; no package/sourcebytes changed. Selectedruntime pending.
+Read evidence/offline-first-20261020/offline-release-audit-20261113.md. Build and
+archive-extraction steps complete; required-runtime qualification and finalreview
+remain open. New guarded normalaccount one-run handoff is prepared, no retry/
+readerexpiry/installation/Git permission implied. Existing Gate1 remains complete.
+
+Finalpackagehandoff reviewSHIP:22seals/1112IDs/14guardcontrols/actualVerifyOnly
+confirmed. One fresh normalSID1001 selected3.12 packagequalification command
+Run-Extracted-Pair.ps1 SHAbe81771130cf470501fd502407c982647812e3f9883363e689536b4b8bb1f865.
+No attemptconsumed; finalselectedruntime result/rawreview remainpending.
+
+
+## CURRENT — exact release pair runtime VERIFIED COMPLETE, 2026-11-13
+
+Normal-account selected Python3.12.10 observed all4extracted suites:
+1112cases =1098PASS+13declaredoptional/platformSKIP+1exactdeclared live-DoltXFAIL;
+0FAIL/ERROR/exclusion/interruption. Native containment and both short-path cases
+that failed under agent account nowPASS. No package bytes changed to obtain this.
+
+24acceptance arms+24freshreplays and11safety checks PASS_BOUNDED_RUNTIME.
+69commands(9outerexit0;60acceptance56exit0+4correctrefusalexit2),138rawstreams,
+2224durable caseevents/timings and4emptyfatal-stacklogs reconciled. Both exact
+Python3.12.10/image observations and53dependencies/revision/default120/user-site
+false match before/after. Accepted931files,194+73source maps,195+74extracted
+files,6supportfiles,22seals and15historicalreleasefiles unchanged. ActiveHEAD/index
+unchanged. Independent raw-result reviewSHIP for this exactpair runtime scope.
+
+Runtime receiptSHA770bf22f3fd8bf7d424523029fc0f4cf1931eeb3795a37046d13aea3f932ecc3
+stays immutable with its original pending-raw-review label. Separate final record:
+.github/run-artifacts/offline-release-20261113/Package-Acceptance.json
+SHA256 57a3e422ccf6d3296fd192a4fcc4a3aab78402bc7c27db24b2295b16d3ed1b7d.
+Status OFFLINE_FIRST_PAIR_RUNTIME_VERIFIED_COMPLETE. Original controller REDs,
+inputcontracts and earlier handoff records remain historical, not current failure.
+Do NOT rerun Run-Extracted-Pair.ps1: selected-qualification is consumed/successful.
+
+Exact ZIPs remain memory-integrity-offline-v1.zip661030bytes/195members
+SHA c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526;
+claude-mon-offline-v1.zip172663bytes/74members
+SHA1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0.
+Location C:/Users/sakth/Documents/Codex/ofpkg-20261113/release. Acceptedm12
+metadata preserved; only generatedOFFLINE1content manifest added per package.
+
+Release source/CI integration, exact-release hostedCI, newcommit/push, installation,
+whole-skill/model/nativeDB/producer-authentication remain separate and unqualified.
+Source a2a28bf itself predates generatedOFFLINE1manifests; deliveryCI must test the
+final release source/manifest commit, not reuse Gate1/oldCI as that proof.
+PENDING: release commit/push and exact-release hosted CI - awaiting your authorization.

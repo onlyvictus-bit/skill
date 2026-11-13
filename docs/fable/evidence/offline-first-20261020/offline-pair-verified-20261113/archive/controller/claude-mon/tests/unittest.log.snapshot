@@ -1,0 +1,26 @@
+test_end_to_end_cli_materializes_chunk_and_status_hides_content (test_cli.CliTests.test_end_to_end_cli_materializes_chunk_and_status_hides_content) ... ok
+test_register_preserves_provenance_when_cli_option_is_omitted (test_cli.CliTests.test_register_preserves_provenance_when_cli_option_is_omitted) ... ok
+test_verify_returns_nonzero_on_stale_source (test_cli.CliTests.test_verify_returns_nonzero_on_stale_source) ... ok
+test_batches_preserve_order_and_include_every_required_item (test_context_budget.ContextBudgetTests.test_batches_preserve_order_and_include_every_required_item) ... ok
+test_invalid_budget_fails_closed (test_context_budget.ContextBudgetTests.test_invalid_budget_fails_closed) ... ok
+test_oversize_required_item_fails_instead_of_truncating (test_context_budget.ContextBudgetTests.test_oversize_required_item_fails_instead_of_truncating) ... ok
+test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary (test_core.ClaudeMonCoreTests.test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary) ... ok
+test_chunk_payload_materializes_exact_bytes_and_hash (test_core.ClaudeMonCoreTests.test_chunk_payload_materializes_exact_bytes_and_hash) ... ok
+test_chunk_verifier_detects_missing_and_duplicate_primary_units (test_core.ClaudeMonCoreTests.test_chunk_verifier_detects_missing_and_duplicate_primary_units) ... ok
+test_receipt_becomes_stale_after_source_change_without_rewriting_history (test_core.ClaudeMonCoreTests.test_receipt_becomes_stale_after_source_change_without_rewriting_history) ... ok
+test_receipt_cannot_be_complete_without_exact_input_hashes (test_core.ClaudeMonCoreTests.test_receipt_cannot_be_complete_without_exact_input_hashes) ... ok
+test_receipt_complete_is_task_bound_and_append_only (test_core.ClaudeMonCoreTests.test_receipt_complete_is_task_bound_and_append_only) ... ok
+test_receipt_status_precedence (test_core.ClaudeMonCoreTests.test_receipt_status_precedence) ... ok
+test_register_changed_content_preserves_version_history (test_core.ClaudeMonCoreTests.test_register_changed_content_preserves_version_history) ... ok
+test_register_uses_content_hash_and_rejects_outside_root (test_core.ClaudeMonCoreTests.test_register_uses_content_hash_and_rejects_outside_root) ... ok
+test_status_does_not_emit_source_content (test_core.ClaudeMonCoreTests.test_status_does_not_emit_source_content) ... ok
+test_unit_manifest_is_exact_deterministic_and_unicode_safe (test_core.ClaudeMonCoreTests.test_unit_manifest_is_exact_deterministic_and_unicode_safe) ... ok
+test_unitize_rejects_invalid_utf8 (test_core.ClaudeMonCoreTests.test_unitize_rejects_invalid_utf8) ... ok
+test_verify_receipt_rechecks_input_hashes_in_saved_receipt (test_core.ClaudeMonCoreTests.test_verify_receipt_rechecks_input_hashes_in_saved_receipt) ... ok
+test_gate_blocks_stale_receipt (test_fable_bridge.FableBridgeTests.test_gate_blocks_stale_receipt) ... ok
+test_gate_blocks_until_matching_complete_task_receipt_exists (test_fable_bridge.FableBridgeTests.test_gate_blocks_until_matching_complete_task_receipt_exists) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 5.755s
+
+OK

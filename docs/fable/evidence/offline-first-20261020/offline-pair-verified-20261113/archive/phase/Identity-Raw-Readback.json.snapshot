@@ -1,0 +1,15 @@
+{
+  "identity_before_equals_after": true,
+  "dependencies_before_equals_after": true,
+  "all_four_raw_stdout_equal_aggregate": true,
+  "version": [
+    3,
+    12,
+    10
+  ],
+  "worker": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+  "image": "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python3.12.exe",
+  "user_site_disabled": true,
+  "dependency_versions": 53,
+  "worker_default": 120
+}

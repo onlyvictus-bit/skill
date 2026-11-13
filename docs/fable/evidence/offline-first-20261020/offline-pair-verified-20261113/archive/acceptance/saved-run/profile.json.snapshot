@@ -1,0 +1,1 @@
+{"context_limit":1000000,"counting_method":"test","encoding":"test-char","encoding_version":"1","endpoint":"offline://fixture","max_spend":0,"model":"offline-fixture-1","output_limit":100000,"provider":"fake","purpose":"offline-audit","schema_version":2}

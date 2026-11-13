@@ -1,0 +1,46 @@
+
+50MB: 735294 units, 191 chunks, 12.8s
+{
+  "error": "E_QUERY_STALE_OR_INVALID: E_SOURCE_BINDING_MISMATCH: manifest bound to a different source",
+  "ok": false
+}
+{"scope": "RETAINED_LOCAL_LOOPBACK_FIXTURES_NOT_UNCHANGED_CI", "pattern": "test_*.py", "tests_run": 213, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "interrupted": false, "discovered": 213, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\tests-3\\unittest.log", "log_sha256": "0af20933832202af0c388ec86c1c2de4b52a505e4cf0e37fd8a93269935e0b8f"}
+tion.CoordinationTests.test_self_partial_foreign_and_missing_prerequisite_context_refuse) ... ok
+test_serialized_same_task_claim_and_full_ready_blocked_query (test_r3_coordination.CoordinationTests.test_serialized_same_task_claim_and_full_ready_blocked_query) ... ok
+test_spent_awaiting_approval_cannot_cancel_uncertainty (test_r3_coordination.CoordinationTests.test_spent_awaiting_approval_cannot_cancel_uncertainty) ... ok
+test_spent_dispatch_cannot_be_cancelled_or_retried_as_definite_nondelivery (test_r3_coordination.CoordinationTests.test_spent_dispatch_cannot_be_cancelled_or_retried_as_definite_nondelivery) ... ok
+test_uncertain_coordinated_delivery_blocks_low_level_replacement_attempt (test_r3_coordination.CoordinationTests.test_uncertain_coordinated_delivery_blocks_low_level_replacement_attempt) ... ok
+test_verified_prerequisite_allows_b_then_revoke_blocks_current_applicability (test_r3_coordination.CoordinationTests.test_verified_prerequisite_allows_b_then_revoke_blocks_current_applicability) ... ok
+test_caller_transaction_cannot_launder_removed_coordination_or_task (test_r3_history.HistoryTests.test_caller_transaction_cannot_launder_removed_coordination_or_task) ... ok
+test_checkpoint_is_external_and_detects_erased_history (test_r3_history.HistoryTests.test_checkpoint_is_external_and_detects_erased_history) ... ok
+test_checkpoint_prefix_does_not_claim_new_tail_independently_anchored (test_r3_history.HistoryTests.test_checkpoint_prefix_does_not_claim_new_tail_independently_anchored) ... ok
+test_invalid_checkpoints_never_verify (test_r3_history.HistoryTests.test_invalid_checkpoints_never_verify) ... ok
+test_legacy_reconcile_keeps_spent_awaiting_attempt_uncertain (test_r3_history.HistoryTests.test_legacy_reconcile_keeps_spent_awaiting_attempt_uncertain) ... ok
+test_ordinary_event_update_delete_and_unsealed_insert_are_refused (test_r3_history.HistoryTests.test_ordinary_event_update_delete_and_unsealed_insert_are_refused) ... ok
+test_projection_and_event_rollback_together (test_r3_history.HistoryTests.test_projection_and_event_rollback_together) ... ok
+test_replay_matches_current_projection_and_revoke_is_a_new_event (test_r3_history.HistoryTests.test_replay_matches_current_projection_and_revoke_is_a_new_event) ... ok
+test_security_bearing_projection_change_cannot_be_laundered (test_r3_history.HistoryTests.test_security_bearing_projection_change_cannot_be_laundered) ... ok
+test_semantic_replay_rejects_changed_projection_under_generic_event (test_r3_history.HistoryTests.test_semantic_replay_rejects_changed_projection_under_generic_event) ... ok
+test_v3_migration_preserves_legacy_unverified_provenance (test_r3_history.HistoryTests.test_v3_migration_preserves_legacy_unverified_provenance) ... ok
+test_kill_after_save_needs_strict_basis (test_resume.ResumeTests.test_kill_after_save_needs_strict_basis) ... ok
+test_kill_in_dispatch_resumes_unknown (test_resume.ResumeTests.test_kill_in_dispatch_resumes_unknown) ... ok
+test_live_dispatch_absent (test_resume.ResumeTests.test_live_dispatch_absent) ... ok
+test_offline_fake_paths (test_resume.ResumeTests.test_offline_fake_paths) ... ok
+test_bad_profile_blocked (test_runner.PreflightTests.test_bad_profile_blocked) ... ok
+test_changed_source_blocked (test_runner.PreflightTests.test_changed_source_blocked) ... ok
+test_infeasible_budget_blocked (test_runner.PreflightTests.test_infeasible_budget_blocked) ... ok
+test_invalid_manifest_blocked (test_runner.PreflightTests.test_invalid_manifest_blocked) ... ok
+test_pass_on_ready (test_runner.PreflightTests.test_pass_on_ready) ... ok
+test_unreconciled_attempt_blocked (test_runner.PreflightTests.test_unreconciled_attempt_blocked) ... ok
+test_empty_interpretation_rejected (test_unit_results.UnitResultTests.test_empty_interpretation_rejected) ... ok
+test_make_and_validate (test_unit_results.UnitResultTests.test_make_and_validate) ... ok
+test_reconcile_missing_duplicate_foreign (test_unit_results.UnitResultTests.test_reconcile_missing_duplicate_foreign) ... ok
+test_stale_source_detected_at_manifest_level (test_unit_results.UnitResultTests.test_stale_source_detected_at_manifest_level) ... ok
+test_tampered_excerpt_rejected (test_unit_results.UnitResultTests.test_tampered_excerpt_rejected) ... ok
+test_uniform_interpretations_flagged (test_unit_results.UnitResultTests.test_uniform_interpretations_flagged) ... ok
+
+----------------------------------------------------------------------
+Ran 213 tests in 30.601s
+
+OK
+

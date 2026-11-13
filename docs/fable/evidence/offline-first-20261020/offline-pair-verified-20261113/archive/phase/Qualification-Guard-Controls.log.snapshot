@@ -1,0 +1,173 @@
+test_changed_sealed_file_refused (test_qualification_guards.Guards.test_changed_sealed_file_refused) ... ERROR
+test_duplicate_json_and_hardlinked_seal_refused (test_qualification_guards.Guards.test_duplicate_json_and_hardlinked_seal_refused) ... ERROR
+test_existing_attempt_refused (test_qualification_guards.Guards.test_existing_attempt_refused) ... ERROR
+test_verify_only_has_no_claim_or_runtime_side_effect (test_qualification_guards.Guards.test_verify_only_has_no_claim_or_runtime_side_effect) ... ERROR
+test_wrong_account_stops_before_output_and_selected_runtime (test_qualification_guards.Guards.test_wrong_account_stops_before_output_and_selected_runtime) ... ERROR
+test_wrong_input_hash_stops_before_account_or_output (test_qualification_guards.Guards.test_wrong_input_hash_stops_before_account_or_output) ... ERROR
+test_wrong_scope_commit_and_controller_refused (test_qualification_guards.Guards.test_wrong_scope_commit_and_controller_refused) ... ERROR
+
+======================================================================
+ERROR: test_changed_sealed_file_refused (test_qualification_guards.Guards.test_changed_sealed_file_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+======================================================================
+ERROR: test_duplicate_json_and_hardlinked_seal_refused (test_qualification_guards.Guards.test_duplicate_json_and_hardlinked_seal_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+======================================================================
+ERROR: test_existing_attempt_refused (test_qualification_guards.Guards.test_existing_attempt_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+======================================================================
+ERROR: test_verify_only_has_no_claim_or_runtime_side_effect (test_qualification_guards.Guards.test_verify_only_has_no_claim_or_runtime_side_effect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+======================================================================
+ERROR: test_wrong_account_stops_before_output_and_selected_runtime (test_qualification_guards.Guards.test_wrong_account_stops_before_output_and_selected_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+======================================================================
+ERROR: test_wrong_input_hash_stops_before_account_or_output (test_qualification_guards.Guards.test_wrong_input_hash_stops_before_account_or_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+======================================================================
+ERROR: test_wrong_scope_commit_and_controller_refused (test_qualification_guards.Guards.test_wrong_scope_commit_and_controller_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git\.github\run-artifacts\offline-release-20261113\test_qualification_guards.py", line 19, in setUp
+    self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-'))
+                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 374, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 126, in _sanitize_params
+    dir = gettempdir()
+  File "C:\Python314\Lib\tempfile.py", line 316, in gettempdir
+    return _os.fsdecode(_gettempdir())
+                        ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 309, in _gettempdir
+    tempdir = _get_default_tempdir()
+  File "C:\Python314\Lib\tempfile.py", line 224, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+                            "No usable temporary directory found in %s" %
+                            dirlist)
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\Users\\sakth\\AppData\\Local\\Temp', 'C:\\windows\\Temp', 'c:\\temp', 'c:\\tmp', '\\temp', '\\tmp', 'C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\source-git']
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.758s
+
+FAILED (errors=7)

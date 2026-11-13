@@ -1,0 +1,32 @@
+{
+  "accepted_source931_verified": true,
+  "case_ids_order_exact": true,
+  "commands_verified": 69,
+  "counts": {
+    "EXPECTED_FAILURE": 1,
+    "PASS": 1098,
+    "SKIP": 13
+  },
+  "extracted_files": [
+    195,
+    74
+  ],
+  "not_qualified": [
+    "hosted exact-release CI",
+    "installation",
+    "publication",
+    "production",
+    "native Beads/Dolt",
+    "learned model",
+    "semantic truth",
+    "producer authentication"
+  ],
+  "previous_three_platform_failures_now_pass": true,
+  "qualification_scope": "Windows selected Python3.12.10; exact existing ZIP pair only",
+  "reviewer": "independent native Fable Sol reviewer",
+  "runtime_receipt_sha256": "770bf22f3fd8bf7d424523029fc0f4cf1931eeb3795a37046d13aea3f932ecc3",
+  "seals_verified": 22,
+  "streams_verified": 138,
+  "support_files_verified": 6,
+  "verdict": "SHIP_EXACT_PAIR_RUNTIME_QUALIFICATION_ONLY"
+}

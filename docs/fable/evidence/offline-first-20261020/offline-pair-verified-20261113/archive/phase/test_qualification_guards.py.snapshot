@@ -1,0 +1,139 @@
+"""Offline preclaim controls; never start the selected runtime."""
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+P = Path(__file__).absolute().parent
+spec = importlib.util.spec_from_file_location('qualification_under_test', P/'qualify_extracted.py')
+q = importlib.util.module_from_spec(spec);spec.loader.exec_module(q)
+
+
+class Guards(unittest.TestCase):
+    def setUp(self):
+        fixtures = P/'guard-fixtures';fixtures.mkdir(exist_ok=True)
+        self.root = Path(tempfile.mkdtemp(prefix='qualification-guard-', dir=fixtures))
+        self.sealed = self.root/'sealed';self.sealed.write_bytes(b'exact')
+        self.output = self.root/'run'
+        self.doc = {'scope':'EXACT_OFFLINE_ZIP_PAIR_SELECTED_RUNTIME',
+                    'source_commit':'a2a28bf547a9c3e187c89eb6aee9f0b6bd822956',
+                    'controller':sys.executable, 'output':str(self.output),
+                    'seals':{str(self.sealed):q.sha(self.sealed)}}
+        self.patch = patch.object(q, 'P', self.root);self.patch.start();self.addCleanup(self.patch.stop)
+
+    def seal(self):
+        p = self.root/'Qualification-Final-Inputs.json';p.write_text(json.dumps(self.doc), encoding='utf-8')
+        return hashlib.sha256(p.read_bytes()).hexdigest()
+
+    def test_verify_only_has_no_claim_or_runtime_side_effect(self):
+        with patch.object(q, 'normal_account', side_effect=AssertionError('account/runtime must not run')):
+            self.assertEqual(q.main(self.seal(), True), 0)
+        self.assertFalse(self.output.exists())
+
+    def test_wrong_input_hash_stops_before_account_or_output(self):
+        self.seal()
+        with self.assertRaisesRegex(ValueError, 'INPUT_HASH'):
+            q.main('0'*64, True)
+        self.assertFalse(self.output.exists())
+
+    def test_changed_sealed_file_refused(self):
+        digest = self.seal();self.sealed.write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'SEALED_FILE_CHANGED'):
+            q.main(digest, True)
+
+    def test_wrong_scope_commit_and_controller_refused(self):
+        for key, value in [('scope','wrong'),('source_commit','0'*40),('controller','C:/wrong/python.exe')]:
+            original = self.doc[key];self.doc[key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                q.main(self.seal(), True)
+            self.doc[key] = original
+
+    def test_existing_attempt_refused(self):
+        self.output.mkdir()
+        with self.assertRaisesRegex(ValueError, 'ATTEMPT_EXISTS_NO_RETRY'):
+            q.main(self.seal(), True)
+
+    def test_wrong_account_stops_before_output_and_selected_runtime(self):
+        with patch.object(q, 'normal_account', side_effect=ValueError('WRONG_ACCOUNT')):
+            with self.assertRaisesRegex(ValueError, 'WRONG_ACCOUNT'):
+                q.main(self.seal())
+        self.assertFalse(self.output.exists())
+
+    def test_duplicate_json_and_hardlinked_seal_refused(self):
+        with self.assertRaisesRegex(ValueError, 'DUPLICATE_JSON'):
+            q.read(b'{"scope":1,"scope":2}')
+        os.link(self.sealed, self.root/'linked')
+        with self.assertRaisesRegex(ValueError, 'FILE_TYPE'):
+            q.sha(self.sealed)
+
+    def test_copied_support_drift_and_extra_module_refused(self):
+        scripts = self.root/'scripts';scripts.mkdir();file = scripts/'runner.py';file.write_bytes(b'exact')
+        expected = {'runner.py':q.sha(file)};q.support_check(scripts,expected)
+        file.write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError,'COPIED_SUPPORT_CHANGED'):
+            q.support_check(scripts,expected)
+        file.write_bytes(b'exact');(scripts/'injected.py').write_bytes(b'unknown')
+        with self.assertRaisesRegex(ValueError,'COPIED_SUPPORT_CHANGED'):
+            q.support_check(scripts,expected)
+
+
+class Outcomes(unittest.TestCase):
+    def fixture(self):
+        receipt = {'tests_run':2,'discovered':2,'failures':[],'errors':[], 'excluded':[],
+                   'interrupted':False,'expected_failures':['known.xfail'],'skipped':[]}
+        cases = {'expected_ids':['good.case','known.xfail'], 'outcomes':{
+            'started':['good.case','known.xfail'], 'finished':[
+                {'id':'good.case','outcome':'PASS','reason':''},
+                {'id':'known.xfail','outcome':'EXPECTED_FAILURE','reason':'native DB intentionally unsupported'}]}}
+        return receipt, cases
+
+    def validate(self, receipt, cases):
+        q.validate_suite(receipt, cases, {}, {'package':'memory-integrity','test_dir':'tests_v2','count':2}, ['known.xfail'])
+
+    def test_exact_declared_expected_failure_is_accounted(self):
+        self.validate(*self.fixture())
+
+    def test_missing_unexpected_or_string_expected_failure_refused(self):
+        for bad in ([], ['other.id'], 'known.xfail'):
+            receipt, cases = self.fixture();receipt['expected_failures'] = bad
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                self.validate(receipt,cases)
+
+    def test_pass_fail_error_and_missing_case_cannot_fake_xfail(self):
+        for outcome in ('PASS','FAIL','ERROR','INCOMPLETE','SKIP'):
+            receipt, cases = self.fixture();cases['outcomes']['finished'][1]['outcome'] = outcome
+            with self.subTest(outcome=outcome), self.assertRaises(ValueError):
+                self.validate(receipt,cases)
+        receipt, cases = self.fixture();cases['outcomes']['finished'].pop()
+        with self.assertRaisesRegex(ValueError,'CASE_COMPLETENESS'):
+            self.validate(receipt,cases)
+
+    def test_failure_error_exclusion_interruption_count_and_skip_refused(self):
+        for field,bad in [('failures',['bad']),('errors',['bad']),('excluded',['bad']),
+                          ('interrupted',True),('discovered',1),('skipped',[['unknown','reason']])]:
+            receipt,cases=self.fixture();receipt[field]=bad
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                self.validate(receipt,cases)
+
+    def test_same_count_changed_case_identity_refused(self):
+        receipt,cases=self.fixture()
+        cases['expected_ids'][0] = 'other.case'
+        cases['outcomes']['started'][0] = 'other.case'
+        cases['outcomes']['finished'][0]['id'] = 'other.case'
+        with self.assertRaisesRegex(ValueError,'CASE_IDENTITIES_CHANGED'):
+            q.validate_suite(receipt,cases,{}, {'package':'memory-integrity','test_dir':'tests_v2',
+                              'count':2,'ids':['good.case','known.xfail']}, ['known.xfail'])
+
+    def test_nonfinite_json_refused(self):
+        for raw in (b'{"x":NaN}',b'{"x":Infinity}',b'{"x":-Infinity}'):
+            with self.assertRaisesRegex(ValueError,'NONFINITE_JSON'):
+                q.read(raw)
+
+
+if __name__ == '__main__':
+    unittest.main()

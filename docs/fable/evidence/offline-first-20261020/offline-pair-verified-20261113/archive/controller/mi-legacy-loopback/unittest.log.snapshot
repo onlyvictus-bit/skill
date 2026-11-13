@@ -1,0 +1,26 @@
+test_calculate_input_budget_reserves_output_and_overhead (test_context_budget.ContextBudgetTests.test_calculate_input_budget_reserves_output_and_overhead) ... ok
+test_explicit_encoding_is_deterministic_and_fit_is_stable (test_context_budget.ContextBudgetTests.test_explicit_encoding_is_deterministic_and_fit_is_stable) ... ok
+test_unknown_model_fails_closed_without_explicit_encoding (test_context_budget.ContextBudgetTests.test_unknown_model_fails_closed_without_explicit_encoding) ... ok
+test_bridge_seed_and_verify_proves_persisted_canary_and_cleans_it (test_memory_watchdog.WatchdogTests.test_bridge_seed_and_verify_proves_persisted_canary_and_cleans_it) ... ok
+test_recall_audit_reads_compact_result_titles (test_memory_watchdog.WatchdogTests.test_recall_audit_reads_compact_result_titles) ... ok
+test_roundtrip_uses_current_api_and_cleans_canary (test_memory_watchdog.WatchdogTests.test_roundtrip_uses_current_api_and_cleans_canary) ... ok
+test_status_uses_current_agentmemory_api_and_does_not_claim_healthy (test_memory_watchdog.WatchdogTests.test_status_uses_current_agentmemory_api_and_does_not_claim_healthy) ... ok
+test_document_extraction_status_is_separate_from_canonical_coverage (test_source_coverage.SourceCoverageExtractionTests.test_document_extraction_status_is_separate_from_canonical_coverage) ... ok
+test_multiple_attempts_are_allowed_but_latest_attempt_controls (test_source_coverage.SourceCoverageExtractionTests.test_multiple_attempts_are_allowed_but_latest_attempt_controls) ... ok
+test_invalid_utf8_is_rejected_not_replaced (test_source_coverage.SourceCoverageSafetyTests.test_invalid_utf8_is_rejected_not_replaced) ... ok
+test_duplicate_primary_receipt_is_failure (test_source_coverage.SourceCoverageTests.test_duplicate_primary_receipt_is_failure) ... ok
+test_exact_roundtrip_and_complete_receipts (test_source_coverage.SourceCoverageTests.test_exact_roundtrip_and_complete_receipts) ... ok
+test_missing_receipt_is_reported_not_rounded_up (test_source_coverage.SourceCoverageTests.test_missing_receipt_is_reported_not_rounded_up) ... ok
+test_source_change_marks_manifest_stale (test_source_coverage.SourceCoverageTests.test_source_change_marks_manifest_stale) ... ok
+test_optional_source_does_not_block_required_basis (test_source_registry.SourceRegistryTests.test_optional_source_does_not_block_required_basis) ... ok
+test_registry_basis_is_deterministic (test_source_registry.SourceRegistryTests.test_registry_basis_is_deterministic) ... ok
+test_registry_rejects_duplicate_source_id (test_source_registry.SourceRegistryTests.test_registry_rejects_duplicate_source_id) ... ok
+test_required_source_staleness_blocks_basis (test_source_registry.SourceRegistryTests.test_required_source_staleness_blocks_basis) ... ok
+test_inventory_maps_units_to_coverage_chunks_and_becomes_stale (test_structural_units.StructuralUnitTests.test_inventory_maps_units_to_coverage_chunks_and_becomes_stale) ... ok
+test_line_inventory_covers_source_exactly (test_structural_units.StructuralUnitTests.test_line_inventory_covers_source_exactly) ... ok
+test_paragraph_inventory_covers_separators_without_loss (test_structural_units.StructuralUnitTests.test_paragraph_inventory_covers_separators_without_loss) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 3.499s
+
+OK

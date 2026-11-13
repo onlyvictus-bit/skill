@@ -1,0 +1,19 @@
+test_changed_sealed_file_refused (test_qualification_guards.Guards.test_changed_sealed_file_refused) ... ok
+test_copied_support_drift_and_extra_module_refused (test_qualification_guards.Guards.test_copied_support_drift_and_extra_module_refused) ... ok
+test_duplicate_json_and_hardlinked_seal_refused (test_qualification_guards.Guards.test_duplicate_json_and_hardlinked_seal_refused) ... ok
+test_existing_attempt_refused (test_qualification_guards.Guards.test_existing_attempt_refused) ... ok
+test_verify_only_has_no_claim_or_runtime_side_effect (test_qualification_guards.Guards.test_verify_only_has_no_claim_or_runtime_side_effect) ... ok
+test_wrong_account_stops_before_output_and_selected_runtime (test_qualification_guards.Guards.test_wrong_account_stops_before_output_and_selected_runtime) ... ok
+test_wrong_input_hash_stops_before_account_or_output (test_qualification_guards.Guards.test_wrong_input_hash_stops_before_account_or_output) ... ok
+test_wrong_scope_commit_and_controller_refused (test_qualification_guards.Guards.test_wrong_scope_commit_and_controller_refused) ... ok
+test_exact_declared_expected_failure_is_accounted (test_qualification_guards.Outcomes.test_exact_declared_expected_failure_is_accounted) ... ok
+test_failure_error_exclusion_interruption_count_and_skip_refused (test_qualification_guards.Outcomes.test_failure_error_exclusion_interruption_count_and_skip_refused) ... ok
+test_missing_unexpected_or_string_expected_failure_refused (test_qualification_guards.Outcomes.test_missing_unexpected_or_string_expected_failure_refused) ... ok
+test_nonfinite_json_refused (test_qualification_guards.Outcomes.test_nonfinite_json_refused) ... ok
+test_pass_fail_error_and_missing_case_cannot_fake_xfail (test_qualification_guards.Outcomes.test_pass_fail_error_and_missing_case_cannot_fake_xfail) ... ok
+test_same_count_changed_case_identity_refused (test_qualification_guards.Outcomes.test_same_count_changed_case_identity_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.291s
+
+OK

@@ -1,0 +1,86 @@
+"""Python-level stack snapshots and durable case events; no native dump timer."""
+import json,os,sys,threading,time,traceback
+from datetime import datetime,timezone
+from pathlib import Path
+
+class Diagnostics:
+    SAMPLE_LIMIT=262144
+    def __init__(self,progress,stack,interval=30):
+        if not 0<interval<=30:raise ValueError('E_DIAGNOSTIC_INTERVAL')
+        self.progress=Path(progress).open('x',encoding='utf-8',newline='\n')
+        try:self.stack=Path(stack).open('x',encoding='utf-8',newline='\n')
+        except BaseException:self.progress.close();raise
+        self.lock=threading.RLock();self.done=threading.Event();self.active={};self.errors=[];self.interval=interval
+        self.thread=threading.Thread(target=self._loop,name='gate1-python-stack-sampler',daemon=True)
+        try:self.thread.start()
+        except BaseException:self.stack.close();self.progress.close();raise
+    def _event(self,row):
+        row={**row,'utc':datetime.now(timezone.utc).isoformat(),'monotonic':time.monotonic(),'pid':os.getpid()}
+        self.progress.write(json.dumps(row,ensure_ascii=True,allow_nan=False)+'\n');self.progress.flush();os.fsync(self.progress.fileno())
+    def start_case(self,ident):
+        with self.lock:
+            if self.active:raise ValueError('E_DIAGNOSTIC_OVERLAPPING_START')
+            self._event({'event':'START','id':ident});self.active[ident]=time.monotonic()
+    def end_case(self,ident,result):
+        with self.lock:
+            start=self.active[ident]
+            self._event({**result,'event':'END','id':ident,'seconds':time.monotonic()-start})
+            del self.active[ident]
+    def sample(self):
+        # This Python thread holds the GIL while obtaining owned frame references.
+        # A GIL deadlock may delay it; the existing outer native watchdog remains.
+        frames=sys._current_frames()
+        try:
+            sections=[];used=0;truncated=False
+            def append(text):
+                nonlocal used,truncated
+                encoded=text.encode('utf-8',errors='backslashreplace')
+                if used+len(encoded)>self.SAMPLE_LIMIT-1024:truncated=True;return False
+                sections.append(text);used+=len(encoded);return True
+            for number,(ident,frame)in enumerate(sorted(frames.items())):
+                if number>=100:truncated=True;break
+                if not append('Thread '+str(ident)+'\n'):break
+                for depth,(current,line)in enumerate(traceback.walk_stack(frame)):
+                    if depth>=100:truncated=True;break
+                    # Only code identity/line; no source lookup and no frame locals.
+                    code=current.f_code
+                    if not append('  File '+repr(code.co_filename[:4096])+', line '+str(line)+' in '+code.co_name[:4096]+'\n'):break
+                if used>=self.SAMPLE_LIMIT-1024:break
+            with self.lock:
+                if self.done.is_set():return
+                self.stack.write('SAMPLE_START PYTHON_LEVEL_STACK '+datetime.now(timezone.utc).isoformat()+'\n'+''.join(sections)+
+                  ('STACK_TRUNCATED\n'if truncated else'')+'SAMPLE_END\n')
+                self.stack.flush();os.fsync(self.stack.fileno())
+        finally:frames.clear()
+    def _loop(self):
+        while not self.done.wait(self.interval):
+            try:self.sample()
+            except BaseException:
+                error=traceback.format_exc();self.errors.append(error)
+                try:
+                    with self.lock:
+                        if not self.progress.closed:self._event({'event':'SAMPLER_ERROR','error':error})
+                except BaseException:self.errors.append(traceback.format_exc())
+                return
+    def close(self):
+        failure=None
+        try:
+            self.done.set();self.thread.join(timeout=2)
+            if self.thread.is_alive():raise RuntimeError('E_DIAGNOSTIC_SAMPLER_STILL_ALIVE')
+            if self.errors:raise RuntimeError('E_DIAGNOSTIC_SAMPLER_FAILED: '+'\n'.join(self.errors))
+        except BaseException as error:failure=error
+        finally:
+            with self.lock:
+                for stream in (self.stack,self.progress):
+                    try:stream.close()
+                    except BaseException as cleanup:
+                        if failure is None:failure=cleanup
+                        else:failure.add_note('E_DIAGNOSTIC_STREAM_CLOSE: '+repr(cleanup))
+        if failure is not None:raise failure
+    def __enter__(self):return self
+    def __exit__(self,kind,error,tb):
+        try:self.close()
+        except BaseException as cleanup:
+            if error is None:raise
+            error.add_note('E_DIAGNOSTIC_CLOSE: '+repr(cleanup))
+        return False

@@ -1,0 +1,7 @@
+{
+  "reason": "Existing legacy watchdog tests create literal-loopback fake HTTP server; standard retained runner forbids all socket.bind",
+  "only_policy_delta": "literal loopback sockets permitted; external destinations/DNS remain refused",
+  "original_sha256": "4aba6fe49641f86dcb548219f0c6efc8bbd2fbaa4e32f5be40703a1cee18453b",
+  "adapted_sha256": "6f81b4cbd822a326b4530428d1e3791d81c050fb15c673e281473b02e08b4089",
+  "package_bytes_changed": false
+}

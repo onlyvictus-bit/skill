@@ -1,5 +1,37 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+## CURRENT — exact release ZIP pair runtime VERIFIED COMPLETE, 2026-11-13
+
+Supersedes package preparation/pending/agent-failure notes below. Final
+.github/run-artifacts/offline-release-20261113/Package-Acceptance.json
+SHA 57a3e422ccf6d3296fd192a4fcc4a3aab78402bc7c27db24b2295b16d3ed1b7d. Independent raw reviewSHIP.
+Selected3.12.10 extracted1112cases:1098PASS13SKIP1declaredXFAIL,0FAIL/ERROR;
+24arms+24freshreplays/11checksPASS. All3earlieragent native/path problemsPASS
+in normalselectedenvironment. Exact ZIP hashes unchanged; old15releasefiles,
+all931acceptedsourcefiles and activeHEAD/index preserved. No runtime rerun.
+
+DO NOT rerun Run-Extracted-Pair.ps1. Newpackages retained at
+C:/Users/sakth/Documents/Codex/ofpkg-20261113/release. Read
+evidence/offline-first-20261020/offline-release-audit-20261113.md latestsection.
+Next is separately authorized release-source/CI integration and exactcommit/push;
+CI/install/publication/whole-skill readiness remain unqualified. RP1–RP3/FullGate1
+and this exactpair verification are complete. No new Git action occurred here.
+
+
+## CURRENT — release pair built; extracted selected-runtime qualification pending, 2026-11-13
+
+FullGate1 and published backup14cbf4b remain complete. New local pair lives at
+C:/Users/sakth/Documents/Codex/ofpkg-20261113/release; MI195files SHA c3869791...,
+CM74files SHA1de54793.... Exacta2a28bf bytes plus generatedOFFLINE1 only.
+11archive+6content+14preclaimcontrolsPASS. CM234+MIlegacy21PASS; publicliteral
+8arms/11checksPASS. MIv2final857:799PASS54SKIP1XFAIL1FAIL2ERROR; remaining native
+containment/8.3path checks are not green. No selected3.12 used in package phase.
+Use sealed new Qualification-Final-Inputs and Run-Extracted-Pair only after final
+review; selected-qualification output remains absent. No old run retries/rebuild.
+Read evidence/offline-first-20261020/offline-release-audit-20261113.md for fullhashes
+and exact resume. Do not install/promote release based on archive/core proof alone.
+
+
 ## CURRENT - Full Gate1 VERIFIED COMPLETE, 2026-11-07
 
 Supersedes the earlier Full Gate1 preparation/pending/crash status for the current

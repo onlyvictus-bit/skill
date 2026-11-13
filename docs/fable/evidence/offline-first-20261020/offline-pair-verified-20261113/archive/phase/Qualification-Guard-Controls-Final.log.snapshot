@@ -1,0 +1,12 @@
+test_changed_sealed_file_refused (test_qualification_guards.Guards.test_changed_sealed_file_refused) ... ok
+test_duplicate_json_and_hardlinked_seal_refused (test_qualification_guards.Guards.test_duplicate_json_and_hardlinked_seal_refused) ... ok
+test_existing_attempt_refused (test_qualification_guards.Guards.test_existing_attempt_refused) ... ok
+test_verify_only_has_no_claim_or_runtime_side_effect (test_qualification_guards.Guards.test_verify_only_has_no_claim_or_runtime_side_effect) ... ok
+test_wrong_account_stops_before_output_and_selected_runtime (test_qualification_guards.Guards.test_wrong_account_stops_before_output_and_selected_runtime) ... ok
+test_wrong_input_hash_stops_before_account_or_output (test_qualification_guards.Guards.test_wrong_input_hash_stops_before_account_or_output) ... ok
+test_wrong_scope_commit_and_controller_refused (test_qualification_guards.Guards.test_wrong_scope_commit_and_controller_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.290s
+
+OK

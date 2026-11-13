@@ -1,0 +1,242 @@
+[
+  {
+    "label": "runtime-handshake",
+    "seconds": 1.375
+  },
+  {
+    "label": "project",
+    "seconds": 1.7820000000001528
+  },
+  {
+    "label": "freshness-literal-discovery",
+    "seconds": 1.1090000000003783
+  },
+  {
+    "label": "replay-freshness-literal-discovery",
+    "seconds": 0.8119999999998981
+  },
+  {
+    "label": "freshness-literal-mandatory",
+    "seconds": 1.2029999999995198
+  },
+  {
+    "label": "replay-freshness-literal-mandatory",
+    "seconds": 0.8909999999996217
+  },
+  {
+    "label": "freshness-lexical-discovery",
+    "seconds": 5.578000000000429
+  },
+  {
+    "label": "replay-freshness-lexical-discovery",
+    "seconds": 5.2039999999997235
+  },
+  {
+    "label": "freshness-lexical-mandatory",
+    "seconds": 5.5460000000002765
+  },
+  {
+    "label": "replay-freshness-lexical-mandatory",
+    "seconds": 5.32799999999952
+  },
+  {
+    "label": "freshness-lsa-discovery",
+    "seconds": 5.469000000000051
+  },
+  {
+    "label": "replay-freshness-lsa-discovery",
+    "seconds": 5.280999999999949
+  },
+  {
+    "label": "freshness-lsa-mandatory",
+    "seconds": 5.532000000000153
+  },
+  {
+    "label": "replay-freshness-lsa-mandatory",
+    "seconds": 5.360000000000582
+  },
+  {
+    "label": "unicode-literal-discovery",
+    "seconds": 1.0469999999995707
+  },
+  {
+    "label": "replay-unicode-literal-discovery",
+    "seconds": 0.7809999999999491
+  },
+  {
+    "label": "unicode-literal-mandatory",
+    "seconds": 1.155999999999949
+  },
+  {
+    "label": "replay-unicode-literal-mandatory",
+    "seconds": 0.9219999999995707
+  },
+  {
+    "label": "unicode-lexical-discovery",
+    "seconds": 5.405999999999949
+  },
+  {
+    "label": "replay-unicode-lexical-discovery",
+    "seconds": 5.219000000000051
+  },
+  {
+    "label": "unicode-lexical-mandatory",
+    "seconds": 5.655999999999949
+  },
+  {
+    "label": "replay-unicode-lexical-mandatory",
+    "seconds": 5.405999999999949
+  },
+  {
+    "label": "unicode-lsa-discovery",
+    "seconds": 5.4210000000002765
+  },
+  {
+    "label": "replay-unicode-lsa-discovery",
+    "seconds": 5.188000000000102
+  },
+  {
+    "label": "unicode-lsa-mandatory",
+    "seconds": 5.515000000000327
+  },
+  {
+    "label": "replay-unicode-lsa-mandatory",
+    "seconds": 5.405999999999949
+  },
+  {
+    "label": "approval-literal-discovery",
+    "seconds": 1.0470000000004802
+  },
+  {
+    "label": "replay-approval-literal-discovery",
+    "seconds": 0.7809999999999491
+  },
+  {
+    "label": "approval-literal-mandatory",
+    "seconds": 1.0789999999997235
+  },
+  {
+    "label": "replay-approval-literal-mandatory",
+    "seconds": 0.8440000000000509
+  },
+  {
+    "label": "approval-lexical-discovery",
+    "seconds": 5.405999999999949
+  },
+  {
+    "label": "replay-approval-lexical-discovery",
+    "seconds": 5.219000000000051
+  },
+  {
+    "label": "approval-lexical-mandatory",
+    "seconds": 5.530999999999949
+  },
+  {
+    "label": "replay-approval-lexical-mandatory",
+    "seconds": 5.234999999999673
+  },
+  {
+    "label": "approval-lsa-discovery",
+    "seconds": 5.515000000000327
+  },
+  {
+    "label": "replay-approval-lsa-discovery",
+    "seconds": 5.25
+  },
+  {
+    "label": "approval-lsa-mandatory",
+    "seconds": 5.515999999999622
+  },
+  {
+    "label": "replay-approval-lsa-mandatory",
+    "seconds": 5.264999999999418
+  },
+  {
+    "label": "resume-literal-discovery",
+    "seconds": 1.030999999999949
+  },
+  {
+    "label": "replay-resume-literal-discovery",
+    "seconds": 0.7650000000003274
+  },
+  {
+    "label": "resume-literal-mandatory",
+    "seconds": 1.0630000000001019
+  },
+  {
+    "label": "replay-resume-literal-mandatory",
+    "seconds": 0.8440000000000509
+  },
+  {
+    "label": "resume-lexical-discovery",
+    "seconds": 5.469000000000051
+  },
+  {
+    "label": "replay-resume-lexical-discovery",
+    "seconds": 5.235000000000582
+  },
+  {
+    "label": "resume-lexical-mandatory",
+    "seconds": 5.483999999999469
+  },
+  {
+    "label": "replay-resume-lexical-mandatory",
+    "seconds": 5.296999999999571
+  },
+  {
+    "label": "resume-lsa-discovery",
+    "seconds": 5.453000000000429
+  },
+  {
+    "label": "replay-resume-lsa-discovery",
+    "seconds": 5.17200000000048
+  },
+  {
+    "label": "resume-lsa-mandatory",
+    "seconds": 5.563000000000102
+  },
+  {
+    "label": "replay-resume-lsa-mandatory",
+    "seconds": 5.233999999999469
+  },
+  {
+    "label": "coding-tests",
+    "seconds": 1.4220000000004802
+  },
+  {
+    "label": "save",
+    "seconds": 11.733999999999469
+  },
+  {
+    "label": "fresh-recall",
+    "seconds": 1.8280000000004293
+  },
+  {
+    "label": "unchanged-resume",
+    "seconds": 2.594000000000051
+  },
+  {
+    "label": "changed-source",
+    "seconds": 1.094000000000051
+  },
+  {
+    "label": "revoked-access",
+    "seconds": 1.0160000000005311
+  },
+  {
+    "label": "budget",
+    "seconds": 1.014999999999418
+  },
+  {
+    "label": "optional-stale",
+    "seconds": 1.0630000000001019
+  },
+  {
+    "label": "replay-optional-stale",
+    "seconds": 0.7659999999996217
+  },
+  {
+    "label": "forged-pack",
+    "seconds": 0.8440000000000509
+  }
+]

@@ -1,0 +1,44 @@
+{"blockers": ["ValueError: bad companion"], "native_beads_qualified": false, "ok": false, "overall": "BLOCKED", "qualification_scope": "DISPOSABLE_PILOT", "shared_database_authorized": false}
+{"ok": true, "overall": "M7_DISPOSABLE_PILOT_VERIFIED"}
+{"scope": "RETAINED_LOCAL_LOOPBACK_FIXTURES_NOT_UNCHANGED_CI", "pattern": "test_*.py", "tests_run": 857, "failures": [], "errors": [], "skipped": [["test_knowledge_completion.RemainingPublicContract.test_timeout_terminates_worker_descendants", "POSIX process-group observation required"], ["test_knowledge_distributed.DistributedRetrieval.test_suspended_worker_expires_shared_deadline_and_is_reaped", "POSIX pinned runtime required"], ["test_knowledge_languages.LanguageContract.test_dynamic_calls_have_no_invented_target", "isolated parser runtime required"], ["test_knowledge_languages.LanguageContract.test_malformed_syntax_is_failed_not_partial_success", "isolated parser runtime required"], ["test_knowledge_languages.LanguageContract.test_parsed_symbols_enter_source_bound_project_projection", "isolated parser runtime required"], ["test_knowledge_languages.LanguageContract.test_typescript_exports_imports_calls_and_exact_utf8_ranges", "isolated parser runtime required"], ["test_knowledge_model_benchmark.ModelBenchmarkContracts.test_direct_model_budget_interrupts_overdue_work", "direct per-model signal timeout is POSIX-only"], ["test_knowledge_model_benchmark.RealModelBenchmark.test_one_actual_case_keeps_equal_oracles_and_complete_raw_receipts", "explicit actual model and worker runtimes not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens", "explicit local model manifest and interpreter not selected"], ["test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model", "explicit local model manifest and interpreter not selected"]], "expected_failures": ["test_practical_v2_schema.CorrespondenceTests.test_dolt_ignore_configuration_proven_on_live_db"], "interrupted": false, "discovered": 857, "excluded": [], "log": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\selected-qualification\\tests-1\\unittest.log", "log_sha256": "d23b4e9ba257485f93b97c7ec3403280259ff1626f15e5d1ecfa01bce767d881"}
+t_native_close_without_evidence_and_foreign_task_do_not_unlock) ... ok
+test_no_duplicate_on_current_resume_and_r2_skill_prefix_preserved (test_r3_public.PublicCoordination.test_no_duplicate_on_current_resume_and_r2_skill_prefix_preserved) ... ok
+test_public_resume_uses_same_attempt_and_never_resends_saved_or_unknown_delivery (test_r3_public.PublicCoordination.test_public_resume_uses_same_attempt_and_never_resends_saved_or_unknown_delivery) ... ok
+test_recall_reobserves_sources_after_report_view (test_r3_public.PublicCoordination.test_recall_reobserves_sources_after_report_view) ... ok
+test_revoked_prerequisite_keeps_history_but_blocks_report_recall_and_resume (test_r3_public.PublicCoordination.test_revoked_prerequisite_keeps_history_but_blocks_report_recall_and_resume) ... ok
+test_sources_are_reobserved_after_preparation_and_after_dispatch (test_r3_public.PublicCoordination.test_sources_are_reobserved_after_preparation_and_after_dispatch) ... ok
+test_authorization_is_exact_scope_not_blanket_native_permission (test_r4_shared_native.SharedNativeSurfaceTests.test_authorization_is_exact_scope_not_blanket_native_permission) ... ok
+test_granular_shared_claim_surface_exists (test_r4_shared_native.SharedNativeSurfaceTests.test_granular_shared_claim_surface_exists) ... ok
+test_native_selection_digest_is_public_and_deterministic (test_r4_shared_native.SharedNativeSurfaceTests.test_native_selection_digest_is_public_and_deterministic) ... ok
+test_pilot_is_claim_only_and_never_globally_qualifies_native (test_r4_shared_pilot.SharedClaimPilotContract.test_pilot_is_claim_only_and_never_globally_qualifies_native) ... ok
+test_public_pilot_surface_exists (test_r4_shared_pilot.SharedClaimPilotContract.test_public_pilot_surface_exists) ... ok
+test_clean_unit_passes (test_semantic_obligations.SemanticObligationTests.test_clean_unit_passes) ... ok
+test_dependency_reconciliation (test_semantic_obligations.SemanticObligationTests.test_dependency_reconciliation) ... ok
+test_empty_interpretation_unresolved (test_semantic_obligations.SemanticObligationTests.test_empty_interpretation_unresolved) ... ok
+test_missing_original_rejected (test_semantic_obligations.SemanticObligationTests.test_missing_original_rejected) ... ok
+test_negation_trap (test_semantic_obligations.SemanticObligationTests.test_negation_trap) ... ok
+test_number_trap (test_semantic_obligations.SemanticObligationTests.test_number_trap) ... ok
+test_changed_source_stale (test_source_binding.BindingTests.test_changed_source_stale) ... ok
+test_empty_scope_blocked (test_source_binding.BindingTests.test_empty_scope_blocked) ... ok
+test_engine_catches_deep_manifest_defect (test_source_binding.BindingTests.test_engine_catches_deep_manifest_defect) ... ok
+test_missing_source_blocked (test_source_binding.BindingTests.test_missing_source_blocked) ... ok
+test_ready_when_unchanged (test_source_binding.BindingTests.test_ready_when_unchanged) ... ok
+test_swapped_manifest_binding_mismatch (test_source_binding.BindingTests.test_swapped_manifest_binding_mismatch) ... ok
+test_empty_index_rejected (test_source_recall.SourceRecallTests.test_empty_index_rejected) ... ok
+test_exhaustive_covers_all (test_source_recall.SourceRecallTests.test_exhaustive_covers_all) ... ok
+test_exhaustive_rejects_unknown_scope (test_source_recall.SourceRecallTests.test_exhaustive_rejects_unknown_scope) ... ok
+test_locate_first_middle_last (test_source_recall.SourceRecallTests.test_locate_first_middle_last) ... ok
+test_locate_labels_mode (test_source_recall.SourceRecallTests.test_locate_labels_mode) ... ok
+test_open_exact_unit (test_source_recall.SourceRecallTests.test_open_exact_unit) ... ok
+test_ghost_after_delete_fails (test_watchdog_contract.WatchdogContractTests.test_ghost_after_delete_fails) ... ok
+test_healthy_path (test_watchdog_contract.WatchdogContractTests.test_healthy_path) ... ok
+test_malformed_response_is_blind (test_watchdog_contract.WatchdogContractTests.test_malformed_response_is_blind) ... ok
+test_transport_error_is_blind (test_watchdog_contract.WatchdogContractTests.test_transport_error_is_blind) ... ok
+test_unconfirmed_delete_fails_with_id (test_watchdog_contract.WatchdogContractTests.test_unconfirmed_delete_fails_with_id) ... ok
+test_wrong_content_fails (test_watchdog_contract.WatchdogContractTests.test_wrong_content_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 857 tests in 697.819s
+
+OK (skipped=13, expected failures=1)
+

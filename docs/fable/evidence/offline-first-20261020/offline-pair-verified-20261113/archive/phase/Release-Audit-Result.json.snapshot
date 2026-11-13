@@ -1,0 +1,70 @@
+{
+  "active_index_unchanged": true,
+  "archive_controls": 11,
+  "claude_mon_legacy": 21,
+  "claude_mon_v2": 213,
+  "existing_contract_controls": 6,
+  "final_verification": "verify-final/Verification.json passed without CLI -B; accepted931sourcefiles unchanged",
+  "historical_release_files_unchanged": 15,
+  "independent_review": {
+    "exact_test_ids": 1112,
+    "guard_controls": 14,
+    "helper_sha256": "c379646e96ef56e57da55f9032cf57739fd9949d8937a7436537894177806032",
+    "independent_verify_only": "PASS_NO_SELECTED_RUNTIME_OR_ATTEMPT",
+    "inputs_sha256": "48ae4403af413c7f289a4d791cf60e1464a1ff28cf2a2d668dbf406fd1422f97",
+    "installed": false,
+    "launcher_sha256": "be81771130cf470501fd502407c982647812e3f9883363e689536b4b8bb1f865",
+    "notes": "Prior controller1nativefailure/2shortpatherrors not waived. Exact ZIP qualified status needs actual normal-account run and raw review.",
+    "release_ready": false,
+    "seals": 22,
+    "selected_runtime_started": false,
+    "verdict": "SHIP_ONE_NORMAL_ACCOUNT_EXACT_PAIR_QUALIFICATION_ONLY"
+  },
+  "installed": false,
+  "memory_integrity_legacy": 21,
+  "memory_integrity_v2": {
+    "errors": [
+      "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path",
+      "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify"
+    ],
+    "expected_failures": [
+      "test_practical_v2_schema.CorrespondenceTests.test_dolt_ignore_configuration_proven_on_live_db"
+    ],
+    "failures": [
+      "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed"
+    ],
+    "outcomes": {
+      "ERROR": 2,
+      "EXPECTED_FAILURE": 1,
+      "FAIL": 1,
+      "PASS": 799,
+      "SKIP": 54
+    },
+    "tests_run": 857
+  },
+  "next": "one new normal-account exact ZIP selected3.12 qualification; no rebuild/retry of old stages",
+  "packages": {
+    "claude-mon": {
+      "bytes": 172663,
+      "entries": 74,
+      "sha256": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+      "zip": "claude-mon-offline-v1.zip"
+    },
+    "memory-integrity": {
+      "bytes": 661030,
+      "entries": 195,
+      "sha256": "c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526",
+      "zip": "memory-integrity-offline-v1.zip"
+    }
+  },
+  "public_literal": {
+    "checks": 11,
+    "measurements": 8,
+    "status": "PASS_CORE_ONLY_RUNTIME_UNVERIFIED"
+  },
+  "qualification_guard_controls": 14,
+  "release_ready": false,
+  "selected_runtime_started": false,
+  "source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+  "status": "ARCHIVES_AND_CORE_VERIFIED_SELECTED_RUNTIME_PENDING"
+}

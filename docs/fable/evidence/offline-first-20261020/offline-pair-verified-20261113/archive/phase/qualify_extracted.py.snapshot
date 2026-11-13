@@ -1,0 +1,243 @@
+"""One sealed normal-account qualification of the existing ZIP pair; no rebuild."""
+import argparse
+import ctypes
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+import traceback
+
+P = Path(__file__).absolute().parent
+
+
+def need(value, code):
+    if not value:
+        raise ValueError('E_PACKAGE_QUALIFICATION_' + code)
+
+
+def read(raw):
+    def pairs(items):
+        out = {}
+        for key, value in items:
+            need(key not in out, 'DUPLICATE_JSON')
+            out[key] = value
+        return out
+    return json.loads(raw, object_pairs_hook=pairs,
+                      parse_constant=lambda value: need(False, 'NONFINITE_JSON'))
+
+
+def sha(path):
+    path = Path(path).absolute()
+    for item in (path, *path.parents):
+        need(not item.is_symlink() and not getattr(item.stat(), 'st_file_attributes', 0) & 0x400,
+             'REDIRECT:' + str(item))
+    need(path.is_file() and path.stat().st_nlink == 1, 'FILE_TYPE:' + str(path))
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def save(path, value):
+    with Path(path).open('x', encoding='utf-8') as f:
+        json.dump(value, f, indent=2, sort_keys=True)
+
+
+def module(path):
+    spec = importlib.util.spec_from_file_location(Path(path).stem, path)
+    value = importlib.util.module_from_spec(spec)
+    previous = sys.dont_write_bytecode
+    try:
+        sys.dont_write_bytecode = True
+        spec.loader.exec_module(value)
+    finally:
+        sys.dont_write_bytecode = previous
+    return value
+
+
+def context(digest):
+    path = P/'Qualification-Final-Inputs.json'
+    need(sha(path) == digest, 'INPUT_HASH')
+    value = read(path.read_bytes())
+    need(value['scope'] == 'EXACT_OFFLINE_ZIP_PAIR_SELECTED_RUNTIME' and
+         value['source_commit'] == 'a2a28bf547a9c3e187c89eb6aee9f0b6bd822956', 'INPUT_SCOPE')
+    for path, expected in value['seals'].items():
+        need(sha(path) == expected, 'SEALED_FILE_CHANGED:' + path)
+    need(os.path.normcase(str(Path(sys.executable))) == os.path.normcase(value['controller']),
+         'CONTROLLER')
+    return value
+
+
+def validate_suite(receipt, cases, allowed, group, declared_xfails):
+    need(type(receipt['tests_run']) is int and
+         receipt['tests_run'] == receipt['discovered'] == group['count'] and
+         receipt['failures'] == receipt['errors'] == receipt['excluded'] == [] and
+         receipt['interrupted'] is False, 'SUITE_INCOMPLETE_OR_FAILED')
+    expected = declared_xfails if group['package'] == 'memory-integrity' and group['test_dir'] == 'tests_v2' else []
+    need(type(expected) is list and receipt['expected_failures'] == expected, 'UNEXPECTED_XFAIL')
+    need(all(ident in allowed and allowed[ident] in reason for ident, reason in receipt['skipped']),
+         'UNEXPECTED_SKIP')
+    ids, outcomes = cases['expected_ids'], cases['outcomes']
+    need(len(ids) == len(set(ids)) == group['count'] and outcomes['started'] == ids and
+         [x['id'] for x in outcomes['finished']] == ids, 'CASE_COMPLETENESS')
+    if 'ids' in group:
+        need(ids == group['ids'], 'CASE_IDENTITIES_CHANGED')
+    skips, xfails = [], []
+    for case in outcomes['finished']:
+        need(set(case) == {'id', 'outcome', 'reason'}, 'CASE_SCHEMA')
+        if case['outcome'] == 'SKIP':
+            skips.append([case['id'], case['reason']])
+        elif case['outcome'] == 'EXPECTED_FAILURE':
+            xfails.append(case['id'])
+        else:
+            need(case['outcome'] == 'PASS', 'CASE_FAILURE')
+    need(skips == receipt['skipped'] and xfails == expected, 'CASE_AGGREGATE_MISMATCH')
+
+
+def support_check(scripts, expected):
+    actual = {p.relative_to(scripts).as_posix(): sha(p) for p in scripts.rglob('*') if p.is_file()}
+    need(actual == expected, 'COPIED_SUPPORT_CHANGED')
+
+
+def normal_account():
+    who = Path(os.environ['SYSTEMROOT'])/'System32/whoami.exe'
+    result = subprocess.run([str(who), '/user', '/fo', 'csv', '/nh'],
+                            capture_output=True, check=True, timeout=10)
+    need(b'S-1-5-21-2571509308-2482563067-4170768140-1001' in result.stdout and
+         not ctypes.windll.shell32.IsUserAnAdmin(), 'NORMAL_NONADMIN_REQUIRED')
+
+
+def main(digest, verify_only=False):
+    value = context(digest)
+    output = Path(value['output'])
+    need(not os.path.lexists(output), 'ATTEMPT_EXISTS_NO_RETRY')
+    if verify_only:
+        print('EXTRACTED_PAIR_SEALS_VERIFIED_NO_SELECTED_RUNTIME_OR_ATTEMPT')
+        return 0
+    normal_account()
+    output.mkdir()
+    report = {'status': 'PARTIAL_OR_FAILED_NO_RETRY', 'failure': None,
+              'postcheck_failure': None, 'commands': [], 'runtime_verified': False,
+              'release_ready': False, 'installed': False, 'failed_segment': 'fresh-extraction'}
+    save(output/'Claim.json', {'inputs_sha256': digest, 'scope': value['scope']})
+    copied_support = None
+    try:
+        verifier = module(Path(value['verifier']))
+        verified = verifier.verify(Path(value['release']), output/'verified', Path(value['source']))
+        extracted = Path(verified['extracted_root'])
+        scripts = extracted/'.github/scripts'
+        scripts.mkdir(parents=True)
+        for name, source in value['support'].items():
+            (scripts/name).write_bytes(Path(source).read_bytes())
+        copied_support = {name: value['seals'][path] for name, path in value['support'].items()}
+        support_check(scripts, copied_support)
+        sys.path.insert(0, str(scripts))
+        host = module(scripts/'offline_host_validation.py')
+        image = module(scripts/'gate1_image_successor.py')
+        env = image.windows_environment(dict(os.environ))
+        for name in ('MODEL_PYTHON', 'KNOWLEDGE_MODEL_MANIFEST', 'PYTHONPATH', 'PYTHONHOME',
+                     'MEMORY_INTEGRITY_WORKER_DIAGNOSTICS'):
+            env.pop(name, None)
+        temp = output/'temp';temp.mkdir()
+        env.update(PYTHONNOUSERSITE='1', PYTHONDONTWRITEBYTECODE='1', PYTHONIOENCODING='utf-8',
+                   HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
+                   TEMP=str(temp), TMP=str(temp), TMPDIR=str(temp),
+                   KNOWLEDGE_WORKER_PYTHON=value['worker'])
+
+        def capture(label, argv, timeout):
+            context(digest)
+            support_check(scripts, copied_support)
+            report['failed_segment'] = label
+            folder = output/('command-' + label);folder.mkdir()
+            start = time.monotonic()
+            print(label + ': RUNNING (exact extracted ZIP qualification)', flush=True)
+            completed, row = host.capture_owned(argv, folder, output, env, timeout)
+            row.update(label=label, seconds=time.monotonic()-start)
+            report['commands'].append(row)
+            print(label + ': %.3f seconds' % row['seconds'], flush=True)
+            if completed is None or completed.returncode:
+                for stream in ('stdout.log', 'stderr.log'):
+                    print(str(folder/stream) + '\n' + (folder/stream).read_text(encoding='utf-8', errors='replace'), flush=True)
+            need(completed is not None and completed.returncode == 0, 'COMMAND_FAILED:' + label)
+            support_check(scripts, copied_support)
+            return completed
+
+        def identity(label):
+            result = capture(label, [value['worker'], '-B', '-c', image.g.runtime_probe()], 30)
+            observed = read(result.stdout)
+            image.validate_runtime_observation(observed, env, output)
+            report[label] = observed
+
+        def dependencies(label):
+            code = ("import importlib.metadata as m,json,site,sys;sys.path.insert(0,"+
+                    repr(str(extracted/'memory-integrity/scripts'))+
+                    ");from knowledge_bridge.worker_client import WorkerClient;"
+                    "d=m.distribution('semantica');u=json.loads(d.read_text('direct_url.json')or'{}');"
+                    "print(json.dumps({'versions':{n:m.version(n)for n in "+repr(sorted(value['versions']))+
+                    "},'revision':u.get('vcs_info',{}).get('commit_id'),'user_site':site.ENABLE_USER_SITE,"
+                    "'default':WorkerClient(sys.executable).timeout}))")
+            row = read(capture(label, [value['worker'], '-B', '-c', code], 30).stdout)
+            need(row['versions'] == value['versions'] and row['revision'] == value['revision'] and
+                 row['user_site'] is False and row['default'] == 120, 'DEPENDENCY_IDENTITY')
+            report[label] = row
+
+        identity('identity-before');dependencies('dependencies-before')
+        report['suites'] = []
+        for number, group in enumerate(value['groups']):
+            folder = output/('tests-' + str(number))
+            capture('suite-' + str(number), [value['worker'], '-B', value['suite_runner'],
+                    '--package-root', str(extracted/group['package']), '--test-dir', group['test_dir'],
+                    '--pattern', 'test_*.py', '--output-dir', str(folder)], 1200)
+            receipt = read((folder/'Receipt.json').read_bytes())
+            need(sha(receipt['log']) == receipt['log_sha256'], 'SUITE_LOG_CHANGED')
+            runner = module(scripts/'gate1_runner.py')
+            cases = read((folder/'Case-Outcomes.json').read_bytes())
+            validate_suite(receipt, cases, runner.allowed_skips(), group, value['expected_failures'])
+            report['suites'].append(receipt)
+        capture('acceptance', [value['worker'], '-B', value['acceptance_runner'],
+                '--package-root', str(extracted/'memory-integrity'), '--claude-mon-root', str(extracted/'claude-mon'),
+                '--worker-python', value['worker'], '--output-dir', str(output/'acceptance')], 2400)
+        acceptance = read((output/'acceptance/Receipt.json').read_bytes())
+        producer = module(Path(value['acceptance_defaults']))
+        producer.validate_receipt(acceptance)
+        need(acceptance['status'] == 'PASS_BOUNDED_RUNTIME' and acceptance['failure'] is None and
+             len(acceptance['measurements']) == 24, 'ACCEPTANCE_NOT_COMPLETE')
+        report['acceptance'] = acceptance
+        identity('identity-after');dependencies('dependencies-after')
+        for package in verifier.b.PACKAGES:
+            verifier.b.need(verifier.b.inventory(extracted/package) == verified['packages'][package]['files'],
+                            'EXTRACTED_PACKAGE_CHANGED_AFTER_TESTS')
+        context(digest)
+        report.update(status='EXACT_PAIR_EXTRACTED_RUNTIME_OBSERVED_PENDING_RAW_REVIEW',
+                      runtime_verified=True, failed_segment=None)
+    except BaseException:
+        report['failure'] = traceback.format_exc()
+        print(report['failure'], flush=True)
+    finally:
+        try:
+            context(digest)
+            if copied_support is not None:
+                support_check(scripts, copied_support)
+            source_maps = module(Path(value['verifier'])).b.source_check(
+                Path(value['source']), value['source_commit'])
+            report['accepted_source_after'] = source_maps
+            need(source_maps == read((Path(value['release'])/'Offline-First-Release-Manifest.json').read_bytes())['source_packages'],
+                 'SOURCE_CHANGED_AFTER_WORKLOAD')
+        except BaseException:
+            report['postcheck_failure'] = traceback.format_exc()
+            report['runtime_verified'] = False
+            report['status'] = 'PARTIAL_OR_FAILED_NO_RETRY'
+        save(output/'Receipt.json', report)
+    print(json.dumps({k: report[k] for k in ('status', 'failure', 'postcheck_failure', 'failed_segment',
+                                            'runtime_verified', 'release_ready', 'installed')} |
+                     {'receipt': str(output/'Receipt.json'), 'receipt_sha256': sha(output/'Receipt.json')}), flush=True)
+    return int(report['failure'] is not None or report['postcheck_failure'] is not None)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--inputs-sha256', required=True)
+    parser.add_argument('--verify-only', action='store_true')
+    args = parser.parse_args()
+    raise SystemExit(main(args.inputs_sha256, args.verify_only))
