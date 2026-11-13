@@ -67,6 +67,8 @@ class WorkflowMigration(unittest.TestCase):
         self.assertIn('offline_release_acceptance.py', text)
         self.assertIn('Source runtime', text)
         self.assertIn('Fresh extracted runtime', text)
+        self.assertEqual(text.count("subprocess.run([str(worker), '-B', '.github/scripts/offline_ci_suite.py'"), 2)
+        self.assertIn("subprocess.run([str(worker), '-B', '.github/scripts/offline_release_acceptance.py'", text)
 
     def test_release_manifest_and_zip_pins_are_qualified_values(self):
         self.assertEqual(c.ACCEPTED, 'a2a28bf547a9c3e187c89eb6aee9f0b6bd822956')
@@ -81,6 +83,11 @@ class WorkflowMigration(unittest.TestCase):
         self.assertIn('python-version: "3.14.10"', text)
         self.assertIn('Check-Offline-First-CI.py --rebuild-exact', text)
         self.assertIn('REPRODUCIBLE_HASH:', (ROOT/'release/Check-Offline-First-CI.py').read_text())
+
+    def test_core_uses_clean_nonredirected_stdlib_interpreter_without_install(self):
+        text=(ROOT/'.github/workflows/ci.yml').read_text()
+        self.assertIn("'-m', 'venv', '--copies', '--without-pip'",text)
+        self.assertIn("os.environ['GITHUB_PATH']",text)
 
 
 if __name__ == '__main__':

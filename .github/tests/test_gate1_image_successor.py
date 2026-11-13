@@ -3,7 +3,7 @@ import copy
 import hashlib
 import importlib.util
 import json
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import unittest
 import tempfile
 from unittest.mock import patch
@@ -23,6 +23,12 @@ def load():
     spec = importlib.util.spec_from_file_location('image_successor_test_subject',NEW if NEW.exists() else OLD)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    # These are Windows identity fixtures even when the controller runs on
+    # Linux. Preserve their drive/parent semantics without touching old code.
+    if hasattr(module, 'g'):
+        for name in ('WORKER', 'BASE', 'ALIAS'):
+            setattr(module.g, name, PureWindowsPath(str(getattr(module.g, name))))
+        module.IMAGE = PureWindowsPath(STORE)/'python3.12.exe'
     return module
 
 

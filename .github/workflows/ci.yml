@@ -50,6 +50,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Create clean stdlib-only test interpreter
+        shell: python
+        run: |
+          import os, pathlib, subprocess, sys
+          root = pathlib.Path(os.environ['RUNNER_TEMP'])/'offline-core-runtime'
+          subprocess.run([sys.executable, '-m', 'venv', '--copies', '--without-pip', str(root)], check=True)
+          binary = root / ('Scripts' if sys.platform == 'win32' else 'bin')
+          with open(os.environ['GITHUB_PATH'], 'a', encoding='utf-8') as stream:
+              stream.write(str(binary)+'\n')
       - name: Exact qualified pair and historical release integrity
         run: python -B release/Check-Offline-First-CI.py --output-dir "${{ runner.temp }}/offline-pair"
       - name: Source package suites

@@ -164,7 +164,10 @@ class TimingObserver(unittest.TestCase):
             host = c1.load_support('offline_host_validation')
             target = root/'capture'; target.mkdir(); temp = root/'temp'; temp.mkdir()
             env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', TEMP=str(temp), TMP=str(temp))
-            completed, row = host.capture_owned([sys.executable,'-B',source/'.github/scripts/gate1_runner.py',
+            # The original controller-only lifetime fixture uses the direct
+            # image from this runtime family, without an added venv relay.
+            controller=getattr(sys,'_base_executable',sys.executable)
+            completed, row = host.capture_owned([controller,'-B',source/'.github/scripts/gate1_runner.py',
                 '--package-root',source/'memory-integrity','--pattern',ld.PATTERN,
                 '--output-dir',root/'tests','--stack-after','10'],target,target,env,60)
             self.assertIsNotNone(completed, str(row))

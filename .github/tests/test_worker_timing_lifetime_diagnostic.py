@@ -341,6 +341,13 @@ class WorkerDiagnosticControllerContracts(unittest.TestCase):
 
     def test_seal_and_prepared_require_exact_roles_and_state(self):
         ctl = self.api()
+        from unittest import mock
+        # Schema roles are portable absolute fixture names; no Windows runtime
+        # or filesystem is claimed by this zero-digest schema sample.
+        roles=ctl.required_files()
+        fixture_roles={str(Path(name).absolute()) for name in roles}
+        self.assertEqual(len(fixture_roles),len(roles))
+        self.enterContext(mock.patch.object(ctl,'required_files',return_value=fixture_roles))
         self.assertTrue(callable(getattr(ctl, 'validate_seal', None)), 'Missing exact seal schema')
         self.assertTrue(callable(getattr(ctl, 'validate_prepared', None)), 'Missing exact Prepared schema')
         with self.assertRaisesRegex(ValueError, 'SCHEMA'):
@@ -488,7 +495,7 @@ for raw in sys.stdin.buffer:
                     session = real_session(*args, **kwargs); sessions.append(session); return session
                 with mock.patch.object(package.tempfile, 'TemporaryDirectory', OwnedDirectory):
                     from knowledge_bridge import distributed_retrieval as original
-                    client = package.DistributedClient(sys.executable, timeout=10)
+                    client = package.DistributedClient(getattr(sys,'_base_executable',sys.executable), timeout=10)
                     payload = {'nodes':[{'id':'a'}, {'id':'b'}, {'id':'c'}], 'edges':[], 'query_text':'fixture',
                                'embedding_mode':'lexical', 'direction':'outgoing','seeds':1,'max_hops':2,
                                'max_visits':100,'max_results':10,'generation_lease':'a'*64}

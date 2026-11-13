@@ -226,10 +226,21 @@ class StartupHandoffGuards(unittest.TestCase):
     def test_history_critical_records_bind_consumed_failure_not_new_observations(self):
         m = self.helper()
         self.assertTrue(callable(getattr(m, 'history', None)), 'critical old-history guard missing')
+        from _offline_historical_fixture import consumed_startup_history
+        consumed_startup_history(self,m)
         value = m.history(m.c1_module())
         self.assertEqual(value['receipt']['sha256'], 'beab04ef2dde95a01cc25ed21eedf6ff79c3e50c2aceacaf2cd2f74dc4fc76d2')
         self.assertEqual(len(value['commands']), 4)
         self.assertEqual(sum(len(row['streams']) for row in value['commands']), 8)
+
+    def test_rehydrated_history_still_refuses_changed_source_bytes(self):
+        m=self.helper()
+        from _offline_historical_fixture import consumed_startup_history
+        root=consumed_startup_history(self,m)
+        path=root/'run/source/memory-integrity/SKILL.md'
+        path.write_bytes(path.read_bytes()+b'changed owned fixture')
+        with self.assertRaisesRegex(ValueError,'E_CURRENT_SOURCE_CHANGED'):
+            m.history(m.c1_module())
 
     def test_claimed_run_failure_is_retained_and_cannot_be_retried(self):
         m = self.helper()

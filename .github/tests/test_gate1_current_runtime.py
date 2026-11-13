@@ -23,7 +23,10 @@ def subject():
 
 
 class CurrentRuntime(unittest.TestCase):
-    def setUp(self): self.g = subject()
+    def setUp(self):
+        self.g = subject()
+        from _offline_historical_fixture import checkout
+        self.g.SOURCE = checkout()
 
     def suite(self):
         ids = ['sample.Case.test_a', 'sample.Case.test_b']

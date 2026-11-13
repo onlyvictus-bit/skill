@@ -2,7 +2,7 @@
 import ast
 import importlib.util
 import tempfile
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import unittest
 from unittest.mock import patch
 from _offline_historical_fixture import checkout, git_at
@@ -19,7 +19,7 @@ class CopyCoordinator(unittest.TestCase):
 
     def test_new_session_never_reuses_consumed_destinations(self):
         c=self.controller()
-        self.assertEqual(c.ROOT.name,'sr3-copy-20261027-4a52cd8d')
+        self.assertEqual(PureWindowsPath(str(c.ROOT)).name,'sr3-copy-20261027-4a52cd8d')
         self.assertNotEqual(c.ROOT,c.sr3().ROOT)
         self.assertEqual(set(c.ROOTS.values()),set(c.sr3().HISTORY_ROOTS))
         self.assertFalse(any(c.ROOT.is_relative_to(p) for p in c.ROOTS.values()))

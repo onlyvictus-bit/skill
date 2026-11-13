@@ -40,7 +40,7 @@ jobs:
           import os, pathlib, subprocess, sys
           worker = (pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')).absolute()
           env = dict(os.environ, KNOWLEDGE_WORKER_PYTHON=str(worker))
-          subprocess.run([sys.executable, '-B', '.github/scripts/offline_ci_suite.py',
+          subprocess.run([str(worker), '-B', '.github/scripts/offline_ci_suite.py',
               '--package-root', 'memory-integrity', '--test-dir', 'tests_v2', '--pattern', 'test_knowledge*.py',
               '--output-dir', str(pathlib.Path(os.environ['RUNNER_TEMP'])/'offline-runtime-source')], check=True, env=env)
       - name: Fresh extracted runtime and protected workflow checks
@@ -50,7 +50,7 @@ jobs:
           worker = (pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')).absolute()
           temp = pathlib.Path(os.environ['RUNNER_TEMP'])
           env = dict(os.environ, KNOWLEDGE_WORKER_PYTHON=str(worker))
-          subprocess.run([sys.executable, '-B', '.github/scripts/offline_ci_suite.py',
+          subprocess.run([str(worker), '-B', '.github/scripts/offline_ci_suite.py',
               '--package-root', str(temp/'offline-runtime-pair/verified/extracted/memory-integrity'),
               '--test-dir', 'tests_v2', '--pattern', 'test_knowledge*.py',
               '--output-dir', str(temp/'offline-runtime-extracted')], check=True, env=env)
@@ -65,7 +65,7 @@ jobs:
           from offline_ci_suite import hosted_environment
           scratch = temp/'offline-runtime-acceptance-env'; scratch.mkdir()
           env = hosted_environment(os.environ, scratch)
-          subprocess.run([sys.executable, '-B', '.github/scripts/offline_release_acceptance.py',
+          subprocess.run([str(worker), '-B', '.github/scripts/offline_release_acceptance.py',
               '--package-root', str(extracted/'memory-integrity'), '--claude-mon-root', str(extracted/'claude-mon'),
               '--worker-python', str(worker), '--output-dir', str(temp/'offline-runtime-acceptance')], check=True, env=env)
       - name: Retain exact-commit runtime diagnostics

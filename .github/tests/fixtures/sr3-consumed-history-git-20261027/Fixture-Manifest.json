@@ -1,0 +1,46 @@
+{
+  "encoded_sha256": "5c03da8c15b7ad4095e7828e8e10a63fbf26db1b25aff0aaf97120bb00e09e34",
+  "expanded_json_bytes": 3236213,
+  "files": 654,
+  "git_backed_files": 625,
+  "original_root": "C:\\Users\\sakth\\Documents\\Codex\\sr3-copy-20261027-4a52cd8d",
+  "parts": [
+    {
+      "bytes": 160000,
+      "name": "part-00.b64",
+      "sha256": "eeb78980e0fec7b2395cea53694011292d7567182a26abb6a6c762cf8a5bf37d"
+    },
+    {
+      "bytes": 160000,
+      "name": "part-01.b64",
+      "sha256": "bc1afd38fa7b9328e6a456d1a482b960189a56ae367131872e43bdd304934d25"
+    },
+    {
+      "bytes": 160000,
+      "name": "part-02.b64",
+      "sha256": "ac478a001f09116c9c1c81985ba06545c929305e59ac6b8261a601c8b0c2b8f7"
+    },
+    {
+      "bytes": 160000,
+      "name": "part-03.b64",
+      "sha256": "db8ee47312017e12739bd9e49e35cf7254ccab28a89df015a5e8420f02c12238"
+    },
+    {
+      "bytes": 160000,
+      "name": "part-04.b64",
+      "sha256": "b194011f758668fd8702602ac58faed0ed770ec32136d70cf2a64bbd8fdaccd1"
+    },
+    {
+      "bytes": 160000,
+      "name": "part-05.b64",
+      "sha256": "2039673f9e9ae630b0e35a18eb8929340c79628e0623dc4aa3f11001d7e76b49"
+    },
+    {
+      "bytes": 156884,
+      "name": "part-06.b64",
+      "sha256": "2b25a397732cc01151d68959d016de49d46acbcb83499505bb9ab69f4aa345b3"
+    }
+  ],
+  "scope": "EXACT_CONSUMED_INPUTS_NOT_NEW_RUNTIME_EVIDENCE",
+  "source_commit": "a38297dd797eeecd25e41ab0af1df4e3db8fa984"
+}

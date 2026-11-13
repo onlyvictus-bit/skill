@@ -34,7 +34,8 @@ class Gate1Contracts(unittest.TestCase):
         worker.write_bytes(b'non-executable contract fixture')
         config=worker.parent.parent/'pyvenv.cfg';config.write_bytes(b'fixture only')
         g.REPO=root;g.WORKSPACE=workspace;g.WORKER=worker;g.CONTROLLER=Path(sys.executable);g.BASE=Path(sys.executable)
-        g.CONTROLLER_SHA=g.BASE_SHA=g.sha(Path(sys.executable).read_bytes())
+        g.CONTROLLER=g.BASE=Path(sys.executable).resolve(strict=True)
+        g.CONTROLLER_SHA=g.BASE_SHA=g.sha(g.CONTROLLER.read_bytes())
         g.WORKER_SHA=g.sha(worker.read_bytes());g.CONFIG_SHA=g.sha(config.read_bytes())
         manifest={'fixture-'+str(i):g.sha(str(i).encode()) for i in range(566)}
         manifest[g.OVERLAY]=g.OVERLAY_NEW
@@ -47,7 +48,7 @@ class Gate1Contracts(unittest.TestCase):
             workspace=str(workspace),source=str(workspace/'source'),source_manifest=manifest,
             overlay=dict(path=g.OVERLAY,old_sha256=g.OVERLAY_OLD,new_sha256=g.OVERLAY_NEW),
             protected=protected,historical=historical,runtime={key:g.file_record(path) for key,path in (
-                ('controller',Path(sys.executable)),('worker',worker),('config',config),('base',g.BASE))},
+                ('controller',g.CONTROLLER),('worker',worker),('config',config),('base',g.BASE))},
             helpers={},patterns=[list(pair) for pair in g.PATTERNS],test_ids=ids,
             release_ready=False,native_execution=False,installed=False)
         basis['helpers']={n:self.g.file_record(ROOT/'.github/scripts'/n) for n in (
@@ -233,7 +234,15 @@ class Gate1Contracts(unittest.TestCase):
             values={name:getattr(before,name) for name in dir(before) if name.startswith('st_')}
             values['st_atime']=before.st_atime+60
             after=SimpleNamespace(**values)
-            with patch.object(Path,'stat',side_effect=[before,after,after]):
+            stat_method=Path.stat;calls=[]
+            def changed_atime(path,*args,**kwargs):
+                # pathlib.lstat routes through stat on some Python versions.
+                # Only change the followed target's access time, not ancestors.
+                if path==file and kwargs.get('follow_symlinks',True):
+                    calls.append(path)
+                    return before if len(calls)==1 else after
+                return stat_method(path,*args,**kwargs)
+            with patch.object(Path,'stat',autospec=True,side_effect=changed_atime):
                 record=self.g.file_record(file)
             self.assertEqual(record['sha256'],self.g.sha(b'unchanged'))
 
@@ -285,8 +294,19 @@ class Gate1Contracts(unittest.TestCase):
             (Path(temp)/'stdout.log').write_bytes(result.stdout);(Path(temp)/'stderr.log').write_bytes(result.stderr)
             self.assertEqual(result.returncode,0,result.stderr.decode('utf-8',errors='replace'))
             frame=json.loads(result.stdout)
-            self.assertEqual(Path(frame['image_path']),Path(sys.executable).resolve(strict=True))
-            self.assertEqual(frame['image_sha256'],self.g.sha(Path(sys.executable).read_bytes()))
+            # sys.executable may name a venv launcher, not the loaded native
+            # image. Independently measure this controller's loaded image.
+            import ctypes
+            from ctypes import wintypes
+            kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+            kernel.GetModuleFileNameW.argtypes=[wintypes.HMODULE,wintypes.LPWSTR,wintypes.DWORD]
+            kernel.GetModuleFileNameW.restype=wintypes.DWORD
+            buffer=ctypes.create_unicode_buffer(32768)
+            length=kernel.GetModuleFileNameW(None,buffer,len(buffer))
+            self.assertTrue(0<length<len(buffer))
+            native=Path(buffer.value).resolve(strict=True)
+            self.assertEqual(Path(frame['image_path']),native)
+            self.assertEqual(frame['image_sha256'],self.g.sha(native.read_bytes()))
             self.assertEqual(Path(frame['cwd']),Path(temp))
 
 

@@ -1,11 +1,15 @@
 """H1 closed controller binding; no selected runtime or numerical workload."""
 import copy
+import base64
+import hashlib
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
 import types
 import unittest
+import zlib
 from unittest import mock
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
@@ -19,6 +23,44 @@ import worker_copy_successor as old
 
 
 class CopyH1ControllerTests(unittest.TestCase):
+    def closed_inputs(self):
+        """Exact saved packets plus fresh owned file identities, never old paths."""
+        path=Path(__file__).parent/'fixtures/h1-closed-inputs-20261022.b64'
+        raw=path.read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),
+                         '63f6c757dd859aca9ded55e1b4dde76361dbbcc00fcda0de47b91abfbfe15b68')
+        decoder=zlib.decompressobj()
+        data=decoder.decompress(base64.b64decode(raw.strip(),validate=True),32*1024*1024)
+        self.assertTrue(decoder.eof and not decoder.unconsumed_tail and not decoder.unused_data)
+        packets=json.loads(data);decoded={}
+        for name,row in packets.items():
+            value=base64.b64decode(row['content'],validate=True)
+            self.assertEqual(len(value),row['bytes']);self.assertEqual(hashlib.sha256(value).hexdigest(),row['sha256'])
+            decoded[name]=value
+        saved_policy=json.loads(decoded['Policy.json']);saved_entry=json.loads(decoded['Entry.json'])
+        # Keep the original large inode/time integers exact through serialization.
+        self.assertEqual(json.loads(v.encoded(saved_policy)),saved_policy)
+        self.assertEqual(json.loads(v.encoded(saved_entry)),saved_entry)
+        root=Path(tempfile.mkdtemp(prefix='h1-closed-inputs-'));archive=root/'archive';archive.mkdir()
+        paths=[]
+        for name in saved_policy['allowed']:
+            alias=archive/name;alias.parent.mkdir(parents=True,exist_ok=True)
+            origin=alias.with_name(alias.name+'.owned-origin');origin.write_bytes(b'old retained cache')
+            os.link(origin,alias);paths.append(alias)
+        policy=h.make_policy(archive,paths,[]);context=h.Context(policy)
+        old_root=root/'old';(old_root/'before').mkdir(parents=True)
+        (old_root/'before/Request.json').write_bytes(decoded['Request.json'])
+        (old_root/'Failure.json').write_bytes(b'original owned failed-history fixture')
+        entry={**saved_entry,'old_root':str(old_root),'old_objects':v.collect(old_root)[0],
+               'scope_observation':{**saved_entry['scope_observation'],
+                 'allowed_historical_paths':{name:context.read_file(archive/name) for name in policy['allowed']},
+                 'origin':v.record(c.REPO/'.github/tests/test_gate1_cleanup_preservation.py'),
+                 'unresolved_root_source':v.record(old_root/'before/Request.json')}}
+        self.enterContext(mock.patch.object(c,'OLD_ROOT',old_root))
+        self.enterContext(mock.patch.object(old,'ROOT',old_root))
+        c.validate_scope_entry(policy,entry,originals=True)
+        return policy,entry
+
     def api(self):
         self.assertIsNotNone(c,'COPY-H1 sealed successor controller is not built')
         return c
@@ -110,8 +152,8 @@ class CopyH1ControllerTests(unittest.TestCase):
 
     def test_real_input_ids_and_failed_history_survive_serialization_exactly(self):
         self.api()
-        policy = v.load(c.POLICY,v.record(c.POLICY)['sha256'])
-        entry = v.load(c.ENTRY,v.record(c.ENTRY)['sha256'])
+        policy,entry = self.closed_inputs()
+        policy=json.loads(v.encoded(policy));entry=json.loads(v.encoded(entry))
         for name,expected in policy['allowed'].items():
             path = Path(policy['root'])/name
             self.assertEqual(expected['identity'],v.identity(path.stat()),name)
@@ -123,8 +165,7 @@ class CopyH1ControllerTests(unittest.TestCase):
         self.api()
         self.assertTrue(callable(getattr(c,'validate_scope_entry',None)),
                         'The sealed policy/entry semantic binding is missing')
-        policy = v.load(c.POLICY,v.record(c.POLICY)['sha256'])
-        entry = v.load(c.ENTRY,v.record(c.ENTRY)['sha256'])
+        policy,entry = self.closed_inputs()
         forged = copy.deepcopy(entry)
         forged['scope_observation']['allowed_historical_paths'].pop(next(iter(policy['allowed'])))
         with self.assertRaisesRegex(ValueError,'SCOPE_ENTRY'):
@@ -134,8 +175,7 @@ class CopyH1ControllerTests(unittest.TestCase):
         self.api()
         self.assertTrue(callable(getattr(c,'validate_scope_entry',None)),
                         'The historical fixture origin check is missing')
-        policy = v.load(c.POLICY,v.record(c.POLICY)['sha256'])
-        entry = v.load(c.ENTRY,v.record(c.ENTRY)['sha256'])
+        policy,entry = self.closed_inputs()
         forged = copy.deepcopy(entry)
         next(iter(forged['scope_observation']['allowed_historical_paths'].values()))['sha256'] = 'f'*64
         with self.assertRaisesRegex(ValueError,'SCOPE_ENTRY'):

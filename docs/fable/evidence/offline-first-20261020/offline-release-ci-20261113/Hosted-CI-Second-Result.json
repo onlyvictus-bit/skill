@@ -1,0 +1,43 @@
+{
+  "commit": "adac9c7520364fe6fcf050ce56e698bb48ea8ef9",
+  "core_run": 43462759213,
+  "runtime_run": 43462759308,
+  "byte_rebuild": "PASS_WINDOWS31410",
+  "linux_source_and_extracted_four_suites": "PASS",
+  "linux_runtime_source_extracted_acceptance_replay": "PASS_PY312_AND_PY313",
+  "remaining": "Historical fixture OS paths/private inputs and Windows3.11 base-site hooks; Windows runtime controller must equal selected venv worker",
+  "local_fixture_checks": {
+    "startup-history-portable-02": {
+      "tests": 23,
+      "errors": 0,
+      "failures": 0
+    },
+    "c2-fixture-portable-01": {
+      "tests": 11,
+      "errors": 0,
+      "failures": 0
+    },
+    "worker-seal-portable-01": {
+      "tests": 27,
+      "errors": 0,
+      "failures": 0
+    },
+    "image-portable-01": {
+      "tests": 16,
+      "errors": 0,
+      "failures": 0
+    },
+    "h1-owned-inputs-01": {
+      "tests": 11,
+      "errors": 0,
+      "failures": 0
+    },
+    "gate1-fixture-portable-01": {
+      "tests": 23,
+      "errors": 0,
+      "failures": 0
+    }
+  },
+  "release_ready": false,
+  "installed": false
+}

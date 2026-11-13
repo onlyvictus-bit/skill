@@ -62,11 +62,13 @@ def hosted_environment(env, scratch):
     home = scratch/'ci-git-home'
     home.mkdir()
     (home/'.gitconfig').write_bytes(data)
+    need((home/'.gitconfig').read_bytes() == data and
+         (source.read_bytes() == data if existed else not source.exists()), 'HOSTED_GIT_CONFIG_CHANGED')
     result['HOME'] = str(home)
     save(scratch/'CI-Environment.json', {'scope': 'HOSTED_TEST_PROCESS_ONLY',
          'metadata_keys_removed': sorted(removed), 'original_config_present': existed,
          'config_sha256': hashlib.sha256(data).hexdigest(), 'fixture_home': str(home),
-         'original_home_unchanged': True})
+         'original_config_sample_unchanged': True})
     return result
 
 
@@ -246,6 +248,9 @@ def run(argv=None):
     receipt = {
         'scope': 'CI_RETAINED_TEST_TEMP_AND_HOSTED_ENV_FIXTURES', 'package_root': str(package),
         'test_dir': args.test_dir, 'pattern': args.pattern, 'discovered': len(discovered),
+        'interpreter': {'executable': sys.executable, 'version': sys.version,
+                        'prefix': sys.prefix, 'base_prefix': sys.base_prefix,
+                        'worker': os.environ.get('KNOWLEDGE_WORKER_PYTHON')},
         'ids': [test.id() for test in discovered], 'interrupted': interrupted, 'runner_failure': failure,
         'tests_run': 0 if result is None else result.testsRun,
         'failures': [] if result is None else [{'id': test.id(), 'cause': cause} for test, cause in result.failures],

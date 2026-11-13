@@ -41,7 +41,7 @@ class CacheCauseProbe(unittest.TestCase):
             self.assertIs(type(row['explicit_cwd']),bool)
 
     def test_incomplete_or_changed_protection_is_not_accepted(self):
-        value = self.p.basis(sys.executable)
+        value = self.basis_fixture()
         self.p.verify_basis(value)
         omitted = copy.deepcopy(value)
         omitted['protected_packages'].pop('memory-integrity')
@@ -75,7 +75,7 @@ class CacheCauseProbe(unittest.TestCase):
             self.assertFalse(target.exists())
 
     def test_helper_drift_is_not_rebaselined(self):
-        value=self.p.basis(sys.executable)
+        value=self.basis_fixture()
         value['scripts']['cache_cause_probe.py']='0'*64
         with self.assertRaisesRegex(ValueError,'E_PROBE_HELPER_CHANGED'):
             self.p.verify_basis(value)
@@ -92,6 +92,15 @@ class CacheCauseProbe(unittest.TestCase):
         cfg.write_text('home = '+str(base)+'\ninclude-system-site-packages = false\n'
                        'version = 3.12.10\nexecutable = '+str(base/'python.exe')+'\n',encoding='utf-8')
         return worker,cfg,base/'python.exe'
+
+    def basis_fixture(self):
+        # Recreate the original bare-controller metadata for these data-binding
+        # checks only. Product launch tests below still use the real venv.
+        controller=getattr(sys,'_base_executable',sys.executable)
+        self.enterContext(patch.object(sys,'executable',controller))
+        self.enterContext(patch.object(sys,'prefix',sys.base_prefix))
+        self.enterContext(patch.object(sys,'exec_prefix',sys.base_exec_prefix))
+        return self.p.basis(controller)
 
     def test_venv_configuration_and_base_binary_drift_are_refused(self):
         self.assertTrue(callable(getattr(self.p,'runtime_binding',None)),'runtime configuration binding absent')
@@ -158,7 +167,7 @@ class CacheCauseProbe(unittest.TestCase):
                 self.p.verify_artifacts(binding)
 
     def test_hashed_but_omitted_prior_set_refuses_before_output(self):
-        value=self.p.basis(sys.executable)
+        value=self.basis_fixture()
         value['historical_artifacts']={}
         with tempfile.TemporaryDirectory() as temp:
             prepared=Path(temp)/'Prepared.json'

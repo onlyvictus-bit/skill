@@ -27,6 +27,9 @@ def retained_root(label):
 @unittest.skipUnless(os.name == 'nt', 'Windows native job and thread observation required')
 class MembershipNativeControls(unittest.TestCase):
     def setUp(self):
+        # This historical four-role control requires a direct native image,
+        # not an extra venv launcher. Keep the current interpreter family.
+        self.enterContext(patch.object(sys,'executable',getattr(sys,'_base_executable',sys.executable)))
         self.cached_bridge = {name: module for name, module in sys.modules.items()
                               if name == 'knowledge_bridge' or name.startswith('knowledge_bridge.')}
         for name in self.cached_bridge:

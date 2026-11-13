@@ -4209,3 +4209,31 @@ Retain test-owned TemporaryDirectory outputs so bootstrap sidecars survive
 failed cases. Test exact environment sanitation and retained residue before a
 new CI commit. No original user-home/config/global/permission change or timeout
 increase. Native-ready failures require retained cause, never a guessed fix.
+
+
+### Hosted controller portability and runtime identity correction
+
+Secondadac9c7CI retains successful exactbyte rebuild, Linux source/extracted
+four-suite passes and both Linux runtime acceptance/replay passes. Remaining
+old-controller tests consumed private Windows paths or POSIX-split Windows
+identity strings. Use PureWindowsPath fixtures, Git old-source snapshots,
+owned inode/mtime fixtures and hash-sealed rehydrated old-history inputs;
+keep actual source verification and all old pins intact. Add negative source
+mutation proof to the rehydrated history fixture. No old original reread.
+
+Hosted core jobs use --copies --without-pip venv to avoid Windows3.11 base
+setuptools startup hooks without deleting/changing the base installation.
+Runtime source/extracted suites and acceptance run with the selected venv
+interpreter itself, preserving launch_current requested==selected refusal.
+All package source/ZIP bytes, default120, shutdown5 and refusal tests retained.
+
+
+Clean-venv full546run exposed three old bare-controller metadata assumptions
+and one launcher-vs-loaded-image expectation. The owning cache16 and image27
+modules now PASS in that exact clean venv. Data-binding cache fixtures emulate
+original bare-controller metadata only; product launch cases keep the actual
+venv. Native image assertion now independently measures the controller image
+with GetModuleFileNameW instead of mistaking sys.executable for its loaded image.
+Legacy four-role/timing controls use this family's direct base image; current
+source/extracted product controls keep the venv and selected-worker identity.
+All original test IDs and assertion outcomes retained. New hosted CI is pending.

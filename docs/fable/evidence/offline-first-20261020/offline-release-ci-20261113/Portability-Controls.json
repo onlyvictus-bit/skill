@@ -1,0 +1,123 @@
+{
+  "status": "PORTABILITY_CORRECTIONS_FOCUSED_VERIFIED_HOSTED_CI_PENDING",
+  "parent": "adac9c7520364fe6fcf050ce56e698bb48ea8ef9",
+  "focused_checks": {
+    "cache-venv-final-02": {
+      "tests": 16,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv\\Scripts\\python.exe",
+        "prefix": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "image-handle-venv-final-01": {
+      "tests": 23,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv\\Scripts\\python.exe",
+        "prefix": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "ci-release-final-04": {
+      "tests": 7,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv\\Scripts\\python.exe",
+        "prefix": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "runner-venv-final-01": {
+      "tests": 10,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv\\Scripts\\python.exe",
+        "prefix": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\local-core-venv",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "startup-history-portable-02": {
+      "tests": 23,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Python314\\python.exe",
+        "prefix": "C:\\Python314",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "c2-fixture-portable-01": {
+      "tests": 11,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Python314\\python.exe",
+        "prefix": "C:\\Python314",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "worker-seal-portable-01": {
+      "tests": 27,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Python314\\python.exe",
+        "prefix": "C:\\Python314",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "image-portable-01": {
+      "tests": 16,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": {
+        "base_prefix": "C:\\Python314",
+        "executable": "C:\\Python314\\python.exe",
+        "prefix": "C:\\Python314",
+        "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "worker": null
+      }
+    },
+    "h1-owned-inputs-01": {
+      "tests": 11,
+      "errors": 0,
+      "failures": 0,
+      "interpreter": null
+    }
+  },
+  "last_broader_clean_venv": {
+    "tests": 546,
+    "failures": 1,
+    "errors": 3,
+    "retained": "controller-venv-final-01/Receipt.json",
+    "remaining_records": "All four were fixed and the complete owning modules rerun in the same clean venv (cache16 and imagehandle27)"
+  },
+  "original_tests_omitted": 0,
+  "package_code_changed": false,
+  "qualified_zips_changed": false,
+  "old_helper_pins_changed": false,
+  "fresh_independent_final_review": "UNVERIFIED_HELPER_CREDITS_EXHAUSTED",
+  "hosted_ci_verified": false,
+  "release_ready": false,
+  "installed": false
+}
