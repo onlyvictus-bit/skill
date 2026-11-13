@@ -18,6 +18,7 @@ import unittest
 
 
 ALLOWED_TEST_DIRS = {'tests', 'tests_v2', '.github/tests'}
+CI_METADATA = {'pythonlocation', 'python_root_dir', 'python2_root_dir', 'python3_root_dir'}
 
 
 def need(value, code):
@@ -42,6 +43,31 @@ def detail(err):
     if isinstance(err, tuple):
         return ''.join(traceback.format_exception(*err))
     return str(err)
+
+
+def hosted_environment(env, scratch):
+    """Create an explicit hosted-test fixture; never change the account profile."""
+    result = dict(env)
+    if result.get('GITHUB_ACTIONS') != 'true':
+        return result
+    removed = {key: result.pop(key) for key in list(result) if key.casefold() in CI_METADATA}
+    source_home = Path(result.get('HOME') or result.get('USERPROFILE') or Path.home())
+    source = source_home/'.gitconfig'
+    data = b''
+    existed = source.exists()
+    if existed:
+        need(source.is_file() and not source.is_symlink() and source.stat().st_nlink == 1 and
+             source.stat().st_size <= 65536, 'HOSTED_GIT_CONFIG')
+        data = source.read_bytes()
+    home = scratch/'ci-git-home'
+    home.mkdir()
+    (home/'.gitconfig').write_bytes(data)
+    result['HOME'] = str(home)
+    save(scratch/'CI-Environment.json', {'scope': 'HOSTED_TEST_PROCESS_ONLY',
+         'metadata_keys_removed': sorted(removed), 'original_config_present': existed,
+         'config_sha256': hashlib.sha256(data).hexdigest(), 'fixture_home': str(home),
+         'original_home_unchanged': True})
+    return result
 
 
 class Events(unittest.TextTestResult):
@@ -158,7 +184,10 @@ def run(argv=None):
     log_path = output / 'unittest.log'
     old_cwd, old_path = Path.cwd(), list(sys.path)
     old_tempdir = tempfile.tempdir
-    old_env = {name: os.environ.get(name) for name in ('TEMP', 'TMP', 'TMPDIR', 'PYTHONDONTWRITEBYTECODE')}
+    affected = {'TEMP', 'TMP', 'TMPDIR', 'PYTHONDONTWRITEBYTECODE', 'HOME'}
+    affected.update(key for key in os.environ if key.casefold() in CI_METADATA)
+    old_env = {name: os.environ.get(name) for name in affected}
+    old_directory = tempfile.TemporaryDirectory
     old_bytecode = sys.dont_write_bytecode
     result = None
     failure = None
@@ -170,12 +199,24 @@ def run(argv=None):
             os.environ[name] = str(scratch)
         os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
         sys.dont_write_bytecode = True
+        class RetainedDirectory:
+            def __init__(self, suffix=None, prefix=None, dir=None, **unused):
+                self.name = tempfile.mkdtemp(suffix=suffix, prefix=prefix, dir=dir)
+            def __enter__(self): return self.name
+            def __exit__(self, *unused): return False
+            def cleanup(self): pass
+        tempfile.TemporaryDirectory = RetainedDirectory
         os.chdir(package)
         sys.path[:0] = [str(tests), str(package)]
         with event_path.open('x', encoding='utf-8', newline='\n') as events, \
                 log_path.open('x', encoding='utf-8', newline='\n') as log:
             runner = Runner(stream=log, verbosity=2, events=events)
             try:
+                clean = hosted_environment(os.environ, scratch)
+                for key in list(os.environ):
+                    if key.casefold() in CI_METADATA and key not in clean:
+                        del os.environ[key]
+                os.environ.update(clean)
                 # A fresh process owns each suite; the test fixture is active
                 # during discovery as well as case execution.
                 with memory_integrity_ready_fixture(package, scratch):
@@ -195,6 +236,7 @@ def run(argv=None):
         os.chdir(old_cwd)
         sys.path[:] = old_path
         tempfile.tempdir = old_tempdir
+        tempfile.TemporaryDirectory = old_directory
         sys.dont_write_bytecode = old_bytecode
         for name, value in old_env.items():
             if value is None:
@@ -202,7 +244,7 @@ def run(argv=None):
             else:
                 os.environ[name] = value
     receipt = {
-        'scope': 'CI_HOSTED_DISPOSABLE_TEMP_ONLY', 'package_root': str(package),
+        'scope': 'CI_RETAINED_TEST_TEMP_AND_HOSTED_ENV_FIXTURES', 'package_root': str(package),
         'test_dir': args.test_dir, 'pattern': args.pattern, 'discovered': len(discovered),
         'ids': [test.id() for test in discovered], 'interrupted': interrupted, 'runner_failure': failure,
         'tests_run': 0 if result is None else result.testsRun,

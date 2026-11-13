@@ -2319,6 +2319,9 @@
     "hosted_ci_verified": false,
     "release_ready": false,
     "installed": false,
-    "evidence": "docs/fable/evidence/offline-first-20261020/offline-release-ci-20261113/Local-Verification.json"
+    "evidence": "docs/fable/evidence/offline-first-20261020/offline-release-ci-20261113/Local-Verification.json",
+    "published_commit": "17715b37e8b131a5ba92249a8345e0dbbc807f1f",
+    "hosted_first_status": "FAILED_RETAINED_COMPRESSION_AND_CI_ENVIRONMENT_FIXTURES",
+    "hosted_correction": "Mandatory Windows3.14.10 exact rebuild; matrix exact ZIP verification; isolated hosted Git HOME and setup-python metadata fixture; retained temporary outputs"
   }
 }

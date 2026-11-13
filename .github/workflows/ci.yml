@@ -9,6 +9,29 @@ permissions:
   contents: read
 
 jobs:
+  reproducible-pair:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONNOUSERSITE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14.10"
+      - name: Reproduce exact qualified ZIP and manifest bytes
+        run: python -B release/Check-Offline-First-CI.py --rebuild-exact --output-dir "${{ runner.temp }}/offline-reproducible"
+      - name: Retain byte-rebuild evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-reproducible-${{ github.sha }}
+          path: ${{ runner.temp }}/offline-reproducible/**
+          if-no-files-found: error
+          retention-days: 14
   suites:
     timeout-minutes: 60
     env:

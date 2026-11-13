@@ -74,6 +74,14 @@ class WorkflowMigration(unittest.TestCase):
         for name, digest in c.QUALIFIED.items():
             self.assertEqual(hashlib.sha256((ROOT/'release'/name).read_bytes()).hexdigest(), digest)
 
+    def test_byte_rebuild_is_mandatory_on_qualified_windows_toolchain(self):
+        text = (ROOT/'.github/workflows/ci.yml').read_text()
+        self.assertIn('  reproducible-pair:', text)
+        self.assertIn('runs-on: windows-latest', text)
+        self.assertIn('python-version: "3.14.10"', text)
+        self.assertIn('Check-Offline-First-CI.py --rebuild-exact', text)
+        self.assertIn('REPRODUCIBLE_HASH:', (ROOT/'release/Check-Offline-First-CI.py').read_text())
+
 
 if __name__ == '__main__':
     unittest.main()

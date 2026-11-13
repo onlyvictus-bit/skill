@@ -61,9 +61,13 @@ jobs:
           worker = (pathlib.Path('.knowledge-runtime') / ('Scripts/python.exe' if sys.platform == 'win32' else 'bin/python')).absolute()
           temp = pathlib.Path(os.environ['RUNNER_TEMP'])
           extracted = temp/'offline-runtime-pair/verified/extracted'
+          sys.path.insert(0, '.github/scripts')
+          from offline_ci_suite import hosted_environment
+          scratch = temp/'offline-runtime-acceptance-env'; scratch.mkdir()
+          env = hosted_environment(os.environ, scratch)
           subprocess.run([sys.executable, '-B', '.github/scripts/offline_release_acceptance.py',
               '--package-root', str(extracted/'memory-integrity'), '--claude-mon-root', str(extracted/'claude-mon'),
-              '--worker-python', str(worker), '--output-dir', str(temp/'offline-runtime-acceptance')], check=True)
+              '--worker-python', str(worker), '--output-dir', str(temp/'offline-runtime-acceptance')], check=True, env=env)
       - name: Retain exact-commit runtime diagnostics
         if: always()
         uses: actions/upload-artifact@v4

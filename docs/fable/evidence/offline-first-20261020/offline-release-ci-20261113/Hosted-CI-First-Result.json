@@ -1,0 +1,882 @@
+{
+  "first_delivery_commit": "17715b37e8b131a5ba92249a8345e0dbbc807f1f",
+  "core_run_id": 43457610643,
+  "runtime_run_id": 43457610647,
+  "first_ci_status": "FAILED_RETAINED",
+  "compression_evidence": {
+    "memory-integrity": {
+      "qualified_sha": "c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526",
+      "hosted_sha": "731644e4fc3e0e24261dc7eec4ef1d02b7408e81d56e330777e55b29c9eeffae",
+      "source_data_differences": [],
+      "metadata_differences": [],
+      "compressed_size_differences": [
+        {
+          "file": "memory-integrity/SKILL.md",
+          "qualified": 10881,
+          "hosted311": 10871
+        },
+        {
+          "file": "memory-integrity/references/complete-read-protocol.md",
+          "qualified": 4021,
+          "hosted311": 4018
+        },
+        {
+          "file": "memory-integrity/references/diagnosis-recovery.md",
+          "qualified": 2289,
+          "hosted311": 2288
+        },
+        {
+          "file": "memory-integrity/references/fable-source-basis.md",
+          "qualified": 2144,
+          "hosted311": 2143
+        },
+        {
+          "file": "memory-integrity/references/integration-architecture.md",
+          "qualified": 3750,
+          "hosted311": 3747
+        },
+        {
+          "file": "memory-integrity/references/knowledge-contract.md",
+          "qualified": 2983,
+          "hosted311": 2981
+        },
+        {
+          "file": "memory-integrity/references/knowledge-operations.md",
+          "qualified": 2881,
+          "hosted311": 2879
+        },
+        {
+          "file": "memory-integrity/references/knowledge-project-2.md",
+          "qualified": 4074,
+          "hosted311": 4069
+        },
+        {
+          "file": "memory-integrity/references/m7-native-observation.md",
+          "qualified": 2682,
+          "hosted311": 2680
+        },
+        {
+          "file": "memory-integrity/references/memory-integrity-model.md",
+          "qualified": 3197,
+          "hosted311": 3194
+        },
+        {
+          "file": "memory-integrity/references/problem-model.md",
+          "qualified": 3554,
+          "hosted311": 3551
+        },
+        {
+          "file": "memory-integrity/references/r3-coordination.md",
+          "qualified": 4573,
+          "hosted311": 4569
+        },
+        {
+          "file": "memory-integrity/references/source-coverage-contract.md",
+          "qualified": 2425,
+          "hosted311": 2424
+        },
+        {
+          "file": "memory-integrity/scripts/context_budget.py",
+          "qualified": 1679,
+          "hosted311": 1678
+        },
+        {
+          "file": "memory-integrity/scripts/coordination_workflow.py",
+          "qualified": 6037,
+          "hosted311": 6013
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/beads_bridge.py",
+          "qualified": 2324,
+          "hosted311": 2321
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/branch.py",
+          "qualified": 4756,
+          "hosted311": 4746
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/cards.py",
+          "qualified": 2161,
+          "hosted311": 2157
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/graph.py",
+          "qualified": 2581,
+          "hosted311": 2575
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/native.py",
+          "qualified": 7830,
+          "hosted311": 7802
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/native_observation.py",
+          "qualified": 8298,
+          "hosted311": 8270
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/native_pilot.py",
+          "qualified": 4963,
+          "hosted311": 4953
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_backend.py",
+          "qualified": 3902,
+          "hosted311": 3891
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_consumer.py",
+          "qualified": 3147,
+          "hosted311": 3146
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_contract.py",
+          "qualified": 4063,
+          "hosted311": 4040
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_execution.py",
+          "qualified": 3444,
+          "hosted311": 3436
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_lease_backend.py",
+          "qualified": 6549,
+          "hosted311": 6529
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_lease_consumer.py",
+          "qualified": 4217,
+          "hosted311": 4213
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_lease_sql.py",
+          "qualified": 8015,
+          "hosted311": 7982
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_race_controller.py",
+          "qualified": 20613,
+          "hosted311": 20610
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_race_verify.py",
+          "qualified": 14500,
+          "hosted311": 14476
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/practical_sql.py",
+          "qualified": 4584,
+          "hosted311": 4573
+        },
+        {
+          "file": "memory-integrity/scripts/hybrid_bridge/shared_native_pilot.py",
+          "qualified": 3559,
+          "hosted311": 3551
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/adapters/ooxml_inventory.py",
+          "qualified": 1650,
+          "hosted311": 1649
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/extraction.py",
+          "qualified": 1738,
+          "hosted311": 1736
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/recall.py",
+          "qualified": 2925,
+          "hosted311": 2919
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/report.py",
+          "qualified": 5956,
+          "hosted311": 5943
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/semantic.py",
+          "qualified": 2134,
+          "hosted311": 2132
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/source_audit.py",
+          "qualified": 2373,
+          "hosted311": 2371
+        },
+        {
+          "file": "memory-integrity/scripts/integrity_v2/watchdog.py",
+          "qualified": 1744,
+          "hosted311": 1739
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/advanced_retrieval.py",
+          "qualified": 2756,
+          "hosted311": 2755
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/benchmark.py",
+          "qualified": 2249,
+          "hosted311": 2246
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/benefit_benchmark.py",
+          "qualified": 6959,
+          "hosted311": 6943
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/contracts.py",
+          "qualified": 2649,
+          "hosted311": 2645
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/distributed_retrieval.py",
+          "qualified": 5154,
+          "hosted311": 5134
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/distributed_worker.py",
+          "qualified": 2021,
+          "hosted311": 2014
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/extraction.py",
+          "qualified": 7613,
+          "hosted311": 7601
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/impact.py",
+          "qualified": 2041,
+          "hosted311": 2039
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/indexing.py",
+          "qualified": 2748,
+          "hosted311": 2745
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/model_benchmark.py",
+          "qualified": 7788,
+          "hosted311": 7765
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/model_runtime.py",
+          "qualified": 5468,
+          "hosted311": 5450
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/offline_engine.py",
+          "qualified": 5253,
+          "hosted311": 5242
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/recursive_bootstrap.py",
+          "qualified": 17314,
+          "hosted311": 17307
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/recursive_policy.py",
+          "qualified": 2178,
+          "hosted311": 2176
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/retrieval.py",
+          "qualified": 3973,
+          "hosted311": 3969
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/retrieval_v2.py",
+          "qualified": 7675,
+          "hosted311": 7669
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/semantic_proposals.py",
+          "qualified": 2373,
+          "hosted311": 2372
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/test_evidence.py",
+          "qualified": 2570,
+          "hosted311": 2567
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/trace_adapter.py",
+          "qualified": 1854,
+          "hosted311": 1852
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/verification.py",
+          "qualified": 1695,
+          "hosted311": 1694
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/windows_job.py",
+          "qualified": 3052,
+          "hosted311": 3042
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/windows_owned_bootstrap.py",
+          "qualified": 2963,
+          "hosted311": 2958
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py",
+          "qualified": 9570,
+          "hosted311": 9557
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py",
+          "qualified": 7526,
+          "hosted311": 7504
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/windows_writer.py",
+          "qualified": 4543,
+          "hosted311": 4537
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/worker.py",
+          "qualified": 4804,
+          "hosted311": 4785
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/worker_client.py",
+          "qualified": 3008,
+          "hosted311": 3003
+        },
+        {
+          "file": "memory-integrity/scripts/knowledge_bridge/workflow.py",
+          "qualified": 3848,
+          "hosted311": 3840
+        },
+        {
+          "file": "memory-integrity/scripts/memory_integrity_v2.py",
+          "qualified": 2188,
+          "hosted311": 2186
+        },
+        {
+          "file": "memory-integrity/scripts/memory_integrity_workflow.py",
+          "qualified": 5761,
+          "hosted311": 5753
+        },
+        {
+          "file": "memory-integrity/scripts/memory_watchdog.py",
+          "qualified": 4008,
+          "hosted311": 3992
+        },
+        {
+          "file": "memory-integrity/scripts/r4_shared_claim_pilot.py",
+          "qualified": 734,
+          "hosted311": 733
+        },
+        {
+          "file": "memory-integrity/scripts/source_coverage.py",
+          "qualified": 4290,
+          "hosted311": 4277
+        },
+        {
+          "file": "memory-integrity/scripts/source_registry.py",
+          "qualified": 2920,
+          "hosted311": 2915
+        },
+        {
+          "file": "memory-integrity/scripts/structural_units.py",
+          "qualified": 2280,
+          "hosted311": 2276
+        },
+        {
+          "file": "memory-integrity/tests/test_context_budget.py",
+          "qualified": 811,
+          "hosted311": 810
+        },
+        {
+          "file": "memory-integrity/tests/test_memory_watchdog.py",
+          "qualified": 1766,
+          "hosted311": 1764
+        },
+        {
+          "file": "memory-integrity/tests/test_source_coverage.py",
+          "qualified": 1350,
+          "hosted311": 1349
+        },
+        {
+          "file": "memory-integrity/tests/test_source_registry.py",
+          "qualified": 960,
+          "hosted311": 959
+        },
+        {
+          "file": "memory-integrity/tests_v2/OFFLINE1-CONTENT.json",
+          "qualified": 10331,
+          "hosted311": 10074
+        },
+        {
+          "file": "memory-integrity/tests_v2/R2-CONTENT.json",
+          "qualified": 3678,
+          "hosted311": 3644
+        },
+        {
+          "file": "memory-integrity/tests_v2/R3-CONTENT.json",
+          "qualified": 4328,
+          "hosted311": 4285
+        },
+        {
+          "file": "memory-integrity/tests_v2/R4-CONTENT.json",
+          "qualified": 7651,
+          "hosted311": 7494
+        },
+        {
+          "file": "memory-integrity/tests_v2/baseline-r1.json",
+          "qualified": 3426,
+          "hosted311": 3367
+        },
+        {
+          "file": "memory-integrity/tests_v2/baseline-r2.json",
+          "qualified": 4070,
+          "hosted311": 3991
+        },
+        {
+          "file": "memory-integrity/tests_v2/practical_race_transport_model.py",
+          "qualified": 6024,
+          "hosted311": 6013
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_advanced.py",
+          "qualified": 1634,
+          "hosted311": 1633
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_audit_integrity.py",
+          "qualified": 2873,
+          "hosted311": 2867
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_benefit.py",
+          "qualified": 1600,
+          "hosted311": 1598
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_bridge.py",
+          "qualified": 4404,
+          "hosted311": 4391
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_completion.py",
+          "qualified": 4997,
+          "hosted311": 4985
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_distributed.py",
+          "qualified": 2160,
+          "hosted311": 2159
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_extraction.py",
+          "qualified": 3689,
+          "hosted311": 3674
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_model_benchmark.py",
+          "qualified": 2374,
+          "hosted311": 2368
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_model_runtime.py",
+          "qualified": 3112,
+          "hosted311": 3102
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_offline_engine.py",
+          "qualified": 3546,
+          "hosted311": 3540
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_process_lifecycle.py",
+          "qualified": 2422,
+          "hosted311": 2419
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_recursive_git.py",
+          "qualified": 3019,
+          "hosted311": 3015
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_recursive_integration.py",
+          "qualified": 2778,
+          "hosted311": 2775
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_recursive_native.py",
+          "qualified": 4204,
+          "hosted311": 4202
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_recursive_profile.py",
+          "qualified": 3119,
+          "hosted311": 3116
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_retrieval_v2.py",
+          "qualified": 4097,
+          "hosted311": 4087
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_timeout_budget.py",
+          "qualified": 2309,
+          "hosted311": 2307
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_fixture_publication.py",
+          "qualified": 1820,
+          "hosted311": 1822
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_owned_process.py",
+          "qualified": 5661,
+          "hosted311": 5646
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_owned_startup.py",
+          "qualified": 5566,
+          "hosted311": 5550
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_ready_copy.py",
+          "qualified": 4525,
+          "hosted311": 4511
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_session.py",
+          "qualified": 2309,
+          "hosted311": 2305
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_shutdown.py",
+          "qualified": 3614,
+          "hosted311": 3609
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_windows_writer.py",
+          "qualified": 5153,
+          "hosted311": 5130
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_worker_cwd.py",
+          "qualified": 3155,
+          "hosted311": 3145
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_knowledge_workflow.py",
+          "qualified": 2713,
+          "hosted311": 2708
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_m7_native_journal.py",
+          "qualified": 2721,
+          "hosted311": 2718
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_m7_native_pilot.py",
+          "qualified": 3869,
+          "hosted311": 3859
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_m7_observation.py",
+          "qualified": 4580,
+          "hosted311": 4564
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_office_inventory.py",
+          "qualified": 1153,
+          "hosted311": 1152
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_offline_release_profile.py",
+          "qualified": 2163,
+          "hosted311": 2158
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_backend.py",
+          "qualified": 4047,
+          "hosted311": 4033
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_cli.py",
+          "qualified": 2582,
+          "hosted311": 2571
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_consumer.py",
+          "qualified": 6757,
+          "hosted311": 6733
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_execution.py",
+          "qualified": 4790,
+          "hosted311": 4775
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_lease_backend.py",
+          "qualified": 4426,
+          "hosted311": 4411
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_lease_issuer.py",
+          "qualified": 1752,
+          "hosted311": 1751
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_lease_sql.py",
+          "qualified": 2943,
+          "hosted311": 2939
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_race_harness.py",
+          "qualified": 22774,
+          "hosted311": 22724
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_race_offline_sequence.py",
+          "qualified": 6133,
+          "hosted311": 6128
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_practical_v2_schema.py",
+          "qualified": 3329,
+          "hosted311": 3314
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_r1_hardening.py",
+          "qualified": 2760,
+          "hosted311": 2754
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_r2_hardening.py",
+          "qualified": 3145,
+          "hosted311": 3138
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_r2_workflow.py",
+          "qualified": 2216,
+          "hosted311": 2209
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_r3_branch.py",
+          "qualified": 1974,
+          "hosted311": 1968
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_r3_central_merge.py",
+          "qualified": 1810,
+          "hosted311": 1808
+        },
+        {
+          "file": "memory-integrity/tests_v2/test_r3_public.py",
+          "qualified": 3548,
+          "hosted311": 3538
+        }
+      ],
+      "qualified_bytes": 661030,
+      "hosted_bytes": 659355
+    },
+    "claude-mon": {
+      "qualified_sha": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+      "hosted_sha": "7f9bab756818e2decb627491dab177150444e3ad94bd126707642baf61925cf8",
+      "source_data_differences": [],
+      "metadata_differences": [],
+      "compressed_size_differences": [
+        {
+          "file": "claude-mon/references/adapters.md",
+          "qualified": 2329,
+          "hosted311": 2328
+        },
+        {
+          "file": "claude-mon/references/architecture.md",
+          "qualified": 2710,
+          "hosted311": 2708
+        },
+        {
+          "file": "claude-mon/scripts/HANDOFF-CM.md",
+          "qualified": 1583,
+          "hosted311": 1582
+        },
+        {
+          "file": "claude-mon/scripts/claude_mon.py",
+          "qualified": 1550,
+          "hosted311": 1551
+        },
+        {
+          "file": "claude-mon/scripts/claude_mon_core.py",
+          "qualified": 6366,
+          "hosted311": 6353
+        },
+        {
+          "file": "claude-mon/scripts/claude_mon_v2.py",
+          "qualified": 4307,
+          "hosted311": 4299
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/budget.py",
+          "qualified": 2773,
+          "hosted311": 2767
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/contracts.py",
+          "qualified": 3289,
+          "hosted311": 3286
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/coordination.py",
+          "qualified": 7174,
+          "hosted311": 7153
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/ledger.py",
+          "qualified": 13912,
+          "hosted311": 13869
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/partition.py",
+          "qualified": 3582,
+          "hosted311": 3577
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/providers.py",
+          "qualified": 3532,
+          "hosted311": 3526
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/results.py",
+          "qualified": 2511,
+          "hosted311": 2505
+        },
+        {
+          "file": "claude-mon/scripts/complete_read_v2/runner.py",
+          "qualified": 7463,
+          "hosted311": 7443
+        },
+        {
+          "file": "claude-mon/tests/test_core.py",
+          "qualified": 2674,
+          "hosted311": 2663
+        },
+        {
+          "file": "claude-mon/tests_v2/OFFLINE1-CONTENT.json",
+          "qualified": 3822,
+          "hosted311": 3788
+        },
+        {
+          "file": "claude-mon/tests_v2/R2-CONTENT.json",
+          "qualified": 3089,
+          "hosted311": 3072
+        },
+        {
+          "file": "claude-mon/tests_v2/R3-CONTENT.json",
+          "qualified": 3471,
+          "hosted311": 3449
+        },
+        {
+          "file": "claude-mon/tests_v2/R4-CONTENT.json",
+          "qualified": 3600,
+          "hosted311": 3576
+        },
+        {
+          "file": "claude-mon/tests_v2/baseline-r1.json",
+          "qualified": 3085,
+          "hosted311": 3049
+        },
+        {
+          "file": "claude-mon/tests_v2/baseline-r2.json",
+          "qualified": 3451,
+          "hosted311": 3395
+        },
+        {
+          "file": "claude-mon/tests_v2/run_acceptance.py",
+          "qualified": 2803,
+          "hosted311": 2801
+        },
+        {
+          "file": "claude-mon/tests_v2/test_acceptance.py",
+          "qualified": 2086,
+          "hosted311": 2083
+        },
+        {
+          "file": "claude-mon/tests_v2/test_cli_v2.py",
+          "qualified": 2145,
+          "hosted311": 2141
+        },
+        {
+          "file": "claude-mon/tests_v2/test_host_routing.py",
+          "qualified": 736,
+          "hosted311": 735
+        },
+        {
+          "file": "claude-mon/tests_v2/test_ledger.py",
+          "qualified": 1672,
+          "hosted311": 1670
+        },
+        {
+          "file": "claude-mon/tests_v2/test_m4r_regressions.py",
+          "qualified": 2643,
+          "hosted311": 2638
+        },
+        {
+          "file": "claude-mon/tests_v2/test_practical_dispatch.py",
+          "qualified": 2328,
+          "hosted311": 2324
+        },
+        {
+          "file": "claude-mon/tests_v2/test_practical_journal.py",
+          "qualified": 2878,
+          "hosted311": 2872
+        },
+        {
+          "file": "claude-mon/tests_v2/test_r1_hardening.py",
+          "qualified": 3435,
+          "hosted311": 3428
+        },
+        {
+          "file": "claude-mon/tests_v2/test_r2_hardening.py",
+          "qualified": 2837,
+          "hosted311": 2830
+        },
+        {
+          "file": "claude-mon/tests_v2/test_r3_coordination.py",
+          "qualified": 4308,
+          "hosted311": 4293
+        },
+        {
+          "file": "claude-mon/tests_v2/test_r3_history.py",
+          "qualified": 2888,
+          "hosted311": 2883
+        },
+        {
+          "file": "claude-mon/tests_v2/test_resume.py",
+          "qualified": 1641,
+          "hosted311": 1639
+        }
+      ],
+      "qualified_bytes": 172663,
+      "hosted_bytes": 172266
+    }
+  },
+  "correction": "Mandatory exact Windows3.14.10 rebuild; all matrix jobs retain exact delivered archive/source/extracted verification",
+  "hosted_environment_correction": "Only setup-python metadata removed from test child environments; own Git HOME fixture; original account config bytes preserved when present; test temp residue retained",
+  "local_controls": {
+    "native17": {
+      "run": 17,
+      "errors": 0,
+      "failures": 0
+    },
+    "git5": {
+      "run": 5,
+      "errors": 0,
+      "failures": 0
+    },
+    "release6": {
+      "run": 6,
+      "errors": 0,
+      "failures": 0
+    }
+  }
+}

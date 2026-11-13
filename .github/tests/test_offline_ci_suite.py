@@ -123,6 +123,35 @@ class OfflineCiSuite(unittest.TestCase):
         self.assertTrue(value['errors'])
         self.assertIn('import segment cause', value['errors'][0]['cause'])
 
+    def test_temporary_directory_residue_is_retained_for_original_cause_review(self):
+        package = self.package(body='''
+            from pathlib import Path
+            import tempfile, unittest
+            class Residue(unittest.TestCase):
+                def test_preserved(self):
+                    with tempfile.TemporaryDirectory(prefix='cause-') as value:
+                        path=Path(value);(path/'original-cause.json').write_text('retained')
+                    self.assertTrue((path/'original-cause.json').exists())
+        ''')
+        self.assertEqual(self.invoke(package, self.base/'residue-result'), 0, self.last_output)
+
+    def test_hosted_environment_removes_only_action_metadata_and_preserves_config(self):
+        home=self.base/'account';home.mkdir();raw=b'[user]\n name = Test Fixture\n'
+        (home/'.gitconfig').write_bytes(raw);scratch=self.base/'hosted';scratch.mkdir()
+        env={'GITHUB_ACTIONS':'true','HOME':str(home),'pythonLocation':'toolchain',
+             'Python_ROOT_DIR':'toolchain','PYTHONPATH':'must-remain-for-refusal','PYTHONNOUSERSITE':'1'}
+        clean=self.runner.hosted_environment(env,scratch)
+        self.assertNotIn('pythonLocation',clean);self.assertNotIn('Python_ROOT_DIR',clean)
+        self.assertEqual(clean['PYTHONPATH'],'must-remain-for-refusal')
+        self.assertEqual((Path(clean['HOME'])/'.gitconfig').read_bytes(),raw)
+        self.assertEqual((home/'.gitconfig').read_bytes(),raw)
+        self.assertEqual(env['HOME'],str(home))
+
+    def test_nonhosted_environment_and_original_home_are_never_changed(self):
+        env={'HOME':'original','pythonLocation':'left-untouched'}
+        self.assertEqual(self.runner.hosted_environment(env,self.base/'absent'),env)
+        self.assertFalse((self.base/'absent').exists())
+
     def test_memory_integrity_default_ready_copy_root_is_scoped_without_overriding_explicit_root(self):
         package = self.base / 'memory-integrity'
         module = package / 'scripts' / 'knowledge_bridge'; module.mkdir(parents=True)

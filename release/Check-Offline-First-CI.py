@@ -7,6 +7,7 @@ import subprocess
 import sys
 import time
 import traceback
+import zlib
 
 spec = importlib.util.spec_from_file_location('offline_ci_verify', Path(__file__).with_name('Verify-Offline-First.py'))
 v = importlib.util.module_from_spec(spec)
@@ -47,12 +48,15 @@ def historical(source, repo):
     return expected
 
 
-def check(source, output, repo):
+def check(source, output, repo, *, rebuild_exact=False):
     source, repo = b.ordinary(source), b.ordinary(repo)
     output = b.new_output(output, [source])
     started = time.monotonic()
     report = {'status': 'FAILED', 'base_source_commit': ACCEPTED,
               'delivery_commit': git(repo, 'rev-parse', 'HEAD').decode().strip(),
+              'rebuild_exact_requested': rebuild_exact,
+              'python_version': sys.version,
+              'zlib_runtime_version': zlib.ZLIB_RUNTIME_VERSION,
               'runtime_verified': False, 'release_ready': False, 'installed': False}
     try:
         subprocess.run(['git', '-C', str(repo), 'merge-base', '--is-ancestor', ACCEPTED, 'HEAD'], check=True)
@@ -65,10 +69,12 @@ def check(source, output, repo):
                    'QUALIFIED_DELIVERY_HASH:' + name)
         manifest = b.read((source/'release/Offline-First-Release-Manifest.json').read_bytes())
         b.need(manifest['source_commit'] == ACCEPTED, 'QUALIFIED_BASE_COMMIT')
-        b.build(source, ACCEPTED, output/'rebuilt', repo)
-        for name, expected in QUALIFIED.items():
-            b.need(b.sha((output/'rebuilt'/name).read_bytes()) == expected,
-                   'REPRODUCIBLE_HASH:' + name)
+        if rebuild_exact:
+            b.build(source, ACCEPTED, output/'rebuilt', repo)
+            for name, expected in QUALIFIED.items():
+                b.need(b.sha((output/'rebuilt'/name).read_bytes()) == expected,
+                       'REPRODUCIBLE_HASH:' + name)
+            report['rebuild_exact_verified'] = True
         verified = v.verify(source/'release', output/'verified', source, repo)
         report['extracted_root'] = verified['extracted_root']
         report['qualified_hashes'] = QUALIFIED
@@ -90,5 +96,8 @@ if __name__ == '__main__':
     p.add_argument('--source-root', type=Path, default=b.ROOT)
     p.add_argument('--repository-root', type=Path, default=b.ROOT)
     p.add_argument('--output-dir', type=Path, required=True)
+    p.add_argument('--rebuild-exact', action='store_true',
+                   help='Required in the Windows 3.14 build job; compression is toolchain-dependent.')
     a = p.parse_args()
-    check(a.source_root.absolute(), a.output_dir.absolute(), a.repository_root.absolute())
+    check(a.source_root.absolute(), a.output_dir.absolute(), a.repository_root.absolute(),
+          rebuild_exact=a.rebuild_exact)

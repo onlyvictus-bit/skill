@@ -1,5 +1,18 @@
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
+## CURRENT - hosted CI correction under verification2026-11-13
+
+Candidate17715b3 published on release/offline-first-ci-20261113 via connectedGitHub
+app; remote tree exactly719ff84c matches sealedlocal49file delta. Core/runtime
+runs43457610643/43457610647 retainedRED. All payload bytes/ZIP metadata agree;
+cross-toolchain compressed streams differ, Windows3.14 byte-rebuildPASS.
+Correction keeps exactqualifiedSHA checks in every matrix, adds mandatory
+Windows3.14.10 exactrebuild. Hosted-only GitHOME/config and actionmetadata
+fixtures leave originals/productguards/timeouts intact. Localnative17/Git5 and
+newrunner10/release6controlsPASS. Parent now verifies new exactcommitCI;
+installation/release_ready remainfalse. Do not alter acceptedZIPs or oldproofs.
+
+
 ## CURRENT - release source/CI candidate locally green, hosted CI pending2026-11-13
 
 Isolated ci/source clone derives from publishedfc4315b. Exact qualified active

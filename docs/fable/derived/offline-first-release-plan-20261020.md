@@ -4190,3 +4190,22 @@ and CMv2213PASS; eval10PASS. Rebuilt ZIPs and manifest remain exact qualified
 hashes. Fresh final independent review unavailable from helper workspacecredits;
 parent checks and hosted exactcommit results remain separate from that gap.
 Evidence: evidence/offline-first-20261020/offline-release-ci-20261113/.
+
+
+### Hosted CI correction - observed2026-11-13
+
+First exactdelivery17715b3 CI is retained RED. Matrix recompression differs
+from qualified ZIPs while all file bytes and ZIP metadata agree; Windows3.14
+reproduces exact hashes. Correction: mandatory Windows3.14 byte-rebuild job,
+all other jobs still verify delivered exact SHA pins/source closure/extraction.
+Never replace qualified archives with a host-specific compressed variant.
+
+Hosted Windows source suites also expose missing account .gitconfig and
+setup-python metadata in recursive child environments. Add CI-only owned Git
+HOME fixture (copy existing config bytes or represent originally absent config),
+remove only four setup-python metadata keys from test-child environments, retain
+unknown actual Python startup keys for refusal. Keep package code/guards fixed.
+Retain test-owned TemporaryDirectory outputs so bootstrap sidecars survive
+failed cases. Test exact environment sanitation and retained residue before a
+new CI commit. No original user-home/config/global/permission change or timeout
+increase. Native-ready failures require retained cause, never a guessed fix.
