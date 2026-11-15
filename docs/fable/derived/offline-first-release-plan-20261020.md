@@ -4237,3 +4237,32 @@ with GetModuleFileNameW instead of mistaking sys.executable for its loaded image
 Legacy four-role/timing controls use this family's direct base image; current
 source/extracted product controls keep the venv and selected-worker identity.
 All original test IDs and assertion outcomes retained. New hosted CI is pending.
+
+
+### Approved Windows 3.11/3.12 launch compatibility successor - 2026-11-15
+
+AUTH: user approved "compatibility fix and new pair" after hosted d31b7b9
+showed six native recursive failures with E_RP_FRAME_BASE_EXECUTABLE.
+Old qualified pair/source/receipts remain unchanged and addressable. New product
+source, generated manifests and pair get a separate source commit/output path.
+
+No-build leaves supported Windows jobs red. Relaxing identity comparison or
+skipping tests would hide real mismatch; reject both. Recommended narrow fix:
+actual direct image is argv[0] as well as CreateProcess application, while
+bound __PYVENV_LAUNCHER__ retains selected venv and saved command restores
+original authored argv. Preserve strict image/base/prefix/path checks and jobs,
+120/90/60/5 budgets. No runtime/global/permission/install changes.
+
+1. Retain hosted failure artifacts; portable vector regression RED then GREEN.
+2. Change recursive launch vector only; real native root/child/grandchild and
+   shutdown controls remain unchanged and must pass hosted 3.11/3.12/3.13/3.14.
+3. New source-base commit excludes derived ACTIVE manifests; generate new exact
+   content manifests and new deterministic pair under a fresh release folder.
+4. Keep old 15-file authority and old qualified pair exact, bind new pair/base
+   separately, run archive/refusal tests and fresh extracted all-suite/runtime
+   acceptance on hosted Windows/Linux. Report independent-review gap honestly.
+5. Publish only approved new release CI branch progression, retain results.
+
+Weakest link is CPython version-specific startup calculation. Existing failed
+six native cases plus new recursive identity probe are the cheapest falsifier;
+any mismatch reopens diagnosis, never broadens accepted identities.

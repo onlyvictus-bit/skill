@@ -513,7 +513,10 @@ def prepare_launch(args, profile, options, *, stage_callback=None):
         stream.write(raw)
     code = loader_literal(profile['paths'], profile['bootstrap']['path'],
         profile['bootstrap']['sha256'], str(path), hashlib.sha256(raw).hexdigest())
-    argv = [command['argv'][0], *command['flags'], '-c', code]
+    # On CPython 3.11/3.12 argv[0] seeds base_executable before the
+    # bound venv launcher restores sys.executable. Keep both native roles
+    # on the direct image; the sealed request restores authored orig_argv.
+    argv = [profile['image'], *command['flags'], '-c', code]
     require(len(subprocess.list2cmdline(argv).encode('utf-16-le'))//2 <= 32766, 'COMMAND_LENGTH')
     result = dict(options, env=env, executable=profile['image'])
     return argv, result

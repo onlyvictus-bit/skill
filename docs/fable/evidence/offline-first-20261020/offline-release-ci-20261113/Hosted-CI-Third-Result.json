@@ -1,0 +1,91 @@
+{
+  "commit": "d31b7b90dd31c556b4f8f487b9692a1c7231dc56",
+  "jobs": [
+    {
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132033972789,
+          "name": "reproducible-pair"
+        },
+        {
+          "conclusion": "success",
+          "id": 132033973412,
+          "name": "suites (windows-latest, 3.13)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033973433,
+          "name": "suites (windows-latest, 3.11)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033973508,
+          "name": "suites (ubuntu-latest, 3.13)"
+        },
+        {
+          "conclusion": "success",
+          "id": 132033973600,
+          "name": "suites (windows-latest, 3.14)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033973739,
+          "name": "suites (ubuntu-latest, 3.12)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033973795,
+          "name": "suites (ubuntu-latest, 3.14)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033973813,
+          "name": "suites (ubuntu-latest, 3.11)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033973855,
+          "name": "suites (windows-latest, 3.12)"
+        }
+      ],
+      "run_id": 43468521961
+    },
+    {
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132033967324,
+          "name": "isolated-runtime (ubuntu-latest, 3.13)"
+        },
+        {
+          "conclusion": "failure",
+          "id": 132033967542,
+          "name": "isolated-runtime (windows-latest, 3.12)"
+        },
+        {
+          "conclusion": "success",
+          "id": 132033967762,
+          "name": "isolated-runtime (ubuntu-latest, 3.12)"
+        },
+        {
+          "conclusion": "success",
+          "id": 132033969571,
+          "name": "isolated-runtime (windows-latest, 3.13)"
+        }
+      ],
+      "run_id": 43468520098
+    }
+  ],
+  "linux_runtime_acceptance": "PASS",
+  "linux_source_extracted": "PASS",
+  "product_scope_expanded_by_user": true,
+  "qualified_zip_rebuild": "PASS",
+  "remaining": {
+    "linux_controller": "3 historical Windows parent-path fixture failures",
+    "windows_311_312": "6 recursive children fail E_RP_FRAME_BASE_EXECUTABLE"
+  },
+  "status": "NOT_FULL_GREEN",
+  "windows_313_314_core": "PASS",
+  "windows_313_runtime": "PASS"
+}

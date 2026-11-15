@@ -18,17 +18,23 @@ CWD = r'C:\Users\sakth\Documents\Codex\gate1-923de16-20261021\image-successor-20
 IMAGE_SHA = '5365b422ee178f691988eb937b7abca5f48910b148f76fcce6dbaf5585c948d0'
 
 
+def captured_windows_paths(module):
+    # Reconstruct the parent before joining: converting an already POSIX-
+    # derived WORKER loses its Windows directory, which cannot be recovered.
+    if hasattr(module, 'g'):
+        module.g.REPO = PureWindowsPath(str(module.g.REPO))
+        module.g.WORKER = module.g.REPO.parent/'build-validation/n3-retrieval-9ec6fb1db36444acba2945896e8b8d17/venv/Scripts/python.exe'
+        module.g.BASE = PureWindowsPath(STORE)/'python.exe'
+        module.g.ALIAS = PureWindowsPath(ALIAS)
+        module.IMAGE = PureWindowsPath(STORE)/'python3.12.exe'
+
+
 def load():
     # Before implementation, exercise the actual predecessor to retain RED.
     spec = importlib.util.spec_from_file_location('image_successor_test_subject',NEW if NEW.exists() else OLD)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    # These are Windows identity fixtures even when the controller runs on
-    # Linux. Preserve their drive/parent semantics without touching old code.
-    if hasattr(module, 'g'):
-        for name in ('WORKER', 'BASE', 'ALIAS'):
-            setattr(module.g, name, PureWindowsPath(str(getattr(module.g, name))))
-        module.IMAGE = PureWindowsPath(STORE)/'python3.12.exe'
+    captured_windows_paths(module)
     return module
 
 
@@ -48,6 +54,18 @@ def frame_and_env():
 class ImageSuccessor(unittest.TestCase):
     def setUp(self):
         self.subject=load()
+
+    def test_posix_derived_worker_uses_captured_windows_parent(self):
+        from pathlib import PurePosixPath
+        from types import SimpleNamespace
+        repo = PurePosixPath(r'C:\Users\sakth\Documents\Codex\2026-10-02\ad\work\R5-practical-fence-20261013\source-git')
+        g = SimpleNamespace(REPO=repo, WORKER=repo.parent/'build-validation/n3-retrieval-9ec6fb1db36444acba2945896e8b8d17/venv/Scripts/python.exe',
+                            BASE=PurePosixPath(STORE)/'python.exe', ALIAS=PurePosixPath(ALIAS))
+        module = SimpleNamespace(g=g)
+        captured_windows_paths(module)
+        self.assertEqual(g.WORKER, PureWindowsPath(VENV)/'Scripts/python.exe')
+        self.assertEqual(g.WORKER.parent.parent, PureWindowsPath(VENV))
+        self.assertEqual(g.BASE.parent, PureWindowsPath(STORE))
 
     def test_recorded_store_filename_is_valid_with_uppercase_windows_env(self):
         frame,env=frame_and_env()

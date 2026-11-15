@@ -1,0 +1,66 @@
+{
+  "hosted_new_commit": "PENDING",
+  "independent_review": "UNVERIFIED_WORKSPACE_CREDITS",
+  "original_pair_changed": false,
+  "results": {
+    "compat-native-green-01": {
+      "errors": [
+        {
+          "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\tests_v2\\test_knowledge_recursive_launch_vector.py\", line 70, in test_child_and_grandchild_preserve_real_base_and_selected_venv\n    owner.wait(time.monotonic()+10)\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_process.py\", line 385, in wait\n    self._exits(until, \"graceful\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_process.py\", line 374, in _exits\n    pids, accounting = self._observe(until)\n                       ~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_process.py\", line 310, in _observe\n    if accounting.total != len(self._records): self._fail(\"E_SHARD_TREE_UNOBSERVED_MEMBER\")\n                                               ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\scripts\\knowledge_bridge\\windows_owned_process.py\", line 240, in _fail\n    def _fail(self, code): self._gap = self._gap or code; raise ValueError(self._gap)\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: E_SHARD_TREE_UNOBSERVED_MEMBER\n",
+          "id": "test_knowledge_recursive_launch_vector.NativeRecursiveIdentity.test_child_and_grandchild_preserve_real_base_and_selected_venv"
+        }
+      ],
+      "failures": [],
+      "receipt_sha256": "5f17d2c36de5f267327cf16ec5ef024b56c5949f03ff8bd670f4711ec23bb4df",
+      "skipped": [],
+      "tests_run": 2
+    },
+    "compat-native-green-02": {
+      "errors": [],
+      "failures": [],
+      "receipt_sha256": "268d8947a068ffc91c5bf0d5f4108623bb9b295b8aa7ac79336c3a1e4afcf8a0",
+      "skipped": [],
+      "tests_run": 2
+    },
+    "compat-vector-red-01": {
+      "errors": [],
+      "failures": [
+        {
+          "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\tests_v2\\test_knowledge_recursive_launch_vector.py\", line 37, in test_direct_image_argv0_keeps_selected_venv_only_in_bound_launcher\n    self.assertEqual(argv[0], image, 'CPython 3.11/3.12 derives base_executable from argv[0]')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'C:\\\\[79 chars]ned-temp\\\\recursive-vector-z2uor2kl\\\\venv\\\\Scripts\\\\python.exe' != 'C:\\\\[79 chars]ned-temp\\\\recursive-vector-z2uor2kl\\\\base\\\\python.exe'\n- C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-vector-red-01\\retained-temp\\recursive-vector-z2uor2kl\\venv\\Scripts\\python.exe\n?                                                                                                               ^ ----------\n+ C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-vector-red-01\\retained-temp\\recursive-vector-z2uor2kl\\base\\python.exe\n?                                                                                                               ^^^\n : CPython 3.11/3.12 derives base_executable from argv[0]\n",
+          "id": "test_knowledge_recursive_launch_vector.RecursiveLaunchVector.test_direct_image_argv0_keeps_selected_venv_only_in_bound_launcher (mode='script')"
+        },
+        {
+          "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\tests_v2\\test_knowledge_recursive_launch_vector.py\", line 37, in test_direct_image_argv0_keeps_selected_venv_only_in_bound_launcher\n    self.assertEqual(argv[0], image, 'CPython 3.11/3.12 derives base_executable from argv[0]')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'C:\\\\[79 chars]ned-temp\\\\recursive-vector-3x02cyr4\\\\venv\\\\Scripts\\\\python.exe' != 'C:\\\\[79 chars]ned-temp\\\\recursive-vector-3x02cyr4\\\\base\\\\python.exe'\n- C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-vector-red-01\\retained-temp\\recursive-vector-3x02cyr4\\venv\\Scripts\\python.exe\n?                                                                                                               ^ ----------\n+ C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-vector-red-01\\retained-temp\\recursive-vector-3x02cyr4\\base\\python.exe\n?                                                                                                               ^^^\n : CPython 3.11/3.12 derives base_executable from argv[0]\n",
+          "id": "test_knowledge_recursive_launch_vector.RecursiveLaunchVector.test_direct_image_argv0_keeps_selected_venv_only_in_bound_launcher (mode='c')"
+        },
+        {
+          "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\tests_v2\\test_knowledge_recursive_launch_vector.py\", line 37, in test_direct_image_argv0_keeps_selected_venv_only_in_bound_launcher\n    self.assertEqual(argv[0], image, 'CPython 3.11/3.12 derives base_executable from argv[0]')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'C:\\\\[79 chars]ned-temp\\\\recursive-vector-7z825roq\\\\venv\\\\Scripts\\\\python.exe' != 'C:\\\\[79 chars]ned-temp\\\\recursive-vector-7z825roq\\\\base\\\\python.exe'\n- C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-vector-red-01\\retained-temp\\recursive-vector-7z825roq\\venv\\Scripts\\python.exe\n?                                                                                                               ^ ----------\n+ C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-vector-red-01\\retained-temp\\recursive-vector-7z825roq\\base\\python.exe\n?                                                                                                               ^^^\n : CPython 3.11/3.12 derives base_executable from argv[0]\n",
+          "id": "test_knowledge_recursive_launch_vector.RecursiveLaunchVector.test_direct_image_argv0_keeps_selected_venv_only_in_bound_launcher (mode='m')"
+        }
+      ],
+      "receipt_sha256": "ba43db376190b579636038f0212288df7836a80d78a5f06f51fceb291fecfb63",
+      "skipped": [],
+      "tests_run": 1
+    },
+    "compat-windows-controls-01": {
+      "errors": [
+        {
+          "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\tests_v2\\test_knowledge_windows_shutdown.py\", line 85, in test_expired_stop_waits_for_the_owned_interpreter_not_only_launcher\n    with self.relay() as (session, _root, stopped):\n         ~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\contextlib.py\", line 141, in __enter__\n    return next(self.gen)\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity\\tests_v2\\test_knowledge_windows_shutdown.py\", line 57, in relay\n    actual = int((root/'actual.pid').read_text(encoding='utf-8'))\n                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 787, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\compat-windows-controls-01\\\\retained-temp\\\\owned-shutdown-proof-2o3wnv6o\\\\actual.pid'\n",
+          "id": "test_knowledge_windows_shutdown.WindowsShutdown.test_expired_stop_waits_for_the_owned_interpreter_not_only_launcher"
+        }
+      ],
+      "failures": [],
+      "receipt_sha256": "9502f1b79ff594fbba29e74027803d0ddc6fd2fa7156faf90782d20025d647a7",
+      "skipped": [],
+      "tests_run": 110
+    },
+    "image-posix-green-01": {
+      "errors": [],
+      "failures": [],
+      "receipt_sha256": "a8fa8a29713b16b52a5a20829799701f4f115d7cf18da09f0af4db2e70da0ea2",
+      "skipped": [],
+      "tests_run": 17
+    }
+  },
+  "scope": "APPROVED_COMPATIBILITY_FIX_LOCAL_EVIDENCE"
+}
