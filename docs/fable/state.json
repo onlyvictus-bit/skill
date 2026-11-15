@@ -61,7 +61,7 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "Qualify approved Windows3.11/3.12 compatibility successor source1076e02 and separate release pair using exact final-commit Windows/Linux CI; installation remains separate.",
+  "current_task": "Compatibility release pair and exact delivery dcc9e88 are verified by13 hosted jobs; evidence backup publication completes this scope. Installation and new user Store3.12 observation remain separate.",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
   "next_action": "Full Gate1 complete:7/7gates,381cases(368PASS/13permittedSKIP),24arms/24replays/11checks,C3nativecleanup and fresh preservation accepted independently. Read final Gate1-Acceptance.json in gate1-diagnostics-fix-20261107. No Gate1 rerun. Release/package/install/whole-skill/nativeDB/model/producer-authentication remain separate; no further milestone executed.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
@@ -2308,24 +2308,25 @@
     }
   },
   "offline_release_ci_20261113": {
-    "status": "LOCAL_CANDIDATE_VERIFIED_HOSTED_CI_PENDING",
+    "status": "EXACT_COMPATIBILITY_DELIVERY_HOSTED_CI_PASS",
     "parent": "fc4315b329409e8eac21bbd84a844442e0187732",
     "accepted_package_base": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
     "controller_original_ids": 525,
-    "controller_final_cases": 540,
+    "controller_final_cases": 548,
     "original_cases_omitted": 0,
     "failures": 0,
     "errors": 0,
-    "hosted_ci_verified": false,
+    "hosted_ci_verified": true,
     "release_ready": false,
     "installed": false,
     "evidence": "docs/fable/evidence/offline-first-20261020/offline-release-ci-20261113/Local-Verification.json",
-    "published_commit": "17715b37e8b131a5ba92249a8345e0dbbc807f1f",
+    "published_commit": "dcc9e88e0d21b44c38efc45b0435190125b44d57",
     "hosted_first_status": "FAILED_RETAINED_COMPRESSION_AND_CI_ENVIRONMENT_FIXTURES",
-    "hosted_correction": "Mandatory Windows3.14.10 exact rebuild; matrix exact ZIP verification; isolated hosted Git HOME and setup-python metadata fixture; retained temporary outputs"
+    "hosted_correction": "Mandatory Windows3.14.10 exact rebuild; matrix exact ZIP verification; isolated hosted Git HOME and setup-python metadata fixture; retained temporary outputs",
+    "hosted_final_jobs_passed": 13
   },
   "offline_release_compatibility_20261115": {
-    "status": "NEW_PAIR_BUILT_EXACT_EXTRACTION_VERIFIED_HOSTED_PENDING",
+    "status": "COMPATIBILITY_PAIR_EXACT_DELIVERY_HOSTED_CI_VERIFIED",
     "source_base": "1076e02c36e59ada0f455bd2c2612bf0ef811e94",
     "predecessor_delivery": "d31b7b90dd31c556b4f8f487b9692a1c7231dc56",
     "product_fix": "Direct image argv0 preserves older CPython base executable identity; strict checks unchanged",
@@ -2338,9 +2339,20 @@
     "archive_controls": 14,
     "release_controls": 8,
     "new_native_identity_controls": 2,
-    "hosted_ci_verified": false,
+    "hosted_ci_verified": true,
     "release_ready": false,
     "installed": false,
-    "original_pair_preserved": true
+    "original_pair_preserved": true,
+    "package_qualification_complete": true,
+    "delivery_commit": "dcc9e88e0d21b44c38efc45b0435190125b44d57",
+    "hosted_core_run": 43735686298,
+    "hosted_runtime_run": 43735686326,
+    "hosted_jobs_passed": 13,
+    "independent_review": "SHIP_FOR_HOSTED_PUBLICATION",
+    "raw_receipts_reviewed": 27,
+    "controller_cases": 548,
+    "controller_original_ids_omitted": 0,
+    "evidence": "docs/fable/evidence/offline-first-20261020/offline-release-ci-20261113/Compatibility-Hosted-Acceptance.json",
+    "new_selected_store312_observation": false
   }
 }

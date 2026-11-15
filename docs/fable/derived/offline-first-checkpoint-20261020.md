@@ -1,3 +1,24 @@
+## Latest accepted compatibility delivery - 2026-11-15
+
+Source1076e02 / deliverydcc9e88e0d21b44c38efc45b0435190125b44d57 is published
+on release/offline-first-ci-20261113. All13 exact-commit hosted jobs PASS:
+8Windows/Linux x3.11-3.14 core,1exact-byte rebuild,4runtime x3.12/3.13.
+Each core job checks1114 source cases,1114 fresh extracted cases and548
+controller cases, with explicit OS/runtime skips and1declared liveDB xfail.
+Each runtime job checks357source+357extracted cases,24initial/fresh-replay
+arms and11public-workflow/refusal/preservation checks. Zero unexpected failures.
+All six old Windows3.11/3.12 native failures now pass; no original IDs omitted.
+All525 original controller IDs are retained. Local548PASS has0skips/errors.
+
+Fresh independent review clears code/publication; parent verified27 exact raw
+receipts and all13 hosted job results, plus the prior/new ZIP hashes. New pair
+is release/offline-compat-20261115; old pair and15historical release files remain
+unchanged. Evidence: Compatibility-Hosted-Acceptance.json and raw-review report.
+Tested release ref staysdcc9e88; final observations are a separate backup commit
+so a docs-only publication does not pretend to be the tested delivery.
+Installation, production/producer authentication and a new user Store3.12
+observation remain separate. No reinstall, ACL/global change or old run retry.
+
 ## Latest compatibility successor - 2026-11-15
 
 The original qualified pair remains exact. Hosted d31b7b9 passed byte rebuild,

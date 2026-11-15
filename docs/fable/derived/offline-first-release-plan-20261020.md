@@ -4172,7 +4172,7 @@ and consumed runtime/helper inputs stay unchanged. Existing ZIPs remain byte-exa
 - [x] CI verifies current source plus exact qualified offline pair, preserves old
   archive identity, and executes all applicable source/extracted core/runtime tests.
 - [ ] Portable full controller/eval regression; independent CI/candidate review.
-- [ ] Final release commit/push and observe exact Windows/Linux CI results.
+- [x] Final release commit/push and observe exact Windows/Linux CI results.
 
 No-build invokes obsolete full-current-tree comparison and cannot qualify this
 release. Minimal successor integration preserves archives and assertion semantics;
@@ -4266,3 +4266,14 @@ original authored argv. Preserve strict image/base/prefix/path checks and jobs,
 Weakest link is CPython version-specific startup calculation. Existing failed
 six native cases plus new recursive identity probe are the cheapest falsifier;
 any mismatch reopens diagnosis, never broadens accepted identities.
+
+
+Compatibility successor accepted2026-11-15: exact deliverydcc9e88; core run
+43735686298 and runtime run43735686326 bothSUCCESS,13/13jobs. Source1076e02,
+new pair29edc737.../unchangedCM1de54793.../manifestd70415... stay exact. All6old
+Windows native regressions pass without skip; 525original controller IDs retained
+in548. Parent raw-reviewed27receipts and all4x24replays/11checks. Independent
+reviewSHIP for unchanged reviewed code/publication. Qualified predecessor and
+15oldrelease files remain exact. Final evidence backup is separate from tested
+release ref. Installation, a new user Store3.12 observation and production remain
+unqualified; no additional selected runtime attempt or old command retry.

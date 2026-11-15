@@ -1,0 +1,234 @@
+[
+  {
+    "artifact_id": 14169783984,
+    "receipts": [
+      {
+        "bytes": 3270,
+        "entry": "Receipt.json",
+        "sha256": "bfac82f6612ee136196f7f47f07012a374042b3a1b3fb03f52492ee7fbafe23d"
+      }
+    ]
+  },
+  {
+    "artifact_id": 14169824760,
+    "receipts": [
+      {
+        "bytes": 60529,
+        "entry": "offline-controller/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "e6a772aa40c6e73706a4f18977d809fd047be69737e48a14020aef62c07dcbf2",
+        "skipped": 0,
+        "tests_run": 548
+      },
+      {
+        "bytes": 2812,
+        "entry": "offline-extracted/claude-mon-tests/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "ee7feac91dd78c301728dead48fbccf17cd73c3acb3f0e121a21ed3e4864ee7e",
+        "skipped": 0,
+        "tests_run": 21
+      },
+      {
+        "bytes": 17397,
+        "entry": "offline-extracted/claude-mon-tests_v2/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "3947b9067cb18af059a2d210dcdc0ac36d1d6e1d15b3440aa32bea86516ac600",
+        "skipped": 0,
+        "tests_run": 213
+      },
+      {
+        "bytes": 3034,
+        "entry": "offline-extracted/memory-integrity-tests/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "4854f9a8dd299d51b1151a52dbf58277b38413a4e385a63ea59064b9d93b8a5b",
+        "skipped": 0,
+        "tests_run": 21
+      },
+      {
+        "bytes": 100793,
+        "entry": "offline-extracted/memory-integrity-tests_v2/Receipt.json",
+        "expected_failures": 1,
+        "sha256": "462680ab0e34b52ceb5036d68b980f510ab6180aa633196e9d6728ae050d0c9d",
+        "skipped": 54,
+        "tests_run": 859
+      },
+      {
+        "bytes": 3225,
+        "entry": "offline-pair/Receipt.json",
+        "sha256": "d6632feac72cec58f677120a5d4ddfacb05d741f882407faaa5b7f8b0fb95d51"
+      },
+      {
+        "bytes": 2778,
+        "entry": "offline-source/claude-mon-tests/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "860afb21066e2c7bc4bf57850755393eb3c823e21941690387fd7d130fb9b5a0",
+        "skipped": 0,
+        "tests_run": 21
+      },
+      {
+        "bytes": 17363,
+        "entry": "offline-source/claude-mon-tests_v2/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "c22a1d897151c358d13c57936b97e55dd69fbc87976685232229756840878415",
+        "skipped": 0,
+        "tests_run": 213
+      },
+      {
+        "bytes": 3000,
+        "entry": "offline-source/memory-integrity-tests/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "930bc65feeb28c27f696e8542fede001b93f430d75eb102620040b2bd1fba589",
+        "skipped": 0,
+        "tests_run": 21
+      },
+      {
+        "bytes": 100731,
+        "entry": "offline-source/memory-integrity-tests_v2/Receipt.json",
+        "expected_failures": 1,
+        "sha256": "22dec1c352402255ba1422958e3266670957e5bc6f1d24dc91bf4bc761c7f053",
+        "skipped": 54,
+        "tests_run": 859
+      }
+    ]
+  },
+  {
+    "artifact_id": 14169943318,
+    "receipts": [
+      {
+        "bytes": 131568,
+        "checks_passed": 11,
+        "entry": "offline-runtime-acceptance/Receipt.json",
+        "measurements": 24,
+        "replays_verified": 24,
+        "sha256": "e4fada4e4706228928e02003c0366cda54af7583068c4b361b9569e935249f92",
+        "status": "PASS_BOUNDED_RUNTIME"
+      },
+      {
+        "bytes": 66775,
+        "entry": "offline-runtime-extracted/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "ea6f2c732312bbf215bffaf6756d01b50a95a60cd22c46b1a468fa8dedca3dfa",
+        "skipped": 158,
+        "tests_run": 357
+      },
+      {
+        "bytes": 3209,
+        "entry": "offline-runtime-pair/Receipt.json",
+        "sha256": "447886523caf235774bd512f53228d74bd6069b18148e778d7858fa1a502600b"
+      },
+      {
+        "bytes": 66735,
+        "entry": "offline-runtime-source/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "96120ca21f16c8934877f875d2510edba88301c449353d727d824cbd51c15317",
+        "skipped": 158,
+        "tests_run": 357
+      }
+    ]
+  },
+  {
+    "artifact_id": 14170269715,
+    "receipts": [
+      {
+        "bytes": 127853,
+        "checks_passed": 11,
+        "entry": "offline-runtime-acceptance/Receipt.json",
+        "measurements": 24,
+        "replays_verified": 24,
+        "sha256": "31fb438935f660aebfa5466aaf9ea6c72c16f9188f3e6bd3622eac2132c0e2cc",
+        "status": "PASS_BOUNDED_RUNTIME"
+      },
+      {
+        "bytes": 41597,
+        "entry": "offline-runtime-extracted/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "0f8b71350645f2260a431f894850e0be076a67dedd7dbee3e27ed4ce21b6bae7",
+        "skipped": 13,
+        "tests_run": 357
+      },
+      {
+        "bytes": 3233,
+        "entry": "offline-runtime-pair/Receipt.json",
+        "sha256": "7fc64c7ed242615fe58db4ccc2c5c35eeeef8e2da5889684b9749453c2435e4d"
+      },
+      {
+        "bytes": 41555,
+        "entry": "offline-runtime-source/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "b91a488d137a2eba881eff524d103c87fc21dab5be08955c44b6721515993286",
+        "skipped": 13,
+        "tests_run": 357
+      }
+    ]
+  },
+  {
+    "artifact_id": 14170860498,
+    "receipts": [
+      {
+        "bytes": 131622,
+        "checks_passed": 11,
+        "entry": "offline-runtime-acceptance/Receipt.json",
+        "measurements": 24,
+        "replays_verified": 24,
+        "sha256": "a51da6870edaa48ef2ae0b00d818eb73bc552f87d7591da54bf8703a3477d11f",
+        "status": "PASS_BOUNDED_RUNTIME"
+      },
+      {
+        "bytes": 66775,
+        "entry": "offline-runtime-extracted/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "7f001c815721b560c33a9b75de0c4328709a3bf737413778ec33b6bbf6f21cf3",
+        "skipped": 158,
+        "tests_run": 357
+      },
+      {
+        "bytes": 3209,
+        "entry": "offline-runtime-pair/Receipt.json",
+        "sha256": "045eb012634f6c7469dd46115d4577afcd6a89d6cfaac0886301c6898899be21"
+      },
+      {
+        "bytes": 66735,
+        "entry": "offline-runtime-source/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "ff7a80e4539d8134d97719bf88aec8789b54c6a82faad6c18bbc14acbc404e28",
+        "skipped": 158,
+        "tests_run": 357
+      }
+    ]
+  },
+  {
+    "artifact_id": 14170950934,
+    "receipts": [
+      {
+        "bytes": 127853,
+        "checks_passed": 11,
+        "entry": "offline-runtime-acceptance/Receipt.json",
+        "measurements": 24,
+        "replays_verified": 24,
+        "sha256": "f3e06535e89393df7b3772d9d825f57a16ecb14b3ec0397547a72e9e09dee00b",
+        "status": "PASS_BOUNDED_RUNTIME"
+      },
+      {
+        "bytes": 41597,
+        "entry": "offline-runtime-extracted/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "8e7ec904b61b12d5b90781243e0c2fb16253ec7c60388d9b7c759c2e02819cec",
+        "skipped": 13,
+        "tests_run": 357
+      },
+      {
+        "bytes": 3233,
+        "entry": "offline-runtime-pair/Receipt.json",
+        "sha256": "6d16769b25ccb9ce02c4508422f88e698cb20e47dd747401d1300fb9761e8fa5"
+      },
+      {
+        "bytes": 41555,
+        "entry": "offline-runtime-source/Receipt.json",
+        "expected_failures": 0,
+        "sha256": "ee1514f56fa32e06648523fcaaa15855031e37a3d5cc3a0abe054fe59e1ec62e",
+        "skipped": 13,
+        "tests_run": 357
+      }
+    ]
+  }
+]
