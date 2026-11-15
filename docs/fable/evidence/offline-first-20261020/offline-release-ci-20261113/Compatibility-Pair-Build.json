@@ -1,0 +1,108 @@
+{
+  "archive_controls": 14,
+  "exact_rebuild_extraction": {
+    "base_source_commit": "1076e02c36e59ada0f455bd2c2612bf0ef811e94",
+    "delivery_commit": "1076e02c36e59ada0f455bd2c2612bf0ef811e94",
+    "delivery_hashes": {
+      "Offline-First-Release-Manifest.json": "d70415a3bafa140a7546213d90973e0f112941c6cfae979b90c474e1b4947279",
+      "claude-mon-offline-v1.zip": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+      "memory-integrity-offline-v1.zip": "29edc7378c789224bd871fde0698181e6558e29b70ddd602dd5a2a13f851b975"
+    },
+    "extracted_root": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\compat-pair-check-01\\verified\\extracted",
+    "historical": {
+      "release/Build-Knowledge-Bridge.py": {
+        "bytes": 2769,
+        "sha256": "349af9c13da927e1192ee92918826e168d2ae6f28e8f47b9cd0be3ba33bb7997"
+      },
+      "release/Knowledge-Bridge-Manifest.json": {
+        "bytes": 744,
+        "sha256": "7bd6ba1b11a3348044ca627d56ed061bfdcdf925d18759c3e6ac0080f87783d9"
+      },
+      "release/Memory-Integrity-R3-Release-Manifest.json": {
+        "bytes": 2295,
+        "sha256": "385b2901b640ad3d0a763290e61423f065a5e0300db42b2c025b4101e88e09bc"
+      },
+      "release/Memory-Integrity-R4-Release-Manifest.json": {
+        "bytes": 802,
+        "sha256": "5ad52112df27d10a14209fd17ff943c413a62f1c7a8359d181db3de3e052727f"
+      },
+      "release/Verify-Knowledge-Bridge.py": {
+        "bytes": 5106,
+        "sha256": "63a010e0ad0aed2beeec86e666b98bb2d69880b8f0c6fd96dcf178f3ff82b08d"
+      },
+      "release/Verify-Memory-Integrity-R3.py": {
+        "bytes": 3593,
+        "sha256": "7a1c16c5595ccfcb32ab73674486686e1559b3e2155e4371d31bbbbf0975d67d"
+      },
+      "release/Verify-Memory-Integrity-R4.py": {
+        "bytes": 6179,
+        "sha256": "9f7b62bdc7f66a7b5aee4bf0f093da98f95b90a6efd721ad40668405a0221b2c"
+      },
+      "release/claude-mon-knowledge-v1.zip": {
+        "bytes": 154348,
+        "sha256": "c3b0fa2a0c4f51847d62542ce48e8f5d5dfcbb38ab8af6d6e91b8f28976d0fcf"
+      },
+      "release/claude-mon-knowledge-v2.zip": {
+        "bytes": 154391,
+        "sha256": "898011cf9056883695bdf3fec7ffaebecbbe0b471acb8f843b4ca3dab967d979"
+      },
+      "release/claude-mon-r3.zip": {
+        "bytes": 149321,
+        "sha256": "747fa62d6c074f71a7b79ba64b37f20e3cb2015e5e40183c158f58b5ac4b9cec"
+      },
+      "release/claude-mon-r4.zip": {
+        "bytes": 154816,
+        "sha256": "5cf842c5e02c05e3e34069090a7d00e05d8eee250701fb786eaa638b3e6bba57"
+      },
+      "release/memory-integrity-knowledge-v1.zip": {
+        "bytes": 334811,
+        "sha256": "12ce0f6cb3b5b8edb100f906a5c39f0e6567522e1ee2cb4baa247a0b5ee808be"
+      },
+      "release/memory-integrity-knowledge-v2.zip": {
+        "bytes": 387921,
+        "sha256": "55f024478a1edcd976fc364fbd4ee91ec5a2029841d7fc23e7a131d300529eb3"
+      },
+      "release/memory-integrity-r3.zip": {
+        "bytes": 180713,
+        "sha256": "c6fdda3425b1d13bb6ba600207efa3e79ca7267da079750124852fe4e39f875a"
+      },
+      "release/memory-integrity-r4.zip": {
+        "bytes": 232434,
+        "sha256": "888d435b4fb5a2eac3d8e14ac783c40399b0d473aee676ff164189b08d87bc6a"
+      }
+    },
+    "historical_source_commit": "a2a28bf547a9c3e187c89eb6aee9f0b6bd822956",
+    "installed": false,
+    "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "qualified_predecessor_hashes": {
+      "Offline-First-Release-Manifest.json": "0fa71257764e4a6089f4d4d635d8309190ab09d81078e6d7395c4b0a32cc5cb2",
+      "claude-mon-offline-v1.zip": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+      "memory-integrity-offline-v1.zip": "c3869791951e4fef87256b96ba1944834e1b8cf9144e21a211a904751359e526"
+    },
+    "rebuild_exact_requested": true,
+    "rebuild_exact_verified": true,
+    "release_ready": false,
+    "runtime_verified": false,
+    "seconds": 21.34018619998824,
+    "status": "SOURCE_HISTORY_AND_EXACT_PAIR_VERIFIED_RUNTIME_SEPARATE",
+    "zlib_runtime_version": "1.3.1.zlib-ng"
+  },
+  "hosted_ci": "PENDING",
+  "installed": false,
+  "native_generations": 3,
+  "new_pair": {
+    "Offline-First-Release-Manifest.json": "d70415a3bafa140a7546213d90973e0f112941c6cfae979b90c474e1b4947279",
+    "claude-mon-offline-v1.zip": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+    "memory-integrity-offline-v1.zip": "29edc7378c789224bd871fde0698181e6558e29b70ddd602dd5a2a13f851b975"
+  },
+  "original_pair_preserved": true,
+  "portable_modes": [
+    "script",
+    "c",
+    "m"
+  ],
+  "primary_source": "https://github.com/python/cpython/blob/v3.12.10/Modules/getpath.py#L264-L280",
+  "release_controls": 8,
+  "release_ready": false,
+  "source_base": "1076e02c36e59ada0f455bd2c2612bf0ef811e94"
+}

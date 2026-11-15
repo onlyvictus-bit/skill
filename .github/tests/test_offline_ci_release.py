@@ -76,6 +76,17 @@ class WorkflowMigration(unittest.TestCase):
         for name, digest in c.QUALIFIED.items():
             self.assertEqual(hashlib.sha256((ROOT/'release'/name).read_bytes()).hexdigest(), digest)
 
+    def test_compatibility_successor_has_separate_source_and_exact_pair_pins(self):
+        self.assertEqual(c.DELIVERY_BASE, '1076e02c36e59ada0f455bd2c2612bf0ef811e94')
+        self.assertEqual(c.DELIVERY_DIRECTORY, 'release/offline-compat-20261115')
+        self.assertEqual(set(c.DELIVERY), set(c.QUALIFIED))
+        for name, digest in c.DELIVERY.items():
+            self.assertEqual(hashlib.sha256((ROOT/c.DELIVERY_DIRECTORY/name).read_bytes()).hexdigest(), digest)
+        doc=c.b.read((ROOT/c.DELIVERY_DIRECTORY/'Offline-First-Release-Manifest.json').read_bytes())
+        self.assertEqual(doc['source_commit'],c.DELIVERY_BASE)
+        self.assertNotEqual(c.DELIVERY['memory-integrity-offline-v1.zip'], c.QUALIFIED['memory-integrity-offline-v1.zip'])
+        self.assertEqual(c.DELIVERY['claude-mon-offline-v1.zip'], c.QUALIFIED['claude-mon-offline-v1.zip'])
+
     def test_byte_rebuild_is_mandatory_on_qualified_windows_toolchain(self):
         text = (ROOT/'.github/workflows/ci.yml').read_text()
         self.assertIn('  reproducible-pair:', text)

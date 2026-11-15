@@ -61,7 +61,7 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "Publish isolated offline release CI candidate and observe exact-commit hosted Windows/Linux results; installation remains separate.",
+  "current_task": "Qualify approved Windows3.11/3.12 compatibility successor source1076e02 and separate release pair using exact final-commit Windows/Linux CI; installation remains separate.",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
   "next_action": "Full Gate1 complete:7/7gates,381cases(368PASS/13permittedSKIP),24arms/24replays/11checks,C3nativecleanup and fresh preservation accepted independently. Read final Gate1-Acceptance.json in gate1-diagnostics-fix-20261107. No Gate1 rerun. Release/package/install/whole-skill/nativeDB/model/producer-authentication remain separate; no further milestone executed.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
@@ -299,7 +299,7 @@
     "controller_windows_tests": 77,
     "focused_tests_run": 59,
     "focused_tests_skipped": 1,
-    "authority": "User answered Approve RP1\u00e2\u20ac\u201cRP3 (Recommended)",
+    "authority": "User answered Approve RP1â€“RP3 (Recommended)",
     "plan": "docs/fable/derived/offline-first-release-plan-20261020.md#dr-actual-result-and-proposed-rp1rp3-recursive-launch-repair2026-10-28",
     "mechanism": "Exact native executable selection plus explicit sealed recursive pre-authored bootstrap; preserve venv-facing identity and public semantics",
     "controller_profile": "Existing Python3.14 unit and failure controls only",
@@ -2323,5 +2323,24 @@
     "published_commit": "17715b37e8b131a5ba92249a8345e0dbbc807f1f",
     "hosted_first_status": "FAILED_RETAINED_COMPRESSION_AND_CI_ENVIRONMENT_FIXTURES",
     "hosted_correction": "Mandatory Windows3.14.10 exact rebuild; matrix exact ZIP verification; isolated hosted Git HOME and setup-python metadata fixture; retained temporary outputs"
+  },
+  "offline_release_compatibility_20261115": {
+    "status": "NEW_PAIR_BUILT_EXACT_EXTRACTION_VERIFIED_HOSTED_PENDING",
+    "source_base": "1076e02c36e59ada0f455bd2c2612bf0ef811e94",
+    "predecessor_delivery": "d31b7b90dd31c556b4f8f487b9692a1c7231dc56",
+    "product_fix": "Direct image argv0 preserves older CPython base executable identity; strict checks unchanged",
+    "pair_directory": "release/offline-compat-20261115",
+    "zip_hashes": {
+      "Offline-First-Release-Manifest.json": "d70415a3bafa140a7546213d90973e0f112941c6cfae979b90c474e1b4947279",
+      "claude-mon-offline-v1.zip": "1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0",
+      "memory-integrity-offline-v1.zip": "29edc7378c789224bd871fde0698181e6558e29b70ddd602dd5a2a13f851b975"
+    },
+    "archive_controls": 14,
+    "release_controls": 8,
+    "new_native_identity_controls": 2,
+    "hosted_ci_verified": false,
+    "release_ready": false,
+    "installed": false,
+    "original_pair_preserved": true
   }
 }

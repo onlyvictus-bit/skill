@@ -21,6 +21,10 @@ QUALIFIED = {
     'Offline-First-Release-Manifest.json': '0fa71257764e4a6089f4d4d635d8309190ab09d81078e6d7395c4b0a32cc5cb2',
 }
 
+DELIVERY_BASE = '1076e02c36e59ada0f455bd2c2612bf0ef811e94'
+DELIVERY_DIRECTORY = 'release/offline-compat-20261115'
+DELIVERY = {'Offline-First-Release-Manifest.json': 'd70415a3bafa140a7546213d90973e0f112941c6cfae979b90c474e1b4947279', 'claude-mon-offline-v1.zip': '1de54793ae104f24a50f84401733d16d714744ea68dd4cc89e628339fb26a6f0', 'memory-integrity-offline-v1.zip': '29edc7378c789224bd871fde0698181e6558e29b70ddd602dd5a2a13f851b975'}
+
 
 def git(repo, *args):
     return subprocess.check_output(['git', '-C', str(repo), *args])
@@ -52,7 +56,8 @@ def check(source, output, repo, *, rebuild_exact=False):
     source, repo = b.ordinary(source), b.ordinary(repo)
     output = b.new_output(output, [source])
     started = time.monotonic()
-    report = {'status': 'FAILED', 'base_source_commit': ACCEPTED,
+    report = {'status': 'FAILED', 'base_source_commit': DELIVERY_BASE,
+              'historical_source_commit': ACCEPTED,
               'delivery_commit': git(repo, 'rev-parse', 'HEAD').decode().strip(),
               'rebuild_exact_requested': rebuild_exact,
               'python_version': sys.version,
@@ -62,23 +67,30 @@ def check(source, output, repo, *, rebuild_exact=False):
         subprocess.run(['git', '-C', str(repo), 'merge-base', '--is-ancestor', ACCEPTED, 'HEAD'], check=True)
         report['historical'] = historical(source, repo)
         b.need(all((source/n/b.ACTIVE).is_file() for n in b.PACKAGES), 'ACTIVE_DELIVERY_REQUIRED')
-        maps = b.source_check(source, ACCEPTED, repo)
+        subprocess.run(['git', '-C', str(repo), 'merge-base', '--is-ancestor', DELIVERY_BASE, 'HEAD'], check=True)
+        maps = b.source_check(source, DELIVERY_BASE, repo)
         for name, expected in QUALIFIED.items():
             path = b.ordinary(source/'release'/name)
             b.need(path.is_file() and path.stat().st_nlink == 1 and b.sha(path.read_bytes()) == expected,
                    'QUALIFIED_DELIVERY_HASH:' + name)
-        manifest = b.read((source/'release/Offline-First-Release-Manifest.json').read_bytes())
-        b.need(manifest['source_commit'] == ACCEPTED, 'QUALIFIED_BASE_COMMIT')
+        pair = source/DELIVERY_DIRECTORY
+        for name, expected in DELIVERY.items():
+            path = b.ordinary(pair/name)
+            b.need(path.is_file() and path.stat().st_nlink == 1 and b.sha(path.read_bytes()) == expected,
+                   'COMPATIBILITY_DELIVERY_HASH:' + name)
+        manifest = b.read((pair/'Offline-First-Release-Manifest.json').read_bytes())
+        b.need(manifest['source_commit'] == DELIVERY_BASE, 'QUALIFIED_BASE_COMMIT')
         if rebuild_exact:
-            b.build(source, ACCEPTED, output/'rebuilt', repo)
-            for name, expected in QUALIFIED.items():
+            b.build(source, DELIVERY_BASE, output/'rebuilt', repo)
+            for name, expected in DELIVERY.items():
                 b.need(b.sha((output/'rebuilt'/name).read_bytes()) == expected,
                        'REPRODUCIBLE_HASH:' + name)
             report['rebuild_exact_verified'] = True
-        verified = v.verify(source/'release', output/'verified', source, repo)
+        verified = v.verify(pair, output/'verified', source, repo)
         report['extracted_root'] = verified['extracted_root']
-        report['qualified_hashes'] = QUALIFIED
-        b.need(b.source_check(source, ACCEPTED, repo) == maps, 'SOURCE_CHANGED_DURING_CI')
+        report['qualified_predecessor_hashes'] = QUALIFIED
+        report['delivery_hashes'] = DELIVERY
+        b.need(b.source_check(source, DELIVERY_BASE, repo) == maps, 'SOURCE_CHANGED_DURING_CI')
         historical(source, repo)
         report['status'] = 'SOURCE_HISTORY_AND_EXACT_PAIR_VERIFIED_RUNTIME_SEPARATE'
     except BaseException:

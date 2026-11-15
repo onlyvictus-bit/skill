@@ -1,3 +1,16 @@
+## Latest compatibility successor - 2026-11-15
+
+The original qualified pair remains exact. Hosted d31b7b9 passed byte rebuild,
+Windows3.13/3.14 core, all Linux package suites/runtime and Windows3.13 runtime.
+Windows3.11/3.12 exposed E_RP_FRAME_BASE_EXECUTABLE in recursive descendants.
+User approved narrow product fix and new pair. Source1076e02 uses direct image
+argv0 while retaining bound selected venv, strict identity and all budgets.
+New pair: release/offline-compat-20261115. Local exact rebuild/extraction,
+14 archive controls, 8 release controls, portable vector modes and real native
+3-generation proof pass. Broader local110 has109PASS and1agent marker-access
+error retained. Hosted final-commit CI is pending; do not claim full green.
+No install, ACL/global change, old archive replacement or old runtime retry.
+
 # RESUME HERE: offline-first release WIP (2026-10-20)
 
 ## CURRENT - hosted CI correction under verification2026-11-13
