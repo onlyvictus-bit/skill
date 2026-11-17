@@ -1,0 +1,25 @@
+{
+  "scope": "CODEX_FILE_BACKED_PROJECT_CONTINUITY",
+  "first_publication": {
+    "commit": "9285688ac69a653683558502ae9adbb981c497fd",
+    "tree": "5cb295dfeea41e9697dbf279cf0a0915daa01061",
+    "branch": "backup/codex-project-continuity-20261117",
+    "fetched_exact_tree": true
+  },
+  "focused_cases": 70,
+  "installed_cases": 57,
+  "installed_files": {
+    "memory-integrity": 199,
+    "claude-mon": 74
+  },
+  "installed_matches_source": true,
+  "backup": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\continuity-publication-20261117\\installed-before-reusable-continuity",
+  "third_party_skill_validator": "UNAVAILABLE_PYYAML_NOT_INSTALLED",
+  "nonexistent_handshake_cli": "INVALID_INVOCATION_RETAINED; actual protected workflow handshake verified below",
+  "final_independent_model_context_review": "UNOBSERVED_AGENT_CREDITS_EXHAUSTED",
+  "memory_service_persistence": "UNVERIFIED",
+  "automatic_global_recall": false,
+  "website_updated": false,
+  "broad_runtime_caveats": "Existing legacy_watchdog_repair_20261117 failures remain unchanged; not requalified",
+  "authority": "PUSH TO GIT AND AFTER THAT SAVE THAT MISSING PIECE IN SKILL TO USE"
+}

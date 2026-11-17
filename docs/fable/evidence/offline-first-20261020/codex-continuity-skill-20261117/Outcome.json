@@ -1,0 +1,17 @@
+{
+  "status": "REUSABLE_CONTINUITY_INSTALLED_AND_ACTUAL_PROJECT_RECOVERED",
+  "recovery": "VERIFIED_PROJECT_FILE_RECOVERY",
+  "records_recovered": 8,
+  "bound_project_files": 37,
+  "installed_skill_files": 273,
+  "prior_basis_retained": true,
+  "read_only_guarded_fresh_process": true,
+  "focused_tests_passed": 70,
+  "installed_repeated_tests_passed": 57,
+  "independent_final_model_context_review": "UNOBSERVED_CREDITS_EXHAUSTED",
+  "memory_service_persistence": "UNVERIFIED",
+  "automatic_global_recall": false,
+  "website_updated": false,
+  "release_requalified": false,
+  "basis_sha256": "a4616f1c176ea92393ede77d1c7999448161cd934a539407cf00681f51936371"
+}

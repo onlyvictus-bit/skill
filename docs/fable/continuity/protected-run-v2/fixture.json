@@ -1,0 +1,98 @@
+{
+  "U000001": {
+    "interpretation": "C01 CURRENT SOURCE AND PUBLICATION: use C:/Users/sakth/Documents/Codex/ofpkg-20261113/ci/source. The first watchdog/project-continuity checkpoint is published at GitHub onlyvictus-bit/skill commit9285688ac69a653683558502ae9adbb981c497fd on backup/codex-project-continuity-20261117 and was fetched back with an exact tree match. This new reviewed snapshot extends that checkpoint; older ad/work and main are historical. Source: docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Acceptance.json.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "The GitHub publication was fetched and its tree equals the accepted local tree; this is a source/evidence publication, not runtime qualification."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000002": {
+    "interpretation": "C02 INSTALLED PAIR: current Memory Integrity199 files and unchanged Claude-Mon74 files match source. Installed continuity19 and watchdog/coverage38 tests passed; prior installed196-file copy is retained as backup. Source: docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Installed-Skill-Tests.json and Acceptance.json.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "Exact installed inventories and retained test outputs support these counts; repeated installed tests are reported separately from the seventy focused cases."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000003": {
+    "interpretation": "C03 REUSABLE INITIALIZATION: Memory Integrity scripts/project_continuity.py and references/codex-project-continuity.md provide explicit initialization from authored reviews, read-only protected recovery, and lease-checked version-preserving refresh. AGENTS.md must direct a fresh session to recovery. Existing workflows own review accounting; sealing does not invent interpretations. Sources: memory-integrity/scripts/project_continuity.py and memory-integrity/references/codex-project-continuity.md.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "I reviewed the initialization, protected recovery and replacement lease paths; project startup discovery is required and automatic conversation capture is absent."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000004": {
+    "interpretation": "C04 WATCHDOG AND BROADER LIMITS: bridge-verify cannot claim PERSISTED without an independent restart boundary; current cap is UNVERIFIED. Prior1131 extracted tests include MIv1=38PASS, CM234PASS, MIv2=795PASS/54SKIP/7failing cases/2ERROR/1expectedfailure. Existing failures remain retained; this continuity update does not qualify the full release. Sources: memory-integrity/scripts/memory_watchdog.py and docs/fable/state.json legacy_watchdog_repair_20261117.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "The prior broader failures are intentionally retained; a successful file recovery must never upgrade their qualification or the restart verdict."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000005": {
+    "interpretation": "C05 RETENTION AND SAFETY: only newly managed READY copies may expire after3days following accepted reading and native exit; originals stay retained. Offline profile disables live providers and native mutations. This user authorized checkpoint publication and saving the reusable missing piece; continuation alone authorizes no installs, provider calls, shared DB/trading action or credential reads. Sources: memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py, memory-integrity/capabilities-v2.json and current user instruction.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "Three-day housekeeping applies only to managed READY copies; existing originals and unrelated evidence are not deletion targets."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000006": {
+    "interpretation": "C06 PACKAGE AND WEBSITE: historical corrected watchdog Memory Integrity ZIP hash2aa020bb154099c3930154d7cd734b8de8fc5e7996936bde8af83cd64451a4b3 differs from old29edc7378c789224bd871fde0698181e6558e29b70ddd602dd5a2a13f851b975. The new continuity files are installed in Codex; this update does not replace those ZIPs or establish corrected website installation. Sources: docs/fable/state.json legacy_watchdog_repair_20261117 and Acceptance.json.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "The accepted old package hash remains historical. The current skill tree has additional continuity files and no website update was observed."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000007": {
+    "interpretation": "C07 VERIFICATION BOUNDARY: local fresh-process protected recovery is observed; first history-free model recovered project facts but hit the old temporary-file dependency. That dependency was corrected; final independent history-free model review remained unobserved because credits were exhausted. Python audit guard prevents writes/network in verification process, not an OS sandbox for descendants. Source: docs/fable/state.json project_continuity_20261117 and memory-integrity/scripts/project_continuity.py.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "The parent fresh process succeeded; the independent model boundary after correction remains unobserved. No independent-review success is inferred."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  },
+  "U000008": {
+    "interpretation": "C08 NEXT WORK: use the scoped AGENTS startup command and inspect cited originals before acting; stale evidence stops reuse and requires reviewed new versioned records. Real AgentMemory service persistence, automatic capture of all chats, global recall and perfect semantic comprehension remain UNVERIFIED. Website corrected save and broader Windows failures remain pending. Sources: AGENTS.md, docs/fable/continuity/Checkpoint-Refresh.md and docs/fable/state.json.",
+    "findings": [
+      {
+        "kind": "source-linked-self-review",
+        "note": "The next agent must verify scope and current originals. File-backed recovery does not establish live memory-service or global recall guarantees."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex actual project review; no independent model agreement claimed",
+    "unresolved": []
+  }
+}

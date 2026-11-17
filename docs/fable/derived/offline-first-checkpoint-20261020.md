@@ -1,3 +1,16 @@
+## CURRENT -- reusable Codex project continuity, 2026-11-17
+
+Prior repair/continuity checkpoint is published at9285688ac69a653683558502ae9adbb981c497fd,
+backup/codex-project-continuity-20261117, fetched tree verified. Current installed
+Memory Integrity199 + Claude-Mon74 files match source; 70 focused and57 repeated
+installed checks pass. The reusable entry is scripts/project_continuity.py in
+Memory Integrity; guide references/codex-project-continuity.md explains project
+initialization, AGENTS discovery, read-only resume and reviewed refresh.
+Current source review is continuity/Current-Project-v2.txt and protected-run-v2.
+Use Basis.json through startup command; never rebaseline automatically.
+File recovery only: no automatic capture/global recall/service persistence.
+Prior broader Windows failures and corrected website installation stay unresolved.
+
 # CURRENT ENTRY — real Codex file continuity, 2026-11-17
 
 Start with project AGENTS.md and verify_project_resume.py. Current facts are in

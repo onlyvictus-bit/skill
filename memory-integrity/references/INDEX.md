@@ -28,3 +28,5 @@ Read a reference when its row matches; otherwise do not load it.
 | knowledge-project-2.md | automatic extraction, selective refresh, tests and admission |
 | knowledge-models.md | optional sealed local learned models and real coding benchmark |
 | knowledge-advanced.md | community/global/DRIFT, two-process sharding and replay |
+
+| codex-project-continuity.md | real Codex project initialization, startup recovery, and retained checkpoint refresh |

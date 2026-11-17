@@ -1,0 +1,17 @@
+[
+  {
+    "label": "skill-continuity",
+    "exit": 0,
+    "summary": "ctResume.test_substituted_skill_root_refused_before_dispatch) ... ok\r\ntest_valid_basis_checks_original_bytes (test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 19 tests in 1.157s\r\n\r\nOK\r\n"
+  },
+  {
+    "label": "project-shim",
+    "exit": 0,
+    "summary": "rojectResume.test_substituted_skill_root_refused_before_dispatch) ... ok\r\ntest_valid_basis_checks_original_bytes (test_project_resume.ProjectResume.test_valid_basis_checks_original_bytes) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 13 tests in 0.577s\r\n\r\nOK\r\n"
+  },
+  {
+    "label": "watchdog-and-coverage",
+    "exit": 0,
+    "summary": "_covers_source_exactly) ... ok\r\ntest_paragraph_inventory_covers_separators_without_loss (test_structural_units.StructuralUnitTests.test_paragraph_inventory_covers_separators_without_loss) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 38 tests in 4.225s\r\n\r\nOK\r\n"
+  }
+]

@@ -4376,3 +4376,25 @@ source checkpoints are derived and stale blocks reuse, never auto-rebaseline.
 No service restart, global automatic memory, complete repository understanding,
 commit/push, installations or original deletion claimed. Existing runtime failures
 and website uncertainty remain preserved.
+
+
+## Reusable continuity delivery and publication -- approved 2026-11-17
+
+User: "PUSH TO GIT AND AFTER THAT SAVE THAT MISSING PIECE IN SKILL TO USE".
+Checkpoint published FIRST: 9285688ac69a653683558502ae9adbb981c497fd on
+backup/codex-project-continuity-20261117; fetched exact local tree.
+Reuse existing protected reviews/verify, with one public project_continuity.py
+entry and focused guide linked from SKILL.md. No-build leaves a project-only
+adapter; a daemon adds service/global scope that is unnecessary here.
+Checklist: [x] publish prior checkpoint; [x] version-retaining initial/refresh
+helper and read-only recovery; [x] 70 focused tests; [x] 57 installed repeated
+tests and exact199+74-file comparison; [x] actual8-record v2 protected save.
+Final checkpoint seal/resume and successor publication are checked before done.
+Retained failed prerequisite: third-party quick validator needs absent PyYAML;
+no install. Invalid standalone handshake CLI invocation retained; actual existing
+protected offline-run and verify perform the real companion validation instead.
+Final independent model-context reviewer remains unavailable from workspace
+credits. Parent process verification is not relabelled independent model proof.
+No website update, new full release qualification, automatic conversation capture
+or memory-service restart is claimed. Prior Windows failures remain retained.
+Evidence: ../evidence/offline-first-20261020/codex-continuity-skill-20261117/.

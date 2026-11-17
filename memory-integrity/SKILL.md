@@ -682,3 +682,8 @@ boundary/datastore observer exists. Caller restart claims do not count. Seed sta
 is retained as evidence after cleanup; a new real boundary test needs a new seed.
 See `references/watchdog-checks.md`. This source correction is not automatically
 installed, published, or inherited by historical qualified ZIPs.
+
+
+## Codex project initialization and continuation
+
+When installation exists but a project cannot resume, read `references/codex-project-continuity.md`. Initialize real source-linked checkpoint/review records with the existing protected workflow, then use `scripts/project_continuity.py` for explicit initial sealing, read-only recovery, and lease-checked version-retaining refresh. Merge a scoped project AGENTS.md startup pointer without changing global rules. Never describe skill installation as project initialization. File recovery, automatic conversation capture and real service persistence are separate capabilities.

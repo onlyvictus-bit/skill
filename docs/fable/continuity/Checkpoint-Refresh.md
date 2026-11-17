@@ -21,3 +21,10 @@ Never re-use a consumed run-dir for changed reviews. Never label this service
 restart persistence, complete repository comprehension or automatic global recall.
 A new chat must obey AGENTS instructions; observed model recovery is bounded to
 its declared checkpoint facts. A filesystem owner can replace both basis/source.
+
+Reusable installed helper: memory-integrity/scripts/project_continuity.py.
+Follow references/codex-project-continuity.md for Seal-Request schema. After
+reviewed new records, call --seal-request docs/fable/continuity/Seal-Request.json
+with --expected-basis-sha256 of the exact previous Basis.json. The helper first
+verifies the new protected run, retains the old basis and checks a publication
+lease. Then run the normal read-only entry again. Never edit a frozen run.

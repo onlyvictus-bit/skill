@@ -61,7 +61,7 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "Real project file-backed continuity initialized: follow project AGENTS.md and verified resume. Separate-process guarded recovery passes; final independent read-only model recheck blocked by workspace credits. Website corrected installation and live service persistence remain unverified.",
+  "current_task": "Reusable Codex continuity installed; reviewed versioned checkpoint and Git publication. Live memory and website remain unverified.",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
   "next_action": "Full Gate1 complete:7/7gates,381cases(368PASS/13permittedSKIP),24arms/24replays/11checks,C3nativecleanup and fresh preservation accepted independently. Read final Gate1-Acceptance.json in gate1-diagnostics-fix-20261107. No Gate1 rerun. Release/package/install/whole-skill/nativeDB/model/producer-authentication remain separate; no further milestone executed.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
@@ -299,7 +299,7 @@
     "controller_windows_tests": 77,
     "focused_tests_run": 59,
     "focused_tests_skipped": 1,
-    "authority": "User answered Approve RP1â€“RP3 (Recommended)",
+    "authority": "User answered Approve RP1\u00e2\u20ac\u201cRP3 (Recommended)",
     "plan": "docs/fable/derived/offline-first-release-plan-20261020.md#dr-actual-result-and-proposed-rp1rp3-recursive-launch-repair2026-10-28",
     "mechanism": "Exact native executable selection plus explicit sealed recursive pre-authored bootstrap; preserve venv-facing identity and public semantics",
     "controller_profile": "Existing Python3.14 unit and failure controls only",
@@ -2438,16 +2438,15 @@
   },
   "project_continuity_20261117": {
     "project_memory_initialized": true,
-    "status": "FILE_RECOVERY_VERIFIED_INDEPENDENT_FINAL_CONTEXT_RECHECK_UNAVAILABLE",
+    "status": "REUSABLE_SKILL_INSTALLED_LOCAL_PROTECTED_FILE_RECOVERY_VERIFIED",
     "channel": "FABLE_PROJECT_FILES",
-    "checkpoint": "docs/fable/continuity/Current-Project.txt",
-    "run_map": "docs/fable/continuity/protected-run/run-map.json",
+    "checkpoint": "docs/fable/continuity/Current-Project-v2.txt",
+    "run_map": "docs/fable/continuity/protected-run-v2/run-map.json",
     "startup_adapter": ".github/scripts/verify_project_resume.py",
     "refresh_procedure": "docs/fable/continuity/Checkpoint-Refresh.md",
     "live_backend_verified": false,
     "memory_service_persistence": "UNVERIFIED",
     "automatic_global_recall": false,
-    "source_basis_files": 28,
     "protected_units": 8,
     "adapter_tests_passed": 13,
     "existing_workflow_regressions_passed": 14,
@@ -2457,6 +2456,16 @@
     "initial_fresh_context_full_verifier": "BLOCKED_BY_TEMPFILE_DEPENDENCY_THEN_CORRECTED",
     "final_fresh_context_verifier": "UNOBSERVED_WORKSPACE_CREDITS_EXHAUSTED",
     "evidence": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\codex-continuity-20261117-fcc6647d",
-    "automatic_capture": false
+    "automatic_capture": false,
+    "reusable_entry": "memory-integrity/scripts/project_continuity.py",
+    "reusable_guide": "memory-integrity/references/codex-project-continuity.md",
+    "prior_published_commit": "9285688ac69a653683558502ae9adbb981c497fd",
+    "focused_cases_passed": 70,
+    "installed_repeated_cases_passed": 57,
+    "installed_files": {
+      "memory-integrity": 199,
+      "claude-mon": 74
+    },
+    "acceptance": "docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Acceptance.json"
   }
 }

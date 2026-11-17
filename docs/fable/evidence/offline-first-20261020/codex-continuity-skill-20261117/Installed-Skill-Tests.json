@@ -1,0 +1,22 @@
+[
+  {
+    "label": "installed-continuity",
+    "exit": 0,
+    "summary": "est_refresh_retains_old_basis_and_publishes_verified_one) ... ok\r\ntest_stale_basis_does_not_invoke_protected_workflow (test_project_continuity.ProjectResume.test_stale_basis_does_not_invoke_protected_workflow) ... ok\r\ntest_substituted_skill_root_refused_before_dispatch (test_project_continuity.ProjectResume.test_substituted_skill_root_refused_before_dispatch) ... ok\r\ntest_valid_basis_checks_original_bytes (test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 19 tests in 1.215s\r\n\r\nOK\r\n"
+  },
+  {
+    "label": "installed-core",
+    "exit": 0,
+    "summary": "ks_basis) ... ok\r\ntest_inventory_maps_units_to_coverage_chunks_and_becomes_stale (test_structural_units.StructuralUnitTests.test_inventory_maps_units_to_coverage_chunks_and_becomes_stale) ... ok\r\ntest_line_inventory_covers_source_exactly (test_structural_units.StructuralUnitTests.test_line_inventory_covers_source_exactly) ... ok\r\ntest_paragraph_inventory_covers_separators_without_loss (test_structural_units.StructuralUnitTests.test_paragraph_inventory_covers_separators_without_loss) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 38 tests in 3.903s\r\n\r\nOK\r\n"
+  },
+  {
+    "label": "skill-validator",
+    "exit": 1,
+    "summary": "Traceback (most recent call last):\r\n  File \"C:\\Users\\sakth\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py\", line 10, in <module>\r\n    import yaml\r\nModuleNotFoundError: No module named 'yaml'\r\n"
+  },
+  {
+    "label": "companion-handshake",
+    "exit": 2,
+    "summary": "rror: argument command: invalid choice: 'handshake' (choose from offline-run, verify, knowledge-status, knowledge-index, knowledge-project, knowledge-refresh, knowledge-impact, knowledge-retrieve, knowledge-test, knowledge-admit, knowledge-check-admission, knowledge-benchmark, knowledge-audit, knowledge-syntax, knowledge-process, knowledge-model-benchmark, native-observe, practical-reconcile, practical-title, coordinate-init, coordinate-run, coordinate-resume, coordinate-ready, coordinate-verify, coordinate-revoke, history-seal, branch-preview, branch-merge-fixture, branch-reconcile-fixture)\r\n"
+  }
+]
