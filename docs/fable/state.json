@@ -61,7 +61,7 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "Compatibility release pair and exact delivery dcc9e88 are verified by13 hosted jobs; evidence backup publication completes this scope. Installation and new user Store3.12 observation remain separate.",
+  "current_task": "Real project file-backed continuity initialized: follow project AGENTS.md and verified resume. Separate-process guarded recovery passes; final independent read-only model recheck blocked by workspace credits. Website corrected installation and live service persistence remain unverified.",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
   "next_action": "Full Gate1 complete:7/7gates,381cases(368PASS/13permittedSKIP),24arms/24replays/11checks,C3nativecleanup and fresh preservation accepted independently. Read final Gate1-Acceptance.json in gate1-diagnostics-fix-20261107. No Gate1 rerun. Release/package/install/whole-skill/nativeDB/model/producer-authentication remain separate; no further milestone executed.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
@@ -2341,7 +2341,7 @@
     "new_native_identity_controls": 2,
     "hosted_ci_verified": true,
     "release_ready": false,
-    "installed": false,
+    "installed": true,
     "original_pair_preserved": true,
     "package_qualification_complete": true,
     "delivery_commit": "dcc9e88e0d21b44c38efc45b0435190125b44d57",
@@ -2353,6 +2353,110 @@
     "controller_cases": 548,
     "controller_original_ids_omitted": 0,
     "evidence": "docs/fable/evidence/offline-first-20261020/offline-release-ci-20261113/Compatibility-Hosted-Acceptance.json",
-    "new_selected_store312_observation": false
+    "new_selected_store312_observation": false,
+    "installation_scope": "CODEX_SKILL_FILES_AND_CLI_ENTRYPOINTS_ONLY"
+  },
+  "skill_installation_20261116": {
+    "authority": "User requested installation in both ChatGPT website and Codex",
+    "codex": "INSTALLED_EXACT_QUALIFIED_BYTES_CLI_VERIFIED",
+    "files": 270,
+    "paths": [
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "C:\\Users\\sakth\\.codex\\skills\\claude-mon"
+    ],
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\install\\codex-20261116\\Receipt.json",
+    "chatgpt_web": "PENDING_FILE_CHOOSER_PERMISSION",
+    "project_memory_initialized": false,
+    "memory_improvement_observed": false
+  },
+  "legacy_watchdog_repair_20261117": {
+    "status": "CODEX_CORRECTION_INSTALLED_WITH_BROADER_RUNTIME_CAVEATS",
+    "authority": "IS THIS TRUE? IF YES SOLVE IT",
+    "evidence": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\bridge-repair-20261117-4d1ae9de",
+    "baseline_commit": "c2ad477df855f5a2d2c799d5724ab087f70be78a",
+    "red": {
+      "tests": 17,
+      "failures": 12,
+      "errors": 1
+    },
+    "boundary_verdict_cap": "UNVERIFIED",
+    "installed_pair_unchanged": true,
+    "live_backend_verified": false,
+    "publication": false,
+    "release_candidate": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\bridge-release-20261117-ae2bfb63",
+    "codex_install_receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\bridge-release-20261117-ae2bfb63\\Codex-Install-Receipt.json",
+    "extracted_tests": [
+      {
+        "suite": "memory-integrity-tests",
+        "tests": 38,
+        "exit": 0,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "expected_failures": 0
+      },
+      {
+        "suite": "memory-integrity-tests_v2",
+        "tests": 859,
+        "exit": 1,
+        "failures": 8,
+        "errors": 2,
+        "skips": 54,
+        "expected_failures": 1
+      },
+      {
+        "suite": "claude-mon-tests",
+        "tests": 21,
+        "exit": 0,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "expected_failures": 0
+      },
+      {
+        "suite": "claude-mon-tests_v2",
+        "tests": 213,
+        "exit": 0,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "expected_failures": 0
+      }
+    ],
+    "website_installed": false,
+    "full_release_qualified": false,
+    "website_existing_both_skills_observed": true,
+    "website_corrected_upload": "BLOCKED_EDGE_EXTENSION_FILE_URL_ACCESS",
+    "codex_installed_tests_passed": 38,
+    "mi_v2_case_outcomes": {
+      "success": 795,
+      "skipped": 54,
+      "failure": 7,
+      "error": 2,
+      "expected_failure": 1
+    }
+  },
+  "project_continuity_20261117": {
+    "project_memory_initialized": true,
+    "status": "FILE_RECOVERY_VERIFIED_INDEPENDENT_FINAL_CONTEXT_RECHECK_UNAVAILABLE",
+    "channel": "FABLE_PROJECT_FILES",
+    "checkpoint": "docs/fable/continuity/Current-Project.txt",
+    "run_map": "docs/fable/continuity/protected-run/run-map.json",
+    "startup_adapter": ".github/scripts/verify_project_resume.py",
+    "refresh_procedure": "docs/fable/continuity/Checkpoint-Refresh.md",
+    "live_backend_verified": false,
+    "memory_service_persistence": "UNVERIFIED",
+    "automatic_global_recall": false,
+    "source_basis_files": 28,
+    "protected_units": 8,
+    "adapter_tests_passed": 13,
+    "existing_workflow_regressions_passed": 14,
+    "separate_process_recovery": true,
+    "verification_process_write_guard": true,
+    "initial_fresh_context_facts_recovered": true,
+    "initial_fresh_context_full_verifier": "BLOCKED_BY_TEMPFILE_DEPENDENCY_THEN_CORRECTED",
+    "final_fresh_context_verifier": "UNOBSERVED_WORKSPACE_CREDITS_EXHAUSTED",
+    "evidence": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\codex-continuity-20261117-fcc6647d",
+    "automatic_capture": false
   }
 }

@@ -4277,3 +4277,102 @@ reviewSHIP for unchanged reviewed code/publication. Qualified predecessor and
 15oldrelease files remain exact. Final evidence backup is separate from tested
 release ref. Installation, a new user Store3.12 observation and production remain
 unqualified; no additional selected runtime attempt or old command retry.
+
+
+### Skill installation - user-authorized2026-11-16
+
+AUTH: user requested both ChatGPT website and Codex. Official installer pinned
+to deliverydcc9e88 installed only the two absent Codex skill directories.
+All196MI+74CM files match exact qualified ZIPs; both CLI --help entrypoints
+exit0. Receipt is ofpkg-20261113/install/codex-20261116/Receipt.json.
+No optional dependencies, model/backend or original source were installed/edited.
+ChatGPT workspace exposes Skills/Create/Upload. File chooser automation still
+refuses file-URL access after user reports enabling it; no web skill upload or
+installation is claimed. Existing verified ZIPs remain ready for manual upload.
+Project memory initialization and actual cross-session recall remain unverified.
+Fable installation records are local/uncommitted; no new Git publication.
+
+## Approved legacy watchdog repair — 2026-11-17
+
+Authority: user "IS THIS TRUE? IF YES SOLVE IT"; bounded local source/tests/docs
+repair, no installs/service/credentials/commit/push. Checkout c2ad477, existing
+Fable edits preserved. Baseline and RED: bridge-repair-20261117-4d1ae9de.
+RED 17 tests yielded12failures/1error: wrong identity/content, search ghosts,
+unobserved boundary acceptance and malformed deletion. Roundtrip is a twin.
+Choose smallest fail-closed repair: exact direct and scoped recall identity/
+content, strict deletion/direct absence/no-ghost, boundary capped UNVERIFIED.
+No-build retains false acceptance; live boundary observer requires separately
+selected backend and independent datastore/generation proof, not caller flags.
+Candidate manifest may inventory these explicit edits; old ZIPs/pins immutable.
+Codex270installedfiles match qualified later delivery; website drift not proven
+locally. Remaining: source checks/review, successor package qualification,
+installation/publication and real backend boundary proof separately observed.
+
+
+### Approved corrected pair and installation continuation
+
+User "YES fix it to use in gpt" approves corrected packaging, fresh extraction
+checks and installation/handoff. Existing published ZIPs remain immutable.
+Checklist: [x] exact working-tree source inventory and pair contract; [x] new
+pair archives and extraction; [ ] four extracted suites; [ ] Codex backup/update
+and installed negative-check smoke; [ ] website upload and saved-state observation.
+Artifact root: ofpkg-20261113/bridge-release-20261117-ae2bfb63. The new source
+basis is explicit file hashes over c2ad477 plus retained Source-Changes.patch,
+not a fabricated Git commit. No commit/push/PR/comment authorized by this scope.
+CodeRabbit prerequisite gh auth status fails (invalid authentication); unpublished
+local changes have no CodeRabbit clearance. Local verification proceeds.
+
+Corrected-pair outcome: archives196+74files content/extraction/contract match.
+Four extracted suites1131cases observed. MI v1=38PASS, CM=234PASS. MI v2=859:
+54knownruntime skips/1expectedfailure; broader native/startup/shortpath failures
+retained. Prior installed package reproduces startup/ownership failures. No full
+release qualification inferred. Scoped Codex correction installed6changedfiles,
+196file readback verified, full prior copy backed up; installed38v1tests PASS.
+Website BOTH existing skills observed installed, but corrected upload blocked by
+Edge extension file-URL permission; editor retained for user handoff. No upload
+success or exact website byte identity claimed. CodeRabbit unavailable, no Git
+write/push/PR/comment. Acceptance.json retains actual case outcomes and caveats.
+
+
+## Real Codex continuation integration — approved 2026-11-17
+
+User: "FIND THE ISSUE ... SOLVE IT TILL TO USE IT IN CODEX" with Deep Plan/Fable
+Loop. Target: fresh-context recovery of actual project decisions and pending work,
+not more synthetic-demo/package tests. Evidence agents confirm project initialization
+false and no project AGENTS startup pointer. Existing offline-run/verify persist
+reviews but are TEST_ONLY accounting, not an AgentMemory service.
+
+Recommendation: reuse existing protected run/verify for real source-linked reviews;
+add a small read-only startup adapter checking original referenced-file hashes and
+explicit installed-pair compatibility before invoking verify --query every. Fable
+remains authority. No-build leaves discovery absent. A real daemon adds install,
+credentials, lifecycle and live-backend approvals without being necessary for
+project-file continuity. Weak link: fresh model must actually obey startup
+instructions; test a history-free agent given only project root, plus independent
+fresh processes and stale/missing/tamper controls. Pivot if drift is accepted or
+fresh reader cannot locate the records. No claim of automatic global recall,
+perfect comprehension, or live memory-service restart persistence.
+
+Scope: new .github/scripts/verify_project_resume.py, matching tests; derived
+Fable continuity checkpoint/run/reviews/basis; current checkpoint/state/plan;
+project-local AGENTS.md in this checkout and ad workspace (no global policy edit).
+Checklist: initialize actual project facts; RED/GREEN adapter; seal references;
+existing protected workflow save/verify; fresh-context recovery; adversarial review.
+Preserve old artifacts and dirty edits. No installs, commit/push, service writes,
+credential reads, external AI calls or deletion.
+
+Continuity outcome:13 adapter tests PASS; existing protected workflow10 and fresh-
+session4 regressions PASS. Separate processes recover8 real project records after
+28file plus270installed-file checks before/after. First history-free reader recovered
+all8fact categories from current originals but protected workflow was BLOCKED by
+unwritabletemp. Corrected adapter calls the same pinned companion partition rules
+in its isolated process without temp copies; workflow verification/ledger/CAS/recall
+remain unchanged. Python audit guard prohibits writes/network in verification
+process; this is not an OS sandbox for child processes. Corrected guarded resume
+PASS; final independent history-free reread and final reviewer could not start due
+workspace credits. Do NOT label those independent checks passed. Current startup
+AGENTS at ad+checkout and version-retaining refresh instructions installed locally;
+source checkpoints are derived and stale blocks reuse, never auto-rebaseline.
+No service restart, global automatic memory, complete repository understanding,
+commit/push, installations or original deletion claimed. Existing runtime failures
+and website uncertainty remain preserved.

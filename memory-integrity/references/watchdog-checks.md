@@ -23,7 +23,7 @@ Procedure, in order:
 2. `POST /agentmemory/remember` with a unique short canary.
 3. Require HTTP 201, `success: true`, and nested `memory.id`.
 4. `POST /agentmemory/smart-search` for the exact canary in the same project/agent scope.
-5. Require a matching id or full canary in the compact title.
+5. Require the exact id AND exact full canary content (or full compact title); reject malformed search results. Verify direct id/content and requested scope as well.
 6. `POST /agentmemory/forget` with that `memoryId`.
 7. Require success and `deleted >= 1`.
 8. `GET /agentmemory/memories/:id`; require 404.
@@ -66,23 +66,22 @@ For facts that originate in authoritative files or repository state, re-read the
 - `BLIND`: service/contract path is unavailable; do not rely on memory.
 - `MISSING`: expected scoped recall did not return enough candidates.
 
-## 6. Cross-session persistence bridge
+## 6. Cross-session persistence bridge — corrected 2026-11-17
 
-A current-session roundtrip is not a persistence proof.
+The legacy CLI has no qualified independent session/service-boundary observer.
+`bridge-seed` stores a unique canary and retains identity/query/scope metadata.
+`bridge-verify` checks exact direct id/content and requested scope, exact scoped
+search identity/content, confirmed deletion, direct absence and no search ghost.
 
-Use two phases:
+Even when every readback/cleanup check passes, it returns exit 1 and
+`BRIDGE: UNVERIFIED`. It cannot emit `BRIDGE: PERSISTED`. Caller-provided restart
+flags or generation numbers cannot upgrade that verdict. The state file remains
+as seed evidence; the canary was deleted, so a future boundary test must use a
+NEW seed. Never retry a consumed canary as a persistence proof.
 
-1. `bridge-seed` stores a unique persistence canary and writes a local state file containing only canary identity/query/scope metadata. It intentionally does **not** delete the memory.
-2. Cross the boundary being tested: end/start a new agent session and, when relevant, restart the AgentMemory service using the same intended data directory/instance.
-3. `bridge-verify` requires the canary to resolve by direct id **and** scoped smart-search.
-4. On success, delete the canary, require direct-id absence, and remove the local bridge state file.
-
-Pass: `BRIDGE: PERSISTED`.
-
-Missing direct id: `BRIDGE: MISSING`.
-
-Direct id exists but recall cannot surface it: `BRIDGE: DEGRADED`.
-
-Service unavailable: `BRIDGE: BLIND`.
-
-Do not infer that all historical memories persisted merely because one canary passed; the canary validates the persistence path and configured scope/instance, while source freshness and individual memory provenance remain separate checks.
+A real persistence claim additionally requires a qualified independent observer
+of the intended boundary and reuse of the same persistent datastore. Neither is
+implemented by this CLI. Graceful restart, crash durability and fresh-session
+retrieval are distinct boundaries. Authentication and live API compatibility must
+be checked against the explicitly selected backend before a separately authorized
+live test. A TEST_ONLY backend never qualifies the real memory service.

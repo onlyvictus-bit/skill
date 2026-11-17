@@ -1,3 +1,11 @@
+# CURRENT ENTRY — real Codex file continuity, 2026-11-17
+
+Start with project AGENTS.md and verify_project_resume.py. Current facts are in
+`docs/fable/continuity/Current-Project.txt`, protected-run and Basis.json; originals
+remain in Fable state and source. Website corrected update remains unverified,
+Codex watchdog correction installed; full Windows runtime has retained failures.
+No real memory-service restart is proven. Historical entries below are retained.
+
 ## Latest accepted compatibility delivery - 2026-11-15
 
 Source1076e02 / deliverydcc9e88e0d21b44c38efc45b0435190125b44d57 is published

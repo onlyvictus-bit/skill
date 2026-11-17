@@ -671,3 +671,14 @@ Keep the pinned worker isolated, provider-free and bounded. Treat unresolved sta
 For newly authorized local learned search, source-quoted model extraction, supported JS/TS syntax, real model benchmarks or community/global/DRIFT/two-worker retrieval, read [local models](references/knowledge-models.md) and [advanced discovery](references/knowledge-advanced.md). Keep the same front door, explicit matching companion, Fable authority and opt-in graph default. Learned modes require explicitly selected isolated model interpreter and file-pinned manifest; no automatic download/install/provider dispatch occurs. Bound new operations in schema-3 receipts and require fresh replay.
 
 Never silently ignore unsupported flag combinations, truncate model input, auto-admit model proposals, erase unsuccessful model outcomes, or describe local two-worker qualification as a remote deployment. The measured small-model coding experiment found no improvement. Processing/quotation identity, semantic review and coding benefit remain separate claims.
+
+
+## Legacy persistence verifier safety correction — 2026-11-17
+
+This section supersedes the earlier legacy `bridge-verify` PERSISTED description.
+The corrected command verifies exact canary readback and deletion but always caps
+its boundary verdict at `BRIDGE: UNVERIFIED` (exit 1): no qualified independent
+boundary/datastore observer exists. Caller restart claims do not count. Seed state
+is retained as evidence after cleanup; a new real boundary test needs a new seed.
+See `references/watchdog-checks.md`. This source correction is not automatically
+installed, published, or inherited by historical qualified ZIPs.

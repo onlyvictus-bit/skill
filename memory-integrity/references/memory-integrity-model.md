@@ -241,3 +241,10 @@ Use precise verdicts:
 - `MEMORY: MISSING` — expected scoped recall did not return enough candidates.
 
 Do not let `HEALTHY` imply source freshness, complete-file coverage, or semantic correctness.
+
+
+### Legacy CLI correction (2026-11-17)
+
+The earlier PERSISTED examples describe the desired acceptance boundary, not an
+implemented observer. The corrected legacy CLI is capped at UNVERIFIED; exact
+readback/cleanup alone cannot establish persistence. See watchdog-checks.md.

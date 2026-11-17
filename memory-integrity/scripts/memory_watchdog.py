@@ -27,6 +27,17 @@ from pathlib import Path
 TIMEOUT = 30
 
 
+def _json(raw):
+    def pairs(rows):
+        result = {}
+        for key, value in rows:
+            if key in result:
+                raise ValueError('duplicate JSON key: ' + key)
+            result[key] = value
+        return result
+    return json.loads(raw, object_pairs_hook=pairs)
+
+
 def call(server, method, path, body=None, secret=None):
     url = server.rstrip("/") + path
     data = json.dumps(body).encode("utf-8") if body is not None else None
@@ -38,10 +49,10 @@ def call(server, method, path, body=None, secret=None):
         req.add_header("Authorization", "Bearer " + secret)
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-            raw = resp.read().decode("utf-8", errors="replace")
+            raw = resp.read().decode("utf-8")
             try:
-                parsed = json.loads(raw) if raw.strip() else None
-            except json.JSONDecodeError:
+                parsed = _json(raw) if raw.strip() else None
+            except ValueError:
                 parsed = {"_raw": raw[:500]}
             return resp.status, parsed
     except urllib.error.HTTPError as exc:
@@ -49,6 +60,8 @@ def call(server, method, path, body=None, secret=None):
             detail = exc.read().decode("utf-8", errors="replace")[:500]
         except Exception:
             detail = ""
+        finally:
+            exc.close()
         return exc.code, {"_http_error": exc.code, "_detail": detail}
     except Exception as exc:
         return None, {"_transport_error": "%s: %s" % (type(exc).__name__, exc)}
@@ -75,7 +88,10 @@ def compact_hits(payload):
             notes.append("non-object hit encountered")
             continue
         hit_id = item.get("obsId") or item.get("id") or item.get("memoryId")
-        text = item.get("title") or item.get("text") or item.get("content") or item.get("summary") or ""
+        text = item.get("content") or item.get("text") or item.get("title") or item.get("summary") or ""
+        if not isinstance(hit_id, str) or not hit_id or not isinstance(text, str):
+            notes.append("unusable hit identity/content")
+            continue
         score = item.get("score", item.get("similarity", item.get("relevance")))
         out.append({"id": hit_id, "text": text, "score": score, "raw": item})
     return out, notes
@@ -92,6 +108,27 @@ def scoped_payload(query=None, limit=None, project=None, agent_id=None):
     if agent_id:
         body["agentId"] = agent_id
     return body
+
+
+def _direct_canary(server, secret, mem_id, canary, project=None, agent_id=None):
+    code, body = call(server, "GET", "/agentmemory/memories/" + urllib.parse.quote(mem_id, safe=""), secret=secret)
+    record = body.get("memory") if isinstance(body, dict) else None
+    return (code == 200 and isinstance(record, dict) and record.get("id") == mem_id
+            and record.get("content") == canary
+            and (project is None or record.get("project") == project)
+            and (agent_id is None or record.get("agentId") == agent_id))
+
+
+def _exact_recall(hits, notes, mem_id, canary):
+    if notes:
+        return False
+    matches = [h for h in hits if h["id"] == mem_id]
+    return bool(matches) and all(h["text"] == canary for h in matches)
+
+
+def _deleted(code, body):
+    return (code == 200 and isinstance(body, dict) and body.get("success") is True
+            and type(body.get("deleted")) is int and body["deleted"] >= 1)
 
 
 def cmd_status(server, secret):
@@ -128,6 +165,11 @@ def cmd_roundtrip(server, secret, project=None, agent_id=None):
         print("MEMORY: BLIND - canary store failed current API contract (code=%s, body=%s)" % (code, body))
         return 1
 
+    if not _direct_canary(server, secret, mem_id, canary, project, agent_id):
+        print("MEMORY: DEGRADED - direct canary identity/content/scope mismatch")
+        _cleanup_canary(server, secret, mem_id)
+        return 1
+
     code, found = call(
         server,
         "POST",
@@ -140,15 +182,14 @@ def cmd_roundtrip(server, secret, project=None, agent_id=None):
         _cleanup_canary(server, secret, mem_id)
         return 1
     hits, notes = compact_hits(found)
-    matched = [h for h in hits if h["id"] == mem_id or canary in (h["text"] or "")]
-    if not matched:
+    if not _exact_recall(hits, notes, mem_id, canary):
         print("MEMORY: DEGRADED - canary stored but NOT recalled (%d hits)%s" % (
             len(hits), (" [" + "; ".join(notes) + "]") if notes else ""))
         _cleanup_canary(server, secret, mem_id)
         return 1
 
     dcode, dbody = call(server, "POST", "/agentmemory/forget", {"memoryId": mem_id}, secret)
-    if dcode != 200 or not isinstance(dbody, dict) or dbody.get("success") is not True or int(dbody.get("deleted", 0)) < 1:
+    if not _deleted(dcode, dbody):
         print("MEMORY: DEGRADED - canary recall passed but cleanup failed (id=%s, code=%s, body=%s)" % (mem_id, dcode, dbody))
         return 1
 
@@ -169,7 +210,10 @@ def cmd_roundtrip(server, secret, project=None, agent_id=None):
     if code2 != 200:
         print("MEMORY: DEGRADED - cleanup storage check passed but post-delete recall failed (code=%s)" % code2)
         return 1
-    hits2, _ = compact_hits(found2)
+    hits2, notes2 = compact_hits(found2)
+    if notes2:
+        print("MEMORY: DEGRADED - malformed post-delete search; absence unverified")
+        return 1
     ghosts = [h for h in hits2 if h["id"] == mem_id or canary in (h["text"] or "")]
     if ghosts:
         print("MEMORY: DEGRADED - deleted canary is still searchable (id=%s, ghost_hits=%d)" % (mem_id, len(ghosts)))
@@ -224,17 +268,19 @@ def cmd_bridge_seed(server, secret, state_file, project=None, agent_id=None):
 
 
 def cmd_bridge_verify(server, secret, state_file):
-    """Verify a previously seeded canary survived, then clean it up."""
+    """Check exact canary readback/cleanup; no qualified boundary observer exists."""
     state_path = Path(state_file).resolve()
     if not state_path.exists():
         print("BRIDGE: ERROR - state file not found: %s" % state_path)
         return 2
     try:
-        state = json.loads(state_path.read_text(encoding="utf-8"))
+        state = _json(state_path.read_text(encoding="utf-8"))
     except Exception as exc:
         print("BRIDGE: ERROR - invalid state file: %s: %s" % (type(exc).__name__, exc))
         return 2
-    if state.get("schema_version") != 1 or not state.get("memory_id") or not state.get("canary"):
+    if (not isinstance(state, dict) or state.get("schema_version") != 1
+            or not isinstance(state.get("memory_id"), str) or not state["memory_id"]
+            or not isinstance(state.get("canary"), str) or not state["canary"]):
         print("BRIDGE: ERROR - state file missing required fields")
         return 2
     mem_id = state["memory_id"]
@@ -249,8 +295,12 @@ def cmd_bridge_verify(server, secret, state_file):
 
     qid = urllib.parse.quote(mem_id, safe="")
     gcode, gbody = call(server, "GET", "/agentmemory/memories/%s" % qid, secret=secret)
-    if gcode != 200:
-        print("BRIDGE: MISSING - persisted memory id no longer resolves (id=%s, code=%s)" % (mem_id, gcode))
+    record = gbody.get("memory") if isinstance(gbody, dict) else None
+    if (gcode != 200 or not isinstance(record, dict) or record.get("id") != mem_id
+            or record.get("content") != canary
+            or (project is not None and record.get("project") != project)
+            or (agent_id is not None and record.get("agentId") != agent_id)):
+        print("BRIDGE: DEGRADED - direct canary identity/content/scope mismatch (id=%s)" % mem_id)
         return 1
 
     scode, found = call(
@@ -264,29 +314,33 @@ def cmd_bridge_verify(server, secret, state_file):
         print("BRIDGE: DEGRADED - direct memory exists but smart-search failed (id=%s, code=%s)" % (mem_id, scode))
         return 1
     hits, notes = compact_hits(found)
-    matched = [h for h in hits if h["id"] == mem_id or canary in (h["text"] or "")]
-    if not matched:
+    if not _exact_recall(hits, notes, mem_id, canary):
         print("BRIDGE: DEGRADED - direct memory exists but recall cannot surface it (id=%s, hits=%d%s)" % (
             mem_id, len(hits), (", notes=" + "; ".join(notes)) if notes else ""))
         return 1
 
     dcode, dbody = call(server, "POST", "/agentmemory/forget", {"memoryId": mem_id}, secret)
-    if dcode != 200 or not isinstance(dbody, dict) or dbody.get("success") is not True or int(dbody.get("deleted", 0)) < 1:
-        print("BRIDGE: DEGRADED - persistence verified but cleanup failed (id=%s, code=%s, body=%s)" % (mem_id, dcode, dbody))
+    if not _deleted(dcode, dbody):
+        print("BRIDGE: DEGRADED - cleanup unconfirmed; persistence remains unverified (id=%s)" % mem_id)
         return 1
     gcode2, _ = call(server, "GET", "/agentmemory/memories/%s" % qid, secret=secret)
     if gcode2 != 404:
         print("BRIDGE: DEGRADED - cleanup acknowledged but id still resolves (id=%s, code=%s)" % (mem_id, gcode2))
         return 1
-    state_path.unlink()
-    print("BRIDGE: PERSISTED - canary survived the boundary, remained directly readable and searchable, and cleanup passed")
-    return 0
+    scode2, found2 = call(server, "POST", "/agentmemory/smart-search",
+                         scoped_payload(canary, 10, project, agent_id), secret)
+    hits2, notes2 = compact_hits(found2)
+    if (scode2 != 200 or notes2 or any(h["id"] == mem_id or canary in h["text"] for h in hits2)):
+        print("BRIDGE: DEGRADED - post-delete search absence not proven (id=%s)" % mem_id)
+        return 1
+    print("BRIDGE: UNVERIFIED - exact readback and cleanup passed; no independently observed boundary or datastore identity. Seed evidence retained; canary deleted. Seed a NEW canary for any future boundary test.")
+    return 1
 
 def _cleanup_canary(server, secret, mem_id):
     if not mem_id:
         return False
     code, body = call(server, "POST", "/agentmemory/forget", {"memoryId": mem_id}, secret)
-    return code == 200 and isinstance(body, dict) and body.get("success") is True and int(body.get("deleted", 0)) >= 1
+    return _deleted(code, body)
 
 
 def _topic_overlap(query, text):
