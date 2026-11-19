@@ -1,0 +1,34 @@
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_active_count_may_change_after_pid_snapshot_without_identity_gap", "monotonic": 444468.5493758}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_active_count_may_change_after_pid_snapshot_without_identity_gap", "outcome": "success", "seconds": 0.01616880000801757}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_assignment_failure_reaps_unassigned_suspended_root_and_closes_stdin", "monotonic": 444468.5656318}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_assignment_failure_reaps_unassigned_suspended_root_and_closes_stdin", "outcome": "success", "seconds": 0.10550010000588372}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_authored_script_keeps_its_original_sibling_import_directory", "monotonic": 444468.6719275}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_authored_script_keeps_its_original_sibling_import_directory", "outcome": "success", "seconds": 0.8217128000105731}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_cpython_consumed_launcher_environment_is_not_false_identity_drift", "monotonic": 444469.4937493}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_cpython_consumed_launcher_environment_is_not_false_identity_drift", "outcome": "success", "seconds": 0.633501999953296}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_event_drain_cannot_ignore_expired_observation_deadline", "monotonic": 444470.1273251}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_event_drain_cannot_ignore_expired_observation_deadline", "outcome": "success", "seconds": 0.0003698999644257128}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_expired_start_never_opens_work_gate_after_identity_check", "monotonic": 444470.1277301}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_expired_start_never_opens_work_gate_after_identity_check", "outcome": "success", "seconds": 1.0485055000171997}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_and_member_release_attempt_every_close_and_keep_all_errors", "monotonic": 444471.1763264}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_and_member_release_attempt_every_close_and_keep_all_errors", "outcome": "success", "seconds": 0.0005112999933771789}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_setup_close_debt_is_not_labelled_complete_without_an_owner", "monotonic": 444471.1768765}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_job_setup_close_debt_is_not_labelled_complete_without_an_owner", "outcome": "success", "seconds": 0.009388100006617606}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_member_outside_job_is_not_accepted_from_a_completion_pid", "monotonic": 444471.1863198}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_member_outside_job_is_not_accepted_from_a_completion_pid", "outcome": "success", "seconds": 0.0003185000387020409}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_missing_accounting_member_still_terminates_all_known_processes", "monotonic": 444471.1866715}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_missing_accounting_member_still_terminates_all_known_processes", "outcome": "success", "seconds": 0.4625254000420682}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_nested_job_descendant_has_independent_native_exit_proof", "monotonic": 444471.6492916}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_nested_job_descendant_has_independent_native_exit_proof", "outcome": "success", "seconds": 0.7724962999927811}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_popen_failure_keeps_the_pre_owner_job_when_its_close_fails", "monotonic": 444472.4218794}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_popen_failure_keeps_the_pre_owner_job_when_its_close_fails", "outcome": "success", "seconds": 0.03489030001219362}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_rejects_requested_executable_identity_drift_before_start", "monotonic": 444472.4568533}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_rejects_requested_executable_identity_drift_before_start", "outcome": "success", "seconds": 0.0029968000017106533}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_release_refuses_before_native_exit_proof", "monotonic": 444472.4599442}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_release_refuses_before_native_exit_proof", "outcome": "success", "seconds": 0.5042625999776646}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_resume_identity_error_survives_all_handle_close_failures", "monotonic": 444472.9643243}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_resume_identity_error_survives_all_handle_close_failures", "outcome": "success", "seconds": 0.0005070000188425183}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_script_system_exit_is_not_relabelled_as_bootstrap_failure", "monotonic": 444472.9648836}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_script_system_exit_is_not_relabelled_as_bootstrap_failure", "outcome": "success", "seconds": 1.3656005999655463}
+{"event": "START", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_stop_reaps_root_child_grandchild_but_not_unrelated_process", "monotonic": 444474.3305944}
+{"cause": "", "event": "END", "id": "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_stop_reaps_root_child_grandchild_but_not_unrelated_process", "outcome": "success", "seconds": 1.3040230000042357}

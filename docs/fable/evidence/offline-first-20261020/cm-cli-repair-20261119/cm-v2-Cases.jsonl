@@ -1,0 +1,448 @@
+{"event": "START", "id": "test_acceptance.FaultMatrixTests.test_all_offline_faults_block", "monotonic": 450342.4523384}
+{"cause": "", "event": "END", "id": "test_acceptance.FaultMatrixTests.test_all_offline_faults_block", "outcome": "success", "seconds": 0.23350249999202788}
+{"event": "START", "id": "test_acceptance.FaultMatrixTests.test_oversize_unit_subdivided_not_dropped", "monotonic": 450342.6859306}
+{"cause": "", "event": "END", "id": "test_acceptance.FaultMatrixTests.test_oversize_unit_subdivided_not_dropped", "outcome": "success", "seconds": 0.00046150002162903547}
+{"event": "START", "id": "test_acceptance.FullPipelineTests.test_ground_truth_end_to_end", "monotonic": 450342.6864566}
+{"cause": "", "event": "END", "id": "test_acceptance.FullPipelineTests.test_ground_truth_end_to_end", "outcome": "success", "seconds": 0.17043280001962557}
+{"event": "START", "id": "test_acceptance.FullPipelineTests.test_seeded_bad_interpretation_flagged", "monotonic": 450342.8569805}
+{"cause": "", "event": "END", "id": "test_acceptance.FullPipelineTests.test_seeded_bad_interpretation_flagged", "outcome": "success", "seconds": 0.00044450000859797}
+{"event": "START", "id": "test_acceptance.ScaleTests.test_exact_fixture_sizes", "monotonic": 450342.8574908}
+{"cause": "", "event": "END", "id": "test_acceptance.ScaleTests.test_exact_fixture_sizes", "outcome": "success", "seconds": 0.7344565000385046}
+{"event": "START", "id": "test_acceptance.ScaleTests.test_mechanical_scale_50mb", "monotonic": 450343.5920966}
+{"cause": "", "event": "END", "id": "test_acceptance.ScaleTests.test_mechanical_scale_50mb", "outcome": "success", "seconds": 13.97937539999839}
+{"event": "START", "id": "test_artifact_recovery.ArtifactTests.test_backup_restore_reopens", "monotonic": 450357.5716071}
+{"cause": "", "event": "END", "id": "test_artifact_recovery.ArtifactTests.test_backup_restore_reopens", "outcome": "success", "seconds": 0.09003179997671396}
+{"event": "START", "id": "test_artifact_recovery.ArtifactTests.test_corrupt_artifact_blocks", "monotonic": 450357.6617199}
+{"cause": "", "event": "END", "id": "test_artifact_recovery.ArtifactTests.test_corrupt_artifact_blocks", "outcome": "success", "seconds": 0.0076630000257864594}
+{"event": "START", "id": "test_artifact_recovery.ArtifactTests.test_idempotent_restore", "monotonic": 450357.669436}
+{"cause": "", "event": "END", "id": "test_artifact_recovery.ArtifactTests.test_idempotent_restore", "outcome": "success", "seconds": 0.0054583000019192696}
+{"event": "START", "id": "test_artifact_recovery.ArtifactTests.test_missing_artifact_blocks", "monotonic": 450357.6749443}
+{"cause": "", "event": "END", "id": "test_artifact_recovery.ArtifactTests.test_missing_artifact_blocks", "outcome": "success", "seconds": 0.0016968000563792884}
+{"event": "START", "id": "test_artifact_recovery.ArtifactTests.test_no_visible_partials", "monotonic": 450357.6766818}
+{"cause": "", "event": "END", "id": "test_artifact_recovery.ArtifactTests.test_no_visible_partials", "outcome": "success", "seconds": 0.005144900002051145}
+{"event": "START", "id": "test_artifact_recovery.ArtifactTests.test_roundtrip_verifies", "monotonic": 450357.6818697}
+{"cause": "", "event": "END", "id": "test_artifact_recovery.ArtifactTests.test_roundtrip_verifies", "outcome": "success", "seconds": 0.006791899970266968}
+{"event": "START", "id": "test_budget.BudgetTests.test_bogus_encoding_fails_closed", "monotonic": 450357.6887323}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_bogus_encoding_fails_closed", "outcome": "success", "seconds": 0.0024916999973356724}
+{"event": "START", "id": "test_budget.BudgetTests.test_exact_boundary_fits", "monotonic": 450357.6912622}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_exact_boundary_fits", "outcome": "success", "seconds": 9.689998114481568e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_injected_counter_with_provenance", "monotonic": 450357.6913878}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_injected_counter_with_provenance", "outcome": "success", "seconds": 5.740002961829305e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_input_alone_at_limit_fails_with_reserve", "monotonic": 450357.6915195}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_input_alone_at_limit_fails_with_reserve", "outcome": "success", "seconds": 8.289999095723033e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_measure_request_breakdown", "monotonic": 450357.6916251}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_measure_request_breakdown", "outcome": "success", "seconds": 6.57000346109271e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_oversize_unit_refused_not_truncated", "monotonic": 450357.6917118}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_oversize_unit_refused_not_truncated", "outcome": "success", "seconds": 5.8399979025125504e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_plan_single_batch", "monotonic": 450357.6917906}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_plan_single_batch", "outcome": "success", "seconds": 6.120000034570694e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_plan_splits_on_input", "monotonic": 450357.6918707}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_plan_splits_on_input", "outcome": "success", "seconds": 6.049999501556158e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_plan_splits_on_output", "monotonic": 450357.6919494}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_plan_splits_on_output", "outcome": "success", "seconds": 5.7299970649182796e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_safety_covering_context_refused", "monotonic": 450357.6920256}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_safety_covering_context_refused", "outcome": "success", "seconds": 7.050001295283437e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_total_plus_one_fails", "monotonic": 450357.6921158}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_total_plus_one_fails", "outcome": "success", "seconds": 5.4800009820610285e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_unknown_field_rejected", "monotonic": 450357.6921881}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_unknown_field_rejected", "outcome": "success", "seconds": 4.710000939667225e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_unknown_limits_refused", "monotonic": 450357.6922528}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_unknown_limits_refused", "outcome": "success", "seconds": 6.0699996538460255e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_valid_profile_accepted", "monotonic": 450357.6923312}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_valid_profile_accepted", "outcome": "success", "seconds": 4.549999721348286e-05}
+{"event": "START", "id": "test_claim_provenance.ClaimProvenanceTests.test_foreign_citation_fails", "monotonic": 450357.6924086}
+{"cause": "", "event": "END", "id": "test_claim_provenance.ClaimProvenanceTests.test_foreign_citation_fails", "outcome": "success", "seconds": 6.200000643730164e-05}
+{"event": "START", "id": "test_claim_provenance.ClaimProvenanceTests.test_full_mapping_passes", "monotonic": 450357.6924909}
+{"cause": "", "event": "END", "id": "test_claim_provenance.ClaimProvenanceTests.test_full_mapping_passes", "outcome": "success", "seconds": 5.050003528594971e-05}
+{"event": "START", "id": "test_claim_provenance.ClaimProvenanceTests.test_partial_mode_allows_gap", "monotonic": 450357.6925598}
+{"cause": "", "event": "END", "id": "test_claim_provenance.ClaimProvenanceTests.test_partial_mode_allows_gap", "outcome": "success", "seconds": 4.39999857917428e-05}
+{"event": "START", "id": "test_claim_provenance.ClaimProvenanceTests.test_unclaimed_unit_fails", "monotonic": 450357.6926214}
+{"cause": "", "event": "END", "id": "test_claim_provenance.ClaimProvenanceTests.test_unclaimed_unit_fails", "outcome": "success", "seconds": 4.39999857917428e-05}
+{"event": "START", "id": "test_claim_provenance.ClaimProvenanceTests.test_unmapped_claim_fails", "monotonic": 450357.692682}
+{"cause": "", "event": "END", "id": "test_claim_provenance.ClaimProvenanceTests.test_unmapped_claim_fails", "outcome": "success", "seconds": 7.800001185387373e-05}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive", "monotonic": 450357.6927936}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive", "outcome": "success", "seconds": 0.05937039997661486}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused", "monotonic": 450357.752218}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused", "outcome": "success", "seconds": 0.715814600000158}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_existing_task_digest_mismatch_remains_domain_refusal", "monotonic": 450358.4681119}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_existing_task_digest_mismatch_remains_domain_refusal", "outcome": "success", "seconds": 0.30329420004272833}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_export_output_error_is_json", "monotonic": 450358.7714753}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_export_output_error_is_json", "outcome": "success", "seconds": 0.32525880000321195}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_json_input_failure_is_not_double_emitted", "monotonic": 450359.0968133}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_json_input_failure_is_not_double_emitted", "outcome": "success", "seconds": 0.30264220002572984}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause", "monotonic": 450359.3995219}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause", "outcome": "success", "seconds": 0.9833302000188269}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_preflight_without_unsupported_option_still_passes", "monotonic": 450360.3829221}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_preflight_without_unsupported_option_still_passes", "outcome": "success", "seconds": 0.3442562999553047}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_prepare_invalid_instruction_encoding_is_json", "monotonic": 450360.7273065}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_prepare_invalid_instruction_encoding_is_json", "outcome": "success", "seconds": 0.34491639997577295}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_programming_errors_and_interrupts_are_not_hidden", "monotonic": 450361.0723213}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_programming_errors_and_interrupts_are_not_hidden", "outcome": "success", "seconds": 0.1043301000026986}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json", "monotonic": 450361.1767215}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json", "outcome": "success", "seconds": 0.33053380000637844}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation", "monotonic": 450361.5073578}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation", "outcome": "success", "seconds": 0.3220843000453897}
+{"event": "START", "id": "test_cli_v2.CliV2Tests.test_capabilities_lists_commands", "monotonic": 450361.8295518}
+{"cause": "", "event": "END", "id": "test_cli_v2.CliV2Tests.test_capabilities_lists_commands", "outcome": "success", "seconds": 0.26199810003163293}
+{"event": "START", "id": "test_cli_v2.CliV2Tests.test_end_to_end_offline", "monotonic": 450362.0916152}
+{"cause": "", "event": "END", "id": "test_cli_v2.CliV2Tests.test_end_to_end_offline", "outcome": "success", "seconds": 1.1343063000240363}
+{"event": "START", "id": "test_cli_v2.CliV2Tests.test_freeze_scope", "monotonic": 450363.225982}
+{"cause": "", "event": "END", "id": "test_cli_v2.CliV2Tests.test_freeze_scope", "outcome": "success", "seconds": 0.7387435999698937}
+{"event": "START", "id": "test_cli_v2.CliV2Tests.test_resume_and_export", "monotonic": 450363.9647935}
+{"cause": "", "event": "END", "id": "test_cli_v2.CliV2Tests.test_resume_and_export", "outcome": "success", "seconds": 0.5440661999746226}
+{"event": "START", "id": "test_cli_v2.CliV2Tests.test_run_without_budget_or_approval_blocked", "monotonic": 450364.5089266}
+{"cause": "", "event": "END", "id": "test_cli_v2.CliV2Tests.test_run_without_budget_or_approval_blocked", "outcome": "success", "seconds": 0.5917238999973051}
+{"event": "START", "id": "test_cli_v2.CliV2Tests.test_verify_open_unit_query", "monotonic": 450365.1007168}
+{"cause": "", "event": "END", "id": "test_cli_v2.CliV2Tests.test_verify_open_unit_query", "outcome": "success", "seconds": 0.6970097000012174}
+{"event": "START", "id": "test_composed_gate.ComposedGateTests.test_blocked_layer_blocks_despite_guard", "monotonic": 450365.7978136}
+{"cause": "", "event": "END", "id": "test_composed_gate.ComposedGateTests.test_blocked_layer_blocks_despite_guard", "outcome": "success", "seconds": 0.08009500004118308}
+{"event": "START", "id": "test_composed_gate.ComposedGateTests.test_cli_end_to_end", "monotonic": 450365.8779676}
+{"cause": "", "event": "END", "id": "test_composed_gate.ComposedGateTests.test_cli_end_to_end", "outcome": "success", "seconds": 0.2415647999732755}
+{"event": "START", "id": "test_composed_gate.ComposedGateTests.test_conformance_with_mi_report", "monotonic": 450366.1195954}
+{"cause": "", "event": "END", "id": "test_composed_gate.ComposedGateTests.test_conformance_with_mi_report", "outcome": "success", "seconds": 0.0008583000162616372}
+{"event": "START", "id": "test_composed_gate.ComposedGateTests.test_guard_failure_blocks_despite_ready_layers", "monotonic": 450366.1204951}
+{"cause": "", "event": "END", "id": "test_composed_gate.ComposedGateTests.test_guard_failure_blocks_despite_ready_layers", "outcome": "success", "seconds": 0.0580504999961704}
+{"event": "START", "id": "test_composed_gate.ComposedGateTests.test_guard_pass_plus_ready_is_ready", "monotonic": 450366.1786127}
+{"cause": "", "event": "END", "id": "test_composed_gate.ComposedGateTests.test_guard_pass_plus_ready_is_ready", "outcome": "success", "seconds": 0.08347909996518865}
+{"event": "START", "id": "test_composed_gate.ComposedGateTests.test_no_layers_is_blocked", "monotonic": 450366.262151}
+{"cause": "", "event": "END", "id": "test_composed_gate.ComposedGateTests.test_no_layers_is_blocked", "outcome": "success", "seconds": 0.07942470000125468}
+{"event": "START", "id": "test_consent.ConsentTests.test_approval_ref_recorded", "monotonic": 450366.3416551}
+{"cause": "", "event": "END", "id": "test_consent.ConsentTests.test_approval_ref_recorded", "outcome": "success", "seconds": 0.10356399999000132}
+{"event": "START", "id": "test_consent.ConsentTests.test_batch_policy_rejected", "monotonic": 450366.4452908}
+{"cause": "", "event": "END", "id": "test_consent.ConsentTests.test_batch_policy_rejected", "outcome": "success", "seconds": 0.06106139998883009}
+{"event": "START", "id": "test_consent.ConsentTests.test_dispatch_without_approval_blocked", "monotonic": 450366.5064217}
+{"cause": "", "event": "END", "id": "test_consent.ConsentTests.test_dispatch_without_approval_blocked", "outcome": "success", "seconds": 0.061042900022584945}
+{"event": "START", "id": "test_consent.ConsentTests.test_empty_approval_ref_blocked", "monotonic": 450366.5675352}
+{"cause": "", "event": "END", "id": "test_consent.ConsentTests.test_empty_approval_ref_blocked", "outcome": "success", "seconds": 0.06381780002266169}
+{"event": "START", "id": "test_consent.ConsentTests.test_explicit_per_call_accepted", "monotonic": 450366.631503}
+{"cause": "", "event": "END", "id": "test_consent.ConsentTests.test_explicit_per_call_accepted", "outcome": "success", "seconds": 0.07283710001502186}
+{"event": "START", "id": "test_consent.ConsentTests.test_mismatched_policy_ref_rejected", "monotonic": 450366.7044248}
+{"cause": "", "event": "END", "id": "test_consent.ConsentTests.test_mismatched_policy_ref_rejected", "outcome": "success", "seconds": 0.06950749998213723}
+{"event": "START", "id": "test_contracts.ContractTests.test_accept_valid_envelope", "monotonic": 450366.7740519}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_accept_valid_envelope", "outcome": "success", "seconds": 0.0003437999985180795}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_bad_digest", "monotonic": 450366.7744423}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_bad_digest", "outcome": "success", "seconds": 9.129999671131372e-05}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_digest_mismatch", "monotonic": 450366.7745603}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_digest_mismatch", "outcome": "success", "seconds": 0.00014269998064264655}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_duplicate_ids", "monotonic": 450366.7747262}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_duplicate_ids", "outcome": "success", "seconds": 0.00021110003581270576}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_duplicate_json_keys", "monotonic": 450366.7749795}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_duplicate_json_keys", "outcome": "success", "seconds": 0.00012919999426230788}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_missing_and_unknown_fields", "monotonic": 450366.7751387}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_missing_and_unknown_fields", "outcome": "success", "seconds": 8.860003435984254e-05}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_unknown_enum", "monotonic": 450366.7752564}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_unknown_enum", "outcome": "success", "seconds": 7.680000271648169e-05}
+{"event": "START", "id": "test_contracts.ContractTests.test_reject_wrong_schema_version", "monotonic": 450366.7753618}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_reject_wrong_schema_version", "outcome": "success", "seconds": 6.930000381544232e-05}
+{"event": "START", "id": "test_contracts.ContractTests.test_schema_digest_stable_and_hex", "monotonic": 450366.7754564}
+{"cause": "", "event": "END", "id": "test_contracts.ContractTests.test_schema_digest_stable_and_hex", "outcome": "success", "seconds": 0.0002635999699123204}
+{"event": "START", "id": "test_exports.ExportTests.test_corrupt_line_fails", "monotonic": 450366.7757685}
+{"cause": "", "event": "END", "id": "test_exports.ExportTests.test_corrupt_line_fails", "outcome": "success", "seconds": 0.004663700005039573}
+{"event": "START", "id": "test_exports.ExportTests.test_missing_row_fails", "monotonic": 450366.7804751}
+{"cause": "", "event": "END", "id": "test_exports.ExportTests.test_missing_row_fails", "outcome": "success", "seconds": 0.0036055000382475555}
+{"event": "START", "id": "test_exports.ExportTests.test_roundtrip_complete", "monotonic": 450366.7841216}
+{"cause": "", "event": "END", "id": "test_exports.ExportTests.test_roundtrip_complete", "outcome": "success", "seconds": 0.0033213000278919935}
+{"event": "START", "id": "test_exports.ExportTests.test_source_order_preserved", "monotonic": 450366.7874839}
+{"cause": "", "event": "END", "id": "test_exports.ExportTests.test_source_order_preserved", "outcome": "success", "seconds": 0.003729899995960295}
+{"event": "START", "id": "test_host_routing.HostRoutingTests.test_capabilities_file_matches_runtime", "monotonic": 450366.7912853}
+{"cause": "", "event": "END", "id": "test_host_routing.HostRoutingTests.test_capabilities_file_matches_runtime", "outcome": "success", "seconds": 0.24129370000446215}
+{"event": "START", "id": "test_host_routing.HostRoutingTests.test_explicit_entrypoint_reports_v2", "monotonic": 450367.0327025}
+{"cause": "", "event": "END", "id": "test_host_routing.HostRoutingTests.test_explicit_entrypoint_reports_v2", "outcome": "success", "seconds": 0.2529013999737799}
+{"event": "START", "id": "test_host_routing.HostRoutingTests.test_unknown_command_is_usage_error", "monotonic": 450367.2856568}
+{"cause": "", "event": "END", "id": "test_host_routing.HostRoutingTests.test_unknown_command_is_usage_error", "outcome": "success", "seconds": 0.2268595999921672}
+{"event": "START", "id": "test_invalidation.InvalidationTests.test_events_are_append_only", "monotonic": 450367.5126207}
+{"cause": "", "event": "END", "id": "test_invalidation.InvalidationTests.test_events_are_append_only", "outcome": "success", "seconds": 0.16430270002456382}
+{"event": "START", "id": "test_invalidation.InvalidationTests.test_revoke_on_change_then_reaccept", "monotonic": 450367.6769913}
+{"cause": "", "event": "END", "id": "test_invalidation.InvalidationTests.test_revoke_on_change_then_reaccept", "outcome": "success", "seconds": 0.2513732999796048}
+{"event": "START", "id": "test_invalidation.InvalidationTests.test_stale_work_cannot_accept_without_revoke", "monotonic": 450367.9284297}
+{"cause": "", "event": "END", "id": "test_invalidation.InvalidationTests.test_stale_work_cannot_accept_without_revoke", "outcome": "success", "seconds": 0.1691199999768287}
+{"event": "START", "id": "test_inventory.InventoryTests.test_change_after_freeze_changes_digest", "monotonic": 450368.0976823}
+{"cause": "", "event": "END", "id": "test_inventory.InventoryTests.test_change_after_freeze_changes_digest", "outcome": "success", "seconds": 0.014759299985598773}
+{"event": "START", "id": "test_inventory.InventoryTests.test_empty_scope_refused", "monotonic": 450368.1125308}
+{"cause": "", "event": "END", "id": "test_inventory.InventoryTests.test_empty_scope_refused", "outcome": "success", "seconds": 0.0029753000126220286}
+{"event": "START", "id": "test_inventory.InventoryTests.test_escape_refused", "monotonic": 450368.1155502}
+{"cause": "", "event": "END", "id": "test_inventory.InventoryTests.test_escape_refused", "outcome": "success", "seconds": 0.0031510000117123127}
+{"event": "START", "id": "test_inventory.InventoryTests.test_freeze_explicit_set", "monotonic": 450368.1187426}
+{"cause": "", "event": "END", "id": "test_inventory.InventoryTests.test_freeze_explicit_set", "outcome": "success", "seconds": 0.02218529995298013}
+{"event": "START", "id": "test_inventory.InventoryTests.test_missing_source_blocked", "monotonic": 450368.1410345}
+{"cause": "", "event": "END", "id": "test_inventory.InventoryTests.test_missing_source_blocked", "outcome": "success", "seconds": 0.0047151000471785665}
+{"event": "START", "id": "test_inventory.InventoryTests.test_snapshot_bytes_equal_source", "monotonic": 450368.1457997}
+{"cause": "", "event": "END", "id": "test_inventory.InventoryTests.test_snapshot_bytes_equal_source", "outcome": "success", "seconds": 0.012261399999260902}
+{"event": "START", "id": "test_ledger.LedgerTests.test_double_accept_blocked", "monotonic": 450368.1581867}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_double_accept_blocked", "outcome": "success", "seconds": 0.10948479996295646}
+{"event": "START", "id": "test_ledger.LedgerTests.test_duplicate_work_item_rejected", "monotonic": 450368.267743}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_duplicate_work_item_rejected", "outcome": "success", "seconds": 0.04283170000417158}
+{"event": "START", "id": "test_ledger.LedgerTests.test_full_forward_path", "monotonic": 450368.3106466}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_full_forward_path", "outcome": "success", "seconds": 0.07613550004316494}
+{"event": "START", "id": "test_ledger.LedgerTests.test_illegal_jump_rejected", "monotonic": 450368.3868554}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_illegal_jump_rejected", "outcome": "success", "seconds": 0.046297800028696656}
+{"event": "START", "id": "test_ledger.LedgerTests.test_migrate_v2_through_v4_preserves_data", "monotonic": 450368.4332369}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_migrate_v2_through_v4_preserves_data", "outcome": "success", "seconds": 0.11702800000784919}
+{"event": "START", "id": "test_ledger.LedgerTests.test_reconcile_dispatching_becomes_unknown", "monotonic": 450368.5503399}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_reconcile_dispatching_becomes_unknown", "outcome": "success", "seconds": 0.06494239997118711}
+{"event": "START", "id": "test_ledger.LedgerTests.test_reconcile_undispatched_requeues", "monotonic": 450368.6153496}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_reconcile_undispatched_requeues", "outcome": "success", "seconds": 0.05394680000608787}
+{"event": "START", "id": "test_ledger.LedgerTests.test_revoke_keeps_history", "monotonic": 450368.6693874}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_revoke_keeps_history", "outcome": "success", "seconds": 0.08236170001327991}
+{"event": "START", "id": "test_ledger.LedgerTests.test_revoke_needs_reason", "monotonic": 450368.7518209}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_revoke_needs_reason", "outcome": "success", "seconds": 0.040900199965108186}
+{"event": "START", "id": "test_ledger.LedgerTests.test_terminal_state_frozen", "monotonic": 450368.7928107}
+{"cause": "", "event": "END", "id": "test_ledger.LedgerTests.test_terminal_state_frozen", "outcome": "success", "seconds": 0.0586951999575831}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f1_total_context_enforced", "monotonic": 450368.8515965}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f1_total_context_enforced", "outcome": "success", "seconds": 0.04661449999548495}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f2_request_contains_material", "monotonic": 450368.8983265}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f2_request_contains_material", "outcome": "success", "seconds": 0.042289899953175336}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f3_negatives_and_duplicates_rejected", "monotonic": 450368.9407066}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f3_negatives_and_duplicates_rejected", "outcome": "success", "seconds": 0.046113999967928976}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f3_synthetic_counts_cannot_go_live", "monotonic": 450368.9870812}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f3_synthetic_counts_cannot_go_live", "outcome": "success", "seconds": 0.047563200001604855}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f4_adapter_traverses_real_path", "monotonic": 450369.0347289}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f4_adapter_traverses_real_path", "outcome": "success", "seconds": 0.18802050000522286}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f4_reused_approval_never_dispatches", "monotonic": 450369.2228293}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f4_reused_approval_never_dispatches", "outcome": "success", "seconds": 0.11933850002242252}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f5_missing_and_mismatched_results_rejected", "monotonic": 450369.3422362}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f5_missing_and_mismatched_results_rejected", "outcome": "success", "seconds": 0.03692639997461811}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f5_spoofed_digest_rejected", "monotonic": 450369.3792439}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f5_spoofed_digest_rejected", "outcome": "success", "seconds": 0.1299445999902673}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f6_saved_response_resumes_not_resends", "monotonic": 450369.5092764}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f6_saved_response_resumes_not_resends", "outcome": "success", "seconds": 0.12001980002969503}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f6_uncertain_delivery_needs_decision", "monotonic": 450369.6293684}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f6_uncertain_delivery_needs_decision", "outcome": "success", "seconds": 0.09873109997715801}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f6_unknown_and_mismatched_work_blocked", "monotonic": 450369.7281801}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f6_unknown_and_mismatched_work_blocked", "outcome": "success", "seconds": 0.07943490002071485}
+{"event": "START", "id": "test_m4r_regressions.M4RTests.test_f7_approval_bound_to_exact_request", "monotonic": 450369.8076819}
+{"cause": "", "event": "END", "id": "test_m4r_regressions.M4RTests.test_f7_approval_bound_to_exact_request", "outcome": "success", "seconds": 0.16190060001099482}
+{"event": "START", "id": "test_offline_release_profile.OfflineReleaseProfile.test_direct_native_success_event_refuses_before_database", "monotonic": 450369.9696993}
+{"cause": "", "event": "END", "id": "test_offline_release_profile.OfflineReleaseProfile.test_direct_native_success_event_refuses_before_database", "outcome": "success", "seconds": 0.002638300007674843}
+{"event": "START", "id": "test_offline_release_profile.OfflineReleaseProfile.test_dispatch_refuses_before_authority_consumption", "monotonic": 450369.9723944}
+{"cause": "", "event": "END", "id": "test_offline_release_profile.OfflineReleaseProfile.test_dispatch_refuses_before_authority_consumption", "outcome": "success", "seconds": 0.0007331999950110912}
+{"event": "START", "id": "test_offline_release_profile.OfflineReleaseProfile.test_native_authority_disabled", "monotonic": 450369.9731653}
+{"cause": "", "event": "END", "id": "test_offline_release_profile.OfflineReleaseProfile.test_native_authority_disabled", "outcome": "success", "seconds": 0.0006355000077746809}
+{"event": "START", "id": "test_offline_release_profile.OfflineReleaseProfile.test_reconciliation_cannot_promote_applied", "monotonic": 450369.9738368}
+{"cause": "", "event": "END", "id": "test_offline_release_profile.OfflineReleaseProfile.test_reconciliation_cannot_promote_applied", "outcome": "success", "seconds": 0.0005657000001519918}
+{"event": "START", "id": "test_offline_release_profile.OfflineReleaseProfile.test_reservation_refuses_before_database_access", "monotonic": 450369.9744364}
+{"cause": "", "event": "END", "id": "test_offline_release_profile.OfflineReleaseProfile.test_reservation_refuses_before_database_access", "outcome": "success", "seconds": 0.0005651999963447452}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_context_never_counts_as_primary", "monotonic": 450369.9750531}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_context_never_counts_as_primary", "outcome": "success", "seconds": 0.00018540001474320889}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_duplicate_chunk_id_blocked", "monotonic": 450369.975265}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_duplicate_chunk_id_blocked", "outcome": "success", "seconds": 0.000193099956959486}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_empty_source_valid_empty_manifest", "monotonic": 450369.9754834}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_empty_source_valid_empty_manifest", "outcome": "success", "seconds": 9.71999834291637e-05}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_gap_blocked", "monotonic": 450369.9756033}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_gap_blocked", "outcome": "success", "seconds": 0.00013450003461912274}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_invalid_utf8_rejected", "monotonic": 450369.9757591}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_invalid_utf8_rejected", "outcome": "success", "seconds": 6.990000838413835e-05}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_overlap_blocked", "monotonic": 450369.975851}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_overlap_blocked", "outcome": "success", "seconds": 0.00014080002438277006}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_oversized_line_subdivided_with_lineage", "monotonic": 450369.9760122}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_oversized_line_subdivided_with_lineage", "outcome": "success", "seconds": 0.00024319998919963837}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_reordered_units_blocked", "monotonic": 450369.9762768}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_reordered_units_blocked", "outcome": "success", "seconds": 0.00012120004976168275}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_swapped_manifest_binding_mismatch", "monotonic": 450369.9764191}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_swapped_manifest_binding_mismatch", "outcome": "success", "seconds": 9.210000280290842e-05}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_valid_corpus_reassembles_exactly", "monotonic": 450369.9765317}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_valid_corpus_reassembles_exactly", "outcome": "success", "seconds": 0.00017409998690709472}
+{"event": "START", "id": "test_partition_integrity.PartitionTests.test_wrong_payload_hash_blocked", "monotonic": 450369.9767259}
+{"cause": "", "event": "END", "id": "test_partition_integrity.PartitionTests.test_wrong_payload_hash_blocked", "outcome": "success", "seconds": 0.00013589998707175255}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_dispatch_claim_is_durable_once_before_unknown", "monotonic": 450369.9768961}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_dispatch_claim_is_durable_once_before_unknown", "outcome": "success", "seconds": 0.10194010002305731}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_generic_event_api_refuses_dispatched_namespace", "monotonic": 450370.0789108}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_generic_event_api_refuses_dispatched_namespace", "outcome": "success", "seconds": 0.0487371000344865}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_invalid_capability_reopened_store_and_rebound_binding_cannot_consume", "monotonic": 450370.1277351}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_invalid_capability_reopened_store_and_rebound_binding_cannot_consume", "outcome": "success", "seconds": 0.05876220000209287}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_legacy_intent_to_applied_remains_valid_but_cannot_later_dispatch", "monotonic": 450370.1865634}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_legacy_intent_to_applied_remains_valid_but_cannot_later_dispatch", "outcome": "success", "seconds": 0.05955339997308329}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_reservation_and_consumption_race_has_one_durable_dispatch", "monotonic": 450370.2461896}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_reservation_and_consumption_race_has_one_durable_dispatch", "outcome": "success", "seconds": 0.09340200002770871}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_reservation_refuses_a_stored_but_unregistered_policy", "monotonic": 450370.3396677}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_reservation_refuses_a_stored_but_unregistered_policy", "outcome": "success", "seconds": 0.10048419999657199}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_v2_lease_binding_is_all_or_none_and_self_consistent", "monotonic": 450370.4402339}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_v2_lease_binding_is_all_or_none_and_self_consistent", "outcome": "success", "seconds": 0.06588579999515787}
+{"event": "START", "id": "test_practical_dispatch.PracticalDispatchTests.test_v2_receipt_does_not_treat_true_as_numeric_row_lock", "monotonic": 450370.5061968}
+{"cause": "", "event": "END", "id": "test_practical_dispatch.PracticalDispatchTests.test_v2_receipt_does_not_treat_true_as_numeric_row_lock", "outcome": "success", "seconds": 0.056457400030922145}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_generic_event_api_refuses_practical_namespace", "monotonic": 450370.5627522}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_generic_event_api_refuses_practical_namespace", "outcome": "success", "seconds": 0.057313499972224236}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_historical_receipt_cannot_authorize_a_new_grant", "monotonic": 450370.6201323}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_historical_receipt_cannot_authorize_a_new_grant", "outcome": "success", "seconds": 0.05921869998564944}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_malformed_or_foreign_result_cannot_create_terminal_event", "monotonic": 450370.6794452}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_malformed_or_foreign_result_cannot_create_terminal_event", "outcome": "success", "seconds": 0.05786979995900765}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_missing_or_nonworking_readback_is_durable_unknown_and_idempotent", "monotonic": 450370.7374027}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_missing_or_nonworking_readback_is_durable_unknown_and_idempotent", "outcome": "success", "seconds": 0.05831549997674301}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_only_registered_reader_can_seal_fresh_exact_applied_readback", "monotonic": 450370.7957827}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_only_registered_reader_can_seal_fresh_exact_applied_readback", "outcome": "success", "seconds": 0.055907599977217615}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_reopened_store_reconciles_intent_without_replaying_dispatch_token", "monotonic": 450370.8517685}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_reopened_store_reconciles_intent_without_replaying_dispatch_token", "outcome": "success", "seconds": 0.05888369999593124}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_reopened_unknown_reconciles_once_to_fresh_exact_applied_readback", "monotonic": 450370.9107193}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_reopened_unknown_reconciles_once_to_fresh_exact_applied_readback", "outcome": "success", "seconds": 0.06550319999223575}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_reservation_requires_current_registered_work_item_and_exact_binding", "monotonic": 450370.9762863}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_reservation_requires_current_registered_work_item_and_exact_binding", "outcome": "success", "seconds": 0.056967100012116134}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_reuse_with_wrong_task_or_original_binding_refuses", "monotonic": 450371.0333385}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_reuse_with_wrong_task_or_original_binding_refuses", "outcome": "success", "seconds": 0.06222779996460304}
+{"event": "START", "id": "test_practical_journal.PracticalJournalTests.test_two_connections_get_exactly_one_dispatch_winner", "monotonic": 450371.0956382}
+{"cause": "", "event": "END", "id": "test_practical_journal.PracticalJournalTests.test_two_connections_get_exactly_one_dispatch_winner", "outcome": "success", "seconds": 0.07342750002862886}
+{"event": "START", "id": "test_preservation.Preservation.test_r1_prefix_preserved_byte_for_byte", "monotonic": 450371.1691885}
+{"cause": "", "event": "END", "id": "test_preservation.Preservation.test_r1_prefix_preserved_byte_for_byte", "outcome": "success", "seconds": 0.0009294000337831676}
+{"event": "START", "id": "test_preservation.Preservation.test_release_exact_content_and_declared_changes", "monotonic": 450371.170166}
+{"cause": "", "event": "END", "id": "test_preservation.Preservation.test_release_exact_content_and_declared_changes", "outcome": "success", "seconds": 0.0639262999757193}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_base_adapter_dispatches_nothing", "monotonic": 450371.2341704}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_base_adapter_dispatches_nothing", "outcome": "success", "seconds": 9.82999918051064e-05}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_non_ok_terminal_rejected", "monotonic": 450371.2343001}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_non_ok_terminal_rejected", "outcome": "success", "seconds": 0.00021689996356144547}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_prepared_rejects_duplicates_and_empties", "monotonic": 450371.2345436}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_prepared_rejects_duplicates_and_empties", "outcome": "success", "seconds": 9.589997353032231e-05}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_prepared_request_canonical", "monotonic": 450371.2346637}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_prepared_request_canonical", "outcome": "success", "seconds": 9.940000018104911e-05}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_testonly_never_live", "monotonic": 450371.2347846}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_testonly_never_live", "outcome": "success", "seconds": 7.340003503486514e-05}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_testonly_ok_validated", "monotonic": 450371.2348783}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_testonly_ok_validated", "outcome": "success", "seconds": 9.190000128000975e-05}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_unit_set_mismatch_rejected", "monotonic": 450371.2349928}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_unit_set_mismatch_rejected", "outcome": "success", "seconds": 9.699998190626502e-05}
+{"event": "START", "id": "test_provider_contract.ProviderContractTests.test_unknown_state_rejected", "monotonic": 450371.2351119}
+{"cause": "", "event": "END", "id": "test_provider_contract.ProviderContractTests.test_unknown_state_rejected", "outcome": "success", "seconds": 4.640000406652689e-05}
+{"event": "START", "id": "test_r1_hardening.TestF03PreflightContract.test_cli_preflight_runs", "monotonic": 450371.2351937}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF03PreflightContract.test_cli_preflight_runs", "outcome": "success", "seconds": 0.06853400002000853}
+{"event": "START", "id": "test_r1_hardening.TestF04DispatchIntent.test_state_dispatching_during_call", "monotonic": 450371.3038548}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF04DispatchIntent.test_state_dispatching_during_call", "outcome": "success", "seconds": 0.009327600011602044}
+{"event": "START", "id": "test_r1_hardening.TestF05InvalidBasis.test_full_invalid_basis_cannot_accept", "monotonic": 450371.3132493}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF05InvalidBasis.test_full_invalid_basis_cannot_accept", "outcome": "success", "seconds": 0.007913800014648587}
+{"event": "START", "id": "test_r1_hardening.TestF05InvalidBasis.test_null_result_rejected", "monotonic": 450371.3212075}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF05InvalidBasis.test_null_result_rejected", "outcome": "success", "seconds": 6.86999992467463e-05}
+{"event": "START", "id": "test_r1_hardening.TestF05InvalidBasis.test_wrong_task_prepare_rejected", "monotonic": 450371.321303}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF05InvalidBasis.test_wrong_task_prepare_rejected", "outcome": "success", "seconds": 0.0012528000515885651}
+{"event": "START", "id": "test_r1_hardening.TestF05StrictAcceptPositive.test_valid_basis_accepts", "monotonic": 450371.3226036}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF05StrictAcceptPositive.test_valid_basis_accepts", "outcome": "success", "seconds": 0.011083199991844594}
+{"event": "START", "id": "test_r1_hardening.TestF06ProfileBinding.test_profile_change_alters_digest", "monotonic": 450371.3337387}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF06ProfileBinding.test_profile_change_alters_digest", "outcome": "success", "seconds": 0.00020089995814487338}
+{"event": "START", "id": "test_r1_hardening.TestF06ProfileBinding.test_serialized_size_recorded", "monotonic": 450371.3339656}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF06ProfileBinding.test_serialized_size_recorded", "outcome": "success", "seconds": 0.00010699999984353781}
+{"event": "START", "id": "test_r1_hardening.TestF08Reads.test_open_unit_stale_source", "monotonic": 450371.3341058}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF08Reads.test_open_unit_stale_source", "outcome": "success", "seconds": 0.0005910999607294798}
+{"event": "START", "id": "test_r1_hardening.TestF08Reads.test_query_unicode", "monotonic": 450371.3347302}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF08Reads.test_query_unicode", "outcome": "success", "seconds": 0.0005892000044696033}
+{"event": "START", "id": "test_r1_hardening.TestF09Snapshot.test_corrupt_snapshot_refused", "monotonic": 450371.3353585}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF09Snapshot.test_corrupt_snapshot_refused", "outcome": "success", "seconds": 0.008959900005720556}
+{"event": "START", "id": "test_r1_hardening.TestF09Snapshot.test_valid_snapshot_reused", "monotonic": 450371.3443824}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF09Snapshot.test_valid_snapshot_reused", "outcome": "success", "seconds": 0.034996100002899766}
+{"event": "START", "id": "test_r1_hardening.TestF10LedgerOwnership.test_foreign_db_untouched", "monotonic": 450371.3794876}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF10LedgerOwnership.test_foreign_db_untouched", "outcome": "success", "seconds": 0.0009261000086553395}
+{"event": "START", "id": "test_r1_hardening.TestF10LedgerOwnership.test_unsupported_version_untouched", "monotonic": 450371.3804536}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF10LedgerOwnership.test_unsupported_version_untouched", "outcome": "success", "seconds": 0.0005648999940603971}
+{"event": "START", "id": "test_r1_hardening.TestF11Imports.test_invalid_utf8_rejected", "monotonic": 450371.3810688}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF11Imports.test_invalid_utf8_rejected", "outcome": "success", "seconds": 0.0001385000068694353}
+{"event": "START", "id": "test_r1_hardening.TestF11Imports.test_oversize_chunk_rejected", "monotonic": 450371.3812333}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF11Imports.test_oversize_chunk_rejected", "outcome": "success", "seconds": 0.00027409999165683985}
+{"event": "START", "id": "test_r1_hardening.TestF12Results.test_invalid_fields_rejected", "monotonic": 450371.3815567}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF12Results.test_invalid_fields_rejected", "outcome": "success", "seconds": 0.0001784000196494162}
+{"event": "START", "id": "test_r1_hardening.TestF13ContextPayload.test_payload_contains_context", "monotonic": 450371.3817927}
+{"cause": "", "event": "END", "id": "test_r1_hardening.TestF13ContextPayload.test_payload_contains_context", "outcome": "success", "seconds": 0.0002460000105202198}
+{"event": "START", "id": "test_r2_hardening.R2Dispatch.test_context_one_with_output_reserve_rejects_before_adapter_boundary", "monotonic": 450371.3820812}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Dispatch.test_context_one_with_output_reserve_rejects_before_adapter_boundary", "outcome": "success", "seconds": 0.0003674000035971403}
+{"event": "START", "id": "test_r2_hardening.R2Dispatch.test_dispatch_rejects_profile_approval_mismatch_before_adapter", "monotonic": 450371.3824809}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Dispatch.test_dispatch_rejects_profile_approval_mismatch_before_adapter", "outcome": "success", "seconds": 0.005626099999062717}
+{"event": "START", "id": "test_r2_hardening.R2Dispatch.test_final_payload_measurement_is_external_and_exact", "monotonic": 450371.3881437}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Dispatch.test_final_payload_measurement_is_external_and_exact", "outcome": "success", "seconds": 0.00023779994808137417}
+{"event": "START", "id": "test_r2_hardening.R2Dispatch.test_live_adapter_is_rejected_before_approval_consumption", "monotonic": 450371.3884166}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Dispatch.test_live_adapter_is_rejected_before_approval_consumption", "outcome": "success", "seconds": 0.0060606999904848635}
+{"event": "START", "id": "test_r2_hardening.R2Dispatch.test_unknown_delivery_cannot_be_bypassed_by_prepare", "monotonic": 450371.3945181}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Dispatch.test_unknown_delivery_cannot_be_bypassed_by_prepare", "outcome": "success", "seconds": 0.008715000003576279}
+{"event": "START", "id": "test_r2_hardening.R2Durability.test_empty_result_list_is_never_a_rich_result", "monotonic": 450371.4032847}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Durability.test_empty_result_list_is_never_a_rich_result", "outcome": "success", "seconds": 0.00021919998107478023}
+{"event": "START", "id": "test_r2_hardening.R2Durability.test_generic_meta_database_is_refused_without_mutation", "monotonic": 450371.4035324}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Durability.test_generic_meta_database_is_refused_without_mutation", "outcome": "success", "seconds": 0.0006915999692864716}
+{"event": "START", "id": "test_r2_hardening.R2Durability.test_invalid_cas_address_rejects_before_filesystem_read", "monotonic": 450371.4042606}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Durability.test_invalid_cas_address_rejects_before_filesystem_read", "outcome": "success", "seconds": 0.000819200009573251}
+{"event": "START", "id": "test_r2_hardening.R2Durability.test_strict_result_requires_actual_task_and_attempt", "monotonic": 450371.4051197}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2Durability.test_strict_result_requires_actual_task_and_attempt", "outcome": "success", "seconds": 0.00016529997810721397}
+{"event": "START", "id": "test_r2_hardening.R2SourceAndRead.test_manifest_rejects_utf8_split_and_reversed_primary", "monotonic": 450371.4053247}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2SourceAndRead.test_manifest_rejects_utf8_split_and_reversed_primary", "outcome": "success", "seconds": 0.0004278999986127019}
+{"event": "START", "id": "test_r2_hardening.R2SourceAndRead.test_query_rejects_stale_manifest_before_returning_old_hit", "monotonic": 450371.4057792}
+{"cause": "", "event": "END", "id": "test_r2_hardening.R2SourceAndRead.test_query_rejects_stale_manifest_before_returning_old_hit", "outcome": "success", "seconds": 0.022341799980495125}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_blocked_dispatch_spends_no_approval_and_calls_no_adapter", "monotonic": 450371.428205}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_blocked_dispatch_spends_no_approval_and_calls_no_adapter", "outcome": "success", "seconds": 0.36634230002528057}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_caller_off_mode_or_new_id_cannot_downgrade_registered_task", "monotonic": 450371.7946385}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_caller_off_mode_or_new_id_cannot_downgrade_registered_task", "outcome": "success", "seconds": 0.07234389998484403}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_deleted_policy_cannot_be_reclassified_as_standalone_off", "monotonic": 450371.8670712}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_deleted_policy_cannot_be_reclassified_as_standalone_off", "outcome": "success", "seconds": 0.07711280003422871}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_generic_dispatch_transition_cannot_replace_atomic_approval_start", "monotonic": 450371.9443563}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_generic_dispatch_transition_cannot_replace_atomic_approval_start", "outcome": "success", "seconds": 0.13078529998892918}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_graph_rejects_cycle_missing_and_unsupported_relation", "monotonic": 450372.0752221}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_graph_rejects_cycle_missing_and_unsupported_relation", "outcome": "success", "seconds": 0.054532599984668195}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept", "monotonic": 450372.1298425}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_missing_or_corrupt_graph_cas_blocks_prepare_dispatch_and_accept", "outcome": "success", "seconds": 0.20727329998044297}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_missing_prerequisite_blocks_prepare_without_attempt", "monotonic": 450372.3372141}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_missing_prerequisite_blocks_prepare_without_attempt", "outcome": "success", "seconds": 0.07746649999171495}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_partial_task_results_and_changed_source_cannot_satisfy_prerequisite", "monotonic": 450372.4147461}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_partial_task_results_and_changed_source_cannot_satisfy_prerequisite", "outcome": "success", "seconds": 0.2601476999698207}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_raw_protected_transitions_and_legacy_path_refuse_missing_context", "monotonic": 450372.6749818}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_raw_protected_transitions_and_legacy_path_refuse_missing_context", "outcome": "success", "seconds": 0.14441499998793006}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_revocation_after_dispatch_blocks_acceptance_and_changed_fence_blocks_dispatch", "monotonic": 450372.8194623}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_revocation_after_dispatch_blocks_acceptance_and_changed_fence_blocks_dispatch", "outcome": "success", "seconds": 0.5048574000247754}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_revocation_between_guard_and_dispatch_is_checked_before_approval_spend", "monotonic": 450373.3244368}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_revocation_between_guard_and_dispatch_is_checked_before_approval_spend", "outcome": "success", "seconds": 0.37294330005533993}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_self_partial_foreign_and_missing_prerequisite_context_refuse", "monotonic": 450373.6974717}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_self_partial_foreign_and_missing_prerequisite_context_refuse", "outcome": "success", "seconds": 0.2152932999888435}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_serialized_same_task_claim_and_full_ready_blocked_query", "monotonic": 450373.9128676}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_serialized_same_task_claim_and_full_ready_blocked_query", "outcome": "success", "seconds": 0.0942780000041239}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_spent_awaiting_approval_cannot_cancel_uncertainty", "monotonic": 450374.0072255}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_spent_awaiting_approval_cannot_cancel_uncertainty", "outcome": "success", "seconds": 0.13516130001517013}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_spent_dispatch_cannot_be_cancelled_or_retried_as_definite_nondelivery", "monotonic": 450374.142469}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_spent_dispatch_cannot_be_cancelled_or_retried_as_definite_nondelivery", "outcome": "success", "seconds": 0.1437885999912396}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_uncertain_coordinated_delivery_blocks_low_level_replacement_attempt", "monotonic": 450374.2863366}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_uncertain_coordinated_delivery_blocks_low_level_replacement_attempt", "outcome": "success", "seconds": 0.17462629999499768}
+{"event": "START", "id": "test_r3_coordination.CoordinationTests.test_verified_prerequisite_allows_b_then_revoke_blocks_current_applicability", "monotonic": 450374.4610601}
+{"cause": "", "event": "END", "id": "test_r3_coordination.CoordinationTests.test_verified_prerequisite_allows_b_then_revoke_blocks_current_applicability", "outcome": "success", "seconds": 0.2585221999906935}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_caller_transaction_cannot_launder_removed_coordination_or_task", "monotonic": 450374.719678}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_caller_transaction_cannot_launder_removed_coordination_or_task", "outcome": "success", "seconds": 0.11240419995738193}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_checkpoint_is_external_and_detects_erased_history", "monotonic": 450374.8321886}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_checkpoint_is_external_and_detects_erased_history", "outcome": "success", "seconds": 0.06000470003345981}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_checkpoint_prefix_does_not_claim_new_tail_independently_anchored", "monotonic": 450374.8922663}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_checkpoint_prefix_does_not_claim_new_tail_independently_anchored", "outcome": "success", "seconds": 0.044120100035797805}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_invalid_checkpoints_never_verify", "monotonic": 450374.9364536}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_invalid_checkpoints_never_verify", "outcome": "success", "seconds": 0.04117119999136776}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_legacy_reconcile_keeps_spent_awaiting_attempt_uncertain", "monotonic": 450374.9776985}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_legacy_reconcile_keeps_spent_awaiting_attempt_uncertain", "outcome": "success", "seconds": 0.07009870000183582}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_ordinary_event_update_delete_and_unsealed_insert_are_refused", "monotonic": 450375.0479126}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_ordinary_event_update_delete_and_unsealed_insert_are_refused", "outcome": "success", "seconds": 0.042842900031246245}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_projection_and_event_rollback_together", "monotonic": 450375.0908339}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_projection_and_event_rollback_together", "outcome": "success", "seconds": 0.04764740000246093}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_replay_matches_current_projection_and_revoke_is_a_new_event", "monotonic": 450375.1385602}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_replay_matches_current_projection_and_revoke_is_a_new_event", "outcome": "success", "seconds": 0.07712329999776557}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_security_bearing_projection_change_cannot_be_laundered", "monotonic": 450375.2157889}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_security_bearing_projection_change_cannot_be_laundered", "outcome": "success", "seconds": 0.048514300025999546}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_semantic_replay_rejects_changed_projection_under_generic_event", "monotonic": 450375.2643739}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_semantic_replay_rejects_changed_projection_under_generic_event", "outcome": "success", "seconds": 0.047435899963602424}
+{"event": "START", "id": "test_r3_history.HistoryTests.test_v3_migration_preserves_legacy_unverified_provenance", "monotonic": 450375.3119239}
+{"cause": "", "event": "END", "id": "test_r3_history.HistoryTests.test_v3_migration_preserves_legacy_unverified_provenance", "outcome": "success", "seconds": 0.0937015000381507}
+{"event": "START", "id": "test_resume.ResumeTests.test_kill_after_save_needs_strict_basis", "monotonic": 450375.4057475}
+{"cause": "", "event": "END", "id": "test_resume.ResumeTests.test_kill_after_save_needs_strict_basis", "outcome": "success", "seconds": 0.3239723999868147}
+{"event": "START", "id": "test_resume.ResumeTests.test_kill_in_dispatch_resumes_unknown", "monotonic": 450375.7297882}
+{"cause": "", "event": "END", "id": "test_resume.ResumeTests.test_kill_in_dispatch_resumes_unknown", "outcome": "success", "seconds": 0.30918859998928383}
+{"event": "START", "id": "test_resume.ResumeTests.test_live_dispatch_absent", "monotonic": 450376.039064}
+{"cause": "", "event": "END", "id": "test_resume.ResumeTests.test_live_dispatch_absent", "outcome": "success", "seconds": 0.0009357999661006033}
+{"event": "START", "id": "test_resume.ResumeTests.test_offline_fake_paths", "monotonic": 450376.0400433}
+{"cause": "", "event": "END", "id": "test_resume.ResumeTests.test_offline_fake_paths", "outcome": "success", "seconds": 0.1822180000017397}
+{"event": "START", "id": "test_runner.PreflightTests.test_bad_profile_blocked", "monotonic": 450376.2223532}
+{"cause": "", "event": "END", "id": "test_runner.PreflightTests.test_bad_profile_blocked", "outcome": "success", "seconds": 0.04007559997262433}
+{"event": "START", "id": "test_runner.PreflightTests.test_changed_source_blocked", "monotonic": 450376.2624933}
+{"cause": "", "event": "END", "id": "test_runner.PreflightTests.test_changed_source_blocked", "outcome": "success", "seconds": 0.04976879997411743}
+{"event": "START", "id": "test_runner.PreflightTests.test_infeasible_budget_blocked", "monotonic": 450376.3123506}
+{"cause": "", "event": "END", "id": "test_runner.PreflightTests.test_infeasible_budget_blocked", "outcome": "success", "seconds": 0.04168949997983873}
+{"event": "START", "id": "test_runner.PreflightTests.test_invalid_manifest_blocked", "monotonic": 450376.3541096}
+{"cause": "", "event": "END", "id": "test_runner.PreflightTests.test_invalid_manifest_blocked", "outcome": "success", "seconds": 0.04301719996146858}
+{"event": "START", "id": "test_runner.PreflightTests.test_pass_on_ready", "monotonic": 450376.3972099}
+{"cause": "", "event": "END", "id": "test_runner.PreflightTests.test_pass_on_ready", "outcome": "success", "seconds": 0.042081299994606525}
+{"event": "START", "id": "test_runner.PreflightTests.test_unreconciled_attempt_blocked", "monotonic": 450376.4393612}
+{"cause": "", "event": "END", "id": "test_runner.PreflightTests.test_unreconciled_attempt_blocked", "outcome": "success", "seconds": 0.05155879998346791}
+{"event": "START", "id": "test_unit_results.UnitResultTests.test_empty_interpretation_rejected", "monotonic": 450376.4910119}
+{"cause": "", "event": "END", "id": "test_unit_results.UnitResultTests.test_empty_interpretation_rejected", "outcome": "success", "seconds": 0.00022479996550828218}
+{"event": "START", "id": "test_unit_results.UnitResultTests.test_make_and_validate", "monotonic": 450376.4912694}
+{"cause": "", "event": "END", "id": "test_unit_results.UnitResultTests.test_make_and_validate", "outcome": "success", "seconds": 0.0001604999997653067}
+{"event": "START", "id": "test_unit_results.UnitResultTests.test_reconcile_missing_duplicate_foreign", "monotonic": 450376.4914562}
+{"cause": "", "event": "END", "id": "test_unit_results.UnitResultTests.test_reconcile_missing_duplicate_foreign", "outcome": "success", "seconds": 0.00012769998284056783}
+{"event": "START", "id": "test_unit_results.UnitResultTests.test_stale_source_detected_at_manifest_level", "monotonic": 450376.4916081}
+{"cause": "", "event": "END", "id": "test_unit_results.UnitResultTests.test_stale_source_detected_at_manifest_level", "outcome": "success", "seconds": 0.00020589999621734023}
+{"event": "START", "id": "test_unit_results.UnitResultTests.test_tampered_excerpt_rejected", "monotonic": 450376.4918368}
+{"cause": "", "event": "END", "id": "test_unit_results.UnitResultTests.test_tampered_excerpt_rejected", "outcome": "success", "seconds": 0.00011089997133240104}
+{"event": "START", "id": "test_unit_results.UnitResultTests.test_uniform_interpretations_flagged", "monotonic": 450376.4919681}
+{"cause": "", "event": "END", "id": "test_unit_results.UnitResultTests.test_uniform_interpretations_flagged", "outcome": "success", "seconds": 5.989999044686556e-05}

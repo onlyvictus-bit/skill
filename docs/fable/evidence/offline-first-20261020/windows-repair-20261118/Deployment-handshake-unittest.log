@@ -1,0 +1,11 @@
+test_bad_json_from_approved_process_fails_structured (test_companion_handshake.HandshakeTests.test_bad_json_from_approved_process_fails_structured) ... ok
+test_garbage_stdout_fails_structured (test_companion_handshake.HandshakeTests.test_garbage_stdout_fails_structured) ... ok
+test_missing_companion_fails_structured (test_companion_handshake.HandshakeTests.test_missing_companion_fails_structured) ... ok
+test_real_engine_passes_with_pin (test_companion_handshake.HandshakeTests.test_real_engine_passes_with_pin) ... ok
+test_tampered_engine_digest_fails (test_companion_handshake.HandshakeTests.test_tampered_engine_digest_fails) ... ok
+test_wrong_schema_version_fails (test_companion_handshake.HandshakeTests.test_wrong_schema_version_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.314s
+
+OK

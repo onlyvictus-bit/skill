@@ -1,0 +1,12 @@
+{"event": "START", "id": "test_companion_handshake.HandshakeTests.test_bad_json_from_approved_process_fails_structured", "monotonic": 444503.3570021}
+{"cause": "", "event": "END", "id": "test_companion_handshake.HandshakeTests.test_bad_json_from_approved_process_fails_structured", "outcome": "success", "seconds": 0.10877170000458136}
+{"event": "START", "id": "test_companion_handshake.HandshakeTests.test_garbage_stdout_fails_structured", "monotonic": 444503.465876}
+{"cause": "", "event": "END", "id": "test_companion_handshake.HandshakeTests.test_garbage_stdout_fails_structured", "outcome": "success", "seconds": 0.02910579997114837}
+{"event": "START", "id": "test_companion_handshake.HandshakeTests.test_missing_companion_fails_structured", "monotonic": 444503.4953297}
+{"cause": "", "event": "END", "id": "test_companion_handshake.HandshakeTests.test_missing_companion_fails_structured", "outcome": "success", "seconds": 0.0003367000026628375}
+{"event": "START", "id": "test_companion_handshake.HandshakeTests.test_real_engine_passes_with_pin", "monotonic": 444503.4957148}
+{"cause": "", "event": "END", "id": "test_companion_handshake.HandshakeTests.test_real_engine_passes_with_pin", "outcome": "success", "seconds": 0.41146629996364936}
+{"event": "START", "id": "test_companion_handshake.HandshakeTests.test_tampered_engine_digest_fails", "monotonic": 444503.9072453}
+{"cause": "", "event": "END", "id": "test_companion_handshake.HandshakeTests.test_tampered_engine_digest_fails", "outcome": "success", "seconds": 0.36506669997470453}
+{"event": "START", "id": "test_companion_handshake.HandshakeTests.test_wrong_schema_version_fails", "monotonic": 444504.2723856}
+{"cause": "", "event": "END", "id": "test_companion_handshake.HandshakeTests.test_wrong_schema_version_fails", "outcome": "success", "seconds": 0.3985172999673523}

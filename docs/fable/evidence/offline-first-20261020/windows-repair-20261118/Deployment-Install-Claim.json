@@ -1,0 +1,8 @@
+{
+  "authorization": "Approve installed Windows repair update",
+  "old_installed_files": 200,
+  "plan_sha256": "684a147fa3ac3aa90096f4786066b29a2bb8496ff3620c7b0b335a2125dd625f",
+  "source": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\memory-integrity",
+  "source_files": 204,
+  "target": "C:\\Users\\sakth\\.codex\\skills\\memory-integrity"
+}

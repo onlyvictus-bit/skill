@@ -103,6 +103,11 @@ def validate_with_engine(engine_root, source_bytes, manifest):
     """
     import subprocess
     import tempfile
+    from . import engine_client
+    try:
+        engine_client.approved_root(engine_root)
+    except (OSError, ValueError) as exc:
+        return ['E_ENGINE_APPROVAL: ' + str(exc)]
     probe = (
         "import json,sys;"
         "sys.path.insert(0,%r);"
@@ -116,10 +121,14 @@ def validate_with_engine(engine_root, source_bytes, manifest):
         Path(src_path).write_bytes(source_bytes)
         Path(man_path).write_text(json.dumps(manifest), encoding="utf-8")
         try:
-            proc = subprocess.run([sys.executable, "-c", probe, src_path, man_path],
+            proc = subprocess.run([sys.executable, '-I', '-S', '-B', "-c", probe, src_path, man_path],
                                   text=True, capture_output=True, timeout=120)
         except (OSError, subprocess.SubprocessError) as exc:
             return ["E_ENGINE_PROBE: %s" % (exc,)]
+    try:
+        engine_client.approved_root(engine_root)
+    except (OSError, ValueError) as exc:
+        return ['E_ENGINE_CHANGED: ' + str(exc)]
     if proc.returncode != 0:
         return ["E_ENGINE_PROBE: %s" % ((proc.stderr or "")[-300:])]
     try:
@@ -136,11 +145,18 @@ def load_manifest_file(path):
 def validate_saved_run_with_engine(engine_root, run_dir):
     """Non-mutating companion proof inspection, through the explicit root."""
     import subprocess
+    from . import engine_client
+    try:
+        engine_client.approved_root(engine_root)
+    except (OSError, ValueError) as exc:
+        return ['E_ENGINE_APPROVAL: ' + str(exc)]
     probe = ("import sys; sys.path.insert(0,%r); "
              "from complete_read_v2 import proof; proof.main()") % str(Path(engine_root) / "scripts")
     try:
-        proc = subprocess.run([sys.executable, "-B", "-c", probe, str(run_dir)],
+        engine_client.approved_root(engine_root)
+        proc = subprocess.run([sys.executable, '-I', '-S', "-B", "-c", probe, str(run_dir)],
                               capture_output=True, text=True, encoding="utf-8", timeout=60)
+        engine_client.approved_root(engine_root)
         if proc.returncode != 0:
             return ["E_ENGINE_PROOF_EXIT: " + proc.stderr[-500:]]
         value = json.loads(proc.stdout)

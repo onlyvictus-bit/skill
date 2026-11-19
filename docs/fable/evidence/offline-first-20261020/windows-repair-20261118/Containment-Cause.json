@@ -1,0 +1,34 @@
+{
+  "result": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "",
+    "capture_complete": false,
+    "timed_out": true,
+    "output_limit_exceeded": false,
+    "capture_errors": [
+      "tree-sweep: taskkill exit 1"
+    ],
+    "process_id": 23820,
+    "kill_path_used": true,
+    "tree_contained": true,
+    "containment_method": "windows-job-kill-on-close",
+    "containment_note": "live tree swept, then job closed; OS terminates any remainder including pre-assignment descendants"
+  },
+  "calls": [
+    {
+      "args": [
+        "taskkill",
+        "/PID",
+        "23820",
+        "/T",
+        "/F"
+      ],
+      "code": 1,
+      "seconds": 0.11807179998140782,
+      "stdout": "",
+      "stderr": "ERROR: Access denied\r\r\n"
+    }
+  ],
+  "seconds": 15.197548699972685
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "pattern": "test_approved_companion.py",
+    "exit": 0,
+    "tail": "he_is_refused) ... ok\r\ntest_wrong_runtime_release_refused (test_approved_companion.ApprovedCompanion.test_wrong_runtime_release_refused) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 20 tests in 14.364s\r\n\r\nOK\r\n"
+  },
+  {
+    "pattern": "test_knowledge_timeout_budget.py",
+    "exit": 0,
+    "tail": "eserves_override (test_knowledge_timeout_budget.KnowledgeTimeoutBudget.test_public_retrieve_selects_120_by_default_and_preserves_override) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 7 tests in 0.160s\r\n\r\nOK\r\n"
+  },
+  {
+    "pattern": "test_knowledge_worker_cwd.py",
+    "exit": 1,
+    "tail": "de)\r\n    ~~~~~~~~^^^^^^^^^^^^\r\nPermissionError: [WinError 5] Access is denied: 'C:\\\\Users\\\\sakth\\\\AppData\\\\Local\\\\MemoryIntegrity'\r\n\r\n----------------------------------------------------------------------\r\nRan 7 tests in 1.920s\r\n\r\nFAILED (errors=1)\r\n"
+  },
+  {
+    "pattern": "test_r2_workflow.py",
+    "exit": 0,
+    "tail": "roval_not_authoritative) ... ok\r\ntest_resume_no_duplicate_or_overwrite (test_r2_workflow.Workflow.test_resume_no_duplicate_or_overwrite) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 10 tests in 33.263s\r\n\r\nOK\r\n"
+  },
+  {
+    "pattern": "test_project_continuity.py",
+    "exit": 0,
+    "tail": "e_dispatch) ... ok\r\ntest_valid_basis_checks_original_bytes (test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 19 tests in 0.977s\r\n\r\nOK\r\n"
+  }
+]

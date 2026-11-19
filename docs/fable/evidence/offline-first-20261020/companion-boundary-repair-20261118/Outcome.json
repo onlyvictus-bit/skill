@@ -1,0 +1,51 @@
+{
+  "status": "SOURCE_COMPATIBILITY_REPAIR_VERIFIED_INSTALL_APPROVAL_PENDING",
+  "source_base_commit": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc",
+  "boundary_cases": 20,
+  "boundary_all_passed": true,
+  "final_mi_v2": {
+    "discovered": 899,
+    "executed": 899,
+    "outcomes": {
+      "success": 835,
+      "skipped": 54,
+      "failure": 7,
+      "error": 2,
+      "expected_failure": 1
+    },
+    "failure_records": 8,
+    "errors": 2
+  },
+  "other_suites": {
+    "claude_mon_legacy": 21,
+    "claude_mon_v2": 213,
+    "memory_integrity_legacy": 38,
+    "all_passed": true
+  },
+  "new_failing_case_ids": [],
+  "retained_prior_failing_or_error_ids": [
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_owned_root_refuses_unsupported_recursive_python_before_child_starts",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_post_go_startup_refusal_retains_cause_before_authored_worker",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_authored_script_keeps_its_original_sibling_import_directory",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_nested_job_descendant_has_independent_native_exit_proof",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_script_system_exit_is_not_relabelled_as_bootstrap_failure",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_stop_reaps_root_child_grandchild_but_not_unrelated_process",
+    "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed",
+    "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path",
+    "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify"
+  ],
+  "approved_companion_manifest_sha256": "7c9ac1cf39184104c959f3d14921d365eaa17d810a7240a09b98d05491abd192",
+  "source_and_extracted_pair_handshake": "PASS",
+  "extracted_valid_workflow": "VERIFIED_OFFLINE",
+  "extracted_wrong_release": "REFUSED_BEFORE_LEDGER_CREATED",
+  "independent_review": "SHIP_FOR_SCOPED_SOURCE_BOUNDARY_ONLY",
+  "independent_reviewer_reran_tests": false,
+  "installed_updated": false,
+  "installation_approval": "PENDING_USER_REPLY",
+  "current_checkpoint": "STALE_FROM_LEGITIMATE_SOURCE_CHANGES; pending reviewed refresh with deployment",
+  "commit_created": false,
+  "remote_written": false,
+  "full_release_ready": false,
+  "native_windows_qualified": false,
+  "memory_service_persistence": "UNVERIFIED"
+}

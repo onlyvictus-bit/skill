@@ -1,0 +1,15 @@
+{
+  "head": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc",
+  "status": "",
+  "files": {
+    "memory-integrity/scripts/integrity_v2/engine_client.py": "b3f122bc5fb4c9570325620ab4fb76bc72054eea2d536f4fcf95b5ed7696d2a9",
+    "memory-integrity/scripts/integrity_v2/source_audit.py": "2c0bf205b32b618ba0fba351c13f820a83de05fb3caca6d9b39203824b07e0f9",
+    "memory-integrity/scripts/integrity_v2/report.py": "5402e44eef0d109c2e8e2cba905bbe07ab32f0cd3e865f64f403ad6767d15493",
+    "memory-integrity/scripts/memory_integrity_workflow.py": "9b0b5602f83ebe55f310685d3cd2f8e30c7e0d1317460a1c0e75ba1fdf4df347",
+    "memory-integrity/scripts/project_continuity.py": "fc266f4f3c292f2e3ef9560fc5c90a0405e4e0ed0a16243cf00a81bf7ef67a04",
+    "memory-integrity/scripts/knowledge_bridge/indexing.py": "75596598e1c6aa01b461ef70e1aeda2557f6a87edc6c1dea77422f11d755613e",
+    "memory-integrity/tests_v2/OFFLINE1-CONTENT.json": "bb1e7212f5daa4151e231ba57970b08ce8fe28535b69fa5f3b80138a3af684c0",
+    "docs/fable/state.json": "8a0b21441dd41bf75bafe9dc7ae4e5136b3e6eef8ab0437120f666e5ce848d51",
+    "docs/fable/derived/offline-first-release-plan-20261020.md": "1d85ac5294b2194e7c0fa94040efad9aa2ba10b5dae7a47bd25fbfb7cb9c54a3"
+  }
+}

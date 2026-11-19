@@ -1,0 +1,79 @@
+[
+  {
+    "name": "baseline",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\claude-mon\\scripts\\claude_mon_v2.py",
+      "preflight",
+      "--run-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\run",
+      "--work-item",
+      "W",
+      "--manifest-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\manifest.json",
+      "--source-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\source.txt",
+      "--profile-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\profile.json",
+      "--per-unit-output",
+      "10",
+      "--expect-task-digest",
+      "task-A",
+      "--counter-words"
+    ],
+    "code": 0,
+    "stdout": "{\n  \"notes\": [\n    \"batches=1 input_budget=100000\"\n  ],\n  \"ok\": true\n}\n",
+    "stderr": "",
+    "seconds": 0.5904736999655142
+  },
+  {
+    "name": "wrong-task-spec",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\claude-mon\\scripts\\claude_mon_v2.py",
+      "preflight",
+      "--run-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\run",
+      "--work-item",
+      "W",
+      "--manifest-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\manifest.json",
+      "--source-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\source.txt",
+      "--profile-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\profile.json",
+      "--per-unit-output",
+      "10",
+      "--expect-task-digest",
+      "task-A",
+      "--counter-words",
+      "--task-spec-digest",
+      "DELIBERATELY-WRONG"
+    ],
+    "code": 2,
+    "stdout": "{\n  \"error\": \"E_PREFLIGHT_TASK_SPEC_UNSUPPORTED: --task-spec-digest cannot be verified before prepare; use --expect-task-digest for the work-item task\",\n  \"ok\": false\n}\n",
+    "stderr": "",
+    "seconds": 0.2974847999867052
+  },
+  {
+    "name": "missing-query",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\claude-mon\\scripts\\claude_mon_v2.py",
+      "query",
+      "--manifest-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\manifest.json",
+      "--source-file",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\examples\\absent.txt",
+      "--text",
+      "alpha"
+    ],
+    "code": 2,
+    "stdout": "{\n  \"cause\": {\n    \"chain\": [],\n    \"errno\": 2,\n    \"filename\": \"C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\.github\\\\run-artifacts\\\\cm-cli-repair-20261118\\\\examples\\\\absent.txt\",\n    \"message\": \"[Errno 2] No such file or directory: 'C:\\\\\\\\Users\\\\\\\\sakth\\\\\\\\Documents\\\\\\\\Codex\\\\\\\\ofpkg-20261113\\\\\\\\ci\\\\\\\\source\\\\\\\\.github\\\\\\\\run-artifacts\\\\\\\\cm-cli-repair-20261118\\\\\\\\examples\\\\\\\\absent.txt'\",\n    \"type\": \"FileNotFoundError\"\n  },\n  \"error\": \"E_COMMAND_IO: FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\\\\\Users\\\\\\\\sakth\\\\\\\\Documents\\\\\\\\Codex\\\\\\\\ofpkg-20261113\\\\\\\\ci\\\\\\\\source\\\\\\\\.github\\\\\\\\run-artifacts\\\\\\\\cm-cli-repair-20261118\\\\\\\\examples\\\\\\\\absent.txt'\",\n  \"ok\": false\n}\n",
+    "stderr": "",
+    "seconds": 0.27524860005360097
+  }
+]

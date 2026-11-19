@@ -13,8 +13,9 @@ def partition_engine(root):
     import sys
     ok,env=engine_client.handshake(root,expect_digest=COMPANION_DIGEST)
     if not ok: raise ValueError('E_COMPANION: '+str(env))
-    scripts=(Path(root)/'scripts').resolve(); sys.path.insert(0,str(scripts))
+    scripts=engine_client.approved_imports(root)/'scripts'; sys.path.insert(0,str(scripts))
     from complete_read_v2 import partition
+    engine_client.approved_imports(root)
     if Path(partition.__file__).resolve().parent.parent!=scripts: raise ValueError('E_COMPANION_IMPORT')
     return partition
 

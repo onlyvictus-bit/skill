@@ -45,3 +45,18 @@ authorization.
 Tests use Python standard-library unittest. Release packages include their own
 preservation baseline and exact content manifest; no original H0/OneDrive folder
 is required. Both companion packages are required for the integration tests.
+
+## Approved companion release boundary
+
+The public MI boundary independently pins the approved CM content manifest,
+then verifies its full inventory before code execution/import and after use.
+Exact engine/version/schema checks supplement protocol compatibility. Altering
+CM and regenerating its own manifest cannot authorize a new release; update the
+MI-side pin only after an explicitly reviewed paired release. Direct probes,
+protected acceptance and public success responses recheck sampled identity.
+These are before/after observations, not atomic filesystem-owner protection.
+CM bytecode/cache files are not approved executable content. MI suppresses cache
+writes in its process and runs child probes with isolated -I -S -B startup. Use
+python -B for standalone CM commands. Existing unexpected caches cause refusal;
+never delete them automatically or relabel that refusal as package corruption.
+Real numerical/model worker settings and their deadlines are unchanged.

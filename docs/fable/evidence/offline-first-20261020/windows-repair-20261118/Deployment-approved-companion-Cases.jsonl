@@ -1,0 +1,40 @@
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_cached_foreign_module_refused", "monotonic": 444485.3185487}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_cached_foreign_module_refused", "outcome": "success", "seconds": 0.15509369998471811}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_cached_module_cannot_claim_another_approved_file", "monotonic": 444485.4737479}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_cached_module_cannot_claim_another_approved_file", "outcome": "success", "seconds": 0.1737991999834776}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_change_during_engine_execution_refused", "monotonic": 444485.6705782}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_change_during_engine_execution_refused", "outcome": "success", "seconds": 1.2826049999566749}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_changed_entry_refused_before_execution", "monotonic": 444486.9532558}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_changed_entry_refused_before_execution", "outcome": "success", "seconds": 0.6280265999957919}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_direct_engine_call_cannot_bypass_release_gate", "monotonic": 444487.5813441}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_direct_engine_call_cannot_bypass_release_gate", "outcome": "success", "seconds": 0.6781268999911845}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_direct_partition_probe_cannot_import_altered_code", "monotonic": 444488.2595527}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_direct_partition_probe_cannot_import_altered_code", "outcome": "success", "seconds": 0.7329391000093892}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_direct_saved_proof_probe_cannot_import_altered_code", "monotonic": 444488.9925691}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_direct_saved_proof_probe_cannot_import_altered_code", "outcome": "success", "seconds": 0.6499965999973938}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_hardlinked_approved_bytes_refused", "monotonic": 444489.6426463}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_hardlinked_approved_bytes_refused", "outcome": "success", "seconds": 0.3815519999479875}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_missing_file_refused", "monotonic": 444490.0242602}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_missing_file_refused", "outcome": "success", "seconds": 0.6767047000466846}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_normal_python_workflow_does_not_create_companion_cache", "monotonic": 444490.7010246}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_normal_python_workflow_does_not_create_companion_cache", "outcome": "success", "seconds": 3.747152099967934}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_public_success_guard_rejects_late_drift", "monotonic": 444494.448281}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_public_success_guard_rejects_late_drift", "outcome": "success", "seconds": 0.8378484999993816}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_public_workflow_rejects_before_ledger_creation", "monotonic": 444495.2862597}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_public_workflow_rejects_before_ledger_creation", "outcome": "success", "seconds": 1.046207899984438}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_pythonpath_startup_hook_is_not_executed", "monotonic": 444496.3325317}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_pythonpath_startup_hook_is_not_executed", "outcome": "success", "seconds": 0.9947749999701045}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_relative_companion_alias_normalizes_to_same_root", "monotonic": 444497.3274837}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_relative_companion_alias_normalizes_to_same_root", "outcome": "success", "seconds": 0.8011248999973759}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_runtime_identity_is_checked_after_approved_preflight", "monotonic": 444498.1286711}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_runtime_identity_is_checked_after_approved_preflight", "outcome": "success", "seconds": 0.5640222000074573}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_self_resealed_changed_entry_is_still_refused", "monotonic": 444498.6927526}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_self_resealed_changed_entry_is_still_refused", "outcome": "success", "seconds": 0.7476695000077598}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_unchanged_approved_copy_works", "monotonic": 444499.440502}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_unchanged_approved_copy_works", "outcome": "success", "seconds": 1.041596200026106}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_unexpected_file_refused", "monotonic": 444500.4821725}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_unexpected_file_refused", "outcome": "success", "seconds": 0.7184843000140972}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_untracked_bytecode_cache_is_refused", "monotonic": 444501.2007506}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_untracked_bytecode_cache_is_refused", "outcome": "success", "seconds": 0.6687531999778003}
+{"event": "START", "id": "test_approved_companion.ApprovedCompanion.test_wrong_runtime_release_refused", "monotonic": 444501.8696198}
+{"cause": "", "event": "END", "id": "test_approved_companion.ApprovedCompanion.test_wrong_runtime_release_refused", "outcome": "success", "seconds": 0.7568491999991238}

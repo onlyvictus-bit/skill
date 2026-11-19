@@ -4398,3 +4398,169 @@ credits. Parent process verification is not relabelled independent model proof.
 No website update, new full release qualification, automatic conversation capture
 or memory-service restart is claimed. Prior Windows failures remain retained.
 Evidence: ../evidence/offline-first-20261020/codex-continuity-skill-20261117/.
+
+
+## Approved companion boundary repair -- 2026-11-18
+
+Authority: user asks Fable to solve the attached confirmed compatibility defect.
+Scope: shared MI-owned exact companion content/release pin; pre-execution and
+pre-import validation, runtime identity contract, post-operation drift checks;
+source regressions, derived manifest, Fable records and checkpoint continuity.
+No-build/manual checking leaves the demonstrated public bypass. Chosen minimum:
+reuse existing MI content verifier with an independently pinned CM manifest,
+then exact engine/version/schema checks. A new memory daemon is unrelated.
+Weakest link: before/after hashing samples identity, not atomic filesystem-owner
+protection. Cheapest falsifier: changed/resealed CM must not execute a sentinel
+or create a ledger; unchanged approved CM and read-only resume must pass.
+Repair/tests are approved by current user request; native Windows issues remain
+separate, no timeout/ACL/dependency/service change. Installation/publication stay
+separate from this source correction. Preserve audit and failed attempts.
+Checklist: RED negative controls; minimal shared boundary; twin route audit;
+focused and broader checks; fresh native review; reviewed checkpoint refresh.
+
+Repair observation:20 focused boundary cases PASS, retained RED controls for
+pre-execution tampering, self-resealing, bytecode/startup hook, normal Python and
+relative roots. Shared import/probe/accept/success routes covered; native review
+SHIP for scoped source. Final MIv2899cases:835PASS,7failing cases,2ERROR,54SKIP,
+1expectedfailure. Same9 unsuccessful case IDs as pre-repair audit; no new final
+regression IDs. CM21+213 and MIlegacy38PASS. A standalone worker-cwd focused
+invocation hit inaccessible global READY root; full CI scoped fixture preserved
+that test and passed it. All prior Windows failures remain, no skips added.
+Candidate pair200+74files/extraction/handshakes PASS; valid extracted protected
+workflow PASS and wrong-release fixture refused before ledger creation.
+Existing Codex installation199+74 remains unchanged. Separate installed-update
+approval requested; pending reply, so no installed promotion or real Basis
+refresh performed. Current saved checkpoint correctly becomes STALE for changed
+source; do not silently reseal. No commit/push/services/native work.
+
+Deployment approved by user: "Approve skill update and checkpoint refresh".
+Applied13reviewed changes to existing installed MI; complete199file old copy
+retained. Exact200MIfile readback/content verifier PASS; CM74files unchanged.
+Installed boundary20+handshake6+continuity19checks PASS. Current reviewed
+checkpoint is Current-Project-v3.txt with new Reviews-v3/protected-run-v3; old
+sources, reviews, runs, requests and Basis retained. Startup verification remains
+mandatory and must reject changed evidence. No Git/service/ACL/native operation
+or full-release qualification is included. Final runtime receipts are retained
+in ad/companion-repair-20261118/deployment-approved, outside the bound state.
+
+
+## WINDOWS-REPAIR-20261118 — approved investigation and source repair
+
+Authority: user selected option 1, investigate and fix remaining Windows
+runtime failures after the companion deployment. Preserve all existing local
+changes and v3 checkpoint. No install, ACL/global/dependency change, timeout
+increase, Git mutation or historical workload retry.
+
+Observed: six ownership/integration failures have bootstrap sidecars showing
+the same WinError5 user-site probe before authored code. The containment
+taskkill exit1 and unavailable 8.3 fixture paths are separate issues.
+
+W1: retain baseline, add process-local no-user-site launch regression and
+observe RED, then correct owned-launch startup without weakening audits.
+W2: retain native containment errors; add RED/GREEN diagnostic tests and one
+isolated fixture to establish the real OS failure before repairing termination.
+W3: distinguish short-name prerequisite availability from unexpected native
+errors; preserve explicit long-path behavior tests.
+W4: focused and broader retained regression, actual diff review, legitimate MI
+content manifest generation and versioned project checkpoint refresh. Installed
+MI/CM and old packages remain unchanged.
+
+No-build leaves native failures unresolved. Recommend the smallest proven
+launch/capture/fixture corrections. General supervisor redesign or permissions
+workaround is unnecessary and rejected. Weakest link: controller Python3.14
+evidence does not qualify Store3.12. Falsifier: unchanged ownership tests still
+fail after startup correction; inspect actual causes before further changes.
+
+Evidence: .github/run-artifacts/windows-repair-20261118 (outside MI/CM).
+Baseline.json retains full dirty status and original target hashes.
+
+
+## Windows source repair observation — 2026-11-18
+
+W1/W2/W3/W4 observation: final MIv2 921 cases, {"expected_failure": 1, "skipped": 54, "success": 866}; MI legacy38PASS.
+All nine prior unsuccessful IDs now pass. Four new test files bring MI source
+to204files; source seal unchanged throughout the final full run. Independent
+read-only source review SHIP, no Important/Critical remaining. Real controller
+native tests are observed; selected Store3.12 and deployment remain separate.
+The first broad run's transient GO-sharing defect and stale-manifest error are
+retained, not relabelled success. Modern GO shares the source-bound reader.
+Prepared installed update is9files (5replace/4add/0delete); not yet applied.
+See evidence/offline-first-20261020/windows-repair-20261118/Report.md and Outcome.json.
+Legacy model-worker taskkill fallback is a distinct unqualified recurrence,
+outside these nine cases. No new model/runtime/DB operation was performed.
+
+
+### Windows installed update — approved 2026-11-18
+
+Authority: user "Approve installed Windows repair update". Apply the reviewed
+Install-Plan.json SHA684a147fa3ac3aa90096f4786066b29a2bb8496ff3620c7b0b335a2125dd625f
+only after validating complete source204 and installed200 inventories. Retain
+a verified200-file backup, apply5replacements/4additions/0deletions, manifest
+last, verify exact204-file installed readback, run retained installed native
+and compatibility/continuity checks, and refresh a new v5 checkpoint. Preserve
+v4 and all old evidence. Claude-Mon74 unchanged. No Git, dependency/service
+install, permission/global change, selected Store3.12 or old runtime retry.
+
+Keep-source-only leaves the installed native defect unchanged; recommend the
+approved nine-file promotion. Replacing all files adds unnecessary overwrite
+scope. Weakest link is concurrent filesystem mutation: recheck both inventories
+before each write and reject drift. This is sampled consistency, not an atomic
+package transaction or protection against the filesystem owner.
+
+
+## Approved installed Windows update observed — 2026-11-18
+
+User authority: "Approve installed Windows repair update". Exact installed MI204
+matches reviewed source after5replace/4add/0delete; complete old200-file backup
+retained and verified; CM74 unchanged. All100 installed checks passed without
+fail/error/skip/xfail. Source921case/legacy38 broad evidence remains unchanged.
+V4 correctly refused changed basis; reviewed v5 refresh retains old records and
+uses exact previous-Basis replacement lease. Read Deployment-Report.md and
+Deployment-Outcome.json under evidence/offline-first-20261020/windows-repair-20261118.
+No new Store3.12, release/website or memory-service persistence qualification.
+No Git, dependency/service install, ACL/global change or original deletion.
+
+
+## CM CLI F01/F02 repair — approved task 2026-11-18
+
+Authority: user Fable Loop "SOLVE IT" for F01 ignored task-spec argument and
+F02 missing-source envelope. Definition of done: actual CLI rejects supplied
+preflight task-spec before side effects, valid omitted form still works;
+operational file/encoding/SQLite failures emit one structured envelope with
+original cause and exit2; programmer errors/interrupts and domain exit1 stay
+unchanged. Retained RED/GREEN, full CM suites and MI compatibility regressions,
+adversarial review, source-pair identity checks and versioned checkpoint.
+
+Recommended: explicit unsupported-option refusal (preflight lacks durable
+task-spec binding) and one narrow operational-error boundary. No-build leaves
+reproduced defects; adding task-spec schema changes is unnecessary scope.
+Scope: CM CLI, new CLI regression tests, v2-operations reference, CM derived
+manifest; MI source companion manifest pin and derived manifest; Fable records
+and versioned continuity. Preserve all existing dirty changes and old evidence.
+No installed replacement, dependencies, permissions/global changes, services,
+native DB, Git writes or old selected-runtime attempts. Source manifests change
+only for these explained reviewed bytes, never to hide unrelated drift.
+Checklist: baseline/intent; failure-first CLI tests; corrections; focused/broad
+checks; independent refutation; reviewed manifests/pin; checkpoint refresh.
+Evidence: .github/run-artifacts/cm-cli-repair-20261118.
+
+
+## F01/F02 source repair observation — 2026-11-19
+
+Explicit preflight task-spec refusal before effects and structured operational
+CLI errors now verified. New11-case regression passes; CM224+legacy21 pass;
+MI921 has0fail/error,54skip,1expectedfailure. Source CM75 uses new reviewed
+manifest, MI204 source pin updated. Installed MI204/CM74 unchanged. Both
+independent attackers exhausted credits before verdict: no independent clearance
+claimed. See evidence/offline-first-20261020/cm-cli-repair-20261119/Outcome.json.
+Versioned v6 refresh preserves v5. No install/Git/services/ACL/dependency changes.
+
+
+## F01/F02 installed pair — approved and observed 2026-11-19
+
+User "Approve paired skill update with review caveat" approved6-file pair update and accepted unavailable independent review. Both old roots fully backed up (278files); new MI204/CM75 match source. Installed290checks passed without failures/errors/skips. Newv7 retainsv6, old basis and all evidence. No Git, services, dependencies, ACL/global or website action. See cm-cli-repair-20261119/Deployment-Install-Receipt.json and Deployment-Installed-Tests.json.
+
+
+## Authorized cumulative repair publication, 2026-11-19
+
+User "COMMIT AND PUSH ALL NEW CHANGES" authorizes the reviewed source/test/evidence checkpoint on a new backup branch. See ../evidence/offline-first-20261020/publication-all-repairs-20261119/Publication-Plan.md. Current recovery advances to v8; prior runs remain retained. Publication outcome is checked from Git and the separate receipt, not inferred from this pre-commit source. Live persistence, independent review and new release qualification remain separate.

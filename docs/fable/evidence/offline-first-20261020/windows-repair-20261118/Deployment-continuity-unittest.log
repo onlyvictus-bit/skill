@@ -1,0 +1,24 @@
+test_bound_success_remains_file_recovery_only (test_project_continuity.ProjectResume.test_bound_success_remains_file_recovery_only) ... ok
+test_change_during_verification_blocks (test_project_continuity.ProjectResume.test_change_during_verification_blocks) ... ok
+test_changed_original_blocks (test_project_continuity.ProjectResume.test_changed_original_blocks) ... ok
+test_concurrent_basis_change_is_not_overwritten (test_project_continuity.ProjectResume.test_concurrent_basis_change_is_not_overwritten) ... ok
+test_duplicate_keys_refused (test_project_continuity.ProjectResume.test_duplicate_keys_refused) ... ok
+test_empty_scope_cannot_be_ready (test_project_continuity.ProjectResume.test_empty_scope_cannot_be_ready) ... ok
+test_existing_publication_lock_is_never_removed (test_project_continuity.ProjectResume.test_existing_publication_lock_is_never_removed) ... ok
+test_failed_candidate_verification_preserves_current_basis (test_project_continuity.ProjectResume.test_failed_candidate_verification_preserves_current_basis) ... ok
+test_fresh_process_observes_saved_files (test_project_continuity.ProjectResume.test_fresh_process_observes_saved_files) ... ok
+test_generic_ok_without_protected_evidence_refused (test_project_continuity.ProjectResume.test_generic_ok_without_protected_evidence_refused) ... ok
+test_initial_seal_without_previous_basis (test_project_continuity.ProjectResume.test_initial_seal_without_previous_basis) ... ok
+test_missing_original_blocks (test_project_continuity.ProjectResume.test_missing_original_blocks) ... ok
+test_parent_escape_and_absolute_path_refused (test_project_continuity.ProjectResume.test_parent_escape_and_absolute_path_refused) ... ok
+test_readonly_process_guard_rejects_writes_and_network (test_project_continuity.ProjectResume.test_readonly_process_guard_rejects_writes_and_network) ... ok
+test_refresh_requires_exact_previous_basis (test_project_continuity.ProjectResume.test_refresh_requires_exact_previous_basis) ... ok
+test_refresh_retains_old_basis_and_publishes_verified_one (test_project_continuity.ProjectResume.test_refresh_retains_old_basis_and_publishes_verified_one) ... ok
+test_stale_basis_does_not_invoke_protected_workflow (test_project_continuity.ProjectResume.test_stale_basis_does_not_invoke_protected_workflow) ... ok
+test_substituted_skill_root_refused_before_dispatch (test_project_continuity.ProjectResume.test_substituted_skill_root_refused_before_dispatch) ... ok
+test_valid_basis_checks_original_bytes (test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.023s
+
+OK

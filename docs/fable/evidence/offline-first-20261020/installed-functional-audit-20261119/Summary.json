@@ -1,0 +1,66 @@
+{
+  "coverage_limit": "216 function/capability rows are accounted for; 147 remain UNVERIFIED rather than inferred from help/declarations/related module tests. This is not complete functional acceptance.",
+  "function_rows": 216,
+  "function_verdict_counts": {
+    "BLOCKED": 14,
+    "EXPECTED_REFUSAL": 18,
+    "FAIL": 2,
+    "NOT_APPLICABLE": 3,
+    "PASS": 32,
+    "UNVERIFIED": 147
+  },
+  "highest_value_next_action": "Fix and regression-test ignored Claude-Mon preflight task-spec identity option before widening qualification",
+  "identity": {
+    "git_status_unchanged": true,
+    "head_unchanged": true,
+    "installed_counts": {
+      "claude-mon": 74,
+      "memory-integrity": 204
+    },
+    "installed_unchanged": true,
+    "original_project_files_unchanged": true,
+    "project_files_checked": 2363
+  },
+  "no_code_or_manifest_changes": true,
+  "no_external_ai_or_real_db_or_service_changes": true,
+  "recovery_boundaries": {
+    "file_backed_project_recovery": "PASS: actual v5,567 basis files,eight records",
+    "independent_model_context_recovery": "PASS for one native context given only AGENTS entrypoint; not universal comprehension",
+    "live_memory_service_restart_persistence": "UNVERIFIED / NOT EXECUTED",
+    "newly_opened_user_chat_recovery": "UNVERIFIED / NOT EXECUTED"
+  },
+  "reporting_correction": "The initial reporting helper added the skipped count twice via Counter.update; corrected from actual END events. Raw earlier summary retained. Installed test results were unchanged.",
+  "status": "PARTIAL_ACCEPTANCE_WITH_REPRODUCED_CLI_DEFECTS",
+  "test_totals": {
+    "discovered": 1193,
+    "error_records": 0,
+    "errors": 0,
+    "executed": 1193,
+    "expected_failure": 1,
+    "expected_failures": 1,
+    "failed_unique_cases": 0,
+    "failure_records": 0,
+    "incomplete_cases": 0,
+    "interrupted_suites": 0,
+    "passed": 1138,
+    "skipped": 54,
+    "success": 1138,
+    "unexpected_successes": 0
+  },
+  "unittest_expected_failure": "test_practical_v2_schema.CorrespondenceTests.test_dolt_ignore_configuration_proven_on_live_db; not live database qualification",
+  "verdicts": {
+    "CODEX_PROJECT_CONTINUITY": "PASS",
+    "COMPANION_COMPATIBILITY": "PASS",
+    "CONTEXT_BUDGETING": "BLOCKED",
+    "COORDINATION_AND_HISTORY": "PASS",
+    "CURRENT_SESSION_MEMORY": "UNVERIFIED",
+    "EXTRACTION": "UNVERIFIED",
+    "INSTALLATION_INTEGRITY": "PASS",
+    "KNOWLEDGE_AND_WORKER_RUNTIME": "UNVERIFIED",
+    "MEMORY_SERVICE_PERSISTENCE": "UNVERIFIED",
+    "OVERALL_FOR_DECLARED_OFFLINE_USE": "UNVERIFIED",
+    "PROCESSING_AND_LEDGER": "FAIL",
+    "SEMANTIC_AUDIT": "UNVERIFIED",
+    "SOURCE_COVERAGE": "PASS"
+  }
+}

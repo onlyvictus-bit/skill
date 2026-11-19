@@ -1,0 +1,13 @@
+{
+  "status": "APPROVED_CODEX_SKILL_UPDATE_INSTALLED_AND_READ_BACK",
+  "authority": "Approve skill update and checkpoint refresh",
+  "memory_integrity_files": 200,
+  "claude_mon_files": 74,
+  "changed_files": 13,
+  "all_installed_bytes_match_tested_candidate": true,
+  "claude_mon_unchanged": true,
+  "backup": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\companion-repair-20261118\\installed-before",
+  "source_manifest_sha256": "251c98ec7f84f18448e6c2bd1a92bd6bd424f14d49d15c937170bf72efc390a4",
+  "checkpoint_refresh": "NEXT",
+  "commit_or_push_performed": false
+}

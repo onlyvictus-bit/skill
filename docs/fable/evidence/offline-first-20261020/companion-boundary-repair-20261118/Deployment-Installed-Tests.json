@@ -1,0 +1,17 @@
+[
+  {
+    "pattern": "test_approved_companion.py",
+    "exit": 0,
+    "tail": "tracked_bytecode_cache_is_refused) ... ok\r\ntest_wrong_runtime_release_refused (test_approved_companion.ApprovedCompanion.test_wrong_runtime_release_refused) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 20 tests in 16.575s\r\n\r\nOK\r\n"
+  },
+  {
+    "pattern": "test_companion_handshake.py",
+    "exit": 0,
+    "tail": "hakeTests.test_tampered_engine_digest_fails) ... ok\r\ntest_wrong_schema_version_fails (test_companion_handshake.HandshakeTests.test_wrong_schema_version_fails) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 6 tests in 1.113s\r\n\r\nOK\r\n"
+  },
+  {
+    "pattern": "test_project_continuity.py",
+    "exit": 0,
+    "tail": "l_root_refused_before_dispatch) ... ok\r\ntest_valid_basis_checks_original_bytes (test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 19 tests in 0.989s\r\n\r\nOK\r\n"
+  }
+]

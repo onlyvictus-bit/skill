@@ -591,7 +591,14 @@ def launch_current(popen, python, script, *, deadline, stdin, stdout, stderr, en
         'bootstrap': _source_record(Path(__file__).with_name('recursive_bootstrap.py')),
         'policy': _source_record(Path(__file__).with_name('recursive_policy.py'))}
     paths['requests'].mkdir()
-    image = _current_image(); child_env = dict(env); launcher = child_env.get("__PYVENV_LAUNCHER__")
+    # Owned workers have a closed startup profile. Exclude account user-site
+    # loading before interpreter startup, rather than probing an inaccessible
+    # optional directory after site.py has already run. Keep caller/global
+    # environments unchanged and normalize Windows case-insensitive keys.
+    image = _current_image()
+    child_env = {key: value for key, value in env.items() if key.upper() != 'PYTHONNOUSERSITE'}
+    child_env['PYTHONNOUSERSITE'] = '1'
+    launcher = child_env.get("__PYVENV_LAUNCHER__")
     if _norm(sys.prefix) != _norm(sys.base_prefix): child_env["__PYVENV_LAUNCHER__"] = selected; launcher = selected
     # CPython consumes and removes __PYVENV_LAUNCHER__ before script entry.
     # Its effect is attested through sys.executable/prefix, not by expecting

@@ -1,0 +1,14 @@
+{
+  "corrected_findings": [
+    "source LF hygiene",
+    "command retains native ownership and original causes",
+    "single main-thread termination coordinator",
+    "native negative-path fault coverage"
+  ],
+  "final_suite_acceptance": "parent checked actual final receipt, every ID/outcome and frozen source",
+  "important_or_critical_remaining": 0,
+  "review_did_not_claim_full_suite_completed": true,
+  "reviewed": "W1 startup, W2 Job capture and receipt proof, W3 real-alias fixture, GO shared read",
+  "reviewer": "native fable_sol_reviewer read-only",
+  "status": "SHIP_WITH_RUNTIME_SCOPE_CAVEATS"
+}

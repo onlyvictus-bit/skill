@@ -1,0 +1,19 @@
+{
+  "absent_temp_was_not_created": true,
+  "command": {
+    "args": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "-c",
+      "import os,sys,tempfile,runpy\nos.environ.update(TEMP='C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\.github\\\\run-artifacts\\\\installed-functional-audit-20261118\\\\deliberately-absent-temp',TMP='C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\.github\\\\run-artifacts\\\\installed-functional-audit-20261118\\\\deliberately-absent-temp',TMPDIR='C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\.github\\\\run-artifacts\\\\installed-functional-audit-20261118\\\\deliberately-absent-temp')\ntempfile.tempdir='C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\.github\\\\run-artifacts\\\\installed-functional-audit-20261118\\\\deliberately-absent-temp'\nsys.argv=['C:\\\\Users\\\\sakth\\\\.codex\\\\skills\\\\memory-integrity\\\\scripts\\\\project_continuity.py', '--project-root', 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source', '--memory-root', 'C:\\\\Users\\\\sakth\\\\.codex\\\\skills\\\\memory-integrity', '--companion-root', 'C:\\\\Users\\\\sakth\\\\.codex\\\\skills\\\\claude-mon']\nrunpy.run_path(sys.argv[0],run_name=\"__main__\")\n"
+    ],
+    "code": 0,
+    "cwd": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\installed-functional-audit-20261118",
+    "failure": null,
+    "seconds": 2.5610498000169173,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "49327c7adb4115244ea916dc73d7fc6e0c5436bc5b92e61007053bf7c3e93b87"
+  },
+  "scope": "Installed helper actual project, process env and tempfile cache point to absent directory; installed isolated verification also denies filesystem writes/network",
+  "status": "VERIFIED_PROJECT_FILE_RECOVERY"
+}

@@ -1,0 +1,98 @@
+{
+  "U000001": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C01 ACTIVE SOURCE: use C:/Users/sakth/Documents/Codex/ofpkg-20261113/ci/source. Published base remains80f1cda542cce60e8b34d1d51b2967cf9625ecdc; companion correction and Windows source repair are local/uncommitted. Historical ad/work and main are not the current source. Sources: docs/fable/state.json and docs/fable/derived/offline-first-release-plan-20261020.md.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000002": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C02 INSTALLED PAIR: installed Memory Integrity200 and Claude-Mon74 files are unchanged from the prior approved companion deployment. New Windows source has204files and differs in9paths:5replace/4add/0delete. That update is prepared, not installed. Sources: docs/fable/evidence/offline-first-20261020/windows-repair-20261118/Install-Plan.json and Outcome.json.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000003": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C03 COMPANION BOUNDARY: MI independently pins CM content-manifest SHA7c9ac1cf39184104c959f3d14921d365eaa17d810a7240a09b98d05491abd192 and exact claude-mon/2.0.0-m12/schema2 contract. Contents are checked before execution/import, runtime identity is checked separately, and drift is checked before acceptance/success. Self-resealed altered CM cannot authorize itself. Cached foreign modules, bytecode and startup hooks are refused. These are sampled identity checks, not atomic filesystem-owner protection. Sources: memory-integrity/scripts/integrity_v2/engine_client.py and memory-integrity/references/r2-workflow.md.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000004": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C04 WINDOWS REPAIR: final controller Python3.14 MIv2 ran921cases with866PASS,54declared skips,1expectedfailure,0failures/errors; MI legacy38PASS. All9prior unsuccessful IDs now pass. Fixes exclude child user-site startup, use suspended preassigned Job/root native waits before pipe joins, share bounded GO reads, and exercise a real8.3 alias. Store3.12 and installed update remain unqualified. Sources: docs/fable/evidence/offline-first-20261020/windows-repair-20261118/Outcome.json and Final-MI-v2-Receipt.json.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000005": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C05 MEMORY BOUNDARY: saved project records are file-backed review accounting. A new Python process is not an independent model context, new user chat or service restart. Legacy bridge cannot claim PERSISTED; exact successful readback/cleanup still caps at UNVERIFIED without an independent observer. Automatic global recall and capture of every conversation are absent. Sources: memory-integrity/scripts/memory_watchdog.py, scripts/project_continuity.py and references/codex-project-continuity.md.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000006": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C06 AUTHORITY AND RETENTION: user selected investigation/source repair of remaining Windows failures. It grants no new install, Git commit/push, ACL/global change, dependency/service install, provider, real DB or broker authority. Worker120/shutdown5 bounds and old evidence remain preserved. Only managed accepted READY copies with native exit can expire after3days. Sources: docs/fable/derived/offline-first-release-plan-20261020.md and memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000007": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C07 PACKAGE BOUNDARY: no new release ZIP or website installation is qualified by this source repair. The prior companion candidate MI SHA07217f57eba466d83bf48cd7f05177ccfb0d77250e32e1357395b7215d2c3229 contains200files; historical watchdog ZIP2aa020bb154099c3930154d7cd734b8de8fc5e7996936bde8af83cd64451a4b3 contains196. Current source204 and installed200 are intentionally distinct pending approval. Sources: docs/fable/state.json and docs/fable/evidence/offline-first-20261020/windows-repair-20261118/Source-Seal.json.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000008": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reopened cited current originals and actual retained results; source, installed, selected runtime and persistence boundaries kept separate."
+      }
+    ],
+    "interpretation": "C08 CONTINUATION: follow AGENTS.md, verify reviewed v4 checkpoint before using old decisions, reopen cited originals, and preserve stale/missing evidence. Recovery is agent-executed project-file review accounting, not automatic global recall, independent semantic truth or live memory-service restart. Prior independent reader stopped from credits; current native code review SHIP is a different boundary. Next is separately approved installed update and later Store3.12/release qualification; legacy model-worker taskkill path is separately unqualified. Sources: AGENTS.md, docs/fable/continuity/Checkpoint-Refresh.md and docs/fable/evidence/offline-first-20261020/windows-repair-20261118/Report.md.",
+    "reviewer": "Codex checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  }
+}

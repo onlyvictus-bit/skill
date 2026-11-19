@@ -1,0 +1,38 @@
+[
+  {
+    "name": "cm-legacy",
+    "code": 0,
+    "seconds": 4.042398699966725,
+    "run": 21,
+    "discovered": 21,
+    "failures": [],
+    "errors": [],
+    "skip": 0,
+    "xfail": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\cm-legacy\\Receipt.json"
+  },
+  {
+    "name": "cm-v2",
+    "code": 0,
+    "seconds": 35.02648279996356,
+    "run": 224,
+    "discovered": 224,
+    "failures": [],
+    "errors": [],
+    "skip": 0,
+    "xfail": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\cm-v2\\Receipt.json"
+  },
+  {
+    "name": "mi-v2",
+    "code": 0,
+    "seconds": 292.1779041000409,
+    "run": 921,
+    "discovered": 921,
+    "failures": [],
+    "errors": [],
+    "skip": 54,
+    "xfail": 1,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\mi-v2\\Receipt.json"
+  }
+]

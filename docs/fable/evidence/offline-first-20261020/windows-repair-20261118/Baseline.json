@@ -1,0 +1,26 @@
+{
+  "head": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc",
+  "status": " M docs/fable/continuity/Basis.json\n M docs/fable/continuity/Seal-Request.json\n M docs/fable/derived/offline-first-checkpoint-20261020.md\n M docs/fable/derived/offline-first-release-plan-20261020.md\n M docs/fable/state.json\n M memory-integrity/SKILL.md\n M memory-integrity/references/r2-workflow.md\n M memory-integrity/scripts/coordination_workflow.py\n M memory-integrity/scripts/integrity_v2/engine_client.py\n M memory-integrity/scripts/integrity_v2/report.py\n M memory-integrity/scripts/integrity_v2/source_audit.py\n M memory-integrity/scripts/knowledge_bridge/indexing.py\n M memory-integrity/scripts/memory_integrity_workflow.py\n M memory-integrity/scripts/project_continuity.py\n M memory-integrity/tests_v2/OFFLINE1-CONTENT.json\n M memory-integrity/tests_v2/test_companion_handshake.py\n M memory-integrity/tests_v2/test_knowledge_timeout_budget.py\n?? docs/fable/continuity/Current-Project-v3.txt\n?? docs/fable/continuity/Reviews-v3.json\n?? docs/fable/continuity/history/Basis-a4616f1c176ea92393ede77d1c7999448161cd934a539407cf00681f51936371.json\n?? docs/fable/continuity/history/Seal-Request-v2-c06ca728623457e57e7763bf93f83bc25820705a4a2d3b7e3f79db8c605ff768.json\n?? docs/fable/continuity/protected-run-v3/\n?? docs/fable/evidence/offline-first-20261020/companion-boundary-repair-20261118/\n?? memory-integrity/tests_v2/test_approved_companion.py\n",
+  "targets": {
+    "memory-integrity/scripts/knowledge_bridge/windows_owned_process.py": {
+      "sha256": "5452bdd074316d387c62951bc5a94716b6f467867060c9c27b812b78f1b27925",
+      "size": 38211
+    },
+    "memory-integrity/scripts/hybrid_bridge/native_observation.py": {
+      "sha256": "672fd8f563c6349b655b02d675ee76c6a577887f36086a660abda7bb63d41a39",
+      "size": 27287
+    },
+    "memory-integrity/tests_v2/test_native_paths.py": {
+      "sha256": "0a068b03e9d36959a31d621ab43c51b9c989d7516de7d9a4bea013fad287fc06",
+      "size": 1817
+    },
+    "memory-integrity/tests_v2/OFFLINE1-CONTENT.json": {
+      "sha256": "251c98ec7f84f18448e6c2bd1a92bd6bd424f14d49d15c937170bf72efc390a4",
+      "size": 27625
+    },
+    "docs/fable/derived/offline-first-release-plan-20261020.md": {
+      "sha256": "2975d077f0ac97e059e215985ae3aa8136b3275944298e0632fdc7c59a408c83",
+      "size": 302291
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{"event": "START", "id": "test_cli.CliTests.test_end_to_end_cli_materializes_chunk_and_status_hides_content", "monotonic": 450337.9250941}
+{"cause": "", "event": "END", "id": "test_cli.CliTests.test_end_to_end_cli_materializes_chunk_and_status_hides_content", "outcome": "success", "seconds": 1.1772047000122257}
+{"event": "START", "id": "test_cli.CliTests.test_register_preserves_provenance_when_cli_option_is_omitted", "monotonic": 450339.1024237}
+{"cause": "", "event": "END", "id": "test_cli.CliTests.test_register_preserves_provenance_when_cli_option_is_omitted", "outcome": "success", "seconds": 0.48489750002045184}
+{"event": "START", "id": "test_cli.CliTests.test_verify_returns_nonzero_on_stale_source", "monotonic": 450339.5880642}
+{"cause": "", "event": "END", "id": "test_cli.CliTests.test_verify_returns_nonzero_on_stale_source", "outcome": "success", "seconds": 0.9022548999637365}
+{"event": "START", "id": "test_context_budget.ContextBudgetTests.test_batches_preserve_order_and_include_every_required_item", "monotonic": 450340.4904653}
+{"cause": "", "event": "END", "id": "test_context_budget.ContextBudgetTests.test_batches_preserve_order_and_include_every_required_item", "outcome": "success", "seconds": 0.00017900002421811223}
+{"event": "START", "id": "test_context_budget.ContextBudgetTests.test_invalid_budget_fails_closed", "monotonic": 450340.4906905}
+{"cause": "", "event": "END", "id": "test_context_budget.ContextBudgetTests.test_invalid_budget_fails_closed", "outcome": "success", "seconds": 0.00015049998182803392}
+{"event": "START", "id": "test_context_budget.ContextBudgetTests.test_oversize_required_item_fails_instead_of_truncating", "monotonic": 450340.4908709}
+{"cause": "", "event": "END", "id": "test_context_budget.ContextBudgetTests.test_oversize_required_item_fails_instead_of_truncating", "outcome": "success", "seconds": 0.0006997000309638679}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary", "monotonic": 450340.4916222}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_chunk_manifest_has_exact_primary_coverage_and_context_is_not_primary", "outcome": "success", "seconds": 0.07463899999856949}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_chunk_payload_materializes_exact_bytes_and_hash", "monotonic": 450340.5663176}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_chunk_payload_materializes_exact_bytes_and_hash", "outcome": "success", "seconds": 0.06128669995814562}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_chunk_verifier_detects_missing_and_duplicate_primary_units", "monotonic": 450340.6276779}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_chunk_verifier_detects_missing_and_duplicate_primary_units", "outcome": "success", "seconds": 0.07531960000051185}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_receipt_becomes_stale_after_source_change_without_rewriting_history", "monotonic": 450340.7031327}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_receipt_becomes_stale_after_source_change_without_rewriting_history", "outcome": "success", "seconds": 0.11670790001517162}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_receipt_cannot_be_complete_without_exact_input_hashes", "monotonic": 450340.8199083}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_receipt_cannot_be_complete_without_exact_input_hashes", "outcome": "success", "seconds": 0.077348799968604}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_receipt_complete_is_task_bound_and_append_only", "monotonic": 450340.897315}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_receipt_complete_is_task_bound_and_append_only", "outcome": "success", "seconds": 0.07932869996875525}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_receipt_status_precedence", "monotonic": 450340.9767195}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_receipt_status_precedence", "outcome": "success", "seconds": 0.0027884000446647406}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_register_changed_content_preserves_version_history", "monotonic": 450340.9796602}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_register_changed_content_preserves_version_history", "outcome": "success", "seconds": 0.02210130001185462}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_register_uses_content_hash_and_rejects_outside_root", "monotonic": 450341.0018284}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_register_uses_content_hash_and_rejects_outside_root", "outcome": "success", "seconds": 0.014963599969632924}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_status_does_not_emit_source_content", "monotonic": 450341.0168675}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_status_does_not_emit_source_content", "outcome": "success", "seconds": 0.015224500035401434}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_unit_manifest_is_exact_deterministic_and_unicode_safe", "monotonic": 450341.0321657}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_unit_manifest_is_exact_deterministic_and_unicode_safe", "outcome": "success", "seconds": 0.04625459999078885}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_unitize_rejects_invalid_utf8", "monotonic": 450341.0784933}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_unitize_rejects_invalid_utf8", "outcome": "success", "seconds": 0.024376399989705533}
+{"event": "START", "id": "test_core.ClaudeMonCoreTests.test_verify_receipt_rechecks_input_hashes_in_saved_receipt", "monotonic": 450341.1029356}
+{"cause": "", "event": "END", "id": "test_core.ClaudeMonCoreTests.test_verify_receipt_rechecks_input_hashes_in_saved_receipt", "outcome": "success", "seconds": 0.15537920000497252}
+{"event": "START", "id": "test_fable_bridge.FableBridgeTests.test_gate_blocks_stale_receipt", "monotonic": 450341.2584123}
+{"cause": "", "event": "END", "id": "test_fable_bridge.FableBridgeTests.test_gate_blocks_stale_receipt", "outcome": "success", "seconds": 0.12583519995678216}
+{"event": "START", "id": "test_fable_bridge.FableBridgeTests.test_gate_blocks_until_matching_complete_task_receipt_exists", "monotonic": 450341.3843358}
+{"cause": "", "event": "END", "id": "test_fable_bridge.FableBridgeTests.test_gate_blocks_until_matching_complete_task_receipt_exists", "outcome": "success", "seconds": 0.13487259997054935}

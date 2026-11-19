@@ -61,7 +61,7 @@
     "R5-PROBE-MERGE",
     "R5-PROBE-BOUNDARY"
   ],
-  "current_task": "Reusable Codex continuity installed; reviewed versioned checkpoint and Git publication. Live memory and website remain unverified.",
+  "current_task": "Reviewed installed pair and source repairs; authorized cumulative Git publication. Check Git and publication receipt for exact commit/remote outcome; recovery remains file-backed.",
   "milestone": "OFFLINE-FIRST-LOCAL-TASKS1-5",
   "next_action": "Full Gate1 complete:7/7gates,381cases(368PASS/13permittedSKIP),24arms/24replays/11checks,C3nativecleanup and fresh preservation accepted independently. Read final Gate1-Acceptance.json in gate1-diagnostics-fix-20261107. No Gate1 rerun. Release/package/install/whole-skill/nativeDB/model/producer-authentication remain separate; no further milestone executed.",
   "continuation_checkpoint": "docs/fable/derived/offline-first-checkpoint-20261020.md",
@@ -299,7 +299,7 @@
     "controller_windows_tests": 77,
     "focused_tests_run": 59,
     "focused_tests_skipped": 1,
-    "authority": "User answered Approve RP1\u00e2\u20ac\u201cRP3 (Recommended)",
+    "authority": "User answered Approve RP1â€“RP3 (Recommended)",
     "plan": "docs/fable/derived/offline-first-release-plan-20261020.md#dr-actual-result-and-proposed-rp1rp3-recursive-launch-repair2026-10-28",
     "mechanism": "Exact native executable selection plus explicit sealed recursive pre-authored bootstrap; preserve venv-facing identity and public semantics",
     "controller_profile": "Existing Python3.14 unit and failure controls only",
@@ -2438,10 +2438,10 @@
   },
   "project_continuity_20261117": {
     "project_memory_initialized": true,
-    "status": "REUSABLE_SKILL_INSTALLED_LOCAL_PROTECTED_FILE_RECOVERY_VERIFIED",
+    "status": "CURRENT_REVIEWED_V7_CHECKPOINT_VERIFY_ON_ENTRY",
     "channel": "FABLE_PROJECT_FILES",
-    "checkpoint": "docs/fable/continuity/Current-Project-v2.txt",
-    "run_map": "docs/fable/continuity/protected-run-v2/run-map.json",
+    "checkpoint": "docs/fable/continuity/Current-Project-v7.txt",
+    "run_map": "docs/fable/continuity/protected-run-v7/run-map.json",
     "startup_adapter": ".github/scripts/verify_project_resume.py",
     "refresh_procedure": "docs/fable/continuity/Checkpoint-Refresh.md",
     "live_backend_verified": false,
@@ -2463,9 +2463,85 @@
     "focused_cases_passed": 70,
     "installed_repeated_cases_passed": 57,
     "installed_files": {
-      "memory-integrity": 199,
-      "claude-mon": 74
+      "memory-integrity": 204,
+      "claude-mon": 75
     },
     "acceptance": "docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Acceptance.json"
+  },
+  "companion_boundary_repair_20261118": {
+    "status": "INSTALLED_CONTENT_AND_FOCUSED_TESTS_VERIFIED",
+    "authority": "Approve skill update and checkpoint refresh",
+    "source_base_commit": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc",
+    "evidence": "docs/fable/evidence/offline-first-20261020/companion-boundary-repair-20261118/Outcome.json",
+    "boundary_cases_passed": 20,
+    "native_windows_prior_failures_remaining": false,
+    "installed_update": "APPLIED_13_FILES_EXACT_READBACK",
+    "real_checkpoint_refresh_required": false,
+    "commit_or_push_performed": false,
+    "installed_memory_integrity_files": 204,
+    "claude_mon_files_unchanged": 74,
+    "installed_tests_passed": 45,
+    "real_checkpoint": "docs/fable/continuity/Current-Project-v3.txt",
+    "checkpoint_policy": "VERIFY_CURRENT_BASIS_ON_EVERY_STARTUP",
+    "candidate_archives": {
+      "memory-integrity": {
+        "sha256": "07217f57eba466d83bf48cd7f05177ccfb0d77250e32e1357395b7215d2c3229",
+        "files": 200,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\companion-repair-20261118\\candidate-pair\\memory-integrity-offline-v1.zip"
+      },
+      "claude-mon": {
+        "sha256": "8c905a64b7494085bfda1918d852359fc7e28e57e1ec5355b290e6d25eb6cf82",
+        "files": 74,
+        "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\companion-repair-20261118\\candidate-pair\\claude-mon-offline-v1.zip"
+      }
+    },
+    "candidate_manifest": "docs/fable/evidence/offline-first-20261020/companion-boundary-repair-20261118/Candidate-Pair-Manifest.json",
+    "native_windows_repair_scope": "Prior nine unsuccessful cases passed in source; installed native checks now pass on controller3.14. Store3.12 not newly qualified.",
+    "installed_memory_integrity_files_at_companion_deployment": 200,
+    "current_installed_successor": "windows_repair_20261118; approved nine-file update"
+  },
+  "windows_repair_20261118": {
+    "status": "APPROVED_INSTALLED_WINDOWS_REPAIR_BYTES_AND_100_TESTS_VERIFIED",
+    "evidence": "docs\\fable\\evidence\\offline-first-20261020\\windows-repair-20261118\\Outcome.json",
+    "mi_v2_cases": 921,
+    "case_counts": {
+      "success": 866,
+      "skipped": 54,
+      "expected_failure": 1
+    },
+    "mi_legacy_pass": 38,
+    "old_unsuccessful_ids_now_pass": 9,
+    "source_files": 204,
+    "installed_memory_integrity_files": 204,
+    "claude_mon_unchanged": 74,
+    "installed_update_applied": true,
+    "store312_requalified": false,
+    "install_plan": "docs\\fable\\evidence\\offline-first-20261020\\windows-repair-20261118\\Install-Plan.json",
+    "git_commit_or_push": false,
+    "memory_service_persistence": "UNVERIFIED",
+    "installed_cases_passed": 100,
+    "backup_files": 200,
+    "installed_evidence": "docs/fable/evidence/offline-first-20261020/windows-repair-20261118/Deployment-Outcome.json",
+    "authority": "Approve installed Windows repair update"
+  },
+  "cm_cli_repair_20261119": {
+    "status": "INSTALLED_PAIR_FIXED_AND_REGRESSION_VERIFIED_REVIEW_CAVEAT",
+    "evidence": "docs\\fable\\evidence\\offline-first-20261020\\cm-cli-repair-20261119\\Outcome.json",
+    "installed_update_applied": true,
+    "source_cm_files": 75,
+    "source_mi_files": 204,
+    "review": "INDEPENDENT_UNVERIFIED_CREDITS_EXHAUSTED",
+    "new_cases_passed": 11,
+    "authority": "Approve paired skill update with review caveat",
+    "installed_cm_files": 75,
+    "installed_mi_files": 204,
+    "installed_cases_passed": 290,
+    "deployment_evidence": "docs\\fable\\evidence\\offline-first-20261020\\cm-cli-repair-20261119\\Deployment-Install-Receipt.json"
+  },
+  "publication_all_repairs_20261119": {
+    "authority": "COMMIT AND PUSH ALL NEW CHANGES",
+    "plan": "docs/fable/evidence/offline-first-20261020/publication-all-repairs-20261119/Publication-Plan.md",
+    "checkpoint": "docs/fable/continuity/Current-Project-v8.txt",
+    "boundary": "GIT_BACKUP_IS_NOT_NEW_RELEASE_OR_MEMORY_SERVICE_QUALIFICATION"
   }
 }

@@ -76,7 +76,7 @@ class KnowledgeTimeoutBudget(unittest.TestCase):
             with self.subTest(command=command):
                 output=io.StringIO()
                 def observe(parsed): return {'ok':True,'budget':parsed.knowledge_worker_timeout}
-                with patch.object(sys,'argv',['memory_integrity_workflow.py',command,'--claude-mon-root','cm',*args]), \
+                with patch.object(sys,'argv',['memory_integrity_workflow.py',command,'--claude-mon-root',str(ROOT.parent/'claude-mon'),*args]), \
                      patch.object(public,'verify',side_effect=observe),patch.object(public,'offline_run',side_effect=observe), \
                      contextlib.redirect_stdout(output):
                     self.assertEqual(public.main(),0)

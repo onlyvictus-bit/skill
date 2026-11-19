@@ -1,0 +1,20 @@
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive", "monotonic": 450265.2858555}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive", "outcome": "success", "seconds": 0.11665859998902306}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused", "monotonic": 450265.4025934}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused", "outcome": "success", "seconds": 0.7547993000480346}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_existing_task_digest_mismatch_remains_domain_refusal", "monotonic": 450266.1581575}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_existing_task_digest_mismatch_remains_domain_refusal", "outcome": "success", "seconds": 0.3336432000505738}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_export_output_error_is_json", "monotonic": 450266.4918542}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_export_output_error_is_json", "outcome": "success", "seconds": 0.25290929997572675}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_json_input_failure_is_not_double_emitted", "monotonic": 450266.7448812}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_json_input_failure_is_not_double_emitted", "outcome": "success", "seconds": 0.19032999995397404}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause", "monotonic": 450266.9352651}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause", "outcome": "success", "seconds": 1.2188982000225224}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_preflight_without_unsupported_option_still_passes", "monotonic": 450268.1542736}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_preflight_without_unsupported_option_still_passes", "outcome": "success", "seconds": 0.3840531999594532}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_programming_errors_and_interrupts_are_not_hidden", "monotonic": 450268.5384288}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_programming_errors_and_interrupts_are_not_hidden", "outcome": "success", "seconds": 0.10286059998907149}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json", "monotonic": 450268.6413866}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json", "outcome": "success", "seconds": 0.36730939999688417}
+{"event": "START", "id": "test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation", "monotonic": 450269.0087742}
+{"cause": "", "event": "END", "id": "test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation", "outcome": "success", "seconds": 0.33015039999736473}

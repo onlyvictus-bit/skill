@@ -1,0 +1,244 @@
+test_encoding_cause_chain_and_notes_survive (test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive) ... ERROR
+test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) ... 
+  test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) (value='spec-A') ... FAIL
+  test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) (value='DELIBERATELY-WRONG') ... FAIL
+  test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) (value='') ... FAIL
+test_existing_task_digest_mismatch_remains_domain_refusal (test_cli_input_contract.CliInputContract.test_existing_task_digest_mismatch_remains_domain_refusal) ... ok
+test_export_output_error_is_json (test_cli_input_contract.CliInputContract.test_export_output_error_is_json) ... FAIL
+test_json_input_failure_is_not_double_emitted (test_cli_input_contract.CliInputContract.test_json_input_failure_is_not_double_emitted) ... ok
+test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) ... 
+  test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='query') ... FAIL
+  test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='verify') ... FAIL
+  test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='open-unit') ... FAIL
+  test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='preflight') ... FAIL
+test_preflight_without_unsupported_option_still_passes (test_cli_input_contract.CliInputContract.test_preflight_without_unsupported_option_still_passes) ... ok
+test_programming_errors_and_interrupts_are_not_hidden (test_cli_input_contract.CliInputContract.test_programming_errors_and_interrupts_are_not_hidden) ... ok
+test_sqlite_connection_error_is_json (test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json) ... FAIL
+test_unsupported_option_refuses_before_files_or_ledger_creation (test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation) ... FAIL
+
+======================================================================
+ERROR: test_encoding_cause_chain_and_notes_survive (test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive)
+----------------------------------------------------------------------
+OSError: [Errno 5] original OS cause: 'fixture.txt'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 109, in test_encoding_cause_chain_and_notes_survive
+    self.assertEqual(cli.main(['capabilities']),2)
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 107, in <lambda>
+    with patch.dict(cli.HANDLERS,{'capabilities':lambda _: (_ for _ in ()).throw(error)}), \
+                                                           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 107, in <genexpr>
+    with patch.dict(cli.HANDLERS,{'capabilities':lambda _: (_ for _ in ()).throw(error)}), \
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid fixture
+retained fixture note
+
+======================================================================
+FAIL: test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) (value='spec-A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 55, in test_every_supplied_task_spec_is_explicitly_refused
+    self.assertEqual(code,2,result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 0 != 2 : {'notes': ['batches=1 input_budget=100000'], 'ok': True}
+
+======================================================================
+FAIL: test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) (value='DELIBERATELY-WRONG')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 55, in test_every_supplied_task_spec_is_explicitly_refused
+    self.assertEqual(code,2,result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 0 != 2 : {'notes': ['batches=1 input_budget=100000'], 'ok': True}
+
+======================================================================
+FAIL: test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) (value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 55, in test_every_supplied_task_spec_is_explicitly_refused
+    self.assertEqual(code,2,result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 0 != 2 : {'notes': ['batches=1 input_budget=100000'], 'ok': True}
+
+======================================================================
+FAIL: test_export_output_error_is_json (test_cli_input_contract.CliInputContract.test_export_output_error_is_json)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 86, in test_export_output_error_is_json
+    code,result=self.call('export','--run-dir',self.run,'--out',self.root)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 38, in call
+    self.assertEqual(p.stderr, '', p.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Traceback (most recent call last):\n  Fil[1324 chars]\'\n' != ''
+Diff is 1318 characters long. Set self.maxDiff to None to see it. : Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 402, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 232, in cmd_export
+    out.write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 809, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\red\\retained-temp\\cm-input-contract-ca2z9612'
+
+
+======================================================================
+FAIL: test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='query')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 80, in test_missing_source_routes_emit_original_os_cause
+    code,result=self.call(command,'--manifest-file',self.manifest,'--source-file',missing,*extra)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 38, in call
+    self.assertEqual(p.stderr, '', p.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Traceback (most recent call last):\n  Fil[1154 chars]\'\n' != ''
+Diff is 1145 characters long. Set self.maxDiff to None to see it. : Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 402, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 260, in cmd_query
+    source = Path(args.source_file).read_bytes()
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\red\\retained-temp\\cm-input-contract-2vjkshkw\\absent.txt'
+
+
+======================================================================
+FAIL: test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='verify')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 80, in test_missing_source_routes_emit_original_os_cause
+    code,result=self.call(command,'--manifest-file',self.manifest,'--source-file',missing,*extra)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 38, in call
+    self.assertEqual(p.stderr, '', p.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Traceback (most recent call last):\n  Fil[1155 chars]\'\n' != ''
+Diff is 1146 characters long. Set self.maxDiff to None to see it. : Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 402, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 210, in cmd_verify
+    source = Path(args.source_file).read_bytes()
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\red\\retained-temp\\cm-input-contract-2vjkshkw\\absent.txt'
+
+
+======================================================================
+FAIL: test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='open-unit')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 80, in test_missing_source_routes_emit_original_os_cause
+    code,result=self.call(command,'--manifest-file',self.manifest,'--source-file',missing,*extra)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 38, in call
+    self.assertEqual(p.stderr, '', p.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Traceback (most recent call last):\n  Fil[1158 chars]\'\n' != ''
+Diff is 1149 characters long. Set self.maxDiff to None to see it. : Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 402, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 240, in cmd_open_unit
+    source = Path(args.source_file).read_bytes()
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\red\\retained-temp\\cm-input-contract-2vjkshkw\\absent.txt'
+
+
+======================================================================
+FAIL: test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) (command='preflight')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 80, in test_missing_source_routes_emit_original_os_cause
+    code,result=self.call(command,'--manifest-file',self.manifest,'--source-file',missing,*extra)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 38, in call
+    self.assertEqual(p.stderr, '', p.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Traceback (most recent call last):\n  Fil[1157 chars]\'\n' != ''
+Diff is 1148 characters long. Set self.maxDiff to None to see it. : Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 402, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 99, in cmd_preflight
+    source = Path(args.source_file).read_bytes()
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\red\\retained-temp\\cm-input-contract-2vjkshkw\\absent.txt'
+
+
+======================================================================
+FAIL: test_sqlite_connection_error_is_json (test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 92, in test_sqlite_connection_error_is_json
+    code,result=self.call('status','--run-dir',self.run)
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 38, in call
+    self.assertEqual(p.stderr, '', p.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Traceback (most recent call last):\n  Fil[797 chars]le\n' != ''
+Diff is 813 characters long. Set self.maxDiff to None to see it. : Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 402, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 398, in main
+    return handler(args)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\claude_mon_v2.py", line 193, in cmd_status
+    db = ledger.connect(db_path)
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\scripts\complete_read_v2\ledger.py", line 73, in connect
+    db=sqlite3.connect(str(path),timeout=timeout,isolation_level=None); db.row_factory=sqlite3.Row
+sqlite3.OperationalError: unable to open database file
+
+
+======================================================================
+FAIL: test_unsupported_option_refuses_before_files_or_ledger_creation (test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sakth\Documents\Codex\ofpkg-20261113\ci\source\claude-mon\tests_v2\test_cli_input_contract.py", line 66, in test_unsupported_option_refuses_before_files_or_ledger_creation
+    self.assertIn('E_PREFLIGHT_TASK_SPEC_UNSUPPORTED',result['error'])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'E_PREFLIGHT_TASK_SPEC_UNSUPPORTED' not found in "E_INPUT_MANIFEST: [Errno 2] No such file or directory: 'C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\.github\\\\run-artifacts\\\\cm-cli-repair-20261118\\\\red\\\\retained-temp\\\\cm-input-contract-p1_l763g\\\\absent.json'"
+
+----------------------------------------------------------------------
+Ran 10 tests in 4.436s
+
+FAILED (failures=10, errors=1)

@@ -1,0 +1,58 @@
+{
+  "authority": "user selected 1: investigate and fix remaining Windows runtime failures",
+  "case_counts": {
+    "expected_failure": 1,
+    "skipped": 54,
+    "success": 866
+  },
+  "evidence_hashes": {
+    "Baseline.json": "c43c54c3c52202031f66435f76381d0742c726eed765292f99847f9b62be179a",
+    "Containment-Cause.json": "5dd7286ee9be4202c5a1f737a8a04cd8cf8e4873a9a7064d1954cc3e1e194c7e",
+    "Final-MI-v2-Cases.jsonl": "db8cb495b8787a812160ce14f90700f3f6c7320cb708eafa31a6a2e81441882a",
+    "Final-MI-v2-Receipt.json": "854e1f20ba1d8178690e34e4ca26e2f43309780255accca8cf73e17c91bf4ac6",
+    "Final-MI-v2-unittest.log": "e3d93e6d54da035dfc6566e6aa581cbbe0d23904fc0614104915f5dcef2a9f62",
+    "Final-Native-Cases.jsonl": "66743b0242f8b292affbd5df4e826232a6ac62d4a6baed8b1d7662a753092098",
+    "Final-Native-Receipt.json": "552111c3046a78d49dafbd8feed30eebbd0d7aa6c03a904fb4950e2cd93d05e5",
+    "Final-Source-Stability.json": "47d9e835a27679ea4448018f594643dd372771f0f50e7c8b34f47c23324679a5",
+    "Install-Plan.json": "684a147fa3ac3aa90096f4786066b29a2bb8496ff3620c7b0b335a2125dd625f",
+    "MI-Legacy-Receipt.json": "643284cafedca044782e77e457c8bc10a04b715606fba9bbaa12868d55c12d3a",
+    "Source-Seal.json": "aff04934852d04ae4824f87dbfccf0bdbbf8f6db3880a8b4ef40e4d42703cc17"
+  },
+  "final_source_files_unchanged": 204,
+  "first_broad_run": "retained E_CONTENT_DRIFT during code correction; final frozen-source run is authoritative",
+  "git_commit_or_push": false,
+  "historical_attempts_retained": true,
+  "installed_pair_unchanged": {
+    "claude-mon": 74,
+    "memory-integrity": 200
+  },
+  "installed_update_applied": false,
+  "memory_service_persistence": "UNVERIFIED",
+  "mi_legacy_pass": 38,
+  "mi_v2_cases": 921,
+  "new_release_pair_qualified": false,
+  "previously_unsuccessful_ids_now_pass": [
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_owned_root_refuses_unsupported_recursive_python_before_child_starts",
+    "test_knowledge_recursive_integration.RecursiveOwnedIntegration.test_post_go_startup_refusal_retains_cause_before_authored_worker",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_authored_script_keeps_its_original_sibling_import_directory",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_nested_job_descendant_has_independent_native_exit_proof",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_script_system_exit_is_not_relabelled_as_bootstrap_failure",
+    "test_knowledge_windows_owned_process.CurrentImageOwnerTests.test_stop_reaps_root_child_grandchild_but_not_unrelated_process",
+    "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed",
+    "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path",
+    "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify"
+  ],
+  "runtime": {
+    "base_prefix": "C:\\Python314",
+    "executable": "C:\\Python314\\python.exe",
+    "prefix": "C:\\Python314",
+    "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "worker": null
+  },
+  "selected_store_python312_requalified": false,
+  "status": "SOURCE_WINDOWS_REPAIRS_VERIFIED_CONTROLLER_PY314",
+  "twin_search": {
+    "worker_client.py:_process": "separate legacy model-worker taskkill fallback remains unqualified; no failing reproduction here"
+  },
+  "website_updated": false
+}

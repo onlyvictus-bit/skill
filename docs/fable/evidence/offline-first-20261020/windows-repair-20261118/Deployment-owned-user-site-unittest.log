@@ -1,0 +1,6 @@
+test_disabled_child_profile_does_not_mutate_callers_environment (test_knowledge_owned_user_site.OwnedUserSiteTests.test_disabled_child_profile_does_not_mutate_callers_environment) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.388s
+
+OK

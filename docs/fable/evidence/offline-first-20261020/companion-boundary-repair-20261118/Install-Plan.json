@@ -1,0 +1,89 @@
+{
+  "status": "READY_FOR_APPROVED_INSTALLED_UPDATE_AFTER_FINAL_CHECKS",
+  "installed_backup": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\companion-repair-20261118\\installed-before",
+  "before_count": 199,
+  "candidate_count": 200,
+  "companion_changed": false,
+  "changes": [
+    {
+      "path": "references/r2-workflow.md",
+      "before": "baaee372997782febf994f3c02a17c1ff1fd82d0b00c87f889ed5e2f2037a60f",
+      "after": "dd85d751165fe5222e9e02b189aa985078b6b81c28f70b09ce5aebfd7feff9fe",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/coordination_workflow.py",
+      "before": "cf2d12214a1d7e72262d1e8b5e8131e310632497fc652c3bc8f87a56a04067d3",
+      "after": "3794f6e09b1e9382e5fe5a40cf38fe335aa9a05d899ac2dad55d4a292065e05b",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/integrity_v2/engine_client.py",
+      "before": "b3f122bc5fb4c9570325620ab4fb76bc72054eea2d536f4fcf95b5ed7696d2a9",
+      "after": "f5662fbdd02b42b5842d58968a9713ecd9da585a4549a6f6f81423e6e1d7557a",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/integrity_v2/report.py",
+      "before": "5402e44eef0d109c2e8e2cba905bbe07ab32f0cd3e865f64f403ad6767d15493",
+      "after": "a902dacd67895be39f3588332cfaa9aec3066c72e663711c06f277707d7badbb",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/integrity_v2/source_audit.py",
+      "before": "2c0bf205b32b618ba0fba351c13f820a83de05fb3caca6d9b39203824b07e0f9",
+      "after": "15ffa267996699c81203f902a6cbfa7eaad7378c886987cc06da712385520545",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/knowledge_bridge/indexing.py",
+      "before": "75596598e1c6aa01b461ef70e1aeda2557f6a87edc6c1dea77422f11d755613e",
+      "after": "8283fcac3eae707cb8f79fc6b9895743fca2da6d3b8aee797df968835a1aa67f",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/memory_integrity_workflow.py",
+      "before": "9b0b5602f83ebe55f310685d3cd2f8e30c7e0d1317460a1c0e75ba1fdf4df347",
+      "after": "b312d1b04ba3c4f335265822876c23c4a5c57bb379fadeed47f35ad1e053ffdd",
+      "operation": "replace"
+    },
+    {
+      "path": "scripts/project_continuity.py",
+      "before": "fc266f4f3c292f2e3ef9560fc5c90a0405e4e0ed0a16243cf00a81bf7ef67a04",
+      "after": "5f486586e25be25efdc33f973895b93d23918a615d667c746c078992f2d6fa41",
+      "operation": "replace"
+    },
+    {
+      "path": "SKILL.md",
+      "before": "de875d0bf7fc29970b1bd7a7ef49977e6108fb0830c63b7990e8593ca12e48bd",
+      "after": "5c5220b11e66476d33c4a7ea41a9dfea6c2ddaa8c632eb70d55485c29961b323",
+      "operation": "replace"
+    },
+    {
+      "path": "tests_v2/OFFLINE1-CONTENT.json",
+      "before": "bb1e7212f5daa4151e231ba57970b08ce8fe28535b69fa5f3b80138a3af684c0",
+      "after": "251c98ec7f84f18448e6c2bd1a92bd6bd424f14d49d15c937170bf72efc390a4",
+      "operation": "replace"
+    },
+    {
+      "path": "tests_v2/test_approved_companion.py",
+      "before": null,
+      "after": "0b4778c69b35077b115acf10dbd3585cb85481fb679e025bbc335e29a40e91ec",
+      "operation": "add"
+    },
+    {
+      "path": "tests_v2/test_companion_handshake.py",
+      "before": "2d1c68c030623e68872babdb4148dcf129c143c00a802ee02c817931647eb94c",
+      "after": "ebd7577792598aefc689cdf4dbae1f3008c2fefd64d5402b3c1f6c01cd40b22c",
+      "operation": "replace"
+    },
+    {
+      "path": "tests_v2/test_knowledge_timeout_budget.py",
+      "before": "fbaca2640c86d83b93f41e3c7d32d39d1007c237dc32d0c6787c6c8bcfefe635",
+      "after": "4479ecc8fde1735e1d3e00207bf7a57ffd203c2be93906fe044e4e6c62438fcb",
+      "operation": "replace"
+    }
+  ],
+  "real_checkpoint_refresh_required": true,
+  "approval": "PENDING"
+}

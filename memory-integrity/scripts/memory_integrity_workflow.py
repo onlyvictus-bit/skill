@@ -14,6 +14,7 @@ from pathlib import Path
 import sqlite3
 import sys
 import uuid
+sys.dont_write_bytecode = True
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -49,9 +50,10 @@ def companion(root):
     ok, env = engine_client.handshake(root, expect_digest=SCHEMA_DIGEST)
     if not ok:
         raise ValueError("E_COMPANION: " + json.dumps(env))
-    explicit = (Path(root) / "scripts").resolve()
+    explicit = engine_client.approved_imports(root) / "scripts"
     sys.path.insert(0, str(explicit))
     from complete_read_v2 import artifacts, ledger, partition, providers, results, runner
+    engine_client.approved_imports(root)
     if Path(partition.__file__).resolve().parent.parent != explicit:
         raise ValueError("E_COMPANION_IMPORT: module imported from another root")
     return artifacts, ledger, partition, providers, results, runner
@@ -188,6 +190,7 @@ def offline_run(args):
                 PROFILE["endpoint"],PROFILE["purpose"],PROFILE["output_limit"],limits={"max_calls":1,"max_spend":0})
             runner.approve(db,attempt,approval)
             runner.dispatch_via_adapter(db,cas,providers.TestOnlyAdapter([("ok",rich)]),attempt,approval)
+            engine_client.approved_imports(args.claude_mon_root)
             runner.accept(db,cas,attempt,task_digest,manifest,raw,
                 {"provider":PROFILE["provider"],"model":PROFILE["model"],"endpoint":PROFILE["endpoint"],
                  "purpose":PROFILE["purpose"],"max_output_tokens":PROFILE["output_limit"]})
@@ -329,6 +332,8 @@ def main():
             out = coordination_workflow.dispatch(args)
         else:
             out = offline_run(args) if args.command == "offline-run" else verify(args)
+        if out.get('ok') is True and getattr(args, 'claude_mon_root', None) is not None:
+            engine_client.approved_root(args.claude_mon_root)
     except Exception as exc:
         if args.command in practical_cli.COMMANDS:
             out = practical_cli.refusal(exc)

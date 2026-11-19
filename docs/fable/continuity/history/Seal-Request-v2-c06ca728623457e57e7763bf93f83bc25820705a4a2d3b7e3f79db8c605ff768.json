@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "project_id": "R5_MEMORY_INTEGRITY_CODEX",
+  "source": "docs/fable/continuity/Current-Project-v2.txt",
+  "run_map": "docs/fable/continuity/protected-run-v2/run-map.json",
+  "files": [
+    "docs/fable/state.json",
+    "docs/fable/derived/offline-first-release-plan-20261020.md",
+    "docs/fable/derived/offline-first-checkpoint-20261020.md",
+    "docs/fable/continuity/Reviews-v2.json",
+    "docs/fable/continuity/Checkpoint-Refresh.md",
+    "AGENTS.md",
+    ".github/scripts/verify_project_resume.py",
+    ".github/tests/test_project_resume.py",
+    "memory-integrity/scripts/project_continuity.py",
+    "memory-integrity/tests_v2/test_project_continuity.py",
+    "memory-integrity/references/codex-project-continuity.md",
+    "memory-integrity/SKILL.md",
+    "memory-integrity/references/INDEX.md",
+    "memory-integrity/tests_v2/OFFLINE1-CONTENT.json",
+    "memory-integrity/scripts/memory_watchdog.py",
+    "memory-integrity/scripts/knowledge_bridge/windows_ready_copy.py",
+    "memory-integrity/capabilities-v2.json",
+    "docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Acceptance.json",
+    "docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Reusable-Skill-Tests.json",
+    "docs/fable/evidence/offline-first-20261020/codex-continuity-skill-20261117/Installed-Skill-Tests.json"
+  ]
+}

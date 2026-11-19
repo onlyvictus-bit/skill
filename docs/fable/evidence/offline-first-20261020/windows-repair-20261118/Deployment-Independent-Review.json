@@ -1,0 +1,22 @@
+{
+  "status": "SHIP_INSTALLED_READBACK",
+  "reviewer": "fresh native fable_sol_reviewer; read-only",
+  "important_or_critical_remaining": 0,
+  "independently_observed": {
+    "source_and_installed_match_plan_files": 204,
+    "verified_original_backup_files": 200,
+    "unchanged_claude_mon_files": 74,
+    "actions": {
+      "replace": 5,
+      "add": 4,
+      "delete": 0,
+      "manifest_last": true
+    },
+    "all_paths_regular_no_reparse_no_temp_debris": true,
+    "installed_cases_passed": 100,
+    "receipt_stream_hashes_match": true,
+    "head_unchanged": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc"
+  },
+  "checkpoint_review": "v4 correctly stale; v5 closing review follows actual refresh",
+  "does_not_claim_store312_release_website_or_live_memory": true
+}

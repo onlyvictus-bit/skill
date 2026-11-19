@@ -687,3 +687,10 @@ installed, published, or inherited by historical qualified ZIPs.
 ## Codex project initialization and continuation
 
 When installation exists but a project cannot resume, read `references/codex-project-continuity.md`. Initialize real source-linked checkpoint/review records with the existing protected workflow, then use `scripts/project_continuity.py` for explicit initial sealing, read-only recovery, and lease-checked version-retaining refresh. Merge a scoped project AGENTS.md startup pointer without changing global rules. Never describe skill installation as project initialization. File recovery, automatic conversation capture and real service persistence are separate capabilities.
+
+## Approved companion compatibility correction -- 2026-11-18
+
+Use the exact reviewed companion release. The shared MI boundary verifies a
+MI-owned content-manifest pin before execution/import, checks runtime identity,
+and rechecks before acceptance/success. Protocol/schema compatibility alone does
+not approve a package. Read references/r2-workflow.md for cache/startup limits.

@@ -1,0 +1,42 @@
+[
+  {
+    "classification": "IMPLEMENTATION_DEFECT",
+    "function": "claude_mon_v2.cmd_preflight",
+    "id": "F01",
+    "location": "claude-mon/scripts/claude_mon_v2.py:96-112,320",
+    "observed": "--task-spec-digest is parsed but ignored; wrong value yields identical oktrue/exit0",
+    "recommended_fix": "Remove/refuse unsupported option or bind/check it against stored request/task-spec identity; add real subprocess mismatch regression. No fix applied.",
+    "reproduction": "commands/cm-preflight-baseline/Command.json then commands/cm-preflight-wrong-task-spec/Command.json; cm-probe.py constructs isolated work item",
+    "severity": "Important"
+  },
+  {
+    "classification": "IMPLEMENTATION_DEFECT",
+    "function": "claude_mon_v2.cmd_query",
+    "id": "F02",
+    "location": "claude-mon/scripts/claude_mon_v2.py:260",
+    "observed": "Missing source raises uncaught FileNotFoundError, exit1 with empty JSON stdout",
+    "recommended_fix": "Convert documented input/file/DB errors at CLI boundary to structured error envelopes while preserving original cause. No fix applied.",
+    "reproduction": "commands/cm-query-missing-source/Command.json and stderr.log",
+    "severity": "Moderate"
+  },
+  {
+    "classification": "DOCUMENTATION_CONTRADICTION",
+    "id": "F03",
+    "observed": "Early MI SKILL bridge-verify PERSISTED guidance is superseded only near end; report formatter may show READY_FOR_DECLARED_TASK while exit1/okfalse is intentional; continuity default-read-only description omits explicit write modes",
+    "recommended_fix": "Put normative boundary/exit semantics at original command descriptions; preserve historical notes clearly.",
+    "severity": "Moderate"
+  },
+  {
+    "classification": "COVERAGE_GAP",
+    "id": "F04",
+    "observed": "Capability JSON omits legacy/helper/knowledge routes; several public facade routes lack direct invocation evidence despite related module tests",
+    "recommended_fix": "Complete machine-readable public surface and add independent CLI route scenarios. All rows remain in Function-Matrix.json.",
+    "severity": "Moderate"
+  },
+  {
+    "classification": "AUDIT_HARNESS_EXPECTATION_CORRECTED",
+    "id": "H01",
+    "observed": "Practical script initially expected stale workflow exit1; actual documented envelope is STALE/okfalse with exit2. This is correct refusal, not a product failure. Original record retained.",
+    "severity": "Informational"
+  }
+]

@@ -19,6 +19,7 @@ def _read(path):
 def _engines(root):
     modules = core.companion(root)
     from complete_read_v2 import coordination
+    core.engine_client.approved_imports(root)
     return (*modules, coordination)
 
 
@@ -187,6 +188,7 @@ def run_task(args):
         coord.guard(ro,e["work_item_id"],root/"artifacts",ctx,"resume")
         accepted = ledger.accepted_attempt(ro,e["work_item_id"])
         if accepted:
+            core.engine_client.approved_imports(args.claude_mon_root)
             return dict(ok=True,overall="VERIFIED_COORDINATED_TASK_OFFLINE",evidence_class="TEST_ONLY",
                         native_beads_qualified=False,task_id=ident,resumed=True,adapter_calls=0,approvals_consumed=0)
         raw,sid,manifest = core.source_basis(e["source_path"],partition)
@@ -261,6 +263,7 @@ def run_task(args):
         elif current["state"]=="RESPONSE_SAVED":
             coord.guard(db,e["work_item_id"],cas,observe_current(db,state,cas,artifacts,coord),"resume",attempt)
             runner.validate(db,cas,attempt,lambda payload:providers.validate_response(json.loads(payload),sorted(units),current["response_digest"]))
+        core.engine_client.approved_imports(args.claude_mon_root)
         runner.accept(db,cas,attempt,e["task_digest"],manifest,raw,{"provider":p["provider"],"model":p["model"],"endpoint":p["endpoint"],"purpose":p["purpose"],"max_output_tokens":p["output_limit"]},
             coordination_context=observe_current(db,state,cas,artifacts,coord))
         return dict(ok=True,overall="VERIFIED_COORDINATED_TASK_OFFLINE",evidence_class="TEST_ONLY",

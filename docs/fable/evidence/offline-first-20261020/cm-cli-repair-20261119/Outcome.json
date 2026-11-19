@@ -1,0 +1,56 @@
+{
+  "authority": "user Fable Loop SOLVE IT for F01/F02",
+  "direct_reproductions": "Direct-Reproduction.json",
+  "git_commit_or_push": false,
+  "installed_f01_f02_fixed": false,
+  "installed_pair_unchanged": true,
+  "memory_service_persistence": "UNVERIFIED",
+  "new_regression_cases": 11,
+  "regressions": [
+    {
+      "code": 0,
+      "discovered": 21,
+      "errors": [],
+      "failures": [],
+      "name": "cm-legacy",
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\cm-legacy\\Receipt.json",
+      "run": 21,
+      "seconds": 4.042398699966725,
+      "skip": 0,
+      "xfail": 0
+    },
+    {
+      "code": 0,
+      "discovered": 224,
+      "errors": [],
+      "failures": [],
+      "name": "cm-v2",
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\cm-v2\\Receipt.json",
+      "run": 224,
+      "seconds": 35.02648279996356,
+      "skip": 0,
+      "xfail": 0
+    },
+    {
+      "code": 0,
+      "discovered": 921,
+      "errors": [],
+      "failures": [],
+      "name": "mi-v2",
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\mi-v2\\Receipt.json",
+      "run": 921,
+      "seconds": 292.1779041000409,
+      "skip": 54,
+      "xfail": 1
+    }
+  ],
+  "review": {
+    "independent_contract_review": "UNVERIFIED_WORKSPACE_CREDITS_EXHAUSTED",
+    "independent_scope_review": "UNVERIFIED_WORKSPACE_CREDITS_EXHAUSTED",
+    "no_independent_clearance_claimed": true,
+    "parent_review": "Checked actual scoped diff against saved preimages, exact source-pair manifest pin, operational-only catches, domain exits, programmer/interrupt propagation, retained RED and direct CLI GREEN"
+  },
+  "source_cm_files": 75,
+  "source_mi_files": 204,
+  "status": "SOURCE_F01_F02_FIXED_AND_REGRESSION_VERIFIED_REVIEW_CAVEAT"
+}

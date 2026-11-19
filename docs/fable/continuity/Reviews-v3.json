@@ -1,0 +1,98 @@
+{
+  "U000001": {
+    "interpretation": "C01 ACTIVE SOURCE: use C:/Users/sakth/Documents/Codex/ofpkg-20261113/ci/source. Published base is80f1cda542cce60e8b34d1d51b2967cf9625ecdc on backup/codex-project-continuity-20261117; the November18 compatibility correction and new checkpoint are local changes, not a new published commit. Old ad/work and main are historical. Sources: docs/fable/state.json and docs/fable/derived/offline-first-release-plan-20261020.md.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked the active Git base and local diff; installation approval did not authorize publication."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000002": {
+    "interpretation": "C02 INSTALLED PAIR: Memory Integrity200 files match the reviewed candidate and active source, and Claude-Mon74 files are unchanged. User approved skill update and checkpoint refresh. Thirteen installed files were added/replaced after complete199-file backup. Installed20 boundary,6 handshake and19 continuity tests passed. Sources: docs/fable/evidence/offline-first-20261020/companion-boundary-repair-20261118/Deployment-Install-Receipt.json and Deployment-Installed-Tests.json.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked the exact installation readback and actual installed test outputs, not historical source-only pass labels."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000003": {
+    "interpretation": "C03 COMPANION BOUNDARY: MI independently pins CM content-manifest SHA7c9ac1cf39184104c959f3d14921d365eaa17d810a7240a09b98d05491abd192 and exact claude-mon/2.0.0-m12/schema2 contract. Contents are checked before execution/import, runtime identity is checked separately, and drift is checked before acceptance/success. Self-resealed altered CM cannot authorize itself. Cached foreign modules, bytecode and startup hooks are refused. These are sampled identity checks, not atomic filesystem-owner protection. Sources: memory-integrity/scripts/integrity_v2/engine_client.py and memory-integrity/references/r2-workflow.md.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked shared approval guard and routing, including independent host pin, pre-execution tests and explicitly documented filesystem limits."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000004": {
+    "interpretation": "C04 REGRESSION LIMIT: final source suites ran1171 cases:1107PASS,7unique failing cases,2ERROR,54SKIP,1expectedfailure. The7 failing cases produce8 unittest failure records. Same9 unsuccessful case IDs as the prior audit; no new final failing IDs. Existing Windows startup/ownership/pipe-holder failures and unavailable short-path fixtures remain unresolved. Source: docs/fable/evidence/offline-first-20261020/companion-boundary-repair-20261118/Outcome.json and Final-MI-v2-Receipt.json.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Reconciled actual source suite receipts and prior-audit failing IDs; existing failures remain open and are not declared fixed."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000005": {
+    "interpretation": "C05 MEMORY BOUNDARY: saved project records are file-backed review accounting. A new Python process is not an independent model context, new user chat or service restart. Legacy bridge cannot claim PERSISTED; exact successful readback/cleanup still caps at UNVERIFIED without an independent observer. Automatic global recall and capture of every conversation are absent. Sources: memory-integrity/scripts/memory_watchdog.py, scripts/project_continuity.py and references/codex-project-continuity.md.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Read the watchdog and reusable continuity boundaries; offline record recall does not prove an AgentMemory restart."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000006": {
+    "interpretation": "C06 AUTHORITY AND RETENTION: this approval covers the installed skill correction and reviewed checkpoint refresh only. It grants no Git commit/push, service/dependency install, ACL change, external provider, real database or broker action. Offline profile disables live providers/native mutations. Only newly managed READY copies have3day retention after accepted read and native exit; originals/old evidence stay retained. Default120 and shutdown5 were unchanged. Sources: memory-integrity/capabilities-v2.json, scripts/knowledge_bridge/windows_ready_copy.py and docs/fable/derived/offline-first-release-plan-20261020.md.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Retained original approval scope and READY copy restrictions; no new authorization is inferred from successful tests."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000007": {
+    "interpretation": "C07 PACKAGE IDENTITY: the reviewed correction candidate MI ZIP SHA07217f57eba466d83bf48cd7f05177ccfb0d77250e32e1357395b7215d2c3229 has200files. Candidate CM ZIP SHA8c905a64b7494085bfda1918d852359fc7e28e57e1ec5355b290e6d25eb6cf82 contains the unchanged74files; ZIP bytes differ with packaging metadata. This candidate is not fully release-qualified. Historical watchdog MI ZIP2aa020bb154099c3930154d7cd734b8de8fc5e7996936bde8af83cd64451a4b3 has196files. Corrected ChatGPT website installation remains unverified. Sources: docs/fable/state.json and memory-integrity/tests_v2/OFFLINE1-CONTENT.json.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked candidate SHA and file inventory; package integrity is separate from full release qualification or website replacement."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  },
+  "U000008": {
+    "interpretation": "C08 CONTINUATION: follow project AGENTS.md and run read-only verification of this reviewed v3 checkpoint before relying on previous facts. Reopen task-relevant originals; stale/missing evidence requires investigation and a new reviewed version, never silent rebaseline. Preserve old sources/reviews/runs and old Basis using an exact replacement lease. Independent source code review was SHIP; no fresh model-context recovery or live-service restart has been observed. Next separate work is remaining Windows runtime diagnosis/qualification and later release/website work. Sources: AGENTS.md, docs/fable/continuity/Checkpoint-Refresh.md and docs/fable/state.json.",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "The recovery procedure requires future fresh verification and original citations. Existing independent code review is not a fresh-context project-reader test."
+      }
+    ],
+    "disposition": "resolved",
+    "reviewer": "Codex project checkpoint author self-review; no independent semantic agreement claimed",
+    "unresolved": []
+  }
+}

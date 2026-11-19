@@ -1,0 +1,38 @@
+{
+  "verdict": "PASS_FOR_THIS_NATIVE_INDEPENDENT_MODEL_CONTEXT",
+  "setup": "fork_turns=none; only ad/AGENTS.md entrypoint and recovery questions supplied; no expected answers, other chat history or global memory",
+  "reported_observations": {
+    "verifier_exit": 0,
+    "status": "VERIFIED_PROJECT_FILE_RECOVERY",
+    "source_basis_files": 567,
+    "units": 8,
+    "records": 8,
+    "installed_files": {
+      "memory-integrity": 204,
+      "claude-mon": 74
+    },
+    "wrong_companion_exit": 1,
+    "wrong_companion_error": "E_PROJECT_RESUME_SKILL_ROOT",
+    "git_status_unchanged": true
+  },
+  "recovered_source": "C:/Users/sakth/Documents/Codex/ofpkg-20261113/ci/source",
+  "recovered_checkpoint": "docs/fable/continuity/Current-Project-v5.txt",
+  "recovered_restrictions": [
+    "Fable sole authority",
+    "no install/Git/provider/realDB/trading authority from startup",
+    "worker120 and shutdown5 preserved",
+    "managed READY copy3day retention only after acceptedread/nativeexit; originalbackup/evidence retained"
+  ],
+  "unresolved": [
+    "Store3.12 and new204fileZIP qualification",
+    "website identity",
+    "live backend/service persistence",
+    "legacy model-worker taskkill fallback"
+  ],
+  "actual_channel": "project files via AGENTS, Basis, protected-run-v5 and reopened original code/state/deployment evidence",
+  "new_user_chat": "NOT_EXECUTED",
+  "memory_service_persistence": "UNVERIFIED",
+  "semantic_truth": "UNVERIFIED",
+  "evidence_kind": "native agent tool-turn observations; not fabricated shell output",
+  "fresh_chat_test": "Open a new Codex user chat in the project; provide only: Follow AGENTS.md, verify current checkpoint and recover source, installed state, restrictions and unresolved work with citations. Do not supply expected answers."
+}

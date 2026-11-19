@@ -1,0 +1,6 @@
+{
+  "old_cm_pin": "7c9ac1cf39184104c959f3d14921d365eaa17d810a7240a09b98d05491abd192",
+  "new_cm_pin": "eeeba9be891ef8f10d731748d2c4a37c371068ecb19e8954af7dc842dbf8dfaf",
+  "reason": "Approved F01/F02 CLI, regression and documentation bytes; source pair only",
+  "installed_pair_changed": false
+}

@@ -1,0 +1,107 @@
+{
+  "status": "ALL_100_INSTALLED_FOCUSED_CASES_PASS",
+  "cases": 100,
+  "groups": [
+    {
+      "name": "native",
+      "code": 0,
+      "cases": 22,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 8.84175530000357,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-native\\Receipt.json"
+    },
+    {
+      "name": "ownership",
+      "code": 0,
+      "cases": 17,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 7.804196999990381,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-ownership\\Receipt.json"
+    },
+    {
+      "name": "recursive-integration",
+      "code": 0,
+      "cases": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 4.426140000054147,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-recursive-integration\\Receipt.json"
+    },
+    {
+      "name": "recursive-git",
+      "code": 0,
+      "cases": 5,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 2.3311385000124574,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-recursive-git\\Receipt.json"
+    },
+    {
+      "name": "owned-user-site",
+      "code": 0,
+      "cases": 1,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 1.7677149000228383,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-owned-user-site\\Receipt.json"
+    },
+    {
+      "name": "go-sharing",
+      "code": 0,
+      "cases": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 0.4517389999818988,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-go-sharing\\Receipt.json"
+    },
+    {
+      "name": "approved-companion",
+      "code": 0,
+      "cases": 20,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 18.0093302000314,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-approved-companion\\Receipt.json"
+    },
+    {
+      "name": "handshake",
+      "code": 0,
+      "cases": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 2.062679599970579,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-handshake\\Receipt.json"
+    },
+    {
+      "name": "continuity",
+      "code": 0,
+      "cases": 19,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "seconds": 1.7640905000152998,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\deployment-approved\\tests-continuity\\Receipt.json"
+    }
+  ],
+  "runtime": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "package_root": "C:\\Users\\sakth\\.codex\\skills\\memory-integrity"
+}

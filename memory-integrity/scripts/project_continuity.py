@@ -95,16 +95,20 @@ sys.dont_write_bytecode=True
 guard=runpy.run_path(guard_path,run_name='project_resume_guard')['readonly_audit']
 sys.addaudithook(guard)
 sys.path[:0]=[str(Path(memory)/'scripts'),str(Path(engine)/'scripts')]
-from integrity_v2 import source_audit
+from integrity_v2 import source_audit, engine_client
+engine_client.approved_imports(engine)
 from complete_read_v2 import partition
 assert Path(partition.__file__).resolve().parent.parent==Path(engine).resolve()/'scripts'
 def readonly_partition(selected,raw,manifest):
     assert Path(selected).resolve()==Path(engine).resolve()
-    return partition.validate_manifest(raw,manifest)
+    engine_client.approved_imports(engine)
+    errors=partition.validate_manifest(raw,manifest)
+    engine_client.approved_imports(engine)
+    return errors
 source_audit.validate_with_engine=readonly_partition
 runpy.run_path(workflow,run_name='__main__')
 '''
-    process=subprocess.run([sys.executable,'-B','-c',bootstrap,str(memory_root),str(companion_root),
+    process=subprocess.run([sys.executable,'-I','-S','-B','-c',bootstrap,str(memory_root),str(companion_root),
         str(Path(memory_root)/'scripts/memory_integrity_workflow.py'),str(Path(__file__).absolute()),
         'verify','--claude-mon-root',str(companion_root),
         '--source',str(checked_file(root,basis['source'])),

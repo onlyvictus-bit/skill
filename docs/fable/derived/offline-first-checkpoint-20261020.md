@@ -1,3 +1,30 @@
+## CURRENT -- installed compatibility correction and reviewed v3 checkpoint, 2026-11-18
+
+User approved installed update and checkpoint refresh. MI200+unchangedCM74files
+match reviewed source/candidate; old199file MI copy retained. Installed45focused
+checks PASS. Use continuity/Current-Project-v3.txt through the AGENTS startup
+command and current Basis; preserve historical v2 reviews/run. The shared boundary
+rejects unapproved CM before execution/import and acceptance. Full source results
+remain1171cases:1107PASS/7FAIL cases/2ERROR/54SKIP/1expectedfailure, same prior
+unsuccessful IDs. Windows/native, website update and live memory remain unqualified.
+See evidence/offline-first-20261020/companion-boundary-repair-20261118/.
+No commit/push or background memory-service installation was performed.
+
+## CURRENT -- companion repair source verified, deployment approval pending 2026-11-18
+
+Shared approved-companion boundary fixed and native-reviewed SHIP for source.
+20boundary cases PASS. Final sourceMIv2:899run/835PASS/7FAIL cases/2ERROR/54SKIP/
+1expectedfailure; exact same unsuccessful IDs as prior audit. Other suites272PASS.
+See evidence/offline-first-20261020/companion-boundary-repair-20261118/Outcome.json.
+Candidate200+74file pair is retained in ad/companion-repair-20261118/candidate-pair.
+Installed199+74 files remain unchanged; user approval for installation and actual
+checkpoint refresh is pending. Existing Basis is legitimately STALE after source
+changes; inspect new evidence, do not auto-rebaseline or rerun old workloads.
+Next authorized step after approval: verify candidate seals, backup/readback
+installed MI changes with CM unchanged; author new reviewed project facts/run,
+lease-checked refresh preserving prior basis, then actual read-only startup.
+No service persistence/native/full-release/Git publication claim.
+
 ## CURRENT -- reusable Codex project continuity, 2026-11-17
 
 Prior repair/continuity checkpoint is published at9285688ac69a653683558502ae9adbb981c497fd,
@@ -3025,3 +3052,52 @@ Reader29760/SID1003 armedUTC2026-11-07T13:56:38.026744+00:00 with24hidle,
 no selected3.12runtime andshortg1-dfix-20261107outputABSENT. NewcommandSHA
 7e213d936570bba31c44bb4991b321c703827141821ca79146319c0d208374fd.
 No oldretry;diagnostictriggerremoved,exactnative memoryoriginUNPROVEN.
+
+
+## Windows source repair observation — 2026-11-18
+
+W1/W2/W3/W4 observation: final MIv2 921 cases, {"expected_failure": 1, "skipped": 54, "success": 866}; MI legacy38PASS.
+All nine prior unsuccessful IDs now pass. Four new test files bring MI source
+to204files; source seal unchanged throughout the final full run. Independent
+read-only source review SHIP, no Important/Critical remaining. Real controller
+native tests are observed; selected Store3.12 and deployment remain separate.
+The first broad run's transient GO-sharing defect and stale-manifest error are
+retained, not relabelled success. Modern GO shares the source-bound reader.
+Prepared installed update is9files (5replace/4add/0delete); not yet applied.
+See evidence/offline-first-20261020/windows-repair-20261118/Report.md and Outcome.json.
+Legacy model-worker taskkill fallback is a distinct unqualified recurrence,
+outside these nine cases. No new model/runtime/DB operation was performed.
+
+
+## Approved installed Windows update observed — 2026-11-18
+
+User authority: "Approve installed Windows repair update". Exact installed MI204
+matches reviewed source after5replace/4add/0delete; complete old200-file backup
+retained and verified; CM74 unchanged. All100 installed checks passed without
+fail/error/skip/xfail. Source921case/legacy38 broad evidence remains unchanged.
+V4 correctly refused changed basis; reviewed v5 refresh retains old records and
+uses exact previous-Basis replacement lease. Read Deployment-Report.md and
+Deployment-Outcome.json under evidence/offline-first-20261020/windows-repair-20261118.
+No new Store3.12, release/website or memory-service persistence qualification.
+No Git, dependency/service install, ACL/global change or original deletion.
+
+
+## F01/F02 source repair observation — 2026-11-19
+
+Explicit preflight task-spec refusal before effects and structured operational
+CLI errors now verified. New11-case regression passes; CM224+legacy21 pass;
+MI921 has0fail/error,54skip,1expectedfailure. Source CM75 uses new reviewed
+manifest, MI204 source pin updated. Installed MI204/CM74 unchanged. Both
+independent attackers exhausted credits before verdict: no independent clearance
+claimed. See evidence/offline-first-20261020/cm-cli-repair-20261119/Outcome.json.
+Versioned v6 refresh preserves v5. No install/Git/services/ACL/dependency changes.
+
+
+## F01/F02 installed pair — approved and observed 2026-11-19
+
+User "Approve paired skill update with review caveat" approved6-file pair update and accepted unavailable independent review. Both old roots fully backed up (278files); new MI204/CM75 match source. Installed290checks passed without failures/errors/skips. Newv7 retainsv6, old basis and all evidence. No Git, services, dependencies, ACL/global or website action. See cm-cli-repair-20261119/Deployment-Install-Receipt.json and Deployment-Installed-Tests.json.
+
+
+## Authorized cumulative repair publication, 2026-11-19
+
+User "COMMIT AND PUSH ALL NEW CHANGES" authorizes the reviewed source/test/evidence checkpoint on a new backup branch. See ../evidence/offline-first-20261020/publication-all-repairs-20261119/Publication-Plan.md. Current recovery advances to v8; prior runs remain retained. Publication outcome is checked from Git and the separate receipt, not inferred from this pre-commit source. Live persistence, independent review and new release qualification remain separate.

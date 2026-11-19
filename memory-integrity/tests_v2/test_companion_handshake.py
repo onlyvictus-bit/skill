@@ -5,6 +5,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
@@ -33,17 +34,13 @@ class HandshakeTests(unittest.TestCase):
         self.assertEqual(payload["error"]["code"], "E_SCHEMA_MISMATCH")
 
     def test_tampered_engine_digest_fails(self):
-        with tempfile.TemporaryDirectory(prefix="tampered-engine-") as temp:
-            fake = Path(temp) / "engine"
-            shutil.copytree(ENGINE / "scripts", fake / "scripts")
-            target = fake / "scripts" / "complete_read_v2" / "contracts.py"
-            text = target.read_text(encoding="utf-8")
-            patched = text.replace('"MANUAL_REPORTED",',
-                                    '"MANUAL_REPORTED",\n    "FORGED_CLASS",', 1)
-            self.assertNotEqual(patched, text)
-            target.write_text(patched, encoding="utf-8")
-            from memory_integrity_v2 import PINNED_ENGINE_DIGEST
-            ok, payload = engine_client.handshake(str(fake), expect_digest=PINNED_ENGINE_DIGEST)
+        # Unapproved code is now refused BEFORE it can print an envelope.
+        # Inject only the response here to retain the independent protocol check.
+        from memory_integrity_v2 import PINNED_ENGINE_DIGEST
+        ok, approved = engine_client.handshake(ENGINE)
+        self.assertTrue(ok, approved)
+        with patch.object(engine_client, 'run_engine', return_value=({**approved, 'schema_digest': '0'*64}, None)):
+            ok, payload = engine_client.handshake(ENGINE, expect_digest=PINNED_ENGINE_DIGEST)
             self.assertFalse(ok)
             self.assertEqual(payload["error"]["code"], "E_DIGEST_MISMATCH")
 
@@ -54,7 +51,14 @@ class HandshakeTests(unittest.TestCase):
             (entry / "claude_mon_v2.py").write_text("print('not json {{')\n", encoding="utf-8")
             ok, payload = engine_client.handshake(temp)
             self.assertFalse(ok)
-            self.assertEqual(payload["error"]["code"], "E_COMPANION_BAD_JSON")
+            self.assertEqual(payload["error"]["code"], "E_COMPANION_RELEASE")
+
+    def test_bad_json_from_approved_process_fails_structured(self):
+        from types import SimpleNamespace
+        with patch.object(engine_client.subprocess, 'run', return_value=SimpleNamespace(returncode=0, stdout='not json {', stderr='')):
+            value, error = engine_client.run_engine(ENGINE, ['capabilities'])
+        self.assertIsNone(value)
+        self.assertEqual(error['code'], 'E_COMPANION_BAD_JSON')
 
 
 if __name__ == "__main__":

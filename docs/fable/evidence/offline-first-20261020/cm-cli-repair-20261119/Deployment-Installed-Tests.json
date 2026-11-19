@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {
+      "group": "cm-v2",
+      "passed": 224,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\deployment-approved\\cm-v2\\Receipt.json"
+    },
+    {
+      "group": "cm-legacy",
+      "passed": 21,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\deployment-approved\\cm-legacy\\Receipt.json"
+    },
+    {
+      "group": "mi-companion",
+      "passed": 20,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\deployment-approved\\mi-companion\\Receipt.json"
+    },
+    {
+      "group": "mi-handshake",
+      "passed": 6,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\deployment-approved\\mi-handshake\\Receipt.json"
+    },
+    {
+      "group": "mi-continuity",
+      "passed": 19,
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\cm-cli-repair-20261118\\deployment-approved\\mi-continuity\\Receipt.json"
+    }
+  ],
+  "passed": 290
+}

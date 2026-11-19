@@ -1,0 +1,8 @@
+{"event": "START", "id": "test_knowledge_bootstrap_gate.GateFailureTests.test_close_failure_after_good_read_is_not_accepted", "monotonic": 444484.5804939}
+{"cause": "", "event": "END", "id": "test_knowledge_bootstrap_gate.GateFailureTests.test_close_failure_after_good_read_is_not_accepted", "outcome": "success", "seconds": 0.0005264999927021563}
+{"event": "START", "id": "test_knowledge_bootstrap_gate.GateFailureTests.test_read_failure_remains_primary_when_close_also_fails", "monotonic": 444484.5810833}
+{"cause": "", "event": "END", "id": "test_knowledge_bootstrap_gate.GateFailureTests.test_read_failure_remains_primary_when_close_also_fails", "outcome": "success", "seconds": 0.00014730001566931605}
+{"event": "START", "id": "test_knowledge_bootstrap_gate.SharedGateTests.test_rename_capable_handle_allows_native_read_without_crt_sharing", "monotonic": 444484.6051955}
+{"cause": "", "event": "END", "id": "test_knowledge_bootstrap_gate.SharedGateTests.test_rename_capable_handle_allows_native_read_without_crt_sharing", "outcome": "success", "seconds": 0.008882800000719726}
+{"event": "START", "id": "test_knowledge_bootstrap_gate.SharedGateTests.test_wrong_nonascii_and_oversized_tokens_are_refused", "monotonic": 444484.6141576}
+{"cause": "", "event": "END", "id": "test_knowledge_bootstrap_gate.SharedGateTests.test_wrong_nonascii_and_oversized_tokens_are_refused", "outcome": "success", "seconds": 0.016804800019599497}

@@ -1,0 +1,10 @@
+{"event": "START", "id": "test_knowledge_recursive_git.EditableRuntimeHook.test_editable_owned_runtime_binds_before_existing_git_queries", "monotonic": 444480.743393}
+{"cause": "", "event": "END", "id": "test_knowledge_recursive_git.EditableRuntimeHook.test_editable_owned_runtime_binds_before_existing_git_queries", "outcome": "success", "seconds": 0.008192200039047748}
+{"event": "START", "id": "test_knowledge_recursive_git.EditableRuntimeHook.test_non_owned_runtime_keeps_existing_git_path", "monotonic": 444480.7517309}
+{"cause": "", "event": "END", "id": "test_knowledge_recursive_git.EditableRuntimeHook.test_non_owned_runtime_keeps_existing_git_path", "outcome": "success", "seconds": 0.006691399961709976}
+{"event": "START", "id": "test_knowledge_recursive_git.RecursiveGit.test_binding_is_idempotent_but_rejects_other_root_image_and_vectors", "monotonic": 444480.758832}
+{"cause": "", "event": "END", "id": "test_knowledge_recursive_git.RecursiveGit.test_binding_is_idempotent_but_rejects_other_root_image_and_vectors", "outcome": "success", "seconds": 0.12837180000497028}
+{"event": "START", "id": "test_knowledge_recursive_git.RecursiveGit.test_bound_git_preserves_existing_readonly_outputs", "monotonic": 444480.8872652}
+{"cause": "", "event": "END", "id": "test_knowledge_recursive_git.RecursiveGit.test_bound_git_preserves_existing_readonly_outputs", "outcome": "success", "seconds": 1.4461666999850422}
+{"event": "START", "id": "test_knowledge_recursive_git.RecursiveGit.test_expired_binding_and_dispatch_cannot_start_git", "monotonic": 444482.3334943}
+{"cause": "", "event": "END", "id": "test_knowledge_recursive_git.RecursiveGit.test_expired_binding_and_dispatch_cannot_start_git", "outcome": "success", "seconds": 0.06666059995768592}

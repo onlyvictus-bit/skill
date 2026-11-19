@@ -1,0 +1,20 @@
+{
+  "reviewer": "Fable Sol native read-only reviewer",
+  "verdict": "SHIP_FOR_SCOPED_SOURCE_BOUNDARY",
+  "final_relative_path_delta_review": "SHIP",
+  "runtime_tests_reproduced_by_reviewer": false,
+  "not_qualified": [
+    "installation",
+    "native Windows",
+    "full release",
+    "memory service restart"
+  ],
+  "closed_review_findings": [
+    "bytecode ignored by generic content inventory",
+    "Python startup hook execution",
+    "cached-module origins",
+    "coordination extra import/pre-accept checks",
+    "public final-success drift gate",
+    "normal Python cache self-rejection"
+  ]
+}

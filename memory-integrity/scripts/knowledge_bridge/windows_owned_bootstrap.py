@@ -107,6 +107,19 @@ def _bound_module(row):
     return namespace
 
 
+def _read_go(path, token, ready_module):
+    """Read only the exact token via the already source-bound shared reader."""
+    native = ready_module['NativeFiles']()
+    try:
+        raw = native.read(native.open_read(path), len(token))
+    except BaseException as original:
+        native.close_all(original)
+        raise
+    native.close_all()
+    if raw != token.encode('ascii'):
+        raise ValueError('E_OWNED_BOOTSTRAP_GO_TOKEN')
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--contract", required=True)
@@ -135,6 +148,7 @@ def main(argv=None):
         if not observed["in_any_job"]:
             raise ValueError("E_OWNED_BOOTSTRAP_OUTSIDE_JOB")
         transport = contract.get('ready_copy')
+        ready_module = None
         if transport is None:
             _write_new(args.ready, observed)  # Compatibility for immutable earlier control contracts.
         else:
@@ -145,14 +159,18 @@ def main(argv=None):
                     os.path.normcase(os.path.abspath(copied.get('source', ''))) != os.path.normcase(os.path.abspath(args.ready))):
                 raise ValueError('E_OWNED_READY_COPY_BINDING')
             module = _bound_module(transport['module'])
+            ready_module = module
             raw = json.dumps(observed, sort_keys=True, separators=(',', ':')).encode('utf-8')
             module['publish'](copied, raw, lambda: _write_new(args.ready, observed))
         while not Path(args.go).exists():
             if time.monotonic() >= contract["deadline"]:
                 raise TimeoutError("E_OWNED_BOOTSTRAP_GO_DEADLINE")
             time.sleep(.002)
-        if Path(args.go).read_text(encoding="utf-8") != token:
-            raise ValueError("E_OWNED_BOOTSTRAP_GO_TOKEN")
+        if ready_module is None:
+            if Path(args.go).read_text(encoding="utf-8") != token:
+                raise ValueError("E_OWNED_BOOTSTRAP_GO_TOKEN")
+        else:
+            _read_go(args.go, token, ready_module)
         script = os.path.normcase(os.path.abspath(args.script))
         if script != contract["script"]:
             raise ValueError("E_OWNED_BOOTSTRAP_SCRIPT")

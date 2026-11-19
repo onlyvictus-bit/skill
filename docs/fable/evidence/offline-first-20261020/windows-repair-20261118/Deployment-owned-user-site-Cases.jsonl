@@ -1,0 +1,2 @@
+{"event": "START", "id": "test_knowledge_owned_user_site.OwnedUserSiteTests.test_disabled_child_profile_does_not_mutate_callers_environment", "monotonic": 444482.7920533}
+{"cause": "", "event": "END", "id": "test_knowledge_owned_user_site.OwnedUserSiteTests.test_disabled_child_profile_does_not_mutate_callers_environment", "outcome": "success", "seconds": 1.3882112000137568}

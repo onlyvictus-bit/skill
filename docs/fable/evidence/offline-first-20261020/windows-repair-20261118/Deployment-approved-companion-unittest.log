@@ -1,0 +1,25 @@
+test_cached_foreign_module_refused (test_approved_companion.ApprovedCompanion.test_cached_foreign_module_refused) ... ok
+test_cached_module_cannot_claim_another_approved_file (test_approved_companion.ApprovedCompanion.test_cached_module_cannot_claim_another_approved_file) ... ok
+test_change_during_engine_execution_refused (test_approved_companion.ApprovedCompanion.test_change_during_engine_execution_refused) ... ok
+test_changed_entry_refused_before_execution (test_approved_companion.ApprovedCompanion.test_changed_entry_refused_before_execution) ... ok
+test_direct_engine_call_cannot_bypass_release_gate (test_approved_companion.ApprovedCompanion.test_direct_engine_call_cannot_bypass_release_gate) ... ok
+test_direct_partition_probe_cannot_import_altered_code (test_approved_companion.ApprovedCompanion.test_direct_partition_probe_cannot_import_altered_code) ... ok
+test_direct_saved_proof_probe_cannot_import_altered_code (test_approved_companion.ApprovedCompanion.test_direct_saved_proof_probe_cannot_import_altered_code) ... ok
+test_hardlinked_approved_bytes_refused (test_approved_companion.ApprovedCompanion.test_hardlinked_approved_bytes_refused) ... ok
+test_missing_file_refused (test_approved_companion.ApprovedCompanion.test_missing_file_refused) ... ok
+test_normal_python_workflow_does_not_create_companion_cache (test_approved_companion.ApprovedCompanion.test_normal_python_workflow_does_not_create_companion_cache) ... ok
+test_public_success_guard_rejects_late_drift (test_approved_companion.ApprovedCompanion.test_public_success_guard_rejects_late_drift) ... ok
+test_public_workflow_rejects_before_ledger_creation (test_approved_companion.ApprovedCompanion.test_public_workflow_rejects_before_ledger_creation) ... ok
+test_pythonpath_startup_hook_is_not_executed (test_approved_companion.ApprovedCompanion.test_pythonpath_startup_hook_is_not_executed) ... ok
+test_relative_companion_alias_normalizes_to_same_root (test_approved_companion.ApprovedCompanion.test_relative_companion_alias_normalizes_to_same_root) ... ok
+test_runtime_identity_is_checked_after_approved_preflight (test_approved_companion.ApprovedCompanion.test_runtime_identity_is_checked_after_approved_preflight) ... ok
+test_self_resealed_changed_entry_is_still_refused (test_approved_companion.ApprovedCompanion.test_self_resealed_changed_entry_is_still_refused) ... ok
+test_unchanged_approved_copy_works (test_approved_companion.ApprovedCompanion.test_unchanged_approved_copy_works) ... ok
+test_unexpected_file_refused (test_approved_companion.ApprovedCompanion.test_unexpected_file_refused) ... ok
+test_untracked_bytecode_cache_is_refused (test_approved_companion.ApprovedCompanion.test_untracked_bytecode_cache_is_refused) ... ok
+test_wrong_runtime_release_refused (test_approved_companion.ApprovedCompanion.test_wrong_runtime_release_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 17.308s
+
+OK

@@ -328,6 +328,7 @@ def verify_run(run_map_path, source_digests_now, claude_mon_root):
             return _blocked(*ledger_blockers, counts=counts)
         if not ready:
             return _blocked("E_RUN_SEMANTIC: " + repr(semantic_blockers), overall="PARTIAL", counts=counts)
+        engine_client.approved_root(claude_mon_root)
     except (ReportError, OSError, UnicodeError, KeyError, TypeError, ValueError) as exc:
         return _blocked(str(exc))
     return {"overall": "VERIFIED_OFFLINE", "ok": True, "blockers": [], "counts": counts,

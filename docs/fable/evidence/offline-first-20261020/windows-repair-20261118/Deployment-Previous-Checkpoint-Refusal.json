@@ -1,0 +1,6 @@
+{
+  "code": 1,
+  "stdout": "{\"status\": \"BLOCKED\", \"error\": \"E_PROJECT_RESUME_STALE: docs/fable/derived/offline-first-release-plan-20261020.md\"}\n",
+  "stderr": "",
+  "expectation": "Changed approved installed inventory and canonical plan must invalidate v4 until a new reviewed version is sealed"
+}

@@ -1,0 +1,44 @@
+{"event": "START", "id": "test_native_containment.CleanExitDescendantTests.test_clean_exit_descendant_accounted", "monotonic": 441582.7896986}
+{"cause": "", "event": "END", "id": "test_native_containment.CleanExitDescendantTests.test_clean_exit_descendant_accounted", "outcome": "success", "seconds": 0.2599986999994144}
+{"event": "START", "id": "test_native_containment.ContainmentTests.test_clean_command_unaffected", "monotonic": 441583.049806}
+{"cause": "", "event": "END", "id": "test_native_containment.ContainmentTests.test_clean_command_unaffected", "outcome": "success", "seconds": 0.18518089997814968}
+{"event": "START", "id": "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed", "monotonic": 441583.2350651}
+{"cause": "", "event": "END", "id": "test_native_containment.ContainmentTests.test_grandchild_pipe_holder_killed", "outcome": "success", "seconds": 5.150718699966092}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_active_job_after_deadline_cannot_become_exit_proof", "monotonic": 441588.3858844}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_active_job_after_deadline_cannot_become_exit_proof", "outcome": "success", "seconds": 0.000902900006622076}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_close_failure_cannot_become_released_proof", "monotonic": 441588.3868288}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_close_failure_cannot_become_released_proof", "outcome": "success", "seconds": 0.0006715999916195869}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_command_retains_native_proof_before_rejecting_timeout", "monotonic": 441588.3875353}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_command_retains_native_proof_before_rejecting_timeout", "outcome": "success", "seconds": 0.03238049999345094}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_command_retains_original_setup_cause_and_cleanup_proof", "monotonic": 441588.4199768}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_command_retains_original_setup_cause_and_cleanup_proof", "outcome": "success", "seconds": 0.009120500006247312}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_failed_root_native_wait_cannot_become_exit_proof", "monotonic": 441588.4291539}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_failed_root_native_wait_cannot_become_exit_proof", "outcome": "success", "seconds": 0.0005787999834865332}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_posix_process_group_timeout_path_is_preserved", "monotonic": 441588.4297693}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_posix_process_group_timeout_path_is_preserved", "outcome": "success", "seconds": 0.0016573999891988933}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_terminate_failure_cannot_become_exit_proof", "monotonic": 441588.4314681}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureFailureTests.test_terminate_failure_cannot_become_exit_proof", "outcome": "success", "seconds": 0.00048290000995621085}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_assignment_failure_reaps_unassigned_root_before_authored_code", "monotonic": 441588.4319955}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_assignment_failure_reaps_unassigned_root_before_authored_code", "outcome": "success", "seconds": 0.022801299986895174}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_clean_root_exit_releases_inherited_descendant_pipes", "monotonic": 441588.4548629}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_clean_root_exit_releases_inherited_descendant_pipes", "outcome": "success", "seconds": 0.24465469998540357}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_error_after_actual_resume_still_terminates_assigned_job", "monotonic": 441588.6996103}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_error_after_actual_resume_still_terminates_assigned_job", "outcome": "success", "seconds": 0.13909549999516457}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_output_overflow_requests_main_thread_native_shutdown", "monotonic": 441588.838769}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_output_overflow_requests_main_thread_native_shutdown", "outcome": "success", "seconds": 0.1894050999544561}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_resume_failure_preserves_cause_and_reaps_suspended_root", "monotonic": 441589.0282444}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_resume_failure_preserves_cause_and_reaps_suspended_root", "outcome": "success", "seconds": 0.021087100030854344}
+{"event": "START", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_timeout_proves_owned_tree_without_taskkill", "monotonic": 441589.0494086}
+{"cause": "", "event": "END", "id": "test_native_containment_diagnostics.NativeCaptureOwnerTests.test_timeout_proves_owned_tree_without_taskkill", "outcome": "success", "seconds": 1.1359663999755867}
+{"event": "START", "id": "test_native_path_fixture.ShortPathFixtureTests.test_denied_parent_can_use_existing_readable_runtime_alias", "monotonic": 441590.1854758}
+{"cause": "", "event": "END", "id": "test_native_path_fixture.ShortPathFixtureTests.test_denied_parent_can_use_existing_readable_runtime_alias", "outcome": "success", "seconds": 0.0005605999613180757}
+{"event": "START", "id": "test_native_path_fixture.ShortPathFixtureTests.test_unchanged_long_name_is_not_short_name_coverage", "monotonic": 441590.1860866}
+{"cause": "", "event": "END", "id": "test_native_path_fixture.ShortPathFixtureTests.test_unchanged_long_name_is_not_short_name_coverage", "outcome": "success", "seconds": 0.00044979999074712396}
+{"event": "START", "id": "test_native_path_fixture.ShortPathFixtureTests.test_unexpected_native_error_is_not_skipped", "monotonic": 441590.1865776}
+{"cause": "", "event": "END", "id": "test_native_path_fixture.ShortPathFixtureTests.test_unexpected_native_error_is_not_skipped", "outcome": "success", "seconds": 0.0003070999518968165}
+{"event": "START", "id": "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path", "monotonic": 441590.1869381}
+{"cause": "", "event": "END", "id": "test_native_paths.PathIdentityTests.test_info_accepts_short_database_path", "outcome": "success", "seconds": 0.002195499953813851}
+{"event": "START", "id": "test_native_paths.PathIdentityTests.test_long_database_path_does_not_require_an_83_fixture", "monotonic": 441590.1891747}
+{"cause": "", "event": "END", "id": "test_native_paths.PathIdentityTests.test_long_database_path_does_not_require_an_83_fixture", "outcome": "success", "seconds": 0.0040262999827973545}
+{"event": "START", "id": "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify", "monotonic": 441590.1932615}
+{"cause": "", "event": "END", "id": "test_native_paths.PathIdentityTests.test_short_and_long_forms_unify", "outcome": "success", "seconds": 0.02655760000925511}

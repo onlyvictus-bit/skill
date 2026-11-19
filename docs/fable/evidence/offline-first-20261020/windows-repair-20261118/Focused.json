@@ -1,0 +1,106 @@
+{
+  "containment-final": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\containment-final\\Receipt.json",
+    "run": 16,
+    "sha256": "8d4d8b5167ebac57986e388bdd8712aa393b1f794ff3cd6f00bf5f4a7faee43e",
+    "skips": 0
+  },
+  "containment-red": {
+    "errors": 0,
+    "failure_records": 3,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\containment-red\\Receipt.json",
+    "run": 3,
+    "sha256": "912042f304509135eed6ace5848ab3c622d55581343d7fefe97995a3bbed857c",
+    "skips": 0
+  },
+  "final-native-regression": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\final-native-regression\\Receipt.json",
+    "run": 22,
+    "sha256": "552111c3046a78d49dafbd8feed30eebbd0d7aa6c03a904fb4950e2cd93d05e5",
+    "skips": 0
+  },
+  "gate-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\gate-green\\Receipt.json",
+    "run": 4,
+    "sha256": "313dc3953afd268396e3d98bc02c80666dbdf60cba8d9a86acf7f301100b9a9a",
+    "skips": 0
+  },
+  "gate-red": {
+    "errors": 7,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\gate-red\\Receipt.json",
+    "run": 4,
+    "sha256": "50a24fea1d25d55c9a25362ac7c768ac356f3c0ac7b8929ad2b49e66f3d07a3e",
+    "skips": 0
+  },
+  "git-recurrence-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\git-recurrence-green\\Receipt.json",
+    "run": 5,
+    "sha256": "88424bf18c3efcd34852b85175d48dd7d03071dd89e277abe56479ba85b8dff6",
+    "skips": 0
+  },
+  "path-fixture-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\path-fixture-green\\Receipt.json",
+    "run": 3,
+    "sha256": "2578f5687de5f4708f4ee5c92209a0c7356a5257bf3cb6bf93325866aea00578",
+    "skips": 0
+  },
+  "path-fixture-red": {
+    "errors": 3,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\path-fixture-red\\Receipt.json",
+    "run": 3,
+    "sha256": "c374b95e170536712ba323cafbec1774e893722f47c33e6b6616f56d2503c8aa",
+    "skips": 0
+  },
+  "paths-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\paths-green\\Receipt.json",
+    "run": 3,
+    "sha256": "896c8eb6f222a1cc2c77b3d5eafa61868a1ab51afc06f446d9cf17f75038fe02",
+    "skips": 0
+  },
+  "startup-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\startup-green\\Receipt.json",
+    "run": 1,
+    "sha256": "66f7ca99677aea0ea42022deb21f2c6ed7501c14e76afa553ca717eab74e9c90",
+    "skips": 0
+  },
+  "startup-red": {
+    "errors": 0,
+    "failure_records": 2,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\startup-red\\Receipt.json",
+    "run": 1,
+    "sha256": "40ea9e7a345f54f196b902e39e1b78ec551bfd5413ce791466851bd9791653ca",
+    "skips": 0
+  },
+  "test_knowledge_recursive_integration-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\test_knowledge_recursive_integration-green\\Receipt.json",
+    "run": 6,
+    "sha256": "72b813ef34b393561468d7a8040b0a1ba9d2738c918ea4903ffb60d5e60e3160",
+    "skips": 0
+  },
+  "test_knowledge_windows_owned_process-green": {
+    "errors": 0,
+    "failure_records": 0,
+    "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\windows-repair-20261118\\test_knowledge_windows_owned_process-green\\Receipt.json",
+    "run": 17,
+    "sha256": "c89a35231358469c6ceb5e6e7cde15926568c9e48967232d92f636cd32d31e72",
+    "skips": 0
+  }
+}

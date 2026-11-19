@@ -1,0 +1,98 @@
+{
+  "U000001": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C01 ACTIVE SOURCE: use C:/Users/sakth/Documents/Codex/ofpkg-20261113/ci/source. Published base remains80f1cda542cce60e8b34d1d51b2967cf9625ecdc; companion correction and Windows source repair are local/uncommitted. Historical ad/work and main are not the current source. Sources: docs/fable/state.json and docs/fable/derived/offline-first-release-plan-20261020.md.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000002": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C02 INSTALLED PAIR: MI204/CM74 remain the previous approved Windows deployment, not the new F01/F02 source repair. Source now has MI204/CM75 and a new CM manifest pin. F01/F02 remain in installed CM until separate approved pair promotion. Sources: docs/fable/evidence/offline-first-20261020/cm-cli-repair-20261119/Outcome.json and Reviewed-Manifest-Transition.json.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000003": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C03 COMPANION BOUNDARY: new source CM manifest SHAeeeba9be891ef8f10d731748d2c4a37c371068ecb19e8954af7dc842dbf8dfaf is independently pinned in source MI. Installed MI still pins the previous unchanged CM manifest. Both preserve exact claude-mon/2.0.0-m12/schema2 identity. Do not mix new source CM with old installed MI or silently rebaseline. Sources: memory-integrity/scripts/integrity_v2/engine_client.py and docs/fable/evidence/offline-first-20261020/cm-cli-repair-20261119/Reviewed-Manifest-Transition.json.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000004": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C04 F01/F02 SOURCE REPAIR: any preflight --task-spec-digest is explicitly refused before side effects; omit it and use --expect-task-digest for work-item identity. Prepare still binds task-spec. Operational file/encoding/SQLite failures reaching CLI main emit JSON cause/notes/chain and exit2; domain exit1 and programmer/interrupt behavior stay. CM224+legacy21 pass; MI921 has0fail/error,54skip,1expectedfailure. Source-only tests, not installed successor proof. Sources: docs/fable/evidence/offline-first-20261020/cm-cli-repair-20261119/Outcome.json and Direct-Reproduction.json.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000005": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C05 MEMORY BOUNDARY: saved project records are file-backed review accounting. A new Python process is not an independent model context, new user chat or service restart. Legacy bridge cannot claim PERSISTED; exact successful readback/cleanup still caps at UNVERIFIED without an independent observer. Automatic global recall and capture of every conversation are absent. Sources: memory-integrity/scripts/memory_watchdog.py, scripts/project_continuity.py and references/codex-project-continuity.md.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000006": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C06 AUTHORITY: user Fable Loop SOLVE IT authorizes F01/F02 source repair and required manifest/pin/continuity integration. It does not authorize installed replacement, Git commit/push, dependencies/services, ACL/global changes, live provider or native DB/trading action. Old evidence and v5 retained; worker120/shutdown5 unchanged. Sources: docs/fable/derived/offline-first-release-plan-20261020.md and docs/fable/evidence/offline-first-20261020/cm-cli-repair-20261119/Report.md.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000007": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C07 REVIEW/PACKAGE BOUNDARY: F01/F02 source changes passed parent verification and regression. Two independent attackers exhausted workspace credits before verdicts; independent clearance remains UNVERIFIED. No new release pair/website or installed successor is qualified. Previous Windows install evidence remains historical and unchanged. Sources: docs/fable/evidence/offline-first-20261020/cm-cli-repair-20261119/Review.json and Outcome.json.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  },
+  "U000008": {
+    "disposition": "resolved",
+    "findings": [
+      {
+        "kind": "source-linked-reviewed-project-status",
+        "note": "Checked current originals and actual regression/CLI output; independent review and installed limits retained."
+      }
+    ],
+    "interpretation": "C08 CONTINUATION: follow AGENTS and verify v6 before relying on facts; reopen originals. Preserve old versions and use exact Basis replacement lease for approved refresh, never hide stale evidence. Next: independent F01/F02 review when available, then separately approved installed pair update. File recovery is not automatic global recall, semantic perfection, new user-chat proof or service persistence. Sources: AGENTS.md, docs/fable/continuity/Checkpoint-Refresh.md and docs/fable/state.json.",
+    "reviewer": "checkpoint author self-review, not independent semantic agreement",
+    "unresolved": []
+  }
+}

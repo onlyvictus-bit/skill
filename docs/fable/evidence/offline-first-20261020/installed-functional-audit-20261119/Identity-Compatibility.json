@@ -1,0 +1,77 @@
+{
+  "memory-integrity": {
+    "installed_files": 204,
+    "source_files": 204,
+    "installed_matches_current_source": true,
+    "manifest_path": "C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\tests_v2\\OFFLINE1-CONTENT.json",
+    "manifest_sha256": "76fc4d2128a2b1381938221594753e8eece2d8967e404092e5e8653898ee6e74",
+    "manifest_keys": [
+      "added_files",
+      "changed_r1_files",
+      "files",
+      "release",
+      "schema_version"
+    ],
+    "active_profile": {
+      "id": "offline-first-v1",
+      "live_provider_enabled": false,
+      "native_mutations_enabled": false,
+      "native_subprocesses_enabled": false
+    },
+    "source_git_basis": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc",
+    "source_kind": "CURRENT_WORKING_TREE; not a claim that all bytes equal the base commit",
+    "previous_candidate_package": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\companion-repair-20261118\\candidate-pair\\memory-integrity-offline-v1.zip",
+      "exists": true,
+      "sha256": "07217f57eba466d83bf48cd7f05177ccfb0d77250e32e1357395b7215d2c3229",
+      "files": 200,
+      "matches_installed": false,
+      "missing_from_package": [
+        "tests_v2/test_knowledge_bootstrap_gate.py",
+        "tests_v2/test_knowledge_owned_user_site.py",
+        "tests_v2/test_native_containment_diagnostics.py",
+        "tests_v2/test_native_path_fixture.py"
+      ],
+      "modified": [
+        "scripts/hybrid_bridge/native_observation.py",
+        "scripts/knowledge_bridge/windows_owned_bootstrap.py",
+        "scripts/knowledge_bridge/windows_owned_process.py",
+        "tests_v2/OFFLINE1-CONTENT.json",
+        "tests_v2/test_native_paths.py"
+      ],
+      "archive_integrity": null
+    }
+  },
+  "claude-mon": {
+    "installed_files": 74,
+    "source_files": 74,
+    "installed_matches_current_source": true,
+    "manifest_path": "C:\\Users\\sakth\\.codex\\skills\\claude-mon\\tests_v2\\OFFLINE1-CONTENT.json",
+    "manifest_sha256": "7c9ac1cf39184104c959f3d14921d365eaa17d810a7240a09b98d05491abd192",
+    "manifest_keys": [
+      "added_files",
+      "changed_r1_files",
+      "files",
+      "release",
+      "schema_version"
+    ],
+    "active_profile": {
+      "id": "offline-first-v1",
+      "live_provider_enabled": false,
+      "native_mutations_enabled": false,
+      "native_subprocesses_enabled": false
+    },
+    "source_git_basis": "80f1cda542cce60e8b34d1d51b2967cf9625ecdc",
+    "source_kind": "CURRENT_WORKING_TREE; not a claim that all bytes equal the base commit",
+    "previous_candidate_package": {
+      "path": "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\companion-repair-20261118\\candidate-pair\\claude-mon-offline-v1.zip",
+      "exists": true,
+      "sha256": "8c905a64b7494085bfda1918d852359fc7e28e57e1ec5355b290e6d25eb6cf82",
+      "files": 74,
+      "matches_installed": true,
+      "missing_from_package": [],
+      "modified": [],
+      "archive_integrity": null
+    }
+  }
+}

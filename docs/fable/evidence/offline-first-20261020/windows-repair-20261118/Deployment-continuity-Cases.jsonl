@@ -1,0 +1,38 @@
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_bound_success_remains_file_recovery_only", "monotonic": 444505.4356482}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_bound_success_remains_file_recovery_only", "outcome": "success", "seconds": 0.061835700005758554}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_change_during_verification_blocks", "monotonic": 444505.4975715}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_change_during_verification_blocks", "outcome": "success", "seconds": 0.03839110000990331}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_changed_original_blocks", "monotonic": 444505.5362467}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_changed_original_blocks", "outcome": "success", "seconds": 0.027491800021380186}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_concurrent_basis_change_is_not_overwritten", "monotonic": 444505.5638241}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_concurrent_basis_change_is_not_overwritten", "outcome": "success", "seconds": 0.12819819996366277}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_duplicate_keys_refused", "monotonic": 444505.6921039}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_duplicate_keys_refused", "outcome": "success", "seconds": 0.015194299980066717}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_empty_scope_cannot_be_ready", "monotonic": 444505.7073552}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_empty_scope_cannot_be_ready", "outcome": "success", "seconds": 0.014698699989821762}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_existing_publication_lock_is_never_removed", "monotonic": 444505.7221089}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_existing_publication_lock_is_never_removed", "outcome": "success", "seconds": 0.06226999999489635}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_failed_candidate_verification_preserves_current_basis", "monotonic": 444505.7844334}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_failed_candidate_verification_preserves_current_basis", "outcome": "success", "seconds": 0.05678789998637512}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_fresh_process_observes_saved_files", "monotonic": 444505.8412772}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_fresh_process_observes_saved_files", "outcome": "success", "seconds": 0.21190620004199445}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_generic_ok_without_protected_evidence_refused", "monotonic": 444506.0532526}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_generic_ok_without_protected_evidence_refused", "outcome": "success", "seconds": 0.036663200007751584}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_initial_seal_without_previous_basis", "monotonic": 444506.0899732}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_initial_seal_without_previous_basis", "outcome": "success", "seconds": 0.07382340001640841}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_missing_original_blocks", "monotonic": 444506.1638636}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_missing_original_blocks", "outcome": "success", "seconds": 0.0255903999786824}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_parent_escape_and_absolute_path_refused", "monotonic": 444506.1895147}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_parent_escape_and_absolute_path_refused", "outcome": "success", "seconds": 0.03038310003466904}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_readonly_process_guard_rejects_writes_and_network", "monotonic": 444506.2199554}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_readonly_process_guard_rejects_writes_and_network", "outcome": "success", "seconds": 0.01297889999113977}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_refresh_requires_exact_previous_basis", "monotonic": 444506.232995}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_refresh_requires_exact_previous_basis", "outcome": "success", "seconds": 0.04195739998249337}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_refresh_retains_old_basis_and_publishes_verified_one", "monotonic": 444506.2750343}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_refresh_retains_old_basis_and_publishes_verified_one", "outcome": "success", "seconds": 0.11039159999927506}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_stale_basis_does_not_invoke_protected_workflow", "monotonic": 444506.3854914}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_stale_basis_does_not_invoke_protected_workflow", "outcome": "success", "seconds": 0.023248299956321716}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_substituted_skill_root_refused_before_dispatch", "monotonic": 444506.4088218}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_substituted_skill_root_refused_before_dispatch", "outcome": "success", "seconds": 0.03071500000078231}
+{"event": "START", "id": "test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes", "monotonic": 444506.4396176}
+{"cause": "", "event": "END", "id": "test_project_continuity.ProjectResume.test_valid_basis_checks_original_bytes", "outcome": "success", "seconds": 0.018873699998948723}

@@ -10,6 +10,7 @@ output can never qualify a live gate (see qualify_for_live).
 """
 import argparse
 import json
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -94,6 +95,9 @@ def cmd_prepare(args):
 
 
 def cmd_preflight(args):
+    if getattr(args, "task_spec_digest", None) is not None:
+        return fail("E_PREFLIGHT_TASK_SPEC_UNSUPPORTED: --task-spec-digest cannot be "
+                    "verified before prepare; use --expect-task-digest for the work-item task", 2)
     _, db_path, _ = run_paths(args.run_dir)
     manifest = load_json(args.manifest_file, "MANIFEST")
     source = Path(args.source_file).read_bytes()
@@ -317,7 +321,8 @@ def build_parser():
     pre.add_argument("--source-file", required=True)
     pre.add_argument("--profile-file", required=True)
     pre.add_argument("--per-unit-output", type=int, required=True)
-    pre.add_argument("--task-spec-digest", default=None)
+    pre.add_argument("--task-spec-digest", default=None,
+                     help="unsupported before prepare; supplied values are explicitly refused")
     pre.add_argument("--expect-task-digest", default=None)
     pre.add_argument("--reasoning-reserve", type=int, default=0)
     pre.add_argument("--safety-reserve", type=int, default=0)
@@ -395,7 +400,31 @@ def main(argv=None):
     if handler is None:
         parser.print_usage(sys.stderr)
         return 2
-    return handler(args)
+    try:
+        return handler(args)
+    except (OSError, UnicodeError, sqlite3.Error) as exc:
+        # Preserve the original input/OS/database failure. Do not disguise
+        # programmer errors, interrupts, or load_json's already emitted exit.
+        def describe(error):
+            value = {"type": type(error).__name__, "message": str(error)}
+            for name in ("errno", "filename", "filename2", "sqlite_errorcode", "sqlite_errorname"):
+                detail = getattr(error, name, None)
+                if detail is not None:
+                    value[name] = detail if isinstance(detail, (str, int)) else str(detail)
+            if getattr(error, "__notes__", None):
+                value["notes"] = [str(note) for note in error.__notes__]
+            return value
+        cause = describe(exc)
+        chain, seen, current = [], {id(exc)}, exc
+        while True:
+            current = current.__cause__ or (None if current.__suppress_context__ else current.__context__)
+            if current is None or id(current) in seen:
+                break
+            seen.add(id(current))
+            chain.append(describe(current))
+        cause["chain"] = chain
+        return emit({"ok": False, "error": "E_COMMAND_IO: %s: %s" % (type(exc).__name__, exc),
+                     "cause": cause}, 2)
 
 
 if __name__ == "__main__":
