@@ -1,0 +1,264 @@
+{
+  "status": "PARTIAL_TOKENIZER_BOUNDARY_QUALIFIED_OTHER_BOUNDARIES_UNCHANGED",
+  "commit": "faf5ecb15e494055adf6b510deb2e226cde57390",
+  "counts": {
+    "discovered": 114,
+    "executed": 114,
+    "passed": 97,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 17,
+    "expected_failures": 0,
+    "unexpected_successes": 0,
+    "incomplete": 0
+  },
+  "groups": [
+    {
+      "label": "cm-budget-cases",
+      "discovered": 3,
+      "run": 3,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-budget-cases\\Receipt.json"
+    },
+    {
+      "label": "cm-budget-v2-cases",
+      "discovered": 14,
+      "run": 14,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-budget-v2-cases\\Receipt.json"
+    },
+    {
+      "label": "cm-cli-cases",
+      "discovered": 11,
+      "run": 11,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-cli-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-extraction-cases",
+      "discovered": 11,
+      "run": 11,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-extraction-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-memory-boundary-cases",
+      "discovered": 5,
+      "run": 5,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-memory-boundary-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-memory-contract-cases",
+      "discovered": 6,
+      "run": 6,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-memory-contract-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-memory-http-cases",
+      "discovered": 21,
+      "run": 21,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-memory-http-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-model-contract-cases",
+      "discovered": 15,
+      "run": 15,
+      "skips": [
+        {
+          "cause": "explicit local model manifest and interpreter not selected",
+          "id": "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation"
+        },
+        {
+          "cause": "explicit local model manifest and interpreter not selected",
+          "id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens"
+        },
+        {
+          "cause": "explicit local model manifest and interpreter not selected",
+          "id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation"
+        },
+        {
+          "cause": "explicit local model manifest and interpreter not selected",
+          "id": "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens"
+        },
+        {
+          "cause": "explicit local model manifest and interpreter not selected",
+          "id": "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model"
+        }
+      ],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-model-contract-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-offline-knowledge-cases",
+      "discovered": 16,
+      "run": 16,
+      "skips": [
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span"
+        },
+        {
+          "cause": "explicit pinned Semantica runtime not selected",
+          "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened"
+        }
+      ],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-offline-knowledge-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-pdf-cases",
+      "discovered": 6,
+      "run": 6,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-pdf-cases\\Receipt.json"
+    },
+    {
+      "label": "mi-semantic-cases",
+      "discovered": 6,
+      "run": 6,
+      "skips": [],
+      "receipt": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-semantic-cases\\Receipt.json"
+    }
+  ],
+  "boundaries": [
+    {
+      "boundary": "INSTALLATION_INTEGRITY",
+      "verdict": "PASS",
+      "scope": "279 installed files unchanged; exact source inventories agree.",
+      "evidence": "Identity-Before.json; Identity-After.json"
+    },
+    {
+      "boundary": "COMPANION_COMPATIBILITY",
+      "verdict": "PASS",
+      "scope": "Installed explicit companion handshake succeeds; matching pinned content identities verified; retained installed negative regressions remain on this unchanged pair.",
+      "evidence": "mi-capabilities/stdout.log; retained cm-cli-repair-20261119 evidence"
+    },
+    {
+      "boundary": "SOURCE_COVERAGE",
+      "verdict": "PASS",
+      "scope": "Real current checkpoint original identities and eight exhaustive records verified; scope is declared sources, not entire repository comprehension.",
+      "evidence": "Project-Recovery.json"
+    },
+    {
+      "boundary": "PROCESSING_AND_LEDGER",
+      "verdict": "PASS",
+      "scope": "11 F01/F02 regression tests pass. Fresh public offline workflow accepts all8 current checkpoint records with saved author reviews (TEST_ONLY). Default global Temp attempt blocked; explicit process-local owned Temp succeeds.",
+      "evidence": "cm-cli-cases/Receipt.json; public-project-owned-temp.stdout.log"
+    },
+    {
+      "boundary": "CONTEXT_BUDGETING",
+      "verdict": "PASS",
+      "scope": "Exact installed Claude-Mon legacy/v2 counting and budgeting with tiktoken0.14.0 and cl100k_base/o200k_base in new isolated Python3.14 environment; no hidden provider framing/context accounting claim",
+      "evidence": "tokenizer-qualification/Outcome.json; exact-cases/Receipt.json"
+    },
+    {
+      "boundary": "EXTRACTION",
+      "verdict": "BLOCKED",
+      "scope": "Supported inventory/refusal tests pass. OOXML tracked changes and embedding cause PARTIAL. Complete conversion/OCR unsupported by active profile and Docling absent.",
+      "evidence": "mi-extraction-cases/Receipt.json; mi-pdf-cases/Receipt.json; practical-v2/Practical-Checks.json"
+    },
+    {
+      "boundary": "SEMANTIC_AUDIT",
+      "verdict": "UNVERIFIED",
+      "scope": "6 declared semantic-obligation tests pass. General source proposition truth, independent interpretation and arbitrary-document correctness not established.",
+      "evidence": "mi-semantic-cases/Receipt.json"
+    },
+    {
+      "boundary": "COORDINATION_AND_HISTORY",
+      "verdict": "PASS",
+      "scope": "Retained isolated policy/history tests and fresh protected checkpoint verification support the offline scope only; native live DB remains disabled.",
+      "evidence": "Project-Recovery.json; retained installed-functional-audit-20261119 evidence"
+    },
+    {
+      "boundary": "KNOWLEDGE_AND_WORKER_RUNTIME",
+      "verdict": "BLOCKED",
+      "scope": "4 offline-engine tests and10 model-contract tests pass;17 optional tests skipped. Selected3.12 identity probe exits103 because Store base executable unavailable in this account. Controller3.14 has no numerical/model packages and is outside declared knowledge runtime range.",
+      "evidence": "mi-offline-knowledge-cases/Receipt.json; mi-model-contract-cases/Receipt.json; selected312-identity/stderr.log"
+    },
+    {
+      "boundary": "CURRENT_SESSION_MEMORY",
+      "verdict": "BLOCKED",
+      "scope": "21 legacy loopback TEST_ONLY tests+6 watchdog contract+5 boundary tests pass. Real loopback health refuses connection (WinError10061); no live roundtrip attempted.",
+      "evidence": "mi-memory-http-cases/Receipt.json; memory-live-health/stdout.log"
+    },
+    {
+      "boundary": "CODEX_PROJECT_CONTINUITY",
+      "verdict": "PASS",
+      "scope": "Current v8 file recovery succeeds with893 bound project/evidence files and8 exhaustive records. No new independent model or user chat boundary was executed in this turn.",
+      "evidence": "Project-Recovery.json"
+    },
+    {
+      "boundary": "MEMORY_SERVICE_PERSISTENCE",
+      "verdict": "BLOCKED",
+      "scope": "No reachable real service, stable datastore restart observation or qualified independent boundary observer. Same-process/caller-supplied claims remain UNVERIFIED.",
+      "evidence": "memory-live-health/stdout.log; mi-memory-boundary-cases/Receipt.json"
+    },
+    {
+      "boundary": "OVERALL_FOR_DECLARED_OFFLINE_USE",
+      "verdict": "UNVERIFIED",
+      "scope": "Bounded public8-unit offline processing/recovery passes; broad all-function acceptance remains partial. Prior216-row inventory still contains public-route coverage gaps; missing/disabled/live boundaries cannot be upgraded from tests.",
+      "evidence": "Summary.json; retained installed-functional-audit-20261119/Function-Matrix.json"
+    }
+  ],
+  "installed_unchanged": true,
+  "git_tracked_state_unchanged": true,
+  "memory_service_persistence": "UNVERIFIED",
+  "installs_performed": false,
+  "services_mutated": false,
+  "independent_context_run": false,
+  "harness_failure_retained": "Harness-Finding.json",
+  "default_temp_failure_retained": "public-project-workflow.stdout.log",
+  "source_review_limit": "Replay reuses saved author reviews; it is not independent semantic review.",
+  "supplement": "tokenizer-qualification/Outcome.json",
+  "tokenizer_qualification_counts": {
+    "discovered": 31,
+    "executed": 31,
+    "passed": 31,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0
+  }
+}

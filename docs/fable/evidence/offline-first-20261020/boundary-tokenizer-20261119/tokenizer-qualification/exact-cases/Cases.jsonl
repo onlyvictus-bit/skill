@@ -1,0 +1,28 @@
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_batching_keeps_every_real_counted_unit", "monotonic": 537943.4484326}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_batching_keeps_every_real_counted_unit", "outcome": "success", "seconds": 0.7703070000279695}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_complete_section_breakdown_real_counter", "monotonic": 537944.2188466}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_complete_section_breakdown_real_counter", "outcome": "success", "seconds": 0.0005638999864459038}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_duplicate_unit_is_not_counted_twice", "monotonic": 537944.2204084}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_duplicate_unit_is_not_counted_twice", "outcome": "success", "seconds": 0.0008880998939275742}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_exact_fit_and_plus_one_with_actual_count", "monotonic": 537944.2213582}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_exact_fit_and_plus_one_with_actual_count", "outcome": "success", "seconds": 0.00036880001425743103}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_exact_installed_module_paths", "monotonic": 537944.2217811}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_exact_installed_module_paths", "outcome": "success", "seconds": 0.0023316999431699514}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_known_cl100k_reference_vector", "monotonic": 537944.2241672}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_known_cl100k_reference_vector", "outcome": "success", "seconds": 0.054633299936540425}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_large_actual_input_refused_without_mutation", "monotonic": 537944.2788572}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_large_actual_input_refused_without_mutation", "outcome": "success", "seconds": 0.012448499910533428}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_missing_model_and_encoding_refused", "monotonic": 537944.2913684}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_missing_model_and_encoding_refused", "outcome": "success", "seconds": 0.00020270003005862236}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_multilingual_exact_counts_and_reassembly", "monotonic": 537944.2916005}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_multilingual_exact_counts_and_reassembly", "outcome": "success", "seconds": 0.0013136999914422631}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_no_network_needed_for_encoding_reopen", "monotonic": 537944.2929535}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_no_network_needed_for_encoding_reopen", "outcome": "success", "seconds": 0.01973530009854585}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_output_limit_splits_even_when_input_fits", "monotonic": 537944.3127564}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_output_limit_splits_even_when_input_fits", "outcome": "success", "seconds": 0.0001338999718427658}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_special_marker_is_not_silently_lost", "monotonic": 537944.3129189}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_special_marker_is_not_silently_lost", "outcome": "success", "seconds": 0.00026519992388784885}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_unknown_encoding_refused_by_both_routes", "monotonic": 537944.3132134}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_unknown_encoding_refused_by_both_routes", "outcome": "success", "seconds": 0.0001599000534042716}
+{"event": "START", "id": "test_exact_tokenizer.ExactTokenizer.test_unknown_model_refused", "monotonic": 537944.3133984}
+{"cause": "", "event": "END", "id": "test_exact_tokenizer.ExactTokenizer.test_unknown_model_refused", "outcome": "success", "seconds": 0.00020880007650703192}

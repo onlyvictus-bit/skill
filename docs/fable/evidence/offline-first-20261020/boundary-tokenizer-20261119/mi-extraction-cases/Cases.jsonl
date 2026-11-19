@@ -1,0 +1,22 @@
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_bad_state_rejected", "monotonic": 537281.2379836}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_bad_state_rejected", "outcome": "success", "seconds": 0.0004273999948054552}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_direct_text_exact_on_identical", "monotonic": 537281.2384907}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_direct_text_exact_on_identical", "outcome": "success", "seconds": 0.00012159999459981918}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_direct_text_unknown_on_differing", "monotonic": 537281.2386557}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_direct_text_unknown_on_differing", "outcome": "success", "seconds": 0.0006498999428004026}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_gap_in_claimed_inventory_rejected", "monotonic": 537281.2393439}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_gap_in_claimed_inventory_rejected", "outcome": "success", "seconds": 0.0001039999770000577}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_profile_requires_identity", "monotonic": 537281.2394763}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_profile_requires_identity", "outcome": "success", "seconds": 9.360001422464848e-05}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_readiness_mapping", "monotonic": 537281.2395992}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_readiness_mapping", "outcome": "success", "seconds": 7.00000673532486e-05}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_unknown_field_rejected", "monotonic": 537281.2396959}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_unknown_field_rejected", "outcome": "success", "seconds": 0.0005422000540420413}
+{"event": "START", "id": "test_extraction_gate.ExtractionGateTests.test_vocabulary_matches_engine", "monotonic": 537281.2402766}
+{"cause": "", "event": "END", "id": "test_extraction_gate.ExtractionGateTests.test_vocabulary_matches_engine", "outcome": "success", "seconds": 0.41939719999209046}
+{"event": "START", "id": "test_extraction_provenance.ProvenanceTests.test_event_with_wrong_state_rejected", "monotonic": 537281.6597624}
+{"cause": "", "event": "END", "id": "test_extraction_provenance.ProvenanceTests.test_event_with_wrong_state_rejected", "outcome": "success", "seconds": 0.00010870001278817654}
+{"event": "START", "id": "test_extraction_provenance.ProvenanceTests.test_matching_binding_verifies", "monotonic": 537281.6599019}
+{"cause": "", "event": "END", "id": "test_extraction_provenance.ProvenanceTests.test_matching_binding_verifies", "outcome": "success", "seconds": 0.00017640006262809038}
+{"event": "START", "id": "test_extraction_provenance.ProvenanceTests.test_swapped_canonical_detected", "monotonic": 537281.6601054}
+{"cause": "", "event": "END", "id": "test_extraction_provenance.ProvenanceTests.test_swapped_canonical_detected", "outcome": "success", "seconds": 0.0001620999537408352}

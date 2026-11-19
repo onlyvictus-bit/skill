@@ -1,0 +1,21 @@
+test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges (test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges) ... skipped 'explicit pinned Semantica runtime not selected'
+test_automatically_generated_vectors_rank_identifiers_with_real_semantica (test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica) ... skipped 'explicit pinned Semantica runtime not selected'
+test_conditional_negative_and_unrelated_prose_stays_unasserted (test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted) ... skipped 'explicit pinned Semantica runtime not selected'
+test_crlf_preserves_proposition_text_and_original_byte_spans (test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans) ... skipped 'explicit pinned Semantica runtime not selected'
+test_document_context_cannot_turn_quoted_or_denied_claims_into_facts (test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts) ... skipped 'explicit pinned Semantica runtime not selected'
+test_document_with_no_tokens_cannot_be_randomly_represented (test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented) ... skipped 'explicit pinned Semantica runtime not selected'
+test_latent_and_hybrid_modes_are_deterministic_without_model_downloads (test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads) ... skipped 'explicit pinned Semantica runtime not selected'
+test_only_passed_authorized_corpus_changes_fitted_identity (test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity) ... skipped 'explicit pinned Semantica runtime not selected'
+test_oov_empty_input_and_unknown_mode_do_not_invent_vectors (test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors) ... skipped 'explicit pinned Semantica runtime not selected'
+test_real_shacl_applies_predicate_domain_and_range (test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range) ... skipped 'explicit pinned Semantica runtime not selected'
+test_repeated_names_keep_each_actual_statement_span (test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span) ... skipped 'explicit pinned Semantica runtime not selected'
+test_scoped_conditional_and_example_context_is_not_flattened (test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened) ... skipped 'explicit pinned Semantica runtime not selected'
+test_coding_and_test_evidence_type_rules (test_knowledge_offline_engine.TypesAndIsolation.test_coding_and_test_evidence_type_rules) ... ok
+test_import_does_not_load_optional_runtime (test_knowledge_offline_engine.TypesAndIsolation.test_import_does_not_load_optional_runtime) ... ok
+test_malformed_type_records_are_explicit_value_errors (test_knowledge_offline_engine.TypesAndIsolation.test_malformed_type_records_are_explicit_value_errors) ... ok
+test_wrong_domain_range_and_foreign_predicate_rejected (test_knowledge_offline_engine.TypesAndIsolation.test_wrong_domain_range_and_foreign_predicate_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.148s
+
+OK (skipped=12)

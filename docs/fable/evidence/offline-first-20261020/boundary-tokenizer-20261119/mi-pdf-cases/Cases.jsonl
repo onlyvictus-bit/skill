@@ -1,0 +1,12 @@
+{"event": "START", "id": "test_pdf_extraction.PdfInventoryTests.test_agreeing_evidence_checked", "monotonic": 537282.1306988}
+{"cause": "", "event": "END", "id": "test_pdf_extraction.PdfInventoryTests.test_agreeing_evidence_checked", "outcome": "success", "seconds": 0.0005425000563263893}
+{"event": "START", "id": "test_pdf_extraction.PdfInventoryTests.test_count_only_is_heuristic", "monotonic": 537282.1313064}
+{"cause": "", "event": "END", "id": "test_pdf_extraction.PdfInventoryTests.test_count_only_is_heuristic", "outcome": "success", "seconds": 0.00012909993529319763}
+{"event": "START", "id": "test_pdf_extraction.PdfInventoryTests.test_encrypted_blocks", "monotonic": 537282.1314759}
+{"cause": "", "event": "END", "id": "test_pdf_extraction.PdfInventoryTests.test_encrypted_blocks", "outcome": "success", "seconds": 0.003590900101698935}
+{"event": "START", "id": "test_pdf_extraction.PdfInventoryTests.test_no_text_extraction_claimed", "monotonic": 537282.1351718}
+{"cause": "", "event": "END", "id": "test_pdf_extraction.PdfInventoryTests.test_no_text_extraction_claimed", "outcome": "success", "seconds": 0.00012729992158710957}
+{"event": "START", "id": "test_pdf_extraction.PdfInventoryTests.test_non_pdf_rejected", "monotonic": 537282.1353459}
+{"cause": "", "event": "END", "id": "test_pdf_extraction.PdfInventoryTests.test_non_pdf_rejected", "outcome": "success", "seconds": 0.00012079998850822449}
+{"event": "START", "id": "test_pdf_extraction.PdfInventoryTests.test_truncated_tail_visible", "monotonic": 537282.1354944}
+{"cause": "", "event": "END", "id": "test_pdf_extraction.PdfInventoryTests.test_truncated_tail_visible", "outcome": "success", "seconds": 0.00010489998385310173}

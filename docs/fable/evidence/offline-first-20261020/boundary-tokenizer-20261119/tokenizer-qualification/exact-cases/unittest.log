@@ -1,0 +1,19 @@
+test_batching_keeps_every_real_counted_unit (test_exact_tokenizer.ExactTokenizer.test_batching_keeps_every_real_counted_unit) ... ok
+test_complete_section_breakdown_real_counter (test_exact_tokenizer.ExactTokenizer.test_complete_section_breakdown_real_counter) ... ok
+test_duplicate_unit_is_not_counted_twice (test_exact_tokenizer.ExactTokenizer.test_duplicate_unit_is_not_counted_twice) ... ok
+test_exact_fit_and_plus_one_with_actual_count (test_exact_tokenizer.ExactTokenizer.test_exact_fit_and_plus_one_with_actual_count) ... ok
+test_exact_installed_module_paths (test_exact_tokenizer.ExactTokenizer.test_exact_installed_module_paths) ... ok
+test_known_cl100k_reference_vector (test_exact_tokenizer.ExactTokenizer.test_known_cl100k_reference_vector) ... ok
+test_large_actual_input_refused_without_mutation (test_exact_tokenizer.ExactTokenizer.test_large_actual_input_refused_without_mutation) ... ok
+test_missing_model_and_encoding_refused (test_exact_tokenizer.ExactTokenizer.test_missing_model_and_encoding_refused) ... ok
+test_multilingual_exact_counts_and_reassembly (test_exact_tokenizer.ExactTokenizer.test_multilingual_exact_counts_and_reassembly) ... ok
+test_no_network_needed_for_encoding_reopen (test_exact_tokenizer.ExactTokenizer.test_no_network_needed_for_encoding_reopen) ... ok
+test_output_limit_splits_even_when_input_fits (test_exact_tokenizer.ExactTokenizer.test_output_limit_splits_even_when_input_fits) ... ok
+test_special_marker_is_not_silently_lost (test_exact_tokenizer.ExactTokenizer.test_special_marker_is_not_silently_lost) ... ok
+test_unknown_encoding_refused_by_both_routes (test_exact_tokenizer.ExactTokenizer.test_unknown_encoding_refused_by_both_routes) ... ok
+test_unknown_model_refused (test_exact_tokenizer.ExactTokenizer.test_unknown_model_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.865s
+
+OK

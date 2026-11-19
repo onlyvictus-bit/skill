@@ -1,0 +1,42 @@
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_caller_restart_claim_cannot_upgrade_verdict", "monotonic": 537284.109886}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_caller_restart_claim_cannot_upgrade_verdict", "outcome": "success", "seconds": 0.01794829999562353}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_direct_ghost_refused", "monotonic": 537284.1279177}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_direct_ghost_refused", "outcome": "success", "seconds": 0.015237799962051213}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_invalid_or_duplicate_state_refused_before_transport", "monotonic": 537284.1432659}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_invalid_or_duplicate_state_refused_before_transport", "outcome": "success", "seconds": 0.014935699990019202}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_delete_refused_without_crashing", "monotonic": 537284.15826}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_delete_refused_without_crashing", "outcome": "success", "seconds": 0.014501999947242439}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_hit_fields_are_not_silently_accepted", "monotonic": 537284.17282}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_hit_fields_are_not_silently_accepted", "outcome": "success", "seconds": 0.00010020006448030472}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_post_delete_refused", "monotonic": 537284.1729464}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_post_delete_refused", "outcome": "success", "seconds": 0.013748400029726326}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_search_refused", "monotonic": 537284.1867438}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_malformed_search_refused", "outcome": "success", "seconds": 0.012415100005455315}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_direct_content", "monotonic": 537284.1992235}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_direct_content", "outcome": "success", "seconds": 0.0022706000600010157}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_identity", "monotonic": 537284.2015358}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_identity", "outcome": "success", "seconds": 0.0008828999707475305}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_search_content", "monotonic": 537284.2024569}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_search_content", "outcome": "success", "seconds": 0.0008316999301314354}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_same_process_cannot_prove_restart", "monotonic": 537284.2033241}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_same_process_cannot_prove_restart", "outcome": "success", "seconds": 0.011988100013695657}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_scoped_direct_record_must_match_scope", "monotonic": 537284.2153902}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_scoped_direct_record_must_match_scope", "outcome": "success", "seconds": 0.01463949994649738}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_search_ghost_refused", "monotonic": 537284.2300786}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_search_ghost_refused", "outcome": "success", "seconds": 0.011260399944148958}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_direct_content_refused", "monotonic": 537284.2413945}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_direct_content_refused", "outcome": "success", "seconds": 0.011826599948108196}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_direct_identity_refused", "monotonic": 537284.2532835}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_direct_identity_refused", "outcome": "success", "seconds": 0.01349320006556809}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_search_content_refused", "monotonic": 537284.2668573}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_search_content_refused", "outcome": "success", "seconds": 0.012793000089004636}
+{"event": "START", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_search_identity_refused", "monotonic": 537284.2797032}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.BridgeRefusalTests.test_wrong_search_identity_refused", "outcome": "success", "seconds": 0.011696800007484853}
+{"event": "START", "id": "test_memory_watchdog.WatchdogTests.test_bridge_readback_without_observed_boundary_is_unverified", "monotonic": 537284.2914719}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.WatchdogTests.test_bridge_readback_without_observed_boundary_is_unverified", "outcome": "success", "seconds": 0.5919687000568956}
+{"event": "START", "id": "test_memory_watchdog.WatchdogTests.test_recall_audit_reads_compact_result_titles", "monotonic": 537284.8835373}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.WatchdogTests.test_recall_audit_reads_compact_result_titles", "outcome": "success", "seconds": 0.5014660999877378}
+{"event": "START", "id": "test_memory_watchdog.WatchdogTests.test_roundtrip_uses_current_api_and_cleans_canary", "monotonic": 537285.385084}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.WatchdogTests.test_roundtrip_uses_current_api_and_cleans_canary", "outcome": "success", "seconds": 0.5193589000264183}
+{"event": "START", "id": "test_memory_watchdog.WatchdogTests.test_status_uses_current_agentmemory_api_and_does_not_claim_healthy", "monotonic": 537285.904584}
+{"cause": "", "event": "END", "id": "test_memory_watchdog.WatchdogTests.test_status_uses_current_agentmemory_api_and_does_not_claim_healthy", "outcome": "success", "seconds": 0.5092194000026211}

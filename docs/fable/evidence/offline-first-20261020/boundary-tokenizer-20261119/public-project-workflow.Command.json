@@ -1,0 +1,21 @@
+{
+  "label": "public-project-workflow",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\scripts\\memory_integrity_workflow.py",
+    "offline-run",
+    "--claude-mon-root",
+    "C:\\Users\\sakth\\.codex\\skills\\claude-mon",
+    "--source",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\docs\\fable\\continuity\\Current-Project-v8.txt",
+    "--task",
+    "Replay the eight reviewed current project status records; verify processing and ledger, not semantic truth or live service persistence.",
+    "--responses-file",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\docs\\fable\\continuity\\Reviews-v8.json",
+    "--run-dir",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\public-project-run"
+  ],
+  "exit": 2,
+  "seconds": 1.9709026000928134
+}

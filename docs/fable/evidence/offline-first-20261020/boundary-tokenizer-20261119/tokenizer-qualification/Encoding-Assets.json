@@ -1,0 +1,27 @@
+{
+  "tiktoken_version": "0.14.0",
+  "encodings": [
+    {
+      "encoding": "cl100k_base",
+      "vocabulary_size": 100277,
+      "seconds": 3.7765229999786243
+    },
+    {
+      "encoding": "o200k_base",
+      "vocabulary_size": 200019,
+      "seconds": 4.17441640002653
+    }
+  ],
+  "cache_files": [
+    {
+      "path": "9b5ad71b2ce5302211f9c61530b329a4922fc6a4",
+      "size": 1681126,
+      "sha256": "223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7"
+    },
+    {
+      "path": "fb374d419588a4632f3f557e76b4b70aebbca790",
+      "size": 3613922,
+      "sha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d"
+    }
+  ]
+}

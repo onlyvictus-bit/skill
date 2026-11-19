@@ -1,0 +1,14 @@
+{
+  "label": "selected312-identity",
+  "argv": [
+    "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+    "-I",
+    "-S",
+    "-B",
+    "-c",
+    "import sys,json;print(json.dumps({\"executable\":sys.executable,\"version\":sys.version,\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix}))"
+  ],
+  "seconds": 0.04031730000860989,
+  "exit": 103,
+  "failure": null
+}

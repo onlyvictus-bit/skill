@@ -1,0 +1,10 @@
+{"event": "START", "id": "test_memory_boundaries.MemoryBoundaryTests.test_coverage_basis_carries_digest", "monotonic": 537283.4286686}
+{"cause": "", "event": "END", "id": "test_memory_boundaries.MemoryBoundaryTests.test_coverage_basis_carries_digest", "outcome": "success", "seconds": 0.0003299999516457319}
+{"event": "START", "id": "test_memory_boundaries.MemoryBoundaryTests.test_fresh_client_proves_client_only", "monotonic": 537283.4290564}
+{"cause": "", "event": "END", "id": "test_memory_boundaries.MemoryBoundaryTests.test_fresh_client_proves_client_only", "outcome": "success", "seconds": 0.00010140007361769676}
+{"event": "START", "id": "test_memory_boundaries.MemoryBoundaryTests.test_full_restart_evidence", "monotonic": 537283.4301005}
+{"cause": "", "event": "END", "id": "test_memory_boundaries.MemoryBoundaryTests.test_full_restart_evidence", "outcome": "success", "seconds": 0.0002044000430032611}
+{"event": "START", "id": "test_memory_boundaries.MemoryBoundaryTests.test_generation_change_without_identity_insufficient", "monotonic": 537283.4303531}
+{"cause": "", "event": "END", "id": "test_memory_boundaries.MemoryBoundaryTests.test_generation_change_without_identity_insufficient", "outcome": "success", "seconds": 0.0001330000814050436}
+{"event": "START", "id": "test_memory_boundaries.MemoryBoundaryTests.test_run_map_generation_tracks_boundary", "monotonic": 537283.4305264}
+{"cause": "", "event": "END", "id": "test_memory_boundaries.MemoryBoundaryTests.test_run_map_generation_tracks_boundary", "outcome": "success", "seconds": 0.01431850006338209}

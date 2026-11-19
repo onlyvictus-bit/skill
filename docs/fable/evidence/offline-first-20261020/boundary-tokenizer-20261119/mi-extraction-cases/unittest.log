@@ -1,0 +1,16 @@
+test_bad_state_rejected (test_extraction_gate.ExtractionGateTests.test_bad_state_rejected) ... ok
+test_direct_text_exact_on_identical (test_extraction_gate.ExtractionGateTests.test_direct_text_exact_on_identical) ... ok
+test_direct_text_unknown_on_differing (test_extraction_gate.ExtractionGateTests.test_direct_text_unknown_on_differing) ... ok
+test_gap_in_claimed_inventory_rejected (test_extraction_gate.ExtractionGateTests.test_gap_in_claimed_inventory_rejected) ... ok
+test_profile_requires_identity (test_extraction_gate.ExtractionGateTests.test_profile_requires_identity) ... ok
+test_readiness_mapping (test_extraction_gate.ExtractionGateTests.test_readiness_mapping) ... ok
+test_unknown_field_rejected (test_extraction_gate.ExtractionGateTests.test_unknown_field_rejected) ... ok
+test_vocabulary_matches_engine (test_extraction_gate.ExtractionGateTests.test_vocabulary_matches_engine) ... ok
+test_event_with_wrong_state_rejected (test_extraction_provenance.ProvenanceTests.test_event_with_wrong_state_rejected) ... ok
+test_matching_binding_verifies (test_extraction_provenance.ProvenanceTests.test_matching_binding_verifies) ... ok
+test_swapped_canonical_detected (test_extraction_provenance.ProvenanceTests.test_swapped_canonical_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.422s
+
+OK

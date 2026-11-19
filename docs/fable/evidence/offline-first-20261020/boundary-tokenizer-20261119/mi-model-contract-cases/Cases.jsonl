@@ -1,0 +1,30 @@
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_changed_model_bytes_fail_before_model_import", "monotonic": 537287.3302867}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_changed_model_bytes_fail_before_model_import", "outcome": "success", "seconds": 0.05602359992917627}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_empty_or_over_scope_inputs_fail_without_loading_dependencies", "monotonic": 537287.3864337}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_empty_or_over_scope_inputs_fail_without_loading_dependencies", "outcome": "success", "seconds": 0.004446799983270466}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_extra_unbound_file_is_rejected", "monotonic": 537287.3920234}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_extra_unbound_file_is_rejected", "outcome": "success", "seconds": 0.045574799994938076}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_malformed_load_file_names_are_explicit_value_errors", "monotonic": 537287.4377003}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_malformed_load_file_names_are_explicit_value_errors", "outcome": "success", "seconds": 0.061884899972938}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_optional_runtime_is_not_imported_by_import", "monotonic": 537287.4996494}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_optional_runtime_is_not_imported_by_import", "outcome": "success", "seconds": 0.17410339997150004}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_path_escape_symlink_and_duplicate_manifest_file_are_rejected", "monotonic": 537287.6738147}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_path_escape_symlink_and_duplicate_manifest_file_are_rejected", "outcome": "success", "seconds": 0.06784020003397018}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_stdin_cli_rejects_extra_fields_and_duplicate_json_keys", "monotonic": 537287.7417219}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_stdin_cli_rejects_extra_fields_and_duplicate_json_keys", "outcome": "success", "seconds": 0.2979542000684887}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_stdin_cli_rejects_unknown_operation_as_strict_json", "monotonic": 537288.0397396}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_stdin_cli_rejects_unknown_operation_as_strict_json", "outcome": "success", "seconds": 0.13886980002280325}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_unknown_backend_revision_and_boolean_token_limit_are_rejected", "monotonic": 537288.1786957}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_unknown_backend_revision_and_boolean_token_limit_are_rejected", "outcome": "success", "seconds": 0.043857699958607554}
+{"event": "START", "id": "test_knowledge_model_runtime.ManifestContracts.test_valid_manifest_binds_actual_bytes", "monotonic": 537288.2226128}
+{"cause": "", "event": "END", "id": "test_knowledge_model_runtime.ManifestContracts.test_valid_manifest_binds_actual_bytes", "outcome": "success", "seconds": 0.018854400026611984}
+{"event": "START", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation", "monotonic": 537288.2415281}
+{"cause": "explicit local model manifest and interpreter not selected", "event": "END", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation", "outcome": "skipped", "seconds": 5.619996227324009e-05}
+{"event": "START", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens", "monotonic": 537288.2416124}
+{"cause": "explicit local model manifest and interpreter not selected", "event": "END", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens", "outcome": "skipped", "seconds": 3.9199949242174625e-05}
+{"event": "START", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation", "monotonic": 537288.2417205}
+{"cause": "explicit local model manifest and interpreter not selected", "event": "END", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation", "outcome": "skipped", "seconds": 4.1599967516958714e-05}
+{"event": "START", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens", "monotonic": 537288.2417831}
+{"cause": "explicit local model manifest and interpreter not selected", "event": "END", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens", "outcome": "skipped", "seconds": 3.400002606213093e-05}
+{"event": "START", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model", "monotonic": 537288.2418371}
+{"cause": "explicit local model manifest and interpreter not selected", "event": "END", "id": "test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model", "outcome": "skipped", "seconds": 3.1800009310245514e-05}

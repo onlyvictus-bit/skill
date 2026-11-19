@@ -1,0 +1,10 @@
+test_coverage_basis_carries_digest (test_memory_boundaries.MemoryBoundaryTests.test_coverage_basis_carries_digest) ... ok
+test_fresh_client_proves_client_only (test_memory_boundaries.MemoryBoundaryTests.test_fresh_client_proves_client_only) ... ok
+test_full_restart_evidence (test_memory_boundaries.MemoryBoundaryTests.test_full_restart_evidence) ... ok
+test_generation_change_without_identity_insufficient (test_memory_boundaries.MemoryBoundaryTests.test_generation_change_without_identity_insufficient) ... ok
+test_run_map_generation_tracks_boundary (test_memory_boundaries.MemoryBoundaryTests.test_run_map_generation_tracks_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.016s
+
+OK

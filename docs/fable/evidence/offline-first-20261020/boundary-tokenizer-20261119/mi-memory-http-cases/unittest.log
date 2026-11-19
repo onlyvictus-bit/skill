@@ -1,0 +1,26 @@
+test_caller_restart_claim_cannot_upgrade_verdict (test_memory_watchdog.BridgeRefusalTests.test_caller_restart_claim_cannot_upgrade_verdict) ... ok
+test_direct_ghost_refused (test_memory_watchdog.BridgeRefusalTests.test_direct_ghost_refused) ... ok
+test_invalid_or_duplicate_state_refused_before_transport (test_memory_watchdog.BridgeRefusalTests.test_invalid_or_duplicate_state_refused_before_transport) ... ok
+test_malformed_delete_refused_without_crashing (test_memory_watchdog.BridgeRefusalTests.test_malformed_delete_refused_without_crashing) ... ok
+test_malformed_hit_fields_are_not_silently_accepted (test_memory_watchdog.BridgeRefusalTests.test_malformed_hit_fields_are_not_silently_accepted) ... ok
+test_malformed_post_delete_refused (test_memory_watchdog.BridgeRefusalTests.test_malformed_post_delete_refused) ... ok
+test_malformed_search_refused (test_memory_watchdog.BridgeRefusalTests.test_malformed_search_refused) ... ok
+test_roundtrip_twin_wrong_direct_content (test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_direct_content) ... ok
+test_roundtrip_twin_wrong_identity (test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_identity) ... ok
+test_roundtrip_twin_wrong_search_content (test_memory_watchdog.BridgeRefusalTests.test_roundtrip_twin_wrong_search_content) ... ok
+test_same_process_cannot_prove_restart (test_memory_watchdog.BridgeRefusalTests.test_same_process_cannot_prove_restart) ... ok
+test_scoped_direct_record_must_match_scope (test_memory_watchdog.BridgeRefusalTests.test_scoped_direct_record_must_match_scope) ... ok
+test_search_ghost_refused (test_memory_watchdog.BridgeRefusalTests.test_search_ghost_refused) ... ok
+test_wrong_direct_content_refused (test_memory_watchdog.BridgeRefusalTests.test_wrong_direct_content_refused) ... ok
+test_wrong_direct_identity_refused (test_memory_watchdog.BridgeRefusalTests.test_wrong_direct_identity_refused) ... ok
+test_wrong_search_content_refused (test_memory_watchdog.BridgeRefusalTests.test_wrong_search_content_refused) ... ok
+test_wrong_search_identity_refused (test_memory_watchdog.BridgeRefusalTests.test_wrong_search_identity_refused) ... ok
+test_bridge_readback_without_observed_boundary_is_unverified (test_memory_watchdog.WatchdogTests.test_bridge_readback_without_observed_boundary_is_unverified) ... ok
+test_recall_audit_reads_compact_result_titles (test_memory_watchdog.WatchdogTests.test_recall_audit_reads_compact_result_titles) ... ok
+test_roundtrip_uses_current_api_and_cleans_canary (test_memory_watchdog.WatchdogTests.test_roundtrip_uses_current_api_and_cleans_canary) ... ok
+test_status_uses_current_agentmemory_api_and_does_not_claim_healthy (test_memory_watchdog.WatchdogTests.test_status_uses_current_agentmemory_api_and_does_not_claim_healthy) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 2.304s
+
+OK

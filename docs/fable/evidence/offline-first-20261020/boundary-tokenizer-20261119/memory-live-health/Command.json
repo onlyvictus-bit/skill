@@ -1,0 +1,14 @@
+{
+  "label": "memory-live-health",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\scripts\\memory_watchdog.py",
+    "status",
+    "--server",
+    "http://127.0.0.1:3111"
+  ],
+  "seconds": 2.422446500044316,
+  "exit": 1,
+  "failure": null
+}

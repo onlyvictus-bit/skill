@@ -1,0 +1,6 @@
+{"event": "START", "id": "test_context_budget.ContextBudgetTests.test_batches_preserve_order_and_include_every_required_item", "monotonic": 537972.4031428}
+{"cause": "", "event": "END", "id": "test_context_budget.ContextBudgetTests.test_batches_preserve_order_and_include_every_required_item", "outcome": "success", "seconds": 0.0005493999924510717}
+{"event": "START", "id": "test_context_budget.ContextBudgetTests.test_invalid_budget_fails_closed", "monotonic": 537972.4037883}
+{"cause": "", "event": "END", "id": "test_context_budget.ContextBudgetTests.test_invalid_budget_fails_closed", "outcome": "success", "seconds": 0.0001868000254034996}
+{"event": "START", "id": "test_context_budget.ContextBudgetTests.test_oversize_required_item_fails_instead_of_truncating", "monotonic": 537972.4068721}
+{"cause": "", "event": "END", "id": "test_context_budget.ContextBudgetTests.test_oversize_required_item_fails_instead_of_truncating", "outcome": "success", "seconds": 0.00015480001457035542}

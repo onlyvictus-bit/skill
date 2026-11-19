@@ -3101,3 +3101,8 @@ User "Approve paired skill update with review caveat" approved6-file pair update
 ## Authorized cumulative repair publication, 2026-11-19
 
 User "COMMIT AND PUSH ALL NEW CHANGES" authorizes the reviewed source/test/evidence checkpoint on a new backup branch. See ../evidence/offline-first-20261020/publication-all-repairs-20261119/Publication-Plan.md. Current recovery advances to v8; prior runs remain retained. Publication outcome is checked from Git and the separate receipt, not inferred from this pre-commit source. Live persistence, independent review and new release qualification remain separate.
+
+
+## Boundary/tokenizer qualification publication, 2026-11-19
+
+User "now commit and push, remaining" authorizes publishing the retained audit and approved isolated tokenizer stage. See ../evidence/offline-first-20261020/boundary-tokenizer-20261119/Publication-Notes.md and Summary-M2.json. Context budgeting passes in the separate qualified venv; default controller and installed pair are unchanged. New v9 continuity retains earlier bases. Numerical runtime, conversion, live service/restart and general semantic truth remain blocked/unverified; no further installation or live mutation is authorized by publication.

@@ -1,0 +1,25 @@
+Collecting tiktoken==0.14.0
+  Downloading tiktoken-0.14.0-cp314-cp314-win_amd64.whl.metadata (6.8 kB)
+Collecting regex (from tiktoken==0.14.0)
+  Downloading regex-2026.11.19-cp314-cp314-win_amd64.whl.metadata (41 kB)
+Collecting requests (from tiktoken==0.14.0)
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting charset_normalizer<4,>=2 (from requests->tiktoken==0.14.0)
+  Downloading charset_normalizer-3.5.2-cp314-cp314-win_amd64.whl.metadata (47 kB)
+Collecting idna<4,>=2.5 (from requests->tiktoken==0.14.0)
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests->tiktoken==0.14.0)
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests->tiktoken==0.14.0)
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Downloading tiktoken-0.14.0-cp314-cp314-win_amd64.whl (988 kB)
+   ---------------------------------------- 988.0/988.0 kB 7.5 MB/s  0:00:00
+Downloading regex-2026.11.19-cp314-cp314-win_amd64.whl (285 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.2-cp314-cp314-win_amd64.whl (210 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+Installing collected packages: urllib3, regex, idna, charset_normalizer, certifi, requests, tiktoken
+
+Successfully installed certifi-2026.10.23 charset_normalizer-3.5.2 idna-3.20 regex-2026.11.19 requests-2.34.2 tiktoken-0.14.0 urllib3-2.8.0

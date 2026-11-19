@@ -1,0 +1,12 @@
+{"event": "START", "id": "test_semantic_obligations.SemanticObligationTests.test_clean_unit_passes", "monotonic": 537282.6298592}
+{"cause": "", "event": "END", "id": "test_semantic_obligations.SemanticObligationTests.test_clean_unit_passes", "outcome": "success", "seconds": 0.000417000032030046}
+{"event": "START", "id": "test_semantic_obligations.SemanticObligationTests.test_dependency_reconciliation", "monotonic": 537282.6303434}
+{"cause": "", "event": "END", "id": "test_semantic_obligations.SemanticObligationTests.test_dependency_reconciliation", "outcome": "success", "seconds": 0.00025310006458312273}
+{"event": "START", "id": "test_semantic_obligations.SemanticObligationTests.test_empty_interpretation_unresolved", "monotonic": 537282.6306499}
+{"cause": "", "event": "END", "id": "test_semantic_obligations.SemanticObligationTests.test_empty_interpretation_unresolved", "outcome": "success", "seconds": 0.0012414000229910016}
+{"event": "START", "id": "test_semantic_obligations.SemanticObligationTests.test_missing_original_rejected", "monotonic": 537282.6319377}
+{"cause": "", "event": "END", "id": "test_semantic_obligations.SemanticObligationTests.test_missing_original_rejected", "outcome": "success", "seconds": 0.00011270004324615002}
+{"event": "START", "id": "test_semantic_obligations.SemanticObligationTests.test_negation_trap", "monotonic": 537282.6320788}
+{"cause": "", "event": "END", "id": "test_semantic_obligations.SemanticObligationTests.test_negation_trap", "outcome": "success", "seconds": 0.00013860000763088465}
+{"event": "START", "id": "test_semantic_obligations.SemanticObligationTests.test_number_trap", "monotonic": 537282.6322486}
+{"cause": "", "event": "END", "id": "test_semantic_obligations.SemanticObligationTests.test_number_trap", "outcome": "success", "seconds": 9.210000280290842e-05}

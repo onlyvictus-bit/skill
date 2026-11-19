@@ -1,0 +1,62 @@
+{
+  "attempt_states": [
+    "QUEUED",
+    "PREPARED",
+    "AWAITING_APPROVAL",
+    "DISPATCHING",
+    "RESPONSE_SAVED",
+    "VALIDATED",
+    "ACCEPTED",
+    "REFUSED",
+    "TRUNCATED",
+    "RETRYABLE_ERROR",
+    "INVALID_RESULT",
+    "DELIVERY_UNKNOWN",
+    "CANCELLED",
+    "STALE"
+  ],
+  "commands": [
+    "capabilities",
+    "freeze",
+    "prepare",
+    "preflight",
+    "run",
+    "accept",
+    "resume",
+    "status",
+    "verify",
+    "export",
+    "open-unit",
+    "query"
+  ],
+  "coordination_offline_policy": true,
+  "engine": "claude-mon",
+  "engine_version": "2.0.0-m12",
+  "evidence_classes": [
+    "MANUAL_REPORTED",
+    "TEST_ONLY",
+    "HOST_OBSERVED",
+    "TRANSPORT_OBSERVED"
+  ],
+  "extraction_states": [
+    "EXACT_TEXT",
+    "INVENTORY_CHECKED",
+    "VERIFIED_TO_DECLARED_REFERENCE",
+    "PARTIAL",
+    "UNSUPPORTED",
+    "UNKNOWN",
+    "ERROR"
+  ],
+  "history_schema": 4,
+  "native_beads_qualified": false,
+  "ok": true,
+  "receipt_states": [
+    "COMPLETE",
+    "PARTIAL",
+    "TRUNCATED",
+    "ERROR",
+    "STALE"
+  ],
+  "schema_digest": "bf3c6314a1b0e8503230f483ef0be19cbf2ace1d4cab96eb4d7a2599b0270c9f",
+  "schema_version": 2
+}

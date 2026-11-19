@@ -1,0 +1,11 @@
+test_agreeing_evidence_checked (test_pdf_extraction.PdfInventoryTests.test_agreeing_evidence_checked) ... ok
+test_count_only_is_heuristic (test_pdf_extraction.PdfInventoryTests.test_count_only_is_heuristic) ... ok
+test_encrypted_blocks (test_pdf_extraction.PdfInventoryTests.test_encrypted_blocks) ... ok
+test_no_text_extraction_claimed (test_pdf_extraction.PdfInventoryTests.test_no_text_extraction_claimed) ... ok
+test_non_pdf_rejected (test_pdf_extraction.PdfInventoryTests.test_non_pdf_rejected) ... ok
+test_truncated_tail_visible (test_pdf_extraction.PdfInventoryTests.test_truncated_tail_visible) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.005s
+
+OK

@@ -1,0 +1,19 @@
+{
+  "label": "mi-pdf",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+    "--package-root",
+    "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+    "--test-dir",
+    "tests_v2",
+    "--pattern",
+    "test_pdf_extraction.py",
+    "--output-dir",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-pdf-cases"
+  ],
+  "seconds": 0.4905293999472633,
+  "exit": 0,
+  "failure": null
+}

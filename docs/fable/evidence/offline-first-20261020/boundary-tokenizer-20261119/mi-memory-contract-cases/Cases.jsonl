@@ -1,0 +1,12 @@
+{"event": "START", "id": "test_watchdog_contract.WatchdogContractTests.test_ghost_after_delete_fails", "monotonic": 537283.0736267}
+{"cause": "", "event": "END", "id": "test_watchdog_contract.WatchdogContractTests.test_ghost_after_delete_fails", "outcome": "success", "seconds": 0.0005996000254526734}
+{"event": "START", "id": "test_watchdog_contract.WatchdogContractTests.test_healthy_path", "monotonic": 537283.0743078}
+{"cause": "", "event": "END", "id": "test_watchdog_contract.WatchdogContractTests.test_healthy_path", "outcome": "success", "seconds": 0.00015769992023706436}
+{"event": "START", "id": "test_watchdog_contract.WatchdogContractTests.test_malformed_response_is_blind", "monotonic": 537283.0745077}
+{"cause": "", "event": "END", "id": "test_watchdog_contract.WatchdogContractTests.test_malformed_response_is_blind", "outcome": "success", "seconds": 0.0012904999312013388}
+{"event": "START", "id": "test_watchdog_contract.WatchdogContractTests.test_transport_error_is_blind", "monotonic": 537283.0758413}
+{"cause": "", "event": "END", "id": "test_watchdog_contract.WatchdogContractTests.test_transport_error_is_blind", "outcome": "success", "seconds": 0.00012119999155402184}
+{"event": "START", "id": "test_watchdog_contract.WatchdogContractTests.test_unconfirmed_delete_fails_with_id", "monotonic": 537283.0759908}
+{"cause": "", "event": "END", "id": "test_watchdog_contract.WatchdogContractTests.test_unconfirmed_delete_fails_with_id", "outcome": "success", "seconds": 8.9599983766675e-05}
+{"event": "START", "id": "test_watchdog_contract.WatchdogContractTests.test_wrong_content_fails", "monotonic": 537283.0761065}
+{"cause": "", "event": "END", "id": "test_watchdog_contract.WatchdogContractTests.test_wrong_content_fails", "outcome": "success", "seconds": 8.040003012865782e-05}

@@ -1,0 +1,7 @@
+# Boundary and tokenizer evidence publication
+
+User authority: "now commit and push, remaining". Publish canonical audit reports, observed failures, case outcomes, commands, helper sources, installation lock and encoding identities. Installed skills/source implementation remain unchanged. Runtime venv, caches, encoding data, global-Temp/owned-Temp fixtures, raw workflow scratch and full PyPI metadata remain local. Publication-Mapping.json binds exact copied bytes to their original paths. Logs keep original machine paths; resolve copied evidence via this mapping. A fresh clone does not contain an initialized runtime or private local backups.
+
+Context budgeting passed31/31 stage executions in the isolated runtime. The prior audit had114 executions:97PASS/17SKIP;17 existing budgeting cases were repeated in the new runtime, so totals are not unique test identities. The current controller still lacks tiktoken. Live memory, restart, full conversion, optional numerical runtime and general semantic truth remain unverified/blocked as documented. Parent review only; no new independent review is claimed.
+
+No-build leaves useful results unpublished. Selected: one successor evidence/checkpoint commit and a new backup branch, preserving existing branches. Reject publishing multi-megabyte caches or presenting offline tests as live qualification. Verify exact tree and single parent before creating the new remote ref, read back remote SHA, preserve all old attempts.

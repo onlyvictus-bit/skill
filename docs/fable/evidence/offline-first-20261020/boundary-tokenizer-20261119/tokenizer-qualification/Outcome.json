@@ -1,0 +1,108 @@
+{
+  "status": "EXACT_TOKENIZER_QUALIFIED_ISOLATED_RUNTIME",
+  "authority": "Approve isolated tokenizer qualification",
+  "boundary": "CONTEXT_BUDGETING",
+  "verdict": "PASS",
+  "scope": "Exact installed Claude-Mon legacy/v2 counting and budgeting with tiktoken0.14.0 and cl100k_base/o200k_base in new isolated Python3.14 environment; no hidden provider framing/context accounting claim",
+  "python": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\venv\\Scripts\\python.exe",
+  "installed_modules": {
+    "mi": {
+      "files": 204,
+      "unchanged": true
+    },
+    "cm": {
+      "files": 75,
+      "unchanged": true
+    }
+  },
+  "base_controller_has_tiktoken": false,
+  "counts": {
+    "discovered": 31,
+    "executed": 31,
+    "passed": 31,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0
+  },
+  "network_disabled_during_exact_tests": true,
+  "encoding_assets": {
+    "tiktoken_version": "0.14.0",
+    "encodings": [
+      {
+        "encoding": "cl100k_base",
+        "vocabulary_size": 100277,
+        "seconds": 3.7765229999786243
+      },
+      {
+        "encoding": "o200k_base",
+        "vocabulary_size": 200019,
+        "seconds": 4.17441640002653
+      }
+    ],
+    "cache_files": [
+      {
+        "path": "9b5ad71b2ce5302211f9c61530b329a4922fc6a4",
+        "size": 1681126,
+        "sha256": "223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7"
+      },
+      {
+        "path": "fb374d419588a4632f3f557e76b4b70aebbca790",
+        "size": 3613922,
+        "sha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d"
+      }
+    ]
+  },
+  "packages": [
+    {
+      "name": "tiktoken",
+      "version": "0.14.0",
+      "wheel_sha256": "eceeff0c62419bc78d4b6e70a4762a4d25df3ae8f2d5946e3853ce93e7a57098"
+    },
+    {
+      "name": "regex",
+      "version": "2026.11.19",
+      "wheel_sha256": "e07327be735c1c4c809bff5985d615f6efe6091a7d321e7eb981e86097f14188"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "wheel_sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "wheel_sha256": "e4e81e09c1578b8df602e3db08b0b3ea0a6947ad612f52bf8dc5ea8d47691f0c"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "wheel_sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "wheel_sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "wheel_sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"
+    }
+  ],
+  "real_checkpoint_tokens": {
+    "cl100k_base": 875,
+    "o200k_base": 882
+  },
+  "project_recovery": "VERIFIED_PROJECT_FILE_RECOVERY",
+  "git_tracked_state_unchanged": true,
+  "live_memory_or_restart_qualified": false,
+  "checkpoint_version": "v8 unchanged; new qualification evidence is local and not resealed or committed",
+  "reusable_counter": "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\count_file.py",
+  "limitations": [
+    "Default C:\\Python314 still has no tokenizer; use qualified venv explicitly.",
+    "Exact declared encoding tokens exclude unknown provider framing and hidden ChatGPT context.",
+    "Other extraction/model/live service boundaries unchanged."
+  ]
+}

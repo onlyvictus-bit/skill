@@ -1,0 +1,14 @@
+{
+  "label": "dependency-check",
+  "argv": [
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\venv\\Scripts\\python.exe",
+    "-I",
+    "-B",
+    "-m",
+    "pip",
+    "--isolated",
+    "check"
+  ],
+  "exit": 0,
+  "seconds": 1.2594402999384329
+}

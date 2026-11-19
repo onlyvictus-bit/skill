@@ -1,0 +1,7 @@
+{
+  "first_attempt": "practical_checks.py",
+  "error": "AttributeError: module context_budget has no attribute schedule_batches",
+  "classification": "TEST_HARNESS_DEFECT",
+  "reason": "same-named Memory Integrity module shadowed the intended installed Claude-Mon budgeting module",
+  "correction": "new script loads exact installed Claude-Mon module by explicit file; original script preserved"
+}

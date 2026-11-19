@@ -1,0 +1,4 @@
+{
+  "authority": "Approve isolated tokenizer qualification",
+  "scope": "New venv, tiktoken and dependencies and cl100k_base/o200k_base encoding data; installed skills/runtimes/project/services unchanged"
+}

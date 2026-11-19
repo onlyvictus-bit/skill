@@ -1,0 +1,28 @@
+{"event": "START", "id": "test_budget.BudgetTests.test_bogus_encoding_fails_closed", "monotonic": 537280.7549155}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_bogus_encoding_fails_closed", "outcome": "success", "seconds": 0.0025228000013157725}
+{"event": "START", "id": "test_budget.BudgetTests.test_exact_boundary_fits", "monotonic": 537280.7575599}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_exact_boundary_fits", "outcome": "success", "seconds": 0.0001990000018849969}
+{"event": "START", "id": "test_budget.BudgetTests.test_injected_counter_with_provenance", "monotonic": 537280.7578083}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_injected_counter_with_provenance", "outcome": "success", "seconds": 0.0014148000627756119}
+{"event": "START", "id": "test_budget.BudgetTests.test_input_alone_at_limit_fails_with_reserve", "monotonic": 537280.7592689}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_input_alone_at_limit_fails_with_reserve", "outcome": "success", "seconds": 0.00012859993148595095}
+{"event": "START", "id": "test_budget.BudgetTests.test_measure_request_breakdown", "monotonic": 537280.7594257}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_measure_request_breakdown", "outcome": "success", "seconds": 9.560002945363522e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_oversize_unit_refused_not_truncated", "monotonic": 537280.7595478}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_oversize_unit_refused_not_truncated", "outcome": "success", "seconds": 8.660007733851671e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_plan_single_batch", "monotonic": 537280.7596599}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_plan_single_batch", "outcome": "success", "seconds": 8.68999632075429e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_plan_splits_on_input", "monotonic": 537280.7597676}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_plan_splits_on_input", "outcome": "success", "seconds": 0.0002690000692382455}
+{"event": "START", "id": "test_budget.BudgetTests.test_plan_splits_on_output", "monotonic": 537280.7600927}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_plan_splits_on_output", "outcome": "success", "seconds": 8.249992970377207e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_safety_covering_context_refused", "monotonic": 537280.7602011}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_safety_covering_context_refused", "outcome": "success", "seconds": 6.949994713068008e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_total_plus_one_fails", "monotonic": 537280.7602933}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_total_plus_one_fails", "outcome": "success", "seconds": 7.049995474517345e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_unknown_field_rejected", "monotonic": 537280.7603853}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_unknown_field_rejected", "outcome": "success", "seconds": 6.029999349266291e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_unknown_limits_refused", "monotonic": 537280.7604685}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_unknown_limits_refused", "outcome": "success", "seconds": 6.590003613382578e-05}
+{"event": "START", "id": "test_budget.BudgetTests.test_valid_profile_accepted", "monotonic": 537280.7605536}
+{"cause": "", "event": "END", "id": "test_budget.BudgetTests.test_valid_profile_accepted", "outcome": "success", "seconds": 4.939991049468517e-05}

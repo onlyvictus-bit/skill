@@ -1,0 +1,1 @@
+{"core": true, "note": "Discovery only. Availability does not prove an adapter executed successfully and no dependency is installed automatically.", "optional": {"aider": false, "docling": false, "graphify": false, "repomix_cli": false, "tiktoken": false}, "python": "C:\\Python314\\python.exe"}

@@ -1,0 +1,17 @@
+{
+  "original_metadata_sha256": "fe742a14977a8a72185a3c1788e8db04515e16206d1eb5733910de5ccb03e018",
+  "source": "https://pypi.org/pypi/tiktoken/json",
+  "version": "0.14.0",
+  "requires_python": ">=3.9",
+  "release_wheels": [
+    {
+      "filename": "tiktoken-0.14.0-cp314-cp314-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/fc/ec/f5fa35ec13f07279fdcaf3cc9c04bbb154ea591d23978651f2b672593e8a/tiktoken-0.14.0-cp314-cp314-win_amd64.whl",
+      "digests": {
+        "blake2b_256": "fcecf5fa35ec13f07279fdcaf3cc9c04bbb154ea591d23978651f2b672593e8a",
+        "md5": "75fc7966fef5f77e98d016ed0871e7dd",
+        "sha256": "eceeff0c62419bc78d4b6e70a4762a4d25df3ae8f2d5946e3853ce93e7a57098"
+      }
+    }
+  ]
+}

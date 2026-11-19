@@ -1,0 +1,19 @@
+{
+  "label": "cm-budget",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+    "--package-root",
+    "C:\\Users\\sakth\\.codex\\skills\\claude-mon",
+    "--test-dir",
+    "tests",
+    "--pattern",
+    "test_context_budget.py",
+    "--output-dir",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-budget-cases"
+  ],
+  "seconds": 0.41698959993664175,
+  "exit": 0,
+  "failure": null
+}

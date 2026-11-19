@@ -1,0 +1,16 @@
+{
+  "python": "C:\\Python314\\python.exe",
+  "version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "modules": {
+    "tiktoken": false,
+    "docling": false,
+    "pypdf": false,
+    "fitz": false,
+    "docx": false,
+    "onnxruntime": false,
+    "tokenizers": false,
+    "numpy": false,
+    "sklearn": false,
+    "semantica": false
+  }
+}

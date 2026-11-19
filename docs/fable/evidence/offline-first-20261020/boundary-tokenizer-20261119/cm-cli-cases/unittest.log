@@ -1,0 +1,16 @@
+test_encoding_cause_chain_and_notes_survive (test_cli_input_contract.CliInputContract.test_encoding_cause_chain_and_notes_survive) ... ok
+test_every_supplied_task_spec_is_explicitly_refused (test_cli_input_contract.CliInputContract.test_every_supplied_task_spec_is_explicitly_refused) ... ok
+test_existing_task_digest_mismatch_remains_domain_refusal (test_cli_input_contract.CliInputContract.test_existing_task_digest_mismatch_remains_domain_refusal) ... ok
+test_export_output_error_is_json (test_cli_input_contract.CliInputContract.test_export_output_error_is_json) ... ok
+test_json_input_failure_is_not_double_emitted (test_cli_input_contract.CliInputContract.test_json_input_failure_is_not_double_emitted) ... ok
+test_missing_source_routes_emit_original_os_cause (test_cli_input_contract.CliInputContract.test_missing_source_routes_emit_original_os_cause) ... ok
+test_preflight_without_unsupported_option_still_passes (test_cli_input_contract.CliInputContract.test_preflight_without_unsupported_option_still_passes) ... ok
+test_prepare_invalid_instruction_encoding_is_json (test_cli_input_contract.CliInputContract.test_prepare_invalid_instruction_encoding_is_json) ... ok
+test_programming_errors_and_interrupts_are_not_hidden (test_cli_input_contract.CliInputContract.test_programming_errors_and_interrupts_are_not_hidden) ... ok
+test_sqlite_connection_error_is_json (test_cli_input_contract.CliInputContract.test_sqlite_connection_error_is_json) ... ok
+test_unsupported_option_refuses_before_files_or_ledger_creation (test_cli_input_contract.CliInputContract.test_unsupported_option_refuses_before_files_or_ledger_creation) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 5.350s
+
+OK

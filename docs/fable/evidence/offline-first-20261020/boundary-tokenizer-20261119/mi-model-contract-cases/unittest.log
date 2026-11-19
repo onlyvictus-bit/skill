@@ -1,0 +1,20 @@
+test_changed_model_bytes_fail_before_model_import (test_knowledge_model_runtime.ManifestContracts.test_changed_model_bytes_fail_before_model_import) ... ok
+test_empty_or_over_scope_inputs_fail_without_loading_dependencies (test_knowledge_model_runtime.ManifestContracts.test_empty_or_over_scope_inputs_fail_without_loading_dependencies) ... ok
+test_extra_unbound_file_is_rejected (test_knowledge_model_runtime.ManifestContracts.test_extra_unbound_file_is_rejected) ... ok
+test_malformed_load_file_names_are_explicit_value_errors (test_knowledge_model_runtime.ManifestContracts.test_malformed_load_file_names_are_explicit_value_errors) ... ok
+test_optional_runtime_is_not_imported_by_import (test_knowledge_model_runtime.ManifestContracts.test_optional_runtime_is_not_imported_by_import) ... ok
+test_path_escape_symlink_and_duplicate_manifest_file_are_rejected (test_knowledge_model_runtime.ManifestContracts.test_path_escape_symlink_and_duplicate_manifest_file_are_rejected) ... ok
+test_stdin_cli_rejects_extra_fields_and_duplicate_json_keys (test_knowledge_model_runtime.ManifestContracts.test_stdin_cli_rejects_extra_fields_and_duplicate_json_keys) ... ok
+test_stdin_cli_rejects_unknown_operation_as_strict_json (test_knowledge_model_runtime.ManifestContracts.test_stdin_cli_rejects_unknown_operation_as_strict_json) ... ok
+test_unknown_backend_revision_and_boolean_token_limit_are_rejected (test_knowledge_model_runtime.ManifestContracts.test_unknown_backend_revision_and_boolean_token_limit_are_rejected) ... ok
+test_valid_manifest_binds_actual_bytes (test_knowledge_model_runtime.ManifestContracts.test_valid_manifest_binds_actual_bytes) ... ok
+test_real_embedding_refuses_truncation (test_knowledge_model_runtime.RealLocalModels.test_real_embedding_refuses_truncation) ... skipped 'explicit local model manifest and interpreter not selected'
+test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens (test_knowledge_model_runtime.RealLocalModels.test_real_generation_is_deterministic_and_receipts_account_for_raw_tokens) ... skipped 'explicit local model manifest and interpreter not selected'
+test_real_generation_refuses_truncation (test_knowledge_model_runtime.RealLocalModels.test_real_generation_refuses_truncation) ... skipped 'explicit local model manifest and interpreter not selected'
+test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens (test_knowledge_model_runtime.RealLocalModels.test_real_learned_embeddings_have_paraphrase_support_and_measured_tokens) ... skipped 'explicit local model manifest and interpreter not selected'
+test_real_reranking_scores_every_candidate_with_bound_model (test_knowledge_model_runtime.RealLocalModels.test_real_reranking_scores_every_candidate_with_bound_model) ... skipped 'explicit local model manifest and interpreter not selected'
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.912s
+
+OK (skipped=5)

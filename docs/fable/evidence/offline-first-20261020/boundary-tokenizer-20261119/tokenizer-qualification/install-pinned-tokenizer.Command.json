@@ -1,0 +1,25 @@
+{
+  "label": "install-pinned-tokenizer",
+  "argv": [
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\venv\\Scripts\\python.exe",
+    "-I",
+    "-B",
+    "-m",
+    "pip",
+    "--isolated",
+    "--disable-pip-version-check",
+    "install",
+    "--no-input",
+    "--require-virtualenv",
+    "--only-binary=:all:",
+    "--index-url",
+    "https://pypi.org/simple",
+    "--cache-dir",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\pip-cache",
+    "--report",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\Install-Report.json",
+    "tiktoken==0.14.0"
+  ],
+  "exit": 0,
+  "seconds": 9.603774899966083
+}

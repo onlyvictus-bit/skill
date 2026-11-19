@@ -1,0 +1,8 @@
+test_batches_preserve_order_and_include_every_required_item (test_context_budget.ContextBudgetTests.test_batches_preserve_order_and_include_every_required_item) ... ok
+test_invalid_budget_fails_closed (test_context_budget.ContextBudgetTests.test_invalid_budget_fails_closed) ... ok
+test_oversize_required_item_fails_instead_of_truncating (test_context_budget.ContextBudgetTests.test_oversize_required_item_fails_instead_of_truncating) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.004s
+
+OK

@@ -1,0 +1,65 @@
+[
+  {
+    "argv": [
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\count_file.py",
+      "--input",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\docs\\fable\\continuity\\Current-Project-v8.txt",
+      "--encoding",
+      "cl100k_base",
+      "--context-limit",
+      "4096",
+      "--reserved-output",
+      "512",
+      "--overhead",
+      "256"
+    ],
+    "exit": 0,
+    "stdout": "{\"ok\": true, \"input\": \"C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\docs\\\\fable\\\\continuity\\\\Current-Project-v8.txt\", \"source_sha256\": \"e1bdcec62abcb6bd02c5c852730c1d1509559b02338e6a5382987a9f487a7906\", \"encoding\": \"cl100k_base\", \"tiktoken\": \"0.14.0\", \"input_tokens\": 875, \"context_limit\": 4096, \"reserved_output\": 512, \"declared_overhead\": 256, \"fits_declared_budget\": true, \"scope\": \"exact local file tokens; caller-declared reserves; excludes undisclosed model/provider framing\"}\r\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\count_file.py",
+      "--input",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\docs\\fable\\continuity\\Current-Project-v8.txt",
+      "--encoding",
+      "o200k_base",
+      "--context-limit",
+      "4096",
+      "--reserved-output",
+      "512",
+      "--overhead",
+      "256"
+    ],
+    "exit": 0,
+    "stdout": "{\"ok\": true, \"input\": \"C:\\\\Users\\\\sakth\\\\Documents\\\\Codex\\\\ofpkg-20261113\\\\ci\\\\source\\\\docs\\\\fable\\\\continuity\\\\Current-Project-v8.txt\", \"source_sha256\": \"e1bdcec62abcb6bd02c5c852730c1d1509559b02338e6a5382987a9f487a7906\", \"encoding\": \"o200k_base\", \"tiktoken\": \"0.14.0\", \"input_tokens\": 882, \"context_limit\": 4096, \"reserved_output\": 512, \"declared_overhead\": 256, \"fits_declared_budget\": true, \"scope\": \"exact local file tokens; caller-declared reserves; excludes undisclosed model/provider framing\"}\r\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\tokenizer-qualification\\count_file.py",
+      "--input",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\docs\\fable\\continuity\\Current-Project-v8.txt",
+      "--encoding",
+      "cl100k_base",
+      "--context-limit",
+      "10",
+      "--reserved-output",
+      "2",
+      "--overhead",
+      "1"
+    ],
+    "exit": 2,
+    "stdout": "{\"ok\": false, \"error\": \"BudgetError\", \"detail\": \"required item input needs 875 tokens but usable budget is 7; split it instead of truncating\", \"truncated\": false}\r\n",
+    "stderr": ""
+  }
+]

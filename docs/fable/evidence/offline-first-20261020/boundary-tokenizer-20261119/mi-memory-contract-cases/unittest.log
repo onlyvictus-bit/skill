@@ -1,0 +1,11 @@
+test_ghost_after_delete_fails (test_watchdog_contract.WatchdogContractTests.test_ghost_after_delete_fails) ... ok
+test_healthy_path (test_watchdog_contract.WatchdogContractTests.test_healthy_path) ... ok
+test_malformed_response_is_blind (test_watchdog_contract.WatchdogContractTests.test_malformed_response_is_blind) ... ok
+test_transport_error_is_blind (test_watchdog_contract.WatchdogContractTests.test_transport_error_is_blind) ... ok
+test_unconfirmed_delete_fails_with_id (test_watchdog_contract.WatchdogContractTests.test_unconfirmed_delete_fails_with_id) ... ok
+test_wrong_content_fails (test_watchdog_contract.WatchdogContractTests.test_wrong_content_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK

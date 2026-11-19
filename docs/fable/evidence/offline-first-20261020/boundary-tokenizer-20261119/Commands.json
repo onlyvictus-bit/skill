@@ -1,0 +1,264 @@
+[
+  {
+    "label": "cm-runtime",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\.codex\\skills\\claude-mon\\scripts\\runtime_status.py"
+    ],
+    "seconds": 0.13994619995355606,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-capabilities",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\scripts\\memory_integrity_v2.py",
+      "capabilities",
+      "--claude-mon-root",
+      "C:\\Users\\sakth\\.codex\\skills\\claude-mon"
+    ],
+    "seconds": 0.5432437000563368,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "memory-live-health",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\scripts\\memory_watchdog.py",
+      "status",
+      "--server",
+      "http://127.0.0.1:3111"
+    ],
+    "seconds": 2.422446500044316,
+    "exit": 1,
+    "failure": null
+  },
+  {
+    "label": "selected312-identity",
+    "argv": [
+      "C:\\Users\\sakth\\Documents\\Codex\\2026-10-02\\ad\\work\\R5-practical-fence-20261013\\build-validation\\n3-retrieval-9ec6fb1db36444acba2945896e8b8d17\\venv\\Scripts\\python.exe",
+      "-I",
+      "-S",
+      "-B",
+      "-c",
+      "import sys,json;print(json.dumps({\"executable\":sys.executable,\"version\":sys.version,\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix}))"
+    ],
+    "seconds": 0.04031730000860989,
+    "exit": 103,
+    "failure": null
+  },
+  {
+    "label": "cm-cli",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\claude-mon",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_cli_input_contract.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-cli-cases"
+    ],
+    "seconds": 5.844660600065254,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "cm-budget",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\claude-mon",
+      "--test-dir",
+      "tests",
+      "--pattern",
+      "test_context_budget.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-budget-cases"
+    ],
+    "seconds": 0.41698959993664175,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "cm-budget-v2",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\claude-mon",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_budget.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\cm-budget-v2-cases"
+    ],
+    "seconds": 0.4156590000493452,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-extraction",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_extraction*.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-extraction-cases"
+    ],
+    "seconds": 0.8959869000827894,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-pdf",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_pdf_extraction.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-pdf-cases"
+    ],
+    "seconds": 0.4905293999472633,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-semantic",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_semantic_obligations.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-semantic-cases"
+    ],
+    "seconds": 0.49237100000027567,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-memory-contract",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_watchdog*.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-memory-contract-cases"
+    ],
+    "seconds": 0.435654699918814,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-memory-boundary",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_memory_boundaries.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-memory-boundary-cases"
+    ],
+    "seconds": 0.3598824000218883,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-memory-http",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests",
+      "--pattern",
+      "test_memory_watchdog.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-memory-http-cases"
+    ],
+    "seconds": 2.997692200005986,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-offline-knowledge",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_knowledge_offline_engine.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-offline-knowledge-cases"
+    ],
+    "seconds": 0.5137433999916539,
+    "exit": 0,
+    "failure": null
+  },
+  {
+    "label": "mi-model-contract",
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+      "--package-root",
+      "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+      "--test-dir",
+      "tests_v2",
+      "--pattern",
+      "test_knowledge_model_runtime.py",
+      "--output-dir",
+      "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-model-contract-cases"
+    ],
+    "seconds": 1.2805888000875711,
+    "exit": 0,
+    "failure": null
+  }
+]

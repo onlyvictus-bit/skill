@@ -1,0 +1,14 @@
+{
+  "label": "mi-capabilities",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\scripts\\memory_integrity_v2.py",
+    "capabilities",
+    "--claude-mon-root",
+    "C:\\Users\\sakth\\.codex\\skills\\claude-mon"
+  ],
+  "seconds": 0.5432437000563368,
+  "exit": 0,
+  "failure": null
+}

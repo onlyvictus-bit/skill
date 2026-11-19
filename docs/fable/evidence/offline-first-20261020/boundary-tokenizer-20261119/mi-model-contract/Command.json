@@ -1,0 +1,19 @@
+{
+  "label": "mi-model-contract",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\scripts\\offline_ci_suite.py",
+    "--package-root",
+    "C:\\Users\\sakth\\.codex\\skills\\memory-integrity",
+    "--test-dir",
+    "tests_v2",
+    "--pattern",
+    "test_knowledge_model_runtime.py",
+    "--output-dir",
+    "C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\mi-model-contract-cases"
+  ],
+  "seconds": 1.2805888000875711,
+  "exit": 0,
+  "failure": null
+}

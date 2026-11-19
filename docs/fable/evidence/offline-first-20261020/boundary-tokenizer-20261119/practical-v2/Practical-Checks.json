@@ -1,0 +1,60 @@
+{
+  "office_inventory": {
+    "source_sha256": "53be33267f5e3c311e26847ccaa1ef368b85d90ed081c652ba47567b548c7a3f",
+    "inventory": {
+      "parts": [
+        {
+          "part": "word/document.xml",
+          "kind": "word-body"
+        },
+        {
+          "part": "word/header1.xml",
+          "kind": "word-header-footer"
+        }
+      ],
+      "unsupported": [
+        {
+          "part": "word/document.xml",
+          "reason": "tracked changes present; review required"
+        },
+        {
+          "part": "word/embeddings/object1.bin",
+          "reason": "embedded object: listed, not parsed"
+        }
+      ],
+      "part_count": 4,
+      "macros_present": false
+    },
+    "state": "PARTIAL",
+    "expected": "PARTIAL due to tracked change and embedded object",
+    "verdict": "EXPECTED_REFUSAL",
+    "text_conversion_executed": false
+  },
+  "docling": {
+    "available": false,
+    "missing": [
+      "docling"
+    ],
+    "verdict": "UNSUPPORTED",
+    "reason": "docling package not installed; no auto-install performed"
+  },
+  "conversion_refusal": {
+    "verdict": "EXPECTED_REFUSAL",
+    "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\practical_checks_v2.py\", line 16, in <module>\n    try:docling_adapter.convert(fixture)\n        ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\sakth\\.codex\\skills\\memory-integrity\\scripts\\integrity_v2\\adapters\\docling_adapter.py\", line 50, in convert\n    raise DoclingError(\"E_DOCLING_UNAVAILABLE: %s\" % (status[\"reason\"],))\nintegrity_v2.adapters.docling_adapter.DoclingError: E_DOCLING_UNAVAILABLE: docling package not installed; no auto-install performed\n"
+  },
+  "reserve_arithmetic": {
+    "batches": [
+      [
+        "A"
+      ],
+      [
+        "B"
+      ]
+    ],
+    "real_tokenizer": false
+  },
+  "exact_counting": {
+    "verdict": "BLOCKED",
+    "cause": "Traceback (most recent call last):\n  File \"C:\\Users\\sakth\\.codex\\skills\\claude-mon\\scripts\\context_budget.py\", line 14, in _tiktoken\n    import tiktoken  # type: ignore\n    ^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'tiktoken'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\sakth\\Documents\\Codex\\ofpkg-20261113\\ci\\source\\.github\\run-artifacts\\boundary-qualification-20261119\\practical_checks_v2.py\", line 20, in <module>\n    try:context_budget.count_tokens('exact token test',explicit_encoding='cl100k_base')\n        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\sakth\\.codex\\skills\\claude-mon\\scripts\\context_budget.py\", line 33, in count_tokens\n    enc = resolve_encoding(model=model, explicit_encoding=explicit_encoding)\n  File \"C:\\Users\\sakth\\.codex\\skills\\claude-mon\\scripts\\context_budget.py\", line 21, in resolve_encoding\n    tk = _tiktoken()\n  File \"C:\\Users\\sakth\\.codex\\skills\\claude-mon\\scripts\\context_budget.py\", line 16, in _tiktoken\n    raise BudgetError(\"tiktoken is not installed; install only with explicit authorization or provide counts from the active runtime\") from exc\ninstalled_cm_budget.BudgetError: tiktoken is not installed; install only with explicit authorization or provide counts from the active runtime\n"
+  }
+}

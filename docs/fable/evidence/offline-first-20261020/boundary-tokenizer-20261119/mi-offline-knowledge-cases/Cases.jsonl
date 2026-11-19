@@ -1,0 +1,32 @@
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges", "monotonic": 537286.8157009}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_affirmative_prose_calls_actual_semantica_with_precise_utf8_ranges", "outcome": "skipped", "seconds": 0.00032029999420046806}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica", "monotonic": 537286.8160857}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_automatically_generated_vectors_rank_identifiers_with_real_semantica", "outcome": "skipped", "seconds": 0.0007321001030504704}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted", "monotonic": 537286.8168635}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_conditional_negative_and_unrelated_prose_stays_unasserted", "outcome": "skipped", "seconds": 0.00020859995856881142}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans", "monotonic": 537286.8171279}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_crlf_preserves_proposition_text_and_original_byte_spans", "outcome": "skipped", "seconds": 4.0500075556337833e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts", "monotonic": 537286.8171928}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_context_cannot_turn_quoted_or_denied_claims_into_facts", "outcome": "skipped", "seconds": 3.4100026823580265e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented", "monotonic": 537286.8172467}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_document_with_no_tokens_cannot_be_randomly_represented", "outcome": "skipped", "seconds": 3.169989213347435e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads", "monotonic": 537286.8172964}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_latent_and_hybrid_modes_are_deterministic_without_model_downloads", "outcome": "skipped", "seconds": 3.029999788850546e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity", "monotonic": 537286.8173445}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_only_passed_authorized_corpus_changes_fitted_identity", "outcome": "skipped", "seconds": 2.9999995604157448e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors", "monotonic": 537286.8173908}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_oov_empty_input_and_unknown_mode_do_not_invent_vectors", "outcome": "skipped", "seconds": 3.070000093430281e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range", "monotonic": 537286.817439}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_real_shacl_applies_predicate_domain_and_range", "outcome": "skipped", "seconds": 3.070000093430281e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span", "monotonic": 537286.8175197}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_repeated_names_keep_each_actual_statement_span", "outcome": "skipped", "seconds": 3.509991802275181e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened", "monotonic": 537286.8175733}
+{"cause": "explicit pinned Semantica runtime not selected", "event": "END", "id": "test_knowledge_offline_engine.ActualOfflineRuntime.test_scoped_conditional_and_example_context_is_not_flattened", "outcome": "skipped", "seconds": 3.090000245720148e-05}
+{"event": "START", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_coding_and_test_evidence_type_rules", "monotonic": 537286.8176326}
+{"cause": "", "event": "END", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_coding_and_test_evidence_type_rules", "outcome": "success", "seconds": 0.009946000063791871}
+{"event": "START", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_import_does_not_load_optional_runtime", "monotonic": 537286.8276192}
+{"cause": "", "event": "END", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_import_does_not_load_optional_runtime", "outcome": "success", "seconds": 0.13517360005062073}
+{"event": "START", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_malformed_type_records_are_explicit_value_errors", "monotonic": 537286.9628549}
+{"cause": "", "event": "END", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_malformed_type_records_are_explicit_value_errors", "outcome": "success", "seconds": 0.0003070998936891556}
+{"event": "START", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_wrong_domain_range_and_foreign_predicate_rejected", "monotonic": 537286.9631964}
+{"cause": "", "event": "END", "id": "test_knowledge_offline_engine.TypesAndIsolation.test_wrong_domain_range_and_foreign_predicate_rejected", "outcome": "success", "seconds": 0.00034899997990578413}
