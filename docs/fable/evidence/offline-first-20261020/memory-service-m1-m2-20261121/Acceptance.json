@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-21",
+  "checkpoint": "M1_AND_M2_ACCEPTED",
+  "agentmemory": "0.9.33",
+  "iii": "0.25.1",
+  "workers": {
+    "state": "0.22.22",
+    "http": "0.22.8"
+  },
+  "m1": {
+    "verdict": "PASS_FEASIBILITY_FIXTURES_ONLY",
+    "normal_account_cim": true,
+    "controls": {
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    },
+    "native_processes_per_fixture_instance": 4,
+    "receipt_sha256": "5f139854574c287d2ed40aaae23a06675643c8290b8137364246ce158016c39b"
+  },
+  "m2": {
+    "verdict": "PASS_ISOLATED_DEPLOYMENT",
+    "runtime_files_verified": 12549,
+    "startup_seconds": 5.419,
+    "health_checks_seconds": 0.378,
+    "supported_stop_seconds": 62.667,
+    "service_processes_exited": 14,
+    "stop_command_processes_exited": 3,
+    "forced_job_termination": false,
+    "authenticated_status": 200,
+    "unauthenticated_status": 401,
+    "loopback_ports": [
+      3211,
+      3213,
+      49234
+    ],
+    "ports_released": true,
+    "configured_store_present_after_empty_run": false,
+    "receipt_sha256": "fb909801da9e6da7cb69997b1c0b4725423c9c7c43623d46e4ce7dc37de9755b",
+    "service_exit_evidence_sha256": "dda67583d9240a9c0159d62690627624584104819923e9ae9e87624a7476989b",
+    "stop_exit_evidence_sha256": "86de841f25353253629b282d11101778c15095e13b8231d1fa953ea7020442e9",
+    "verified_configuration_sha256": "47a5aa0682bb2060765817eb17e27755c58645667fac8bc489a5554fcc508aa8"
+  },
+  "restart_persistence": "UNVERIFIED",
+  "installed_skill_integration": "UNVERIFIED"
+}
