@@ -15,7 +15,23 @@ The runner published a stage record named `cold-datastore.json`, then tried to c
 
 The raw files remain in the original local M3 evidence directory. This checkpoint publishes only the reviewed results, evidence file names, and the remaining acceptance criteria.
 
-## Continue the existing experiment
+## Continuation results
+
+The November 22 continuation used the existing canary. Review compared the original and resumed process ledgers, the physical datastore witness, the readback and recall records, and the HTTP trace. The preserved receipt is `memory-service-m3-resume-20261122/Receipt.json`.
+
+| Check | Verdict | Reviewed evidence |
+| --- | --- | --- |
+| New service instance | PASS | `Restart-Witness.json` binds the earlier graceful exit ledgers to distinct new Windows process identities. The resumed instance matched the accepted configuration and owned its loopback listeners. |
+| Datastore identity from the captured stopped baseline through startup | PASS | `Datastore-Before-Start.json` records the stopped baseline. `Restart-Witness.json` records matching Windows volume and directory file IDs for both the instance and datastore across startup. |
+| Exact canary readback and recall after startup | PASS | `Readback-After.json` and `Recall-After.json` match the original ID, project and agent scope, and content digest. The continuation trace contains no memory write. |
+| Deletion and absence | PASS | `HTTP-06.json` records successful deletion. Direct lookup of that item returned HTTP 404 in `HTTP-07.json`. The follow-up search passed the absence check, as recorded by `HTTP-08.json` and `stage-delete-and-check-absence.json`. |
+| Final graceful shutdown | PASS | The service ledger accounted for all 14 tracked processes. The stop-command ledger accounted for all three. Both recorded native exit without forced termination, and the qualification ports no longer had listeners. |
+| Continuous physical datastore identity from the original shutdown | UNVERIFIED | The original attempt did not save its detailed stopped datastore identity. The physical witness starts at the later captured stopped baseline. |
+| Installed-skill integration | UNVERIFIED | Requires its own qualification. |
+
+The original canary survived the recorded stop and later start, and its cleanup was verified. The comprehensive persistence field in the receipt remains `UNVERIFIED` for the original physical-identity evidence gap. This checkpoint retains the observed results and the filenames needed to locate the local evidence.
+
+## Continuation plan recorded before the run
 
 1. Reconcile the retained M3 receipt, matching canary records and native shutdown ledgers, and confirm the isolated service is still stopped. Review any evidence of intervening service activity or storage replacement.
 2. Open a new evidence directory. Use distinct file names for stage records and detailed storage evidence and exercise that behavior before starting the service. Capture the physical identity of the stopped instance and datastore, compare the instance identity with accepted M2 evidence, and record the stopped storage metadata.
