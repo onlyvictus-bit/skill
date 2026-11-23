@@ -1,4 +1,23 @@
-# AgentMemory M3 partial checkpoint
+# AgentMemory M3 acceptance
+
+**Full M3 verdict: PASS.** The November 23, 2026 Windows qualification observed one exact test memory survive a graceful service restart with the same physical datastore on the isolated AgentMemory 0.9.33 instance. Raw review confirmed all 12 stages and 13 recorded checks passed, with no runtime or cleanup failure. The fresh run closes the datastore-identity evidence gap in the historical continuation below.
+
+| Check | Verdict | Reviewed evidence |
+| --- | --- | --- |
+| Real backend and distinct new service instance | PASS | The service used the accepted M2 configuration and owned its loopback listeners before and after restart. The supported stop and native Windows process handles established the original exit and distinct new process identities. See `Restart-Witness.json` and the native process ledgers. |
+| Physical datastore continuity | PASS | Windows volume and directory file IDs matched at initial observation, immediately before shutdown, while stopped, and after restart. The stopped datastore inventory was rechecked before startup. See `Datastore-Initial-Identity.json`, `Datastore-Before-Stop.json`, `Datastore-Stopped-Identity.json`, and `Restart-Witness.json`. |
+| Exact readback and recall | PASS | Before and after records matched the test memory ID, project, agent scope, and content digest. The 14-request trace has exactly one memory write, before shutdown, and the post-restart search check passed. |
+| Cleanup and final stop | PASS | Deletion returned HTTP 200, direct lookup returned HTTP 404, and the follow-up search passed the absence check. The final native ledgers accounted for 14 service processes and three stop-command processes, all exited gracefully. The qualification ports had no listeners after the run. |
+| Installed-skill integration | UNVERIFIED | M4 is a separate qualification. |
+
+The raw evidence is retained locally under `memory-service-m3-full-20261123/`. The success marker in the receipt requested raw review, which was completed by cross-checking the identity records, native ledgers, request trace, and cleanup checks. The table below records SHA-256 digests of UTF-8 text with LF newlines for the two principal evidence files.
+
+| File | SHA-256 (LF-normalized text) |
+| --- | --- |
+| `Receipt.json` | `af7906e62490f8a04ecd59cf412f14f3e40153fd0efec0be92ba1415cad9cb5d` |
+| `Restart-Witness.json` | `47ea4355f0d330748d4082680ea68f48e311b5b80f5d59b0888f7d1f053a28da` |
+
+## Historical partial attempt
 
 Observed November 21, 2026. Reviewed November 22, 2026. This checkpoint follows the [accepted M1/M2 evidence](../memory-service-m1-m2-20261121/README.md) and retains the verified portion of one isolated AgentMemory 0.9.33 experiment.
 
@@ -15,7 +34,7 @@ The runner published a stage record named `cold-datastore.json`, then tried to c
 
 The raw files remain in the original local M3 evidence directory. This checkpoint publishes only the reviewed results, evidence file names, and the remaining acceptance criteria.
 
-## Continuation results
+### Continuation results before full qualification
 
 The November 22 continuation used the existing canary. Review compared the original and resumed process ledgers, the physical datastore witness, the readback and recall records, and the HTTP trace. The preserved receipt is `memory-service-m3-resume-20261122/Receipt.json`.
 
@@ -31,7 +50,7 @@ The November 22 continuation used the existing canary. Review compared the origi
 
 The original canary survived the recorded stop and later start, and its cleanup was verified. The comprehensive persistence field in the receipt remains `UNVERIFIED` for the original physical-identity evidence gap. This checkpoint retains the observed results and the filenames needed to locate the local evidence.
 
-## Continuation plan recorded before the run
+### Continuation plan recorded before the run
 
 1. Reconcile the retained M3 receipt, matching canary records and native shutdown ledgers, and confirm the isolated service is still stopped. Review any evidence of intervening service activity or storage replacement.
 2. Open a new evidence directory. Use distinct file names for stage records and detailed storage evidence and exercise that behavior before starting the service. Capture the physical identity of the stopped instance and datastore, compare the instance identity with accepted M2 evidence, and record the stopped storage metadata.
